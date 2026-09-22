@@ -1,0 +1,9 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "paths": { "cc": ["temp/declarations/cc.d.ts"] },
+    "lib": ["es2018", "dom"],
+    "noEmit": true
+  }
+}

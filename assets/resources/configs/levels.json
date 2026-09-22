@@ -1,0 +1,74 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "name": "北京炸酱面",
+      "timeLimit": 120,
+      "maxLives": 3,
+      "directory": "levels/level-01"
+    },
+    {
+      "id": 2,
+      "name": "海南椰子鸡",
+      "timeLimit": 120,
+      "maxLives": 3,
+      "directory": "levels/level-02"
+    },
+    {
+      "id": 3,
+      "name": "深圳猪脚饭",
+      "timeLimit": 120,
+      "maxLives": 3,
+      "directory": "levels/level-03"
+    },
+    {
+      "id": 4,
+      "name": "顺德双皮奶",
+      "timeLimit": 120,
+      "maxLives": 3,
+      "directory": "levels/level-04"
+    },
+    {
+      "id": 5,
+      "name": "云南米线",
+      "timeLimit": 120,
+      "maxLives": 3,
+      "directory": "levels/level-05"
+    },
+    {
+      "id": 6,
+      "name": "皇家城堡庭院 · 6",
+      "timeLimit": 120,
+      "maxLives": 3,
+      "directory": "levels/level-06"
+    },
+    {
+      "id": 7,
+      "name": "皇家城堡庭院 · 7",
+      "timeLimit": 120,
+      "maxLives": 3,
+      "directory": "levels/level-07"
+    },
+    {
+      "id": 8,
+      "name": "皇家城堡庭院 · 8",
+      "timeLimit": 120,
+      "maxLives": 3,
+      "directory": "levels/level-08"
+    },
+    {
+      "id": 9,
+      "name": "皇家城堡庭院 · 9",
+      "timeLimit": 120,
+      "maxLives": 3,
+      "directory": "levels/level-09"
+    },
+    {
+      "id": 10,
+      "name": "皇家城堡庭院 · 10",
+      "timeLimit": 120,
+      "maxLives": 3,
+      "directory": "levels/level-10"
+    }
+  ]
+}

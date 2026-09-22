@@ -1,0 +1,11 @@
+# Cocos Creator 生成的缓存与构建产物（可再生，不入库）
+library/
+temp/
+build/
+local/
+profiles/
+
+# 系统与编辑器杂项
+.DS_Store
+Thumbs.db
+*.swp

@@ -1,0 +1,54 @@
+{
+  "version": "3.0.0-light-h5",
+  "designResolution": { "width": 750, "height": 1334 },
+  "rules": {
+    "panelSaturationMaxPercent": 50,
+    "naming": "lower_snake_case",
+    "spriteMode": "single",
+    "defaultWrapMode": "clamp-to-edge"
+  },
+  "backgrounds": {
+    "home": "textures/UI_Sprite/V3/backgrounds/bg_home/spriteFrame",
+    "content": "textures/UI_Sprite/V3/backgrounds/bg_content/spriteFrame",
+    "game": "textures/UI_Sprite/V3/backgrounds/bg_game/spriteFrame"
+  },
+  "nineSlice": {
+    "panel_light": { "path": "textures/UI_Sprite/V3/panels/panel_light/spriteFrame", "border": [24, 24, 24, 24] },
+    "panel_selected": { "path": "textures/UI_Sprite/V3/panels/panel_selected/spriteFrame", "border": [24, 24, 24, 24] },
+    "rank_row": { "path": "textures/UI_Sprite/V3/panels/rank_row/spriteFrame", "border": [22, 22, 20, 20] },
+    "rank_row_self": { "path": "textures/UI_Sprite/V3/panels/rank_row_self/spriteFrame", "border": [22, 22, 20, 20] },
+    "level_card": { "path": "textures/UI_Sprite/V3/panels/level_card/spriteFrame", "border": [24, 24, 24, 24] },
+    "level_card_selected": { "path": "textures/UI_Sprite/V3/panels/level_card_selected/spriteFrame", "border": [24, 24, 24, 24] },
+    "image_frame": { "path": "textures/UI_Sprite/V3/panels/image_frame/spriteFrame", "border": [18, 18, 18, 18] },
+    "segmented_control": { "path": "textures/UI_Sprite/V3/panels/segmented_control/spriteFrame", "border": [30, 30, 24, 24] },
+    "tab_selected": { "path": "textures/UI_Sprite/V3/panels/tab_selected/spriteFrame", "border": [28, 28, 22, 22] },
+    "chip_light": { "path": "textures/UI_Sprite/V3/panels/chip_light/spriteFrame", "border": [22, 22, 18, 18] },
+    "button_primary_normal": { "path": "textures/UI_Sprite/V3/buttons/button_primary_normal/spriteFrame", "border": [32, 32, 28, 28] },
+    "button_primary_pressed": { "path": "textures/UI_Sprite/V3/buttons/button_primary_pressed/spriteFrame", "border": [32, 32, 28, 28] },
+    "button_primary_disabled": { "path": "textures/UI_Sprite/V3/buttons/button_primary_disabled/spriteFrame", "border": [32, 32, 28, 28] },
+    "button_secondary_normal": { "path": "textures/UI_Sprite/V3/buttons/button_secondary_normal/spriteFrame", "border": [32, 32, 28, 28] },
+    "button_secondary_pressed": { "path": "textures/UI_Sprite/V3/buttons/button_secondary_pressed/spriteFrame", "border": [32, 32, 28, 28] },
+    "button_secondary_disabled": { "path": "textures/UI_Sprite/V3/buttons/button_secondary_disabled/spriteFrame", "border": [32, 32, 28, 28] },
+    "button_square_normal": { "path": "textures/UI_Sprite/V3/buttons/button_square_normal/spriteFrame", "border": [24, 24, 24, 24] },
+    "button_square_pressed": { "path": "textures/UI_Sprite/V3/buttons/button_square_pressed/spriteFrame", "border": [24, 24, 24, 24] }
+  },
+  "icons": [
+    "icon_back",
+    "icon_settings",
+    "icon_rank",
+    "icon_album",
+    "icon_share",
+    "icon_hint",
+    "icon_add_time",
+    "icon_lock",
+    "icon_clock",
+    "icon_sound",
+    "icon_daily",
+    "icon_star_filled",
+    "icon_star_empty",
+    "icon_heart_filled",
+    "icon_heart_empty",
+    "icon_progress_filled",
+    "icon_progress_empty"
+  ]
+}

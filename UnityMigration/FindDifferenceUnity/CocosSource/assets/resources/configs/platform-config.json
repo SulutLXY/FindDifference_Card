@@ -1,0 +1,10 @@
+{
+  "cdnBaseUrl": "",
+  "apiBaseUrl": "",
+  "shareLandingUrl": "",
+  "wechatAppId": "",
+  "wechatRewardedAdUnitId": "",
+  "douyinAppId": "",
+  "douyinRewardedAdUnitId": "",
+  "rewardOnAnyClose": true
+}

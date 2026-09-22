@@ -1,0 +1,352 @@
+[
+  {
+    "level": 1,
+    "name": "北京炸酱面",
+    "count": 14,
+    "source": "D:\\CocosCreator\\FindDifferenceTex\\FindDifferenceLevel (1).png",
+    "cropA": [
+      31,
+      26,
+      1024,
+      672
+    ],
+    "cropB": [
+      31,
+      750,
+      1024,
+      672
+    ],
+    "regions": [
+      {
+        "number": 1,
+        "id": "hair-tassel",
+        "description": "发饰流苏：红色 / 蓝色"
+      },
+      {
+        "number": 2,
+        "id": "noodle-topping",
+        "description": "面碗中增加葱花"
+      },
+      {
+        "number": 3,
+        "id": "sauce-jar",
+        "description": "酱罐标签：酱 / 甜酱"
+      },
+      {
+        "number": 4,
+        "id": "lantern",
+        "description": "灯笼：红色 / 黄色"
+      },
+      {
+        "number": 5,
+        "id": "chalkboard",
+        "description": "黑板图案：面碗 / 蒜头"
+      },
+      {
+        "number": 6,
+        "id": "vegetable-bowl",
+        "description": "中间配菜：豆芽 / 胡萝卜丝"
+      },
+      {
+        "number": 7,
+        "id": "right-bowl",
+        "description": "右侧配菜：黄豆 / 紫色菜丝"
+      },
+      {
+        "number": 8,
+        "id": "cloth-sign",
+        "description": "左侧布招牌：面 / 食"
+      },
+      {
+        "number": 9,
+        "id": "counter-animal",
+        "description": "柜台动物：猫 / 鸽子"
+      },
+      {
+        "number": 10,
+        "id": "shop-sign",
+        "description": "店铺招牌：老北京 / 京味"
+      },
+      {
+        "number": 11,
+        "id": "girl-dress",
+        "description": "女孩衣服：红色 / 蓝色"
+      },
+      {
+        "number": 12,
+        "id": "chef-hat",
+        "description": "厨师帽：白色 / 黑色"
+      },
+      {
+        "number": 13,
+        "id": "boy-shirt",
+        "description": "男孩衣服：白色 / 红色"
+      },
+      {
+        "number": 14,
+        "id": "vertical-sign",
+        "description": "右侧木牌文字与碗图案"
+      }
+    ]
+  },
+  {
+    "level": 2,
+    "name": "海南椰子鸡",
+    "count": 8,
+    "source": "D:\\CocosCreator\\FindDifferenceTex\\FindDifferenceLevel (2).png",
+    "cropA": [
+      31,
+      26,
+      1024,
+      672
+    ],
+    "cropB": [
+      31,
+      750,
+      1024,
+      672
+    ],
+    "regions": [
+      {
+        "number": 1,
+        "id": "chili-saucer",
+        "description": "左下红辣椒碟消失"
+      },
+      {
+        "number": 2,
+        "id": "seaside-animal",
+        "description": "右上动物：海鸟 / 螃蟹"
+      },
+      {
+        "number": 3,
+        "id": "hair-flower",
+        "description": "女孩发饰：贝壳蝴蝶结 / 红花"
+      },
+      {
+        "number": 4,
+        "id": "lantern",
+        "description": "灯笼：橙色 / 绿色"
+      },
+      {
+        "number": 5,
+        "id": "held-fruit",
+        "description": "摊主手持：椰子 / 菠萝"
+      },
+      {
+        "number": 6,
+        "id": "coconut-opening",
+        "description": "右下椰子：切开 / 完整"
+      },
+      {
+        "number": 7,
+        "id": "raw-ingredients",
+        "description": "左下食材：鸡肉 / 虾"
+      },
+      {
+        "number": 8,
+        "id": "boy-shirt",
+        "description": "男孩上衣：蓝色 / 黄色"
+      }
+    ]
+  },
+  {
+    "level": 3,
+    "name": "深圳猪脚饭",
+    "count": 7,
+    "source": "D:\\CocosCreator\\FindDifferenceTex\\FindDifferenceLevel (3).png",
+    "cropA": [
+      31,
+      26,
+      1024,
+      672
+    ],
+    "cropB": [
+      31,
+      750,
+      1024,
+      672
+    ],
+    "regions": [
+      {
+        "number": 1,
+        "id": "chopsticks",
+        "description": "筷子：深色 / 红色"
+      },
+      {
+        "number": 2,
+        "id": "egg",
+        "description": "左侧饭盘：鸡蛋 / 西兰花"
+      },
+      {
+        "number": 3,
+        "id": "pickle-plate",
+        "description": "小菜：腌菜 / 黄瓜片"
+      },
+      {
+        "number": 4,
+        "id": "sauce-jar",
+        "description": "酱料罐：红色 / 绿色"
+      },
+      {
+        "number": 5,
+        "id": "hanging-sign",
+        "description": "左上：圆灯笼 / 方形招牌"
+      },
+      {
+        "number": 6,
+        "id": "pet",
+        "description": "左侧动物：猫 / 狗"
+      },
+      {
+        "number": 7,
+        "id": "table-sign",
+        "description": "桌牌：猪脚饭 / 卤肉饭"
+      }
+    ]
+  },
+  {
+    "level": 4,
+    "name": "顺德双皮奶",
+    "count": 8,
+    "source": "D:\\CocosCreator\\FindDifferenceTex\\FindDifferenceLevel (4).png",
+    "cropA": [
+      31,
+      26,
+      1024,
+      672
+    ],
+    "cropB": [
+      31,
+      750,
+      1024,
+      672
+    ],
+    "regions": [
+      {
+        "number": 1,
+        "id": "spoon",
+        "description": "右侧白瓷勺消失"
+      },
+      {
+        "number": 2,
+        "id": "tray-bowl",
+        "description": "托盘左边红豆碗消失"
+      },
+      {
+        "number": 3,
+        "id": "dessert-topping",
+        "description": "中间甜品：红豆 / 芒果"
+      },
+      {
+        "number": 4,
+        "id": "lantern",
+        "description": "灯笼：橙色 / 绿色"
+      },
+      {
+        "number": 5,
+        "id": "window-decoration",
+        "description": "左侧窗台：盆栽 / 招财猫"
+      },
+      {
+        "number": 6,
+        "id": "milk-container",
+        "description": "左下容器：鲜奶罐 / 花纹茶壶"
+      },
+      {
+        "number": 7,
+        "id": "hair-accessory",
+        "description": "女孩发饰：黑色蝴蝶结 / 白花"
+      },
+      {
+        "number": 8,
+        "id": "boy-shirt",
+        "description": "男孩上衣：白色 / 蓝色"
+      }
+    ]
+  },
+  {
+    "level": 5,
+    "name": "云南米线",
+    "count": 13,
+    "source": "D:\\CocosCreator\\FindDifferenceTex\\FindDifferenceLevel (5).png",
+    "cropA": [
+      31,
+      26,
+      1024,
+      672
+    ],
+    "cropB": [
+      31,
+      750,
+      1024,
+      672
+    ],
+    "regions": [
+      {
+        "number": 1,
+        "id": "sky-bird",
+        "description": "背景天空新增飞鸟"
+      },
+      {
+        "number": 2,
+        "id": "bowl-rooster",
+        "description": "右侧碗上公鸡：黑红 / 蓝色"
+      },
+      {
+        "number": 3,
+        "id": "left-seasoning",
+        "description": "中排左碗：浅色配料 / 棕色配料"
+      },
+      {
+        "number": 4,
+        "id": "middle-seasoning",
+        "description": "中排中碗：棕色配料 / 深色配料"
+      },
+      {
+        "number": 5,
+        "id": "right-seasoning",
+        "description": "中排右碗：黄色配料 / 红色辣椒"
+      },
+      {
+        "number": 6,
+        "id": "front-seasoning",
+        "description": "前排中碗：红色辣椒 / 深色菌菇"
+      },
+      {
+        "number": 7,
+        "id": "lime-bowl",
+        "description": "前排右碗：菌菇 / 青柠"
+      },
+      {
+        "number": 8,
+        "id": "chopstick-color",
+        "description": "右侧筷子：黄色 / 棕色"
+      },
+      {
+        "number": 9,
+        "id": "cat-color",
+        "description": "左侧猫：橙色 / 灰色"
+      },
+      {
+        "number": 10,
+        "id": "serving-utensil",
+        "description": "摊主工具：筷子 / 汤勺"
+      },
+      {
+        "number": 11,
+        "id": "fragrant-banner",
+        "description": "香字旗：浅底深字 / 红底浅字"
+      },
+      {
+        "number": 12,
+        "id": "vendor-clothes",
+        "description": "摊主衣服：深色 / 蓝色"
+      },
+      {
+        "number": 13,
+        "id": "hanging-corn",
+        "description": "右侧：云南米线木牌 / 玉米"
+      }
+    ]
+  }
+]
