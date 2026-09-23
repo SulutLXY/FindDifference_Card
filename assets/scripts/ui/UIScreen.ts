@@ -93,8 +93,18 @@ export abstract class UIScreen extends Component {
         let current: Node | null = root;
         for (const segment of path.split('/')) {
             if (!current) return null;
-            current = current.getChildByName(segment);
+            // 先找直接子节点（路径语义优先），找不到再深度搜索（兼容 Viewport 等嵌套包裹结构）
+            current = current.getChildByName(segment) ?? this._deepFind(current, segment);
         }
         return current;
+    }
+
+    private _deepFind(root: Node, name: string): Node | null {
+        for (const child of root.children) {
+            if (child.name === name) return child;
+            const found = this._deepFind(child, name);
+            if (found) return found;
+        }
+        return null;
     }
 }

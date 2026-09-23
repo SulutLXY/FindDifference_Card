@@ -9,6 +9,7 @@ import {
     Node,
     ScrollView,
     Size,
+    Sprite,
     UITransform,
     instantiate,
 } from 'cc';
@@ -53,6 +54,16 @@ const GLOBAL_RANK: RankRow[] = [
     { name: '小火慢炖', passed: 9, stars: 24, time: 750 },
     { name: '像素骑士', passed: 9, stars: 23, time: 790 },
     { name: '路过', passed: 8, stars: 21, time: 830 },
+];
+
+/** 临时头像池（阶段 D 接入真实头像数据后移除）：UI_Sprite/V3/Texture 下六张头像 */
+const AVATARS = [
+    'textures/UI_Sprite/V3/Texture/Icon _head_M01/spriteFrame',
+    'textures/UI_Sprite/V3/Texture/Icon _head_M02/spriteFrame',
+    'textures/UI_Sprite/V3/Texture/Icon _head_M03/spriteFrame',
+    'textures/UI_Sprite/V3/Texture/Icon _head_F01/spriteFrame',
+    'textures/UI_Sprite/V3/Texture/Icon _head_F02/spriteFrame',
+    'textures/UI_Sprite/V3/Texture/Icon _head_F03/spriteFrame',
 ];
 
 /**
@@ -138,13 +149,10 @@ export class RankScreen extends UIScreen {
         });
 
         const myIndex = rows.findIndex(row => row.isSelf);
-        this.setLabel(
-            this.myRankLabel,
-            'MyRank/Label',
-            myIndex >= 0
-                ? `我的排名  第${myIndex + 1}名  通过${rows[myIndex].passed}关`
-                : '我的排名  --',
-        );
+        const myRow = myIndex >= 0 ? rows[myIndex] : null;
+        // MyRank 结构：Label=标题（不刷新）、Rank=名次、Label-001=成绩、playerName=名字
+        this.setLabel(null, 'MyRank/Rank', myRow ? String(myIndex + 1) : '--');
+        this.setLabel(null, 'MyRank/Label-001', myRow ? `${myRow.passed}关` : '--');
         this._scrollToTop();
     }
 
@@ -192,6 +200,9 @@ export class RankScreen extends UIScreen {
         const score = item.getChildByName('Score')?.getComponent(Label);
         if (score) score.string = `${row.passed}关`;
 
+        // 临时头像：按名字哈希从头像池分配（同一玩家头像固定）
+        void this._loadAvatar(item, row.name);
+
         if (row.isSelf) {
             // 自己高亮（条目底色调蓝）
             const graphics = item.getComponent(Graphics);
@@ -206,15 +217,39 @@ export class RankScreen extends UIScreen {
         }
     }
 
+    /** 临时头像：名字哈希取模分配，同一玩家每次进入头像一致。 */
+    private _loadAvatar(item: Node, name: string): void {
+        const avatar = item.getChildByName('Avatar');
+        if (!avatar) return;
+        let hash = 0;
+        for (let i = 0; i < name.length; i++) {
+            hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
+        }
+        const path = AVATARS[hash % AVATARS.length];
+        void this.flow.loadSpriteFrame(path).then(frame => {
+            let sprite = avatar.getComponent(Sprite);
+            if (!sprite) sprite = avatar.addComponent(Sprite);
+            sprite.sizeMode = Sprite.SizeMode.CUSTOM;
+            sprite.spriteFrame = frame;
+        }).catch(() => {
+            // 头像缺失则保留空 Sprite
+        });
+    }
+
     private _refreshTabStyle(): void {
         this._styleTab(this.resolveNode(this.tabFriend, 'TabFriend'), this._tab === 'friend');
         this._styleTab(this.resolveNode(this.tabGlobal, 'TabGlobal'), this._tab === 'global');
     }
 
     private _styleTab(node: Node | null, selected: boolean): void {
-        const label = node?.getComponentInChildren(Label);
+        if (!node) return;
+        // 选中显示 TabBG 底图，未选中隐藏
+        const bg = node.getChildByName('TabBG');
+        if (bg) bg.active = selected;
+        // 选中字体白色，未选中深蓝色
+        const label = node.getComponentInChildren(Label);
         if (!label) return;
-        label.color = selected ? new Color(120, 80, 20, 255) : Color.WHITE;
+        label.color = selected ? Color.WHITE : new Color(30, 60, 130, 255);
         label.isBold = selected;
     }
 

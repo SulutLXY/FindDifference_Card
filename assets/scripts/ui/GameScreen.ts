@@ -17,6 +17,7 @@ import {
 } from 'cc';
 import { DifferenceConfig, LevelConfig } from '../core/GameTypes';
 import { DifferenceController } from '../gameplay/DifferenceController';
+import { ProgressView } from './ProgressView';
 import { UIColors, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
@@ -80,6 +81,8 @@ export class GameScreen extends UIScreen {
     public progressLabel: Label | null = null;
 
     private _level: LevelConfig | null = null;
+    private _progressConfigured = false;
+    private _progressTotal = 0;
     private readonly _markers: Node[] = [];
     private _setupToken = 0;
     private _zoomScale = 1;
@@ -112,6 +115,8 @@ export class GameScreen extends UIScreen {
         const token = ++this._setupToken;
         this._clearMarkers();
         this._setZoom(1);
+        this._progressConfigured = false;
+        this._progressTotal = 0;
 
         this.setLabel(this.levelTitle, 'LevelTitle', `第${level.id}关`);
         this.setLabel(this.levelName, 'LevelName', level.name);
@@ -147,15 +152,29 @@ export class GameScreen extends UIScreen {
 
         const lives = this.resolveLabel(this.livesLabel, 'Lives');
         if (lives) {
-            lives.string = `${'♥'.repeat(flow.lives)}${'♡'.repeat(Math.max(0, 3 - flow.lives))}`;
+            lives.string = `x${Math.max(0, flow.lives)}`;
             lives.color = new Color(202, 78, 79, 255);
         }
 
         const level = this._level;
+        const total = level?.differences.length ?? 0;
+        const found = flow.foundIds.size;
+
+        // 优先使用 ProgressView（图片槽位）：按差异点数实例化 Progress_BG，完成一个点亮一个 Progress_GET
+        const progressView = this.resolveNode(null, 'Progress')?.getComponent(ProgressView);
+        if (progressView) {
+            if (!this._progressConfigured || this._progressTotal !== total) {
+                progressView.configure(total);
+                this._progressConfigured = true;
+                this._progressTotal = total;
+            }
+            progressView.setFoundCount(found);
+            return;
+        }
+
+        // 后备：文字进度
         const progress = this.resolveLabel(this.progressLabel, 'Progress');
         if (progress && level) {
-            const total = level.differences.length;
-            const found = flow.foundIds.size;
             progress.string = `${'●'.repeat(found)}${'○'.repeat(total - found)}  ${found}/${total}`;
             progress.color = new Color(147, 100, 57, 255);
         }
@@ -173,7 +192,7 @@ export class GameScreen extends UIScreen {
             marker.parent = image;
             const graphics = marker.addComponent(Graphics);
             graphics.lineWidth = 7;
-            graphics.strokeColor = UIColors.gold;
+            graphics.strokeColor = UIColors.red;
             graphics.circle(0, 0, difference.radius * size.width);
             graphics.stroke();
             this._markers.push(marker);
@@ -255,9 +274,20 @@ export class GameScreen extends UIScreen {
 
         const top = this._image('TopImage');
         const current = top?.position ?? Vec3.ZERO;
-        this._setPan(current.x + dx, current.y + dy);
+        // 屏幕像素位移换算成本地设计单位，保证不同窗口尺寸下拖动跟手
+        const local = this._screenDeltaToLocal(new Vec2(dx, dy));
+        this._setPan(current.x + local.x, current.y + local.y);
         this._gestureMoved = true;
         this._ignoreTapUntilRelease = true;
+    }
+
+    /** 把屏幕（UI）坐标系下的位移换算到本节点本地坐标系，除以画布实际缩放。 */
+    private _screenDeltaToLocal(delta: Vec2): Vec2 {
+        const ui = this.node.getComponent(UITransform);
+        if (!ui) return delta;
+        const origin = ui.convertToNodeSpaceAR(new Vec3(0, 0, 0));
+        const moved = ui.convertToNodeSpaceAR(new Vec3(delta.x, delta.y, 0));
+        return new Vec2(moved.x - origin.x, moved.y - origin.y);
     }
 
     private _onGestureEnd(event: EventTouch, imageNode: Node): void {

@@ -16,9 +16,11 @@ import {
     view,
 } from 'cc';
 import {
+    DifferenceCollection,
     DifferenceConfig,
     LevelCollection,
     LevelConfig,
+    LevelMeta,
     PlatformConfig,
     RewardPlacement,
     RewardResult,
@@ -378,13 +380,34 @@ export class GameFlow extends Component {
                 this._loadJson('configs/levels'),
                 this._loadJson('configs/platform-config'),
             ]);
-            this._levels = (levelsAsset.json as LevelCollection).levels;
             this.platform.configure(platformAsset.json as PlatformConfig);
+            const metas = (levelsAsset.json as LevelCollection).levels;
+            this._levels = [];
+            for (const meta of metas) {
+                this._levels.push(await this._loadLevel(meta));
+            }
             this.showLobby();
         } catch (error) {
             console.error('[GameFlow] 资源加载失败', error);
             this.toast('资源加载失败，请重新打开游戏');
         }
+    }
+
+    /** 组装关卡：差异点从关卡目录内的 differences.json 读取，图片路径按目录约定推导。 */
+    private async _loadLevel(meta: LevelMeta): Promise<LevelConfig> {
+        const diffAsset = await this._loadJson(`${meta.directory}/differences`);
+        const differences = (diffAsset.json as DifferenceCollection).differences;
+        return {
+            id: meta.id,
+            name: meta.name,
+            timeLimit: meta.timeLimit,
+            maxLives: meta.maxLives,
+            bundle: '',
+            topImage: `${meta.directory}/scene-a/spriteFrame`,
+            bottomImage: `${meta.directory}/scene-b/spriteFrame`,
+            differences,
+            thumbnail: meta.thumbnail ?? '',
+        };
     }
 
     private _loadJson(path: string): Promise<JsonAsset> {

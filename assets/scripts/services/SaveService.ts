@@ -16,6 +16,7 @@ export class SaveService {
 
     constructor() {
         this._data = this._load();
+        this._normalize();
     }
 
     public get data(): Readonly<SaveData> {
@@ -35,7 +36,7 @@ export class SaveService {
                 ? Math.min(previous.bestTime, elapsedSeconds)
                 : elapsedSeconds,
         };
-        this._data.unlockedLevel = Math.min(5, Math.max(this._data.unlockedLevel, levelId + 1));
+        this._data.unlockedLevel = Math.max(this._data.unlockedLevel, levelId + 1);
         this._persist();
     }
 
@@ -57,6 +58,17 @@ export class SaveService {
         } catch (error) {
             console.warn('Save data is invalid; a new save will be used.', error);
             return { ...DEFAULT_SAVE, levels: {} };
+        }
+    }
+
+    /** 启动校准：已通关（有星）的最高关卡应解锁其后一关，修复历史封顶造成的进度丢失。 */
+    private _normalize(): void {
+        for (const key of Object.keys(this._data.levels)) {
+            const id = Number(key);
+            const progress = this._data.levels[key];
+            if (progress && progress.stars > 0 && Number.isFinite(id) && id > 0) {
+                this._data.unlockedLevel = Math.max(this._data.unlockedLevel, id + 1);
+            }
         }
     }
 

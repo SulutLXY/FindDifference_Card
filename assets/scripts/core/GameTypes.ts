@@ -12,6 +12,19 @@ export interface DifferenceConfig {
     radius: number;
 }
 
+/** 关卡在 levels.json 中的条目：只含元信息与资源目录，差异点由目录内 differences.json 提供。 */
+export interface LevelMeta {
+    id: number;
+    name: string;
+    timeLimit: number;
+    maxLives: number;
+    /** resources 下的关卡目录，如 "levels/level-01"。目录内固定包含 scene-a / scene-b 图片与 differences.json。 */
+    directory: string;
+    /** 可选：选关卡片缩略图（resources 相对路径）。缺省时用上图自动充当。 */
+    thumbnail?: string;
+}
+
+/** 组装完成的关卡运行时数据（图片路径与差异点由 LevelMeta.directory 推导加载）。 */
 export interface LevelConfig {
     id: number;
     name: string;
@@ -21,10 +34,17 @@ export interface LevelConfig {
     topImage: string;
     bottomImage: string;
     differences: DifferenceConfig[];
+    /** 选关缩略图路径，可能为空。 */
+    thumbnail?: string;
 }
 
 export interface LevelCollection {
-    levels: LevelConfig[];
+    levels: LevelMeta[];
+}
+
+/** 各关目录内 differences.json 的格式：图片与差异点配置放在一起，替换资源时同目录改动。 */
+export interface DifferenceCollection {
+    differences: DifferenceConfig[];
 }
 
 export interface PlatformConfig {

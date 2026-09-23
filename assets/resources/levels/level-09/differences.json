@@ -1,52 +1,52 @@
 {
   "differences": [
     {
-      "id": "guard-plume",
-      "x": 0.205,
-      "y": 0.295,
-      "radius": 0.046
+      "id": "spoon",
+      "x": 0.817383,
+      "y": 0.822917,
+      "radius": 0.041016
     },
     {
-      "id": "cat-color",
-      "x": 0.344,
-      "y": 0.763,
-      "radius": 0.055
+      "id": "tray-bowl",
+      "x": 0.25,
+      "y": 0.607143,
+      "radius": 0.055664
     },
     {
-      "id": "left-flowers",
-      "x": 0.064,
-      "y": 0.532,
-      "radius": 0.06
+      "id": "dessert-topping",
+      "x": 0.541016,
+      "y": 0.755952,
+      "radius": 0.056641
     },
     {
-      "id": "tower-flag",
-      "x": 0.469,
-      "y": 0.062,
-      "radius": 0.04
+      "id": "lantern",
+      "x": 0.443359,
+      "y": 0.099702,
+      "radius": 0.05957
     },
     {
-      "id": "lion-shield",
-      "x": 0.596,
-      "y": 0.386,
-      "radius": 0.055
+      "id": "window-decoration",
+      "x": 0.063477,
+      "y": 0.376488,
+      "radius": 0.068359
     },
     {
-      "id": "sky-bird",
-      "x": 0.623,
-      "y": 0.104,
-      "radius": 0.044
+      "id": "milk-container",
+      "x": 0.24707,
+      "y": 0.825893,
+      "radius": 0.074219
     },
     {
-      "id": "lantern-light",
-      "x": 0.895,
-      "y": 0.125,
-      "radius": 0.048
+      "id": "hair-accessory",
+      "x": 0.786133,
+      "y": 0.311012,
+      "radius": 0.076172
     },
     {
-      "id": "spear-collar",
-      "x": 0.156,
-      "y": 0.331,
-      "radius": 0.032
+      "id": "boy-shirt",
+      "x": 0.584961,
+      "y": 0.619048,
+      "radius": 0.107422
     }
   ]
 }

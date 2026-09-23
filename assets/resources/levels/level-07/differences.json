@@ -1,52 +1,52 @@
 {
   "differences": [
     {
-      "id": "guard-plume",
-      "x": 0.205,
-      "y": 0.295,
-      "radius": 0.046
+      "id": "chili-saucer",
+      "x": 0.279297,
+      "y": 0.938988,
+      "radius": 0.042969
     },
     {
-      "id": "cat-color",
-      "x": 0.344,
-      "y": 0.763,
-      "radius": 0.055
+      "id": "seaside-animal",
+      "x": 0.946289,
+      "y": 0.278274,
+      "radius": 0.054688
     },
     {
-      "id": "left-flowers",
-      "x": 0.064,
-      "y": 0.532,
-      "radius": 0.06
+      "id": "hair-flower",
+      "x": 0.728516,
+      "y": 0.28869,
+      "radius": 0.057617
     },
     {
-      "id": "tower-flag",
-      "x": 0.469,
-      "y": 0.062,
-      "radius": 0.04
+      "id": "lantern",
+      "x": 0.291992,
+      "y": 0.095238,
+      "radius": 0.05957
     },
     {
-      "id": "lion-shield",
-      "x": 0.596,
-      "y": 0.386,
-      "radius": 0.055
+      "id": "held-fruit",
+      "x": 0.242188,
+      "y": 0.43006,
+      "radius": 0.071289
     },
     {
-      "id": "sky-bird",
-      "x": 0.623,
-      "y": 0.104,
-      "radius": 0.044
+      "id": "coconut-opening",
+      "x": 0.932617,
+      "y": 0.833333,
+      "radius": 0.076172
     },
     {
-      "id": "lantern-light",
-      "x": 0.895,
-      "y": 0.125,
-      "radius": 0.048
+      "id": "raw-ingredients",
+      "x": 0.255859,
+      "y": 0.80506,
+      "radius": 0.087891
     },
     {
-      "id": "spear-collar",
-      "x": 0.156,
-      "y": 0.331,
-      "radius": 0.032
+      "id": "boy-shirt",
+      "x": 0.405273,
+      "y": 0.556548,
+      "radius": 0.108398
     }
   ]
 }
