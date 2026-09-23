@@ -166,19 +166,18 @@ export class RankScreen extends UIScreen {
     }
 
     private _myRow(): RankRow {
-        const levels = this.flow.save.data.levels;
-        let passed = 0;
+        // 积分 = 已通关关卡数；总星数与总用时仍从通关集合统计（排序用）
+        const completed = this.flow.save.data.completed;
         let stars = 0;
         let time = 0;
-        for (const key of Object.keys(levels)) {
-            const progress = levels[key];
+        for (const key of Object.keys(completed)) {
+            const progress = completed[key];
             if (progress && progress.stars > 0) {
-                passed += 1;
                 stars += progress.stars;
                 time += progress.bestTime;
             }
         }
-        return { name: '我', passed, stars, time, isSelf: true };
+        return { name: '我', passed: this.flow.save.totalScore, stars, time, isSelf: true };
     }
 
     private _fillItem(item: Node, row: RankRow, rank: number): void {

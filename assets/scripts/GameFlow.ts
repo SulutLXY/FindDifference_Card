@@ -16,11 +16,12 @@ import {
     view,
 } from 'cc';
 import {
-    DifferenceCollection,
+    CityConfig,
+    CityIndex,
     DifferenceConfig,
-    LevelCollection,
+    GradeConfig,
     LevelConfig,
-    LevelMeta,
+    LevelFileConfig,
     PlatformConfig,
     RewardPlacement,
     RewardResult,
@@ -28,18 +29,23 @@ import {
 import { PlatformService } from './services/PlatformService';
 import { SaveService } from './services/SaveService';
 import { registerGameFlow } from './ui/UIScreen';
+import { CitySelectScreen } from './ui/CitySelectScreen';
 import { GameScreen } from './ui/GameScreen';
 import { LevelSelectScreen } from './ui/LevelSelectScreen';
 import { LobbyScreen } from './ui/LobbyScreen';
-import { ResultModal } from './ui/ResultModal';
 import { RankScreen } from './ui/RankScreen';
+import { ResultModal } from './ui/ResultModal';
 
 const { ccclass, property } = _decorator;
 
 /**
- * 全局流程状态机：持有存档、平台服务、关卡配置与对局状态，
+ * 全局流程状态机：持有存档、平台服务、城市/关卡配置与对局状态，
  * 负责界面切换、倒计时、激励视频与结算。
  * 场景中唯一实例，界面组件通过 GameFlow.instance 访问。
+ *
+ * 关卡组织：levels/ 下按 city-* 目录分组，cities.json 为城市索引，
+ * 每城 city.json 列关卡清单（tools/build-manifest.py 生成），
+ * 进入城市时才懒加载该城各关的 differences.json。
  */
 @ccclass('GameFlow')
 export class GameFlow extends Component {
@@ -54,6 +60,9 @@ export class GameFlow extends Component {
 
     @property({ type: LobbyScreen, tooltip: '大厅界面组件（Screens/Lobby）' })
     public lobby: LobbyScreen | null = null;
+
+    @property({ type: CitySelectScreen, tooltip: '城市选择界面组件（Screens/CitySelect）' })
+    public citySelect: CitySelectScreen | null = null;
 
     @property({ type: LevelSelectScreen, tooltip: '选关界面组件（Screens/LevelSelect）' })
     public levelSelect: LevelSelectScreen | null = null;
@@ -70,7 +79,9 @@ export class GameFlow extends Component {
     public readonly save = new SaveService();
     public readonly platform = new PlatformService();
 
-    private _levels: LevelConfig[] = [];
+    private _grades: GradeConfig = { maxLives: 3, timeTiers: [{ maxDifferences: 10, timeLimit: 150 }] };
+    private _cities: CityConfig[] = [];
+    private _currentCity: CityConfig | null = null;
     private _currentLevel: LevelConfig | null = null;
     private _remainingTime = 0;
     private _elapsedTime = 0;
@@ -80,6 +91,7 @@ export class GameFlow extends Component {
     private _isGameOver = false;
     private _reviveUsed = false;
     private readonly _spriteFrameCache = new Map<string, SpriteFrame>();
+    private _overlay: Node | null = null;
 
     protected onLoad(): void {
         GameFlow._instance = this;
@@ -100,8 +112,12 @@ export class GameFlow extends Component {
         if (this._remainingTime <= 0) this.finishLevel(false);
     }
 
-    public get levels(): readonly LevelConfig[] {
-        return this._levels;
+    public get cities(): readonly CityConfig[] {
+        return this._cities;
+    }
+
+    public get currentCity(): CityConfig | null {
+        return this._currentCity;
     }
 
     public get currentLevel(): LevelConfig | null {
@@ -132,10 +148,6 @@ export class GameFlow extends Component {
         return this._isGameOver;
     }
 
-    public findLevel(id: number): LevelConfig | null {
-        return this._levels.find(item => item.id === id) ?? null;
-    }
-
     // ------------------------------------------------------------------
     // 界面切换
     // ------------------------------------------------------------------
@@ -145,22 +157,73 @@ export class GameFlow extends Component {
         this._switchTo(this.lobby);
     }
 
-    public showLevelSelect(): void {
-        this.resultModal?.close();
-        this._switchTo(this.levelSelect);
-    }
-
     public showRank(): void {
         this._switchTo(this.rank);
     }
 
-    public startContinue(): void {
-        const continueId = Math.min(this.save.data.unlockedLevel, this._levels.length);
-        const level = this.findLevel(continueId) ?? this._levels[0];
-        if (level) this.startLevel(level);
+    /** 城市列表页。 */
+    public showCitySelect(): void {
+        this._switchTo(this.citySelect);
     }
 
-    public startLevel(level: LevelConfig): void {
+    /** 城市内关卡页。city 缺省时用当前城市（或第一城）。 */
+    public async showLevelSelect(city?: CityConfig): Promise<void> {
+        const target = city ?? this._currentCity ?? this._cities[0] ?? null;
+        if (!target) return;
+        this._currentCity = target;
+        try {
+            await this.ensureCity(target);
+        } catch (error) {
+            console.error(`[GameFlow] 城市关卡加载失败: ${target.key}`, error);
+            this.toast('关卡加载失败，请稍后重试');
+            return;
+        }
+        this._switchTo(this.levelSelect);
+    }
+
+    /** 从城市页进入城市：设置当前城市并打开关卡页。 */
+    public async enterCity(city: CityConfig): Promise<void> {
+        await this.showLevelSelect(city);
+    }
+
+    /** 开始挑战目标：第一个未通关的关（全部通关返回 null）。 */
+    public async findContinueTarget(): Promise<{ city: CityConfig; levelIndex: number; level: LevelConfig } | null> {
+        for (let ci = 0; ci < this._cities.length; ci++) {
+            if (!this.isCityUnlocked(ci)) break;
+            const city = this._cities[ci];
+            for (let li = 0; li < city.levels.length; li++) {
+                const key = `${city.key}/${city.levels[li]}`;
+                if (this.isLevelUnlocked(ci, li) && !this.save.isCompleted(key)) {
+                    await this.ensureCity(city);
+                    return { city, levelIndex: li, level: city.levelConfigs[li] };
+                }
+            }
+        }
+        return null;
+    }
+
+    /** 开始挑战：第一个未通关的关（全部通关则重玩第一关）。 */
+    public async startContinue(): Promise<void> {
+        const target = await this.findContinueTarget();
+        if (target) {
+            await this.startLevel(target.city, target.levelIndex);
+        } else if (this._cities.length > 0) {
+            await this.startLevel(this._cities[0], 0);
+        }
+    }
+
+    public async startLevel(city: CityConfig, levelIndex: number): Promise<void> {
+        try {
+            await this.ensureCity(city);
+        } catch (error) {
+            console.error(`[GameFlow] 城市关卡加载失败: ${city.key}`, error);
+            this.toast('关卡加载失败，请稍后重试');
+            return;
+        }
+        const level = city.levelConfigs[levelIndex] ?? null;
+        if (!level) return;
+
+        this._currentCity = city;
         this._currentLevel = level;
         this._remainingTime = level.timeLimit;
         this._elapsedTime = 0;
@@ -174,8 +237,8 @@ export class GameFlow extends Component {
         void this.game?.setupLevel(level);
     }
 
-    private _switchTo(screen: LobbyScreen | LevelSelectScreen | GameScreen | RankScreen | null): void {
-        for (const item of [this.lobby, this.levelSelect, this.game, this.rank]) {
+    private _switchTo(screen: LobbyScreen | CitySelectScreen | LevelSelectScreen | GameScreen | RankScreen | null): void {
+        for (const item of [this.lobby, this.citySelect, this.levelSelect, this.game, this.rank]) {
             if (item && item !== screen) item.close();
         }
         if (screen) {
@@ -183,6 +246,48 @@ export class GameFlow extends Component {
         } else {
             console.warn('[GameFlow] 目标界面未在场景中配置');
         }
+    }
+
+    // ------------------------------------------------------------------
+    // 解锁判定（积分制：通关集合驱动）
+    // ------------------------------------------------------------------
+
+    /** 城市解锁：第一城始终解锁，其余需前一城全部通关。 */
+    public isCityUnlocked(cityIndex: number): boolean {
+        if (cityIndex <= 0) return true;
+        const prev = this._cities[cityIndex - 1];
+        if (!prev) return false;
+        return prev.levels.every(dir => this.save.isCompleted(`${prev.key}/${dir}`));
+    }
+
+    /** 关卡解锁：城市已解锁，且同城前一关已通关（首关除外）。 */
+    public isLevelUnlocked(cityIndex: number, levelIndex: number): boolean {
+        const city = this._cities[cityIndex];
+        if (!city || !this.isCityUnlocked(cityIndex)) return false;
+        if (levelIndex <= 0) return true;
+        return this.save.isCompleted(`${city.key}/${city.levels[levelIndex - 1]}`);
+    }
+
+    /** 城市进度（无需加载关卡配置）。 */
+    public cityProgress(city: CityConfig): { done: number; total: number } {
+        const done = city.levels.filter(dir => this.save.isCompleted(`${city.key}/${dir}`)).length;
+        return { done, total: city.levels.length };
+    }
+
+    /** 下一关：同城下一关 → 下一城第一关（已解锁时）。结算「下一关」按钮用。 */
+    public findNextLevel(after: LevelConfig): { city: CityConfig; levelIndex: number } | null {
+        const city = this._currentCity;
+        if (city) {
+            const index = city.levelConfigs.findIndex(level => level.key === after.key);
+            if (index >= 0 && index + 1 < city.levelConfigs.length) {
+                return { city, levelIndex: index + 1 };
+            }
+        }
+        const cityIndex = this._cities.findIndex(item => item.key === city?.key);
+        if (cityIndex >= 0 && cityIndex + 1 < this._cities.length && this.isCityUnlocked(cityIndex + 1)) {
+            return { city: this._cities[cityIndex + 1], levelIndex: 0 };
+        }
+        return null;
     }
 
     // ------------------------------------------------------------------
@@ -226,7 +331,7 @@ export class GameFlow extends Component {
         if (win) {
             const ratio = this._remainingTime / level.timeLimit;
             stars = ratio >= 0.6 ? 3 : ratio >= 0.3 ? 2 : 1;
-            this.save.completeLevel(level.id, stars, Math.max(1, Math.round(this._elapsedTime)));
+            this.save.completeLevel(level.key, stars, Math.max(1, Math.round(this._elapsedTime)));
         }
 
         this.resultModal?.present({
@@ -235,7 +340,7 @@ export class GameFlow extends Component {
             elapsedSeconds: Math.max(1, Math.round(this._elapsedTime)),
             level,
             canRevive: !win && !this._reviveUsed,
-            hasNext: level.id < this._levels.length,
+            hasNext: win && this.findNextLevel(level) !== null,
         });
     }
 
@@ -255,9 +360,13 @@ export class GameFlow extends Component {
         const level = this._currentLevel;
         if (!level) return;
         const win = this._foundIds.size >= level.differences.length;
-        const next = win && level.id < this._levels.length ? this.findLevel(level.id + 1) : null;
+        const next = win ? this.findNextLevel(level) : null;
         this.resultModal?.close();
-        this.startLevel(next ?? level);
+        if (next) {
+            void this.startLevel(next.city, next.levelIndex);
+        } else if (this._currentCity) {
+            void this.startLevel(this._currentCity, Math.max(0, this._currentCity.levelConfigs.findIndex(item => item.key === level.key)));
+        }
     }
 
     // ------------------------------------------------------------------
@@ -278,8 +387,8 @@ export class GameFlow extends Component {
         }
     }
 
-    public share(levelId?: number): void {
-        this.platform.share(levelId ?? this._currentLevel?.id ?? 1);
+    public share(levelKey?: string): void {
+        this.platform.share(levelKey ?? this._currentLevel?.key ?? '1');
         this.toast(this.platform.kind === 'h5' ? '分享链接已尝试复制' : '已打开分享面板');
     }
 
@@ -299,7 +408,7 @@ export class GameFlow extends Component {
     }
 
     // ------------------------------------------------------------------
-    // 运行时动态元素（Toast / 模拟广告 / 致命错误遮罩）
+    // 运行时动态元素（Toast / 模拟广告 / 遮罩）
     // ------------------------------------------------------------------
 
     public toast(message: string): void {
@@ -332,60 +441,124 @@ export class GameFlow extends Component {
 
     private _showSimulatedAd(): Promise<RewardResult> {
         return new Promise(resolve => {
-            const modal = this.node.parent?.getChildByName('AdModal');
-            const card = modal?.getChildByName('AdCard');
-            const timerLabel = card?.getChildByName('AdTimer')?.getComponent(Label);
-            const statusLabel = card?.getChildByName('AdStatus')?.getComponent(Label);
-            const closeButton = card?.getChildByName('CloseAd');
-            const returnButton = card?.getChildByName('ReturnAd');
-            if (!modal || !timerLabel || !statusLabel || !closeButton || !returnButton) {
-                resolve({ success: false, completed: false, simulated: true, reason: '广告弹窗节点缺失' });
-                return;
-            }
-            modal.active = true;
-            closeButton.active = false;
-            returnButton.active = false;
+            this._closeOverlay();
+            const parent = this.node.parent ?? this.node;
+            const modal = new Node('SimulatedAd');
+            modal.parent = parent;
+            const modalUi = modal.addComponent(UITransform);
+            modalUi.setContentSize(750, 1334);
+            const modalGraphics = modal.addComponent(Graphics);
+            modalGraphics.fillColor = new Color(4, 16, 34, 220);
+            modalGraphics.rect(-375, -667, 750, 1334);
+            modalGraphics.fill();
+            this._overlay = modal;
+
+            const card = new Node('AdCard');
+            card.parent = modal;
+            const cardUi = card.addComponent(UITransform);
+            cardUi.setContentSize(610, 620);
+            const cardGraphics = card.addComponent(Graphics);
+            cardGraphics.fillColor = new Color(12, 43, 84, 255);
+            cardGraphics.roundRect(-305, -310, 610, 620, 30);
+            cardGraphics.fill();
+
+            const addLabel = (name: string, text: string, y: number, fontSize: number, color: Color): Label => {
+                const node = new Node(name);
+                node.parent = card;
+                node.setPosition(0, y);
+                const nodeUi = node.addComponent(UITransform);
+                nodeUi.setContentSize(520, fontSize * 1.6);
+                const label = node.addComponent(Label);
+                label.string = text;
+                label.fontSize = fontSize;
+                label.color = color;
+                label.horizontalAlign = Label.HorizontalAlign.CENTER;
+                label.verticalAlign = Label.VerticalAlign.CENTER;
+                label.overflow = Label.Overflow.SHRINK;
+                return label;
+            };
+
+            addLabel('AdTitle', '广告演示', 210, 46, Color.WHITE);
+            addLabel('AdNote', 'H5 开发环境模拟激励视频', 145, 25, new Color(150, 178, 207, 255));
+            const timerLabel = addLabel('AdTimer', '5', 20, 110, new Color(249, 177, 34, 255));
+            const statusLabel = addLabel('AdStatus', '广告播放中，请稍候…', -90, 27, Color.WHITE);
+
+            const makeButton = (name: string, text: string, x: number, callback: () => void): void => {
+                const button = new Node(name);
+                button.parent = card;
+                button.setPosition(x, -205);
+                const buttonUi = button.addComponent(UITransform);
+                buttonUi.setContentSize(220, 74);
+                const graphics = button.addComponent(Graphics);
+                graphics.fillColor = new Color(42, 137, 225, 255);
+                graphics.roundRect(-110, -37, 220, 74, 18);
+                graphics.fill();
+                const labelNode = new Node('Label');
+                labelNode.parent = button;
+                const labelUi = labelNode.addComponent(UITransform);
+                labelUi.setContentSize(200, 64);
+                const label = labelNode.addComponent(Label);
+                label.string = text;
+                label.fontSize = 27;
+                label.color = Color.WHITE;
+                label.horizontalAlign = Label.HorizontalAlign.CENTER;
+                label.verticalAlign = Label.VerticalAlign.CENTER;
+                label.overflow = Label.Overflow.SHRINK;
+                button.on(Node.EventType.TOUCH_END, callback, this);
+            };
+
             let seconds = 5;
-            timerLabel.string = '5';
-            statusLabel.string = '广告播放中，请稍候…';
             const tick = () => {
                 seconds -= 1;
                 timerLabel.string = String(Math.max(0, seconds));
                 if (seconds > 0) return;
                 this.unschedule(tick);
                 statusLabel.string = '观看完成，可关闭或返回';
-                closeButton.active = true;
-                returnButton.active = true;
                 let resolved = false;
                 const finish = () => {
                     if (resolved) return;
                     resolved = true;
-                    closeButton.off(Node.EventType.TOUCH_END, finish, this);
-                    returnButton.off(Node.EventType.TOUCH_END, finish, this);
-                    modal.active = false;
+                    this._closeOverlay();
                     resolve({ success: true, completed: true, simulated: true });
                 };
-                closeButton.on(Node.EventType.TOUCH_END, finish, this);
-                returnButton.on(Node.EventType.TOUCH_END, finish, this);
+                makeButton('CloseAd', '关闭广告', -125, finish);
+                makeButton('ReturnAd', '返回游戏', 125, finish);
             };
             this.schedule(tick, 1);
         });
     }
 
+    private _closeOverlay(): void {
+        this._overlay?.destroy();
+        this._overlay = null;
+    }
+
+    // ------------------------------------------------------------------
+    // 配置加载
     // ------------------------------------------------------------------
 
     private async _bootstrap(): Promise<void> {
         try {
-            const [levelsAsset, platformAsset] = await Promise.all([
+            const [gradesAsset, platformAsset, cityIndexAsset] = await Promise.all([
                 this._loadJson('configs/levels'),
                 this._loadJson('configs/platform-config'),
+                this._loadJson('levels/cities'),
             ]);
+            this._grades = gradesAsset.json as GradeConfig;
             this.platform.configure(platformAsset.json as PlatformConfig);
-            const metas = (levelsAsset.json as LevelCollection).levels;
-            this._levels = [];
-            for (const meta of metas) {
-                this._levels.push(await this._loadLevel(meta));
+
+            const index = cityIndexAsset.json as CityIndex;
+            this._cities = await Promise.all(index.cities.map(key => this._loadCityMeta(key)));
+
+            // v2 旧档迁移：按城市顺序展开全部关卡 key 供映射
+            const allKeys: string[] = [];
+            for (const city of this._cities) {
+                for (const dir of city.levels) {
+                    allKeys.push(`${city.key}/${dir}`);
+                }
             }
+            this.save.migrateLegacy(allKeys);
+
             this.showLobby();
         } catch (error) {
             console.error('[GameFlow] 资源加载失败', error);
@@ -393,21 +566,56 @@ export class GameFlow extends Component {
         }
     }
 
-    /** 组装关卡：差异点从关卡目录内的 differences.json 读取，图片路径按目录约定推导。 */
-    private async _loadLevel(meta: LevelMeta): Promise<LevelConfig> {
-        const diffAsset = await this._loadJson(`${meta.directory}/differences`);
-        const differences = (diffAsset.json as DifferenceCollection).differences;
+    private async _loadCityMeta(key: string): Promise<CityConfig> {
+        const asset = await this._loadJson(`levels/${key}/city`);
+        const meta = asset.json as { name?: string; banner?: string; levels?: string[] };
         return {
-            id: meta.id,
-            name: meta.name,
-            timeLimit: meta.timeLimit,
-            maxLives: meta.maxLives,
-            bundle: '',
-            topImage: `${meta.directory}/scene-a/spriteFrame`,
-            bottomImage: `${meta.directory}/scene-b/spriteFrame`,
-            differences,
-            thumbnail: meta.thumbnail ?? '',
+            key,
+            name: meta.name ?? key,
+            banner: meta.banner ?? '',
+            levels: meta.levels ?? [],
+            levelsLoaded: false,
+            levelConfigs: [],
         };
+    }
+
+    /** 懒加载城市内全部关卡配置（幂等）。 */
+    public async ensureCity(city: CityConfig): Promise<void> {
+        if (city.levelsLoaded) return;
+        const configs: LevelConfig[] = [];
+        for (const dir of city.levels) {
+            configs.push(await this._loadLevel(city.key, dir));
+        }
+        city.levelConfigs = configs;
+        city.levelsLoaded = true;
+    }
+
+    private async _loadLevel(cityKey: string, levelDir: string): Promise<LevelConfig> {
+        const key = `${cityKey}/${levelDir}`;
+        const asset = await this._loadJson(`levels/${key}/differences`);
+        const file = asset.json as LevelFileConfig;
+        const topImage = file.topImage ?? `levels/${key}/scene-a/spriteFrame`;
+        const bottomImage = file.bottomImage ?? `levels/${key}/scene-b/spriteFrame`;
+        return {
+            key,
+            name: file.name ?? levelDir,
+            type: file.type ?? 'normal',
+            timeLimit: this._timeFor(file.differences?.length ?? 0),
+            maxLives: this._grades.maxLives,
+            topImage,
+            bottomImage,
+            icon: file.icon || topImage,
+            differences: file.differences ?? [],
+        };
+    }
+
+    /** 时限分档：差异数 ≤ maxDifferences 取该档，取第一个满足档。 */
+    private _timeFor(differenceCount: number): number {
+        for (const tier of this._grades.timeTiers) {
+            if (differenceCount <= tier.maxDifferences) return tier.timeLimit;
+        }
+        const last = this._grades.timeTiers[this._grades.timeTiers.length - 1];
+        return last ? last.timeLimit : 120;
     }
 
     private _loadJson(path: string): Promise<JsonAsset> {

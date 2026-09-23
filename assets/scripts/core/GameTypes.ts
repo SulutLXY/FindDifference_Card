@@ -1,6 +1,9 @@
-export type AppScreen = 'lobby' | 'levels' | 'game';
+export type AppScreen = 'lobby' | 'cities' | 'levels' | 'game';
 
 export type RewardPlacement = 'revive' | 'hint' | 'add-time';
+
+/** 关卡类型：normal 普通 / food 美食（美食图标收集后续版本开放，先做标记）。 */
+export type LevelType = 'normal' | 'food';
 
 export interface DifferenceConfig {
     id: string;
@@ -12,39 +15,59 @@ export interface DifferenceConfig {
     radius: number;
 }
 
-/** 关卡在 levels.json 中的条目：只含元信息与资源目录，差异点由目录内 differences.json 提供。 */
-export interface LevelMeta {
-    id: number;
-    name: string;
+/** 等级设置（configs/levels.json）：全局生命数与按差异数分档的时限。 */
+export interface TimeTier {
+    /** 差异数上限（含），按从小到大排列，取第一个满足档 */
+    maxDifferences: number;
     timeLimit: number;
-    maxLives: number;
-    /** resources 下的关卡目录，如 "levels/level-01"。目录内固定包含 scene-a / scene-b 图片与 differences.json。 */
-    directory: string;
-    /** 可选：选关卡片缩略图（resources 相对路径）。缺省时用上图自动充当。 */
-    thumbnail?: string;
 }
 
-/** 组装完成的关卡运行时数据（图片路径与差异点由 LevelMeta.directory 推导加载）。 */
-export interface LevelConfig {
-    id: number;
+export interface GradeConfig {
+    maxLives: number;
+    timeTiers: TimeTier[];
+}
+
+/** 关卡目录内 differences.json 的原始格式。图片路径可覆盖目录推导；icon 缺省回退 scene-a。 */
+export interface LevelFileConfig {
     name: string;
+    type: LevelType;
+    topImage?: string;
+    bottomImage?: string;
+    icon?: string;
+    differences: DifferenceConfig[];
+}
+
+/** 组装完成的关卡运行时数据。key = "城市目录/关卡目录"，是存档与解锁的唯一标识。 */
+export interface LevelConfig {
+    key: string;
+    name: string;
+    type: LevelType;
     timeLimit: number;
     maxLives: number;
-    bundle: string;
     topImage: string;
     bottomImage: string;
+    /** 选关封面路径（icon 优先，缺省等于 topImage） */
+    icon: string;
     differences: DifferenceConfig[];
-    /** 选关缩略图路径，可能为空。 */
-    thumbnail?: string;
 }
 
-export interface LevelCollection {
-    levels: LevelMeta[];
+/** 城市索引（levels/cities.json，由 tools/build-manifest.py 生成）。 */
+export interface CityIndex {
+    cities: string[];
 }
 
-/** 各关目录内 differences.json 的格式：图片与差异点配置放在一起，替换资源时同目录改动。 */
-export interface DifferenceCollection {
-    differences: DifferenceConfig[];
+/** 城市清单（city.json）：levels 由工具刷新，name/banner 等手工维护。 */
+export interface CityMeta {
+    key: string;
+    name: string;
+    banner?: string;
+    levels: string[];
+}
+
+/** 运行时城市数据：levels 按需懒加载填充 levelConfigs。 */
+export interface CityConfig extends CityMeta {
+    levelsLoaded: boolean;
+    levelConfigs: LevelConfig[];
 }
 
 export interface PlatformConfig {
@@ -63,10 +86,14 @@ export interface LevelProgress {
     bestTime: number;
 }
 
+/** 存档（v3）：通关集合 + 积分。积分 = 已通关关卡数，每通关一关 +1。 */
 export interface SaveData {
     version: number;
-    unlockedLevel: number;
-    levels: Record<string, LevelProgress>;
+    /** key（城市目录/关卡目录）→ 通关成绩 */
+    completed: Record<string, LevelProgress>;
+    totalScore: number;
+    /** 图鉴/成就（后续版本使用）：条目 id → 获得时间戳 */
+    achievements: Record<string, number>;
     musicEnabled: boolean;
     soundEnabled: boolean;
 }

@@ -1,0 +1,50 @@
+{
+  "name": "皇家城堡庭院 · 8",
+  "type": "food",
+  "topImage": "levels/city-01-beijing/level-08/scene-a/spriteFrame",
+  "bottomImage": "levels/city-01-beijing/level-08/scene-b/spriteFrame",
+  "differences": [
+    {
+      "id": "chopsticks",
+      "x": 0.204102,
+      "y": 0.71875,
+      "radius": 0.042969
+    },
+    {
+      "id": "egg",
+      "x": 0.353516,
+      "y": 0.767857,
+      "radius": 0.043945
+    },
+    {
+      "id": "pickle-plate",
+      "x": 0.512695,
+      "y": 0.839286,
+      "radius": 0.056641
+    },
+    {
+      "id": "sauce-jar",
+      "x": 0.8125,
+      "y": 0.827381,
+      "radius": 0.057617
+    },
+    {
+      "id": "hanging-sign",
+      "x": 0.291992,
+      "y": 0.130952,
+      "radius": 0.068359
+    },
+    {
+      "id": "pet",
+      "x": 0.101562,
+      "y": 0.668155,
+      "radius": 0.069336
+    },
+    {
+      "id": "table-sign",
+      "x": 0.260742,
+      "y": 0.889881,
+      "radius": 0.084961
+    }
+  ]
+}

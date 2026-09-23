@@ -39,14 +39,22 @@ export class LobbyScreen extends UIScreen {
 
     protected onLoad(): void {
         this.wireButton(this.btnStart, 'BtnStart', () => this.flow.startContinue());
-        this.wireButton(this.btnLevels, 'BtnLevels', () => this.flow.showLevelSelect());
+        this.wireButton(this.btnLevels, 'BtnLevels', () => this.flow.showCitySelect());
         this.wireButton(this.btnRank, 'BtnRank', () => this.flow.showRank());
     }
 
     protected onOpen(): void {
         this.setLabel(this.footerEnv, 'FooterEnv', `当前环境：${this.flow.platform.kind.toUpperCase()}`);
-        // 「当前第N关」与开始挑战实际进入的关卡保持一致：最新解锁关（不超过总关卡数）
-        const continueId = Math.min(this.flow.save.data.unlockedLevel, this.flow.levels.length);
-        this.setLabel(this.currentLevel, 'BtnStart/Label-001', `当前第${continueId}关`);
+        // 「城市-关卡名」与开始挑战实际进入的关卡保持一致
+        void this._refreshContinueLabel();
+    }
+
+    private async _refreshContinueLabel(): Promise<void> {
+        const target = await this.flow.findContinueTarget();
+        this.setLabel(
+            this.currentLevel,
+            'BtnStart/Label-001',
+            target ? `${target.city.name}-${target.level.name}` : '全部通关，恭喜！',
+        );
     }
 }

@@ -118,7 +118,7 @@ export class GameScreen extends UIScreen {
         this._progressConfigured = false;
         this._progressTotal = 0;
 
-        this.setLabel(this.levelTitle, 'LevelTitle', `第${level.id}关`);
+        this.setLabel(this.levelTitle, 'LevelTitle', level.name);
         this.setLabel(this.levelName, 'LevelName', level.name);
 
         try {

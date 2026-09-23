@@ -1,54 +1,55 @@
 import { _decorator, Color, Graphics, Input, Label, Layout, Mask, Node, ScrollView, Size, Sprite, UITransform, instantiate } from 'cc';
-import { LevelConfig } from '../core/GameTypes';
+import { CityConfig, LevelConfig } from '../core/GameTypes';
 import { UIColors, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
 
 /**
- * 选关界面（Screens/LevelSelect）。
+ * 城市内选关界面（Screens/LevelSelect）。
  *
- * 卡片动态生成：以 Card1（或 cardTemplate 绑定节点）为模板，
- * 按关卡配置实例化任意数量，进入界面时刷新数据，离开时销毁。
+ * 由 CitySelectScreen 进入，当前城市由 GameFlow.currentCity 提供；
+ * 返回键回到城市列表页。
  *
- * 列表结构（onLoad 时自动改造 List 节点，无需手动拼）：
- * - List           可视窗口：挂 Mask（遮罩）+ ScrollView（竖向滑动），
- *                  UITransform 尺寸即可视区域，超出部分被裁掉
- * - Content        卡片容器：代码创建，接收 List 上原 Layout 的网格参数，
- *                  resizeMode 设为 CONTAINER，内容高度随卡片自动增长
+ * 命名规则（未拖拽绑定时按此自动查找）：
+ * - BtnBack      返回城市列表按钮（Node）
+ * - PageTitle    页面标题（Label，运行时刷新为城市名）
+ * - List         关卡卡片窗口：代码自动补 Mask 遮罩 + ScrollView 竖向滑动
+ * - Card1        卡片模板（可选，结构与动态填充约定见下）
  *
- * 模板结构约定（Card1）：
+ * 卡片模板结构约定（Card1）：
  * - CardNumber          Label，「第N关」
- * - CardName            Label，关卡名
+ * - CardName            Label，关卡名（differences.json 的 name）
  * - CardDetail          星级区域容器（不解锁时整体隐藏）
  *   - CardDetail_star1BG / star2BG / star3BG   灰色星星底
  *     - CardDetail_star                        金星，默认隐藏，按完成星级逐颗点亮
  * - LockIcon            锁图标（仅未解锁时显示，与 CardDetail 互斥）
- * - Thumbnail           关卡缩略图：默认自动填充该关上图（scene-a），
- *                       未解锁时叠加 GrayMask 灰色蒙版（30% 灰）；
- *                       若关卡配置含 thumbnail 字段则优先用专用缩略图
+ * - Thumbnail           关卡封面：默认 icon（缺省回退上图），未解锁时叠加 GrayMask（30% 灰）
  *
- * 列表末尾固定追加一张「敬请期待」占位卡：使用 levels/level-00 目录的图，
- * 不可选（点击仅提示），无锁、无星级。替换该目录的 scene-a 图片即可更换占位图。
+ * 解锁规则：城市内按文件夹顺序线性解锁（前一关通关）。
+ * 列表末尾固定追加「敬请期待」占位卡（levels/city-01-beijing/level-00 的图）。
  */
 @ccclass('LevelSelectScreen')
 export class LevelSelectScreen extends UIScreen {
-    @property({ type: Node, tooltip: '返回大厅按钮（命名 BtnBack）' })
+    @property({ type: Node, tooltip: '返回城市列表按钮（命名 BtnBack）' })
     public btnBack: Node | null = null;
 
-    @property({ type: Node, tooltip: '关卡卡片窗口（命名 List）。代码自动为其补 Mask 遮罩与 ScrollView 滑动' })
+    @property({ type: Label, tooltip: '页面标题（命名 PageTitle，运行时刷新为城市名）' })
+    public pageTitle: Label | null = null;
+
+    @property({ type: Node, tooltip: '关卡卡片窗口（命名 List）' })
     public listRoot: Node | null = null;
 
-    @property({ type: Node, tooltip: '卡片模板（可选）。不绑定时自动使用 List 下的 Card1 作为模板' })
+    @property({ type: Node, tooltip: '卡片模板（可选）。不绑定时自动使用 List 下的 Card1' })
     public cardTemplate: Node | null = null;
 
     private _runtimeCards: Node[] = [];
     private _content: Node | null = null;
 
     /** 末尾「敬请期待」占位卡使用的图片路径（resources 相对路径）。 */
-    private static readonly COMING_SOON_IMAGE = 'levels/level-00/scene-a/spriteFrame';
+    private static readonly COMING_SOON_IMAGE = 'levels/city-01-beijing/level-00/scene-a/spriteFrame';
 
     protected onLoad(): void {
-        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showLobby());
+        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showCitySelect());
         this._setupScrollContainer();
     }
 
@@ -60,26 +61,32 @@ export class LevelSelectScreen extends UIScreen {
         this._clearRuntimeCards();
     }
 
-    /** 动态生成全部关卡卡片：按模板实例化 → 填充数据 → 隐藏手动参考卡 → 追加敬请期待卡。 */
+    /** 动态生成本城全部关卡卡片 + 末尾敬请期待卡。 */
     public rebuild(): void {
         this._clearRuntimeCards();
+        const city = this.flow.currentCity;
+        if (!city || !city.levelsLoaded) return;
+
+        this.setLabel(this.pageTitle, 'PageTitle', city.name);
+
         const root = this.resolveNode(this.listRoot, 'List') ?? this.node;
         const container = this._content ?? root;
         const template = this._resolveTemplate(root);
+        const cityIndex = this.flow.cities.indexOf(city as CityConfig);
 
-        for (const level of this.flow.levels) {
+        city.levelConfigs.forEach((level, index) => {
             let card: Node;
             if (template) {
                 card = instantiate(template);
-                card.name = `LevelCard-${level.id}`;
+                card.name = `LevelCard-${level.key}`;
             } else {
                 card = this._buildFallbackCard();
             }
             this._runtimeCards.push(card);
             card.parent = container;
             card.active = true;
-            this._fillCard(card, level);
-        }
+            this._fillCard(card, level, index, cityIndex);
+        });
 
         this._hideManualCards(root);
         this._appendComingSoonCard(container, template);
@@ -87,7 +94,7 @@ export class LevelSelectScreen extends UIScreen {
     }
 
     /**
-     * 把 List 改造成「遮罩 + 滑动」结构（幂等，重复调用安全）：
+     * 把 List 改造成「遮罩 + 滑动」结构（幂等）：
      * List 自身挂 Mask 和 ScrollView 作为可视窗口；
      * 创建 Content 子节点作为卡片容器，并把 List 上原 Layout 的网格参数转移过去。
      */
@@ -141,7 +148,7 @@ export class LevelSelectScreen extends UIScreen {
         root?.getComponent(ScrollView)?.scrollToTop(0.1);
     }
 
-    /** 模板来源：优先 cardTemplate 绑定，其次 List 直接子级下的 Card1（手动参考卡不在 Content 下）。 */
+    /** 模板来源：优先 cardTemplate 绑定，其次 List 直接子级下的 Card1。 */
     private _resolveTemplate(listRoot: Node): Node | null {
         if (this.cardTemplate && this.cardTemplate.isValid) return this.cardTemplate;
         return listRoot.getChildByName('Card1');
@@ -154,7 +161,7 @@ export class LevelSelectScreen extends UIScreen {
         }
     }
 
-    /** 列表末尾追加「敬请期待」占位卡：level-00 的图、不可选、无锁、无星级。 */
+    /** 列表末尾追加「敬请期待」占位卡：不可选、无锁、无星级。 */
     private _appendComingSoonCard(container: Node, template: Node | null): void {
         const card = template ? instantiate(template) : this._buildFallbackCard();
         card.name = 'ComingSoonCard';
@@ -175,14 +182,14 @@ export class LevelSelectScreen extends UIScreen {
         card.on(Input.EventType.TOUCH_END, () => this.flow.toast('新关卡即将开放，敬请期待'), this);
     }
 
-    private _fillCard(card: Node, level: LevelConfig): void {
-        const unlocked = this.flow.save.isUnlocked(level.id);
-        const progress = this.flow.save.data.levels[String(level.id)];
+    private _fillCard(card: Node, level: LevelConfig, levelIndex: number, cityIndex: number): void {
+        const unlocked = this.flow.isLevelUnlocked(cityIndex, levelIndex);
+        const progress = this.flow.save.progressOf(level.key);
 
-        this._setCardLabel(card, 'CardNumber', `第${level.id}关`);
+        this._setCardLabel(card, 'CardNumber', `第${levelIndex + 1}关`);
         this._setCardLabel(card, 'CardName', level.name);
 
-        // 未解锁：显示锁 + 缩略图压 30% 灰；已解锁：显示星级区域
+        // 未解锁：显示锁 + 封面压 30% 灰；已解锁：显示星级区域
         const lock = card.getChildByName('LockIcon');
         if (lock) lock.active = !unlocked;
         this._setGrayMask(card, !unlocked);
@@ -191,7 +198,6 @@ export class LevelSelectScreen extends UIScreen {
         if (detail) {
             detail.active = unlocked;
             if (unlocked) {
-                // 星级用图片显示：清空文字，按完成星级逐颗点亮金星
                 const label = detail.getComponent(Label);
                 if (label) label.string = '';
                 const stars = progress?.stars ?? 0;
@@ -206,10 +212,17 @@ export class LevelSelectScreen extends UIScreen {
         void this._loadThumbnail(card, level);
 
         card.off(Input.EventType.TOUCH_END);
-        card.on(Input.EventType.TOUCH_END, () => this._selectLevel(level.id), this);
+        card.on(Input.EventType.TOUCH_END, () => {
+            if (!this.flow.isLevelUnlocked(cityIndex, levelIndex)) {
+                this.flow.toast(levelIndex > 0 ? '先通关上一关' : '城市尚未解锁');
+                return;
+            }
+            const city = this.flow.currentCity;
+            if (city) void this.flow.startLevel(city, levelIndex);
+        }, this);
     }
 
-    /** 未解锁卡缩略图叠加 30% 灰蒙版（GrayMask 子节点，随解锁状态显隐）。 */
+    /** 未解锁卡封面叠加 30% 灰蒙版（GrayMask 子节点，随解锁状态显隐）。 */
     private _setGrayMask(card: Node, show: boolean): void {
         const thumbnail = card.getChildByName('Thumbnail');
         if (!thumbnail) return;
@@ -228,9 +241,9 @@ export class LevelSelectScreen extends UIScreen {
         mask.active = show;
     }
 
-    /** 加载卡片缩略图：优先用关卡配置的 thumbnail 字段，缺省时用该关上图（scene-a）自动充当。 */
+    /** 封面：优先 icon 文件，缺省回退上图。 */
     private async _loadThumbnail(card: Node, level: LevelConfig): Promise<void> {
-        await this._loadThumbnailByPath(card, level.thumbnail || level.topImage);
+        await this._loadThumbnailByPath(card, level.icon || level.topImage);
     }
 
     private async _loadThumbnailByPath(card: Node, path: string): Promise<void> {
@@ -241,7 +254,7 @@ export class LevelSelectScreen extends UIScreen {
             const sprite = thumbnail.getComponent(Sprite);
             if (sprite && thumbnail.isValid) sprite.spriteFrame = frame;
         } catch {
-            // 缩略图缺失时保留模板自带贴图
+            // 封面缺失时保留模板自带贴图
         }
     }
 
@@ -250,22 +263,12 @@ export class LevelSelectScreen extends UIScreen {
         if (label) label.string = text;
     }
 
-    private _selectLevel(id: number): void {
-        const level = this.flow.findLevel(id);
-        if (!level) return;
-        if (!this.flow.save.isUnlocked(id)) {
-            this.flow.toast(`通关第${id - 1}关后解锁`);
-            return;
-        }
-        this.flow.startLevel(level);
-    }
-
     private _clearRuntimeCards(): void {
         for (const card of this._runtimeCards) card.destroy();
         this._runtimeCards = [];
     }
 
-    /** 无模板时的内置简易卡，保证流程可运行。 */
+    /** 无模板时的内置简易卡。 */
     private _buildFallbackCard(): Node {
         const card = new Node('LevelCard');
         const ui = card.addComponent(UITransform);

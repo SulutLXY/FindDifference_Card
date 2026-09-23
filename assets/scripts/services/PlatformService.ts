@@ -87,8 +87,8 @@ export class PlatformService {
         });
     }
 
-    public share(levelId: number): void {
-        const query = `level=${levelId}&from=share&campaign=default`;
+    public share(levelKey: string): void {
+        const query = `level=${levelKey}&from=share&campaign=default`;
         if (this.kind === 'wechat') {
             this._host.wx.shareAppMessage({ title: '来挑战我的找茬成绩！', query });
             return;
