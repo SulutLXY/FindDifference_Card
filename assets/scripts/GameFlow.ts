@@ -90,6 +90,9 @@ export class GameFlow extends Component {
     private _isPaused = false;
     private _isGameOver = false;
     private _reviveUsed = false;
+    private _combo = 0;
+    private _lastFoundAt = 0;
+    private _toneContext: { currentTime: number; destination: unknown; state?: string; resume?: () => void } | null = null;
     private readonly _spriteFrameCache = new Map<string, SpriteFrame>();
     private _overlay: Node | null = null;
 
@@ -294,10 +297,21 @@ export class GameFlow extends Component {
     // 对局逻辑
     // ------------------------------------------------------------------
 
+    /** 连击窗口：两次找对间隔在此时间内连击 +1，否则重新计数。 */
+    public static readonly COMBO_WINDOW_MS = 2000;
+
     public onDifferenceFound(difference: DifferenceConfig): void {
         if (this._isGameOver || !this._currentLevel || this._foundIds.has(difference.id)) return;
         this._foundIds.add(difference.id);
+
+        // 连击：窗口内连续找对升级，点错/超时清零
+        const now = Date.now();
+        this._combo = now - this._lastFoundAt <= GameFlow.COMBO_WINDOW_MS ? this._combo + 1 : 1;
+        this._lastFoundAt = now;
+
         this.game?.drawFoundMarker(difference);
+        this.game?.showSuccessFx(this._combo);
+        this.playSuccessTone(this._combo);
         this.game?.refreshHud();
         if (this._foundIds.size >= this._currentLevel.differences.length) {
             this.finishLevel(true);
@@ -306,10 +320,46 @@ export class GameFlow extends Component {
 
     public onWrongTap(localPosition: Vec3, imageNode: Node): void {
         if (this._isGameOver || this._isPaused) return;
+        this._combo = 0;
         this._lives = Math.max(0, this._lives - 1);
         this.game?.drawWrongMarker(localPosition, imageNode);
         this.game?.refreshHud();
         if (this._lives <= 0) this.finishLevel(false);
+    }
+
+    /** 找对音效：程序合成双音和弦，连击越高音调越高。正式音效资源接入后替换此方法。 */
+    public playSuccessTone(combo: number): void {
+        try {
+            if (!this._toneContext) {
+                const host = globalThis as any;
+                if (this.platform.kind === 'wechat' && host.wx?.createWebAudioContext) {
+                    this._toneContext = host.wx.createWebAudioContext();
+                } else if (typeof host.AudioContext === 'function') {
+                    this._toneContext = new host.AudioContext();
+                }
+            }
+            const ctx = this._toneContext as any;
+            if (!ctx) return;
+            if (ctx.state === 'suspended' && typeof ctx.resume === 'function') {
+                void ctx.resume();
+            }
+            const now = ctx.currentTime;
+            const base = 523.25 * Math.pow(1.12, Math.min(combo - 1, 8));
+            for (const [delay, ratio] of [[0, 1], [0.07, 1.25]] as Array<[number, number]>) {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = base * ratio;
+                gain.gain.setValueAtTime(0.15, now + delay);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + delay + 0.18);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(now + delay);
+                osc.stop(now + delay + 0.2);
+            }
+        } catch {
+            // 音频环境不可用时静默
+        }
     }
 
     public useHint(): void {

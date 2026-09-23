@@ -199,6 +199,44 @@ export class GameScreen extends UIScreen {
         }
     }
 
+    /** 连击激励文案表：5 级封顶，等级越高颜色越热、字号越大。 */
+    private static readonly COMBO_TIERS: Array<{ text: string; color: Color; size: number }> = [
+        { text: 'GOOD', color: new Color(255, 255, 255, 255), size: 48 },
+        { text: 'GREAT!', color: new Color(120, 220, 120, 255), size: 52 },
+        { text: 'PERFECT!', color: new Color(249, 177, 34, 255), size: 56 },
+        { text: 'AMAZING!!', color: new Color(255, 130, 60, 255), size: 60 },
+        { text: 'UNBELIEVABLE!!!', color: new Color(225, 67, 63, 255), size: 64 },
+    ];
+
+    /** 找对激励反馈：屏幕中央弹出称赞文案（连击 >1 附 xN），放大回弹 → 上浮淡出。 */
+    public showSuccessFx(combo: number): void {
+        const tier = GameScreen.COMBO_TIERS[Math.min(combo, GameScreen.COMBO_TIERS.length) - 1];
+        const fxNode = new Node('SuccessFx');
+        fxNode.parent = this.node;
+        fxNode.setPosition(0, 150);
+        const ui = fxNode.addComponent(UITransform);
+        ui.setContentSize(620, 110);
+        const label = fxNode.addComponent(Label);
+        label.string = combo > 1 ? `${tier.text}  x${combo}` : tier.text;
+        label.fontSize = tier.size;
+        label.isBold = true;
+        label.color = tier.color;
+        label.horizontalAlign = Label.HorizontalAlign.CENTER;
+        label.verticalAlign = Label.VerticalAlign.CENTER;
+        label.overflow = Label.Overflow.SHRINK;
+        const opacity = fxNode.addComponent(UIOpacity);
+        fxNode.setScale(0.5, 0.5, 1);
+        tween(fxNode)
+            .to(0.12, { scale: new Vec3(1.15, 1.15, 1) })
+            .to(0.08, { scale: Vec3.ONE })
+            .delay(0.35)
+            .call(() => {
+                tween(fxNode).by(0.4, { position: new Vec3(0, 60, 0) }).start();
+                tween(opacity).to(0.4, { opacity: 0 }).call(() => fxNode.destroy()).start();
+            })
+            .start();
+    }
+
     /** 在点错位置绘制短暂的红叉。 */
     public drawWrongMarker(localPosition: Vec3, imageNode: Node): void {
         const marker = new Node('WrongMarker');
