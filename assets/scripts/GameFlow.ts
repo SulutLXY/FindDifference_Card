@@ -241,6 +241,8 @@ export class GameFlow extends Component {
     }
 
     private _switchTo(screen: LobbyScreen | CitySelectScreen | LevelSelectScreen | GameScreen | RankScreen | null): void {
+        // 任何界面切换都先关闭结算弹窗，避免弹窗残留在新界面上层
+        this.resultModal?.close();
         for (const item of [this.lobby, this.citySelect, this.levelSelect, this.game, this.rank]) {
             if (item && item !== screen) item.close();
         }
