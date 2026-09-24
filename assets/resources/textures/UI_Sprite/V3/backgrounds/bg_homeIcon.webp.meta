@@ -1,7 +1,7 @@
 {
   "ver": "1.0.27",
   "importer": "image",
-  "imported": true,
+  "imported": false,
   "uuid": "5d4732b2-7453-415d-a79b-617785a4731f",
   "files": [
     ".json",
@@ -45,10 +45,10 @@
         "offsetY": 0,
         "trimX": 0,
         "trimY": 0,
-        "width": 597,
-        "height": 336,
-        "rawWidth": 597,
-        "rawHeight": 336,
+        "width": 512,
+        "height": 274,
+        "rawWidth": 512,
+        "rawHeight": 274,
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
@@ -60,17 +60,17 @@
         "meshType": 0,
         "vertices": {
           "rawPosition": [
-            -298.5,
-            -168,
+            -256,
+            -137,
             0,
-            298.5,
-            -168,
+            256,
+            -137,
             0,
-            -298.5,
-            168,
+            -256,
+            137,
             0,
-            298.5,
-            168,
+            256,
+            137,
             0
           ],
           "indexes": [
@@ -83,12 +83,12 @@
           ],
           "uv": [
             0,
-            336,
-            597,
-            336,
+            274,
+            512,
+            274,
             0,
             0,
-            597,
+            512,
             0
           ],
           "nuv": [
@@ -102,13 +102,13 @@
             1
           ],
           "minPos": [
-            -298.5,
-            -168,
+            -256,
+            -137,
             0
           ],
           "maxPos": [
-            298.5,
-            168,
+            256,
+            137,
             0
           ]
         },

@@ -2,7 +2,7 @@
   "ver": "1.0.27",
   "importer": "image",
   "imported": false,
-  "uuid": "3d39d463-d54b-4fa4-b27f-c772e828f8aa",
+  "uuid": "1d6df1fb-44d0-4875-8737-b2d4cc3a8eca",
   "files": [
     ".json",
     ".webp"
@@ -10,8 +10,8 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "3d39d463-d54b-4fa4-b27f-c772e828f8aa@6c48a",
-      "displayName": "button_secondary_pressed",
+      "uuid": "1d6df1fb-44d0-4875-8737-b2d4cc3a8eca@6c48a",
+      "displayName": "button_secondary_warring",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 0,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "3d39d463-d54b-4fa4-b27f-c772e828f8aa",
+        "imageUuidOrDatabaseUri": "1d6df1fb-44d0-4875-8737-b2d4cc3a8eca",
         "visible": false
       },
       "ver": "1.0.22",
@@ -34,8 +34,8 @@
     },
     "f9941": {
       "importer": "sprite-frame",
-      "uuid": "3d39d463-d54b-4fa4-b27f-c772e828f8aa@f9941",
-      "displayName": "button_secondary_pressed",
+      "uuid": "1d6df1fb-44d0-4875-8737-b2d4cc3a8eca@f9941",
+      "displayName": "button_secondary_warring",
       "id": "f9941",
       "name": "spriteFrame",
       "userData": {
@@ -49,7 +49,7 @@
         "height": 74,
         "rawWidth": 66,
         "rawHeight": 74,
-        "borderTop": 24,
+        "borderTop": 30,
         "borderBottom": 36,
         "borderLeft": 30,
         "borderRight": 30,
@@ -113,7 +113,7 @@
           ]
         },
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "3d39d463-d54b-4fa4-b27f-c772e828f8aa@6c48a",
+        "imageUuidOrDatabaseUri": "1d6df1fb-44d0-4875-8737-b2d4cc3a8eca@6c48a",
         "atlasUuid": "",
         "trimType": "none"
       },
@@ -129,6 +129,6 @@
     "type": "sprite-frame",
     "fixAlphaTransparencyArtifacts": false,
     "hasAlpha": true,
-    "redirect": "3d39d463-d54b-4fa4-b27f-c772e828f8aa@6c48a"
+    "redirect": "1d6df1fb-44d0-4875-8737-b2d4cc3a8eca@6c48a"
   }
 }
