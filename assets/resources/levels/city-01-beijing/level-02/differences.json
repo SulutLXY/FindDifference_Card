@@ -1,54 +1,42 @@
 {
-  "name": "海南椰子鸡",
-  "type": "food",
+  "name": "北京-02",
+  "type": "travel",
   "differences": [
     {
-      "id": "chili-saucer",
-      "x": 0.279297,
-      "y": 0.938988,
-      "radius": 0.042969
+      "id": "willow",
+      "x": 0.170898,
+      "y": 0.15625,
+      "radius": 0.107422
     },
     {
-      "id": "seaside-animal",
-      "x": 0.946289,
-      "y": 0.278274,
-      "radius": 0.054688
+      "id": "left-umbrella",
+      "x": 0.0625,
+      "y": 0.342262,
+      "radius": 0.048828
     },
     {
-      "id": "hair-flower",
-      "x": 0.728516,
-      "y": 0.28869,
-      "radius": 0.057617
+      "id": "boat-canopy",
+      "x": 0.876953,
+      "y": 0.401786,
+      "radius": 0.078125
     },
     {
-      "id": "lantern",
-      "x": 0.291992,
-      "y": 0.095238,
-      "radius": 0.05957
+      "id": "duck",
+      "x": 0.886719,
+      "y": 0.598214,
+      "radius": 0.053711
     },
     {
-      "id": "held-fruit",
-      "x": 0.242188,
-      "y": 0.43006,
-      "radius": 0.071289
+      "id": "basket-box",
+      "x": 0.732422,
+      "y": 0.872024,
+      "radius": 0.073242
     },
     {
-      "id": "coconut-opening",
-      "x": 0.932617,
-      "y": 0.833333,
-      "radius": 0.076172
-    },
-    {
-      "id": "raw-ingredients",
-      "x": 0.255859,
-      "y": 0.80506,
-      "radius": 0.087891
-    },
-    {
-      "id": "boy-shirt",
-      "x": 0.405273,
-      "y": 0.556548,
-      "radius": 0.108398
+      "id": "lotus-count",
+      "x": 0.935547,
+      "y": 0.764881,
+      "radius": 0.078125
     }
   ]
 }

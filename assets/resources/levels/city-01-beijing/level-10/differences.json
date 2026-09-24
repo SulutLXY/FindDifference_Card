@@ -1,84 +1,36 @@
 {
-  "name": "皇家城堡庭院 · 10",
-  "type": "food",
+  "name": "北京-09",
+  "type": "travel",
   "differences": [
     {
-      "id": "sky-bird",
-      "x": 0.462891,
-      "y": 0.138393,
-      "radius": 0.033203
+      "id": "foliage-color",
+      "x": 0.214844,
+      "y": 0.119048,
+      "radius": 0.15625
     },
     {
-      "id": "bowl-rooster",
-      "x": 0.96582,
-      "y": 0.699405,
-      "radius": 0.036133
+      "id": "bicycle",
+      "x": 0.773438,
+      "y": 0.677083,
+      "radius": 0.068359
     },
     {
-      "id": "left-seasoning",
-      "x": 0.448242,
-      "y": 0.77381,
-      "radius": 0.039062
+      "id": "pigeon",
+      "x": 0.882812,
+      "y": 0.840774,
+      "radius": 0.053711
     },
     {
-      "id": "middle-seasoning",
-      "x": 0.548828,
-      "y": 0.769345,
-      "radius": 0.039062
+      "id": "hat",
+      "x": 0.958984,
+      "y": 0.581845,
+      "radius": 0.048828
     },
     {
-      "id": "right-seasoning",
-      "x": 0.636719,
-      "y": 0.799107,
-      "radius": 0.044922
-    },
-    {
-      "id": "front-seasoning",
-      "x": 0.581055,
-      "y": 0.858631,
-      "radius": 0.047852
-    },
-    {
-      "id": "lime-bowl",
-      "x": 0.699219,
-      "y": 0.872024,
-      "radius": 0.051758
-    },
-    {
-      "id": "chopstick-color",
-      "x": 0.885742,
-      "y": 0.769345,
-      "radius": 0.056641
-    },
-    {
-      "id": "cat-color",
-      "x": 0.128906,
-      "y": 0.479167,
-      "radius": 0.0625
-    },
-    {
-      "id": "serving-utensil",
-      "x": 0.703125,
-      "y": 0.587798,
-      "radius": 0.072266
-    },
-    {
-      "id": "fragrant-banner",
-      "x": 0.694336,
-      "y": 0.102679,
-      "radius": 0.075195
-    },
-    {
-      "id": "vendor-clothes",
-      "x": 0.838867,
-      "y": 0.565476,
-      "radius": 0.085938
-    },
-    {
-      "id": "hanging-corn",
-      "x": 0.954102,
-      "y": 0.318452,
-      "radius": 0.110352
+      "id": "flower-pot",
+      "x": 0.966797,
+      "y": 0.71131,
+      "radius": 0.053711
     }
   ]
 }

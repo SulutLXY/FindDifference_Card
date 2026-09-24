@@ -1,7 +1,7 @@
 {
   "ver": "1.0.27",
   "importer": "image",
-  "imported": false,
+  "imported": true,
   "uuid": "39f26a1f-64b4-42f7-b180-7f3fdc9f2dda",
   "files": [
     ".json",
