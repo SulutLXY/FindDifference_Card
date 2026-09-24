@@ -10025,7 +10025,7 @@
         "__id__": 264
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 266
@@ -10157,7 +10157,7 @@
     "_string": "选择城市",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 46,
+    "_actualFontSize": 47,
     "_fontSize": 46,
     "_fontFamily": "Arial",
     "_lineHeight": 58,
@@ -10338,7 +10338,7 @@
     "_string": "‹",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 52,
+    "_actualFontSize": 51,
     "_fontSize": 52,
     "_fontFamily": "Arial",
     "_lineHeight": 65,
@@ -13260,7 +13260,7 @@
         "__id__": 388
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 394

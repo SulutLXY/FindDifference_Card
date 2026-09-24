@@ -71,9 +71,9 @@ def check_level(city_dir, level_dir):
 
     if not data.get('name'):
         problems.append(f'{label}: 缺少 name（关卡名）')
-    level_type = data.get('type')
-    if level_type not in ('normal', 'food'):
-        problems.append(f'{label}: type 缺失或非法（应为 normal/food）: {level_type!r}')
+    # type 为开放标记（normal 普通 / food 美食 / travel 风土 等），只校验存在性
+    if not data.get('type'):
+        problems.append(f'{label}: 缺少 type（关卡类型标记）')
 
     differences = data.get('differences')
     if not isinstance(differences, list) or len(differences) == 0:

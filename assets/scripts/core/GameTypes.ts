@@ -2,8 +2,11 @@ export type AppScreen = 'lobby' | 'cities' | 'levels' | 'game';
 
 export type RewardPlacement = 'revive' | 'hint' | 'add-time';
 
-/** 关卡类型：normal 普通 / food 美食（美食图标收集后续版本开放，先做标记）。 */
-export type LevelType = 'normal' | 'food';
+/**
+ * 关卡类型标记（开放取值，按标记分组做收集/图鉴等功能）：
+ * normal 普通 / food 美食 / travel 风土人文 / 后续可扩展。
+ */
+export type LevelType = string;
 
 export interface DifferenceConfig {
     id: string;
