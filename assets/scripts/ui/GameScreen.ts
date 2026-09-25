@@ -360,7 +360,7 @@ export class GameScreen extends UIScreen {
 
         const zoomButton = this.resolveNode(this.btnZoom, 'BtnZoom');
         const label = zoomButton?.getComponentInChildren(Label);
-        if (label) label.string = this._zoomScale > 1 ? '还原' : '×2';
+        if (label) label.string = this._zoomScale > 1 ? '还原' : '放大';
     }
 
     private _setPan(x: number, y: number): void {

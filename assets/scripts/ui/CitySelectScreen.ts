@@ -7,6 +7,7 @@ import {
     Layout,
     Mask,
     Node,
+    Prefab,
     ScrollView,
     Size,
     Sprite,
@@ -26,12 +27,16 @@ const { ccclass, property } = _decorator;
  * - PageTitle   页面标题（Label，可选）
  * - List        城市卡片窗口：代码自动补 Mask 遮罩 + ScrollView 竖向滑动
  *
- * 城市卡片：优先实例化 List 下的 CityCard1 模板，结构约定：
+ * 城市卡片：按以下优先级实例化，填充结构约定：
+ * 1. Inspector 绑定 cardPrefab（Prefab 预制体，推荐，素材做好后直接拖入）
+ * 2. Inspector 绑定 cardTemplate 或 List 下的 CityCard（旧名 CityCard1）节点
+ * 3. 无模板时使用内置简易卡片
  * - CityName      Label，城市名
- * - CityProgress  Label，进度「X/Y」
+ * - CityProgress  Label，进度「X/Y」，前方固定文本（如「已完成：」）由模板自带 Label 承担
+ * - Levelnumber   Label，关卡范围「第X-Y关」（按全局关卡编号）
+ * - rank_row      进度条底槽 + 子节点 rank_row-001 填充条（锚点靠左，代码按进度改宽度）
  * - CityBanner    Sprite，城市横幅图（可选，city.json 配 banner 时加载）
- * - LockIcon      锁图标（未解锁时显示，与 CityProgress 互斥）
- * 无模板时使用内置简易卡片。
+ * - LockIcon      锁图标（未解锁时显示；模板里直接用 CityLockTip 当锁也可以）
  *
  * 解锁规则：第一城始终解锁，其余需前一城全部关卡通关。
  */
@@ -46,8 +51,11 @@ export class CitySelectScreen extends UIScreen {
     @property({ type: Node, tooltip: '城市卡片窗口（命名 List）' })
     public listRoot: Node | null = null;
 
-    @property({ type: Node, tooltip: '卡片模板（可选）。不绑定时自动使用 List 下的 CityCard1' })
+    @property({ type: Node, tooltip: '卡片模板（可选）。不绑定时自动使用 List 下的 CityCard' })
     public cardTemplate: Node | null = null;
+
+    @property({ type: Prefab, tooltip: '城市卡片预制体（可选）。绑定后优先使用，无需在场景 List 下摆放 CityCard1' })
+    public cardPrefab: Prefab | null = null;
 
     private _cards: Node[] = [];
     private _content: Node | null = null;
@@ -70,11 +78,16 @@ export class CitySelectScreen extends UIScreen {
         this._clearCards();
         const root = this.resolveNode(this.listRoot, 'List') ?? this.node;
         const container = this._content ?? root;
-        const template = this.cardTemplate ?? root.getChildByName('CityCard1');
+        const template = this.cardTemplate
+            ?? root.getChildByName('CityCard')
+            ?? root.getChildByName('CityCard1');
 
         this.flow.cities.forEach((city, index) => {
             let card: Node;
-            if (template) {
+            if (this.cardPrefab) {
+                card = instantiate(this.cardPrefab);
+                card.name = `CityCard-${city.key}`;
+            } else if (template) {
                 card = instantiate(template);
                 card.name = `CityCard-${city.key}`;
             } else {
@@ -88,7 +101,7 @@ export class CitySelectScreen extends UIScreen {
 
         // 隐藏手动参考卡
         for (const child of root.children) {
-            if (/^CityCard\d+$/.test(child.name)) child.active = false;
+            if (/^CityCard\d*$/.test(child.name)) child.active = false;
         }
         this._scrollToTop();
     }
@@ -97,17 +110,26 @@ export class CitySelectScreen extends UIScreen {
         const unlocked = this.flow.isCityUnlocked(cityIndex);
         const progress = this.flow.cityProgress(city);
 
+        // 全局关卡编号：前序城市关卡数累加 + 1
+        let levelStart = 1;
+        for (let i = 0; i < cityIndex; i++) levelStart += this.flow.cities[i].levels.length;
+
         this._setCardLabel(card, 'CityName', city.name);
         this._setCardLabel(card, 'CityProgress', unlocked ? `${progress.done}/${progress.total}` : '');
+        this._setCardLabel(card, 'Levelnumber', progress.total > 0 ? `第${levelStart}-${levelStart + progress.total - 1}关` : '');
 
-        const lock = card.getChildByName('LockIcon');
-        if (lock) lock.active = !unlocked;
-        if (!unlocked) {
-            const prev = this.flow.cities[cityIndex - 1];
-            this._setCardLabel(card, 'CityLockTip', prev ? `通关${prev.name}后解锁` : '');
-        } else {
-            this._setCardLabel(card, 'CityLockTip', progress.done >= progress.total ? '已完成' : '');
+        // 进度条：rank_row 底槽 + rank_row-001 填充（锚点已靠左，按完成比例改宽度）
+        const barRoot = card.getChildByName('rank_row');
+        const barRootUi = barRoot?.getComponent(UITransform);
+        const fillUi = barRoot?.getChildByName('rank_row-001')?.getComponent(UITransform);
+        if (barRootUi && fillUi) {
+            const ratio = progress.total > 0 ? Math.min(1, Math.max(0, progress.done / progress.total)) : 0;
+            fillUi.width = barRootUi.width * ratio;
         }
+
+        // 锁：LockIcon 优先，兼容模板里直接用 CityLockTip 当锁图标
+        const lock = card.getChildByName('LockIcon') ?? card.getChildByName('CityLockTip');
+        if (lock) lock.active = !unlocked;
 
         // 横幅图（city.json 配了 banner 才加载）
         if (city.banner) {
