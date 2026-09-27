@@ -4,6 +4,9 @@ import { UIColors, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
 
+/** 未解锁关卡名字颜色 */
+const LEVEL_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
+
 /**
  * 城市内选关界面（Screens/LevelSelect）。
  *
@@ -17,13 +20,13 @@ const { ccclass, property } = _decorator;
  * - Card1        卡片模板（可选，结构与动态填充约定见下）
  *
  * 卡片模板结构约定（Card1）：
- * - CardNumber          Label，「第N关」
- * - CardName            Label，关卡名（differences.json 的 name）
- * - CardDetail          星级区域容器（不解锁时整体隐藏）
+ * - CardNumber          Label，「第N关」，未解锁灰蓝 #445988
+ * - CardName            Label，关卡名（differences.json 的 name），未解锁灰蓝 #445988
+ * - CardDetail          星级区域容器（常显）：未解锁显示三颗灰星，按完成星级逐颗点亮金星
  *   - CardDetail_star1BG / star2BG / star3BG   灰色星星底
- *     - CardDetail_star                        金星，默认隐藏，按完成星级逐颗点亮
- * - LockIcon            锁图标（仅未解锁时显示，与 CardDetail 互斥）
- * - Thumbnail           关卡封面：默认 icon（缺省回退上图），未解锁时叠加 GrayMask（30% 灰）
+ *     - CardDetail_star                        金星，默认隐藏
+ * - LockIcon            锁图标（仅未解锁时显示）
+ * - Thumbnail           关卡封面：未解锁置灰（Sprite 乘法着色），已解锁保持模板默认
  *
  * 解锁规则：城市内按文件夹顺序线性解锁（前一关通关）。
  * 列表末尾固定追加「敬请期待」占位卡（levels/city-01-beijing/level-00 的图）。
@@ -175,7 +178,7 @@ export class LevelSelectScreen extends UIScreen {
         if (lock) lock.active = false;
         const detail = card.getChildByName('CardDetail');
         if (detail) detail.active = false;
-        this._setGrayMask(card, false);
+        this._setThumbnailGray(card, false);
         void this._loadThumbnailByPath(card, LevelSelectScreen.COMING_SOON_IMAGE);
 
         card.off(Input.EventType.TOUCH_END);
@@ -188,24 +191,30 @@ export class LevelSelectScreen extends UIScreen {
 
         this._setCardLabel(card, 'CardNumber', `第${levelIndex + 1}关`);
         this._setCardLabel(card, 'CardName', level.name);
+        // 关卡名：已解锁保持模板默认色，未解锁灰蓝
+        if (!unlocked) {
+            const numberLabel = card.getChildByName('CardNumber')?.getComponent(Label);
+            if (numberLabel) numberLabel.color = LEVEL_NAME_LOCKED_COLOR;
+            const nameLabel = card.getChildByName('CardName')?.getComponent(Label);
+            if (nameLabel) nameLabel.color = LEVEL_NAME_LOCKED_COLOR;
+        }
 
-        // 未解锁：显示锁 + 封面压 30% 灰；已解锁：显示星级区域
+        // 未解锁：显示锁 + 封面置灰
         const lock = card.getChildByName('LockIcon');
         if (lock) lock.active = !unlocked;
-        this._setGrayMask(card, !unlocked);
+        this._setThumbnailGray(card, !unlocked);
 
+        // 星级区域常显：未解锁三颗灰星（金星不点亮），已解锁按成绩点亮
         const detail = card.getChildByName('CardDetail');
         if (detail) {
-            detail.active = unlocked;
-            if (unlocked) {
-                const label = detail.getComponent(Label);
-                if (label) label.string = '';
-                const stars = progress?.stars ?? 0;
-                for (let i = 1; i <= 3; i++) {
-                    const bg = detail.getChildByName(`CardDetail_star${i}BG`);
-                    const star = bg?.getChildByName('CardDetail_star');
-                    if (star) star.active = i <= stars;
-                }
+            detail.active = true;
+            const label = detail.getComponent(Label);
+            if (label) label.string = '';
+            const stars = unlocked ? progress?.stars ?? 0 : 0;
+            for (let i = 1; i <= 3; i++) {
+                const bg = detail.getChildByName(`CardDetail_star${i}BG`);
+                const star = bg?.getChildByName('CardDetail_star');
+                if (star) star.active = i <= stars;
             }
         }
 
@@ -222,23 +231,10 @@ export class LevelSelectScreen extends UIScreen {
         }, this);
     }
 
-    /** 未解锁卡封面叠加 30% 灰蒙版（GrayMask 子节点，随解锁状态显隐）。 */
-    private _setGrayMask(card: Node, show: boolean): void {
-        const thumbnail = card.getChildByName('Thumbnail');
-        if (!thumbnail) return;
-        let mask = thumbnail.getChildByName('GrayMask');
-        if (!mask) {
-            mask = new Node('GrayMask');
-            mask.parent = thumbnail;
-            const size = thumbnail.getComponent(UITransform)?.contentSize ?? new Size(340, 220);
-            const ui = mask.addComponent(UITransform);
-            ui.setContentSize(size.width, size.height);
-            const graphics = mask.addComponent(Graphics);
-            graphics.fillColor = new Color(128, 128, 128, 76);
-            graphics.rect(-size.width / 2, -size.height / 2, size.width, size.height);
-            graphics.fill();
-        }
-        mask.active = show;
+    /** 未解锁关卡封面灰度化（Thumbnail Sprite 组件 Grayscale，与城市页一致；已解锁恢复彩色）。 */
+    private _setThumbnailGray(card: Node, gray: boolean): void {
+        const thumbnail = this.findChildDeep(card, 'Thumbnail')?.getComponent(Sprite);
+        if (thumbnail) thumbnail.grayscale = gray;
     }
 
     /** 封面：优先 icon 文件，缺省回退上图。 */
@@ -247,12 +243,16 @@ export class LevelSelectScreen extends UIScreen {
     }
 
     private async _loadThumbnailByPath(card: Node, path: string): Promise<void> {
-        const thumbnail = card.getChildByName('Thumbnail');
+        const thumbnail = this.findChildDeep(card, 'Thumbnail');
         if (!thumbnail || !path) return;
         try {
             const frame = await this.flow.loadSpriteFrame(path);
             const sprite = thumbnail.getComponent(Sprite);
-            if (sprite && thumbnail.isValid) sprite.spriteFrame = frame;
+            if (sprite && thumbnail.isValid) {
+                // 按模板默认尺寸（UITransform）显示，避免 RAW 模式下原图过大被裁
+                sprite.sizeMode = Sprite.SizeMode.CUSTOM;
+                sprite.spriteFrame = frame;
+            }
         } catch {
             // 封面缺失时保留模板自带贴图
         }

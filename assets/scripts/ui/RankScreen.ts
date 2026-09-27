@@ -66,6 +66,15 @@ const AVATARS = [
     'textures/UI_Sprite/V3/Texture/Icon _head_F03/spriteFrame',
 ];
 
+/** 名次底图（RankItem 自身 Sprite 组件按名次换图） */
+const RANK_PANEL_BASE = 'textures/UI_Sprite/V3/panels';
+const RANK_PANEL_BY_RANK: Record<number, string> = {
+    1: `${RANK_PANEL_BASE}/panel_RankList F`,
+    2: `${RANK_PANEL_BASE}/panel_RankList S`,
+    3: `${RANK_PANEL_BASE}/panel_RankList T`,
+};
+const RANK_PANEL_DEFAULT = `${RANK_PANEL_BASE}/panel_RankList N`;
+
 /**
  * 排行榜界面（Screens/Rank）。
  *
@@ -77,7 +86,9 @@ const AVATARS = [
  * - MyRank      底部「我的排名」条（其下 Label 运行时刷新）
  *
  * 列表条目：优先实例化 List 下的 RankItem1 模板，结构约定：
- * - RankBadge    Label，名次（1-3 名金/银/铜色）
+ * - RankItem 自身 Sprite  名次底图：1=F / 2=S / 3=M(T) / 其余=N
+ * - RankBadge    Label，名次数字（1-3 名金/银/铜色）；其下子节点 icon_first / icon_second /
+ *   icon_third 按名次只显示对应一枚，其余名次三个全隐藏
  * - PlayerName   Label，玩家名
  * - Score        Label，成绩（"X关"）
  * 无模板时使用内置简易条目（同样按上述命名建 Label）。
@@ -193,6 +204,16 @@ export class RankScreen extends UIScreen {
             badge.isBold = rank <= 3;
         }
 
+        // 名次徽章图标：RankBadge 下 icon_first / icon_second / icon_third 按名次只亮一枚
+        const badgeNode = item.getChildByName('RankBadge');
+        ['icon_first', 'icon_second', 'icon_third'].forEach((iconName, index) => {
+            const icon = badgeNode?.getChildByName(iconName);
+            if (icon) icon.active = index + 1 === rank;
+        });
+
+        // 名次底图：条目自身 Sprite 按名次换 panel_RankList F/S/M/N
+        void this._loadRankPanel(item, rank);
+
         const name = item.getChildByName('PlayerName')?.getComponent(Label);
         if (name) name.string = row.name;
 
@@ -214,6 +235,23 @@ export class RankScreen extends UIScreen {
             if (name) name.color = Color.WHITE;
             if (score) score.color = Color.WHITE;
         }
+    }
+
+    /** 名次底图：RankItem 自身 Sprite 组件换 panel_RankList 图（F/S/T/N）。 */
+    private _loadRankPanel(item: Node, rank: number): void {
+        const sprite = item.getComponent(Sprite);
+        if (!sprite) {
+            console.log(`[Rank] rank=${rank} 条目无 Sprite 组件，跳过换图`);
+            return;
+        }
+        const path = RANK_PANEL_BY_RANK[rank] ?? RANK_PANEL_DEFAULT;
+        console.log(`[Rank] rank=${rank} 开始加载底图: ${path}`);
+        void this.flow.loadSpriteFrame(path).then(frame => {
+            console.log(`[Rank] rank=${rank} 加载成功: ${frame.name}`);
+            if (item.isValid && sprite.isValid) sprite.spriteFrame = frame;
+        }).catch(err => {
+            console.log(`[Rank] rank=${rank} 加载失败: ${JSON.stringify(err?.message ?? String(err))}`);
+        });
     }
 
     /** 临时头像：名字哈希取模分配，同一玩家每次进入头像一致。 */
@@ -242,14 +280,9 @@ export class RankScreen extends UIScreen {
 
     private _styleTab(node: Node | null, selected: boolean): void {
         if (!node) return;
-        // 选中显示 TabBG 底图，未选中隐藏
+        // 选中显示 TabBG 底图，未选中隐藏；字体样式由场景模板控制，切换时不再改色
         const bg = node.getChildByName('TabBG');
         if (bg) bg.active = selected;
-        // 选中字体白色，未选中深蓝色
-        const label = node.getComponentInChildren(Label);
-        if (!label) return;
-        label.color = selected ? Color.WHITE : new Color(30, 60, 130, 255);
-        label.isBold = selected;
     }
 
     /** 同选关：List 改造为 Mask + ScrollView，Content 竖向排列、高度自适应。 */

@@ -19,6 +19,11 @@ import { UIColors, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
 
+/** 未解锁城市名颜色 */
+const CITY_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
+/** 未解锁卡片底色（已解锁保持模板默认白） */
+const CARD_BG_LOCKED_COLOR = new Color(0xd6, 0xe6, 0xf0, 255);
+
 /**
  * 城市选择界面（Screens/CitySelect）。
  *
@@ -115,8 +120,16 @@ export class CitySelectScreen extends UIScreen {
         for (let i = 0; i < cityIndex; i++) levelStart += this.flow.cities[i].levels.length;
 
         this._setCardLabel(card, 'CityName', city.name);
-        this._setCardLabel(card, 'CityProgress', unlocked ? `${progress.done}/${progress.total}` : '');
+        // 城市名：已解锁保持模板默认色，未解锁灰蓝
+        const nameLabel = card.getChildByName('CityName')?.getComponent(Label);
+        if (nameLabel && !unlocked) nameLabel.color = CITY_NAME_LOCKED_COLOR;
+        // 进度始终显示「完成/总数」，未解锁即为 0/15
+        this._setCardLabel(card, 'CityProgress', `${progress.done}/${progress.total}`);
         this._setCardLabel(card, 'Levelnumber', progress.total > 0 ? `第${levelStart}-${levelStart + progress.total - 1}关` : '');
+
+        // 卡片底色：已解锁保持模板默认，未解锁淡蓝灰
+        const cardBg = card.getChildByName('CityCard_BG')?.getComponent(Sprite);
+        if (cardBg && !unlocked) cardBg.color = CARD_BG_LOCKED_COLOR;
 
         // 进度条：rank_row 底槽 + rank_row-001 填充（锚点已靠左，按完成比例改宽度）
         const barRoot = card.getChildByName('rank_row');
@@ -131,10 +144,15 @@ export class CitySelectScreen extends UIScreen {
         const lock = card.getChildByName('LockIcon') ?? card.getChildByName('CityLockTip');
         if (lock) lock.active = !unlocked;
 
-        // 横幅图（city.json 配了 banner 才加载）
-        if (city.banner) {
-            void this._loadBanner(card, city.banner);
+        // 城市横幅置灰：同步设置（与选关页同一模式，grayscale 是组件属性与帧无关）
+        const bannerSprite = this.findChildDeep(card, 'CityBanner')?.getComponent(Sprite);
+        if (bannerSprite) {
+            bannerSprite.grayscale = !unlocked;
+            console.log(`[CitySelect] sync-gray city=${city.key} unlocked=${unlocked} grayscale=${bannerSprite.grayscale}`);
         }
+
+        // 城市横幅：固定读取城市资源目录下的 icon-city
+        void this._loadBanner(card, `levels/${city.key}/icon-city`, unlocked);
 
         card.off(Input.EventType.TOUCH_END);
         card.on(Input.EventType.TOUCH_END, () => {
@@ -147,15 +165,18 @@ export class CitySelectScreen extends UIScreen {
         }, this);
     }
 
-    private async _loadBanner(card: Node, path: string): Promise<void> {
-        const banner = card.getChildByName('CityBanner');
+    private async _loadBanner(card: Node, path: string, unlocked: boolean): Promise<void> {
+        const banner = this.findChildDeep(card, 'CityBanner');
         if (!banner) return;
         try {
             const frame = await this.flow.loadSpriteFrame(path);
             let sprite = banner.getComponent(Sprite);
             if (!sprite) sprite = banner.addComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
-            if (banner.isValid) sprite.spriteFrame = frame;
+            if (banner.isValid) {
+                sprite.spriteFrame = frame;
+                console.log(`[CitySelect] banner-loaded path=${path}`);
+            }
         } catch {
             // 横幅缺失时保持模板原样
         }

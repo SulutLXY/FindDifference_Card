@@ -10,6 +10,7 @@ const { ccclass, property } = _decorator;
  * - BtnStart   开始挑战按钮（Node，其下 Label-001 显示「当前第N关」，运行时刷新）
  * - BtnLevels  选择关卡按钮（Node）
  * - BtnRank    排行榜按钮（Node，占位）
+ * - BtnCollect 收藏按钮（Node）
  * - Title      游戏标题（Label，可选）
  * - Subtitle   副标题（Label，可选）
  * - FooterEnv  底部环境信息（Label，运行时刷新）
@@ -22,8 +23,11 @@ export class LobbyScreen extends UIScreen {
     @property({ type: Node, tooltip: '选择关卡按钮（命名 BtnLevels）' })
     public btnLevels: Node | null = null;
 
-    @property({ type: Node, tooltip: '排行榜按钮（命名 BtnRank）' })
+    @property({ type: Node, tooltip: '排行榜按钮（命名 BtnRank，占位）' })
     public btnRank: Node | null = null;
+
+    @property({ type: Node, tooltip: '收藏按钮（命名 BtnCollect）' })
+    public btnCollect: Node | null = null;
 
     @property({ type: Label, tooltip: '当前关卡提示（BtnStart 下的 Label-001，运行时刷新为真实进度）' })
     public currentLevel: Label | null = null;
@@ -41,6 +45,8 @@ export class LobbyScreen extends UIScreen {
         this.wireButton(this.btnStart, 'BtnStart', () => this.flow.startContinue());
         this.wireButton(this.btnLevels, 'BtnLevels', () => this.flow.showCitySelect());
         this.wireButton(this.btnRank, 'BtnRank', () => this.flow.showRank());
+        // 场景按钮名为 Btncollect（小写 c），命名查找与实际节点保持一致
+        this.wireButton(this.btnCollect, 'Btncollect', () => this.flow.showCollect());
     }
 
     protected onOpen(): void {

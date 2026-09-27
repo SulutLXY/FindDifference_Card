@@ -83,6 +83,11 @@ export abstract class UIScreen extends Component {
         if (label) label.string = text;
     }
 
+    /** 查找子节点：先直接子级，找不到再深度搜索（兼容 Mask 等嵌套包裹结构）。 */
+    protected findChildDeep(root: Node, name: string): Node | null {
+        return root.getChildByName(name) ?? this._deepFind(root, name);
+    }
+
     /** 为按钮节点绑定点击事件（节点缺失时仅告警）。 */
     protected wireButton(bound: Node | null, path: string, callback: () => void): void {
         const node = this.resolveNode(bound, path);

@@ -30,6 +30,7 @@ import { PlatformService } from './services/PlatformService';
 import { SaveService } from './services/SaveService';
 import { registerGameFlow } from './ui/UIScreen';
 import { CitySelectScreen } from './ui/CitySelectScreen';
+import { CollectScreen } from './ui/CollectScreen';
 import { GameScreen } from './ui/GameScreen';
 import { LevelSelectScreen } from './ui/LevelSelectScreen';
 import { LobbyScreen } from './ui/LobbyScreen';
@@ -73,6 +74,9 @@ export class GameFlow extends Component {
     @property({ type: RankScreen, tooltip: '排行榜界面组件（Screens/Rank）' })
     public rank: RankScreen | null = null;
 
+    @property({ type: CollectScreen, tooltip: '收藏界面组件（Screens/Collect）' })
+    public collect: CollectScreen | null = null;
+
     @property({ type: ResultModal, tooltip: '结算弹窗组件（ResultModal）' })
     public resultModal: ResultModal | null = null;
 
@@ -103,7 +107,22 @@ export class GameFlow extends Component {
     }
 
     protected start(): void {
+        this._ensureCollectScreen();
         void this._bootstrap();
+    }
+
+    /**
+     * 收藏界面组件运行时挂载到 Screens/Collect：
+     * 组件类在编辑器外新增、场景未引用，这里按命名查找兜底，
+     * 避免要求手动拖组件；场景中已拖挂时不会重复添加。
+     */
+    private _ensureCollectScreen(): void {
+        if (this.collect?.isValid) return;
+        const screens = this.node.parent?.getChildByName('Screens');
+        const target = screens?.getChildByName('Collect');
+        if (target && !target.getComponent(CollectScreen)) {
+            this.collect = target.addComponent(CollectScreen);
+        }
     }
 
     protected update(dt: number): void {
@@ -162,6 +181,11 @@ export class GameFlow extends Component {
 
     public showRank(): void {
         this._switchTo(this.rank);
+    }
+
+    /** 收藏页。 */
+    public showCollect(): void {
+        this._switchTo(this.collect);
     }
 
     /** 城市列表页。 */
@@ -240,10 +264,10 @@ export class GameFlow extends Component {
         void this.game?.setupLevel(level);
     }
 
-    private _switchTo(screen: LobbyScreen | CitySelectScreen | LevelSelectScreen | GameScreen | RankScreen | null): void {
+    private _switchTo(screen: LobbyScreen | CitySelectScreen | LevelSelectScreen | GameScreen | RankScreen | CollectScreen | null): void {
         // 任何界面切换都先关闭结算弹窗，避免弹窗残留在新界面上层
         this.resultModal?.close();
-        for (const item of [this.lobby, this.citySelect, this.levelSelect, this.game, this.rank]) {
+        for (const item of [this.lobby, this.citySelect, this.levelSelect, this.game, this.rank, this.collect]) {
             if (item && item !== screen) item.close();
         }
         if (screen) {
@@ -450,7 +474,15 @@ export class GameFlow extends Component {
         return new Promise((resolve, reject) => {
             resources.load(path, SpriteFrame, (error, asset) => {
                 if (error) {
-                    reject(error);
+                    // 部分资源（如 png 单图）在 bundle 中仅登记 spriteFrame 子资源，自动补后缀重试
+                    resources.load(`${path}/spriteFrame`, SpriteFrame, (retryError, retryAsset) => {
+                        if (retryError) {
+                            reject(retryError);
+                            return;
+                        }
+                        this._spriteFrameCache.set(path, retryAsset);
+                        resolve(retryAsset);
+                    });
                     return;
                 }
                 this._spriteFrameCache.set(path, asset);

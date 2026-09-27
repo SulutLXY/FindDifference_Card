@@ -1,4 +1,4 @@
-import { _decorator, Color, Label, Node } from 'cc';
+import { _decorator, Color, Graphics, Label, Node, UITransform } from 'cc';
 import { LevelConfig } from '../core/GameTypes';
 import { UIColors, UIScreen } from './UIScreen';
 
@@ -28,6 +28,7 @@ export interface ResultModalPayload {
  * - BtnPrimary  主按钮（Node，文案自动切换「下一关 / 再玩一次」）
  * - BtnHome     返回选关按钮（Node）
  * - BtnShare    分享成绩按钮（Node，仅挑战成功时显示）
+ * - BtnClose    右上角关闭按钮（Node，场景缺失时代码构建，成功/失败都回关卡选择页）
  */
 @ccclass('ResultModal')
 export class ResultModal extends UIScreen {
@@ -58,13 +59,19 @@ export class ResultModal extends UIScreen {
     @property({ type: Node, tooltip: '分享成绩按钮（命名 BtnShare，仅成功时显示）' })
     public btnShare: Node | null = null;
 
+    @property({ type: Node, tooltip: '右上角关闭按钮（命名 BtnClose，场景缺失时代码构建）' })
+    public btnClose: Node | null = null;
+
     protected onLoad(): void {
+        this._ensureCloseButton();
         this.wireButton(this.btnRevive, 'BtnRevive', () => {
             void this.flow.requestReward('revive', () => this.flow.revive());
         });
         this.wireButton(this.btnPrimary, 'BtnPrimary', () => this.flow.resultPrimary());
         this.wireButton(this.btnHome, 'BtnHome', () => this.flow.showLevelSelect());
         this.wireButton(this.btnShare, 'BtnShare', () => this.flow.share());
+        // 关闭按钮：成功/失败统一回关卡选择页（showLevelSelect 会自行关闭本弹窗）
+        this.wireButton(this.btnClose, 'BtnClose', () => void this.flow.showLevelSelect());
     }
 
     public present(payload: ResultModalPayload): void {
@@ -98,6 +105,40 @@ export class ResultModal extends UIScreen {
         }
 
         this.open();
+    }
+
+    /** 场景未摆放 BtnClose 时自动创建右上角圆形 X 关闭键。 */
+    private _ensureCloseButton(): void {
+        if (this.btnClose?.isValid) return;
+        const found = this.node.getChildByName('BtnClose');
+        if (found) {
+            this.btnClose = found;
+            return;
+        }
+        const button = new Node('BtnClose');
+        button.parent = this.node;
+        button.setPosition(288, 298);
+        const ui = button.addComponent(UITransform);
+        ui.setContentSize(72, 72);
+        const graphics = button.addComponent(Graphics);
+        graphics.fillColor = UIColors.white;
+        graphics.circle(0, 0, 36);
+        graphics.fill();
+        graphics.lineWidth = 5;
+        graphics.strokeColor = UIColors.blue;
+        graphics.circle(0, 0, 36);
+        graphics.stroke();
+        const labelNode = new Node('Label');
+        labelNode.parent = button;
+        const labelUi = labelNode.addComponent(UITransform);
+        labelUi.setContentSize(72, 72);
+        const label = labelNode.addComponent(Label);
+        label.string = '×';
+        label.fontSize = 48;
+        label.color = UIColors.blue;
+        label.horizontalAlign = Label.HorizontalAlign.CENTER;
+        label.verticalAlign = Label.VerticalAlign.CENTER;
+        this.btnClose = button;
     }
 
 }

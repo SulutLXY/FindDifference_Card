@@ -73,6 +73,14 @@ export interface CityConfig extends CityMeta {
     levelConfigs: LevelConfig[];
 }
 
+/** 藏品条目（收藏页展示数据）。icon 为 resources 下 SpriteFrame 路径（不含扩展名）。 */
+export interface CollectItem {
+    id: string;
+    name: string;
+    desc: string;
+    icon: string;
+}
+
 export interface PlatformConfig {
     cdnBaseUrl: string;
     apiBaseUrl: string;
