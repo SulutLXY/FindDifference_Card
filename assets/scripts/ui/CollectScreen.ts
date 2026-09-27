@@ -19,16 +19,16 @@ const { ccclass, property } = _decorator;
 /** 每行列数 */
 const GRID_COLUMNS = 4;
 
-/** 默认藏品数据：使用 resources/textures/UI_Sprite/V3/icons 下的现成素材。 */
+/** 默认藏品数据：使用 resources/textures/UI_Sprite/V3/icons 下的现成素材（临时图，待美食资源）。 */
 const DEFAULT_COLLECTS: CollectItem[] = [
-    { id: 'magnifier', name: '放大镜', desc: '找茬旅行的老伙计，轻轻一按就能看得更清楚。', icon: 'textures/UI_Sprite/V3/icons/icon_fangda' },
-    { id: 'star', name: '金星', desc: '完美通关的证明，三颗齐全可不容易。', icon: 'textures/UI_Sprite/V3/icons/icon_starW' },
-    { id: 'clock', name: '闹钟', desc: '滴答滴答，时间永远不够用。', icon: 'textures/UI_Sprite/V3/icons/icon_clock' },
-    { id: 'heart', name: '爱心', desc: '每一次失误都会失去一颗心，且玩且珍惜。', icon: 'textures/UI_Sprite/V3/icons/icon_heart_filled' },
-    { id: 'hint', name: '提示', desc: '卡壳时的好帮手，指哪儿打哪儿。', icon: 'textures/UI_Sprite/V3/icons/icon_hint' },
-    { id: 'album', name: '相册', desc: '每一张对比图都是一段旅行记忆。', icon: 'textures/UI_Sprite/V3/icons/icon_album' },
-    { id: 'calendar', name: '日历', desc: '每日一签，今天是找茬的好日子。', icon: 'textures/UI_Sprite/V3/icons/icon_daily' },
-    { id: 'idea', name: '灵感', desc: '灵光一闪，五处不同尽收眼底。', icon: 'textures/UI_Sprite/V3/icons/icon_Idea' },
+    { id: 'magnifier', name: '放大镜', desc: '找茬旅行的老伙计，轻轻一按就能看得更清楚。', icon: 'textures/UI_Sprite/V3/icons/icon_fangda', obtained: true, unlockTime: '2026.09.25' },
+    { id: 'star', name: '金星', desc: '完美通关的证明，三颗齐全可不容易。', icon: 'textures/UI_Sprite/V3/icons/icon_starW', obtained: true, unlockTime: '2026.09.25' },
+    { id: 'clock', name: '闹钟', desc: '滴答滴答，时间永远不够用。', icon: 'textures/UI_Sprite/V3/icons/icon_clock', obtained: true, unlockTime: '2026.09.25' },
+    { id: 'heart', name: '爱心', desc: '每一次失误都会失去一颗心，且玩且珍惜。', icon: 'textures/UI_Sprite/V3/icons/icon_heart_filled', obtained: true, unlockTime: '2026.09.25' },
+    { id: 'hint', name: '提示', desc: '卡壳时的好帮手，指哪儿打哪儿。', icon: 'textures/UI_Sprite/V3/icons/icon_hint', obtained: false },
+    { id: 'album', name: '相册', desc: '每一张对比图都是一段旅行记忆。', icon: 'textures/UI_Sprite/V3/icons/icon_album', obtained: false },
+    { id: 'calendar', name: '日历', desc: '每日一签，今天是找茬的好日子。', icon: 'textures/UI_Sprite/V3/icons/icon_daily', obtained: false },
+    { id: 'idea', name: '灵感', desc: '灵光一闪，五处不同尽收眼底。', icon: 'textures/UI_Sprite/V3/icons/icon_Idea', obtained: false },
 ];
 
 /**
@@ -87,7 +87,8 @@ export class CollectScreen extends UIScreen {
     public rebuild(): void {
         this._clearCards();
         const root = (this.listRoot?.isValid ? this.listRoot : null) ?? this.node;
-        const template = this.itemTemplate ?? root.getChildByName('Item');
+        // 模板：优先 Inspector 绑定，其次 List 下的 Item / Card1（关卡卡结构同套命名）
+        const template = this.itemTemplate ?? root.getChildByName('Item') ?? root.getChildByName('Card1');
 
         this.items.forEach((item, index) => {
             let card: Node;
@@ -103,9 +104,9 @@ export class CollectScreen extends UIScreen {
             this._fillItem(card, item, index);
         });
 
-        // 隐藏手动参考格
+        // 隐藏手动参考卡（Item 或 Card1 命名）
         for (const child of root.children) {
-            if (child.name === 'Item') child.active = false;
+            if (/^(Item|Card\d*)$/.test(child.name)) child.active = false;
         }
     }
 
@@ -114,12 +115,27 @@ export class CollectScreen extends UIScreen {
     // ------------------------------------------------------------------
 
     private _fillItem(card: Node, item: CollectItem, index: number): void {
-        const nameLabel = card.getChildByName('ItemName')?.getComponent(Label);
+        const obtained = item.obtained === true;
+
+        // 名称：CardNumber（关卡卡模板的主名区）或 ItemName
+        const nameLabel = card.getChildByName('CardNumber')?.getComponent(Label)
+            ?? card.getChildByName('ItemName')?.getComponent(Label);
         if (nameLabel) nameLabel.string = item.name;
 
-        const icon = card.getChildByName('ItemIcon');
-        if (icon) {
-            void this._loadIcon(icon, item.icon);
+        // 获得时间：已获得显示解锁时间，未获得标记「暂未获得」
+        const subLabel = card.getChildByName('CardName')?.getComponent(Label);
+        if (subLabel) subLabel.string = obtained ? `获得时间\n${item.unlockTime ?? ''}` : '暂未获得';
+
+        // 锁图标：隐藏（置灰已表达未获得状态）
+        const lock = card.getChildByName('LockIcon');
+        if (lock) lock.active = false;
+
+        // 图标：ItemIcon 或关卡卡结构的 Mask/Thumbnail，按 Thumbnail 节点尺寸显示；未获得置灰
+        const iconNode = card.getChildByName('ItemIcon') ?? this.findChildDeep(card, 'Thumbnail');
+        if (iconNode) {
+            const sprite = iconNode.getComponent(Sprite);
+            if (sprite) sprite.grayscale = !obtained;
+            void this._loadIcon(iconNode, item.icon);
         }
 
         card.off(Input.EventType.TOUCH_END);
@@ -138,27 +154,28 @@ export class CollectScreen extends UIScreen {
         }
     }
 
-    /** List 改造为 Grid Layout：固定一排 4 个；场景未摆放 List 时自动创建。 */
+    /** List 改造为 Grid Layout：固定一排 4 个。
+     *  resizeMode 用 NONE（不改变容器大小），List 的位置/尺寸完全以场景面板设置为准。 */
     private _setupGrid(): void {
         let root = this.listRoot?.isValid ? this.listRoot : this.node.getChildByName('List');
         if (!root) {
             root = new Node('List');
             root.parent = this.node;
             const ui = root.addComponent(UITransform);
-            ui.setContentSize(750, 900);
+            ui.setContentSize(750, 1000);
         }
         this.listRoot = root;
         const layout = root.getComponent(Layout) ?? root.addComponent(Layout);
         layout.type = Layout.Type.GRID;
         layout.constraint = Layout.Constraint.FIXED_COL;
         layout.constraintNum = GRID_COLUMNS;
-        layout.resizeMode = Layout.ResizeMode.CONTAINER;
-        layout.spacingX = 12;
-        layout.spacingY = 12;
-        layout.paddingLeft = 16;
-        layout.paddingRight = 16;
-        layout.paddingTop = 16;
-        layout.paddingBottom = 16;
+        layout.resizeMode = Layout.ResizeMode.NONE;
+        layout.spacingX = 6;
+        layout.spacingY = 10;
+        layout.paddingLeft = 0;
+        layout.paddingRight = 0;
+        layout.paddingTop = 0;
+        layout.paddingBottom = 0;
         layout.horizontalDirection = Layout.HorizontalDirection.LEFT_TO_RIGHT;
         layout.verticalDirection = Layout.VerticalDirection.TOP_TO_BOTTOM;
         layout.enabled = true;

@@ -28,6 +28,7 @@ import {
 } from './core/GameTypes';
 import { PlatformService } from './services/PlatformService';
 import { SaveService } from './services/SaveService';
+import { createRankProvider } from './services/rank/RankProvider';
 import { registerGameFlow } from './ui/UIScreen';
 import { CitySelectScreen } from './ui/CitySelectScreen';
 import { CollectScreen } from './ui/CollectScreen';
@@ -82,6 +83,8 @@ export class GameFlow extends Component {
 
     public readonly save = new SaveService();
     public readonly platform = new PlatformService();
+    /** 排行榜平台适配层：抖音真实榜单，其余环境本地兜底（见 services/rank） */
+    public readonly rankProvider = createRankProvider(this.platform, this.save);
 
     private _grades: GradeConfig = { maxLives: 3, timeTiers: [{ maxDifferences: 10, timeLimit: 150 }] };
     private _cities: CityConfig[] = [];
@@ -408,6 +411,8 @@ export class GameFlow extends Component {
             const ratio = this._remainingTime / level.timeLimit;
             stars = ratio >= 0.6 ? 3 : ratio >= 0.3 ? 2 : 1;
             this.save.completeLevel(level.key, stars, Math.max(1, Math.round(this._elapsedTime)));
+            // 上报平台排行榜（抖音 setImRankData 等；非平台环境为空实现）
+            this.rankProvider.submitScore(this.save.totalScore, stars, Math.max(1, Math.round(this._elapsedTime)));
         }
 
         this.resultModal?.present({

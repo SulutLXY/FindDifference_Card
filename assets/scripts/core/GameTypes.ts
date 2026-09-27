@@ -79,6 +79,12 @@ export interface CollectItem {
     name: string;
     desc: string;
     icon: string;
+    /** 是否已获得；false 时图标置灰、获得时间显示「暂未获得」 */
+    obtained?: boolean;
+    /** 解锁时间展示文本（如 2026.09.25），未获得时忽略 */
+    unlockTime?: string;
+    /** 扩展数据（来源关卡、稀有度等，后续版本按需使用） */
+    ext?: Record<string, string | number>;
 }
 
 export interface PlatformConfig {
