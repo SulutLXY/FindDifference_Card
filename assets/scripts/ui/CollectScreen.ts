@@ -27,7 +27,7 @@ const DEFAULT_COLLECTS: CollectItem[] = [
     { id: 'heart', name: '爱心', desc: '每一次失误都会失去一颗心，且玩且珍惜。', icon: 'textures/UI_Sprite/V3/icons/icon_heart_filled', obtained: true, unlockTime: '2026.09.25' },
     { id: 'hint', name: '提示', desc: '卡壳时的好帮手，指哪儿打哪儿。', icon: 'textures/UI_Sprite/V3/icons/icon_hint', obtained: false },
     { id: 'album', name: '相册', desc: '每一张对比图都是一段旅行记忆。', icon: 'textures/UI_Sprite/V3/icons/icon_album', obtained: false },
-    { id: 'calendar', name: '日历', desc: '每日一签，今天是找茬的好日子。', icon: 'textures/UI_Sprite/V3/icons/icon_LevelSelect', obtained: false },
+    { id: 'calendar', name: '日历', desc: '每日一签，今天是找茬的好日子。', icon: 'textures/UI_Sprite/V3/icons/icon_Time02', obtained: false },
     { id: 'idea', name: '灵感', desc: '灵光一闪，五处不同尽收眼底。', icon: 'textures/UI_Sprite/V3/icons/icon_Idea', obtained: false },
 ];
 

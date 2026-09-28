@@ -25,18 +25,83 @@
               "isRemote": false,
               "compressionType": "merge_dep"
             },
-            "configMode": "overwrite",
+            "configMode": "fallback",
             "overwriteSettings": {
               "bytedance-mini-game": {
-                "isRemote": false,
-                "compressionType": "merge_dep"
+                "isRemote": true,
+                "compressionType": "subpackage"
               },
               "alipay-mini-game": {
-                "isRemote": false
+                "isRemote": false,
+                "compressionType": "merge_dep"
               },
               "wechatgame": {
                 "isRemote": false,
                 "compressionType": "merge_dep"
+              },
+              "fb-instant-games": {
+                "isRemote": false,
+                "compressionType": "merge_dep"
+              },
+              "honor-mini-game": {
+                "isRemote": false,
+                "compressionType": "merge_dep"
+              },
+              "huawei-quick-game": {
+                "isRemote": false,
+                "compressionType": "merge_dep"
+              },
+              "migu-mini-game": {
+                "isRemote": false,
+                "compressionType": "merge_dep"
+              },
+              "oppo-mini-game": {
+                "isRemote": false,
+                "compressionType": "merge_dep"
+              },
+              "taobao-mini-game": {
+                "isRemote": false,
+                "compressionType": "merge_dep"
+              },
+              "vivo-mini-game": {
+                "isRemote": false,
+                "compressionType": "merge_dep"
+              },
+              "xiaomi-quick-game": {
+                "isRemote": false,
+                "compressionType": "merge_dep"
+              }
+            }
+          }
+        }
+      },
+      "66NbM5tAFFNImQdJTJ7bY+": {
+        "displayName": "默认配置 Copy",
+        "configs": {
+          "native": {
+            "preferredOptions": {
+              "isRemote": false,
+              "compressionType": "merge_dep"
+            }
+          },
+          "web": {
+            "preferredOptions": {
+              "isRemote": false,
+              "compressionType": "merge_dep"
+            },
+            "fallbackOptions": {
+              "compressionType": "merge_dep"
+            }
+          },
+          "miniGame": {
+            "fallbackOptions": {
+              "isRemote": false,
+              "compressionType": "merge_dep"
+            },
+            "configMode": "overwrite",
+            "overwriteSettings": {
+              "bytedance-mini-game": {
+                "compressionType": "subpackage"
               }
             }
           }

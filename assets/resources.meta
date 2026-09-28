@@ -9,6 +9,7 @@
     "isBundle": true,
     "bundleConfigID": "default",
     "bundleName": "resources",
+    "bundleFilterConfig": [],
     "priority": 8
   }
 }

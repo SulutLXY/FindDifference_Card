@@ -53,9 +53,6 @@ export class GameScreen extends UIScreen {
     @property({ type: Node, tooltip: '加时按钮（命名 BtnAddTime）' })
     public btnAddTime: Node | null = null;
 
-    @property({ type: Node, tooltip: '分享按钮（命名 BtnShare）' })
-    public btnShare: Node | null = null;
-
     @property({ type: Node, tooltip: '图片放大/还原按钮（命名 BtnZoom）' })
     public btnZoom: Node | null = null;
 
@@ -67,9 +64,6 @@ export class GameScreen extends UIScreen {
 
     @property({ type: Label, tooltip: '顶部关卡标题（命名 LevelTitle）' })
     public levelTitle: Label | null = null;
-
-    @property({ type: Label, tooltip: '关卡名标牌（命名 LevelName）' })
-    public levelName: Label | null = null;
 
     @property({ type: Label, tooltip: '生命显示（命名 Lives）' })
     public livesLabel: Label | null = null;
@@ -93,14 +87,13 @@ export class GameScreen extends UIScreen {
     private readonly _lastTouch = new Vec2();
 
     protected onLoad(): void {
-        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showLevelSelect());
+        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showSettings(true));
         this.wireButton(this.btnHint, 'BtnHint', () => {
             void this.flow.requestReward('hint', () => this.flow.useHint());
         });
         this.wireButton(this.btnAddTime, 'BtnAddTime', () => {
             void this.flow.requestReward('add-time', () => this.flow.addTime(30));
         });
-        this.wireButton(this.btnShare, 'BtnShare', () => this.flow.share());
         this.wireButton(this.btnZoom, 'BtnZoom', () => this._toggleZoom());
 
         const top = this.resolveNode(this.topImage, 'TopImage');
@@ -119,7 +112,7 @@ export class GameScreen extends UIScreen {
         this._progressTotal = 0;
 
         this.setLabel(this.levelTitle, 'LevelTitle', level.name);
-        this.setLabel(this.levelName, 'LevelName', level.name);
+
 
         try {
             const [topFrame, bottomFrame] = await Promise.all([
@@ -145,7 +138,8 @@ export class GameScreen extends UIScreen {
         if (timer) {
             const seconds = Math.max(0, Math.ceil(flow.remainingTime));
             const minutes = Math.floor(seconds / 60);
-            const remainder = String(seconds % 60).padStart(2, '0');
+            const rem = seconds % 60;
+            const remainder = rem < 10 ? `0${rem}` : String(rem);
             timer.string = `${minutes}:${remainder}`;
             timer.color = seconds <= 10 ? UIColors.red : new Color(65, 72, 95, 255);
         }

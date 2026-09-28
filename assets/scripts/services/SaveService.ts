@@ -95,14 +95,28 @@ export class SaveService {
         this._persist();
     }
 
+    public setMusicEnabled(enabled: boolean): void {
+        this._data.musicEnabled = enabled;
+        this._persist();
+    }
+
+    public setSoundEnabled(enabled: boolean): void {
+        this._data.soundEnabled = enabled;
+        this._persist();
+    }
+
     /** 启动校准：积分与实际通关集合对齐（防御冗余字段漂移）。 */
     private _normalize(): void {
         this._recountScore();
     }
 
     private _recountScore(): void {
-        this._data.totalScore = Object.values(this._data.completed)
-            .filter(progress => progress.stars > 0).length;
+        let score = 0;
+        const completed = this._data.completed;
+        for (const key of Object.keys(completed)) {
+            if (completed[key].stars > 0) score++;
+        }
+        this._data.totalScore = score;
     }
 
     private _load(): SaveData {

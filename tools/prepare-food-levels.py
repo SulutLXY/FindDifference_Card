@@ -117,12 +117,11 @@ def main():
         for panel, letter in enumerate('ab'):
             y = TOP + panel*STEP
             crop = source.crop((LEFT, y, LEFT+WIDTH, y+HEIGHT))
-            target = directory / f'scene-{letter}.webp'
-            crop.save(target, 'WEBP', quality=95, method=6)
-            old_meta = directory / f'scene-{letter}.png.meta'
-            meta_path = directory / f'scene-{letter}.webp.meta'
-            meta = json.loads((meta_path if meta_path.exists() else old_meta).read_text(encoding='utf-8-sig'))
-            meta['files'] = ['.json', '.webp']
+            target = directory / f'scene-{letter}.png'
+            crop.save(target, 'PNG')
+            meta_path = directory / f'scene-{letter}.png.meta'
+            meta = json.loads(meta_path.read_text(encoding='utf-8-sig'))
+            meta['files'] = ['.json', '.png']
             frame = meta['subMetas']['f9941']['userData']
             frame.update(width=WIDTH, height=HEIGHT, rawWidth=WIDTH, rawHeight=HEIGHT,
                          offsetX=0, offsetY=0, trimX=0, trimY=0, pivotX=.5, pivotY=.5)
@@ -132,10 +131,6 @@ def main():
             vertices['minPos'] = [-WIDTH/2,-HEIGHT/2,0]
             vertices['maxPos'] = [WIDTH/2,HEIGHT/2,0]
             meta_path.write_text(json.dumps(meta, indent=2)+'\n', encoding='utf-8')
-            # Exact old PNG assets are backed up above. Avoid duplicate resource names.
-            for old in (directory / f'scene-{letter}.png', old_meta):
-                if old.exists():
-                    old.unlink()
             assert Image.open(target).size == (WIDTH, HEIGHT)
             draw = ImageDraw.Draw(crop)
             for index, (_, _, x, sy, radius) in enumerate(spots, 1):

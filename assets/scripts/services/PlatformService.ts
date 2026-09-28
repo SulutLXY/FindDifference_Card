@@ -1,4 +1,5 @@
 import { PlatformConfig, RewardPlacement, RewardResult } from '../core/GameTypes';
+import { BYTEDANCE, WECHAT } from 'cc/env';
 
 type RuntimeKind = 'h5' | 'wechat' | 'douyin';
 
@@ -10,7 +11,8 @@ const EMPTY_CONFIG: PlatformConfig = {
     wechatRewardedAdUnitId: '',
     douyinAppId: '',
     douyinRewardedAdUnitId: '',
-    rewardOnAnyClose: true,
+    douyinInterstitialAdUnitId: '',
+    rewardOnAnyClose: false,
 };
 
 export class PlatformService {
@@ -19,11 +21,19 @@ export class PlatformService {
 
     public configure(config: Partial<PlatformConfig>): void {
         this._config = { ...EMPTY_CONFIG, ...config };
+        console.info('[PlatformService] 广告配置已加载', {
+            platform: this.kind,
+            douyinRewardedAdUnitId: this._config.douyinRewardedAdUnitId,
+            wechatRewardedAdUnitId: this._config.wechatRewardedAdUnitId,
+        });
     }
 
     public get kind(): RuntimeKind {
-        if (this._host.wx?.createRewardedVideoAd) return 'wechat';
+        // 构建目标优先，避免兼容环境同时暴露 wx/tt 时选错广告配置。
+        if (BYTEDANCE) return 'douyin';
+        if (WECHAT) return 'wechat';
         if (this._host.tt?.createRewardedVideoAd) return 'douyin';
+        if (this._host.wx?.createRewardedVideoAd) return 'wechat';
         return 'h5';
     }
 
@@ -32,18 +42,24 @@ export class PlatformService {
             return { success: true, completed: true, simulated: true };
         }
 
-        const sdk = this.kind === 'wechat' ? this._host.wx : this._host.tt;
-        const adUnitId = this.kind === 'wechat'
+        const kind = this.kind;
+        const sdk = kind === 'wechat' ? this._host.wx : this._host.tt;
+        const adUnitId = kind === 'wechat'
             ? this._config.wechatRewardedAdUnitId
             : this._config.douyinRewardedAdUnitId;
 
         if (!adUnitId) {
+            console.error('[PlatformService] 广告位缺失', { platform: kind, adUnitId });
             return {
                 success: false,
                 completed: false,
                 simulated: false,
-                reason: '广告位尚未配置',
+                reason: `${kind === 'douyin' ? '抖音' : '微信'}广告位尚未配置`,
             };
+        }
+
+        if (typeof sdk?.createRewardedVideoAd !== 'function') {
+            return { success: false, completed: false, simulated: false, reason: '当前环境不支持激励视频广告，请使用真机预览' };
         }
 
         return new Promise<RewardResult>((resolve) => {

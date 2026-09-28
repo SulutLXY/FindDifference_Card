@@ -17,6 +17,9 @@ const { ccclass, property } = _decorator;
  */
 @ccclass('LobbyScreen')
 export class LobbyScreen extends UIScreen {
+    @property({ type: Node, displayName: 'Setting', tooltip: '主页设置按钮，由场景设计并绑定' })
+    public setting: Node | null = null;
+
     @property({ type: Node, tooltip: '开始挑战按钮（命名 BtnStart）' })
     public btnStart: Node | null = null;
 
@@ -32,16 +35,11 @@ export class LobbyScreen extends UIScreen {
     @property({ type: Label, tooltip: '当前关卡提示（BtnStart 下的 Label-001，运行时刷新为真实进度）' })
     public currentLevel: Label | null = null;
 
-    @property({ type: Label, tooltip: '游戏标题（命名 Title，可选）' })
-    public title: Label | null = null;
-
-    @property({ type: Label, tooltip: '副标题（命名 Subtitle，可选）' })
-    public subtitle: Label | null = null;
-
     @property({ type: Label, tooltip: '底部环境信息（命名 FooterEnv）' })
     public footerEnv: Label | null = null;
 
     protected onLoad(): void {
+        this.wireButton(this.setting, 'Setting', () => this.flow.showSettings(false));
         this.wireButton(this.btnStart, 'BtnStart', () => this.flow.startContinue());
         this.wireButton(this.btnLevels, 'BtnLevels', () => this.flow.showCitySelect());
         this.wireButton(this.btnRank, 'BtnRank', () => this.flow.showRank());
@@ -57,10 +55,11 @@ export class LobbyScreen extends UIScreen {
 
     private async _refreshContinueLabel(): Promise<void> {
         const target = await this.flow.findContinueTarget();
-        this.setLabel(
-            this.currentLevel,
-            'BtnStart/Label-001',
-            target ? `${target.city.name}-${target.level.name}` : '全部通关，恭喜！',
-        );
+        // 关卡名已自带「城市-」前缀（如 北京-08）时不再拼城市名，避免「北京-北京-08」
+        const levelName = target ? target.level.name : '';
+        const label = target
+            ? (levelName.startsWith(`${target.city.name}-`) ? levelName : `${target.city.name}-${levelName}`)
+            : '全部通关，恭喜！';
+        this.setLabel(this.currentLevel, 'BtnStart/Label-001', label);
     }
 }

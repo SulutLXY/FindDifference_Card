@@ -6,7 +6,7 @@
     python tools/build-manifest.py
 
 行为：
-1. 扫描 assets/resources/levels/ 下所有 city-* 目录，按目录名排序生成 cities.json；
+1. 扫描 assets/Bundle/levels/ 下所有 city-* 目录，按目录名排序生成 cities.json；
 2. 每城生成/刷新 city.json 的 levels 清单（level-* 目录名排序），
    城市展示信息（name/banner 等手工字段）已存在时保留、不覆盖；
 3. 逐关校验 differences.json 与引用的图片资源，输出校验报告；
@@ -17,9 +17,9 @@
         city.json           城市信息 + 关卡清单（本工具生成 levels 部分）
         level-YY/
             differences.json  关卡配置：name / type / differences / 可选图片路径覆盖
-            scene-a.webp      上图（图片路径被覆盖时可省略）
-            scene-b.webp      下图
-            icon.webp         封面（可选，缺省用 scene-a）
+            scene-a.jpg       上图（图片路径被覆盖时可省略）
+            scene-b.jpg       下图
+            icon.jpg          封面（可选，缺省用 scene-a）
 """
 
 import json
@@ -27,7 +27,7 @@ import os
 import re
 import sys
 
-LEVELS_ROOT = 'assets/resources/levels'
+LEVELS_ROOT = 'assets/Bundle/levels'
 CITY_RE = re.compile(r'^city-\d{2}-[a-z]+$')
 LEVEL_RE = re.compile(r'^level-\d{2}$')
 
@@ -47,8 +47,8 @@ CITY_NAMES = {
 def sprite_path_to_file(sprite_path):
     """把 resources 相对路径（.../spriteFrame）转为磁盘文件路径（自动补扩展名）。"""
     rel = sprite_path.replace('/spriteFrame', '')
-    base = os.path.join('assets/resources', rel)
-    for ext in ('.webp', '.png', '.jpg', '.jpeg'):
+    base = os.path.join('assets/Bundle', rel)
+    for ext in ('.png', '.jpg', '.jpeg'):
         if os.path.isfile(base + ext):
             return base + ext
     return base  # 找不到时返回无扩展名路径，供报错展示

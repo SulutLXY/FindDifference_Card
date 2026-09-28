@@ -5,6 +5,7 @@
   "wechatAppId": "",
   "wechatRewardedAdUnitId": "",
   "douyinAppId": "",
-  "douyinRewardedAdUnitId": "",
-  "rewardOnAnyClose": true
+  "douyinRewardedAdUnitId": "1jj46gtgbpc84p6jca",
+  "douyinInterstitialAdUnitId": "14eaqmfhd0gg22d184",
+  "rewardOnAnyClose": false
 }

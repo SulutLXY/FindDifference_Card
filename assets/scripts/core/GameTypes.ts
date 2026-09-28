@@ -95,6 +95,7 @@ export interface PlatformConfig {
     wechatRewardedAdUnitId: string;
     douyinAppId: string;
     douyinRewardedAdUnitId: string;
+    douyinInterstitialAdUnitId?: string;
     rewardOnAnyClose: boolean;
 }
 
