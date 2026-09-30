@@ -35,6 +35,7 @@ import {
 } from './core/GameTypes';
 import { PlatformService } from './services/PlatformService';
 import { SaveService } from './services/SaveService';
+import { SidebarService, sidebarDay } from './services/SidebarService';
 import { createRankProvider } from './services/rank/RankProvider';
 import { registerGameFlow } from './ui/UIScreen';
 import { CitySelectScreen } from './ui/CitySelectScreen';
@@ -176,6 +177,7 @@ export class GameFlow extends Component {
     protected onLoad(): void {
         GameFlow._instance = this;
         registerGameFlow(this);
+        void this.platform.sidebar.start();
         this._initLoading();
         const foodTips = this.node.parent?.getChildByName('FoodTips');
         if (foodTips) {
@@ -459,6 +461,7 @@ export class GameFlow extends Component {
     }
 
     protected onDestroy(): void {
+        this.platform.sidebar.dispose();
         this._musicRequest++;
         this._comboSoundRequest++;
         this._comboSource?.stop();
@@ -579,6 +582,33 @@ export class GameFlow extends Component {
     public useHint(): void {
         const target = this._currentLevel?.differences.find(item => !this._foundIds.has(item.id));
         if (target) this.onDifferenceFound(target);
+    }
+
+    public async requestHint(): Promise<void> {
+        if (this._isPaused || this._isGameOver || !this.game?.node.activeInHierarchy
+            || !this._currentLevel?.differences.some(item => !this._foundIds.has(item.id))) return;
+        if (this.save.freeHints > 0) {
+            if (!this.save.consumeFreeHint()) {
+                this.toast('保存失败，请稍后再试');
+                return;
+            }
+            this.useHint();
+            this.game.refreshHud();
+            return;
+        }
+        await this.requestReward('hint', () => this.useHint());
+    }
+
+    public claimSidebarReward(): boolean {
+        const sidebar = this.platform.sidebar;
+        if (!sidebar.supported || !sidebar.fromSidebarToday) {
+            this.toast('请从首页侧边栏进入游戏后领取');
+            return false;
+        }
+        const result = this.save.claimSidebar(sidebarDay(), SidebarService.HINT_REWARD);
+        this.toast(result === 'claimed' ? `已领取免费提示 ×${SidebarService.HINT_REWARD}`
+            : result === 'already-claimed' ? '今日已领取，明日再来' : '保存失败，请稍后再试');
+        return result === 'claimed';
     }
 
     public addTime(seconds: number): void {

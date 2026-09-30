@@ -108,7 +108,7 @@ export class GameScreen extends UIScreen {
     protected onLoad(): void {
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showSettings(true));
         this.wireButton(this.btnHint, 'BtnHint', () => {
-            void this.flow.requestReward('hint', () => this.flow.useHint());
+            void this.flow.requestHint();
         });
         this.wireButton(this.btnAddTime, 'BtnAddTime', () => {
             void this.flow.requestReward('add-time', () => this.flow.addTime(30));
@@ -154,6 +154,8 @@ export class GameScreen extends UIScreen {
     /** 刷新顶部信息栏。由 GameFlow 在倒计时与状态变化时调用。 */
     public refreshHud(): void {
         const flow = this.flow;
+        const hintLabel = this.resolveNode(this.btnHint, 'BtnHint')?.getComponentInChildren(Label);
+        if (hintLabel) hintLabel.string = flow.save.freeHints > 0 ? `提示(${flow.save.freeHints})` : '提示';
 
         const timer = this.resolveLabel(this.timerLabel, 'Timer');
         if (timer) {

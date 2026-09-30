@@ -141,6 +141,9 @@ export interface SaveData {
     musicEnabled: boolean;
     soundEnabled: boolean;
     foodReviews?: Record<string, string>;
+    freeHints?: number;
+    /** YYYY-MM-DD, Beijing time. */
+    sidebarClaimDay?: string;
 }
 
 export interface RewardResult {

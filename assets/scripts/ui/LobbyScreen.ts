@@ -1,5 +1,6 @@
 import { _decorator, Label, Node } from 'cc';
 import { UIScreen } from './UIScreen';
+import { SidebarGift } from './SidebarGift';
 
 const { ccclass, property } = _decorator;
 
@@ -48,6 +49,8 @@ export class LobbyScreen extends UIScreen {
     }
 
     protected onOpen(): void {
+        const giftAnchor = this.findChildDeep(this.node, 'Gameflow');
+        if (giftAnchor && !giftAnchor.getComponent(SidebarGift)) giftAnchor.addComponent(SidebarGift);
         this.setLabel(this.footerEnv, 'FooterEnv', `当前环境：${this.flow.platform.kind.toUpperCase()}`);
         // 「城市-关卡名」与开始挑战实际进入的关卡保持一致
         void this._refreshContinueLabel();

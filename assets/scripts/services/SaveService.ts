@@ -43,6 +43,36 @@ export class SaveService {
         return this._data.completed[key];
     }
 
+    public get freeHints(): number {
+        const value = this._data.freeHints;
+        return typeof value === 'number' && Number.isSafeInteger(value) && value > 0 ? value : 0;
+    }
+
+    public hasClaimedSidebar(day: string): boolean {
+        return typeof this._data.sidebarClaimDay === 'string' && this._data.sidebarClaimDay >= day;
+    }
+
+    /** Save the reward and claim marker together; don't grant on a failed write. */
+    public claimSidebar(day: string, amount: number): 'claimed' | 'already-claimed' | 'storage-error' {
+        if (this.hasClaimedSidebar(day)) return 'already-claimed';
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isSafeInteger(amount) || amount <= 0
+            || !Number.isSafeInteger(this.freeHints + amount)) return 'storage-error';
+        const previous = this._data;
+        this._data = { ...previous, freeHints: this.freeHints + amount, sidebarClaimDay: day };
+        if (this._persist()) return 'claimed';
+        this._data = previous;
+        return 'storage-error';
+    }
+
+    public consumeFreeHint(): boolean {
+        if (this.freeHints === 0) return false;
+        const previous = this._data;
+        this._data = { ...previous, freeHints: this.freeHints - 1 };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
     /** 通关一关：+1 积分（重复通关不重复加分），星级与最佳时间取最优。 */
     public completeLevel(key: string, stars: number, elapsedSeconds: number): void {
         const previous = this._data.completed[key];
@@ -148,11 +178,13 @@ export class SaveService {
         }
     }
 
-    private _persist(): void {
+    private _persist(): boolean {
         try {
             sys.localStorage.setItem(SAVE_KEY, JSON.stringify(this._data));
+            return true;
         } catch (error) {
             console.warn('Unable to persist save data.', error);
+            return false;
         }
     }
 }

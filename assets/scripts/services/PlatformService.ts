@@ -1,4 +1,5 @@
 import { PlatformConfig, RewardPlacement, RewardResult } from '../core/GameTypes';
+import { SidebarService } from './SidebarService';
 import { BYTEDANCE, WECHAT } from 'cc/env';
 import { PlayerInfoService } from './PlayerInfoService';
 
@@ -18,6 +19,7 @@ const EMPTY_CONFIG: PlatformConfig = {
 
 export class PlatformService {
     private readonly _host = globalThis as any;
+    public readonly sidebar = new SidebarService(this._host);
     public readonly playerInfo = new PlayerInfoService(() => this.kind, this._host);
     private _config: PlatformConfig = EMPTY_CONFIG;
 
