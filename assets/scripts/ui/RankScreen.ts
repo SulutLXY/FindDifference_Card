@@ -23,15 +23,6 @@ import { UIColors, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
 
-/** 名次底图（RankItem 自身 Sprite 组件按名次换图） */
-const RANK_PANEL_BASE = 'textures/UI_Sprite/V3/panels';
-const RANK_PANEL_BY_RANK: Record<number, string> = {
-    1: `${RANK_PANEL_BASE}/panel_RankList F`,
-    2: `${RANK_PANEL_BASE}/panel_RankList S`,
-    3: `${RANK_PANEL_BASE}/panel_RankList T`,
-};
-const RANK_PANEL_DEFAULT = `${RANK_PANEL_BASE}/panel_RankList N`;
-
 /** 本地头像池：条目无远程头像时按名字哈希兜底 */
 const AVATARS = [
     'textures/UI_Sprite/V3/Texture/Icon _head_M01/spriteFrame',
@@ -56,7 +47,7 @@ const AVATARS = [
  * - MyRank      底部「我的排名」条（其下 Label 运行时刷新）
  *
  * 列表条目：优先实例化 List 下的 RankItem1 模板，结构约定：
- * - RankItem 自身 Sprite  名次底图：1=F / 2=S / 3=T / 其余=N
+ * - RankItem 自身 Sprite 保留模板背景，不按名次替换
  * - RankBadge    Label，名次数字（1-3 名金/银/铜色）；其下子节点 icon_first / icon_second /
  *   icon_third 按名次只显示对应一枚，其余名次三个全隐藏
  * - Avatar       头像 Sprite（远程头像加载失败时按名字哈希用本地头像池）
@@ -187,9 +178,6 @@ export class RankScreen extends UIScreen {
             if (icon) icon.active = index + 1 === rank;
         });
 
-        // 名次底图：条目自身 Sprite 按名次换 panel_RankList F/S/T/N
-        void this._loadRankPanel(item, rank);
-
         const name = item.getChildByName('PlayerName')?.getComponent(Label);
         if (name) name.string = row.name;
 
@@ -199,35 +187,7 @@ export class RankScreen extends UIScreen {
         // 头像：优先远程头像，失败按名字哈希用本地头像池
         void this._loadAvatar(item, row);
 
-        if (row.isSelf) {
-            // 自己高亮（条目底色调蓝）
-            const graphics = item.getComponent(Graphics);
-            if (graphics) {
-                graphics.clear();
-                graphics.fillColor = new Color(42, 137, 225, 255);
-                graphics.roundRect(-330, -46, 660, 92, 16);
-                graphics.fill();
-            }
-            if (name) name.color = Color.WHITE;
-            if (score) score.color = Color.WHITE;
-        }
-    }
-
-    /** 名次底图：RankItem 自身 Sprite 组件换 panel_RankList 图（F/S/T/N）。 */
-    private _loadRankPanel(item: Node, rank: number): void {
-        const sprite = item.getComponent(Sprite);
-        if (!sprite) {
-            console.log(`[Rank] rank=${rank} 条目无 Sprite 组件，跳过换图`);
-            return;
-        }
-        const path = RANK_PANEL_BY_RANK[rank] ?? RANK_PANEL_DEFAULT;
-        console.log(`[Rank] rank=${rank} 开始加载底图: ${path}`);
-        void this.flow.loadSpriteFrame(path).then(frame => {
-            console.log(`[Rank] rank=${rank} 加载成功: ${frame.name}`);
-            if (item.isValid && sprite.isValid) sprite.spriteFrame = frame;
-        }).catch(err => {
-            console.log(`[Rank] rank=${rank} 加载失败: ${JSON.stringify(err?.message ?? String(err))}`);
-        });
+        // 背景及姓名、成绩字体颜色由模板控制，不对本人条目改色。
     }
 
     /** 头像：有远程地址直接加载，失败或为空时按名字哈希用本地头像池。 */

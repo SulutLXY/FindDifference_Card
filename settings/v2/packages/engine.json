@@ -21,7 +21,7 @@
             "_value": true
           },
           "skeletal-animation": {
-            "_value": true
+            "_value": false
           },
           "3d": {
             "_value": false
@@ -165,7 +165,7 @@
             }
           },
           "dragon-bones": {
-            "_value": true
+            "_value": false
           },
           "marionette": {
             "_value": false
@@ -198,13 +198,11 @@
           "audio",
           "base",
           "custom-pipeline",
-          "dragon-bones",
           "gfx-webgl",
           "graphics",
           "intersection-2d",
           "mask",
           "profiler",
-          "skeletal-animation",
           "tween",
           "ui",
           "video",
