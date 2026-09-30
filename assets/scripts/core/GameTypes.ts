@@ -2,6 +2,26 @@ export type AppScreen = 'lobby' | 'cities' | 'levels' | 'game';
 
 export type RewardPlacement = 'revive' | 'hint' | 'add-time';
 
+export interface FoodCatalogEntry {
+    id: string;
+    cityKey: string;
+    cityName: string;
+    levelKey: string;
+    name: string;
+    desc: string;
+    icon: string;
+    reviews: string[];
+}
+
+export interface FoodDetails {
+    key: string;
+    name: string;
+    icon: string;
+    foodName?: string;
+    foodDesc?: string;
+    reviews?: string[];
+}
+
 /**
  * 关卡类型标记（开放取值，按标记分组做收集/图鉴等功能）：
  * normal 普通 / food 美食 / travel 风土人文 / 后续可扩展。
@@ -37,6 +57,9 @@ export interface LevelFileConfig {
     topImage?: string;
     bottomImage?: string;
     icon?: string;
+    foodName?: string;
+    foodDesc?: string;
+    reviews?: string[];
     differences: DifferenceConfig[];
 }
 
@@ -51,6 +74,9 @@ export interface LevelConfig {
     bottomImage: string;
     /** 选关封面路径（icon 优先，缺省等于 topImage） */
     icon: string;
+    foodName?: string;
+    foodDesc?: string;
+    reviews?: string[];
     differences: DifferenceConfig[];
 }
 
@@ -114,6 +140,7 @@ export interface SaveData {
     achievements: Record<string, number>;
     musicEnabled: boolean;
     soundEnabled: boolean;
+    foodReviews?: Record<string, string>;
 }
 
 export interface RewardResult {

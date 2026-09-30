@@ -1,0 +1,2326 @@
+{
+  "researchedAt": "2026-09-29",
+  "notice": "网络评价为公开食客点评或游记感受的简短改写，并非逐字引文，也不代表本游戏玩家的真实评价。未检索到足量可核实、去重的菜品评价时，以通用预设补足10条。不代表所有网络评价已穷尽。",
+  "foods": [
+    {
+      "id": "city-01-beijing-BeiJingKaoYa",
+      "name": "北京烤鸭",
+      "desc": "烤制鸭肉，片好后配薄饼、葱丝和甜面酱同食。",
+      "descriptionSource": "https://big5.visitbeijing.com.cn/article/4Nn0dLIngIF",
+      "reviews": [
+        {
+          "text": "烤鸭吃着很地道",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/beijing1/4963620-food.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-01-beijing-DouZhiJiaoQuan",
+      "name": "豆汁焦圈",
+      "desc": "豆汁配酥脆焦圈和咸菜，是老北京的传统早餐。",
+      "descriptionSource": "https://big5.visitbeijing.com.cn/article/4Nn0dLIngIF",
+      "reviews": [
+        {
+          "text": "这碗豆汁合我口味",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/beijing1/4963620-food.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-01-beijing-LuZhuHuoShao",
+      "name": "卤煮火烧",
+      "desc": "火烧与猪肠、猪肺等同煮，汤浓味厚。",
+      "descriptionSource": "https://big5.visitbeijing.com.cn/article/4Nn0dLIngIF",
+      "reviews": [
+        {
+          "text": "味道有点重",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/China_irl/comments/1991vll"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-01-beijing-ShuanYangRou",
+      "name": "涮羊肉",
+      "desc": "薄切羊肉入热汤涮熟，搭配蘸料品尝鲜味。",
+      "descriptionSource": "https://big5.visitbeijing.com.cn/article/4Nn0dLIngIF",
+      "reviews": [
+        {
+          "text": "口味比较清淡",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/China_irl/comments/1991vll"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-01-beijing-ZhaJiangMian",
+      "name": "炸酱面",
+      "desc": "面条拌上炸酱，再配黄瓜丝等菜码，酱香浓郁。",
+      "descriptionSource": "https://big5.visitbeijing.com.cn/article/4Nn0dLIngIF",
+      "reviews": [
+        {
+          "text": "酱的味道偏重",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/China_irl/comments/1991vll"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-02-shanghai-BaBaoLaJiang",
+      "name": "八宝辣酱",
+      "desc": "肉丁、笋丁、豆干、花生等炒成，咸鲜微辣。",
+      "descriptionSource": "https://xmwb.xinmin.cn/resfile/2013-05-24/B25/T25B0524.pdf",
+      "reviews": [
+        {
+          "text": "鲜甜里带点辣",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/shanghai2/7535401-dianping157453642.html"
+        },
+        {
+          "text": "花生很香脆",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/shanghai2/7535401-dianping157453642.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-02-shanghai-BenBangHongShaoRou",
+      "name": "本帮红烧肉",
+      "desc": "五花肉以酱油和糖慢烧，色泽红亮，口味甜咸。",
+      "descriptionSource": "https://news.hndaily.cn/resfile/2024-01-15/021/hnrb20240115021.pdf",
+      "reviews": [
+        {
+          "text": "肉炖得软软糯糯",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/travels/shanghai2/4167176.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-02-shanghai-CaoTouQuanZi",
+      "name": "草头圈子",
+      "desc": "草头搭配猪肠圈，青菜清香与浓厚肉香相融。",
+      "descriptionSource": "https://news.hndaily.cn/resfile/2024-01-15/021/hnrb20240115021.pdf",
+      "reviews": [
+        {
+          "text": "趁热吃更合适",
+          "kind": "网络评价改写",
+          "source": "https://www.sohu.com/a/193870921_99927282"
+        },
+        {
+          "text": "草头口感很嫩",
+          "kind": "网络评价改写",
+          "source": "https://www.sohu.com/a/193870921_99927282"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-02-shanghai-NanXiangXiaoLongBao",
+      "name": "南京小笼包",
+      "desc": "薄皮裹鲜肉蒸成的小笼点心，肉馅鲜美，汤汁丰盈。",
+      "descriptionSource": "https://you.ctrip.com/fooditem/nanjing9/7914240-p1.html",
+      "reviews": [
+        {
+          "text": "皮薄汤汁足",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/nanjing9/16477573-dianping121088653.html"
+        },
+        {
+          "text": "肉馅多汁很入味",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/nanjing9/16477573-dianping121088653.html"
+        },
+        {
+          "text": "热着吃味道更好",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/nanjing9/16477573-dianping121088653.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-02-shanghai-YanDuXian",
+      "name": "腌笃鲜",
+      "desc": "鲜肉、咸肉与春笋慢炖，汤鲜肉香，笋味清新。",
+      "descriptionSource": "https://news.hndaily.cn/resfile/2024-01-15/021/hnrb20240115021.pdf",
+      "reviews": [
+        {
+          "text": "汤喝起来清鲜自然",
+          "kind": "网络评价改写",
+          "source": "https://www.dianping.com/review/908076425"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-03-nanjing-GuiHuaTangYuMiao",
+      "name": "桂花糖芋苗",
+      "desc": "芋头配桂花糖浆慢煮，甜香软糯，是南京传统甜点。",
+      "descriptionSource": "https://you.ctrip.com/fooditem/nanjing9/7914240-p1.html",
+      "reviews": [
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "下次还想试试",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-03-nanjing-JinLingKaoYa",
+      "name": "金陵烤鸭",
+      "desc": "南京传统鸭馔之一，以烤制鸭肉的浓香见长。",
+      "descriptionSource": "https://dfz.nanjing.gov.cn/gzdt/202605/t20260507_5835258.html",
+      "reviews": [
+        {
+          "text": "比盐水鸭更合我口味",
+          "kind": "网络评价改写",
+          "source": "https://m.dianping.com/discovery/458915392"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-03-nanjing-NiuRouGuoTie",
+      "name": "牛肉锅贴",
+      "desc": "面皮包入牛肉馅煎制，底部酥香，内馅带汁。",
+      "descriptionSource": "https://dfz.nanjing.gov.cn/gzdt/202509/t20250928_5658526.html",
+      "reviews": [
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "下次还想试试",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-03-nanjing-YanShuiYa",
+      "name": "盐水鸭",
+      "desc": "南京代表鸭馔，盐卤入味，突出鸭肉本身的鲜香。",
+      "descriptionSource": "https://dfz.nanjing.gov.cn/gzdt/202605/t20260507_5835258.html",
+      "reviews": [
+        {
+          "text": "盐水鸭吃着还可以",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/China_irl/comments/1agvsgo"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-03-nanjing-YaXueFenSiTang",
+      "name": "鸭血粉丝汤",
+      "desc": "鸭汤中加入鸭血、鸭杂和粉丝，汤鲜料足。",
+      "descriptionSource": "https://zh.wikipedia.org/wiki/鸭血粉丝汤",
+      "reviews": [
+        {
+          "text": "鸭肝吃着挺够味",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/China_irl/comments/1agvsgo"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-04-xiamen-HaiLiJian",
+      "name": "海蛎煎",
+      "desc": "小海蛎拌地瓜粉、鸡蛋煎制，鲜嫩中带焦香。",
+      "descriptionSource": "https://www.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/jyzt_2018n/2018_zt21/18zt21_sssc/201810/W020181012369276003674.pdf",
+      "reviews": [
+        {
+          "text": "海蛎肥嫩很鲜",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/21/24993259.html"
+        },
+        {
+          "text": "蘸甜辣酱更香",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/21/24993259.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-04-xiamen-HuaShengTang",
+      "name": "花生汤",
+      "desc": "去皮花生慢火煮烂后加糖，汤甜仁酥软。",
+      "descriptionSource": "https://wanbao.xyxww.com.cn/html/16/2014-05/28/B6/20140528B6_pdf.pdf",
+      "reviews": [
+        {
+          "text": "花生汤味道挺好",
+          "kind": "网络评价改写",
+          "source": "https://ditu.amap.com/place/B0FFJ5AIDL"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-04-xiamen-JiangMuYa",
+      "name": "姜母鸭",
+      "desc": "鸭肉以麻油炒香，加入老姜和米酒炖煮。",
+      "descriptionSource": "https://www.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/jyzt_2018n/2018_zt21/18zt21_sssc/201810/W020181012369276003674.pdf",
+      "reviews": [
+        {
+          "text": "姜的香味很足",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/21/24993259.html"
+        },
+        {
+          "text": "鸭肉润而不柴",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/21/24993259.html"
+        },
+        {
+          "text": "炖得一扯就脱骨",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/21/24993259.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-04-xiamen-ShaChaMian",
+      "name": "沙茶面",
+      "desc": "面条配沙茶酱熬成的汤底，可搭配海鲜、肉和豆干。",
+      "descriptionSource": "https://www.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/jyzt_2018n/2018_zt21/18zt21_sssc/201810/W020181012369276003674.pdf",
+      "reviews": [
+        {
+          "text": "沙茶汤味道浓",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/xiamen21/15475179-dianping159525430.html"
+        },
+        {
+          "text": "加海鲜更合我口味",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/xiamen21/15475179-dianping159525430.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-04-xiamen-TuSunDong",
+      "name": "土笋冻",
+      "desc": "海边星虫熬煮后凝成冻，口感弹滑，常配酱料。",
+      "descriptionSource": "https://www.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/jyzt_2018n/2018_zt21/18zt21_sssc/201810/W020181012369276003674.pdf",
+      "reviews": [
+        {
+          "text": "冰凉弹口还挺香",
+          "kind": "网络评价改写",
+          "source": "https://wanbao.xyxww.com.cn/html/16/2014-05/28/B6/20140528B6_pdf.pdf"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-05-changsha-ChangShaMiXian",
+      "name": "长沙米线",
+      "desc": "米制粉条搭配高汤和各式浇头，可按喜好添辣椒。",
+      "descriptionSource": "https://www.hunantoday.cn/news/xhn/201607/14533553.html",
+      "reviews": [
+        {
+          "text": "汤香浓，米粉滑嫩",
+          "kind": "网络评价改写",
+          "source": "https://m.dianping.com/discovery/1786388086"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-05-changsha-ChouDouFu",
+      "name": "臭豆腐",
+      "desc": "发酵豆腐炸制后配蒜汁、辣酱，闻着浓烈，吃着香。",
+      "descriptionSource": "https://www.hunantoday.cn/news/xhn/201607/14533553.html",
+      "reviews": [
+        {
+          "text": "初次吃就喜欢上了",
+          "kind": "网络评价改写",
+          "source": "https://you.ctrip.com/food/shanghai148/358960-dianping.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-05-changsha-DuoJiaoYuTou",
+      "name": "剁椒鱼头",
+      "desc": "鱼头铺上剁辣椒蒸熟，鲜辣开胃，是湘菜代表。",
+      "descriptionSource": "https://www.hunantoday.cn/news/xhn/201607/14533553.html",
+      "reviews": [
+        {
+          "text": "鱼肉嫩，拌饭很香",
+          "kind": "网络评价改写",
+          "source": "https://gs.ctrip.com/html5/you/foods/Changsha148/22541303.html"
+        },
+        {
+          "text": "汤汁拌面也过瘾",
+          "kind": "网络评价改写",
+          "source": "https://gs.ctrip.com/html5/you/foods/Changsha148/22541303.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-05-changsha-KouWeiXia",
+      "name": "口味虾",
+      "desc": "以小龙虾烹成的长沙风味菜，香辣浓郁，常作夜宵。",
+      "descriptionSource": "https://www.hunantoday.cn/news/xhn/201607/14533553.html",
+      "reviews": [
+        {
+          "text": "小龙虾很合我口味",
+          "kind": "网络评价改写",
+          "source": "https://www.sohu.com/a/145862509_807364"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-05-changsha-TangYouBaBa",
+      "name": "糖油粑粑",
+      "desc": "糯米团用糖、油烹制，色泽金黄，口感甜糯。",
+      "descriptionSource": "https://zh.wikipedia.org/wiki/糖油粑粑",
+      "reviews": [
+        {
+          "text": "甜味偏重，也有些油",
+          "kind": "网络评价改写",
+          "source": "https://www.calvinneo.com/2021/01/12/meet-in-changsha/"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-06-guangzhou-BaiQieJi",
+      "name": "白切鸡",
+      "desc": "整鸡浸熟后切块，皮爽肉嫩，突出鸡肉原味。",
+      "descriptionSource": "https://www.gzwxb.gov.cn/context/contextId/200714",
+      "reviews": [
+        {
+          "text": "我很喜欢这道鸡",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/China_irl/comments/1lb8lm5"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-06-guangzhou-ChangFen",
+      "name": "肠粉",
+      "desc": "米浆蒸成薄皮，裹肉或虾等馅料，滑嫩鲜香。",
+      "descriptionSource": "https://zh.wikipedia.org/wiki/西关",
+      "reviews": [
+        {
+          "text": "肠粉薄薄的很滑口",
+          "kind": "网络评价改写",
+          "source": "https://gs.ctrip.com/html5/you/foods/fooddetail/152/5324550.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-06-guangzhou-ChaShao",
+      "name": "叉烧",
+      "desc": "猪肉腌味后烤制，再上糖色，咸甜交融，香气浓。",
+      "descriptionSource": "https://oss0.changxianggu.com/book/chapter/269_9787040540093.pdf",
+      "reviews": [
+        {
+          "text": "叉烧是我的心头好",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/China_irl/comments/1lb8lm5"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-06-guangzhou-GanChaoNiuHe",
+      "name": "干炒牛河",
+      "desc": "河粉与牛肉、芽菜猛火快炒，讲究干爽与锅气。",
+      "descriptionSource": "https://zh.wikipedia.org/wiki/乾炒牛河",
+      "reviews": [
+        {
+          "text": "炒牛河我很爱吃",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/China_irl/comments/1lb8lm5"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-06-guangzhou-TingZaiZhou",
+      "name": "艇仔粥",
+      "desc": "粥中加入鱼片、花生、油条等配料，鲜香丰富。",
+      "descriptionSource": "https://gs.ctrip.com/html5/you/foods/fooddetail/152/5324550.html",
+      "reviews": [
+        {
+          "text": "味道清淡却很鲜",
+          "kind": "网络评价改写",
+          "source": "https://gs.ctrip.com/html5/you/foods/fooddetail/152/5324550.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-07-chengdu-DanDanMian",
+      "name": "担担面",
+      "desc": "细面拌肉末和调味汁，咸鲜带辣，是成都传统小吃。",
+      "descriptionSource": "https://www.sc.gov.cn/10462/12771/2018/9/14/10458993.shtml",
+      "reviews": [
+        {
+          "text": "担担面很合我口味",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/Chengdu/comments/1dvk1fh"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-07-chengdu-FuQiFeiPian",
+      "name": "夫妻肺片",
+      "desc": "牛杂等卤熟切薄片，拌红油、花椒和花生，麻辣鲜香。",
+      "descriptionSource": "https://www.firstfilm.org.cn/surprise/chengdu/food/",
+      "reviews": [
+        {
+          "text": "这道肺片值得尝尝",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/Chengdu/comments/1dvk1fh"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-07-chengdu-HuiGuoRou",
+      "name": "回锅肉",
+      "desc": "猪肉煮后切片再回锅炒制，色泽红亮，浓香下饭。",
+      "descriptionSource": "https://www.sc.gov.cn/10462/12771/2018/9/14/10458993.shtml",
+      "reviews": [
+        {
+          "text": "回锅肉让我很满意",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/Chengdu/comments/1dvk1fh"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-07-chengdu-LongChaoShou",
+      "name": "龙抄手",
+      "desc": "薄皮包细嫩肉馅，可选原汤或红油，柔滑鲜美。",
+      "descriptionSource": "https://www.firstfilm.org.cn/surprise/chengdu/food/",
+      "reviews": [
+        {
+          "text": "熟悉的味道很回味",
+          "kind": "网络评价改写",
+          "source": "https://www.dianping.com/review/1276182545"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-07-chengdu-MaPoDouFu",
+      "name": "麻婆豆腐",
+      "desc": "豆腐配肉末烹成，麻辣鲜香，嫩烫入味。",
+      "descriptionSource": "https://www.sc.gov.cn/10462/12771/2018/9/14/10458993.shtml",
+      "reviews": [
+        {
+          "text": "麻婆豆腐值得一吃",
+          "kind": "网络评价改写",
+          "source": "https://www.reddit.com/r/Chengdu/comments/1dvk1fh"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-08-xian-BiangbiangMian",
+      "name": "Biangbiang面",
+      "desc": "手工扯成宽厚面条，配调味料泼热油，筋道香浓。",
+      "descriptionSource": "https://npuinternationalcollege.nwpu.edu.cn/info/1051/2496.htm",
+      "reviews": [
+        {
+          "text": "宽面嚼起来很带劲",
+          "kind": "网络评价改写",
+          "source": "https://m.tuniu.com/g3692035/pinglun/"
+        },
+        {
+          "text": "酱香味让人想念",
+          "kind": "网络评价改写",
+          "source": "https://m.tuniu.com/g3692035/pinglun/"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-08-xian-HuLuJi",
+      "name": "葫芦鸡",
+      "desc": "陕西传统鸡肴，外皮酥香，鸡肉软嫩，香味浓郁。",
+      "descriptionSource": "https://www.sncanyin.com.cn/h-nd-746.html",
+      "reviews": [
+        {
+          "text": "小朋友特别爱吃",
+          "kind": "网络评价改写",
+          "source": "https://gs.ctrip.com/html5/you/comment/7/11327320-food.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-08-xian-NiuYangRouPaoMo",
+      "name": "牛羊肉泡馍",
+      "desc": "掰碎的馍与牛羊肉汤同煮，肉软汤浓，香味醇厚。",
+      "descriptionSource": "https://npuinternationalcollege.nwpu.edu.cn/info/1051/2496.htm",
+      "reviews": [
+        {
+          "text": "掰馍费劲，肉还不错",
+          "kind": "网络评价改写",
+          "source": "https://gs.ctrip.com/html5/you/foods/fooddetail/7/15468654.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-08-xian-RouJiaMo",
+      "name": "肉夹馍",
+      "desc": "白吉馍夹入腊汁肉，馍香肉浓，是陕西传统小吃。",
+      "descriptionSource": "https://npuinternationalcollege.nwpu.edu.cn/info/1051/2496.htm",
+      "reviews": [
+        {
+          "text": "趁馍脆的时候吃更好",
+          "kind": "网络评价改写",
+          "source": "https://gs.ctrip.com/html5/you/foods/fooddetail/2778/200023.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "各有各的口味",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    },
+    {
+      "id": "city-08-xian-RouWanHuLaTang",
+      "name": "肉丸胡辣汤",
+      "desc": "牛肉丸搭配土豆、白菜等煮成浓汤，是西安常见早点。",
+      "descriptionSource": "https://npuinternationalcollege.nwpu.edu.cn/info/1051/2496.htm",
+      "reviews": [
+        {
+          "text": "牛肉丸口感很扎实",
+          "kind": "网络评价改写",
+          "source": "https://gs.ctrip.com/html5/you/foods/fooddetail/2778/200023.html"
+        },
+        {
+          "text": "菜煮得软，汤比较厚",
+          "kind": "网络评价改写",
+          "source": "https://gs.ctrip.com/html5/you/foods/fooddetail/2778/200023.html"
+        },
+        {
+          "text": "好吃！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "一般~",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还不错",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "还行吧",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "这个我吃过！",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "想起那年夕阳下的奔跑...",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "有机会尝尝",
+          "kind": "通用预设",
+          "source": null
+        },
+        {
+          "text": "看着就有食欲",
+          "kind": "通用预设",
+          "source": null
+        }
+      ]
+    }
+  ]
+}

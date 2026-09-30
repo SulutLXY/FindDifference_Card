@@ -5,7 +5,9 @@ import {
     Input,
     Label,
     Layout,
+    Mask,
     Node,
+    ScrollView,
     Sprite,
     UITransform,
     Vec3,
@@ -18,18 +20,6 @@ const { ccclass, property } = _decorator;
 
 /** 每行列数 */
 const GRID_COLUMNS = 4;
-
-/** 默认藏品数据：使用 resources/textures/UI_Sprite/V3/icons 下的现成素材（临时图，待美食资源）。 */
-const DEFAULT_COLLECTS: CollectItem[] = [
-    { id: 'magnifier', name: '放大镜', desc: '找茬旅行的老伙计，轻轻一按就能看得更清楚。', icon: 'textures/UI_Sprite/V3/icons/icon_fangda', obtained: true, unlockTime: '2026.09.25' },
-    { id: 'star', name: '金星', desc: '完美通关的证明，三颗齐全可不容易。', icon: 'textures/UI_Sprite/V3/icons/icon_starW', obtained: true, unlockTime: '2026.09.25' },
-    { id: 'clock', name: '闹钟', desc: '滴答滴答，时间永远不够用。', icon: 'textures/UI_Sprite/V3/icons/icon_Time', obtained: true, unlockTime: '2026.09.25' },
-    { id: 'heart', name: '爱心', desc: '每一次失误都会失去一颗心，且玩且珍惜。', icon: 'textures/UI_Sprite/V3/icons/icon_heart_filled', obtained: true, unlockTime: '2026.09.25' },
-    { id: 'hint', name: '提示', desc: '卡壳时的好帮手，指哪儿打哪儿。', icon: 'textures/UI_Sprite/V3/icons/icon_hint', obtained: false },
-    { id: 'album', name: '相册', desc: '每一张对比图都是一段旅行记忆。', icon: 'textures/UI_Sprite/V3/icons/icon_album', obtained: false },
-    { id: 'calendar', name: '日历', desc: '每日一签，今天是找茬的好日子。', icon: 'textures/UI_Sprite/V3/icons/icon_Time02', obtained: false },
-    { id: 'idea', name: '灵感', desc: '灵光一闪，五处不同尽收眼底。', icon: 'textures/UI_Sprite/V3/icons/icon_Idea', obtained: false },
-];
 
 /**
  * 收藏界面（Screens/Collect）：藏品网格展示 + 点击弹窗详情。
@@ -63,7 +53,7 @@ export class CollectScreen extends UIScreen {
     public modal: Node | null = null;
 
     /** 藏品数据，默认使用内置清单；后续可改为远端配置。 */
-    public items: CollectItem[] = DEFAULT_COLLECTS;
+    public items: CollectItem[] = [];
 
     private _cards: Node[] = [];
     private _builtModal: Node | null = null;
@@ -72,15 +62,14 @@ export class CollectScreen extends UIScreen {
         this._ensureBackButton();
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showLobby());
         this._setupGrid();
-        this._ensureModal();
+
     }
 
     protected onOpen(): void {
-        this.rebuild();
+        void this._loadFoods();
     }
 
     protected onClose(): void {
-        this._closeModal();
         this._clearCards();
     }
 
@@ -108,6 +97,8 @@ export class CollectScreen extends UIScreen {
         for (const child of root.children) {
             if (/^(Item|Card\d*)$/.test(child.name)) child.active = false;
         }
+        root.getComponent(Layout)?.updateLayout();
+        root.parent?.getComponent(ScrollView)?.scrollToTop(0);
     }
 
     // ------------------------------------------------------------------
@@ -124,7 +115,7 @@ export class CollectScreen extends UIScreen {
 
         // 获得时间：已获得显示解锁时间，未获得标记「暂未获得」
         const subLabel = card.getChildByName('CardName')?.getComponent(Label);
-        if (subLabel) subLabel.string = obtained ? `获得时间\n${item.unlockTime ?? ''}` : '暂未获得';
+        if (subLabel) subLabel.string = `${item.ext?.cityName ?? ''}\n${obtained ? '已获得' : item.ext?.levelKey ? '暂未获得' : '待开放'}`;
 
         // 锁图标：隐藏（置灰已表达未获得状态）
         const lock = card.getChildByName('LockIcon');
@@ -145,6 +136,7 @@ export class CollectScreen extends UIScreen {
     private async _loadIcon(icon: Node, path: string): Promise<void> {
         try {
             const frame = await this.flow.loadSpriteFrame(path);
+            if (!icon.isValid) return;
             let sprite = icon.getComponent(Sprite);
             if (!sprite) sprite = icon.addComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
@@ -165,11 +157,31 @@ export class CollectScreen extends UIScreen {
             ui.setContentSize(750, 1000);
         }
         this.listRoot = root;
+        // 列表从配置扩展到多城美食后，用现有 List 的设计尺寸作为滚动窗口。
+        if (root.parent && root.parent.name !== 'FoodListViewport') {
+            const size = root.getComponent(UITransform)!;
+            const viewport = new Node('FoodListViewport');
+            viewport.layer = root.layer;
+            viewport.parent = root.parent;
+            viewport.setSiblingIndex(root.getSiblingIndex());
+            viewport.setPosition(root.position);
+            const viewportUI = viewport.addComponent(UITransform);
+            viewportUI.setContentSize(size.contentSize);
+            viewportUI.setAnchorPoint(size.anchorPoint);
+            viewport.addComponent(Mask);
+            root.parent = viewport;
+            root.setPosition((.5 - size.anchorX) * size.width, (1 - size.anchorY) * size.height);
+            size.setAnchorPoint(.5, 1);
+            const scroll = viewport.addComponent(ScrollView);
+            scroll.content = root;
+            scroll.horizontal = false;
+            scroll.vertical = true;
+        }
         const layout = root.getComponent(Layout) ?? root.addComponent(Layout);
         layout.type = Layout.Type.GRID;
         layout.constraint = Layout.Constraint.FIXED_COL;
         layout.constraintNum = GRID_COLUMNS;
-        layout.resizeMode = Layout.ResizeMode.NONE;
+        layout.resizeMode = Layout.ResizeMode.CONTAINER;
         layout.spacingX = 6;
         layout.spacingY = 10;
         layout.paddingLeft = 0;
@@ -216,7 +228,7 @@ export class CollectScreen extends UIScreen {
     }
 
     private _clearCards(): void {
-        for (const card of this._cards) card.destroy();
+        for (const card of this._cards) { card.removeFromParent(); card.destroy(); }
         this._cards = [];
     }
 
@@ -268,20 +280,17 @@ export class CollectScreen extends UIScreen {
         this.modal = this._buildModal();
     }
 
+    private async _loadFoods(): Promise<void> {
+        this.items = this.flow.foods.map(food => ({
+            id: food.id, name: food.name, desc: food.desc, icon: food.icon,
+            obtained: !!food.levelKey && this.flow.save.isCompleted(food.levelKey),
+            ext: { cityName: food.cityName, levelKey: food.levelKey },
+        }));
+        this.rebuild();
+    }
     private _openModal(item: CollectItem): void {
-        this._ensureModal();
-        const modal = this.modal;
-        if (!modal) return;
-
-        const icon = modal.getChildByName('ModalIcon');
-        if (icon) void this._loadIcon(icon, item.icon);
-        const name = modal.getChildByName('ModalName')?.getComponent(Label);
-        if (name) name.string = item.name;
-        const desc = modal.getChildByName('ModalDesc')?.getComponent(Label);
-        if (desc) desc.string = item.desc;
-
-        modal.active = true;
-        modal.setPosition(Vec3.ZERO);
+        const food = this.flow.foods.find(food => food.id === item.id);
+        if (food) this.flow.showCatalogFood(food);
     }
 
     private _closeModal(): void {

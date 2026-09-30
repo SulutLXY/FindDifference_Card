@@ -95,13 +95,13 @@
           },
           "miniGame": {
             "fallbackOptions": {
-              "isRemote": false,
+              "isRemote": true,
               "compressionType": "merge_dep"
             },
-            "configMode": "overwrite",
+            "configMode": "fallback",
             "overwriteSettings": {
               "bytedance-mini-game": {
-                "compressionType": "subpackage"
+                "compressionType": "merge_dep"
               }
             }
           }

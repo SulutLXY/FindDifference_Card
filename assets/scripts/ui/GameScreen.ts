@@ -38,6 +38,7 @@ const { ccclass, property } = _decorator;
  * - Lives         生命显示（Label）
  * - Timer         倒计时（Label）
  * - Progress      差异进度（Label）
+ * - ProgressNumber 已找到数量（Label，独立于圆点进度）
  *
  * 命中判定使用节点 UITransform 的实际显示尺寸与关卡配置中的
  * 0–1 归一化坐标，与美术拼接时的缩放无关。
@@ -73,6 +74,9 @@ export class GameScreen extends UIScreen {
 
     @property({ type: Label, tooltip: '差异进度（命名 Progress）' })
     public progressLabel: Label | null = null;
+
+    @property({ type: Label, tooltip: '已找到数量（命名 ProgressNumber，显示 已找到/总数）' })
+    public foundCountLabel: Label | null = null;
 
     private _level: LevelConfig | null = null;
     private _progressConfigured = false;
@@ -112,7 +116,7 @@ export class GameScreen extends UIScreen {
         this._progressTotal = 0;
 
         this.setLabel(this.levelTitle, 'LevelTitle', level.name);
-
+        this.refreshHud();
 
         try {
             const [topFrame, bottomFrame] = await Promise.all([
@@ -153,6 +157,10 @@ export class GameScreen extends UIScreen {
         const level = this._level;
         const total = level?.differences.length ?? 0;
         const found = flow.foundIds.size;
+
+        // 数字计数和图片槽位同时刷新，不能被下方 ProgressView 分支提前返回跳过。
+        const foundCount = this.resolveLabel(this.foundCountLabel, 'ProgressNumber');
+        if (foundCount) foundCount.string = `${found}/${total}`;
 
         // 优先使用 ProgressView（图片槽位）：按差异点数实例化 Progress_BG，完成一个点亮一个 Progress_GET
         const progressView = this.resolveNode(null, 'Progress')?.getComponent(ProgressView);

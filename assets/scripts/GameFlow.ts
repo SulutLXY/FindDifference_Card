@@ -1,3 +1,4 @@
+import { FoodTips } from './ui/FoodTips';
 import {
     _decorator,
     assetManager,
@@ -12,6 +13,7 @@ import {
     Node,
     ResolutionPolicy,
     SpriteFrame,
+    Sprite,
     UITransform,
     UIOpacity,
     Vec3,
@@ -21,6 +23,7 @@ import {
 } from 'cc';
 import {
     CityConfig,
+    FoodCatalogEntry,
     CityIndex,
     DifferenceConfig,
     GradeConfig,
@@ -116,13 +119,69 @@ export class GameFlow extends Component {
     private _musicPath = '';
     private readonly _musicClips = new Map<string, AudioClip>();
     private _musicRequest = 0;
+    private _foodTips: FoodTips | null = null;
+    private _foods: FoodCatalogEntry[] = [];
+
+    public get foods(): readonly FoodCatalogEntry[] { return this._foods; }
+
+    public showCatalogFood(food: FoodCatalogEntry, unlocked = false): void {
+        this._foodTips?.present({ key: food.levelKey || food.id, name: food.name,
+            foodName: food.name, foodDesc: food.desc, icon: food.icon, reviews: food.reviews }, unlocked);
+    }
     private _settings: SettingsModal | null = null;
     private _settingsInGame = false;
     private _settingsOpenedAt = 0;
+    private _loadingNode: Node | null = null;
+    private _loadingFill: UITransform | null = null;
+    private _loadingLabel: Label | null = null;
+    private _loadingWidth = 0;
+    private _loadingLeft = 0;
+    private _booting = false;
+    private _bootFailed = false;
+
+    private _initLoading(): void {
+        const screens = this.node.parent?.getChildByName('Screens');
+        this._loadingNode = screens?.getChildByName('Loading') ?? null;
+        if (!this._loadingNode) return;
+        for (const child of screens!.children) child.active = child === this._loadingNode;
+        const bg = this._loadingNode.getChildByName('loading_sliderBG');
+        const fill = bg?.getChildByName('loading_slider');
+        this._loadingFill = fill?.getComponent(UITransform) ?? null;
+        this._loadingLabel = this._loadingNode.getChildByName('FooterEnv-001')?.getComponent(Label) ?? null;
+        if (this._loadingFill && fill) {
+            this._loadingWidth = this._loadingFill.width;
+            this._loadingLeft = fill.position.x - this._loadingWidth * this._loadingFill.anchorX * fill.scale.x;
+            const sprite = fill.getComponent(Sprite);
+            if (sprite) sprite.sizeMode = Sprite.SizeMode.CUSTOM;
+        }
+        bg?.on(Node.EventType.TOUCH_END, this._retryStartup, this);
+        this._setLoadingProgress(0);
+    }
+
+    private _retryStartup(): void {
+        if (this._bootFailed && !this._booting) void this._bootstrap();
+    }
+
+    private _setLoadingProgress(progress: number): void {
+        const value = Math.max(0, Math.min(1, progress));
+        const fill = this._loadingFill;
+        if (fill) {
+            fill.width = this._loadingWidth * value;
+            fill.node.setPosition(this._loadingLeft + fill.width * fill.anchorX * fill.node.scale.x,
+                fill.node.position.y, fill.node.position.z);
+        }
+        if (this._loadingLabel) this._loadingLabel.string = `加载中 ${Math.floor(value * 100)}%`;
+    }
 
     protected onLoad(): void {
         GameFlow._instance = this;
         registerGameFlow(this);
+        this._initLoading();
+        const foodTips = this.node.parent?.getChildByName('FoodTips');
+        if (foodTips) {
+            foodTips.active = false;
+            this._foodTips = foodTips.getComponent(FoodTips) ?? foodTips.addComponent(FoodTips);
+        }
         const uiRoot = this.node.parent;
         if (uiRoot && !uiRoot.getComponent(UIAnimationBinding)) uiRoot.addComponent(UIAnimationBinding);
         const settings = this.node.parent?.getChildByName('Settings');
@@ -141,9 +200,6 @@ export class GameFlow extends Component {
 
     protected start(): void {
         this._ensureCollectScreen();
-        for (let stage = 1; stage <= 5; stage++) {
-            void this._loadComboClip(stage).catch(error => console.warn(`[GameFlow] 连击音效加载失败: ${stage}`, error));
-        }
         void this._bootstrap();
     }
 
@@ -259,6 +315,12 @@ export class GameFlow extends Component {
     }
 
     /** 收藏页。 */
+    public showFoodTips(level: LevelConfig, unlocked = false): void {
+        const food = this._foods.find(item => item.levelKey === level.key);
+        if (food) this.showCatalogFood(food, unlocked);
+        else this._foodTips?.present(level, unlocked);
+    }
+
     public showCollect(): void {
         this._switchTo(this.collect);
     }
@@ -342,6 +404,7 @@ export class GameFlow extends Component {
     }
 
     private _switchTo(screen: LobbyScreen | CitySelectScreen | LevelSelectScreen | GameScreen | RankScreen | CollectScreen | null): void {
+        this._foodTips?.close();
         this._settings?.close();
         this._settingsInGame = false;
         this._comboSoundRequest++;
@@ -545,6 +608,7 @@ export class GameFlow extends Component {
             canRevive: !win && !this._reviveUsed,
             hasNext: win && this.findNextLevel(level) !== null,
         });
+        if (win && (level.type === 'food' || this._foods.some(food => food.levelKey === level.key))) this.showFoodTips(level, true);
     }
 
     public revive(): void {
@@ -757,18 +821,55 @@ export class GameFlow extends Component {
     // ------------------------------------------------------------------
 
     private async _bootstrap(): Promise<void> {
+        if (this._booting) return;
+        this._booting = true;
+        this._bootFailed = false;
+        this._setLoadingProgress(0);
+        let active = true;
+        const report = (value: number) => {
+            if (active && this.isValid) this._setLoadingProgress(value);
+        };
+        let initialDone = 0;
+        const initial = async <T>(task: Promise<T>): Promise<T> => {
+            const result = await task;
+            report(++initialDone / 4 * 0.4);
+            return result;
+        };
         try {
-            const [gradesAsset, platformAsset, cityBundle] = await Promise.all([
-                this._loadJson('configs/levels'),
-                this._loadJson('configs/platform-config'),
-                this._loadCityBundle(),
+            const [gradesAsset, platformAsset, cityBundle, foodAsset] = await Promise.all([
+                initial(this._loadJson('configs/levels')),
+                initial(this._loadJson('configs/platform-config')),
+                initial(this._loadCityBundle()),
+                initial(this._loadJson('configs/food-catalog')),
             ]);
+            this._foods = (foodAsset.json as { foods: FoodCatalogEntry[] }).foods;
             this._grades = gradesAsset.json as GradeConfig;
             this.platform.configure(platformAsset.json as PlatformConfig);
 
             const cityIndexAsset = await this._loadBundleJson(cityBundle, 'levels/cities');
             const index = cityIndexAsset.json as CityIndex;
-            this._cities = await Promise.all(index.cities.map(key => this._loadCityMeta(cityBundle, key)));
+            report(0.45);
+            let cityDone = 0;
+            this._cities = await Promise.all(index.cities.map(async key => {
+                const city = await this._loadCityMeta(cityBundle, key);
+                report(0.45 + ++cityDone / index.cities.length * 0.3);
+                return city;
+            }));
+            report(0.75);
+            // 场景引用的主页图片在场景进入前已加载；这里加载动态音频并复用缓存。
+            let audioDone = 0;
+            const musicPath = 'voice/BGmusic/Game_music01';
+            const music = new Promise<void>((resolve, reject) => {
+                resources.load(musicPath, AudioClip, (error, clip) => {
+                    if (error) { reject(error); return; }
+                    this._musicClips.set(musicPath, clip);
+                    resolve();
+                });
+            });
+            await Promise.all([music, ...[1, 2, 3, 4, 5].map(stage => this._loadComboClip(stage))].map(async task => {
+                await task;
+                report(0.75 + ++audioDone / 6 * 0.24);
+            }));
 
             // v2 旧档迁移：按城市顺序展开全部关卡 key 供映射
             const allKeys: string[] = [];
@@ -779,10 +880,24 @@ export class GameFlow extends Component {
             }
             this.save.migrateLegacy(allKeys);
 
-            this.showLobby();
+            if (!this.isValid) return;
+            report(1);
+            // 留出一帧显示100%，随后只在首次启动完成时关闭Loading。
+            this.scheduleOnce(() => {
+                if (this._loadingNode) this._loadingNode.active = false;
+                this.showLobby();
+            }, 0);
         } catch (error) {
+            active = false;
+            this._bootFailed = true;
+            // 失败的音效Promise不能留在缓存中，否则重试仍会立即失败。
+            this._comboClips.clear();
             console.error('[GameFlow] 资源加载失败', error);
-            this.toast('资源加载失败，请重新打开游戏');
+            if (this._loadingLabel) this._loadingLabel.string = '加载失败，点击进度条重试';
+            else this.toast('资源加载失败，请重新打开游戏');
+        } finally {
+            active = false;
+            this._booting = false;
         }
     }
 
@@ -825,7 +940,11 @@ export class GameFlow extends Component {
             maxLives: this._grades.maxLives,
             topImage,
             bottomImage,
-            icon: file.icon || topImage,
+            icon: file.icon || (bundle.getInfoWithPath(`levels/${key}/icon/spriteFrame`, SpriteFrame)
+                ? `levels/${key}/icon/spriteFrame` : topImage),
+            foodName: file.foodName,
+            foodDesc: file.foodDesc,
+            reviews: file.reviews,
             differences: file.differences ?? [],
         };
     }

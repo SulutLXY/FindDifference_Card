@@ -21,8 +21,6 @@ const { ccclass, property } = _decorator;
 
 /** 未解锁城市名颜色 */
 const CITY_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
-/** 未解锁卡片底色（已解锁保持模板默认白） */
-const CARD_BG_LOCKED_COLOR = new Color(0xd6, 0xe6, 0xf0, 255);
 
 /**
  * 城市选择界面（Screens/CitySelect）。
@@ -127,9 +125,9 @@ export class CitySelectScreen extends UIScreen {
         this._setCardLabel(card, 'CityProgress', `${progress.done}/${progress.total}`);
         this._setCardLabel(card, 'Levelnumber', progress.total > 0 ? `第${levelStart}-${levelStart + progress.total - 1}关` : '');
 
-        // 卡片底色：已解锁保持模板默认，未解锁淡蓝灰
-        const cardBg = card.getChildByName('CityCard_BG')?.getComponent(Sprite);
-        if (cardBg && !unlocked) cardBg.color = CARD_BG_LOCKED_COLOR;
+        // 卡片背景始终保留设计色；城市标记未解锁时置灰，解锁后恢复彩色。
+        const cityAim = this.findChildDeep(card, 'Cityaim')?.getComponent(Sprite);
+        if (cityAim) cityAim.grayscale = !unlocked;
 
         // 进度条：rank_row 底槽 + rank_row-001 填充（锚点已靠左，按完成比例改宽度）
         const barRoot = card.getChildByName('rank_row');

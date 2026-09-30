@@ -90,6 +90,18 @@ export class SaveService {
         }
     }
 
+    public getFoodReview(key: string): string {
+        const value = this._data.foodReviews?.[key];
+        return typeof value === 'string' ? value : '';
+    }
+    public setFoodReview(key: string, value: string): string {
+        const text = Array.from(value.replace(/[\r\n]+/g, ' ').trim()).slice(0, 50).join('');
+        if (!text) return '';
+        this._data.foodReviews = { ...this._data.foodReviews, [key]: text };
+        this._persist();
+        return text;
+    }
+
     public reset(): void {
         this._data = { ...DEFAULT_SAVE, completed: {}, achievements: {} };
         this._persist();

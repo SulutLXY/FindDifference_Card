@@ -1,5 +1,6 @@
 import { PlatformConfig, RewardPlacement, RewardResult } from '../core/GameTypes';
 import { BYTEDANCE, WECHAT } from 'cc/env';
+import { PlayerInfoService } from './PlayerInfoService';
 
 type RuntimeKind = 'h5' | 'wechat' | 'douyin';
 
@@ -17,6 +18,7 @@ const EMPTY_CONFIG: PlatformConfig = {
 
 export class PlatformService {
     private readonly _host = globalThis as any;
+    public readonly playerInfo = new PlayerInfoService(() => this.kind, this._host);
     private _config: PlatformConfig = EMPTY_CONFIG;
 
     public configure(config: Partial<PlatformConfig>): void {
@@ -32,8 +34,8 @@ export class PlatformService {
         // 构建目标优先，避免兼容环境同时暴露 wx/tt 时选错广告配置。
         if (BYTEDANCE) return 'douyin';
         if (WECHAT) return 'wechat';
-        if (this._host.tt?.createRewardedVideoAd) return 'douyin';
-        if (this._host.wx?.createRewardedVideoAd) return 'wechat';
+        if (this._host.tt?.createRewardedVideoAd || this._host.tt?.login || this._host.tt?.getSystemInfo) return 'douyin';
+        if (this._host.wx?.createRewardedVideoAd || this._host.wx?.login || this._host.wx?.getSystemInfo) return 'wechat';
         return 'h5';
     }
 

@@ -1,6 +1,7 @@
 {
   "name": "北京-03",
   "type": "food",
+  "food": "北京烤鸭",
   "differences": [
     {
       "id": "diff-1",

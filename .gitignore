@@ -9,3 +9,7 @@ profiles/
 .DS_Store
 Thumbs.db
 *.swp
+
+# Python 工具脚本缓存
+__pycache__/
+*.pyc
