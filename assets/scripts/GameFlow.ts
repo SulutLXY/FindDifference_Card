@@ -617,6 +617,10 @@ export class GameFlow extends Component {
         this._lives = 1;
         this._remainingTime = Math.max(this._remainingTime, 30);
         this._isGameOver = false;
+        // 广告结束时失败状态仍为true；复活必须同时解除广告留下的暂停状态。
+        this._isPaused = false;
+        this._combo = 0;
+        this._lastFoundAt = 0;
         this.resultModal?.close();
         this.game?.refreshHud();
         this.toast('复活成功：生命 +1，时间 +30秒');

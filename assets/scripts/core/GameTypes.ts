@@ -34,7 +34,7 @@ export interface DifferenceConfig {
     x: number;
     /** Normalized coordinate measured from the top-left corner. */
     y: number;
-    /** Hit radius relative to the displayed image width. */
+    /** Hit and marker radius relative to the displayed image's shorter side. */
     radius: number;
 }
 

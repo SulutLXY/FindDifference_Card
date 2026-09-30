@@ -4,10 +4,7 @@ import {
     Graphics,
     Input,
     Label,
-    Layout,
-    Mask,
     Node,
-    ScrollView,
     Sprite,
     UITransform,
     Vec3,
@@ -18,25 +15,21 @@ import { UIColors, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
 
-/** 每行列数 */
-const GRID_COLUMNS = 4;
+/** 每页格数：3 列 × 3 行（列数由场景里 List 的 Layout 预设与容器宽度决定） */
+const PAGE_SIZE = 9;
 
 /**
- * 收藏界面（Screens/Collect）：藏品网格展示 + 点击弹窗详情。
+ * 收藏界面（Screens/Collect）：3×3 翻页藏品网格 + 点击弹窗详情。
  *
  * 命名规则（未拖拽绑定时按此自动查找）：
  * - BtnBack   返回大厅按钮（Node）
- * - List      藏品格子窗口（Node），代码补 Grid Layout，一排 4 个
- * - Item      藏品格子模板（Node，List 下），结构约定：
+ * - List      藏品格子窗口（Node），Grid 布局/间距以场景预设为准，每页 9 个
+ * - Item      藏品格子模板（Node，List 下，也可用 Card1），结构约定：
  *   - ItemIcon  Sprite，藏品图标
  *   - ItemName  Label，藏品名（可选）
  *   无模板时使用内置简易格子。
- * - Modal     详情弹窗（Node，可选），结构约定：
- *   - ModalIcon  Sprite，大图
- *   - ModalName  Label，名称
- *   - ModalDesc  Label，描述
- *   - BtnClose   关闭按钮（Node）
- *   场景未摆放时由代码自动构建同款弹窗。
+ * - btnback / btnnext  上/下翻页按钮，到边界时自动隐藏
+ * - haveCollected      同名节点两个：左上方为「已收藏：x/y」统计，底部为「当前页/总页数」
  */
 @ccclass('CollectScreen')
 export class CollectScreen extends UIScreen {
@@ -57,15 +50,32 @@ export class CollectScreen extends UIScreen {
 
     private _cards: Node[] = [];
     private _builtModal: Node | null = null;
+    private _page = 0;
+    private _btnPrev: Node | null = null;
+    private _btnNext: Node | null = null;
+    private _statsLabel: Label | null = null;
+    private _pageLabel: Label | null = null;
 
     protected onLoad(): void {
         this._ensureBackButton();
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showLobby());
-        this._setupGrid();
-
+        this._ensureList();
+        this._btnPrev = this.resolveNode(null, 'btnback');
+        this._btnNext = this.resolveNode(null, 'btnnext');
+        this._btnPrev?.on(Input.EventType.TOUCH_END, () => this._turnPage(-1), this);
+        this._btnNext?.on(Input.EventType.TOUCH_END, () => this._turnPage(1), this);
+        // 场景里有两个同名 haveCollected：左上是收藏统计，底部是页码，按位置区分。
+        for (const child of this.node.children) {
+            if (child.name !== 'haveCollected') continue;
+            const label = child.getComponent(Label);
+            if (!label) continue;
+            if (child.position.y < 0) this._pageLabel = label;
+            else this._statsLabel = label;
+        }
     }
 
     protected onOpen(): void {
+        this._page = 0;
         void this._loadFoods();
     }
 
@@ -79,7 +89,10 @@ export class CollectScreen extends UIScreen {
         // 模板：优先 Inspector 绑定，其次 List 下的 Item / Card1（关卡卡结构同套命名）
         const template = this.itemTemplate ?? root.getChildByName('Item') ?? root.getChildByName('Card1');
 
-        this.items.forEach((item, index) => {
+        const pageCount = this._pageCount();
+        if (this._page >= pageCount) this._page = pageCount - 1;
+        const start = this._page * PAGE_SIZE;
+        this.items.slice(start, start + PAGE_SIZE).forEach((item, index) => {
             let card: Node;
             if (template) {
                 card = instantiate(template);
@@ -97,8 +110,33 @@ export class CollectScreen extends UIScreen {
         for (const child of root.children) {
             if (/^(Item|Card\d*)$/.test(child.name)) child.active = false;
         }
-        root.getComponent(Layout)?.updateLayout();
-        root.parent?.getComponent(ScrollView)?.scrollToTop(0);
+        this._updatePager();
+    }
+
+    // ------------------------------------------------------------------
+    // 翻页
+    // ------------------------------------------------------------------
+
+    private _pageCount(): number {
+        return Math.max(1, Math.ceil(this.items.length / PAGE_SIZE));
+    }
+
+    private _turnPage(delta: number): void {
+        const next = this._page + delta;
+        if (next < 0 || next >= this._pageCount()) return;
+        this._page = next;
+        this.rebuild();
+    }
+
+    private _updatePager(): void {
+        const pageCount = this._pageCount();
+        if (this._pageLabel) this._pageLabel.string = `${this._page + 1}/${pageCount}`;
+        if (this._statsLabel) {
+            const obtained = this.items.filter(item => item.obtained).length;
+            this._statsLabel.string = `已收藏：${obtained}/${this.items.length}`;
+        }
+        if (this._btnPrev?.isValid) this._btnPrev.active = this._page > 0;
+        if (this._btnNext?.isValid) this._btnNext.active = this._page < pageCount - 1;
     }
 
     // ------------------------------------------------------------------
@@ -146,51 +184,19 @@ export class CollectScreen extends UIScreen {
         }
     }
 
-    /** List 改造为 Grid Layout：固定一排 4 个。
-     *  resizeMode 用 NONE（不改变容器大小），List 的位置/尺寸完全以场景面板设置为准。 */
-    private _setupGrid(): void {
-        let root = this.listRoot?.isValid ? this.listRoot : this.node.getChildByName('List');
-        if (!root) {
-            root = new Node('List');
-            root.parent = this.node;
-            const ui = root.addComponent(UITransform);
-            ui.setContentSize(750, 1000);
+    /** 兜底创建 List；场景已摆放时完全沿用场景里的 Layout 预设，不做任何改动。 */
+    private _ensureList(): void {
+        if (this.listRoot?.isValid) return;
+        const found = this.node.getChildByName('List');
+        if (found) {
+            this.listRoot = found;
+            return;
         }
+        const root = new Node('List');
+        root.parent = this.node;
+        const ui = root.addComponent(UITransform);
+        ui.setContentSize(750, 1000);
         this.listRoot = root;
-        // 列表从配置扩展到多城美食后，用现有 List 的设计尺寸作为滚动窗口。
-        if (root.parent && root.parent.name !== 'FoodListViewport') {
-            const size = root.getComponent(UITransform)!;
-            const viewport = new Node('FoodListViewport');
-            viewport.layer = root.layer;
-            viewport.parent = root.parent;
-            viewport.setSiblingIndex(root.getSiblingIndex());
-            viewport.setPosition(root.position);
-            const viewportUI = viewport.addComponent(UITransform);
-            viewportUI.setContentSize(size.contentSize);
-            viewportUI.setAnchorPoint(size.anchorPoint);
-            viewport.addComponent(Mask);
-            root.parent = viewport;
-            root.setPosition((.5 - size.anchorX) * size.width, (1 - size.anchorY) * size.height);
-            size.setAnchorPoint(.5, 1);
-            const scroll = viewport.addComponent(ScrollView);
-            scroll.content = root;
-            scroll.horizontal = false;
-            scroll.vertical = true;
-        }
-        const layout = root.getComponent(Layout) ?? root.addComponent(Layout);
-        layout.type = Layout.Type.GRID;
-        layout.constraint = Layout.Constraint.FIXED_COL;
-        layout.constraintNum = GRID_COLUMNS;
-        layout.resizeMode = Layout.ResizeMode.CONTAINER;
-        layout.spacingX = 6;
-        layout.spacingY = 10;
-        layout.paddingLeft = 0;
-        layout.paddingRight = 0;
-        layout.paddingTop = 0;
-        layout.paddingBottom = 0;
-        layout.horizontalDirection = Layout.HorizontalDirection.LEFT_TO_RIGHT;
-        layout.verticalDirection = Layout.VerticalDirection.TOP_TO_BOTTOM;
-        layout.enabled = true;
     }
 
     /** 场景未摆放 BtnBack 时自动创建左上角圆形返回键。 */

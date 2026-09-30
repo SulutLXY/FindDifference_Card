@@ -14,6 +14,7 @@ import {
     Vec2,
     Vec3,
     tween,
+    Tween,
 } from 'cc';
 import { DifferenceConfig, LevelConfig } from '../core/GameTypes';
 import { DifferenceController } from '../gameplay/DifferenceController';
@@ -79,6 +80,20 @@ export class GameScreen extends UIScreen {
     public foundCountLabel: Label | null = null;
 
     private _level: LevelConfig | null = null;
+    private _lastLives: number | null = null;
+    private _livesTween: Tween<Node> | null = null;
+    private _livesNode: Node | null = null;
+    private _livesBaseScale: Vec3 | null = null;
+
+    private _resetLivesAnimation(): void {
+        this._livesTween?.stop();
+        this._livesTween = null;
+        if (this._livesNode?.isValid && this._livesBaseScale) this._livesNode.setScale(this._livesBaseScale);
+    }
+
+    protected onDisable(): void {
+        this._resetLivesAnimation();
+    }
     private _progressConfigured = false;
     private _progressTotal = 0;
     private readonly _markers: Node[] = [];
@@ -108,6 +123,8 @@ export class GameScreen extends UIScreen {
 
     /** 进入关卡：设置图片与文字，清理旧标记。由 GameFlow.startLevel 调用。 */
     public async setupLevel(level: LevelConfig): Promise<void> {
+        this._resetLivesAnimation();
+        this._lastLives = null;
         this._level = level;
         const token = ++this._setupToken;
         this._clearMarkers();
@@ -150,8 +167,23 @@ export class GameScreen extends UIScreen {
 
         const lives = this.resolveLabel(this.livesLabel, 'Lives');
         if (lives) {
-            lives.string = `x${Math.max(0, flow.lives)}`;
-            lives.color = new Color(202, 78, 79, 255);
+            const count = Math.max(0, flow.lives);
+            lives.string = String(count);
+            if (this._livesNode !== lives.node) {
+                this._resetLivesAnimation();
+                this._livesNode = lives.node;
+                this._livesBaseScale = lives.node.scale.clone();
+                this._lastLives = null;
+            }
+            if (this._lastLives !== null && this._lastLives !== count && this._livesBaseScale) {
+                this._resetLivesAnimation();
+                const base = this._livesBaseScale;
+                this._livesTween = tween(lives.node)
+                    .to(0.15, { scale: new Vec3(base.x * 1.5, base.y * 1.5, base.z) }, { easing: 'quadOut' })
+                    .to(0.35, { scale: base.clone() }, { easing: 'quadInOut' })
+                    .start();
+            }
+            this._lastLives = count;
         }
 
         const level = this._level;
@@ -195,7 +227,7 @@ export class GameScreen extends UIScreen {
             const graphics = marker.addComponent(Graphics);
             graphics.lineWidth = 7;
             graphics.strokeColor = UIColors.red;
-            graphics.circle(0, 0, difference.radius * size.width);
+            graphics.circle(0, 0, DifferenceController.radiusToLocal(difference, size.width, size.height));
             graphics.stroke();
             this._markers.push(marker);
         }

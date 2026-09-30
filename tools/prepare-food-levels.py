@@ -15,6 +15,7 @@ SOURCE = Path(r'D:\CocosCreator\FindDifferenceTex')
 REVIEW = ROOT / 'docs/art-source/food-levels'
 # Equal, horizontally centered crops; remove the separator and orange surround.
 LEFT, TOP, WIDTH, HEIGHT, STEP = 31, 26, 1024, 672, 724
+SHORT_SIDE = min(WIDTH, HEIGHT)
 
 # id, Chinese description, source-half center x/y, radius in source pixels.
 LEVELS = [
@@ -102,7 +103,7 @@ def main():
         source = Image.open(SOURCE / f'FindDifferenceLevel ({number}).png').convert('RGB')
         assert source.size == (1086, 1448)
         differences = [dict(id=id_, x=round((x-LEFT)/WIDTH, 6),
-                            y=round((y-TOP)/HEIGHT, 6), radius=round(r/WIDTH, 6))
+                            y=round((y-TOP)/HEIGHT, 6), radius=round(r/SHORT_SIDE, 6))
                        for id_, _, x, y, r in spots]
         assert len({d['id'] for d in differences}) == len(differences)
         for d in differences:
@@ -111,7 +112,7 @@ def main():
         for index, d in enumerate(differences):
             for other in differences[:index]:
                 distance = math.hypot((d['x']-other['x'])*WIDTH, (d['y']-other['y'])*HEIGHT)
-                assert distance > other['radius']*WIDTH, (number, d['id'], other['id'])
+                assert distance > other['radius']*SHORT_SIDE, (number, d['id'], other['id'])
         (directory / 'differences.json').write_text(json.dumps({'differences': differences}, indent=2)+'\n', encoding='utf-8')
         review = Image.new('RGB', (WIDTH, HEIGHT*2+40), '#20242c')
         for panel, letter in enumerate('ab'):

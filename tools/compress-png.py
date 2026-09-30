@@ -1,5 +1,6 @@
 """Losslessly optimize source PNGs; keep dimensions, pixels and Cocos metadata."""
 import hashlib
+import argparse
 import io
 import json
 import zipfile
@@ -11,6 +12,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--colors', type=int, choices=[256], help='Lossy 256-color palette compression, including alpha')
+    args = parser.parse_args()
     files = sorted(p for p in (ROOT/'assets').rglob('*') if p.suffix.lower() == '.png')
     backup = ROOT/'temp/png-compression'/datetime.now().strftime('%Y%m%d-%H%M%S-%f')
     backup.mkdir(parents=True)
@@ -27,13 +31,28 @@ def main():
                     record['status'] = 'skipped unsupported image'
                     records.append(record)
                     continue
-                # Preserve all original ancillary chunks by using only a new IDAT stream.
                 stream = io.BytesIO()
-                image.save(stream, format='PNG', optimize=True, compress_level=9)
-                candidate = preserve_chunks(original, stream.getvalue())
+                if args.colors and image.mode != 'P':
+                    rgba = image.convert('RGBA')
+                    quantized = rgba.quantize(colors=args.colors, method=Image.Quantize.FASTOCTREE)
+                    options = {k:image.info[k] for k in ('icc_profile','dpi') if k in image.info}
+                    quantized.save(stream, format='PNG', optimize=True, compress_level=9, **options)
+                    candidate = stream.getvalue()
+                else:
+                    # Already indexed PNGs avoid another lossy pass.
+                    image.save(stream, format='PNG', optimize=True, compress_level=9)
+                    candidate = preserve_chunks(original, stream.getvalue())
                 with Image.open(io.BytesIO(candidate)) as check:
                     assert check.size == image.size
-                    assert check.convert('RGBA').tobytes() == image.convert('RGBA').tobytes(), path
+                    if args.colors:
+                        assert check.mode == 'P' and len(check.getcolors(256) or []) > 0, path
+                        before_alpha = image.convert('RGBA').getchannel('A')
+                        after_alpha = check.convert('RGBA').getchannel('A')
+                        record['alpha_range_before'] = before_alpha.getextrema()
+                        record['alpha_range_after'] = after_alpha.getextrema()
+                        record['colors'] = len(check.getcolors(256))
+                    else:
+                        assert check.convert('RGBA').tobytes() == image.convert('RGBA').tobytes(), path
                 if len(candidate) < len(original):
                     archive.writestr(record['path'], original)
                     if meta_before is not None: archive.writestr(record['path']+'.meta',meta_before)
@@ -47,7 +66,7 @@ def main():
                 assert (meta.read_bytes() if meta.exists() else None) == meta_before
                 record['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
                 records.append(record)
-    result = {'count':len(records), 'compressed':sum(r['status']=='compressed' for r in records),
+    result = {'mode':'palette256' if args.colors else 'lossless', 'count':len(records), 'compressed':sum(r['status']=='compressed' for r in records),
               'before':sum(r['before'] for r in records),'after':sum(r['after'] for r in records),'files':records}
     (backup/'report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps({k:v for k,v in result.items() if k!='files'},ensure_ascii=False))

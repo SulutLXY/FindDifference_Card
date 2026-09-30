@@ -3,6 +3,11 @@ import { DifferenceConfig } from '../core/GameTypes';
 
 /** Keeps hit testing independent from the device resolution and sprite scale. */
 export class DifferenceController {
+    /** Shared local-space radius for hit testing and found markers. */
+    public static radiusToLocal(difference: DifferenceConfig, width: number, height: number): number {
+        return difference.radius * Math.min(width, height);
+    }
+
     public static localToNormalized(local: Vec3, width: number, height: number): Vec2 {
         const x = (local.x + width * 0.5) / width;
         const y = 1 - (local.y + height * 0.5) / height;
@@ -27,7 +32,7 @@ export class DifferenceController {
             if (foundIds.has(difference.id)) continue;
             const dx = (position.x - difference.x) * width;
             const dy = (position.y - difference.y) * height;
-            const radius = difference.radius * width;
+            const radius = this.radiusToLocal(difference, width, height);
             if (dx * dx + dy * dy <= radius * radius) return difference;
         }
         return null;

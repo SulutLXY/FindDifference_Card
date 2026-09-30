@@ -20,10 +20,13 @@ export class FoodTips extends UIScreen {
         this._box = this.resolveNode(null, 'ReviewTipsBox');
         this._template = this.resolveNode(null, 'ReviewTipsBox/ReviewTipsItem');
         if (this._template) this._template.active = false;
-        // 场景保留了旧的同名占位节点，使用后添加的右上角关闭按钮。
+        // 场景保留了旧的同名占位节点，两个关闭入口都接线：内层右上角（无图标，纯命中区）+ 外层可见返回箭头。
         const window = this.resolveNode(null, 'TipsWindow');
         const closeButton = window?.children.slice().reverse().find(child => child.name === 'BtnClose') ?? null;
         this.wireButton(closeButton, 'TipsWindow/BtnClose', () => this.close());
+        this.wireButton(null, 'BtnClose', () => this.close());
+        // 点卡片外的弹幕区/遮罩空白处也可关闭（美食评价按钮在卡片内，不受影响）。
+        this.wireButton(null, 'ReviewTipsBox', () => this.close());
         this.wireButton(null, 'BtnReview', () => this._review());
     }
     public present(level: FoodDetails, unlocked: boolean): void {
