@@ -69,6 +69,13 @@ class CatalogTests(unittest.TestCase):
         self.change({'E3':'level-03'})
         with self.assertRaisesRegex(ValueError,'关卡重复'): catalog.build(self.table,self.output)
 
+    def test_wrong_food_level_preserves_output(self):
+        self.change({'E2':'level-06', 'E3':'level-03'})
+        self.output.write_text('last good')
+        with self.assertRaisesRegex(ValueError, '美食与关卡不匹配'):
+            catalog.build(self.table, self.output)
+        self.assertEqual(self.output.read_text(), 'last good')
+
     def test_invalid_city_or_level_rejected(self):
         self.change({'C2':'../'})
         with self.assertRaisesRegex(ValueError,'城市ID格式错误'): catalog.build(self.table,self.output)
@@ -81,7 +88,7 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(len(food['reviews']),10)
             self.assertEqual(len(set(food['reviews'])),10)
             self.assertTrue(all(2 <= len(s) <= 20 for s in food['reviews']))
-        bao = next(f for f in foods if f['id'].endswith('-NanXiangXiaoLongBao'))
+        bao = next(f for f in foods if f['id'].endswith('-NanJingXiaoLongBao'))
         self.assertEqual(bao['name'],'南京小笼包')
 
     def test_invalid_copy_preserves_last_good_output(self):

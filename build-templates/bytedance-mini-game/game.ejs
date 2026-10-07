@@ -117,10 +117,31 @@ function loadCC() {
     });
 
     function onApplicationCreated(application) {
+        const version = require('./app-version');
+        const resourceVersion = require('./resource-version');
+        let commitVersion = null;
         return System.import('cc').then((cc) => {
             require('./engine-adapter');
+            // Infrastructure is ready, but internal/main/city have not loaded yet.
+            cc.game.onPostInfrastructureInitDelegate.add(() => {
+                try {
+                    commitVersion = resourceVersion.prepare(cc, tt, version.version);
+                } catch (error) {
+                    if (typeof tt.showModal === 'function') tt.showModal({
+                        title: '资源更新未完成',
+                        content: '请退出小游戏后重新进入。您的游戏进度会保留。',
+                        showCancel: false,
+                    });
+                    throw error;
+                }
+            });
             return application.init(cc);
-        }).then(() => { return application.start(); });
+        }).then(() => application.start()).then(() => {
+            if (commitVersion) {
+                try { commitVersion(); }
+                catch (error) { console.warn('[ResourceVersion] 版本记录失败，下次启动将重试', error); }
+            }
+        });
     }
 
 }

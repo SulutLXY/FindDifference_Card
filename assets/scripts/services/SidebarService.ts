@@ -27,6 +27,14 @@ export class SidebarService {
         return () => this._listeners.delete(listener);
     }
 
+    public matchesEntryToday(rules: Array<{ scene: string; launch_from?: string; location?: string }>): boolean {
+        if (sidebarDay(this._receivedAt) !== sidebarDay(this.now())) return false;
+        return rules.some(rule => typeof rule.scene === 'string' && rule.scene.length > 0
+            && rule.scene === String(this._options.scene ?? '')
+            && (rule.launch_from === undefined || rule.launch_from === this._options.launch_from)
+            && (rule.location === undefined || rule.location === this._options.location));
+    }
+
     private _notify(): void {
         if (this._disposed) return;
         for (const listener of this._listeners) listener();
@@ -40,6 +48,8 @@ export class SidebarService {
         const onShow = (options: any, receivedAt = this.now()) => {
             this._options = options ?? {};
             this._receivedAt = receivedAt;
+            console.info('[FavoriteEntry]', JSON.stringify({ scene: this._options.scene ?? '',
+                launch_from: this._options.launch_from ?? '', location: this._options.location ?? '' }));
             this._notify();
         };
         // game.js captures cold starts before the Cocos scene loads.

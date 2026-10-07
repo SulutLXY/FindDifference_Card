@@ -33,6 +33,17 @@ export interface PlayerProfile {
 
 /** 非 Component；通过 GameFlow.platform.playerInfo 使用。 */
 export class PlayerInfoService {
+    private _deviceInfo: PlayerDeviceInfo | null = null;
+    public get isOpenHarmony(): boolean {
+        if (!this._deviceInfo) {
+            try {
+                const sdk = this.sdk(this.channel());
+                if (typeof sdk?.getSystemInfoSync === 'function') this._deviceInfo = sdk.getSystemInfoSync();
+            } catch { /* 异步获取设备信息时继续判断。 */ }
+        }
+        return this._deviceInfo?.platform?.toLowerCase() === 'openharmony';
+    }
+    public profile: PlayerProfile | null = null;
     constructor(
         private readonly channel: () => PlayerChannel,
         private readonly host: any = globalThis,
@@ -64,7 +75,8 @@ export class PlayerInfoService {
                         try { finish({ success: true, channel, data: parse(value) }); }
                         catch { finish({ success: false, channel, reason: 'invalid_response', message: '平台返回数据不完整' }); }
                     },
-                    fail: () => finish({ success: false, channel, reason: 'failed', message: '平台调用失败或玩家未同意授权' }),
+                    fail: (error: any) => finish({ success: false, channel, reason: 'failed',
+                        message: `${method}: ${error?.errMsg ?? '平台调用失败或玩家未同意授权'}${error?.errNo != null ? ` (${error.errNo})` : ''}` }),
                 });
             } catch {
                 finish({ success: false, channel, reason: 'failed', message: '平台接口调用异常' });
@@ -94,6 +106,7 @@ export class PlayerInfoService {
             for (const key of ['screenWidth','screenHeight','windowWidth','windowHeight','pixelRatio']) {
                 if (typeof value[key] === 'number' && Number.isFinite(value[key])) (data as any)[key] = value[key];
             }
+            this._deviceInfo = data;
             return data;
         });
     }
@@ -117,16 +130,26 @@ export class PlayerInfoService {
             return { success: false, channel, reason: 'unsupported', message: channel === 'wechat'
                 ? '微信头像昵称需单独接入当前渠道的资料填写能力' : '浏览器预览没有平台玩家资料' };
         }
-        const ticket = await this.login(false);
+        this.profile = null;
+        const ticket = await this.login(true);
         if (ticket.success === false) return ticket;
         if (ticket.data.isAnonymous) {
             return { success: false, channel, reason: 'not_logged_in', message: '请先登录抖音账号，再授权玩家资料' };
         }
-        return this.call(channel, 'getUserInfo', { withCredentials: false }, value => {
+        if (typeof this.sdk(channel)?.getSetting === 'function') {
+            const setting = await this.call(channel, 'getSetting', {}, value => value?.authSetting ?? {});
+            if (setting.success && setting.data['scope.userInfo'] === false) {
+                return { success: false, channel, reason: 'failed',
+                    message: '玩家资料权限已关闭，请在小游戏右上角「更多 → 设置」开启后重试' };
+            }
+        }
+        const result = await this.call(channel, 'getUserInfo', { withCredentials: false }, value => {
             const profile = value?.userInfo;
             if (typeof profile?.nickName !== 'string' || !profile.nickName.trim()
                 || typeof profile?.avatarUrl !== 'string') throw new Error('missing profile');
             return { nickName: profile.nickName, avatarUrl: profile.avatarUrl };
         });
+        if (result.success) this.profile = result.data;
+        return result;
     }
 }

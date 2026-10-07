@@ -7,5 +7,14 @@
   "douyinAppId": "",
   "douyinRewardedAdUnitId": "1jj46gtgbpc84p6jca",
   "douyinInterstitialAdUnitId": "14eaqmfhd0gg22d184",
-  "rewardOnAnyClose": false
+  "rewardOnAnyClose": false,
+  "douyinShareTemplateIds": [
+    "101ba86l6dfd9615a0",
+    "5627ip23m641gbdg7r",
+    "2devnmcjkp1f3c9ch3",
+    "9mhae2bca6m178h2mp",
+    "35x1m3p2bq2aafrfu1",
+    "fhp4ov3kaej1hkam80"
+  ],
+  "douyinFavoriteEntryRules": []
 }

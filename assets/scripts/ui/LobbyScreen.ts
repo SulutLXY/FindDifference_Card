@@ -1,6 +1,8 @@
 import { _decorator, Label, Node } from 'cc';
 import { UIScreen } from './UIScreen';
-import { SidebarGift } from './SidebarGift';
+import { LobbyEntries } from './LobbyEntries';
+import { FavoriteGift } from './FavoriteGift';
+import { APP_VERSION } from '../core/AppVersion';
 
 const { ccclass, property } = _decorator;
 
@@ -40,6 +42,9 @@ export class LobbyScreen extends UIScreen {
     public footerEnv: Label | null = null;
 
     protected onLoad(): void {
+        const entryHost = this.flow.node.parent ?? this.node;
+        if (!entryHost.getComponent(LobbyEntries)) entryHost.addComponent(LobbyEntries);
+        if (!entryHost.getComponent(FavoriteGift)) entryHost.addComponent(FavoriteGift);
         this.wireButton(this.setting, 'Setting', () => this.flow.showSettings(false));
         this.wireButton(this.btnStart, 'BtnStart', () => this.flow.startContinue());
         this.wireButton(this.btnLevels, 'BtnLevels', () => this.flow.showCitySelect());
@@ -49,9 +54,10 @@ export class LobbyScreen extends UIScreen {
     }
 
     protected onOpen(): void {
-        const giftAnchor = this.findChildDeep(this.node, 'Gameflow');
-        if (giftAnchor && !giftAnchor.getComponent(SidebarGift)) giftAnchor.addComponent(SidebarGift);
-        this.setLabel(this.footerEnv, 'FooterEnv', `当前环境：${this.flow.platform.kind.toUpperCase()}`);
+        const rankButton = this.resolveNode(this.btnRank, 'BtnRank');
+        if (rankButton) rankButton.active = !this.flow.platform.isHarmony;
+        void this._refreshRankVisibility();
+        this.setLabel(this.footerEnv, 'FooterEnv', `当前环境：${this.flow.platform.kind.toUpperCase()}  |  版本号：${APP_VERSION}`);
         // 「城市-关卡名」与开始挑战实际进入的关卡保持一致
         void this._refreshContinueLabel();
     }
@@ -64,5 +70,12 @@ export class LobbyScreen extends UIScreen {
             ? (levelName.startsWith(`${target.city.name}-`) ? levelName : `${target.city.name}-${levelName}`)
             : '全部通关，恭喜！';
         this.setLabel(this.currentLevel, 'BtnStart/Label-001', label);
+    }
+
+    private async _refreshRankVisibility(): Promise<void> {
+        const harmony = await this.flow.platform.detectHarmony();
+        if (!this.isValid) return;
+        const button = this.resolveNode(this.btnRank, 'BtnRank');
+        if (button) button.active = !harmony;
     }
 }

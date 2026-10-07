@@ -122,6 +122,8 @@ export interface PlatformConfig {
     douyinAppId: string;
     douyinRewardedAdUnitId: string;
     douyinInterstitialAdUnitId?: string;
+    douyinShareTemplateIds?: string[];
+    douyinFavoriteEntryRules?: Array<{ scene: string; launch_from?: string; location?: string }>;
     rewardOnAnyClose: boolean;
 }
 
@@ -142,8 +144,11 @@ export interface SaveData {
     soundEnabled: boolean;
     foodReviews?: Record<string, string>;
     freeHints?: number;
+    freeAddTimes?: number;
     /** YYYY-MM-DD, Beijing time. */
     sidebarClaimDay?: string;
+    favoriteClaimDay?: string;
+    firstFailureInterstitialDay?: string;
 }
 
 export interface RewardResult {

@@ -93,10 +93,21 @@ export class GameScreen extends UIScreen {
 
     protected onDisable(): void {
         this._resetLivesAnimation();
+        this._clearWrongMarkers();
     }
     private _progressConfigured = false;
     private _progressTotal = 0;
     private readonly _markers: Node[] = [];
+    private readonly _wrongMarkers = new Set<Node>();
+    private _wrongFrame: Promise<SpriteFrame> | null = null;
+
+    private _loadWrongFrame(): Promise<SpriteFrame> {
+        if (!this._wrongFrame) {
+            this._wrongFrame = this.flow.loadSpriteFrame('textures/UI_Sprite/V3/icons/icon_Erro/spriteFrame')
+                .catch(error => { this._wrongFrame = null; throw error; });
+        }
+        return this._wrongFrame;
+    }
     private _setupToken = 0;
     private _zoomScale = 1;
     private _pinchStartDistance = 0;
@@ -106,12 +117,13 @@ export class GameScreen extends UIScreen {
     private readonly _lastTouch = new Vec2();
 
     protected onLoad(): void {
+        void this._loadWrongFrame().catch(error => console.warn('[GameScreen] 错误图标预加载失败', error));
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showSettings(true));
         this.wireButton(this.btnHint, 'BtnHint', () => {
             void this.flow.requestHint();
         });
         this.wireButton(this.btnAddTime, 'BtnAddTime', () => {
-            void this.flow.requestReward('add-time', () => this.flow.addTime(30));
+            void this.flow.requestAddTime();
         });
         this.wireButton(this.btnZoom, 'BtnZoom', () => this._toggleZoom());
 
@@ -128,6 +140,7 @@ export class GameScreen extends UIScreen {
         this._level = level;
         const token = ++this._setupToken;
         this._clearMarkers();
+        this._clearWrongMarkers();
         this._setZoom(1);
         this._progressConfigured = false;
         this._progressTotal = 0;
@@ -154,8 +167,23 @@ export class GameScreen extends UIScreen {
     /** 刷新顶部信息栏。由 GameFlow 在倒计时与状态变化时调用。 */
     public refreshHud(): void {
         const flow = this.flow;
-        const hintLabel = this.resolveNode(this.btnHint, 'BtnHint')?.getComponentInChildren(Label);
-        if (hintLabel) hintLabel.string = flow.save.freeHints > 0 ? `提示(${flow.save.freeHints})` : '提示';
+        for (const [button, name, count, canWatchAd] of [
+            [this.btnHint, 'BtnHint', flow.save.freeHints, flow.canWatchHintAd],
+            [this.btnAddTime, 'BtnAddTime', flow.save.freeAddTimes, flow.canWatchAddTimeAd],
+        ] as const) {
+            const root = this.resolveNode(button, name);
+            if (!root) continue;
+            const tipsIcon = this.findChildDeep(root, 'icon_Tips01');
+            const videoIcon = this.findChildDeep(root, 'icon_videoplay');
+            if (tipsIcon) tipsIcon.active = count > 0;
+            if (videoIcon) videoIcon.active = count === 0 && canWatchAd;
+            const sprite = root.getComponent(Sprite);
+            if (sprite) sprite.grayscale = count === 0 && !canWatchAd;
+            const timesNode = root ? this.findChildDeep(root, 'Times') : null;
+            if (timesNode) timesNode.active = count > 0;
+            const times = timesNode?.getComponent(Label) ?? timesNode?.getComponentInChildren(Label);
+            if (times) times.string = count > 0 ? String(count) : '';
+        }
 
         const timer = this.resolveLabel(this.timerLabel, 'Timer');
         if (timer) {
@@ -273,21 +301,51 @@ export class GameScreen extends UIScreen {
             .start();
     }
 
-    /** 在点错位置绘制短暂的红叉。 */
+    /** 80×80错误图标：弹出、左右抖动、淡出；缩放图片时保持图标尺寸。 */
     public drawWrongMarker(localPosition: Vec3, imageNode: Node): void {
         const marker = new Node('WrongMarker');
         marker.setPosition(localPosition);
         marker.parent = imageNode;
-        const graphics = marker.addComponent(Graphics);
-        graphics.lineWidth = 7;
-        graphics.strokeColor = UIColors.red;
-        graphics.moveTo(-18, -18);
-        graphics.lineTo(18, 18);
-        graphics.moveTo(-18, 18);
-        graphics.lineTo(18, -18);
-        graphics.stroke();
+        marker.layer = imageNode.layer;
+        marker.addComponent(UITransform).setContentSize(80, 80);
+        const sprite = marker.addComponent(Sprite);
+        sprite.sizeMode = Sprite.SizeMode.CUSTOM;
         const opacity = marker.addComponent(UIOpacity);
-        tween(opacity).delay(0.3).to(0.35, { opacity: 0 }).call(() => marker.destroy()).start();
+        this._wrongMarkers.add(marker);
+        void this._loadWrongFrame().then(frame => {
+            if (!marker.isValid || !this._wrongMarkers.has(marker) || !this.node.activeInHierarchy) return;
+            sprite.spriteFrame = frame;
+            const scale = 1 / Math.max(0.01, imageNode.scale.x);
+            marker.setScale(scale * 0.7, scale * 0.7, 1);
+            tween(marker)
+                .to(0.1, { scale: new Vec3(scale, scale, 1) }, { easing: 'backOut' })
+                .to(0.05, { angle: -12 })
+                .to(0.05, { angle: 12 })
+                .to(0.05, { angle: -8 })
+                .to(0.05, { angle: 8 })
+                .to(0.05, { angle: 0 })
+                .start();
+            tween(opacity).delay(0.45).to(0.25, { opacity: 0 }).call(() => {
+                Tween.stopAllByTarget(marker);
+                this._wrongMarkers.delete(marker);
+                marker.destroy();
+            }).start();
+        }).catch(error => {
+            this._wrongMarkers.delete(marker);
+            if (marker.isValid) marker.destroy();
+            console.warn('[GameScreen] 错误图标加载失败', error);
+        });
+    }
+
+    private _clearWrongMarkers(): void {
+        for (const marker of this._wrongMarkers) {
+            if (!marker.isValid) continue;
+            Tween.stopAllByTarget(marker);
+            const opacity = marker.getComponent(UIOpacity);
+            if (opacity) Tween.stopAllByTarget(opacity);
+            marker.destroy();
+        }
+        this._wrongMarkers.clear();
     }
 
     private _onImageTouch(event: EventTouch, imageNode: Node): void {

@@ -12,6 +12,8 @@ const DEFAULT_SAVE: SaveData = {
     achievements: {},
     musicEnabled: true,
     soundEnabled: true,
+    freeHints: 2,
+    freeAddTimes: 2,
 };
 
 /**
@@ -48,8 +50,60 @@ export class SaveService {
         return typeof value === 'number' && Number.isSafeInteger(value) && value > 0 ? value : 0;
     }
 
+    public get freeAddTimes(): number {
+        const value = this._data.freeAddTimes;
+        return typeof value === 'number' && Number.isSafeInteger(value) && value > 0 ? value : 0;
+    }
+
+    /** 奖励、收集统一写入玩家库存，失败时回滚。 */
+    public grantAssist(kind: 'hint' | 'add-time', amount = 1): boolean {
+        const field = kind === 'hint' ? 'freeHints' : 'freeAddTimes';
+        const count = kind === 'hint' ? this.freeHints : this.freeAddTimes;
+        if (!Number.isSafeInteger(amount) || amount <= 0 || !Number.isSafeInteger(count + amount)) return false;
+        const previous = this._data;
+        this._data = { ...previous, [field]: count + amount };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
+    public consumeAddTime(): boolean {
+        if (!this.freeAddTimes) return false;
+        const previous = this._data;
+        this._data = { ...previous, freeAddTimes: this.freeAddTimes - 1 };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
     public hasClaimedSidebar(day: string): boolean {
         return typeof this._data.sidebarClaimDay === 'string' && this._data.sidebarClaimDay >= day;
+    }
+
+    /** Consume the first-failure protection even if ads are unavailable or cooling down. */
+    public protectFirstFailure(day: string): boolean {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) return true;
+        if (typeof this._data.firstFailureInterstitialDay === 'string'
+            && this._data.firstFailureInterstitialDay >= day) return false;
+        this._data = { ...this._data, firstFailureInterstitialDay: day };
+        // Keep the protection in memory on a failed write; a new session will protect again.
+        this._persist();
+        return true;
+    }
+
+    public hasClaimedFavorite(day: string): boolean {
+        return typeof this._data.favoriteClaimDay === 'string' && this._data.favoriteClaimDay >= day;
+    }
+
+    public claimFavorite(day: string, amount = 2): 'claimed' | 'already-claimed' | 'storage-error' {
+        if (this.hasClaimedFavorite(day)) return 'already-claimed';
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isSafeInteger(amount) || amount <= 0
+            || !Number.isSafeInteger(this.freeHints + amount)) return 'storage-error';
+        const previous = this._data;
+        this._data = { ...previous, freeHints: this.freeHints + amount, favoriteClaimDay: day };
+        if (this._persist()) return 'claimed';
+        this._data = previous;
+        return 'storage-error';
     }
 
     /** Save the reward and claim marker together; don't grant on a failed write. */
@@ -150,6 +204,8 @@ export class SaveService {
     /** 启动校准：积分与实际通关集合对齐（防御冗余字段漂移）。 */
     private _normalize(): void {
         this._recountScore();
+        // 首次赠送写入存档，库存耗尽后不会在下次启动重新赠送。
+        this._persist();
     }
 
     private _recountScore(): void {

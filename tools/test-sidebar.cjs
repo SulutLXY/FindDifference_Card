@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const ts = require('D:/CocosCreator/v3.8.8/resources/app.asar.unpacked/node_modules/typescript');
+const ts = require('D:/Cocos/cocoseditors/Creator/3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const root = path.resolve(__dirname, '..');
 function load(file, deps = {}, logger = console) {
     const exports = {};
@@ -113,11 +113,16 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     assert.equal(bridgeContext.__findDifferenceSidebar.listeners.length, 0);
 
     // Actual SaveService and GameFlow claim/consume methods, with memory-only storage.
+    raw = JSON.stringify({ freeHints: 0, freeAddTimes: 0 });
     const flow = Object.create(GameFlow.prototype);
+    flow._hintAdsUsed = 0;
+    flow._addTimeAdsUsed = 0;
+    flow.hintAdsPerLevel = 2;
+    flow.addTimeAdsPerLevel = 2;
     flow.save = new SaveService();
     flow.platform = { sidebar: { supported: true, fromSidebarToday: false } };
     flow.toast = () => {};
-    assert.equal(flow.save.freeHints, 0, 'existing saves default to no inventory');
+    assert.equal(flow.save.freeHints, 0, 'existing exhausted inventory is preserved');
     assert.equal(flow.claimSidebarReward(), false);
     flow.platform.sidebar.fromSidebarToday = true;
     assert.equal(flow.claimSidebarReward(), true);
@@ -167,7 +172,18 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     assert.equal(flow.save.claimSidebar('2098-12-31', 2), 'already-claimed', 'clock rollback blocked');
     assert.equal(flow.save.claimSidebar('2099-01-02', 2), 'claimed');
     assert.equal(new SaveService().freeHints, 4);
-    assert.equal(saveWarnings.length, 3, 'all injected storage failures reported');
+    assert.equal(flow.save.claimFavorite('2099-01-02', 2), 'claimed');
+    assert.equal(flow.save.freeHints, 6, 'favorites and sidebar rewards are independent');
+    assert.equal(new SaveService().hasClaimedFavorite('2099-01-02'), true);
+    assert.equal(flow.save.claimFavorite('2099-01-02', 2), 'already-claimed');
+    assert.equal(flow.save.claimFavorite('2099-01-01', 2), 'already-claimed');
+    failWrite = true;
+    assert.equal(flow.save.claimFavorite('2099-01-03', 2), 'storage-error');
+    assert.equal(flow.save.freeHints, 6);
+    assert.equal(flow.save.hasClaimedFavorite('2099-01-03'), false);
+    failWrite = false;
+    assert.equal(flow.save.claimFavorite('2099-01-03', 2), 'claimed');
+    assert.equal(saveWarnings.length, 4, 'all injected storage failures reported');
 
     // Drive the real gift component through its user flow, with lightweight Cocos UI doubles.
     class Transform { setContentSize(w, h) { this.width = w; this.height = h; } }
@@ -184,17 +200,29 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
         get activeInHierarchy() { return this.active && (!this.parent || this.parent.activeInHierarchy); }
         addComponent(type) { const part = new type(); this.parts.set(type, part); return part; }
         getComponent(type) { return this.parts.get(type); }
+        getComponentInChildren(type) { return this.getComponent(type) || this.children.map(c => c.getComponentInChildren(type)).find(Boolean); }
         setPosition() {} setSiblingIndex() {}
         on(name, callback, owner) { this.events[name] = callback.bind(owner); }
+        off(name) { delete this.events[name]; }
         destroy() { this.isValid = false; }
     }
-    class UIScreen { schedule() {} }
+    class UIScreen {
+        schedule() {}
+        findChildDeep(root, name) {
+            for (const child of root.children) {
+                if (child.name === name) return child;
+                const found = this.findChildDeep(child, name);
+                if (found) return found;
+            }
+            return null;
+        }
+    }
     const { SidebarGift } = load('assets/scripts/ui/SidebarGift.ts', {
         cc: { _decorator: { ccclass: decorator }, Node, Label, Color, Graphics, UITransform: Transform,
             BlockInputEvents: class {}, Input: { EventType: { TOUCH_END: 'click' } } },
         '../services/SidebarService': sidebarModule, './UIScreen': { UIScreen },
     });
-    raw = null;
+    raw = JSON.stringify({ freeHints: 0, freeAddTimes: 0 });
     const uiRuntime = sdkHost();
     const uiSidebar = new SidebarService(uiRuntime.host);
     await uiSidebar.start();
@@ -206,10 +234,13 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     gift.node = new Node('Gameflow');
     gift.node.parent = new Node('Lobby');
     gift.node.addComponent(Transform);
+    const firstModal = new Node('ADDGameflow'); firstModal.parent = gift.node.parent;
+    const firstAction = new Node('BtnReview'); firstAction.parent = firstModal; firstAction.addComponent(Label);
+    const firstTips = new Node('Tips'); firstTips.parent = firstModal; firstTips.addComponent(Label);
     gift.onLoad();
     gift.node.events.click();
     assert.equal(gift._modal.active, true);
-    assert.equal(gift._action.string, '去首页侧边栏');
+    assert.equal(gift._action.string, '去侧边栏');
     await gift._performAction();
     assert.equal(gift._modal.active, false);
     assert.equal(flow.save.freeHints, 0);
@@ -220,11 +251,33 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     await gift._performAction();
     assert.equal(flow.save.freeHints, 2);
     assert.equal(gift._action.string, '今日已领取');
-    assert.equal(gift._inventory.string, '当前免费提示：2 次');
     gift.onDisable();
     assert.equal(gift._modal.active, false, 'leaving lobby closes dialog');
     gift.onDestroy();
-    assert.equal(gift._modal.isValid, false);
+    assert.equal(gift._modal.isValid, true, 'designed scene panel survives component cleanup');
+    // Designed scene modal: preserve ownership and reuse identical eligibility rules.
+    const canvas = new Node('Canvas');
+    const designed = new Node('ADDGameflow'); designed.parent = canvas; designed.active = false;
+    const action = new Node('BtnReview'); action.parent = designed; action.addComponent(Label);
+    const tips = new Node('Tips'); tips.parent = designed; tips.addComponent(Label);
+    const close = new Node('BtnClose'); close.parent = designed;
+    const step = new Node('Title-003'); step.parent = designed; step.addComponent(Label);
+    const entry = new Node('Entry'); entry.parent = canvas;
+    const customGift = new SidebarGift(); customGift.flow = flow; customGift.node = entry;
+    customGift.isValid = true; customGift.onLoad();
+    customGift.openGift();
+    assert.equal(canvas.children.filter(n => n.name === 'SidebarGiftModal').length, 0, 'legacy popup never generated');
+    assert.equal(customGift._modal, designed);
+    assert.equal(action.active, false, 'already claimed hides claim button');
+    assert.equal(tips.getComponent(Label).string, '今日已领取，明日再来');
+    raw = JSON.stringify({ freeHints: 0 }); flow.save = new SaveService();
+    customGift.refresh(); assert.equal(action.active, true);
+    assert.equal(action.getComponent(Label).string, '领取奖励');
+    await customGift._performAction();
+    assert.equal(flow.save.freeHints, 2); assert.equal(action.active, false);
+    close.events.click(); assert.equal(designed.active, false);
+    customGift.onDestroy(); assert.equal(designed.isValid, true, 'scene modal is never destroyed');
+    assert.equal(close.events.click, undefined, 'scene handlers removed');
     uiSidebar.dispose();
     console.log('PASS: startup bridge, latest return source, support/failure/timeout, daily rollover, persistence, duplicate claims, free hints and ad fallback.');
     console.log('PASS: lobby entry -> guide -> jump -> return -> claim -> already claimed; dialog cleanup.');

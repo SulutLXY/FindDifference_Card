@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const ts = require('D:/CocosCreator/v3.8.8/resources/app.asar.unpacked/node_modules/typescript');
+const ts = require(process.env.COCOS_TYPESCRIPT_PATH || 'D:/Cocos/cocoseditors/Creator/3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const source = fs.readFileSync(path.join(__dirname, '../assets/scripts/services/PlayerInfoService.ts'), 'utf8');
 const exportsObject = {};
 vm.runInNewContext(ts.transpileModule(source, { compilerOptions: {
@@ -11,6 +11,14 @@ vm.runInNewContext(ts.transpileModule(source, { compilerOptions: {
 } }).outputText, { exports: exportsObject, setTimeout, clearTimeout });
 const Service = exportsObject.PlayerInfoService;
 (async () => {
+    const harmony = new Service(()=>'douyin',{tt:{getSystemInfoSync:()=>({platform:'openHarmony'})}});
+    assert.equal(harmony.isOpenHarmony,true);
+    const android = new Service(()=>'douyin',{tt:{getSystemInfoSync:()=>({platform:'android'})}});
+    assert.equal(android.isOpenHarmony,false);
+    const asyncHarmony = new Service(()=>'douyin',{tt:{getSystemInfoSync:()=>{throw Error('sync unavailable');},getSystemInfo:o=>o.success({platform:'openHarmony'})}});
+    assert.equal(asyncHarmony.isOpenHarmony,false);
+    await asyncHarmony.getSystemInfo();
+    assert.equal(asyncHarmony.isOpenHarmony,true);
     const calls = [];
     const tt = {
         getSystemInfo: o => o.success({ appName: 'Douyin', model: 'test', screenWidth: 390, secret: 'omit' }),
@@ -24,9 +32,11 @@ const Service = exportsObject.PlayerInfoService;
     const profile = await service.requestProfile();
     assert.equal(profile.data.nickName,'玩家');
     assert.equal(profile.data.gender,undefined);
-    assert.equal(JSON.stringify(calls),JSON.stringify([['login',false],['profile',false]]));
+    assert.equal(JSON.stringify(calls),JSON.stringify([['login',true],['profile',false]]));
+    assert.equal(service.profile.nickName, '玩家');
     tt.login = o => o.success({anonymousCode:'guest-ticket'});
     assert.equal((await service.requestProfile()).reason,'not_logged_in');
+    assert.equal(service.profile, null);
     assert.equal(calls.length,2);
     tt.login = o => o.fail({errMsg:'cancel'});
     assert.equal((await service.login()).reason,'failed');
@@ -39,8 +49,14 @@ const Service = exportsObject.PlayerInfoService;
     tt.login = o => o.success({code:'ok'});
     tt.getUserInfo = o => o.fail({errMsg:'denied'});
     assert.equal((await service.requestProfile()).reason,'failed');
+    assert.match((await service.requestProfile()).message, /denied/);
     tt.getUserInfo = o => o.success({userInfo:{}});
     assert.equal((await service.requestProfile()).reason,'invalid_response');
+    let profileRequested = false;
+    tt.getSetting = o => o.success({authSetting:{'scope.userInfo':false}});
+    tt.getUserInfo = () => { profileRequested = true; };
+    assert.match((await service.requestProfile()).message, /更多 → 设置/);
+    assert.equal(profileRequested, false);
     const wechat = new Service(()=>'wechat',{tt,wx:{login:o=>o.success({code:'wx-code'})}});
     assert.equal((await wechat.login()).data.code,'wx-code');
     assert.equal((await wechat.requestProfile()).reason,'unsupported');

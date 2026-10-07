@@ -17,6 +17,8 @@ export class SettingsModal extends UIScreen {
     }
 
     public present(inGame: boolean): void {
+        const moneyTool = this.findChildDeep(this.node, 'moneyTool');
+        if (moneyTool) moneyTool.active = inGame;
         this.open();
         this.node.setSiblingIndex(this.node.parent!.children.length - 1);
         for (const [name, active] of [['show', !inGame], ['BtnClose', true], ['BtnHome', inGame], ['BtnPrimary', inGame]] as const) {

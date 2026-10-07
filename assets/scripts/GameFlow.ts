@@ -47,6 +47,7 @@ import { RankScreen } from './ui/RankScreen';
 import { ResultModal } from './ui/ResultModal';
 import { SettingsModal } from './ui/SettingsModal';
 import { UIAnimationBinding } from './ui/UIAnimationBinding';
+import { TouchPointEffect } from './ui/TouchPointEffect';
 
 const { ccclass, property } = _decorator;
 
@@ -110,6 +111,11 @@ export class GameFlow extends Component {
     private _combo = 0;
     private _lastFoundAt = 0;
     private _comboSource: AudioSource | null = null;
+    private _clickSource: AudioSource | null = null;
+    private _resultSource: AudioSource | null = null;
+    private readonly _resultClips = new Map<boolean, Promise<AudioClip>>();
+    private _resultSoundRequest = 0;
+    private _musicVolumeBeforeResult: number | null = null;
     private readonly _comboClips = new Map<number, Promise<AudioClip>>();
     private _comboSoundRequest = 0;
     private readonly _spriteFrameCache = new Map<string, SpriteFrame>();
@@ -186,6 +192,10 @@ export class GameFlow extends Component {
         }
         const uiRoot = this.node.parent;
         if (uiRoot && !uiRoot.getComponent(UIAnimationBinding)) uiRoot.addComponent(UIAnimationBinding);
+        if (uiRoot) {
+            const touchPoint = uiRoot.getComponent(TouchPointEffect) ?? uiRoot.addComponent(TouchPointEffect);
+            touchPoint.playClickSound = () => this.playClickSound();
+        }
         const settings = this.node.parent?.getChildByName('Settings');
         if (settings) {
             settings.active = false;
@@ -197,6 +207,18 @@ export class GameFlow extends Component {
         this._comboSource = this.node.addComponent(AudioSource);
         this._comboSource.playOnAwake = false;
         this._comboSource.loop = false;
+        this._clickSource = this.node.addComponent(AudioSource);
+        this._clickSource.playOnAwake = false;
+        this._clickSource.loop = false;
+        this._resultSource = this.node.addComponent(AudioSource);
+        this._resultSource.playOnAwake = false;
+        this._resultSource.loop = false;
+        this.node.on(AudioSource.EventType.STARTED, this._onResultAudioStarted, this);
+        this.node.on(AudioSource.EventType.ENDED, this._onResultAudioEnded, this);
+        for (const win of [true, false]) {
+            void this._loadResultClip(win).catch(error => console.warn('[GameFlow] 结算音效预加载失败', error));
+        }
+        void this._loadComboClip(0).catch(error => console.warn('[GameFlow] 点击音效预加载失败', error));
         view.setDesignResolutionSize(750, 1334, ResolutionPolicy.SHOW_ALL);
     }
 
@@ -281,6 +303,8 @@ export class GameFlow extends Component {
             this._settingsOpenedAt = Date.now();
         }
         this._settings.present(inGame);
+        // Lobby entries attempt on every click; in-game settings retain the cooldown.
+        void this.platform.showInterstitial(() => this.isValid && !!this._settings?.node.activeInHierarchy, !inGame);
     }
 
     public closeSettings(): void {
@@ -307,13 +331,37 @@ export class GameFlow extends Component {
     public setSoundEnabled(enabled: boolean): void {
         this.save.setSoundEnabled(enabled);
         if (!enabled) {
+            this._stopResultTone();
             this._comboSoundRequest++;
             this._comboSource?.stop();
         }
     }
 
     public showRank(): void {
+        if (this.platform.isHarmony) return;
+        if (this.platform.kind === 'douyin') {
+            void this._showNativeRank();
+            return;
+        }
         this._switchTo(this.rank);
+        void this.platform.showInterstitial(() => this.isValid && !!this.rank?.node.activeInHierarchy, true);
+    }
+
+    private _openingNativeRank = false;
+
+    private async _showNativeRank(): Promise<void> {
+        if (this._openingNativeRank) return;
+        this._openingNativeRank = true;
+        try {
+            const caller = this.lobby?.node;
+            await this.platform.showInterstitial(() => this.isValid && !!caller?.activeInHierarchy, true);
+            if (!this.isValid || !caller?.activeInHierarchy) return;
+            const result = await this.rankProvider.openNative?.();
+            if (!result?.success) this.toast(result?.message ?? '当前环境不支持抖音排行榜');
+        } catch (error) {
+            console.warn('[GameFlow] 原生排行榜打开失败', error);
+            this.toast('排行榜打开失败，请重试');
+        } finally { this._openingNativeRank = false; }
     }
 
     /** 收藏页。 */
@@ -325,6 +373,7 @@ export class GameFlow extends Component {
 
     public showCollect(): void {
         this._switchTo(this.collect);
+        void this.platform.showInterstitial(() => this.isValid && !!this.collect?.node.activeInHierarchy, true);
     }
 
     /** 城市列表页。 */
@@ -400,12 +449,16 @@ export class GameFlow extends Component {
         this._isPaused = false;
         this._isGameOver = false;
         this._reviveUsed = false;
+        this._assistRoundVersion++;
+        this._hintAdsUsed = 0;
+        this._addTimeAdsUsed = 0;
         this.resultModal?.close();
         this._switchTo(this.game);
         void this.game?.setupLevel(level);
     }
 
     private _switchTo(screen: LobbyScreen | CitySelectScreen | LevelSelectScreen | GameScreen | RankScreen | CollectScreen | null): void {
+        this._stopResultTone();
         this._foodTips?.close();
         this._settings?.close();
         this._settingsInGame = false;
@@ -461,11 +514,16 @@ export class GameFlow extends Component {
     }
 
     protected onDestroy(): void {
+        this._stopResultTone();
+        this.node.off(AudioSource.EventType.STARTED, this._onResultAudioStarted, this);
+        this.node.off(AudioSource.EventType.ENDED, this._onResultAudioEnded, this);
+        this._resultClips.clear();
         this.platform.sidebar.dispose();
         this._musicRequest++;
         this._comboSoundRequest++;
         this._comboSource?.stop();
         this._comboClips.clear();
+        this._clickSource?.stop();
         this._musicSource?.stop();
         this._musicClips.clear();
         if (GameFlow._instance === this) GameFlow._instance = null;
@@ -565,6 +623,16 @@ export class GameFlow extends Component {
         return pending;
     }
 
+    /** 每次按下独立播放，连续点击不会截断上一声或影响连击音效。 */
+    public playClickSound(): void {
+        if (!this.save.data.soundEnabled) return;
+        void this._loadComboClip(0).then(clip => {
+            const source = this._clickSource;
+            if (!this.isValid || !this.enabledInHierarchy || !source?.isValid || !this.save.data.soundEnabled) return;
+            source.playOneShot(clip);
+        }).catch(error => console.warn('[GameFlow] 点击音效播放失败', error));
+    }
+
     /** 连击音效逐级递增，超过现有五档后保持最高档。 */
     public playSuccessTone(combo: number): void {
         const request = ++this._comboSoundRequest;
@@ -580,8 +648,30 @@ export class GameFlow extends Component {
     }
 
     public useHint(): void {
+        if (this._isGameOver) return;
         const target = this._currentLevel?.differences.find(item => !this._foundIds.has(item.id));
-        if (target) this.onDifferenceFound(target);
+        if (target) {
+            this.onDifferenceFound(target);
+            this.game?.refreshHud();
+        }
+    }
+
+    private _assistRoundVersion = 0;
+    private _hintAdsUsed = 0;
+    private _addTimeAdsUsed = 0;
+
+    @property({ tooltip: '每关提示广告次数上限' })
+    public hintAdsPerLevel = 2;
+
+    @property({ tooltip: '每关加时广告次数上限' })
+    public addTimeAdsPerLevel = 1;
+
+    public get canWatchHintAd(): boolean {
+        return this._hintAdsUsed < this.hintAdsPerLevel;
+    }
+
+    public get canWatchAddTimeAd(): boolean {
+        return this._addTimeAdsUsed < this.addTimeAdsPerLevel;
     }
 
     public async requestHint(): Promise<void> {
@@ -596,7 +686,15 @@ export class GameFlow extends Component {
             this.game.refreshHud();
             return;
         }
-        await this.requestReward('hint', () => this.useHint());
+        if (!this.canWatchHintAd) { this.toast('免费次数已用完'); return; }
+        const round = this._assistRoundVersion;
+        await this.requestReward('hint', () => {
+            if (!this.save.grantAssist('hint')) { this.toast('保存失败，请稍后再试'); return; }
+            if (round === this._assistRoundVersion) this._hintAdsUsed++;
+            if (round === this._assistRoundVersion && !this._isGameOver && this.game?.node.activeInHierarchy
+                && this.save.consumeFreeHint()) this.useHint();
+            this.game?.refreshHud();
+        });
     }
 
     public claimSidebarReward(): boolean {
@@ -612,13 +710,89 @@ export class GameFlow extends Component {
     }
 
     public addTime(seconds: number): void {
+        if (this._isGameOver || !Number.isFinite(seconds) || seconds <= 0) return;
         this._remainingTime += seconds;
         this.game?.refreshHud();
+    }
+
+    public async requestAddTime(): Promise<void> {
+        if (this._isPaused || this._isGameOver || !this.game?.node.activeInHierarchy) return;
+        if (this.save.freeAddTimes > 0) {
+            if (!this.save.consumeAddTime()) { this.toast('保存失败，请稍后再试'); return; }
+            this.addTime(30);
+            return;
+        }
+        if (!this.canWatchAddTimeAd) { this.toast('免费次数已用完'); return; }
+        const round = this._assistRoundVersion;
+        await this.requestReward('add-time', () => {
+            if (!this.save.grantAssist('add-time')) { this.toast('保存失败，请稍后再试'); return; }
+            if (round === this._assistRoundVersion) this._addTimeAdsUsed++;
+            if (round === this._assistRoundVersion && !this._isGameOver && this.game?.node.activeInHierarchy
+                && this.save.consumeAddTime()) this.addTime(30);
+            this.game?.refreshHud();
+        });
+    }
+
+    private _loadResultClip(win: boolean): Promise<AudioClip> {
+        const cached = this._resultClips.get(win);
+        if (cached) return cached;
+        const path = `voice/ResultSound/level-${win ? 'victory' : 'failure'}`;
+        const pending = new Promise<AudioClip>((resolve, reject) => {
+            resources.load(path, AudioClip, (error, clip) => {
+                if (error) {
+                    this._resultClips.delete(win);
+                    reject(error);
+                } else resolve(clip);
+            });
+        });
+        this._resultClips.set(win, pending);
+        return pending;
+    }
+
+    private _onResultAudioStarted(source: AudioSource): void {
+        if (source !== this._resultSource || this._musicVolumeBeforeResult !== null) return;
+        const music = this._musicSource;
+        if (!music?.isValid) return;
+        this._musicVolumeBeforeResult = music.volume;
+        music.volume = this._musicVolumeBeforeResult * 0.5;
+    }
+
+    private _onResultAudioEnded(source: AudioSource): void {
+        // 多个音源挂在同一节点；点击音效或连击音效结束不恢复背景音乐。
+        if (source === this._resultSource) this._restoreResultMusicVolume();
+    }
+
+    private _restoreResultMusicVolume(): void {
+        if (this._musicVolumeBeforeResult === null) return;
+        if (this._musicSource?.isValid) this._musicSource.volume = this._musicVolumeBeforeResult;
+        this._musicVolumeBeforeResult = null;
+    }
+
+    private _stopResultTone(): void {
+        this._resultSoundRequest++;
+        this._resultSource?.stop();
+        this._restoreResultMusicVolume();
+    }
+
+    private _playResultTone(win: boolean): void {
+        this._stopResultTone();
+        this._comboSoundRequest++;
+        this._comboSource?.stop();
+        if (!this.save.data.soundEnabled) return;
+        const request = this._resultSoundRequest;
+        void this._loadResultClip(win).then(clip => {
+            const source = this._resultSource;
+            if (!this.isValid || !this.enabledInHierarchy || !source?.isValid
+                || request !== this._resultSoundRequest || !this.save.data.soundEnabled) return;
+            source.clip = clip;
+            source.play();
+        }).catch(error => console.warn('[GameFlow] 结算音效播放失败', error));
     }
 
     public finishLevel(win: boolean): void {
         if (this._isGameOver || !this._currentLevel) return;
         this._isGameOver = true;
+        this._playResultTone(win);
 
         const level = this._currentLevel;
         let stars = 0;
@@ -639,10 +813,14 @@ export class GameFlow extends Component {
             hasNext: win && this.findNextLevel(level) !== null,
         });
         if (win && (level.type === 'food' || this._foods.some(food => food.levelKey === level.key))) this.showFoodTips(level, true);
+        void this.platform.onRoundFinished(() => this.isValid && this._isGameOver && !this._isPaused
+            && this._currentLevel === level && !!this.resultModal?.node.activeInHierarchy);
     }
+
 
     public revive(): void {
         if (!this._isGameOver) return;
+        this._stopResultTone();
         this._reviveUsed = true;
         this._lives = 1;
         this._remainingTime = Math.max(this._remainingTime, 30);

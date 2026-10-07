@@ -20,6 +20,7 @@ import {
 } from 'cc';
 import { RankEntry, RankProvider } from '../services/rank/RankProvider';
 import { UIColors, UIScreen } from './UIScreen';
+import { RANK_LIMIT } from '../services/rank/NpcRankPool';
 
 const { ccclass, property } = _decorator;
 
@@ -76,6 +77,10 @@ export class RankScreen extends UIScreen {
     private _items: Node[] = [];
     private _content: Node | null = null;
     private _provider: RankProvider | null = null;
+    private _refreshRequest = 0;
+    private _status: Label | null = null;
+    private _selfRank = 0;
+    private _profileLoading = false;
 
     protected onLoad(): void {
         this._provider = this.flow.rankProvider;
@@ -83,6 +88,9 @@ export class RankScreen extends UIScreen {
         this.wireButton(this.tabFriend, 'TabFriend', () => this._switchTab('friend'));
         this.wireButton(this.tabGlobal, 'TabGlobal', () => this._switchTab('global'));
         this._setupScrollContainer();
+        if (this.flow.platform.kind === 'douyin') {
+            this.wireButton(null, 'MyRank', () => { void this._requestProfile(); });
+        }
     }
 
     protected onOpen(): void {
@@ -102,6 +110,7 @@ export class RankScreen extends UIScreen {
     }
 
     protected onClose(): void {
+        this._refreshRequest++;
         this._clearItems();
     }
 
@@ -113,7 +122,6 @@ export class RankScreen extends UIScreen {
     }
 
     private _switchTab(tab: 'friend' | 'global'): void {
-        if (this._tab === tab) return;
         if (!this._requireProvider().supports(tab)) return;
         this._tab = tab;
         this._refreshTabStyle();
@@ -122,13 +130,19 @@ export class RankScreen extends UIScreen {
 
     /** 从适配层拉取榜单并渲染，刷新底部我的排名。 */
     private async _refresh(): Promise<void> {
+        const request = ++this._refreshRequest;
         this._clearItems();
-        const result = await this._requireProvider().fetch(this._tab);
-        if (!this.isValid) return;
+        if (this._status) this._status.node.active = true;
+        const provider = this._requireProvider();
+        this._selfRank = 0;
+        this._refreshPlayer();
+        if (this._status) this._status.string = '正在获取排行榜…';
+        const result = await provider.fetch(this._tab);
+        if (!this.isValid || !this.node.activeInHierarchy || request !== this._refreshRequest) return;
         if (!result.available) {
             // 数据不可用（如平台受限）：榜单留空，仅保留底部我的排名
-            this.setLabel(null, 'MyRank/Rank', '--');
-            this.setLabel(null, 'MyRank/Label-001', '--');
+            this.setLabel(this.myRankLabel, 'MyRank/Rank', '未上榜');
+            if (this._status) this._status.string = result.message ?? '排行榜获取失败，点击页签重试';
             return;
         }
 
@@ -136,7 +150,8 @@ export class RankScreen extends UIScreen {
         const container = this._content ?? root;
         const template = root.getChildByName('RankItem1');
 
-        result.entries.forEach((row, index) => {
+        const entries = result.entries.slice(0, RANK_LIMIT);
+        entries.forEach((row, index) => {
             let item: Node;
             if (template) {
                 item = instantiate(template);
@@ -150,12 +165,46 @@ export class RankScreen extends UIScreen {
             this._fillItem(item, row, index + 1);
         });
 
-        const myIndex = result.entries.findIndex(row => row.isSelf);
-        const myRow = myIndex >= 0 ? result.entries[myIndex] : null;
+        const myIndex = entries.findIndex(row => row.isSelf);
+        const myRow = myIndex >= 0 ? entries[myIndex] : result.self;
         // MyRank 结构：Label=标题（不刷新）、Rank=名次、Label-001=成绩、playerName=名字
-        this.setLabel(null, 'MyRank/Rank', myRow ? String(myIndex + 1) : '--');
-        this.setLabel(null, 'MyRank/Label-001', myRow ? `${myRow.passed}关` : '--');
+        this._selfRank = myIndex >= 0 ? myIndex + 1 : 0;
+        this.setLabel(this.myRankLabel, 'MyRank/Rank', this._selfRank ? String(this._selfRank) : '未上榜');
+        this.setLabel(null, 'MyRank/Label-001', `${myRow?.passed ?? this.flow.save.totalScore}关`);
+        if (this._status) this._status.string = result.message ?? (entries.length ? '仅展示前99位' : '暂无好友上榜');
+        container.getComponent(Layout)?.updateLayout();
         this._scrollToTop();
+    }
+
+    private _refreshPlayer(): void {
+        this.setLabel(this.myRankLabel, 'MyRank/Rank', this._selfRank ? String(this._selfRank) : '未上榜');
+        this.setLabel(null, 'MyRank/Label-001', `${this.flow.save.totalScore}关`);
+        const profile = this.flow.platform.playerInfo.profile;
+        this.setLabel(null, 'MyRank/playerName', profile?.nickName ?? '点击授权昵称头像');
+        const row = this.node.getChildByName('MyRank');
+        const avatar = row?.getChildByName('Icon _head');
+        if (avatar && profile?.avatarUrl) {
+            void this._loadRemoteAvatar(profile.avatarUrl).then(frame => {
+                if (avatar.isValid) {
+                    const sprite = avatar.getComponent(Sprite);
+                    if (sprite) sprite.spriteFrame = frame;
+                }
+            }).catch(() => undefined);
+        }
+    }
+
+    private async _requestProfile(): Promise<void> {
+        if (this._profileLoading) return;
+        this._profileLoading = true;
+        try {
+            const result = await this.flow.platform.playerInfo.requestProfile();
+            if (!this.isValid || !this.node.activeInHierarchy) return;
+            this._refreshPlayer();
+            if (result.success === false) {
+                this.flow.toast(result.message);
+                console.warn('[RankScreen] 玩家资料获取失败', result.reason, result.message);
+            }
+        } finally { this._profileLoading = false; }
     }
 
     private _fillItem(item: Node, row: RankEntry, rank: number): void {
@@ -180,6 +229,16 @@ export class RankScreen extends UIScreen {
 
         const name = item.getChildByName('PlayerName')?.getComponent(Label);
         if (name) name.string = row.name;
+        if (row.isNpc) {
+            const marker = new Node('NpcLabel');
+            marker.layer = item.layer;
+            item.addChild(marker);
+            marker.setPosition(-130, -30);
+            marker.addComponent(UITransform).setContentSize(65, 16);
+            const label = marker.addComponent(Label);
+            label.string = 'NPC'; label.fontSize = 12;
+            label.color = new Color(150, 123, 80, 255);
+        }
 
         const score = item.getChildByName('Score')?.getComponent(Label);
         if (score) score.string = `${row.passed}关`;
@@ -195,6 +254,7 @@ export class RankScreen extends UIScreen {
         const avatar = item.getChildByName('Avatar');
         if (!avatar) return;
         const apply = (frame: SpriteFrame): void => {
+            if (!avatar.isValid) return;
             let sprite = avatar.getComponent(Sprite);
             if (!sprite) sprite = avatar.addComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
@@ -254,6 +314,25 @@ export class RankScreen extends UIScreen {
         const root = this.resolveNode(this.listRoot, 'List');
         if (!root) return;
         const rootUi = root.getComponent(UITransform);
+        if (this.flow.platform.kind === 'douyin') {
+            const hint = new Node('RankStatus');
+            hint.layer = root.layer;
+            root.addChild(hint);
+            hint.addComponent(UITransform).setContentSize(rootUi?.width ?? 660, 34);
+            hint.setPosition(0, (1 - (rootUi?.anchorY ?? 0.5)) * (rootUi?.height ?? 817) - 17);
+            const label = hint.addComponent(Label);
+            label.string = '正在获取排行榜…';
+            label.fontSize = 24;
+            label.lineHeight = 36;
+            label.color = new Color(65, 72, 95, 255);
+            label.horizontalAlign = Label.HorizontalAlign.CENTER;
+            label.verticalAlign = Label.VerticalAlign.CENTER;
+            this._status = label;
+        }
+        // 编辑器内的示例条目只作为模板，不参与实际榜单显示。
+        for (const child of root.children) {
+            if (/^RankItem\d+$/.test(child.name)) child.active = false;
+        }
 
         if (!root.getComponent(Mask)) {
             const mask = root.addComponent(Mask);
@@ -268,15 +347,18 @@ export class RankScreen extends UIScreen {
         this._content = root.getChildByName('Content');
         if (!this._content) {
             this._content = new Node('Content');
+            this._content.layer = root.layer;
             this._content.parent = root;
             const ui = this._content.addComponent(UITransform);
             const size = rootUi?.contentSize ?? new Size(750, 1334);
             ui.setContentSize(size.width, size.height);
+            ui.setAnchorPoint(0.5, 1);
+            this._content.setPosition(0, (1 - (rootUi?.anchorY ?? 0.5)) * size.height);
             const layout = this._content.addComponent(Layout);
             layout.type = Layout.Type.VERTICAL;
             layout.resizeMode = Layout.ResizeMode.CONTAINER;
             layout.spacingY = 12;
-            layout.paddingTop = 10;
+            layout.paddingTop = this.flow.platform.kind === 'douyin' ? 44 : 10;
             layout.paddingBottom = 10;
         }
 
