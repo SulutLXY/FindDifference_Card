@@ -77,7 +77,7 @@ async function startup(previous, failStart = false, server = 'https://example.co
     const migrated = await startup('0.0.2.1');
     assert.deepEqual(migrated.events, ['init', 'clear', 'remote-bundles', 'scene']);
     assert.equal(migrated.f.data.get(STORAGE_KEY), config.version);
-    const codeOnly = await startup('0.0.3.0');
+    const codeOnly = await startup(`${generated.resourceVersion}.0`);
     assert.equal(codeOnly.f.clears(), 0);
     const failedStart = await startup('0.0.2.1', true);
     assert.equal(failedStart.f.data.get(STORAGE_KEY), '0.0.2.1');
