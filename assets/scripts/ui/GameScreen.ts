@@ -1,5 +1,6 @@
 import {
     _decorator,
+    Animation,
     Color,
     EventTouch,
     Graphics,
@@ -80,6 +81,42 @@ export class GameScreen extends UIScreen {
     public foundCountLabel: Label | null = null;
 
     private _level: LevelConfig | null = null;
+    private _reminderFound = 0;
+    private _lastFoundElapsed = 0;
+    private _hintReminder = false;
+    private _timeReminder = false;
+
+    protected update(): void {
+        if (!this._level) return;
+        const flow = this.flow;
+        const found = flow.foundIds.size;
+        if (found !== this._reminderFound) {
+            this._reminderFound = found;
+            this._lastFoundElapsed = flow.elapsedTime;
+        }
+        const playing = !flow.isPaused && !flow.isGameOver && !flow.platform.interstitialBusy;
+        const hint = playing && flow.elapsedTime - this._lastFoundElapsed >= 20;
+        const time = playing && flow.remainingTime < 30;
+        if (hint !== this._hintReminder) {
+            this._hintReminder = hint;
+            this._setReminderAnimation(this.resolveNode(this.btnHint, 'BtnHint'), hint);
+        }
+        if (time !== this._timeReminder) {
+            this._timeReminder = time;
+            this._setReminderAnimation(this.resolveNode(this.btnAddTime, 'BtnAddTime'), time);
+        }
+    }
+
+    private _setReminderAnimation(node: Node | null, play: boolean): void {
+        const animation = node?.getComponent(Animation);
+        const clip = animation?.clips[1];
+        if (!animation || !clip) return;
+        if (play) animation.play(clip.name);
+        else {
+            const state = animation.getState(clip.name);
+            if (state) { state.stop(); state.time = 0; state.sample(); }
+        }
+    }
     private _lastLives: number | null = null;
     private _livesTween: Tween<Node> | null = null;
     private _livesNode: Node | null = null;
@@ -92,6 +129,7 @@ export class GameScreen extends UIScreen {
     }
 
     protected onDisable(): void {
+        this.clearLevel();
         this._resetLivesAnimation();
         this._clearWrongMarkers();
     }
@@ -109,12 +147,37 @@ export class GameScreen extends UIScreen {
         return this._wrongFrame;
     }
     private _setupToken = 0;
+    private _levelFrames: SpriteFrame[] = [];
+
+    public clearLevel(): void {
+        if (this._hintReminder) this._setReminderAnimation(this.resolveNode(this.btnHint, 'BtnHint'), false);
+        if (this._timeReminder) this._setReminderAnimation(this.resolveNode(this.btnAddTime, 'BtnAddTime'), false);
+        this._hintReminder = false;
+        this._timeReminder = false;
+        this._reminderFound = 0;
+        this._lastFoundElapsed = 0;
+        ++this._setupToken;
+        this._level = null;
+        this._resetGesture();
+        this._ignoreTapUntilRelease = false;
+        this._clearMarkers();
+        this._clearWrongMarkers();
+        for (const name of ['TopImage', 'BottomImage']) {
+            const sprite = this._image(name)?.getComponent(Sprite);
+            if (sprite) sprite.spriteFrame = null;
+        }
+        for (const frame of this._levelFrames) frame.decRef();
+        this._levelFrames = [];
+    }
     private _zoomScale = 1;
     private _pinchStartDistance = 0;
     private _pinchStartScale = 1;
     private _gestureMoved = false;
     private _ignoreTapUntilRelease = false;
     private readonly _lastTouch = new Vec2();
+    private readonly _touchStart = new Vec2();
+    /** 触摸位移超过该 UI 像素值即视为滑动，不再触发点击判定。 */
+    private static readonly TAP_SLOP = 12;
 
     protected onLoad(): void {
         void this._loadWrongFrame().catch(error => console.warn('[GameScreen] 错误图标预加载失败', error));
@@ -134,7 +197,8 @@ export class GameScreen extends UIScreen {
     }
 
     /** 进入关卡：设置图片与文字，清理旧标记。由 GameFlow.startLevel 调用。 */
-    public async setupLevel(level: LevelConfig): Promise<void> {
+    public async setupLevel(level: LevelConfig, progress: (value: number) => void = () => {}): Promise<void> {
+        this.clearLevel();
         this._resetLivesAnimation();
         this._lastLives = null;
         this._level = level;
@@ -148,18 +212,23 @@ export class GameScreen extends UIScreen {
         this.setLabel(this.levelTitle, 'LevelTitle', level.name);
         this.refreshHud();
 
+        const frames: SpriteFrame[] = [];
         try {
-            const [topFrame, bottomFrame] = await Promise.all([
-                this.flow.loadSpriteFrame(level.topImage),
-                this.flow.loadSpriteFrame(level.bottomImage),
-            ]);
-            if (token !== this._setupToken) return;
+            for (const path of [level.topImage, level.bottomImage]) {
+                frames.push(await this.flow.acquireLevelFrame(path));
+                if (!this.isValid || token !== this._setupToken) throw new Error('关卡加载已取消');
+                progress(frames.length / 2);
+            }
+            const [topFrame, bottomFrame] = frames;
             const top = this.resolveNode(this.topImage, 'TopImage');
             const bottom = this.resolveNode(this.bottomImage, 'BottomImage');
             this._applySpriteFrame(top, topFrame);
             this._applySpriteFrame(bottom, bottomFrame);
+            this._levelFrames = frames;
         } catch (error) {
+            for (const frame of frames) frame.decRef();
             console.error(`[GameScreen] 关卡图片加载失败: ${level.topImage} / ${level.bottomImage}`, error);
+            throw error;
         }
         this.refreshHud();
     }
@@ -263,9 +332,46 @@ export class GameScreen extends UIScreen {
         }
     }
 
+    /**
+     * 胜利定格表现：命中标记按差异 x 坐标从左到右，依次放大 1.25 倍再缩回（单个脉冲 0.5 秒）。
+     * 多个标记波浪式错开启动，相邻间隔随差异数量自适应，保证整体不超过 2 秒；完成后回调。
+     */
+    public playVictoryWave(onComplete: () => void): void {
+        const level = this._level;
+        const differences = level ? level.differences.slice().sort((a, b) => a.x - b.x) : [];
+        const count = differences.length;
+        let started = false;
+        let done = false;
+        const finish = () => {
+            if (done) return;
+            done = true;
+            onComplete();
+        };
+        if (count === 0) { finish(); return; }
+        const pulse = 0.5;
+        const interval = count > 1 ? Math.min(pulse, (2 - pulse) / (count - 1)) : 0;
+        const half = pulse / 2;
+        for (let i = 0; i < count; i++) {
+            const last = i === count - 1;
+            // 同一差异在上下两张图上的标记同步脉冲
+            for (const image of [this._image('TopImage'), this._image('BottomImage')]) {
+                const marker = image?.getChildByName(`FoundMarker-${differences[i].id}`);
+                if (!marker) continue;
+                started = true;
+                tween(marker)
+                    .delay(i * interval)
+                    .to(half, { scale: new Vec3(1.25, 1.25, 1) }, { easing: 'quadOut' })
+                    .to(half, { scale: Vec3.ONE }, { easing: 'quadInOut' })
+                    .call(() => { if (last) finish(); })
+                    .start();
+            }
+        }
+        // 标记可能因界面状态缺失，一个都没播就直接完成，避免结算窗永不弹出
+        if (!started) finish();
+    }
+
     /** 连击激励文案表：5 级封顶，等级越高颜色越热、字号越大。 */
-    private static readonly COMBO_TIERS: Array<{ text: string; color: Color; size: number }> = [
-        { text: 'GOOD', color: new Color(255, 255, 255, 255), size: 48 },
+    private static readonly COMBO_TIERS: Array<{ text: string; color: Color; size: number }> = [        { text: 'GOOD', color: new Color(255, 255, 255, 255), size: 48 },
         { text: 'GREAT!', color: new Color(120, 220, 120, 255), size: 52 },
         { text: 'PERFECT!', color: new Color(249, 177, 34, 255), size: 56 },
         { text: 'AMAZING!!', color: new Color(255, 130, 60, 255), size: 60 },
@@ -348,6 +454,15 @@ export class GameScreen extends UIScreen {
         this._wrongMarkers.clear();
     }
 
+    /** 图片手势由命中判定播放音效，跳过全局按下音效。 */
+    public isImageTouchTarget(target: Node | null): boolean {
+        if (!this.node.activeInHierarchy) return false;
+        for (let node = target; node; node = node.parent) {
+            if (node === this.topImage || node === this.bottomImage) return true;
+        }
+        return false;
+    }
+
     private _onImageTouch(event: EventTouch, imageNode: Node): void {
         const level = this._level;
         if (!level || this.flow.isGameOver || this.flow.isPaused) return;
@@ -361,7 +476,11 @@ export class GameScreen extends UIScreen {
         const hit = DifferenceController.hitTest(normalized, level.differences, this.flow.foundIds, size.width, size.height);
         if (hit) {
             this.flow.onDifferenceFound(hit);
-        } else {
+            return;
+        }
+        // 重复点击已找到的位置：静默忽略，不扣生命
+        const alreadyFound = DifferenceController.hitTest(normalized, level.differences, this.flow.foundIds, size.width, size.height, true);
+        if (!alreadyFound) {
             this.flow.onWrongTap(local, imageNode);
         }
     }
@@ -384,6 +503,7 @@ export class GameScreen extends UIScreen {
         }
         const location = event.getUILocation();
         this._lastTouch.set(location.x, location.y);
+        this._touchStart.set(location.x, location.y);
     }
 
     private _onGestureMove(event: EventTouch): void {
@@ -402,6 +522,12 @@ export class GameScreen extends UIScreen {
         const dx = location.x - this._lastTouch.x;
         const dy = location.y - this._lastTouch.y;
         this._lastTouch.set(location.x, location.y);
+        // 从按下点起累计位移超阈值即视为滑动，即使未缩放也不触发点击
+        const totalDx = location.x - this._touchStart.x;
+        const totalDy = location.y - this._touchStart.y;
+        if (totalDx * totalDx + totalDy * totalDy >= GameScreen.TAP_SLOP * GameScreen.TAP_SLOP) {
+            this._gestureMoved = true;
+        }
         if (this._zoomScale <= 1 || dx * dx + dy * dy < 1) return;
 
         const top = this._image('TopImage');
@@ -441,6 +567,7 @@ export class GameScreen extends UIScreen {
 
     private _toggleZoom(): void {
         this._setZoom(this._zoomScale > 1 ? 1 : 1.8);
+        this.flow.playZoomSound();
     }
 
     private _setZoom(value: number): void {
@@ -492,6 +619,29 @@ export class GameScreen extends UIScreen {
         if (path === 'TopImage' && this.topImage && this.topImage.isValid) return this.topImage;
         if (path === 'BottomImage' && this.bottomImage && this.bottomImage.isValid) return this.bottomImage;
         return this.resolveNode(null, path);
+    }
+
+    public tutorialControl(kind: 'zoom' | 'hint' | 'time' | 'lives' | 'add-time'): { node: Node; local: Vec3; radius: number } | null {
+        const node = kind === 'zoom' ? this.resolveNode(this.btnZoom, 'BtnZoom')
+            : kind === 'hint' ? this.resolveNode(this.btnHint, 'BtnHint')
+            : kind === 'add-time' ? this.resolveNode(this.btnAddTime, 'BtnAddTime')
+            : kind === 'time' ? this.resolveLabel(this.timerLabel, 'Timer')?.node
+            : this.resolveLabel(this.livesLabel, 'Lives')?.node;
+        const ui = node?.getComponent(UITransform);
+        if (!node || !ui) return null;
+        return { node, local: new Vec3((0.5-ui.anchorX)*ui.width, (0.5-ui.anchorY)*ui.height), radius: Math.max(36, Math.hypot(ui.width, ui.height)/2 + 8) };
+    }
+
+    public tutorialZoom(): void { this._toggleZoom(); }
+
+    public tutorialResetZoom(): void { this._setZoom(1); }
+
+    public tutorialTarget(difference: DifferenceConfig): { node: Node; local: Vec3; radius: number } | null {
+        const node = this._image('TopImage');
+        const size = node && this._imageSize(node);
+        if (!node || !size) return null;
+        const point = DifferenceController.normalizedToLocal(difference, size.width, size.height);
+        return { node, local: new Vec3(point.x, point.y), radius: DifferenceController.radiusToLocal(difference, size.width, size.height) };
     }
 
     private _imageSize(node: Node): Size | null {

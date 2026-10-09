@@ -6,7 +6,7 @@ const { ccclass } = _decorator;
 @ccclass('TouchPointEffect')
 export class TouchPointEffect extends Component {
     /** 由 GameFlow 注入音效播放，统一遵循音效设置。 */
-    public playClickSound: (() => void) | null = null;
+    public playClickSound: ((event: EventTouch) => void) | null = null;
     private _prefab: Prefab | null = null;
     private _layer: Node | null = null;
     private readonly _handled = new WeakSet<EventTouch>();
@@ -43,7 +43,7 @@ export class TouchPointEffect extends Component {
         // Cocos 已将鼠标按下转换为 TOUCH_START；不再额外监听 MOUSE_DOWN。
         if (this._handled.has(event)) return;
         this._handled.add(event);
-        this.playClickSound?.();
+        this.playClickSound?.(event);
         const layer = this._layer;
         const transform = layer?.getComponent(UITransform);
         if (!layer || !transform) return;

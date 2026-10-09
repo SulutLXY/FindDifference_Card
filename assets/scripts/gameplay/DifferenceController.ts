@@ -21,18 +21,29 @@ export class DifferenceController {
         );
     }
 
+    /** 边缘差异的点击容错系数：中心距边缘小于半径时判定圈按比例扩大。 */
+    public static readonly EDGE_TOLERANCE_RATIO = 1.4;
+
     public static hitTest(
         position: Vec2,
         differences: DifferenceConfig[],
         foundIds: ReadonlySet<string>,
         width: number,
         height: number,
+        includeFound = false,
     ): DifferenceConfig | null {
         for (const difference of differences) {
-            if (foundIds.has(difference.id)) continue;
+            if (!includeFound && foundIds.has(difference.id)) continue;
             const dx = (position.x - difference.x) * width;
             const dy = (position.y - difference.y) * height;
-            const radius = this.radiusToLocal(difference, width, height);
+            let radius = this.radiusToLocal(difference, width, height);
+            const edgeDistance = Math.min(
+                difference.x * width,
+                width - difference.x * width,
+                difference.y * height,
+                height - difference.y * height,
+            );
+            if (edgeDistance < radius) radius *= this.EDGE_TOLERANCE_RATIO;
             if (dx * dx + dy * dy <= radius * radius) return difference;
         }
         return null;

@@ -23,6 +23,8 @@ export class PlatformService {
     public readonly playerInfo = new PlayerInfoService(() => this.kind, this._host);
     private _config: PlatformConfig = EMPTY_CONFIG;
     private _interstitialBusy = false;
+    public canShowInterstitial: () => boolean = () => true;
+    public get interstitialBusy(): boolean { return this._interstitialBusy; }
     private _lastInterstitialAttempt = 0;
     private _feedLoggedIn = false;
     private _feedLoginPending = false;
@@ -128,7 +130,7 @@ export class PlatformService {
 
     /** Each requested entry attempts an ad; native frequency limits still apply. Resolves on close/error. */
     public async showInterstitial(canShow: () => boolean, bypassCooldown = false): Promise<void> {
-        if (this.kind !== 'douyin' || this.isPcCompanion) return;
+        if (this.kind !== 'douyin' || this.isPcCompanion || !this.canShowInterstitial()) return;
         const tt = this._host.tt;
         const adUnitId = this._config.douyinInterstitialAdUnitId;
         if (!adUnitId || typeof tt?.createInterstitialAd !== 'function' || this._interstitialBusy
@@ -165,7 +167,7 @@ export class PlatformService {
             timer = setTimeout(() => onError({ errMsg: '插屏加载超时' }), 15000);
             await ad.load();
             if (settled) return;
-            if (!canShow()) { cleanup(); return; }
+            if (!canShow() || !this.canShowInterstitial()) { cleanup(); return; }
             await ad.show();
             if (timer) clearTimeout(timer);
             await closed;

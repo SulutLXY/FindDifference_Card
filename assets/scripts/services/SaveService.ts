@@ -76,6 +76,27 @@ export class SaveService {
         return false;
     }
 
+    /** 在开局时登记，保护本日首局（包括失败、复活及退出）。 */
+    public beginDailyFirstRound(day: string): boolean {
+        if (this._data.firstPlayedDay === day) return false;
+        this._data = { ...this._data, firstPlayedDay: day };
+        this._persist();
+        return true;
+    }
+
+    public completeTutorial(): void {
+        this._data.tutorialCompleted = true;
+        this._persist();
+    }
+
+    /** 分时引导只展示一次，无论玩家点击高亮还是跳过都登记。 */
+    public markAssistTutorialShown(kind: 'hint' | 'zoom' | 'add-time'): void {
+        if (kind === 'hint') this._data.tutorialHintShown = true;
+        else if (kind === 'zoom') this._data.tutorialZoomShown = true;
+        else this._data.tutorialAddTimeShown = true;
+        this._persist();
+    }
+
     public hasClaimedSidebar(day: string): boolean {
         return typeof this._data.sidebarClaimDay === 'string' && this._data.sidebarClaimDay >= day;
     }

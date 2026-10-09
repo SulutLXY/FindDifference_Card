@@ -38,16 +38,12 @@ export interface DifferenceConfig {
     radius: number;
 }
 
-/** 等级设置（configs/levels.json）：全局生命数与按差异数分档的时限。 */
-export interface TimeTier {
-    /** 差异数上限（含），按从小到大排列，取第一个满足档 */
-    maxDifferences: number;
-    timeLimit: number;
-}
-
+/** 等级设置：全局生命数、基础时长及每个额外差异增加的秒数。 */
 export interface GradeConfig {
     maxLives: number;
-    timeTiers: TimeTier[];
+    baseTimeSeconds: number;
+    baseDifferenceCount: number;
+    secondsPerExtraDifference: number;
 }
 
 /** 关卡目录内 differences.json 的原始格式。图片路径可覆盖目录推导；icon 缺省回退 scene-a。 */
@@ -149,6 +145,12 @@ export interface SaveData {
     sidebarClaimDay?: string;
     favoriteClaimDay?: string;
     firstFailureInterstitialDay?: string;
+    firstPlayedDay?: string;
+    tutorialCompleted?: boolean;
+    /** 分时引导：卡关时介绍提示/放大、时间不足时介绍加时，各只展示一次 */
+    tutorialHintShown?: boolean;
+    tutorialZoomShown?: boolean;
+    tutorialAddTimeShown?: boolean;
 }
 
 export interface RewardResult {
