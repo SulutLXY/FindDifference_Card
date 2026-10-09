@@ -43,7 +43,8 @@ assert.equal(failed.data.get(STORAGE_KEY), '0.0.2.1');
 assert.throws(() => prepare({ assetManager: {} }, failed.sdk, '0.0.3.1'), /尚未初始化/);
 
 // Render the real launch template and simulate its actual initialization sequence.
-const ejs = require('D:/Cocos/cocoseditors/Creator/3.8.8/resources/resources/3d/engine/node_modules/ejs');
+const creatorRoot = process.env.COCOS_CREATOR_ROOT || 'D:/CocosCreator/v3.8.8';
+const ejs = require(path.join(creatorRoot, 'resources/resources/3d/engine/node_modules/ejs'));
 const template = ejs.render(read('build-templates/bytedance-mini-game/game.ejs'), {
     isUsePhysX: false, polyfillsBundleFile: '', systemJsBundleFile: './system.js',
     importMapFile: './import-map.js', applicationJs: './application.js',

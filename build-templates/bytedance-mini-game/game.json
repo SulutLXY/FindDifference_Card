@@ -1,6 +1,5 @@
 {
   "deviceOrientation": "portrait",
   "showStatusBar": false,
-  "networkTimeout": { "request": 5000, "connectSocket": 5000, "uploadFile": 5000, "downloadFile": 500000 },
-  "subpackages": [{ "name": "__ccWasmChunkSubpkg__", "root": "cocos-js/chunks/" }]
+  "networkTimeout": { "request": 5000, "connectSocket": 5000, "uploadFile": 5000, "downloadFile": 500000 }
 }
