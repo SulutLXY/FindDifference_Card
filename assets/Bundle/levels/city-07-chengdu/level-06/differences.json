@@ -1,7 +1,7 @@
 {
   "name": "夫妻肺片",
   "type": "food",
-  "food": "",
+  "food": "夫妻肺片",
   "differences": [
     {
       "id": "diff-1",

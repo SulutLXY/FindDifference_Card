@@ -1,7 +1,7 @@
 {
   "name": "肉夹馍",
   "type": "food",
-  "food": "",
+  "food": "肉夹馍",
   "differences": [
     {
       "id": "diff-1",

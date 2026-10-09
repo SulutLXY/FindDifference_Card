@@ -1,7 +1,7 @@
 {
   "name": "肉丸糊辣汤",
   "type": "food",
-  "food": "",
+  "food": "肉丸糊辣汤",
   "differences": [
     {
       "id": "diff-1",

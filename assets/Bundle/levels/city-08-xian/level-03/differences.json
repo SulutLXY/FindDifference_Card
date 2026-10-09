@@ -1,7 +1,7 @@
 {
   "name": "牛羊肉泡馍",
   "type": "food",
-  "food": "",
+  "food": "牛羊肉泡馍",
   "differences": [
     {
       "id": "diff-1",

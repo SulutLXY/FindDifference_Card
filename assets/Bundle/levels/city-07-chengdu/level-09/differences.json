@@ -1,7 +1,7 @@
 {
   "name": "麻婆豆腐",
   "type": "food",
-  "food": "",
+  "food": "麻婆豆腐",
   "differences": [
     {
       "id": "diff-1",

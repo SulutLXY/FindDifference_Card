@@ -1,8 +1,6 @@
 {
   "maxLives": 5,
-  "timeTiers": [
-    { "maxDifferences": 10, "timeLimit": 150 },
-    { "maxDifferences": 20, "timeLimit": 300 },
-    { "maxDifferences": 30, "timeLimit": 450 }
-  ]
+  "baseTimeSeconds": 120,
+  "baseDifferenceCount": 4,
+  "secondsPerExtraDifference": 15
 }
