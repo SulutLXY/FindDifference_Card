@@ -138,7 +138,6 @@ export class GameFlow extends Component {
     private readonly _spriteFrameCache = new Map<string, SpriteFrame>();
     /** 关卡资源所在 Asset Bundle（assets/Bundle，bundleName: city），首次使用时加载并缓存。 */
     private _cityBundle: AssetManager.Bundle | null = null;
-    private _overlay: Node | null = null;
     private _musicSource: AudioSource | null = null;
     private _musicPath = '';
     private readonly _musicClips = new Map<string, AudioClip>();
@@ -167,6 +166,7 @@ export class GameFlow extends Component {
     private _settingsOpenedAt = 0;
     private _loadingNode: Node | null = null;
     private _loadingFill: UITransform | null = null;
+    private _loadingCat: Node | null = null;
     private _loadingLabel: Label | null = null;
     private _loadingWidth = 0;
     private _loadingLeft = 0;
@@ -181,6 +181,9 @@ export class GameFlow extends Component {
         for (const child of screens!.children) child.active = child === this._loadingNode;
         const bg = this._loadingNode.getChildByName('loading_sliderBG');
         const fill = bg?.getChildByName('loading_slider');
+        this._loadingCat = bg?.getChildByName('Londing_ICON') ?? null;
+        const back = this._loadingNode.getChildByName('LoadingBack');
+        if (back) back.active = false;
         this._loadingFill = fill?.getComponent(UITransform) ?? null;
         this._loadingLabel = this._loadingNode.getChildByName('FooterEnv-001')?.getComponent(Label) ?? null;
         if (this._loadingFill && fill) {
@@ -205,6 +208,10 @@ export class GameFlow extends Component {
             fill.width = this._loadingWidth * value;
             fill.node.setPosition(this._loadingLeft + fill.width * fill.anchorX * fill.node.scale.x,
                 fill.node.position.y, fill.node.position.z);
+            if (this._loadingCat) {
+                this._loadingCat.setPosition(this._loadingLeft + fill.width * fill.node.scale.x,
+                    this._loadingCat.position.y, this._loadingCat.position.z);
+            }
         }
         if (this._loadingLabel) this._loadingLabel.string = `加载中 ${Math.floor(value * 100)}%`;
     }
@@ -413,8 +420,11 @@ export class GameFlow extends Component {
     /** 收藏页。 */
     public showFoodTips(level: LevelConfig, unlocked = false): void {
         const food = this._foods.find(item => item.levelKey === level.key);
-        if (food) this.showCatalogFood(food, unlocked);
-        else this._foodTips?.present(level, unlocked);
+        if (!food) {
+            console.warn(`[GameFlow] 美食未关联关卡，无法显示美食详情: ${level.key}`);
+            return;
+        }
+        this.showCatalogFood(food, unlocked);
     }
 
     public showCollect(): void {
@@ -450,7 +460,7 @@ export class GameFlow extends Component {
     /** 开始挑战目标：第一个未通关的关（全部通关返回 null）。 */
     public async findContinueTarget(): Promise<{ city: CityConfig; levelIndex: number; level: LevelConfig } | null> {
         for (let ci = 0; ci < this._cities.length; ci++) {
-            if (!this.isCityUnlocked(ci)) break;
+            if (!this.isCityUnlocked(ci)) continue;
             const city = this._cities[ci];
             for (let li = 0; li < city.levels.length; li++) {
                 const key = `${city.key}/${city.levels[li]}`;
@@ -478,7 +488,6 @@ export class GameFlow extends Component {
     @property({ tooltip: '仅编辑器预览：首关强制展示引导，不清除存档，不影响发布版本' })
     public previewTutorial = false;
     private _levelRetry: (() => void) | null = null;
-    private _loadingBack: Node | null = null;
     private _finishLoadingFrame: (() => void) | null = null;
 
     /** 缓存命中可能在同一帧完成，先让 Loading 真正绘制出来。 */
@@ -512,7 +521,6 @@ export class GameFlow extends Component {
             this._loadingNode.active = true;
             const footer = this._loadingNode.getChildByName('FooterEnv');
             if (footer) footer.active = false;
-            this._ensureLoadingBack();
             this._loadingNode.setSiblingIndex(this._loadingNode.parent!.children.length - 1);
         }
         this._setLoadingProgress(0);
@@ -644,21 +652,7 @@ export class GameFlow extends Component {
             if (kind === 'hint') { this.playHintSound(); this.useHint(); }
             else if (kind === 'zoom') this.game.tutorialZoom();
             else { this.playAddTimeSound(); this.addTime(30); }
-        }, text, '知道了');
-    }
-
-    private _ensureLoadingBack(): void {
-        if (this._loadingBack || !this._loadingNode) return;
-        const button = new Node('LoadingBack');
-        button.layer = this._loadingNode.layer;
-        button.parent = this._loadingNode;
-        button.setPosition(0, -470);
-        button.addComponent(UITransform).setContentSize(240, 70);
-        const label = button.addComponent(Label);
-        label.string = '返回首页';
-        label.fontSize = 28;
-        button.on(Node.EventType.TOUCH_END, () => this.showLobby(), this);
-        this._loadingBack = button;
+        }, text, '');
     }
 
     private _switchTo(screen: LobbyScreen | CitySelectScreen | LevelSelectScreen | GameScreen | RankScreen | CollectScreen | null): void {
@@ -796,9 +790,11 @@ export class GameFlow extends Component {
     // 解锁判定（积分制：通关集合驱动）
     // ------------------------------------------------------------------
 
-    /** 城市解锁：第一城始终解锁，其余需前一城全部通关。 */
+    /** 城市解锁：首城、广告提前解锁，或前一城全部通关。 */
     public isCityUnlocked(cityIndex: number): boolean {
-        if (cityIndex <= 0) return true;
+        const city = this._cities[cityIndex];
+        if (!city) return false;
+        if (cityIndex === 0 || this.save.isCityUnlocked(city.key)) return true;
         const prev = this._cities[cityIndex - 1];
         if (!prev) return false;
         return prev.levels.every(dir => this.save.isCompleted(`${prev.key}/${dir}`));
@@ -839,20 +835,23 @@ export class GameFlow extends Component {
     // ------------------------------------------------------------------
 
     /** 连击窗口：两次找对间隔在此时间内连击 +1，否则重新计数。 */
-    public static readonly COMBO_WINDOW_MS = 3000;
+    public static readonly COMBO_WINDOW_MS = 5000;
+    /** 第五连击及以上需在更短的间隔内继续找对。 */
+    public static readonly TOP_COMBO_WINDOW_MS = 3500;
 
-    public onDifferenceFound(difference: DifferenceConfig): void {
+    public onDifferenceFound(difference: DifferenceConfig, imageNode?: Node): void {
         if (this._isGameOver || this._isPaused || !this._currentLevel || this._foundIds.has(difference.id)) return;
         this._foundIds.add(difference.id);
         this._lastFoundElapsed = this._elapsedTime;
 
         // 连击：窗口内连续找对升级，点错/超时清零
         const now = Date.now();
-        this._combo = now - this._lastFoundAt <= GameFlow.COMBO_WINDOW_MS ? this._combo + 1 : 1;
+        const window = this._combo >= 4 ? GameFlow.TOP_COMBO_WINDOW_MS : GameFlow.COMBO_WINDOW_MS;
+        this._combo = now - this._lastFoundAt <= window ? this._combo + 1 : 1;
         this._lastFoundAt = now;
 
         this.game?.drawFoundMarker(difference);
-        this.game?.showSuccessFx(this._combo);
+        this.game?.showSuccessFx(this._combo, difference, imageNode);
         if (this._combo >= 2) this.playSuccessTone(this._combo);
         else this.playRightSound();
         this.game?.refreshHud();
@@ -1043,14 +1042,11 @@ export class GameFlow extends Component {
         const node = this.node.parent?.getChildByPath('Screens/GameTips');
         if (!target || !node) { this.toast('提示暂不可用'); onDismiss?.(); return; }
         this._tutorial = node.getComponent(GameTips) ?? node.addComponent(GameTips);
-        this._isPaused = true;
-        this._tutorial.present(target.node, target.local, target.radius, hit => {
+        this._tutorial.presentHint(target.node, target.local, target.radius, () => {
             if (!this.isValid || this._currentLevel !== level || !this.game?.node.activeInHierarchy) return;
-            this._isPaused = this._isGameOver;
-            if (hit && !this._isGameOver) this.onDifferenceFound(difference);
             this.game.refreshHud();
             onDismiss?.();
-        }, '不同就在圈内，点击确认', '关闭提示');
+        });
     }
 
     private _assistRoundVersion = 0;
@@ -1063,18 +1059,28 @@ export class GameFlow extends Component {
     @property({ tooltip: '每关加时广告次数上限' })
     public addTimeAdsPerLevel = 1;
 
+    /** 无广告网页版可直接使用辅助功能，不消耗库存或每关广告次数。 */
+    public get unlimitedAssists(): boolean {
+        return this.platform.kind === 'h5';
+    }
+
     public get canWatchHintAd(): boolean {
-        return this._hintAdsUsed < this.hintAdsPerLevel;
+        return this.unlimitedAssists || this._hintAdsUsed < this.hintAdsPerLevel;
     }
 
     public get canWatchAddTimeAd(): boolean {
-        return this._addTimeAdsUsed < this.addTimeAdsPerLevel;
+        return this.unlimitedAssists || this._addTimeAdsUsed < this.addTimeAdsPerLevel;
     }
 
     public async requestHint(): Promise<void> {
         if (this._isPaused || this._isGameOver || !this.game?.node.activeInHierarchy
             || !this._currentLevel?.differences.some(item => !this._foundIds.has(item.id))) return;
         this.playHintSound();
+        if (this.unlimitedAssists) {
+            this.useHint();
+            this.game.refreshHud();
+            return;
+        }
         if (this.save.freeHints > 0) {
             if (!this.save.consumeFreeHint()) {
                 this.toast('保存失败，请稍后再试');
@@ -1116,6 +1122,10 @@ export class GameFlow extends Component {
     public async requestAddTime(): Promise<void> {
         if (this._isPaused || this._isGameOver || !this.game?.node.activeInHierarchy) return;
         this.playAddTimeSound();
+        if (this.unlimitedAssists) {
+            this.addTime(30);
+            return;
+        }
         if (this.save.freeAddTimes > 0) {
             if (!this.save.consumeAddTime()) { this.toast('保存失败，请稍后再试'); return; }
             this.addTime(30);
@@ -1266,10 +1276,16 @@ export class GameFlow extends Component {
     public async requestReward(placement: RewardPlacement, onReward: () => void): Promise<void> {
         if (this._isPaused && !this._isGameOver) return;
         this._isPaused = true;
-        const result: RewardResult = this.platform.kind === 'h5'
-            ? await this._showSimulatedAd()
-            : await this.platform.showRewardedAd(placement);
-        this._isPaused = this._isGameOver;
+        let result: RewardResult;
+        try {
+            result = await this.platform.showRewardedAd(placement);
+        } catch (error) {
+            console.warn('[Reward] 广告播放失败', error);
+            this.toast('广告加载失败，请稍后重试');
+            return;
+        } finally {
+            this._isPaused = this._isGameOver;
+        }
         if (result.success && result.completed) {
             onReward();
         } else {
@@ -1394,100 +1410,6 @@ export class GameFlow extends Component {
         label.overflow = Label.Overflow.SHRINK;
         const opacity = toastNode.addComponent(UIOpacity);
         tween(opacity).delay(1.4).to(0.35, { opacity: 0 }).call(() => toastNode.destroy()).start();
-    }
-
-    private _showSimulatedAd(): Promise<RewardResult> {
-        return new Promise(resolve => {
-            this._closeOverlay();
-            const parent = this.node.parent ?? this.node;
-            const modal = new Node('SimulatedAd');
-            modal.parent = parent;
-            const modalUi = modal.addComponent(UITransform);
-            modalUi.setContentSize(750, 1334);
-            const modalGraphics = modal.addComponent(Graphics);
-            modalGraphics.fillColor = new Color(4, 16, 34, 220);
-            modalGraphics.rect(-375, -667, 750, 1334);
-            modalGraphics.fill();
-            this._overlay = modal;
-
-            const card = new Node('AdCard');
-            card.parent = modal;
-            const cardUi = card.addComponent(UITransform);
-            cardUi.setContentSize(610, 620);
-            const cardGraphics = card.addComponent(Graphics);
-            cardGraphics.fillColor = new Color(12, 43, 84, 255);
-            cardGraphics.roundRect(-305, -310, 610, 620, 30);
-            cardGraphics.fill();
-
-            const addLabel = (name: string, text: string, y: number, fontSize: number, color: Color): Label => {
-                const node = new Node(name);
-                node.parent = card;
-                node.setPosition(0, y);
-                const nodeUi = node.addComponent(UITransform);
-                nodeUi.setContentSize(520, fontSize * 1.6);
-                const label = node.addComponent(Label);
-                label.string = text;
-                label.fontSize = fontSize;
-                label.color = color;
-                label.horizontalAlign = Label.HorizontalAlign.CENTER;
-                label.verticalAlign = Label.VerticalAlign.CENTER;
-                label.overflow = Label.Overflow.SHRINK;
-                return label;
-            };
-
-            addLabel('AdTitle', '广告演示', 210, 46, Color.WHITE);
-            addLabel('AdNote', 'H5 开发环境模拟激励视频', 145, 25, new Color(150, 178, 207, 255));
-            const timerLabel = addLabel('AdTimer', '5', 20, 110, new Color(249, 177, 34, 255));
-            const statusLabel = addLabel('AdStatus', '广告播放中，请稍候…', -90, 27, Color.WHITE);
-
-            const makeButton = (name: string, text: string, x: number, callback: () => void): void => {
-                const button = new Node(name);
-                button.parent = card;
-                button.setPosition(x, -205);
-                const buttonUi = button.addComponent(UITransform);
-                buttonUi.setContentSize(220, 74);
-                const graphics = button.addComponent(Graphics);
-                graphics.fillColor = new Color(42, 137, 225, 255);
-                graphics.roundRect(-110, -37, 220, 74, 18);
-                graphics.fill();
-                const labelNode = new Node('Label');
-                labelNode.parent = button;
-                const labelUi = labelNode.addComponent(UITransform);
-                labelUi.setContentSize(200, 64);
-                const label = labelNode.addComponent(Label);
-                label.string = text;
-                label.fontSize = 27;
-                label.color = Color.WHITE;
-                label.horizontalAlign = Label.HorizontalAlign.CENTER;
-                label.verticalAlign = Label.VerticalAlign.CENTER;
-                label.overflow = Label.Overflow.SHRINK;
-                button.on(Node.EventType.TOUCH_END, callback, this);
-            };
-
-            let seconds = 5;
-            const tick = () => {
-                seconds -= 1;
-                timerLabel.string = String(Math.max(0, seconds));
-                if (seconds > 0) return;
-                this.unschedule(tick);
-                statusLabel.string = '观看完成，可关闭或返回';
-                let resolved = false;
-                const finish = () => {
-                    if (resolved) return;
-                    resolved = true;
-                    this._closeOverlay();
-                    resolve({ success: true, completed: true, simulated: true });
-                };
-                makeButton('CloseAd', '关闭广告', -125, finish);
-                makeButton('ReturnAd', '返回游戏', 125, finish);
-            };
-            this.schedule(tick, 1);
-        });
-    }
-
-    private _closeOverlay(): void {
-        this._overlay?.destroy();
-        this._overlay = null;
     }
 
     // ------------------------------------------------------------------

@@ -9,6 +9,7 @@ function methods(file,names,extra={}){
 (async()=>{
  const Screen=methods('assets/scripts/ui/GameScreen.ts',['clearLevel','setupLevel'],{Sprite:class{}});
  const s=new Screen();s.isValid=true;s._setupToken=0;s._levelFrames=[];
+ s._hideComboTips=()=>{};s._clearSuccessText=()=>{};
  const sprites={TopImage:{spriteFrame:null},BottomImage:{spriteFrame:null}};
  s._image=n=>({getComponent:()=>sprites[n]});s._resetGesture=()=>{};s._clearMarkers=()=>{};s._clearWrongMarkers=()=>{};s._resetLivesAnimation=()=>{};s._setZoom=()=>{};s.setLabel=()=>{};s.refreshHud=()=>{};
  s.resolveNode=(_,n)=>sprites[n];s._applySpriteFrame=(n,f)=>n.spriteFrame=f;
@@ -21,6 +22,7 @@ function methods(file,names,extra={}){
  const pending=s.setupLevel({name:'test',topImage:'a',bottomImage:'b'});s.clearLevel();finish();await assert.rejects(pending);assert.equal(refs,0);
  const Flow=methods('assets/scripts/GameFlow.ts',['startLevel'],{sidebarDay:()=> '2026-10-09'});
  const f=new Flow();f.isValid=true;f._levelLoadVersion=0;f._assistRoundVersion=0;f._foundIds=new Set();f.ensureCity=async()=>{};
+ f._updateGameMusic=()=>{};f._updateComboGroup=()=>{};
  f._showFirstLevelTutorial=()=>{};f._drawLoadingFrame=async()=>{};f._setLoadingProgress=()=>{};f._switchTo=()=>{};f.toast=()=>{};f.preloadNextLevel=()=>{};
  const footer={active:true};f._loadingNode={active:false,parent:{children:[{}]},getChildByName:n=>n==='FooterEnv'?footer:null,setSiblingIndex(){}};f._ensureLoadingBack=()=>{};
  let mark=0;f.save={beginDailyFirstRound(){mark++;return true},totalScore:0};

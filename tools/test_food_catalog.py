@@ -34,7 +34,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_complete_catalog_and_stable_output(self):
         report = catalog.build(self.table,self.output)
-        self.assertEqual((report['foods'],report['linked'],report['unlinked']),(40,30,10))
+        self.assertEqual((report['foods'],report['linked'],report['unlinked']),(40,40,0))
         foods = json.loads(self.output.read_text(encoding='utf-8'))['foods']
         self.assertEqual(len({f['id'] for f in foods}),40)
         for food in foods:
@@ -43,6 +43,27 @@ class CatalogTests(unittest.TestCase):
         before = Path(str(self.output)+'.meta').read_bytes()
         catalog.build(self.table,self.output)
         self.assertEqual(before,Path(str(self.output)+'.meta').read_bytes())
+
+    def test_all_published_food_levels_have_designed_icons(self):
+        catalog.build(self.table,self.output)
+        foods = json.loads(self.output.read_text(encoding='utf-8'))['foods']
+        by_level = {food['levelKey']: food for food in foods}
+        count = 0
+        for path in (catalog.ROOT/'assets/Bundle/levels').glob('city-*/level-*/differences.json'):
+            level = json.loads(path.read_text(encoding='utf-8-sig'))
+            if level.get('type') != 'food': continue
+            count += 1
+            key = path.parent.relative_to(catalog.ROOT/'assets/Bundle/levels').as_posix()
+            self.assertIn(key, by_level)
+            food = by_level[key]
+            self.assertEqual(catalog.food_name(level.get('food') or level['name']),catalog.food_name(food['name']))
+            self.assertNotIn('/level-',food['icon'])
+        self.assertEqual(count,40)
+
+    def test_food_name_still_validated_when_food_field_is_empty(self):
+        self.change({'E2':'level-12', 'E5':'level-03'})
+        with self.assertRaisesRegex(ValueError,'美食与关卡不匹配'):
+            catalog.build(self.table,self.output)
 
     def test_unique_uuid_repairs_path_and_filename(self):
         self.change({'F2':'wrong.jpg','G2':'assets/missing/wrong.jpg'})

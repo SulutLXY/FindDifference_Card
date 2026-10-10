@@ -15,8 +15,8 @@
       "id": "6c48a",
       "name": "texture",
       "userData": {
-        "wrapModeS": "repeat",
-        "wrapModeT": "repeat",
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
         "minfilter": "linear",
         "magfilter": "linear",
         "mipfilter": "none",
@@ -60,17 +60,17 @@
         "meshType": 0,
         "vertices": {
           "rawPosition": [
-            -187.0,
-            -171.0,
+            -187,
+            -171,
             0,
-            187.0,
-            -171.0,
+            187,
+            -171,
             0,
-            -187.0,
-            171.0,
+            -187,
+            171,
             0,
-            187.0,
-            171.0,
+            187,
+            171,
             0
           ],
           "indexes": [
@@ -102,13 +102,13 @@
             1
           ],
           "minPos": [
-            -187.0,
-            -171.0,
+            -187,
+            -171,
             0
           ],
           "maxPos": [
-            187.0,
-            171.0,
+            187,
+            171,
             0
           ]
         },

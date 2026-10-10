@@ -10,7 +10,7 @@ const { ccclass, property } = _decorator;
  * 大厅界面（Screens/Lobby）。
  *
  * 命名规则（未拖拽绑定时按此自动查找）：
- * - BtnStart   开始挑战按钮（Node，其下 Label-001 显示「当前第N关」，运行时刷新）
+ * - BtnStart   开始挑战按钮（Node，其下 currentLevel 单行显示关卡名）
  * - BtnLevels  选择关卡按钮（Node）
  * - BtnRank    排行榜按钮（Node，占位）
  * - BtnCollect 收藏按钮（Node）
@@ -35,7 +35,7 @@ export class LobbyScreen extends UIScreen {
     @property({ type: Node, tooltip: '收藏按钮（命名 BtnCollect）' })
     public btnCollect: Node | null = null;
 
-    @property({ type: Label, tooltip: '当前关卡提示（BtnStart 下的 Label-001，运行时刷新为真实进度）' })
+    @property({ type: Label, tooltip: '当前关卡提示（BtnStart 下的 currentLevel，单行显示关卡名）' })
     public currentLevel: Label | null = null;
 
     @property({ type: Label, tooltip: '底部环境信息（命名 FooterEnv）' })
@@ -58,18 +58,23 @@ export class LobbyScreen extends UIScreen {
         if (rankButton) rankButton.active = !this.flow.platform.isHarmony;
         void this._refreshRankVisibility();
         this.setLabel(this.footerEnv, 'FooterEnv', `当前环境：${this.flow.platform.kind.toUpperCase()}  |  版本号：${APP_VERSION}`);
-        // 「城市-关卡名」与开始挑战实际进入的关卡保持一致
+        // 只显示开始挑战实际进入的关卡名。
         void this._refreshContinueLabel();
     }
 
     private async _refreshContinueLabel(): Promise<void> {
+        const label = this.resolveLabel(this.currentLevel, 'BtnStart/currentLevel');
+        if (!label) return;
+        label.enableWrapText = false;
+        label.overflow = Label.Overflow.SHRINK;
         const target = await this.flow.findContinueTarget();
-        // 关卡名已自带「城市-」前缀（如 北京-08）时不再拼城市名，避免「北京-北京-08」
-        const levelName = target ? target.level.name : '';
-        const label = target
-            ? (levelName.startsWith(`${target.city.name}-`) ? levelName : `${target.city.name}-${levelName}`)
-            : '全部通关，恭喜！';
-        this.setLabel(this.currentLevel, 'BtnStart/Label-001', label);
+        if (!this.isValid || !label.isValid) return;
+        let name = target?.level.name ?? '全部通关，恭喜！';
+        if (target) {
+            const prefix = `${target.city.name}-`;
+            if (name.startsWith(prefix)) name = name.slice(prefix.length);
+        }
+        label.string = name.replace(/[\r\n]+/g, ' ').trim();
     }
 
     private async _refreshRankVisibility(): Promise<void> {

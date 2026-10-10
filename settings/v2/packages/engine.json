@@ -116,7 +116,7 @@
             "_value": false
           },
           "particle-2d": {
-            "_value": false
+            "_value": true
           },
           "audio": {
             "_value": true
@@ -203,6 +203,7 @@
           "graphics",
           "intersection-2d",
           "mask",
+          "particle-2d",
           "profiler",
           "tween",
           "ui",

@@ -1,11 +1,14 @@
 import {
     _decorator,
     Animation,
+    AnimationClip,
     Color,
     EventTouch,
     Graphics,
     Input,
     Label,
+    Layout,
+    instantiate,
     Node,
     Size,
     Sprite,
@@ -37,7 +40,7 @@ const { ccclass, property } = _decorator;
  * - BottomImage   下图节点（同上）
  * - LevelTitle    顶部「第N关」标题（Label）
  * - LevelName     关卡名标牌（Label）
- * - Lives         生命显示（Label）
+ * - Lives         爱心容器（原 Label 隐藏），子节点 LivesItem 作为爱心模板
  * - Timer         倒计时（Label）
  * - Progress      差异进度（Label）
  * - ProgressNumber 已找到数量（Label，独立于圆点进度）
@@ -68,7 +71,7 @@ export class GameScreen extends UIScreen {
     @property({ type: Label, tooltip: '顶部关卡标题（命名 LevelTitle）' })
     public levelTitle: Label | null = null;
 
-    @property({ type: Label, tooltip: '生命显示（命名 Lives）' })
+    @property({ type: Label, tooltip: '旧生命文本（保留绑定但隐藏，LivesItem 显示爱心）' })
     public livesLabel: Label | null = null;
 
     @property({ type: Label, tooltip: '倒计时（命名 Timer）' })
@@ -121,6 +124,30 @@ export class GameScreen extends UIScreen {
     private _livesTween: Tween<Node> | null = null;
     private _livesNode: Node | null = null;
     private _livesBaseScale: Vec3 | null = null;
+    private readonly _lifeItems: Node[] = [];
+
+    private _refreshLifeItems(count: number): void {
+        const legacy = this.livesLabel ?? this.findChildDeep(this.node, 'Lives')?.getComponent(Label);
+        // LivesItem 位于旧文本节点下，只禁用 Label，不能隐藏整个父节点。
+        if (legacy) legacy.enabled = false;
+        if (!this._lifeItems.length) {
+            const template = this.findChildDeep(this.node, 'LivesItem');
+            if (!template?.parent) return;
+            this._lifeItems.push(template);
+            const layout = template.parent.getComponent(Layout) ?? template.parent.addComponent(Layout);
+            layout.type = Layout.Type.HORIZONTAL;
+            layout.resizeMode = Layout.ResizeMode.CONTAINER;
+        }
+        const template = this._lifeItems[0];
+        while (this._lifeItems.length < count) {
+            const item = instantiate(template);
+            item.name = `LivesItem-${this._lifeItems.length + 1}`;
+            item.parent = template.parent;
+            this._lifeItems.push(item);
+        }
+        this._lifeItems.forEach((item, index) => { item.active = index < count; });
+        template.parent?.getComponent(Layout)?.updateLayout();
+    }
 
     private _resetLivesAnimation(): void {
         this._livesTween?.stop();
@@ -150,6 +177,8 @@ export class GameScreen extends UIScreen {
     private _levelFrames: SpriteFrame[] = [];
 
     public clearLevel(): void {
+        this._hideComboTips();
+        this._clearSuccessText();
         if (this._hintReminder) this._setReminderAnimation(this.resolveNode(this.btnHint, 'BtnHint'), false);
         if (this._timeReminder) this._setReminderAnimation(this.resolveNode(this.btnAddTime, 'BtnAddTime'), false);
         this._hintReminder = false;
@@ -180,6 +209,9 @@ export class GameScreen extends UIScreen {
     private static readonly TAP_SLOP = 12;
 
     protected onLoad(): void {
+        this._comboBox = this.findChildDeep(this.node, 'ComboTipsBox');
+        this._hideComboTips();
+        void this._loadComboFrames().catch(error => console.warn('[GameScreen] 连击图片预加载失败', error));
         void this._loadWrongFrame().catch(error => console.warn('[GameScreen] 错误图标预加载失败', error));
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showSettings(true));
         this.wireButton(this.btnHint, 'BtnHint', () => {
@@ -236,6 +268,7 @@ export class GameScreen extends UIScreen {
     /** 刷新顶部信息栏。由 GameFlow 在倒计时与状态变化时调用。 */
     public refreshHud(): void {
         const flow = this.flow;
+        const unlimited = flow.unlimitedAssists;
         for (const [button, name, count, canWatchAd] of [
             [this.btnHint, 'BtnHint', flow.save.freeHints, flow.canWatchHintAd],
             [this.btnAddTime, 'BtnAddTime', flow.save.freeAddTimes, flow.canWatchAddTimeAd],
@@ -244,14 +277,14 @@ export class GameScreen extends UIScreen {
             if (!root) continue;
             const tipsIcon = this.findChildDeep(root, 'icon_Tips01');
             const videoIcon = this.findChildDeep(root, 'icon_videoplay');
-            if (tipsIcon) tipsIcon.active = count > 0;
-            if (videoIcon) videoIcon.active = count === 0 && canWatchAd;
+            if (tipsIcon) tipsIcon.active = unlimited || count > 0;
+            if (videoIcon) videoIcon.active = !unlimited && count === 0 && canWatchAd;
             const sprite = root.getComponent(Sprite);
-            if (sprite) sprite.grayscale = count === 0 && !canWatchAd;
+            if (sprite) sprite.grayscale = !unlimited && count === 0 && !canWatchAd;
             const timesNode = root ? this.findChildDeep(root, 'Times') : null;
-            if (timesNode) timesNode.active = count > 0;
+            if (timesNode) timesNode.active = !unlimited && count > 0;
             const times = timesNode?.getComponent(Label) ?? timesNode?.getComponentInChildren(Label);
-            if (times) times.string = count > 0 ? String(count) : '';
+            if (times) times.string = !unlimited && count > 0 ? String(count) : '';
         }
 
         const timer = this.resolveLabel(this.timerLabel, 'Timer');
@@ -264,10 +297,10 @@ export class GameScreen extends UIScreen {
             timer.color = seconds <= 10 ? UIColors.red : new Color(65, 72, 95, 255);
         }
 
+        const count = Number.isFinite(flow.lives) ? Math.max(0, Math.floor(flow.lives)) : 0;
+        this._refreshLifeItems(count);
         const lives = this.resolveLabel(this.livesLabel, 'Lives');
         if (lives) {
-            const count = Math.max(0, flow.lives);
-            lives.string = String(count);
             if (this._livesNode !== lives.node) {
                 this._resetLivesAnimation();
                 this._livesNode = lives.node;
@@ -370,41 +403,149 @@ export class GameScreen extends UIScreen {
         if (!started) finish();
     }
 
-    /** 连击激励文案表：5 级封顶，等级越高颜色越热、字号越大。 */
-    private static readonly COMBO_TIERS: Array<{ text: string; color: Color; size: number }> = [        { text: 'GOOD', color: new Color(255, 255, 255, 255), size: 48 },
-        { text: 'GREAT!', color: new Color(120, 220, 120, 255), size: 52 },
-        { text: 'PERFECT!', color: new Color(249, 177, 34, 255), size: 56 },
-        { text: 'AMAZING!!', color: new Color(255, 130, 60, 255), size: 60 },
-        { text: 'UNBELIEVABLE!!!', color: new Color(225, 67, 63, 255), size: 64 },
+    private _comboBox: Node | null = null;
+    private _comboAnimation: Animation | null = null;
+    private _comboRequest = 0;
+    private _comboFrames: Promise<SpriteFrame[]> | null = null;
+    private _comboPending = false;
+    private _successText: Node | null = null;
+    private static readonly SUCCESS_TEXTS = [
+        ['Good', '不错！', '答对了！'],
+        ['有一手~', 'Great', '漂亮！', '好眼力~'],
+        ['夯爆了', '这波很顶', '牛来！', '狠狠拿捏', '直接拉满！', '绝绝子~'],
     ];
+    private static readonly SUCCESS_SIZES = [28, 32, 36];
+    private static readonly SUCCESS_COLORS = ['ff9800', 'ff348a', 'ff0404', '2ebf01', '6c5df8', 'f358f9'];
 
-    /** 找对激励反馈：屏幕中央弹出称赞文案（连击 >1 附 xN），放大回弹 → 上浮淡出。 */
-    public showSuccessFx(combo: number): void {
-        const tier = GameScreen.COMBO_TIERS[Math.min(combo, GameScreen.COMBO_TIERS.length) - 1];
-        const fxNode = new Node('SuccessFx');
-        fxNode.parent = this.node;
-        fxNode.setPosition(0, 150);
-        const ui = fxNode.addComponent(UITransform);
-        ui.setContentSize(620, 110);
-        const label = fxNode.addComponent(Label);
-        label.string = combo > 1 ? `${tier.text}  x${combo}` : tier.text;
-        label.fontSize = tier.size;
+    private _clearSuccessText(): void {
+        const node = this._successText;
+        this._successText = null;
+        if (!node?.isValid) return;
+        Tween.stopAllByTarget(node);
+        const opacity = node.getComponent(UIOpacity);
+        if (opacity) Tween.stopAllByTarget(opacity);
+        node.active = false;
+        node.destroy();
+    }
+
+    private _successTextPosition(difference: DifferenceConfig | undefined, imageNode: Node | undefined,
+        width: number, height: number, angle: number): Vec3 {
+        if (!difference) return new Vec3(0, 150, 0);
+        const image = imageNode ?? this._image('TopImage');
+        const imageUi = image?.getComponent(UITransform);
+        const gameUi = this.node.getComponent(UITransform);
+        const size = image && this._imageSize(image);
+        if (!imageUi || !gameUi || !size) return new Vec3(0, 150, 0);
+        const point = DifferenceController.normalizedToLocal(difference, size.width, size.height);
+        const center = gameUi.convertToNodeSpaceAR(imageUi.convertToWorldSpaceAR(new Vec3(point.x, point.y, 0)));
+        const radius = DifferenceController.radiusToLocal(difference, size.width, size.height);
+        const edge = gameUi.convertToNodeSpaceAR(imageUi.convertToWorldSpaceAR(new Vec3(point.x, point.y + radius, 0)));
+        const bottomLeft = gameUi.convertToNodeSpaceAR(imageUi.convertToWorldSpaceAR(new Vec3(-size.width / 2, -size.height / 2, 0)));
+        const topRight = gameUi.convertToNodeSpaceAR(imageUi.convertToWorldSpaceAR(new Vec3(size.width / 2, size.height / 2, 0)));
+        // 预留随机旋转、回弹放大和最后上浮的空间，避免边缘差异的文字超出图片。
+        const radians = Math.abs(angle) * Math.PI / 180;
+        const halfWidth = (width * Math.cos(radians) + height * Math.sin(radians)) * 0.55;
+        const halfHeight = (height * Math.cos(radians) + width * Math.sin(radians)) * 0.55;
+        const left = bottomLeft.x + halfWidth + 8, right = topRight.x - halfWidth - 8;
+        const bottom = bottomLeft.y + halfHeight + 8, top = topRight.y - halfHeight - 53;
+        const gap = Math.abs(edge.y - center.y) + halfHeight + 12;
+        const y = center.y + gap <= top ? center.y + gap : center.y - gap;
+        return new Vec3(left <= right ? Math.max(left, Math.min(right, center.x)) : (bottomLeft.x + topRight.x) / 2,
+            bottom <= top ? Math.max(bottom, Math.min(top, y)) : (bottomLeft.y + topRight.y) / 2, 0);
+    }
+
+    private _showSuccessText(combo: number, difference?: DifferenceConfig, imageNode?: Node): void {
+        this._clearSuccessText();
+        const node = new Node('SuccessFx');
+        this._successText = node;
+        node.layer = this.node.layer;
+        node.parent = this.node;
+        node.addComponent(UITransform).setContentSize(620, 80);
+        const label = node.addComponent(Label);
+        const tier = Math.max(0, Math.min(combo, GameScreen.SUCCESS_TEXTS.length) - 1);
+        const texts = GameScreen.SUCCESS_TEXTS[tier];
+        label.string = texts[Math.floor(Math.random() * texts.length)] + (combo > 1 ? `  x${combo}` : '');
+        label.fontSize = GameScreen.SUCCESS_SIZES[Math.floor(Math.random() * GameScreen.SUCCESS_SIZES.length)];
+        label.lineHeight = label.fontSize + 4;
         label.isBold = true;
-        label.color = tier.color;
+        label.color = new Color().fromHEX(GameScreen.SUCCESS_COLORS[Math.floor(Math.random() * GameScreen.SUCCESS_COLORS.length)]);
+        label.enableOutline = true;
+        label.outlineColor = Color.WHITE;
+        label.outlineWidth = 2;
         label.horizontalAlign = Label.HorizontalAlign.CENTER;
         label.verticalAlign = Label.VerticalAlign.CENTER;
-        label.overflow = Label.Overflow.SHRINK;
-        const opacity = fxNode.addComponent(UIOpacity);
-        fxNode.setScale(0.5, 0.5, 1);
-        tween(fxNode)
-            .to(0.12, { scale: new Vec3(1.15, 1.15, 1) })
-            .to(0.08, { scale: Vec3.ONE })
-            .delay(0.35)
-            .call(() => {
-                tween(fxNode).by(0.4, { position: new Vec3(0, 60, 0) }).start();
-                tween(opacity).to(0.4, { opacity: 0 }).call(() => fxNode.destroy()).start();
-            })
-            .start();
+        label.overflow = Label.Overflow.NONE;
+        label.enableWrapText = false;
+        label.updateRenderData(true);
+        const angle = Math.random() * 30 - 15;
+        const textUi = node.getComponent(UITransform)!;
+        node.setPosition(this._successTextPosition(difference, imageNode, textUi.width, textUi.height, angle));
+        node.setRotationFromEuler(0, 0, angle);
+        const opacity = node.addComponent(UIOpacity);
+        node.setScale(0.7, 0.7, 1);
+        tween(node).to(0.12, { scale: new Vec3(1.1, 1.1, 1) })
+            .to(0.08, { scale: Vec3.ONE }).delay(0.35)
+            .by(0.45, { position: new Vec3(0, 45, 0) }).start();
+        tween(opacity).delay(0.55).to(0.45, { opacity: 0 }).call(() => {
+            if (this._successText === node) this._clearSuccessText();
+        }).start();
+    }
+
+    private _loadComboFrames(): Promise<SpriteFrame[]> {
+        if (!this._comboFrames) {
+            this._comboFrames = Promise.all([1, 2, 3].map(index =>
+                this.flow.loadSpriteFrame(`textures/UI_Sprite/V3/Game/icon_ComboTips0${index}/spriteFrame`)))
+                .catch(error => { this._comboFrames = null; throw error; });
+        }
+        return this._comboFrames;
+    }
+
+    private _hideComboTips(): void {
+        ++this._comboRequest;
+        this._comboPending = false;
+        this.unschedule(this._hideComboTips);
+        this._comboAnimation?.stop();
+        if (this._comboBox?.isValid) this._comboBox.active = false;
+    }
+
+    /** 第五连击起，沿用场景位置，随机图片、单次动画及正负十度旋转。 */
+    public showSuccessFx(combo: number, difference?: DifferenceConfig, imageNode?: Node): void {
+        // 新命中不延长已弹出的大提示，保证每次只显示一秒。
+        if (this._comboPending || this._comboBox?.active) return;
+        if (combo < 5) { this._showSuccessText(combo, difference, imageNode); return; }
+        const box = this.findChildDeep(this.node, 'ComboTipsBox');
+        const tips = box && this.findChildDeep(box, 'ComboTips');
+        const sprite = tips?.getComponent(Sprite);
+        const animation = tips?.getComponent(Animation);
+        if (!box || !sprite || !animation) { this._showSuccessText(combo, difference, imageNode); return; }
+        this._hideComboTips();
+        this._comboBox = box;
+        this._comboAnimation = animation;
+        const request = this._comboRequest;
+        const clips = animation.clips.filter((clip): clip is AnimationClip => !!clip);
+        if (!clips.length) { this._showSuccessText(combo, difference, imageNode); return; }
+        this._comboPending = true;
+        void this._loadComboFrames().then(frames => {
+            if (!this.isValid || request !== this._comboRequest || !this.node.activeInHierarchy
+                || !box.isValid || !sprite.isValid || !animation.isValid) return;
+            sprite.spriteFrame = frames[Math.floor(Math.random() * frames.length)];
+            this._clearSuccessText();
+            this._comboPending = false;
+            box.setRotationFromEuler(0, 0, Math.random() * 20 - 10);
+            animation.playOnLoad = false;
+            box.active = true;
+            const clip = clips[Math.floor(Math.random() * clips.length)];
+            animation.play(clip.name);
+            const state = animation.getState(clip.name);
+            if (state) { state.wrapMode = AnimationClip.WrapMode.Normal; state.repeatCount = 1; }
+            this.scheduleOnce(this._hideComboTips, 1);
+        }).catch(error => {
+            if (request === this._comboRequest) {
+                this._comboPending = false;
+                if (this.isValid && this.node.activeInHierarchy) this._showSuccessText(combo, difference, imageNode);
+            }
+            console.warn('[GameScreen] 连击图片加载失败', error);
+        });
     }
 
     /** 80×80错误图标：弹出、左右抖动、淡出；缩放图片时保持图标尺寸。 */
@@ -475,7 +616,7 @@ export class GameScreen extends UIScreen {
         const normalized = DifferenceController.localToNormalized(local, size.width, size.height);
         const hit = DifferenceController.hitTest(normalized, level.differences, this.flow.foundIds, size.width, size.height);
         if (hit) {
-            this.flow.onDifferenceFound(hit);
+            this.flow.onDifferenceFound(hit, imageNode);
             return;
         }
         // 重复点击已找到的位置：静默忽略，不扣生命

@@ -41,6 +41,21 @@ export class SaveService {
         return (this._data.completed[key]?.stars ?? 0) > 0;
     }
 
+    public isCityUnlocked(key: string): boolean {
+        return Array.isArray(this._data.unlockedCities) && this._data.unlockedCities.includes(key);
+    }
+
+    public unlockCity(key: string): boolean {
+        if (!key) return false;
+        if (this.isCityUnlocked(key)) return true;
+        const previous = this._data;
+        const cities = Array.isArray(previous.unlockedCities) ? previous.unlockedCities : [];
+        this._data = { ...previous, unlockedCities: [...cities, key] };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
     public progressOf(key: string): LevelProgress | undefined {
         return this._data.completed[key];
     }

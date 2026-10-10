@@ -1,6 +1,6 @@
 import { PlatformConfig, RewardPlacement, RewardResult } from '../core/GameTypes';
 import { SidebarService } from './SidebarService';
-import { BYTEDANCE, WECHAT } from 'cc/env';
+import { BYTEDANCE, WECHAT, HTML5 } from 'cc/env';
 import { PlayerInfoService } from './PlayerInfoService';
 
 type RuntimeKind = 'h5' | 'wechat' | 'douyin';
@@ -200,16 +200,18 @@ export class PlatformService {
         // 构建目标优先，避免兼容环境同时暴露 wx/tt 时选错广告配置。
         if (BYTEDANCE) return 'douyin';
         if (WECHAT) return 'wechat';
+        // 网页构建即使运行在带 wx/tt SDK 的浏览器中，也始终使用无广告 H5 流程。
+        if (HTML5) return 'h5';
         if (this._host.tt?.createRewardedVideoAd || this._host.tt?.login || this._host.tt?.getSystemInfo) return 'douyin';
         if (this._host.wx?.createRewardedVideoAd || this._host.wx?.login || this._host.wx?.getSystemInfo) return 'wechat';
         return 'h5';
     }
 
     public async showRewardedAd(_placement: RewardPlacement): Promise<RewardResult> {
-        if (this._interstitialBusy) return { success: false, completed: false, simulated: false, reason: '请先关闭插屏广告' };
         if (this.kind === 'h5') {
             return { success: true, completed: true, simulated: true };
         }
+        if (this._interstitialBusy) return { success: false, completed: false, simulated: false, reason: '请先关闭插屏广告' };
 
         const kind = this.kind;
         const sdk = kind === 'wechat' ? this._host.wx : this._host.tt;

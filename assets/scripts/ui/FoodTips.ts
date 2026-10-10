@@ -1,4 +1,4 @@
-import { _decorator, BlockInputEvents, Color, instantiate, Label, Node, Sprite, UITransform } from 'cc';
+import { _decorator, BlockInputEvents, Color, EventTouch, instantiate, Label, Node, Sprite, UITransform, Vec3 } from 'cc';
 import { FoodDetails } from '../core/GameTypes';
 import { UIScreen } from './UIScreen';
 const { ccclass } = _decorator;
@@ -14,6 +14,11 @@ export class FoodTips extends UIScreen {
     private _token = 0;
     private _preferOwn = true;
     private _cancelInput: (() => void) | null = null;
+    private _window: Node | null = null;
+    private _timeOver: Label | null = null;
+    private _closeRemaining = 8;
+    private _editing = false;
+    private _skipCountdownFrame = false;
 
     protected onLoad(): void {
         this.node.addComponent(BlockInputEvents);
@@ -22,18 +27,44 @@ export class FoodTips extends UIScreen {
         if (this._template) this._template.active = false;
         // 场景保留了旧的同名占位节点，两个关闭入口都接线：内层右上角（无图标，纯命中区）+ 外层可见返回箭头。
         const window = this.resolveNode(null, 'TipsWindow');
+        this._window = window;
+        this._timeOver = this.resolveLabel(null, 'TipsWindow/TimeOver');
         const closeButton = window?.children.slice().reverse().find(child => child.name === 'BtnClose') ?? null;
         this.wireButton(closeButton, 'TipsWindow/BtnClose', () => this.close());
         this.wireButton(null, 'BtnClose', () => this.close());
-        // 点卡片外的弹幕区/遮罩空白处也可关闭（美食评价按钮在卡片内，不受影响）。
-        this.wireButton(null, 'ReviewTipsBox', () => this.close());
+        // 捕获阶段覆盖遮罩和弹幕；只处理卡片外的点击，阻止穿透到下层。
+        this.node.on(Node.EventType.TOUCH_END, this._onOutsideTap, this, true);
         this.wireButton(null, 'BtnReview', () => this._review());
+    }
+    private _onOutsideTap(event: EventTouch): void {
+        const ui = this._window?.getComponent(UITransform);
+        if (!ui) return;
+        const point = event.getUILocation();
+        const local = ui.convertToNodeSpaceAR(new Vec3(point.x, point.y, 0));
+        if (local.x >= -ui.width * ui.anchorX && local.x <= ui.width * (1 - ui.anchorX)
+            && local.y >= -ui.height * ui.anchorY && local.y <= ui.height * (1 - ui.anchorY)) return;
+        event.propagationStopped = true;
+        this.close();
+    }
+    private _refreshCountdown(): void {
+        if (this._timeOver) this._timeOver.string = this._editing
+            ? '评论中，倒计时暂停' : `弹窗${Math.ceil(this._closeRemaining)}S后关闭`;
+    }
+    private _finishEditing(): void {
+        this._editing = false;
+        // 原生输入/H5 prompt 可能阻塞帧更新，恢复时不扣除编辑期间的时间。
+        this._skipCountdownFrame = true;
+        this._refreshCountdown();
     }
     public present(level: FoodDetails, unlocked: boolean): void {
         this.close();
         this._level = level;
         this._preferOwn = true;
         this.open();
+        this._closeRemaining = 8;
+        this._editing = false;
+        this._skipCountdownFrame = false;
+        this._refreshCountdown();
         this.node.setSiblingIndex(this.node.parent!.children.length - 1);
         this.setLabel(null, 'TipsWindow/Title-001', unlocked ? `恭喜解锁美食：${level.foodName || level.name}` : level.foodName || level.name);
         this.setLabel(null, 'TipsWindow/Title-002', level.foodDesc || '美食介绍待补充');
@@ -49,6 +80,7 @@ export class FoodTips extends UIScreen {
         this._token++;
         this._cancelInput?.();
         this._cancelInput = null;
+        this._editing = false;
         this._clear();
     }
     private _clear(): void {
@@ -56,6 +88,12 @@ export class FoodTips extends UIScreen {
         this._flying = [];
     }
     protected update(dt: number): void {
+        if (!this._editing && !this._skipCountdownFrame) {
+            this._closeRemaining = Math.max(0, this._closeRemaining - dt);
+            this._refreshCountdown();
+            if (this._closeRemaining <= 0) { this.close(); return; }
+        }
+        this._skipCountdownFrame = false;
         const box = this._box?.getComponent(UITransform);
         if (!box) return;
         for (const item of this._flying) item.setPosition(item.position.x - 95 * dt, item.position.y);
@@ -110,7 +148,9 @@ export class FoodTips extends UIScreen {
         this._preferOwn = false;
     }
     private _review(): void {
-        if (!this._level || this._cancelInput) return;
+        if (!this._level || this._editing) return;
+        this._editing = true;
+        this._refreshCountdown();
         const key = this._level.key;
         const submit = (value: string) => {
             if (!this.node.activeInHierarchy || this._level?.key !== key) return;
@@ -122,18 +162,21 @@ export class FoodTips extends UIScreen {
         const host = globalThis as any;
         const sdk = this.flow.platform.kind === 'douyin' ? host.tt : host.wx;
         if (!sdk?.showKeyboard) {
-            const text = host.prompt?.('评价美食（最多50字）', this.flow.save.getFoodReview(key));
-            if (typeof text === 'string') submit(text);
+            try {
+                const text = host.prompt?.('评价美食（最多50字）', this.flow.save.getFoodReview(key));
+                if (typeof text === 'string') submit(text);
+            } finally { this._finishEditing(); }
             return;
         }
         const cleanup = () => {
             sdk.offKeyboardComplete?.(complete);
             this._cancelInput = null;
+            this._finishEditing();
         };
         const complete = (result: { value?: string }) => { cleanup(); submit(result.value ?? ''); };
         this._cancelInput = () => { cleanup(); sdk.hideKeyboard?.({}); };
-        sdk.onKeyboardComplete(complete);
         try {
+            sdk.onKeyboardComplete(complete);
             sdk.showKeyboard({ defaultValue: this.flow.save.getFoodReview(key), maxLength: 50,
                 multiple: false, confirmHold: false, confirmType: 'done',
                 fail: () => { cleanup(); this.flow.toast('输入框暂时无法打开'); } });

@@ -1,6 +1,6 @@
 export type AppScreen = 'lobby' | 'cities' | 'levels' | 'game';
 
-export type RewardPlacement = 'revive' | 'hint' | 'add-time';
+export type RewardPlacement = 'revive' | 'hint' | 'add-time' | 'unlock-city';
 
 export interface FoodCatalogEntry {
     id: string;
@@ -133,6 +133,8 @@ export interface SaveData {
     version: number;
     /** key（城市目录/关卡目录）→ 通关成绩 */
     completed: Record<string, LevelProgress>;
+    /** 通过激励视频提前解锁的城市目录名。 */
+    unlockedCities?: string[];
     totalScore: number;
     /** 图鉴/成就（后续版本使用）：条目 id → 获得时间戳 */
     achievements: Record<string, number>;

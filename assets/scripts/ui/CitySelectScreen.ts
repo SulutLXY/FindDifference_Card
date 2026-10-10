@@ -1,6 +1,7 @@
 import {
     _decorator,
     Color,
+    EventTouch,
     Graphics,
     Input,
     Label,
@@ -41,7 +42,7 @@ const CITY_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
  * - CityBanner    Sprite，城市横幅图（可选，city.json 配 banner 时加载）
  * - LockIcon      锁图标（未解锁时显示；模板里直接用 CityLockTip 当锁也可以）
  *
- * 解锁规则：第一城始终解锁，其余需前一城全部关卡通关。
+ * ProgressPoint 与 BtnUnlock 互斥；城市可通关前城或看激励视频解锁。
  */
 @ccclass('CitySelectScreen')
 export class CitySelectScreen extends UIScreen {
@@ -62,6 +63,8 @@ export class CitySelectScreen extends UIScreen {
 
     private _cards: Node[] = [];
     private _content: Node | null = null;
+    private _unlockPending = false;
+    private readonly _nameColors = new WeakMap<Node, Color>();
 
     protected onLoad(): void {
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showLobby());
@@ -112,6 +115,17 @@ export class CitySelectScreen extends UIScreen {
     private _fillCard(card: Node, city: CityConfig, cityIndex: number): void {
         const unlocked = this.flow.isCityUnlocked(cityIndex);
         const progress = this.flow.cityProgress(city);
+        const progressPoint = this.findChildDeep(card, 'ProgressPoint');
+        const unlockButton = this.findChildDeep(card, 'BtnUnlock');
+        if (progressPoint) progressPoint.active = unlocked;
+        if (unlockButton) {
+            unlockButton.active = !unlocked;
+            unlockButton.off(Input.EventType.TOUCH_END, undefined, this);
+            unlockButton.on(Input.EventType.TOUCH_END, (event: EventTouch) => {
+                event.propagationStopped = true;
+                void this._unlockCity(city, cityIndex);
+            }, this);
+        }
 
         // 全局关卡编号：前序城市关卡数累加 + 1
         let levelStart = 1;
@@ -119,8 +133,11 @@ export class CitySelectScreen extends UIScreen {
 
         this._setCardLabel(card, 'CityName', city.name);
         // 城市名：已解锁保持模板默认色，未解锁灰蓝
-        const nameLabel = card.getChildByName('CityName')?.getComponent(Label);
-        if (nameLabel && !unlocked) nameLabel.color = CITY_NAME_LOCKED_COLOR;
+        const nameLabel = this.findChildDeep(card, 'CityName')?.getComponent(Label);
+        if (nameLabel) {
+            if (!this._nameColors.has(card)) this._nameColors.set(card, nameLabel.color.clone());
+            nameLabel.color = unlocked ? this._nameColors.get(card)! : CITY_NAME_LOCKED_COLOR;
+        }
         // 进度始终显示「完成/总数」，未解锁即为 0/15
         this._setCardLabel(card, 'CityProgress', `${progress.done}/${progress.total}`);
         this._setCardLabel(card, 'Levelnumber', progress.total > 0 ? `第${levelStart}-${levelStart + progress.total - 1}关` : '');
@@ -130,7 +147,7 @@ export class CitySelectScreen extends UIScreen {
         if (cityAim) cityAim.grayscale = !unlocked;
 
         // 进度条：rank_row 底槽 + rank_row-001 填充（锚点已靠左，按完成比例改宽度）
-        const barRoot = card.getChildByName('rank_row');
+        const barRoot = this.findChildDeep(card, 'rank_row');
         const barRootUi = barRoot?.getComponent(UITransform);
         const fillUi = barRoot?.getChildByName('rank_row-001')?.getComponent(UITransform);
         if (barRootUi && fillUi) {
@@ -163,11 +180,33 @@ export class CitySelectScreen extends UIScreen {
         }, this);
     }
 
+    private async _unlockCity(city: CityConfig, cityIndex: number): Promise<void> {
+        if (this._unlockPending || this.flow.isCityUnlocked(cityIndex)) return;
+        this._unlockPending = true;
+        try {
+            await this.flow.requestReward('unlock-city', () => {
+                if (!this.flow.save.unlockCity(city.key)) {
+                    this.flow.toast('解锁保存失败，请稍后重试');
+                    return;
+                }
+                if (this.isValid && this.node.activeInHierarchy) {
+                    this._cards.forEach((card, index) => {
+                        if (card.isValid) this._fillCard(card, this.flow.cities[index], index);
+                    });
+                }
+                this.flow.toast(`${city.name}已解锁`);
+            });
+        } finally {
+            this._unlockPending = false;
+        }
+    }
+
     private async _loadBanner(card: Node, path: string, unlocked: boolean): Promise<void> {
         const banner = this.findChildDeep(card, 'CityBanner');
         if (!banner) return;
         try {
             const frame = await this.flow.loadSpriteFrame(path);
+            if (!banner.isValid) return;
             let sprite = banner.getComponent(Sprite);
             if (!sprite) sprite = banner.addComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
@@ -181,7 +220,7 @@ export class CitySelectScreen extends UIScreen {
     }
 
     private _setCardLabel(card: Node, name: string, text: string): void {
-        const label = card.getChildByName(name)?.getComponent(Label);
+        const label = this.findChildDeep(card, name)?.getComponent(Label);
         if (label) label.string = text;
     }
 

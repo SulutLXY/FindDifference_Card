@@ -18,7 +18,9 @@ ROOT = Path(__file__).resolve().parents[1]
 NS = {'s': 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 Q = '{' + NS['s'] + '}'
 HEADERS = ['美食ID', '美食名称', '城市ID', '城市名称', '关卡目录', '素材名称', '资产路径', '素材UUID', '美食介绍', '预设评价', '关联说明']
-FOOD_ALIASES = {'南翔小笼': '南京小笼包', '鸭血粉丝': '鸭血粉丝汤', '肉丸糊辣汤': '肉丸胡辣汤'}
+FOOD_ALIASES = {'南翔小笼': '南京小笼包', '南翔小笼包': '南京小笼包',
+                '鸭血粉丝': '鸭血粉丝汤', '肉丸糊辣汤': '肉丸胡辣汤',
+                '胡辣汤': '肉丸胡辣汤', '长沙米粉': '长沙米线'}
 
 
 def food_name(name):
@@ -91,7 +93,7 @@ def build(table, output, check=False):
                 if key in levels: raise ValueError('关卡重复关联: '+key)
                 levels.add(key)
                 level_data = json.loads((city_config.parent/level/'differences.json').read_text(encoding='utf-8-sig'))
-                label = level_data.get('food', '')
+                label = level_data.get('food') or level_data.get('name', '')
                 if level_data.get('type') == 'food' and label and food_name(label) != food_name(food):
                     raise ValueError(f'美食与关卡不匹配: {food} → {key}（关卡美食为 {label}）')
             requested = (ROOT/path.replace('\\', '/')).resolve()

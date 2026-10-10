@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, UITransform, Mask, Graphics, Color, Label, Sprite, EventTouch, Vec3 } from 'cc';
+import { _decorator, Component, Node, UITransform, Mask, Graphics, Color, Label, Sprite, EventTouch, Vec3, input, Input } from 'cc';
 const { ccclass } = _decorator;
 
 /** Reuses the scene-authored TipsBox and upward-facing TipsAimBox. */
@@ -19,6 +19,8 @@ export class GameTips extends Component {
     private _boxHeight = 120;
     private _boxLeft = -150;
     private _boxRight = 150;
+    private _hintDone: (() => void) | null = null;
+    private _hintInputRoot: Node | null = null;
 
     protected onLoad(): void {
         const hole = new Node('FocusHole');
@@ -48,21 +50,65 @@ export class GameTips extends Component {
         const label = skip.addComponent(Label);
         label.string = '跳过引导'; label.fontSize = 26;
         this._skip = skip;
+        this._setBlockingInput(true);
+    }
+    private _setBlockingInput(block: boolean): void {
+        this.node.off(Node.EventType.TOUCH_START, this._block, this, true);
+        this.node.off(Node.EventType.TOUCH_MOVE, this._block, this, true);
+        this.node.off(Node.EventType.TOUCH_END, this._tap, this, true);
+        if (!block) return;
         this.node.on(Node.EventType.TOUCH_START, this._block, this, true);
         this.node.on(Node.EventType.TOUCH_MOVE, this._block, this, true);
         this.node.on(Node.EventType.TOUCH_END, this._tap, this, true);
     }
     public present(target: Node, local: Vec3, radius: number, done: (hit: boolean) => void, message = '点击亮处，找出不同', closeText = '跳过引导'): void {
+        this._clearHint();
+        this._setBlockingInput(true);
         this.node.active = true;
         this.node.setSiblingIndex(this.node.parent!.children.length - 1);
         this._target = target; this._local.set(local); this._radius = radius; this._done = done;
         const closeLabel = this._skip?.getComponent(Label);
+        if (this._skip) this._skip.active = closeText.length > 0;
         if (closeLabel) closeLabel.string = closeText;
         const text = this.node.getChildByPath('TipsBox/TipsText')?.getComponent(Label);
         if (text) text.string = message;
         this._textLayoutKey = '';
         this._layoutText();
         this.lateUpdate();
+    }
+    /** 提示只显示高亮，整个节点树不注册触摸命中，不遮挡正常玩法。 */
+    public presentHint(target: Node, local: Vec3, radius: number, onDismiss?: () => void): void {
+        this.present(target, local, radius, () => {}, '不同就在圈内', '');
+        this._done = null;
+        this._setBlockingInput(false);
+        this._hintDone = onDismiss ?? null;
+        // 按钮在 TOUCH_END 打开提示；监听下一次 TOUCH_START，避免同次点击立刻关闭。
+        input.on(Input.EventType.TOUCH_START, this._finishHint, this);
+        // Cocos 的 UI 会吞掉全局触摸；从共同父节点捕获 UI 点击，且不停止传播。
+        // Screens 是没有 UITransform 的分组节点，注册触摸会使 3.8.8 的
+        // PointerEventDispatcher 在读取 cameraPriority 时崩溃。
+        let root = this.node.parent;
+        while (root && !root.getComponent(UITransform)) root = root.parent;
+        this._hintInputRoot = root;
+        this._hintInputRoot?.on(Node.EventType.TOUCH_START, this._finishHint, this, true);
+        this.scheduleOnce(this._finishHint, 2);
+    }
+    private _clearHint(): void {
+        input.off(Input.EventType.TOUCH_START, this._finishHint, this);
+        this._hintInputRoot?.off(Node.EventType.TOUCH_START, this._finishHint, this, true);
+        this._hintInputRoot = null;
+        this.unschedule(this._finishHint);
+        this._hintDone = null;
+    }
+    private _finishHint(): void {
+        const done = this._hintDone;
+        this.dismiss();
+        done?.();
+    }
+    protected onDisable(): void { this._clearHint(); }
+    protected onDestroy(): void {
+        this._clearHint();
+        this._setBlockingInput(false);
     }
     /** 文字按固定字号测量，背景适应文字，不通过缩放容纳内容。 */
     private _layoutText(): void {
@@ -112,7 +158,10 @@ export class GameTips extends Component {
         box.getComponent(UITransform)?.setContentSize(this._boxWidth, this._boxHeight);
         this._textLayoutKey = `${text.string}|${text.fontSize}|${text.overflow}`;
     }
-    public dismiss(): void { this._done = null; this._target = null; this.node.active = false; }
+    public dismiss(): void {
+        this._clearHint();
+        this._done = null; this._target = null; this.node.active = false;
+    }
     private _block(event: EventTouch): void { event.propagationStopped = true; }
     private _tap(event: EventTouch): void {
         event.propagationStopped = true;
@@ -120,7 +169,7 @@ export class GameTips extends Component {
         const pos = event.getUILocation();
         const p = this.node.getComponent(UITransform)!.convertToNodeSpaceAR(new Vec3(pos.x, pos.y));
         const skip = this._skip!;
-        const skipped = Math.abs(p.x - skip.position.x) <= 75 && Math.abs(p.y - skip.position.y) <= 32;
+        const skipped = skip.active && Math.abs(p.x - skip.position.x) <= 75 && Math.abs(p.y - skip.position.y) <= 32;
         const hit = (p.x-this._center.x)**2 + (p.y-this._center.y)**2 <= this._screenRadius**2;
         if (!hit && !skipped) return;
         const done = this._done; this.dismiss(); done(!skipped);

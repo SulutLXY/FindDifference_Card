@@ -1,4 +1,4 @@
-"""Losslessly optimize source PNGs; keep dimensions, pixels and Cocos metadata."""
+"""Optimize source PNGs, optionally quantizing to 256 colors; preserve dimensions and Cocos metadata."""
 import hashlib
 import argparse
 import io
@@ -35,6 +35,15 @@ def main():
                 if args.colors and image.mode != 'P':
                     rgba = image.convert('RGBA')
                     quantized = rgba.quantize(colors=args.colors, method=Image.Quantize.FASTOCTREE)
+                    # Preserve transparent/opaque endpoints when palette colors are averaged.
+                    palette = quantized.getpalette('RGBA')
+                    used = [index for _, index in quantized.getcolors(256)]
+                    low, high = rgba.getchannel('A').getextrema()
+                    lowest = min(used, key=lambda index: palette[index * 4 + 3])
+                    highest = max(used, key=lambda index: palette[index * 4 + 3])
+                    palette[lowest * 4 + 3] = low
+                    palette[highest * 4 + 3] = high
+                    quantized.putpalette(palette, rawmode='RGBA')
                     options = {k:image.info[k] for k in ('icc_profile','dpi') if k in image.info}
                     quantized.save(stream, format='PNG', optimize=True, compress_level=9, **options)
                     candidate = stream.getvalue()
@@ -50,10 +59,11 @@ def main():
                         after_alpha = check.convert('RGBA').getchannel('A')
                         record['alpha_range_before'] = before_alpha.getextrema()
                         record['alpha_range_after'] = after_alpha.getextrema()
+                        assert before_alpha.getextrema() == after_alpha.getextrema(), path
                         record['colors'] = len(check.getcolors(256))
                     else:
                         assert check.convert('RGBA').tobytes() == image.convert('RGBA').tobytes(), path
-                if len(candidate) < len(original):
+                if len(candidate) < len(original) or (args.colors and image.mode != 'P'):
                     archive.writestr(record['path'], original)
                     if meta_before is not None: archive.writestr(record['path']+'.meta',meta_before)
                     temp = path.with_suffix('.png.compress-tmp')
