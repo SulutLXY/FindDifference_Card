@@ -1,0 +1,32 @@
+{
+  "name": "紫禁城",
+  "type": "normal",
+  "food": "",
+  "icon": "thumbnails/city-01-beijing/level-01/icon/spriteFrame",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.857359,
+      "y": 0.285484,
+      "radius": 0.140915
+    },
+    {
+      "id": "diff-2",
+      "x": 0.088911,
+      "y": 0.35,
+      "radius": 0.150243
+    },
+    {
+      "id": "diff-3",
+      "x": 0.341885,
+      "y": 0.866129,
+      "radius": 0.148045
+    },
+    {
+      "id": "diff-4",
+      "x": 0.624496,
+      "y": 0.698387,
+      "radius": 0.17134
+    }
+  ]
+}

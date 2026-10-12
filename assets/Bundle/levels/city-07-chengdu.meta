@@ -5,5 +5,10 @@
   "uuid": "0b889209-e555-41d9-bc56-82818de8ee13",
   "files": [],
   "subMetas": {},
-  "userData": {}
+  "userData": {
+    "isBundle": true,
+    "bundleName": "city-07-chengdu",
+    "priority": 7,
+    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+"
+  }
 }

@@ -5,5 +5,10 @@
   "uuid": "0b366cb5-e2b4-4d9d-b5b0-07a387b6436b",
   "files": [],
   "subMetas": {},
-  "userData": {}
+  "userData": {
+    "isBundle": true,
+    "bundleName": "city-06-guangzhou",
+    "priority": 7,
+    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+"
+  }
 }

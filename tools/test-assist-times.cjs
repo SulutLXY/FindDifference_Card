@@ -1,5 +1,5 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
-const scene=JSON.parse(fs.readFileSync('assets/scene/game.scene','utf8'));
+const scene=JSON.parse(fs.readFileSync('assets/PleyGame/prefabs/GameScreen.prefab','utf8'));
 const game=fs.readFileSync('assets/scripts/ui/GameScreen.ts','utf8');
 const hud=game.slice(game.indexOf('const flow = this.flow;',game.indexOf('public refreshHud()')),game.indexOf('const timer =',game.indexOf('public refreshHud()')));
 const labels={},sprites={};class Label{} class Sprite{}

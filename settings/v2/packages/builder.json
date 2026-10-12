@@ -28,8 +28,8 @@
             "configMode": "fallback",
             "overwriteSettings": {
               "bytedance-mini-game": {
-                "isRemote": true,
-                "compressionType": "subpackage"
+                "isRemote": false,
+                "compressionType": "merge_dep"
               },
               "alipay-mini-game": {
                 "isRemote": false,

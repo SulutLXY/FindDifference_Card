@@ -19,8 +19,8 @@ python tools/build-food-catalog.py --check
 
 - 美食ID：稳定唯一标识，建立后不要随意改动。
 - 美食名称、城市ID、城市名称：用于美食收藏列表及详情。
-- 关卡目录：如 `level-03`，填写城市内真实存在并列入 city.json 的关卡；空白表示待关联，收藏页仍展示但不自动解锁。
-- 素材名称、资产路径：项目相对路径，包含扩展名，如 `assets/Bundle/levels/city-01-beijing/city-01-beijing-BeiJingKaoYa.png`。
+- 关卡目录：如 `level-03`，填写城市内真实存在并列入 `assets/Bundle/configs/city-01-beijing.json` 的关卡；空白表示待关联，收藏页仍展示但不自动解锁。关卡配置在 `configs/城市/关卡/differences.json`，大图在 `levels/城市/关卡`。
+- 素材名称、资产路径：项目相对路径，包含扩展名，如 `assets/Bundle/thumbnails/city-01-beijing/city-01-beijing-BeiJingKaoYa.png`。
 - 素材UUID：匹配文件位置的稳定依据。资源移动或改后缀后保留 UUID，工具能找到并回写新路径。刻意换图时需要同步更新 UUID 或清空后按新素材名称定位。
 - 美食介绍：最多40字（含标点），在 FoodTips 中展示；空白时显示“美食介绍待补充”。
 - 预设评价：填写时为10条，每条2至20字（含标点），用 `|` 分隔，同一道菜不重复。不是其他玩家的联网评价；空白时只展示存在的本机评价。玩家自行输入评价仍沿用50字上限。
@@ -28,7 +28,7 @@ python tools/build-food-catalog.py --check
 
 ## 初始数据和待确认项
 
-2026-10-01 已按 `assets/Bundle/levels` 中 `differences.json` 的 `food` 字段同步北京、上海、南京、厦门的获得关卡，并按获得关卡排序表格和运行时目录。每城依次对应第 03、06、09、12、15 关：
+2026-10-01 已按 `differences.json` 的 `food` 字段同步北京、上海、南京、厦门的获得关卡，并按获得关卡排序表格和运行时目录。每城依次对应第 03、06、09、12、15 关：
 
 - 北京：北京烤鸭、涮羊肉、炸酱面、卤煮火烧、豆汁焦圈。
 - 上海：南京小笼包（关卡名称为南翔小笼）、本帮红烧肉、腌笃鲜、草头圈子、八宝辣酱。

@@ -494,7 +494,7 @@ export class GameScreen extends UIScreen {
     private _loadComboFrames(): Promise<SpriteFrame[]> {
         if (!this._comboFrames) {
             this._comboFrames = Promise.all([1, 2, 3].map(index =>
-                this.flow.loadSpriteFrame(`textures/UI_Sprite/V3/Game/icon_ComboTips0${index}/spriteFrame`)))
+                this.flow.loadGameSpriteFrame(`Texture/UI_Sprite/Game/icon_ComboTips0${index}/spriteFrame`)))
                 .catch(error => { this._comboFrames = null; throw error; });
         }
         return this._comboFrames;

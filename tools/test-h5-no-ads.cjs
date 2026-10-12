@@ -88,6 +88,29 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
         granted = false; flow.toast = () => {};
         const cancelled = flow.requestReward('hint', () => { granted = true; });
         close({ isEnded: false }); await cancelled; assert.equal(granted, false);
+
+        // Returning from a paused game must not silently block city unlock ads.
+        flow._isPaused = true;
+        await flow.requestReward('hint', () => { throw Error('Paused gameplay must stay blocked'); });
+        assert.equal(created, 2);
+        const unlock = flow.requestReward('unlock-city', () => { granted = true; });
+        assert.equal(created, 3, 'City unlock must reach the native SDK even when gameplay is paused');
+        await flow.requestReward('unlock-city', () => { throw Error('Duplicate reward'); });
+        assert.equal(created, 3, 'Only one reward ad may be pending');
+        close({ isEnded: true }); await unlock;
+        assert.equal(granted, true);
+        assert.equal(flow._isPaused, true, 'City unlock preserves the existing pause state');
+        granted = false;
+        const unlockCancelled = flow.requestReward('unlock-city', () => { granted = true; });
+        assert.equal(created, 4, 'Closing the previous ad must allow retry');
+        close({ isEnded: false }); await unlockCancelled;
+        assert.equal(granted, false, 'Incomplete city ads must not grant an unlock');
+
+        flow._isGameOver = true;
+        const revive = flow.requestReward('revive', () => {});
+        await flow.requestReward('revive', () => { throw Error('Duplicate revive'); });
+        assert.equal(created, 5, 'Game-over state must not bypass the pending ad guard');
+        close({ isEnded: true }); await revive;
     }
     assert.ok(!flowSource.includes('_showSimulatedAd'), 'Remove obsolete simulation UI');
     console.log('PASS: H5 ad bypass and unlimited assists without stock/counter changes; native limits and complete/cancel behavior retained.');

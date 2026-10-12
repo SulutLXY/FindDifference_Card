@@ -46,7 +46,7 @@ export interface GradeConfig {
     secondsPerExtraDifference: number;
 }
 
-/** 关卡目录内 differences.json 的原始格式。图片路径可覆盖目录推导；icon 缺省回退 scene-a。 */
+/** configs/城市/关卡/differences.json 的原始格式。大图在 levels，封面在 thumbnails。 */
 export interface LevelFileConfig {
     name: string;
     type: LevelType;
@@ -76,12 +76,12 @@ export interface LevelConfig {
     differences: DifferenceConfig[];
 }
 
-/** 城市索引（levels/cities.json，由 tools/build-manifest.py 生成）。 */
+/** 首包城市索引（resources/configs/cities.json，由 tools/build-manifest.py 生成）。 */
 export interface CityIndex {
     cities: string[];
 }
 
-/** 城市清单（city.json）：levels 由工具刷新，name/banner 等手工维护。 */
+/** 城市清单（configs/城市目录名.json）：levels 由工具刷新，name/banner 等手工维护。 */
 export interface CityMeta {
     key: string;
     name: string;

@@ -49,11 +49,11 @@ class CatalogTests(unittest.TestCase):
         foods = json.loads(self.output.read_text(encoding='utf-8'))['foods']
         by_level = {food['levelKey']: food for food in foods}
         count = 0
-        for path in (catalog.ROOT/'assets/Bundle/levels').glob('city-*/level-*/differences.json'):
+        for path in (catalog.ROOT/'assets/Bundle/configs').glob('city-*/level-*/differences.json'):
             level = json.loads(path.read_text(encoding='utf-8-sig'))
             if level.get('type') != 'food': continue
             count += 1
-            key = path.parent.relative_to(catalog.ROOT/'assets/Bundle/levels').as_posix()
+            key = path.parent.relative_to(catalog.ROOT/'assets/Bundle/configs').as_posix()
             self.assertIn(key, by_level)
             food = by_level[key]
             self.assertEqual(catalog.food_name(level.get('food') or level['name']),catalog.food_name(food['name']))

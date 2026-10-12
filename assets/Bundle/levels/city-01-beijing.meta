@@ -5,5 +5,10 @@
   "uuid": "ca4da331-185a-40bd-93de-d730b03e1edc",
   "files": [],
   "subMetas": {},
-  "userData": {}
+  "userData": {
+    "isBundle": true,
+    "bundleName": "city-01-beijing",
+    "priority": 7,
+    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+"
+  }
 }

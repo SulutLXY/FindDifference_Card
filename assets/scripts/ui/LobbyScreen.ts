@@ -67,14 +67,19 @@ export class LobbyScreen extends UIScreen {
         if (!label) return;
         label.enableWrapText = false;
         label.overflow = Label.Overflow.SHRINK;
-        const target = await this.flow.findContinueTarget();
-        if (!this.isValid || !label.isValid) return;
-        let name = target?.level.name ?? '全部通关，恭喜！';
-        if (target) {
-            const prefix = `${target.city.name}-`;
-            if (name.startsWith(prefix)) name = name.slice(prefix.length);
+        try {
+            const target = await this.flow.findContinueTarget();
+            if (!this.isValid || !label.isValid) return;
+            let name = target?.level.name ?? (this.flow.cities.length ? '全部通关，恭喜！' : '点击开始重试');
+            if (target) {
+                const prefix = `${target.city.name}-`;
+                if (name.startsWith(prefix)) name = name.slice(prefix.length);
+            }
+            label.string = name.replace(/[\r\n]+/g, ' ').trim();
+        } catch (error) {
+            if (this.isValid && label.isValid) label.string = '点击开始重试';
+            console.warn('[LobbyScreen] 当前关卡信息加载失败', error);
         }
-        label.string = name.replace(/[\r\n]+/g, ' ').trim();
     }
 
     private async _refreshRankVisibility(): Promise<void> {

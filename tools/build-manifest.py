@@ -6,20 +6,21 @@
     python tools/build-manifest.py
 
 行为：
-1. 扫描 assets/Bundle/levels/ 下所有 city-* 目录，按目录名排序生成 cities.json；
-2. 每城生成/刷新 city.json 的 levels 清单（level-* 目录名排序），
+1. 扫描 assets/Bundle/levels/ 下所有 city-* 目录，生成 resources/configs/cities.json；
+2. 每城生成/刷新 configs/city-XX-name.json 的 levels 清单，
    城市展示信息（name/banner 等手工字段）已存在时保留、不覆盖；
 3. 逐关校验 differences.json 与引用的图片资源，输出校验报告；
 4. 校验失败时以非零码退出，可接入打包前检查。
 
 目录约定：
-    levels/city-XX-name/
-        city.json           城市信息 + 关卡清单（本工具生成 levels 部分）
-        level-YY/
-            differences.json  关卡配置：name / type / differences / 可选图片路径覆盖
+    assets/resources/configs/cities.json 城市索引（首包）
+    configs/city-XX-name.json 城市信息 + 关卡清单（本工具生成 levels 部分）
+    configs/city-XX-name-icon.jpg 城市图标
+    configs/city-XX-name/level-YY/differences.json 关卡配置
+    thumbnails/city-XX-name/level-YY/icon.jpg 选关封面
+    levels/city-XX-name/level-YY/
             scene-a.jpg       上图（图片路径被覆盖时可省略）
             scene-b.jpg       下图
-            icon.jpg          封面（可选，缺省用 scene-a）
 """
 
 import json
@@ -28,10 +29,12 @@ import re
 import sys
 
 LEVELS_ROOT = 'assets/Bundle/levels'
+CONFIGS_ROOT = 'assets/Bundle/configs'
+CITY_INDEX_PATH = 'assets/resources/configs/cities.json'
 CITY_RE = re.compile(r'^city-\d{2}-[a-z]+$')
 LEVEL_RE = re.compile(r'^level-\d{2}$')
 
-# 首次生成 city.json 时的城市名（之后以手工修改为准）
+# 首次生成城市配置时的城市名（之后以手工修改为准）
 CITY_NAMES = {
     'city-01-beijing': '北京',
     'city-02-shanghai': '上海',
@@ -58,7 +61,7 @@ def check_level(city_dir, level_dir):
     """校验单个关卡，返回问题列表。"""
     problems = []
     base = os.path.join(LEVELS_ROOT, city_dir, level_dir)
-    diff_path = os.path.join(base, 'differences.json')
+    diff_path = os.path.join(CONFIGS_ROOT, city_dir, level_dir, 'differences.json')
     label = f'{city_dir}/{level_dir}'
 
     if not os.path.isfile(diff_path):
@@ -119,7 +122,8 @@ def main():
         return 1
 
     # 1. 全局城市索引
-    index_path = os.path.join(LEVELS_ROOT, 'cities.json')
+    os.makedirs(CONFIGS_ROOT, exist_ok=True)
+    index_path = CITY_INDEX_PATH
     json.dump({'cities': city_dirs}, open(index_path, 'w', encoding='utf-8'),
               ensure_ascii=False, indent=2)
     print(f'已生成 {index_path}: {len(city_dirs)} 个城市')
@@ -129,11 +133,11 @@ def main():
 
     for city_dir in city_dirs:
         city_path = os.path.join(LEVELS_ROOT, city_dir)
-        # 没有 differences.json 的目录（如敬请期待占位）不算关卡，不进清单
+        # level-00 旧占位目录及没有 differences.json 的目录不进正式关卡清单
         level_dirs = sorted(
             d for d in os.listdir(city_path)
-            if os.path.isdir(os.path.join(city_path, d)) and LEVEL_RE.match(d)
-            and os.path.isfile(os.path.join(city_path, d, 'differences.json'))
+            if os.path.isdir(os.path.join(city_path, d)) and LEVEL_RE.match(d) and d != 'level-00'
+            and os.path.isfile(os.path.join(CONFIGS_ROOT, city_dir, d, 'differences.json'))
         )
         skipped = sorted(
             d for d in os.listdir(city_path)
@@ -141,10 +145,10 @@ def main():
             and d not in level_dirs
         )
         if skipped:
-            print(f'  提示: {city_dir} 下 {", ".join(skipped)} 无 differences.json，已排除出清单')
+            print(f'  提示: {city_dir} 下 {", ".join(skipped)} 为旧占位或无 differences.json，已排除出清单')
 
-        # 2. 刷新 city.json：保留手工字段，仅更新 levels
-        manifest_path = os.path.join(city_path, 'city.json')
+        # 2. 刷新城市配置：保留手工字段，更新 levels
+        manifest_path = os.path.join(CONFIGS_ROOT, city_dir + '.json')
         manifest = {}
         if os.path.isfile(manifest_path):
             try:
@@ -152,6 +156,7 @@ def main():
             except Exception:
                 manifest = {}
         manifest.setdefault('name', CITY_NAMES.get(city_dir, city_dir))
+        manifest.setdefault('banner', f'configs/{city_dir}-icon/spriteFrame')
         manifest['levels'] = level_dirs
         json.dump(manifest, open(manifest_path, 'w', encoding='utf-8'),
                   ensure_ascii=False, indent=2)
@@ -163,7 +168,7 @@ def main():
 
         done = sum(
             1 for d in level_dirs
-            if os.path.isfile(os.path.join(city_path, d, 'differences.json'))
+            if os.path.isfile(os.path.join(CONFIGS_ROOT, city_dir, d, 'differences.json'))
         )
         banner = ' | '.join(f'{p}' for p in all_problems[-3:]) if all_problems else ''
         print(f'{city_dir} ({manifest["name"]}): {done}/{len(level_dirs)} 关')

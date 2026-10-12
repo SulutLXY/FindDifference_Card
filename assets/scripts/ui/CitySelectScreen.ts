@@ -39,7 +39,7 @@ const CITY_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
  * - CityProgress  Label，进度「X/Y」，前方固定文本（如「已完成：」）由模板自带 Label 承担
  * - Levelnumber   Label，关卡范围「第X-Y关」（按全局关卡编号）
  * - rank_row      进度条底槽 + 子节点 rank_row-001 填充条（锚点靠左，代码按进度改宽度）
- * - CityBanner    Sprite，城市横幅图（可选，city.json 配 banner 时加载）
+ * - CityBanner    Sprite，城市横幅图（configs/城市目录名.json 的 banner）
  * - LockIcon      锁图标（未解锁时显示；模板里直接用 CityLockTip 当锁也可以）
  *
  * ProgressPoint 与 BtnUnlock 互斥；城市可通关前城或看激励视频解锁。
@@ -166,8 +166,8 @@ export class CitySelectScreen extends UIScreen {
             console.log(`[CitySelect] sync-gray city=${city.key} unlocked=${unlocked} grayscale=${bannerSprite.grayscale}`);
         }
 
-        // 城市横幅：固定读取城市资源目录下的 icon-city
-        void this._loadBanner(card, `levels/${city.key}/icon-city`, unlocked);
+        // 城市图标与城市配置共同存放在 configs。
+        void this._loadBanner(card, city.banner || `configs/${city.key}-icon/spriteFrame`, unlocked);
 
         card.off(Input.EventType.TOUCH_END);
         card.on(Input.EventType.TOUCH_END, () => {

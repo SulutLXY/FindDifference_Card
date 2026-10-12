@@ -1,0 +1,13 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "7361dfa3-09f0-4b68-8450-8536e2da0f25",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isBundle": true,
+    "bundleName": "MainGameSources",
+    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+"
+  }
+}

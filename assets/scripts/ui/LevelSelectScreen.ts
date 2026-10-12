@@ -29,7 +29,6 @@ const LEVEL_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
  * - Thumbnail           关卡封面：未解锁置灰（Sprite 乘法着色），已解锁保持模板默认
  *
  * 解锁规则：城市内按文件夹顺序线性解锁（前一关通关）。
- * 列表末尾固定追加「敬请期待」占位卡（levels/city-01-beijing/level-00 的图）。
  */
 @ccclass('LevelSelectScreen')
 export class LevelSelectScreen extends UIScreen {
@@ -48,9 +47,6 @@ export class LevelSelectScreen extends UIScreen {
     private _runtimeCards: Node[] = [];
     private _content: Node | null = null;
 
-    /** 末尾「敬请期待」占位卡使用的图片路径（resources 相对路径）。 */
-    private static readonly COMING_SOON_IMAGE = 'levels/city-01-beijing/level-00/scene-a/spriteFrame';
-
     protected onLoad(): void {
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showCitySelect());
         this._setupScrollContainer();
@@ -64,7 +60,7 @@ export class LevelSelectScreen extends UIScreen {
         this._clearRuntimeCards();
     }
 
-    /** 动态生成本城全部关卡卡片 + 末尾敬请期待卡。 */
+    /** 动态生成本城全部正式关卡卡片。 */
     public rebuild(): void {
         this._clearRuntimeCards();
         const city = this.flow.currentCity;
@@ -92,7 +88,6 @@ export class LevelSelectScreen extends UIScreen {
         });
 
         this._hideManualCards(root);
-        this._appendComingSoonCard(container, template);
         this._scrollToTop();
     }
 
@@ -162,27 +157,6 @@ export class LevelSelectScreen extends UIScreen {
         for (const child of listRoot.children) {
             if (/^Card\d+$/.test(child.name)) child.active = false;
         }
-    }
-
-    /** 列表末尾追加「敬请期待」占位卡：不可选、无锁、无星级。 */
-    private _appendComingSoonCard(container: Node, template: Node | null): void {
-        const card = template ? instantiate(template) : this._buildFallbackCard();
-        card.name = 'ComingSoonCard';
-        this._runtimeCards.push(card);
-        card.parent = container;
-        card.active = true;
-
-        this._setCardLabel(card, 'CardNumber', '');
-        this._setCardLabel(card, 'CardName', '敬请期待');
-        const lock = card.getChildByName('LockIcon');
-        if (lock) lock.active = false;
-        const detail = card.getChildByName('CardDetail');
-        if (detail) detail.active = false;
-        this._setThumbnailGray(card, false);
-        void this._loadThumbnailByPath(card, LevelSelectScreen.COMING_SOON_IMAGE);
-
-        card.off(Input.EventType.TOUCH_END);
-        card.on(Input.EventType.TOUCH_END, () => this.flow.toast('新关卡即将开放，敬请期待'), this);
     }
 
     private _fillCard(card: Node, level: LevelConfig, levelIndex: number, cityIndex: number): void {

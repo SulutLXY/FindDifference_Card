@@ -68,7 +68,7 @@ def build(table, output, check=False):
         m = Path(str(p) + '.meta')
         if m.exists(): metadata[p] = json.loads(m.read_text(encoding='utf-8-sig'))
     errors, fixes, foods, ids, levels = [], [], [], set(), set()
-    cities = set(json.loads((bundle/'levels/cities.json').read_text(encoding='utf-8-sig'))['cities'])
+    cities = set(json.loads((ROOT/'assets/resources/configs/cities.json').read_text(encoding='utf-8-sig'))['cities'])
     for row, cells, v in rows:
         try:
             id_, food, city, city_name, level, asset, path, asset_uuid, desc, reviews, note = [x.strip() for x in v]
@@ -85,14 +85,15 @@ def build(table, output, check=False):
             if not (bundle/'levels'/city).is_dir(): raise ValueError('城市目录不存在: ' + city)
             key = ''
             if level:
-                city_config = bundle/'levels'/city/'city.json'
+                city_config = bundle/'configs'/(city+'.json')
                 if city not in cities or not city_config.exists(): raise ValueError('该城市尚未配置可玩关卡')
                 if level not in json.loads(city_config.read_text(encoding='utf-8-sig'))['levels']: raise ValueError('关卡未列入城市配置: '+level)
-                if not (city_config.parent/level/'differences.json').exists(): raise ValueError('关卡文件不存在: '+level)
+                level_config = bundle/'configs'/city/level/'differences.json'
+                if not level_config.exists(): raise ValueError('关卡文件不存在: '+level)
                 key = city+'/'+level
                 if key in levels: raise ValueError('关卡重复关联: '+key)
                 levels.add(key)
-                level_data = json.loads((city_config.parent/level/'differences.json').read_text(encoding='utf-8-sig'))
+                level_data = json.loads(level_config.read_text(encoding='utf-8-sig'))
                 label = level_data.get('food') or level_data.get('name', '')
                 if level_data.get('type') == 'food' and label and food_name(label) != food_name(food):
                     raise ValueError(f'美食与关卡不匹配: {food} → {key}（关卡美食为 {label}）')
@@ -105,7 +106,7 @@ def build(table, output, check=False):
                 if not matches: matches = [p for p in images if p.stem == Path(asset).stem]
             if len(matches) != 1: raise ValueError(f'素材匹配到 {len(matches)} 个文件，需手动确认: {asset}')
             image = matches[0]
-            if not image.is_relative_to(bundle/'levels'/city): raise ValueError('素材实际目录与城市不一致: '+str(image))
+            if not image.is_relative_to(bundle/'thumbnails'/city): raise ValueError('素材实际目录与城市不一致: '+str(image))
             meta = metadata.get(image, {})
             frames = [m for m in meta.get('subMetas', {}).values() if m.get('importer') == 'sprite-frame']
             if len(frames) != 1 or not meta.get('uuid'): raise ValueError('素材未导入为 SpriteFrame: '+str(image))

@@ -14,8 +14,10 @@ import {
     Director,
     Graphics,
     JsonAsset,
+    instantiate,
     Label,
     Node,
+    Prefab,
     ResolutionPolicy,
     SpriteFrame,
     Sprite,
@@ -61,9 +63,9 @@ const { ccclass, property } = _decorator;
  * 负责界面切换、倒计时、激励视频与结算。
  * 场景中唯一实例，界面组件通过 GameFlow.instance 访问。
  *
- * 关卡组织：levels/ 按 city-* 目录分组，整体位于名为 city 的 Asset Bundle（assets/Bundle），
- * cities.json 为城市索引，每城 city.json 列关卡清单（tools/build-manifest.py 生成），
- * 进入城市时才懒加载该城各关的 differences.json。
+ * 关卡组织：levels/ 按 city-* 目录分组，每城独立 Bundle；配置与小图分别独立成包。
+ * resources/configs/cities.json 为城市索引，city-configs 的 城市目录名.json 列关卡清单，
+ * 进关时只读取目标关卡配置，选关页读取本城全部关卡配置。
  */
 @ccclass('GameFlow')
 export class GameFlow extends Component {
@@ -85,7 +87,7 @@ export class GameFlow extends Component {
     @property({ type: LevelSelectScreen, tooltip: '选关界面组件（Screens/LevelSelect）' })
     public levelSelect: LevelSelectScreen | null = null;
 
-    @property({ type: GameScreen, tooltip: '对局界面组件（Screens/Game）' })
+    @property({ type: GameScreen, tooltip: '对局界面：首次进关从 MainGameSources 动态创建，无需拖拽绑定' })
     public game: GameScreen | null = null;
 
     @property({ type: RankScreen, tooltip: '排行榜界面组件（Screens/Rank）' })
@@ -94,7 +96,7 @@ export class GameFlow extends Component {
     @property({ type: CollectScreen, tooltip: '收藏界面组件（Screens/Collect）' })
     public collect: CollectScreen | null = null;
 
-    @property({ type: ResultModal, tooltip: '结算弹窗组件（ResultModal）' })
+    @property({ type: ResultModal, tooltip: '结算弹窗：首次进关从 MainGameSources 动态创建，无需拖拽绑定' })
     public resultModal: ResultModal | null = null;
 
     public readonly save = new SaveService();
@@ -124,25 +126,29 @@ export class GameFlow extends Component {
     private _resultSoundRequest = 0;
     private _musicVolumeBeforeResult: number | null = null;
     private readonly _comboClips = new Map<string, Promise<AudioClip>>();
-    /** 默认音效组目录名：0 号点击音与 voice_wrong 始终使用该组（resources/voice/ComboSound） */
-    private static readonly DEFAULT_COMBO_GROUP = 'Combo _F_type01_01';
-    /** 新音效组所在目录（assets/Bundle/voice/Combo _F_type，随 city Bundle 加载） */
+    /** 默认连击组位于 MainGameSources；基础点击声仍在首包。 */
+    private static readonly DEFAULT_COMBO_GROUP = 'Combo _F_type01';
+    /** 局内资源包里的连击音效目录。 */
     private static readonly BUNDLE_COMBO_ROOT = 'voice/Combo _F_type';
     /** 本关使用的连击音效组（仅影响 1-5 号），第四关起进入关卡时随机 */
     private _activeComboGroup = GameFlow.DEFAULT_COMBO_GROUP;
-    /** 已发现的音效组：组目录名 → 各档位路径与加载渠道（resources 或 city Bundle） */
+    /** 已发现的音效组：组目录名 → 各档位路径与加载渠道。 */
     private _comboGroups: Map<string, { stages: Map<number, string>; fromBundle: boolean }> | null = null;
     /** 上次发现时是否已扫描过 Bundle；Bundle 就绪后需要重新发现才能看到新组 */
     private _comboGroupsScannedBundle = false;
     private _comboSoundRequest = 0;
     private readonly _spriteFrameCache = new Map<string, SpriteFrame>();
-    /** 关卡资源所在 Asset Bundle（assets/Bundle，bundleName: city），首次使用时加载并缓存。 */
-    private _cityBundle: AssetManager.Bundle | null = null;
+    /** 配置、小图及各城市大图 Bundle，首次使用时加载并缓存。 */
+    private readonly _cityBundles = new Map<string, AssetManager.Bundle>();
+    private readonly _cityBundlePending = new Map<string, Promise<AssetManager.Bundle>>();
+    private _gameBundle: AssetManager.Bundle | null = null;
+    private _gameBundlePending: Promise<AssetManager.Bundle> | null = null;
+    private _gameScreensPending: Promise<void> | null = null;
     private _musicSource: AudioSource | null = null;
     private _musicPath = '';
     private readonly _musicClips = new Map<string, AudioClip>();
     private _musicRequest = 0;
-    /** 第五关起随机游戏背景音乐的候选池（assets/Bundle/voice/BGmusic） */
+    /** 第五关起随机游戏背景音乐的候选池（MainGameSources/voice/BGmusic） */
     private static readonly GAME_MUSIC_POOL = [
         'voice/BGmusic/Game_music02',
         'voice/BGmusic/Game_music03',
@@ -197,7 +203,6 @@ export class GameFlow extends Component {
     }
 
     private _retryStartup(): void {
-        if (this._levelRetry && !this._levelLoading) { this._levelRetry(); return; }
         if (this._bootFailed && !this._booting) void this._bootstrap();
     }
 
@@ -217,8 +222,8 @@ export class GameFlow extends Component {
     }
 
     protected onLoad(): void {
-        this.platform.canShowInterstitial = () => this.save.totalScore >= 2
-            && this.save.data.firstPlayedDay === sidebarDay() && !this._roundInterstitialProtected;
+        this.platform.canShowInterstitial = () => this.save.data.firstPlayedDay === sidebarDay()
+            && !this._roundInterstitialProtected;
         GameFlow._instance = this;
         registerGameFlow(this);
         void this.platform.sidebar.start();
@@ -260,11 +265,7 @@ export class GameFlow extends Component {
         this._resultSource.loop = false;
         this.node.on(AudioSource.EventType.STARTED, this._onResultAudioStarted, this);
         this.node.on(AudioSource.EventType.ENDED, this._onResultAudioEnded, this);
-        for (const win of [true, false]) {
-            void this._loadResultClip(win).catch(error => console.warn('[GameFlow] 结算音效预加载失败', error));
-        }
         void this._loadComboClip(0).catch(error => console.warn('[GameFlow] 点击音效预加载失败', error));
-        void this._loadComboClip(-1).catch(error => console.warn('[GameFlow] 错误音效预加载失败', error));
         view.setDesignResolutionSize(750, 1334, ResolutionPolicy.SHOW_ALL);
     }
 
@@ -288,7 +289,7 @@ export class GameFlow extends Component {
     }
 
     protected update(dt: number): void {
-        if (this.platform.interstitialBusy || this._levelLoading || this._levelRetry) return;
+        if (this.platform.interstitialBusy || this._levelLoading) return;
         if (this._isGameOver || this._isPaused || !this._currentLevel) return;
         if (!this.game || !this.game.node.active) return;
         this._remainingTime = Math.max(0, this._remainingTime - dt);
@@ -327,7 +328,7 @@ export class GameFlow extends Component {
     }
 
     public get isPaused(): boolean {
-        return this._isPaused || this._levelLoading || !!this._levelRetry;
+        return this._isPaused || this._levelLoading;
     }
 
     public get isGameOver(): boolean {
@@ -377,7 +378,7 @@ export class GameFlow extends Component {
             const music = this._currentGameMusic();
             this._playPageMusic(music.path, music.fromBundle);
         } else {
-            this._playPageMusic('voice/BGmusic/Game_music01');
+            this._playPageMusic('voice/BGmusic/Main_music00');
         }
     }
 
@@ -446,7 +447,7 @@ export class GameFlow extends Component {
             await this.ensureCity(target);
         } catch (error) {
             console.error(`[GameFlow] 城市关卡加载失败: ${target.key}`, error);
-            this.toast('关卡加载失败，请稍后重试');
+            this._returnToLobbyOnLoadError('关卡加载失败，已返回主界面');
             return;
         }
         this._switchTo(this.levelSelect);
@@ -465,8 +466,8 @@ export class GameFlow extends Component {
             for (let li = 0; li < city.levels.length; li++) {
                 const key = `${city.key}/${city.levels[li]}`;
                 if (this.isLevelUnlocked(ci, li) && !this.save.isCompleted(key)) {
-                    await this.ensureCity(city);
-                    return { city, levelIndex: li, level: city.levelConfigs[li] };
+                    const level = await this._ensureLevel(city, li);
+                    return { city, levelIndex: li, level };
                 }
             }
         }
@@ -475,19 +476,39 @@ export class GameFlow extends Component {
 
     /** 开始挑战：第一个未通关的关（全部通关则重玩第一关）。 */
     public async startContinue(): Promise<void> {
-        const target = await this.findContinueTarget();
-        if (target) {
-            await this.startLevel(target.city, target.levelIndex);
-        } else if (this._cities.length > 0) {
-            await this.startLevel(this._cities[0], 0);
+        if (this._bootFailed) {
+            await this._bootstrap();
+            return;
         }
+        try {
+            const target = await this.findContinueTarget();
+            if (target) {
+                await this.startLevel(target.city, target.levelIndex);
+            } else if (this._cities.length > 0) {
+                await this.startLevel(this._cities[0], 0);
+            } else {
+                throw new Error('没有可用的城市关卡');
+            }
+        } catch (error) {
+            console.error('[GameFlow] 当前关卡加载失败', error);
+            this._returnToLobbyOnLoadError('关卡加载失败，已返回主界面');
+        }
+    }
+
+    private _returnToLobbyOnLoadError(message: string): void {
+        this.game?.clearLevel();
+        this._currentLevel = null;
+        this._isPaused = false;
+        this._isGameOver = false;
+        this._levelLoading = false;
+        this.showLobby();
+        this.toast(message);
     }
 
     private _levelLoading = false;
     private _tutorial: GameTips | null = null;
     @property({ tooltip: '仅编辑器预览：首关强制展示引导，不清除存档，不影响发布版本' })
     public previewTutorial = false;
-    private _levelRetry: (() => void) | null = null;
     private _finishLoadingFrame: (() => void) | null = null;
 
     /** 缓存命中可能在同一帧完成，先让 Loading 真正绘制出来。 */
@@ -507,14 +528,12 @@ export class GameFlow extends Component {
     private _prefetchPending: LevelConfig | null = null;
     private _levelLoadVersion = 0;
 
-    public async startLevel(city: CityConfig, levelIndex: number, musicSource: 'select' | 'streak' | 'retry' = 'select'): Promise<void> {
+    public async startLevel(city: CityConfig, levelIndex: number, musicSource: 'select' | 'streak' | 'retry' = 'select', failureAction: 'lobby' | 'skip-next' = 'lobby'): Promise<void> {
         if (this._levelLoading) return;
         this._updateGameMusic(city, levelIndex, musicSource);
-        if (musicSource !== 'retry') this._updateComboGroup(city, levelIndex);
         const version = ++this._levelLoadVersion;
         const active = () => this.isValid && version === this._levelLoadVersion;
         this._levelLoading = true;
-        this._levelRetry = null;
         this._isPaused = true;
         this.resultModal?.close();
         if (this._loadingNode) {
@@ -524,13 +543,16 @@ export class GameFlow extends Component {
             this._loadingNode.setSiblingIndex(this._loadingNode.parent!.children.length - 1);
         }
         this._setLoadingProgress(0);
+        let fallback: { city: CityConfig; levelIndex: number } | null = null;
         try {
             await this._drawLoadingFrame();
             if (!active()) return;
-            this.game?.clearLevel();
-            await this.ensureCity(city);
+            await this._ensureGameScreens();
             if (!active()) return;
-            const level = city.levelConfigs[levelIndex];
+            if (musicSource !== 'retry') this._updateComboGroup(city, levelIndex);
+            this.game?.clearLevel();
+            const level = await this._ensureLevel(city, levelIndex);
+            if (!active()) return;
             if (!level || !this.game) throw new Error('关卡或游戏页面不存在');
             this._currentCity = city;
             this._currentLevel = level;
@@ -555,7 +577,7 @@ export class GameFlow extends Component {
             await this._drawLoadingFrame();
             if (!active()) return;
             const dailyFirst = this.save.beginDailyFirstRound(sidebarDay());
-            this._roundInterstitialProtected = dailyFirst || this.save.totalScore < 2;
+            this._roundInterstitialProtected = dailyFirst;
             this._isPaused = false;
             if (this._loadingNode) this._loadingNode.active = false;
             this._showFirstLevelTutorial(level);
@@ -563,13 +585,18 @@ export class GameFlow extends Component {
         } catch (error) {
             if (!active()) return;
             this.game?.clearLevel();
-            this._levelRetry = () => { void this.startLevel(city, levelIndex, 'retry'); };
-            if (this._loadingLabel) this._loadingLabel.string = '关卡加载失败，点击进度条重试';
-            this.toast('关卡加载失败，请重试');
             console.error('[GameFlow] 关卡加载失败', error);
+            if (failureAction === 'skip-next') fallback = this._nextLevelTarget(city, levelIndex, true);
+            if (fallback) {
+                this.toast('下一关加载失败，正在进入再下一关');
+            } else {
+                this._returnToLobbyOnLoadError('关卡加载失败，已返回主界面');
+            }
         } finally {
             if (active()) this._levelLoading = false;
         }
+        // 先解除本次加载锁，再尝试一次后继关卡；后继失败统一回首页。
+        if (fallback && active()) await this.startLevel(fallback.city, fallback.levelIndex, 'streak', 'lobby');
     }
 
     private _showFirstLevelTutorial(level: LevelConfig): void {
@@ -661,7 +688,6 @@ export class GameFlow extends Component {
             ++this._levelLoadVersion;
             this._finishLoadingFrame?.();
             this._levelLoading = false;
-            this._levelRetry = null;
             this._prefetchPending = null;
             if (this._loadingNode) this._loadingNode.active = false;
         }
@@ -682,7 +708,7 @@ export class GameFlow extends Component {
                 const music = this._currentGameMusic();
                 this._playPageMusic(music.path, music.fromBundle);
             } else {
-                this._playPageMusic('voice/BGmusic/Game_music01');
+                this._playPageMusic('voice/BGmusic/Main_music00');
             }
         } else {
             console.warn('[GameFlow] 目标界面未在场景中配置');
@@ -724,7 +750,7 @@ export class GameFlow extends Component {
             play(clip);
         };
         if (fromBundle) {
-            void this._loadCityBundle()
+            void this._loadGameBundle()
                 .then(bundle => bundle.load(path, AudioClip, onLoaded))
                 .catch(error => onLoaded(error instanceof Error ? error : new Error(String(error))));
         } else {
@@ -741,7 +767,7 @@ export class GameFlow extends Component {
     private _currentGameMusic(): { path: string; fromBundle: boolean } {
         return this._gameMusicPath
             ? { path: this._gameMusicPath, fromBundle: true }
-            : { path: 'voice/BGmusic/Main_music01', fromBundle: false };
+            : { path: 'voice/BGmusic/Game_music01', fromBundle: true };
     }
 
     /**
@@ -817,14 +843,17 @@ export class GameFlow extends Component {
     /** 下一关：同城下一关 → 下一城第一关（已解锁时）。结算「下一关」按钮用。 */
     public findNextLevel(after: LevelConfig): { city: CityConfig; levelIndex: number } | null {
         const city = this._currentCity;
-        if (city) {
-            const index = city.levelConfigs.findIndex(level => level.key === after.key);
-            if (index >= 0 && index + 1 < city.levelConfigs.length) {
-                return { city, levelIndex: index + 1 };
-            }
-        }
-        const cityIndex = this._cities.findIndex(item => item.key === city?.key);
-        if (cityIndex >= 0 && cityIndex + 1 < this._cities.length && this.isCityUnlocked(cityIndex + 1)) {
+        if (!city) return null;
+        const index = city.levels.findIndex(dir => `${city.key}/${dir}` === after.key);
+        return index >= 0 ? this._nextLevelTarget(city, index) : null;
+    }
+
+    /** 根据目录定位后继关卡，不依赖可能尚未加载或损坏的配置。 */
+    private _nextLevelTarget(city: CityConfig, levelIndex: number, allowLockedCity = false): { city: CityConfig; levelIndex: number } | null {
+        if (levelIndex + 1 < city.levels.length) return { city, levelIndex: levelIndex + 1 };
+        const cityIndex = this._cities.findIndex(item => item.key === city.key);
+        if (cityIndex >= 0 && cityIndex + 1 < this._cities.length && this._cities[cityIndex + 1].levels.length > 0
+            && (allowLockedCity || this.isCityUnlocked(cityIndex + 1))) {
             return { city: this._cities[cityIndex + 1], levelIndex: 0 };
         }
         return null;
@@ -886,7 +915,7 @@ export class GameFlow extends Component {
                 }
             };
             if (!ref.fromBundle) resources.load(ref.path, AudioClip, done);
-            else void this._loadCityBundle()
+            else void this._loadGameBundle()
                 .then(bundle => bundle.load(ref.path, AudioClip, done))
                 .catch(error => done(error instanceof Error ? error : new Error(String(error))));
         });
@@ -894,25 +923,21 @@ export class GameFlow extends Component {
         return pending;
     }
 
-    /** 0 号点击音与 voice_wrong 固定默认组；1-5 号连击音跟随本关随机的音效组。 */
+    /** 点击声在首包，错误声在局内包；1-5 号连击音跟随本关随机组。 */
     private _comboClipRef(stage: number): { path: string; fromBundle: boolean } {
-        if (stage === -1) return { path: `voice/ComboSound/${GameFlow.DEFAULT_COMBO_GROUP}/voice_wrong`, fromBundle: false };
-        if (stage === 0) return { path: `voice/ComboSound/${GameFlow.DEFAULT_COMBO_GROUP}/voice_Combo _F_type01_00`, fromBundle: false };
+        if (stage === -1) return { path: 'voice/GamePlay/voice_wrong', fromBundle: true };
+        if (stage === 0) return { path: 'voice/ComboSound/Combo _F_type01_01/voice_Combo _F_type01_00', fromBundle: false };
         const group = this._discoverComboGroups().get(this._activeComboGroup);
         const discovered = group?.stages.get(stage);
         if (discovered) return { path: discovered, fromBundle: group!.fromBundle };
         // 发现结果缺少该档位时按命名约定回退：文件名 = voice_ + 组目录名 + _0N
         const suffix = String(stage).padStart(2, '0');
-        if (group?.fromBundle) {
-            return { path: `${GameFlow.BUNDLE_COMBO_ROOT}/${this._activeComboGroup}/voice_${this._activeComboGroup}_${suffix}`, fromBundle: true };
-        }
-        const base = this._activeComboGroup.replace(/_\d+$/, '');
-        return { path: `voice/ComboSound/${this._activeComboGroup}/voice_${base}_${suffix}`, fromBundle: false };
+        return { path: `${GameFlow.BUNDLE_COMBO_ROOT}/${this._activeComboGroup}/voice_${this._activeComboGroup}_${suffix}`, fromBundle: true };
     }
 
-    /** 枚举默认目录（resources/ComboSound）与 Bundle 新组目录下的 1-5 号资源路径；枚举失败时至少保留默认组。 */
+    /** 枚举局内包的 1-5 号连击音效；枚举失败时至少保留默认组。 */
     private _discoverComboGroups(): Map<string, { stages: Map<number, string>; fromBundle: boolean }> {
-        if (this._comboGroups && (this._comboGroupsScannedBundle || !this._cityBundle)) return this._comboGroups;
+        if (this._comboGroups && (this._comboGroupsScannedBundle || !this._gameBundle)) return this._comboGroups;
         const groups = new Map<string, { stages: Map<number, string>; fromBundle: boolean }>();
         const pattern = /^voice\/(?:ComboSound|Combo _F_type)\/([^/]+)\/voice_Combo .*_0([1-5])(?:\.\w+)?$/;
         const add = (path: string | undefined, fromBundle: boolean) => {
@@ -926,15 +951,14 @@ export class GameFlow extends Component {
             }
             group.stages.set(Number(match[2]), path);
         };
-        for (const info of resources.getDirWithPath('voice/ComboSound', AudioClip)) add(info.path, false);
-        if (this._cityBundle) {
-            for (const info of this._cityBundle.getDirWithPath(GameFlow.BUNDLE_COMBO_ROOT, AudioClip)) add(info.path, true);
+        if (this._gameBundle) {
+            for (const info of this._gameBundle.getDirWithPath(GameFlow.BUNDLE_COMBO_ROOT, AudioClip)) add(info.path, true);
         }
         if (!groups.has(GameFlow.DEFAULT_COMBO_GROUP)) {
-            groups.set(GameFlow.DEFAULT_COMBO_GROUP, { stages: new Map(), fromBundle: false });
+            groups.set(GameFlow.DEFAULT_COMBO_GROUP, { stages: new Map(), fromBundle: true });
         }
         this._comboGroups = groups;
-        this._comboGroupsScannedBundle = !!this._cityBundle;
+        this._comboGroupsScannedBundle = !!this._gameBundle;
         return groups;
     }
 
@@ -973,14 +997,14 @@ export class GameFlow extends Component {
         const cached = this._tapClips.get(name);
         if (cached) return cached;
         const pending = new Promise<AudioClip>((resolve, reject) => {
-            resources.load(`voice/ComboSound/Combo _F_type01_01/${name}`, AudioClip, (error, clip) => {
+            void this._loadGameBundle().then(bundle => bundle.load(`voice/GamePlay/${name}`, AudioClip, (error, clip) => {
                 if (error) {
                     this._tapClips.delete(name);
                     reject(error);
                 } else {
                     resolve(clip);
                 }
-            });
+            })).catch(error => { this._tapClips.delete(name); reject(error); });
         });
         this._tapClips.set(name, pending);
         return pending;
@@ -1147,12 +1171,12 @@ export class GameFlow extends Component {
         if (cached) return cached;
         const path = `voice/ResultSound/level-${win ? 'victory' : 'failure'}`;
         const pending = new Promise<AudioClip>((resolve, reject) => {
-            resources.load(path, AudioClip, (error, clip) => {
+            void this._loadGameBundle().then(bundle => bundle.load(path, AudioClip, (error, clip) => {
                 if (error) {
                     this._resultClips.delete(win);
                     reject(error);
                 } else resolve(clip);
-            });
+            })).catch(error => { this._resultClips.delete(win); reject(error); });
         });
         this._resultClips.set(win, pending);
         return pending;
@@ -1263,9 +1287,9 @@ export class GameFlow extends Component {
         const next = win ? this.findNextLevel(level) : null;
         this.resultModal?.close();
         if (next) {
-            void this.startLevel(next.city, next.levelIndex, 'streak');
+            void this.startLevel(next.city, next.levelIndex, 'streak', 'skip-next');
         } else if (this._currentCity) {
-            void this.startLevel(this._currentCity, Math.max(0, this._currentCity.levelConfigs.findIndex(item => item.key === level.key)), 'streak');
+            void this.startLevel(this._currentCity, Math.max(0, this._currentCity.levels.findIndex(dir => `${this._currentCity!.key}/${dir}` === level.key)), 'streak');
         }
     }
 
@@ -1273,8 +1297,13 @@ export class GameFlow extends Component {
     // 平台能力
     // ------------------------------------------------------------------
 
+    private _rewardPending = false;
+
     public async requestReward(placement: RewardPlacement, onReward: () => void): Promise<void> {
-        if (this._isPaused && !this._isGameOver) return;
+        // 城市解锁不依赖对局暂停状态；广告并发单独保护，包含结算后的复活请求。
+        if (this._rewardPending || (placement !== 'unlock-city' && this._isPaused && !this._isGameOver)) return;
+        const wasPaused = this._isPaused;
+        this._rewardPending = true;
         this._isPaused = true;
         let result: RewardResult;
         try {
@@ -1284,7 +1313,8 @@ export class GameFlow extends Component {
             this.toast('广告加载失败，请稍后重试');
             return;
         } finally {
-            this._isPaused = this._isGameOver;
+            this._rewardPending = false;
+            this._isPaused = placement === 'unlock-city' ? wasPaused : this._isGameOver;
         }
         if (result.success && result.completed) {
             onReward();
@@ -1319,10 +1349,14 @@ export class GameFlow extends Component {
             const next = await this._loadLevel(bundle, nextCity.key, dir);
             for (const path of [next.topImage, next.bottomImage]) {
                 if (!active()) return;
-                const info = bundle.getInfoWithPath(path, SpriteFrame);
+                if (!path.startsWith('levels/')) continue;
+                const target = this._levelImageTarget(path);
+                const images = await this._loadCityBundle('levels', target.cityKey);
+                if (!active()) return;
+                const info = images.getInfoWithPath(target.request, SpriteFrame);
                 if (!info) continue;
                 await new Promise<void>((resolve, reject) => {
-                    assetManager.preloadAny({ uuid: info.uuid, bundle: bundle.name }, { priority: -1, maxConcurrency: 1 },
+                    assetManager.preloadAny({ uuid: info.uuid, bundle: images.name }, { priority: -1, maxConcurrency: 1 },
                         error => error ? reject(error) : resolve());
                 });
             }
@@ -1340,9 +1374,12 @@ export class GameFlow extends Component {
 
     /** 页面持有独立引用，离开关卡时 decRef；不写入永久图片缓存。 */
     public async acquireLevelFrame(path: string): Promise<SpriteFrame> {
-        const bundle = path.startsWith('levels/') ? await this._loadCityBundle() : resources;
+        const remote = path.startsWith('levels/');
+        const target = remote ? this._levelImageTarget(path) : null;
+        const bundle = target ? await this._loadCityBundle('levels', target.cityKey) : resources;
+        const request = target ? target.request : path;
         return new Promise((resolve, reject) => {
-            bundle.load(path, SpriteFrame, (error, frame) => {
+            bundle.load(request, SpriteFrame, (error, frame) => {
                 if (error) reject(error);
                 else { frame.addRef(); resolve(frame); }
             });
@@ -1352,19 +1389,31 @@ export class GameFlow extends Component {
     public loadSpriteFrame(path: string): Promise<SpriteFrame> {
         const cached = this._spriteFrameCache.get(path);
         if (cached && cached.isValid) return Promise.resolve(cached);
-        // levels/ 前缀的关卡资源已移入 city Bundle，其余 UI 资源仍在主包 resources 中
-        const source = path.startsWith('levels/')
-            ? this._loadCityBundle()
+        // 大图按城市选包；配置与小图去掉分类前缀后加载。
+        const folder = path.startsWith('levels/') ? 'levels'
+            : path.startsWith('thumbnails/') ? 'thumbnails'
+            : path.startsWith('configs/city-') ? 'configs' : null;
+        const target = folder === 'levels' ? this._levelImageTarget(path) : null;
+        const source = folder
+            ? this._loadCityBundle(folder, target?.cityKey)
             : Promise.resolve(resources);
-        return source.then(bundle => this._loadSpriteFrom(bundle, path));
+        const request = target ? target.request : folder ? path.slice(folder.length + 1) : path;
+        return source.then(bundle => this._loadSpriteFrom(bundle, path, request));
     }
 
-    private _loadSpriteFrom(source: AssetManager.Bundle, path: string): Promise<SpriteFrame> {
+    /** levels/城市/关卡/图片 → 城市 Bundle + 关卡/图片。 */
+    private _levelImageTarget(path: string): { cityKey: string; request: string } {
+        const match = /^levels\/(city-\d{2}-[a-z]+)\/(.+)$/.exec(path);
+        if (!match) throw new Error(`无效的城市关卡图片路径：${path}`);
+        return { cityKey: match[1], request: match[2] };
+    }
+
+    private _loadSpriteFrom(source: AssetManager.Bundle, path: string, request = path): Promise<SpriteFrame> {
         return new Promise((resolve, reject) => {
-            source.load(path, SpriteFrame, (error, asset) => {
+            source.load(request, SpriteFrame, (error, asset) => {
                 if (error) {
                     // 部分资源（如 webp 单图）在 bundle 中仅登记 spriteFrame 子资源，自动补后缀重试
-                    source.load(`${path}/spriteFrame`, SpriteFrame, (retryError, retryAsset) => {
+                    source.load(`${request}/spriteFrame`, SpriteFrame, (retryError, retryAsset) => {
                         if (retryError) {
                             reject(retryError);
                             return;
@@ -1442,7 +1491,7 @@ export class GameFlow extends Component {
             this._grades = gradesAsset.json as GradeConfig;
             this.platform.configure(platformAsset.json as PlatformConfig);
 
-            const cityIndexAsset = await this._loadBundleJson(cityBundle, 'levels/cities');
+            const cityIndexAsset = await this._loadJson('configs/cities');
             const index = cityIndexAsset.json as CityIndex;
             report(0.45);
             let cityDone = 0;
@@ -1453,8 +1502,7 @@ export class GameFlow extends Component {
             }));
             report(0.75);
             // 场景引用的主页图片在场景进入前已加载；这里加载动态音频并复用缓存。
-            let audioDone = 0;
-            const musicPath = 'voice/BGmusic/Game_music01';
+            const musicPath = 'voice/BGmusic/Main_music00';
             const music = new Promise<void>((resolve, reject) => {
                 resources.load(musicPath, AudioClip, (error, clip) => {
                     if (error) { reject(error); return; }
@@ -1462,10 +1510,8 @@ export class GameFlow extends Component {
                     resolve();
                 });
             });
-            await Promise.all([music, ...[1, 2, 3, 4, 5].map(stage => this._loadComboClip(stage))].map(async task => {
-                await task;
-                report(0.75 + ++audioDone / 6 * 0.24);
-            }));
+            await music;
+            report(0.99);
 
             // v2 旧档迁移：按城市顺序展开全部关卡 key 供映射
             const allKeys: string[] = [];
@@ -1478,19 +1524,15 @@ export class GameFlow extends Component {
 
             if (!this.isValid) return;
             report(1);
-            // 留出一帧显示100%，随后只在首次启动完成时关闭Loading。
-            this.scheduleOnce(() => {
-                if (this._loadingNode) this._loadingNode.active = false;
-                this.showLobby();
-            }, 0);
+            // 保持启动遮罩，按存档直接进入当前关卡；关卡就绪后由 startLevel 关闭遮罩。
+            await this.startContinue();
         } catch (error) {
             active = false;
             this._bootFailed = true;
             // 失败的音效Promise不能留在缓存中，否则重试仍会立即失败。
             this._comboClips.clear();
             console.error('[GameFlow] 资源加载失败', error);
-            if (this._loadingLabel) this._loadingLabel.string = '加载失败，点击进度条重试';
-            else this.toast('资源加载失败，请重新打开游戏');
+            this._returnToLobbyOnLoadError('资源加载失败，已返回主界面');
         } finally {
             active = false;
             this._booting = false;
@@ -1498,13 +1540,13 @@ export class GameFlow extends Component {
     }
 
     private async _loadCityMeta(bundle: AssetManager.Bundle, key: string): Promise<CityConfig> {
-        const asset = await this._loadBundleJson(bundle, `levels/${key}/city`);
+        const asset = await this._loadBundleJson(bundle, key);
         const meta = asset.json as { name?: string; banner?: string; levels?: string[] };
         return {
             key,
             name: meta.name ?? key,
-            banner: meta.banner ?? '',
-            levels: meta.levels ?? [],
+            banner: meta.banner ?? `configs/${key}-icon/spriteFrame`,
+            levels: (meta.levels ?? []).filter(dir => dir !== 'level-00'),
             levelsLoaded: false,
             levelConfigs: [],
         };
@@ -1513,18 +1555,24 @@ export class GameFlow extends Component {
     /** 懒加载城市内全部关卡配置（幂等）。 */
     public async ensureCity(city: CityConfig): Promise<void> {
         if (city.levelsLoaded) return;
-        const bundle = await this._loadCityBundle();
-        const configs: LevelConfig[] = [];
-        for (const dir of city.levels) {
-            configs.push(await this._loadLevel(bundle, city.key, dir));
+        for (let i = 0; i < city.levels.length; i++) {
+            await this._ensureLevel(city, i);
         }
-        city.levelConfigs = configs;
         city.levelsLoaded = true;
+    }
+
+    private async _ensureLevel(city: CityConfig, levelIndex: number): Promise<LevelConfig> {
+        if (!city.levels[levelIndex]) throw new Error('关卡目录不存在');
+        const cached = city.levelConfigs[levelIndex];
+        if (cached) return cached;
+        const level = await this._loadLevel(await this._loadCityBundle(), city.key, city.levels[levelIndex]);
+        city.levelConfigs[levelIndex] = level;
+        return level;
     }
 
     private async _loadLevel(bundle: AssetManager.Bundle, cityKey: string, levelDir: string): Promise<LevelConfig> {
         const key = `${cityKey}/${levelDir}`;
-        const asset = await this._loadBundleJson(bundle, `levels/${key}/differences`);
+        const asset = await this._loadBundleJson(bundle, `${key}/differences`);
         const file = asset.json as LevelFileConfig;
         const topImage = file.topImage ?? `levels/${key}/scene-a/spriteFrame`;
         const bottomImage = file.bottomImage ?? `levels/${key}/scene-b/spriteFrame`;
@@ -1536,8 +1584,7 @@ export class GameFlow extends Component {
             maxLives: this._grades.maxLives,
             topImage,
             bottomImage,
-            icon: file.icon || (bundle.getInfoWithPath(`levels/${key}/icon/spriteFrame`, SpriteFrame)
-                ? `levels/${key}/icon/spriteFrame` : topImage),
+            icon: file.icon || topImage,
             foodName: file.foodName,
             foodDesc: file.foodDesc,
             reviews: file.reviews,
@@ -1553,19 +1600,74 @@ export class GameFlow extends Component {
         return base + Math.max(0, differenceCount - baseline) * increment;
     }
 
-    /** 加载并缓存关卡资源所在 Bundle（assets/Bundle，bundleName: city）。 */
-    private _loadCityBundle(): Promise<AssetManager.Bundle> {
-        if (this._cityBundle) return Promise.resolve(this._cityBundle);
-        return new Promise((resolve, reject) => {
-            assetManager.loadBundle('city', (error: Error | null, bundle: AssetManager.Bundle) => {
-                if (error || !bundle) {
-                    reject(error ?? new Error('[GameFlow] city Bundle 加载失败'));
-                    return;
-                }
-                this._cityBundle = bundle;
-                resolve(bundle);
+    /** 配置、小图和各城市大图分别按需加载；并发请求合并，失败后可重试。 */
+    private _loadCityBundle(folder: 'configs' | 'thumbnails' | 'levels' = 'configs', cityKey?: string): Promise<AssetManager.Bundle> {
+        if (folder === 'levels' && !cityKey) return Promise.reject(new Error('城市大图加载缺少城市标识'));
+        const name = folder === 'levels' ? cityKey! : `city-${folder}`;
+        const cached = this._cityBundles.get(name);
+        if (cached) return Promise.resolve(cached);
+        const pending = this._cityBundlePending.get(name);
+        if (pending) return pending;
+        const request = new Promise<AssetManager.Bundle>((resolve, reject) => {
+            assetManager.loadBundle(name, (error: Error | null, bundle: AssetManager.Bundle) => {
+                if (error || !bundle) reject(error ?? new Error(`[GameFlow] ${name} Bundle 加载失败`));
+                else { this._cityBundles.set(name, bundle); resolve(bundle); }
             });
-        });
+        }).finally(() => { this._cityBundlePending.delete(name); });
+        this._cityBundlePending.set(name, request);
+        return request;
+    }
+
+    /** 局内素材独立加载；失败后可重试，并合并同时发起的加载请求。 */
+    private _loadGameBundle(): Promise<AssetManager.Bundle> {
+        if (this._gameBundle) return Promise.resolve(this._gameBundle);
+        if (this._gameBundlePending) return this._gameBundlePending;
+        this._gameBundlePending = new Promise<AssetManager.Bundle>((resolve, reject) => {
+            assetManager.loadBundle('MainGameSources', (error: Error | null, bundle: AssetManager.Bundle) => {
+                if (error || !bundle) reject(error ?? new Error('局内资源包加载失败'));
+                else { this._gameBundle = bundle; resolve(bundle); }
+            });
+        }).finally(() => { this._gameBundlePending = null; });
+        return this._gameBundlePending;
+    }
+
+    public async loadGameSpriteFrame(path: string): Promise<SpriteFrame> {
+        return this._loadSpriteFrom(await this._loadGameBundle(), path);
+    }
+
+    /** 首页不持有局内预制体引用；第一次进关在加载遮罩下创建，后续复用。 */
+    private async _ensureGameScreens(): Promise<void> {
+        if (this.game?.isValid && this.resultModal?.isValid) return;
+        if (this._gameScreensPending) return this._gameScreensPending;
+        this._gameScreensPending = (async () => {
+            const bundle = await this._loadGameBundle();
+            const load = (path: string): Promise<Prefab> => new Promise((resolve, reject) => {
+                bundle.load(path, Prefab, (error, prefab) => error ? reject(error) : resolve(prefab));
+            });
+            const [gamePrefab, resultPrefab] = await Promise.all([
+                load('prefabs/GameScreen'), load('prefabs/ResultModal'),
+            ]);
+            if (!this.isValid) throw new Error('游戏流程已销毁');
+            const canvas = this.node.parent;
+            const screens = canvas?.getChildByName('Screens');
+            if (!canvas || !screens) throw new Error('界面容器不存在');
+            const gameNode = instantiate(gamePrefab);
+            const resultNode = instantiate(resultPrefab);
+            const game = gameNode.getComponent(GameScreen);
+            const result = resultNode.getComponent(ResultModal);
+            if (!game || !result) {
+                gameNode.destroy(); resultNode.destroy();
+                throw new Error('局内预制体缺少界面组件');
+            }
+            gameNode.active = resultNode.active = false;
+            gameNode.name = 'Game';
+            resultNode.name = 'ResultModal';
+            gameNode.parent = screens;
+            resultNode.parent = canvas;
+            this.game = game;
+            this.resultModal = result;
+        })().finally(() => { this._gameScreensPending = null; });
+        return this._gameScreensPending;
     }
 
     private _loadJson(path: string): Promise<JsonAsset> {
