@@ -1,4 +1,4 @@
-import { Color, Component, Input, Label, Node, warn } from 'cc';
+import { Button, Color, Component, EventTouch, Input, Label, Node, UITransform, warn } from 'cc';
 import type { GameFlow } from '../GameFlow';
 
 /** 界面通用配色，供标记绘制、降级控件等运行时代码使用。 */
@@ -56,6 +56,10 @@ export abstract class UIScreen extends Component {
 
     protected onClose(): void {}
 
+    protected onDisable(): void { currentFlow?.releasePageSpriteFrames(this.node); }
+
+    protected onDestroy(): void { currentFlow?.releasePageSpriteFrames(this.node); }
+
     /** 解析节点：优先使用 Inspector 绑定，其次按命名规则在子树中查找。 */
     protected resolveNode(bound: Node | null, path: string): Node | null {
         if (bound && bound.isValid) return bound;
@@ -91,7 +95,20 @@ export abstract class UIScreen extends Component {
     /** 为按钮节点绑定点击事件（节点缺失时仅告警）。 */
     protected wireButton(bound: Node | null, path: string, callback: () => void): void {
         const node = this.resolveNode(bound, path);
-        node?.on(Input.EventType.TOUCH_END, callback, this);
+        if (node) node.on(Input.EventType.TOUCH_END, this.buttonTouchHandler(node, callback), this);
+    }
+
+    /** 与引擎 Button 使用相同的命中坐标，避免超出按钮的子节点扩大点击范围。 */
+    protected buttonTouchHandler(node: Node, callback: () => void): (event?: EventTouch) => void {
+        return (event?: EventTouch) => {
+            if (!node.isValid || !node.activeInHierarchy) return;
+            const button = node.getComponent(Button);
+            if (button && (!button.enabledInHierarchy || !button.interactable)) return;
+            const ui = node.getComponent(UITransform);
+            if (event && (!ui || !ui.hitTest(event.getLocation(), event.windowId))) return;
+            this.flow.platform.recoverInterstitialOnTouch();
+            callback();
+        };
     }
 
     private _findByPath(root: Node, path: string): Node | null {

@@ -173,8 +173,8 @@ export class CollectScreen extends UIScreen {
 
     private async _loadIcon(icon: Node, path: string): Promise<void> {
         try {
-            const frame = await this.flow.loadSpriteFrame(path);
-            if (!icon.isValid) return;
+            const frame = await this.flow.loadPageSpriteFrame(path, this.node);
+            if (!frame?.isValid || !this.node.activeInHierarchy || !icon.isValid) return;
             let sprite = icon.getComponent(Sprite);
             if (!sprite) sprite = icon.addComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
@@ -234,6 +234,7 @@ export class CollectScreen extends UIScreen {
     }
 
     private _clearCards(): void {
+        this.flow.releasePageSpriteFrames(this.node);
         for (const card of this._cards) { card.removeFromParent(); card.destroy(); }
         this._cards = [];
     }

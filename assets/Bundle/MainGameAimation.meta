@@ -1,0 +1,14 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "8d9ff358-b619-41ee-9149-fc8839ad44b4",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isBundle": true,
+    "bundleName": "MainGameAimation",
+    "priority": 7,
+    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+"
+  }
+}

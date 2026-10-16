@@ -1,0 +1,6 @@
+# Apache only. OSS/CDN/Nginx require equivalent server-side settings.
+<IfModule mod_headers.c>
+  <FilesMatch "^(index\.html|index\.js|application\.js|settings\.json|import-map\.json|style\.css)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>

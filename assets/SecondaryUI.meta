@@ -1,0 +1,14 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "17584b22-f660-48e8-a32f-6c258c989e27",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isBundle": true,
+    "bundleName": "SecondaryUI",
+    "priority": 7,
+    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+"
+  }
+}

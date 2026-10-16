@@ -71,12 +71,13 @@ export class FoodTips extends UIScreen {
         const sprite = this.resolveNode(null, 'foodicon')?.getComponent(Sprite);
         const token = ++this._token;
         if (sprite) sprite.spriteFrame = null;
-        void this.flow.loadSpriteFrame(level.icon).then(frame => {
-            if (this.isValid && token === this._token && sprite?.isValid) sprite.spriteFrame = frame;
+        void this.flow.loadPageSpriteFrame(level.icon, this.node).then(frame => {
+            if (frame?.isValid && this.isValid && this.node.activeInHierarchy && token === this._token && sprite?.isValid) sprite.spriteFrame = frame;
         }).catch(error => console.warn('[FoodTips] 图片加载失败', error));
         this._elapsed = 2;
     }
     protected onDisable(): void {
+        super.onDisable();
         this._token++;
         this._cancelInput?.();
         this._cancelInput = null;

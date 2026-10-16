@@ -23,6 +23,12 @@ export class PlatformService {
     public readonly playerInfo = new PlayerInfoService(() => this.kind, this._host);
     private _config: PlatformConfig = EMPTY_CONFIG;
     private _interstitialBusy = false;
+    private _finishInterstitial: (() => void) | null = null;
+    private _interstitialLoading = false;
+    /** 引擎按钮重新收到触摸，说明原生遮罩已退出；清理遗漏的关闭回调或未展示请求。 */
+    public recoverInterstitialOnTouch(): void {
+        this._finishInterstitial?.();
+    }
     public canShowInterstitial: () => boolean = () => true;
     public get interstitialBusy(): boolean { return this._interstitialBusy; }
     private _lastInterstitialAttempt = 0;
@@ -133,10 +139,10 @@ export class PlatformService {
         if (this.kind !== 'douyin' || this.isPcCompanion || !this.canShowInterstitial()) return;
         const tt = this._host.tt;
         const adUnitId = this._config.douyinInterstitialAdUnitId;
-        if (!adUnitId || typeof tt?.createInterstitialAd !== 'function' || this._interstitialBusy
+        if (!adUnitId || typeof tt?.createInterstitialAd !== 'function' || this._finishInterstitial
             || (!bypassCooldown && this._lastInterstitialAttempt > 0
                 && Date.now() - this._lastInterstitialAttempt < 60000) || !canShow()) return;
-        this._interstitialBusy = true;
+        this._interstitialLoading = true;
         this._lastInterstitialAttempt = Date.now();
         let ad: any;
         let timer: ReturnType<typeof setTimeout> | undefined;
@@ -148,6 +154,8 @@ export class PlatformService {
             settled = true;
             if (timer) clearTimeout(timer);
             this._interstitialBusy = false;
+            this._interstitialLoading = false;
+            if (this._finishInterstitial === cleanup) this._finishInterstitial = null;
             this._lastInterstitialAttempt = Date.now();
             complete();
             try {
@@ -160,15 +168,19 @@ export class PlatformService {
             console.warn('[InterstitialAd] 插屏未展示', error?.errCode, error?.errMsg ?? error);
             cleanup();
         };
+        this._finishInterstitial = cleanup;
         try {
             ad = tt.createInterstitialAd({ adUnitId });
             ad.onClose(cleanup);
             ad.onError(onError);
             timer = setTimeout(() => onError({ errMsg: '插屏加载超时' }), 15000);
-            await ad.load();
+            await Promise.race([Promise.resolve(ad.load()), closed]);
             if (settled) return;
             if (!canShow() || !this.canShowInterstitial()) { cleanup(); return; }
-            await ad.show();
+            this._interstitialLoading = false;
+            this._interstitialBusy = true;
+            await Promise.race([Promise.resolve(ad.show()), closed]);
+            if (settled) return;
             if (timer) clearTimeout(timer);
             await closed;
         } catch (error) { onError(error); }
@@ -211,6 +223,7 @@ export class PlatformService {
         if (this.kind === 'h5') {
             return { success: true, completed: true, simulated: true };
         }
+        if (this._interstitialLoading) this._finishInterstitial?.();
         if (this._interstitialBusy) return { success: false, completed: false, simulated: false, reason: '请先关闭插屏广告' };
 
         const kind = this.kind;

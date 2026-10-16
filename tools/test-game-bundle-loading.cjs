@@ -102,7 +102,12 @@ function flow() {
     f._loadBundleJson = async (_, request) => ({ json: read('assets/Bundle/' + request + '.json') });
     f._loadCityMeta = async (_, key) => ({ key, levels: read('assets/Bundle/configs/' + key + '.json').levels });
     let migrated = false, continueCalls = 0;
-    f.platform = { configure() {} }; f.save = { migrateLegacy() { migrated = true; } };
+    f.platform = { configure() {} }; f.save = { migrateLegacy(keys) {
+        assert.equal(keys[0], 'city-02-beijing/level-01', 'Prepending HotTips must not shift legacy save identities');
+        assert.equal(keys.length, 120);
+        assert.ok(keys.every(key => !key.startsWith('city-00-HotTips/') && !key.startsWith('city-01-2026Hotmeme/')));
+        migrated = true;
+    } };
     f._loadingNode = { active: true };
     f.showLobby = () => { throw Error('Startup must enter the current level directly'); };
     f.startContinue = async () => {

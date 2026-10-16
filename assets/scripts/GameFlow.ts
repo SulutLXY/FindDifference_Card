@@ -58,6 +58,11 @@ import { TouchPointEffect } from './ui/TouchPointEffect';
 
 const { ccclass, property } = _decorator;
 
+interface PageSpriteEntry {
+    frame: SpriteFrame | null;
+    pending: Promise<SpriteFrame | null>;
+}
+
 /**
  * 全局流程状态机：持有存档、平台服务、城市/关卡配置与对局状态，
  * 负责界面切换、倒计时、激励视频与结算。
@@ -90,10 +95,10 @@ export class GameFlow extends Component {
     @property({ type: GameScreen, tooltip: '对局界面：首次进关从 MainGameSources 动态创建，无需拖拽绑定' })
     public game: GameScreen | null = null;
 
-    @property({ type: RankScreen, tooltip: '排行榜界面组件（Screens/Rank）' })
+    @property({ type: RankScreen, tooltip: '排行榜：首次打开从 SecondaryUI 创建，无需拖拽绑定' })
     public rank: RankScreen | null = null;
 
-    @property({ type: CollectScreen, tooltip: '收藏界面组件（Screens/Collect）' })
+    @property({ type: CollectScreen, tooltip: '收藏页：首次打开从 SecondaryUI 创建，无需拖拽绑定' })
     public collect: CollectScreen | null = null;
 
     @property({ type: ResultModal, tooltip: '结算弹窗：首次进关从 MainGameSources 动态创建，无需拖拽绑定' })
@@ -138,12 +143,22 @@ export class GameFlow extends Component {
     private _comboGroupsScannedBundle = false;
     private _comboSoundRequest = 0;
     private readonly _spriteFrameCache = new Map<string, SpriteFrame>();
+    /** 封面/横幅按页面持有；页面关闭或列表重建时释放，不使用内存预算。 */
+    private readonly _pageSpriteFrames = new Map<Node, Map<string, PageSpriteEntry>>();
+    private _pageSpritesDisposed = false;
     /** 配置、小图及各城市大图 Bundle，首次使用时加载并缓存。 */
     private readonly _cityBundles = new Map<string, AssetManager.Bundle>();
     private readonly _cityBundlePending = new Map<string, Promise<AssetManager.Bundle>>();
     private _gameBundle: AssetManager.Bundle | null = null;
     private _gameBundlePending: Promise<AssetManager.Bundle> | null = null;
     private _gameScreensPending: Promise<void> | null = null;
+    private _secondaryBundle: AssetManager.Bundle | null = null;
+    private _secondaryBundlePending: Promise<AssetManager.Bundle> | null = null;
+    private readonly _secondaryPagesPending = new Map<'rank' | 'collect', Promise<RankScreen | CollectScreen>>();
+    private readonly _secondaryPrefabs = new Map<'rank' | 'collect', Prefab>();
+    private _secondaryNavigationVersion = 0;
+    private _secondaryPageLoading = false;
+    private _secondaryDisposed = false;
     private _musicSource: AudioSource | null = null;
     private _musicPath = '';
     private readonly _musicClips = new Map<string, AudioClip>();
@@ -270,22 +285,7 @@ export class GameFlow extends Component {
     }
 
     protected start(): void {
-        this._ensureCollectScreen();
         void this._bootstrap();
-    }
-
-    /**
-     * 收藏界面组件运行时挂载到 Screens/Collect：
-     * 组件类在编辑器外新增、场景未引用，这里按命名查找兜底，
-     * 避免要求手动拖组件；场景中已拖挂时不会重复添加。
-     */
-    private _ensureCollectScreen(): void {
-        if (this.collect?.isValid) return;
-        const screens = this.node.parent?.getChildByName('Screens');
-        const target = screens?.getChildByName('Collect');
-        if (target && !target.getComponent(CollectScreen)) {
-            this.collect = target.addComponent(CollectScreen);
-        }
     }
 
     protected update(dt: number): void {
@@ -397,14 +397,14 @@ export class GameFlow extends Component {
             void this._showNativeRank();
             return;
         }
-        this._switchTo(this.rank);
-        void this.platform.showInterstitial(() => this.isValid && !!this.rank?.node.activeInHierarchy, true);
+        void this._openSecondaryPage('rank');
     }
 
     private _openingNativeRank = false;
 
     private async _showNativeRank(): Promise<void> {
         if (this._openingNativeRank) return;
+        this._cancelSecondaryNavigation();
         this._openingNativeRank = true;
         try {
             const caller = this.lobby?.node;
@@ -429,17 +429,18 @@ export class GameFlow extends Component {
     }
 
     public showCollect(): void {
-        this._switchTo(this.collect);
-        void this.platform.showInterstitial(() => this.isValid && !!this.collect?.node.activeInHierarchy, true);
+        void this._openSecondaryPage('collect');
     }
 
     /** 城市列表页。 */
     public showCitySelect(): void {
         this._switchTo(this.citySelect);
+        void this.lobby?.preloadHero();
     }
 
     /** 城市内关卡页。city 缺省时用当前城市（或第一城）。 */
     public async showLevelSelect(city?: CityConfig): Promise<void> {
+        this._cancelSecondaryNavigation();
         const target = city ?? this._currentCity ?? this._cities[0] ?? null;
         if (!target) return;
         this._currentCity = target;
@@ -451,6 +452,7 @@ export class GameFlow extends Component {
             return;
         }
         this._switchTo(this.levelSelect);
+        void this.lobby?.preloadHero();
     }
 
     /** 从城市页进入城市：设置当前城市并打开关卡页。 */
@@ -530,6 +532,7 @@ export class GameFlow extends Component {
 
     public async startLevel(city: CityConfig, levelIndex: number, musicSource: 'select' | 'streak' | 'retry' = 'select', failureAction: 'lobby' | 'skip-next' = 'lobby'): Promise<void> {
         if (this._levelLoading) return;
+        this._cancelSecondaryNavigation();
         this._updateGameMusic(city, levelIndex, musicSource);
         const version = ++this._levelLoadVersion;
         const active = () => this.isValid && version === this._levelLoadVersion;
@@ -568,12 +571,17 @@ export class GameFlow extends Component {
             this._assistRoundVersion++;
             this._hintAdsUsed = 0;
             this._addTimeAdsUsed = 0;
-            this._switchTo(this.game);
             this._setLoadingProgress(0.2);
             await this.game.setupLevel(level, value => {
                 if (active()) this._setLoadingProgress(0.2 + value * 0.8);
             });
             if (!active()) return;
+            // 两张关卡图绑定完成后才启用玩法页；动态创建的节点不能盖过 Loading。
+            this._switchTo(this.game);
+            if (this._loadingNode) {
+                this._loadingNode.active = true;
+                this._loadingNode.setSiblingIndex(this._loadingNode.parent!.children.length - 1);
+            }
             await this._drawLoadingFrame();
             if (!active()) return;
             const dailyFirst = this.save.beginDailyFirstRound(sidebarDay());
@@ -666,23 +674,31 @@ export class GameFlow extends Component {
         if (!game || !focus || !node) return;
         this._tutorial = node.getComponent(GameTips) ?? node.addComponent(GameTips);
         const level = this._currentLevel;
-        const text = kind === 'hint' ? '找不到？点击提示，免费指出一处不同'
+        const round = this._assistRoundVersion;
+        const hintAction = this.unlimitedAssists || this.save.freeHints > 0 ? '使用提示'
+            : this.canWatchHintAd ? '看广告获取提示' : '查看提示次数';
+        const timeAction = this.unlimitedAssists || this.save.freeAddTimes > 0 ? '加时30秒'
+            : this.canWatchAddTimeAd ? '看广告加时30秒' : '查看加时次数';
+        const text = kind === 'hint' ? `找不到？点击${hintAction}，指出一处不同`
             : kind === 'zoom' ? '点击放大镜查看细节，可拖动，再点一次还原'
-            : '时间不足！点击加时，免费增加30秒';
+            : `时间不足！点击${timeAction}`;
         this._isPaused = true;
         this._tutorial.present(focus.node, focus.local, focus.radius, hit => {
-            if (!this.isValid || this._currentLevel !== level || !this.game?.node.activeInHierarchy) return;
+            if (!this.isValid || this._currentLevel !== level || round !== this._assistRoundVersion
+                || !this.game?.node.activeInHierarchy) return;
             this.save.markAssistTutorialShown(kind);
             this._isPaused = this._isGameOver;
             if (!hit) return;
-            // 点击高亮即赠送一次真实体验，与原开局教学一致
-            if (kind === 'hint') { this.playHintSound(); this.useHint(); }
+            // 高亮点击与普通按钮走同一库存、激励视频及每关次数校验。
+            this.platform.recoverInterstitialOnTouch();
+            if (kind === 'hint') void this.requestHint();
             else if (kind === 'zoom') this.game.tutorialZoom();
-            else { this.playAddTimeSound(); this.addTime(30); }
+            else void this.requestAddTime();
         }, text, '');
     }
 
     private _switchTo(screen: LobbyScreen | CitySelectScreen | LevelSelectScreen | GameScreen | RankScreen | CollectScreen | null): void {
+        this._cancelSecondaryNavigation();
         this._tutorial?.dismiss();
         if (screen !== this.game) {
             ++this._levelLoadVersion;
@@ -795,6 +811,9 @@ export class GameFlow extends Component {
     }
 
     protected onDestroy(): void {
+        this._disposeSecondaryPages();
+        this._pageSpritesDisposed = true;
+        for (const owner of this._pageSpriteFrames.keys()) this.releasePageSpriteFrames(owner);
         ++this._levelLoadVersion;
         this._finishLoadingFrame?.();
         this._stopResultTone();
@@ -809,7 +828,19 @@ export class GameFlow extends Component {
         this._clickSource?.stop();
         this._musicSource?.stop();
         this._musicClips.clear();
+        for (const frame of this._spriteFrameCache.values()) frame.decRef();
+        this._spriteFrameCache.clear();
         if (GameFlow._instance === this) GameFlow._instance = null;
+    }
+
+    private _disposeSecondaryPages(): void {
+        this._secondaryDisposed = true;
+        this._cancelSecondaryNavigation();
+        for (const page of [this.rank, this.collect]) {
+            if (page?.isValid) { page.close(); page.node.destroy(); }
+        }
+        for (const prefab of this._secondaryPrefabs.values()) prefab.decRef();
+        this._secondaryPrefabs.clear();
     }
 
     // ------------------------------------------------------------------
@@ -1386,6 +1417,70 @@ export class GameFlow extends Component {
         });
     }
 
+    /** 页面内去重并合并并发加载；失效页面的加载结果返回 null。 */
+    public loadPageSpriteFrame(path: string, owner: Node): Promise<SpriteFrame | null> {
+        if (this._pageSpritesDisposed || !owner.isValid || !owner.activeInHierarchy) return Promise.resolve(null);
+        let entries = this._pageSpriteFrames.get(owner);
+        if (!entries) {
+            entries = new Map();
+            this._pageSpriteFrames.set(owner, entries);
+        }
+        const cached = entries.get(path);
+        if (cached) return cached.pending;
+        const scope = entries;
+        const entry: PageSpriteEntry = { frame: null, pending: Promise.resolve(null) };
+        scope.set(path, entry);
+        const current = () => !this._pageSpritesDisposed && owner.isValid && owner.activeInHierarchy
+            && this._pageSpriteFrames.get(owner) === scope && scope.get(path) === entry;
+        entry.pending = (async () => {
+            const folder = path.startsWith('levels/') ? 'levels'
+                : path.startsWith('thumbnails/') ? 'thumbnails'
+                : path.startsWith('configs/city-') ? 'configs' : null;
+            const target = folder === 'levels' ? this._levelImageTarget(path) : null;
+            const bundle = folder ? await this._loadCityBundle(folder, target?.cityKey) : resources;
+            if (!current()) return null;
+            const request = target ? target.request : folder ? path.slice(folder.length + 1) : path;
+            // 每个页面拥有一份独立引用，不写入常驻小图标缓存。
+            const frame = await new Promise<SpriteFrame>((resolve, reject) => {
+                const complete = (error: Error | null, loaded: SpriteFrame) => {
+                    if (error) reject(error);
+                    else { loaded.addRef(); resolve(loaded); }
+                };
+                bundle.load(request, SpriteFrame, (error, loaded) => {
+                    if (error && current()) bundle.load(`${request}/spriteFrame`, SpriteFrame, complete);
+                    else complete(error, loaded);
+                });
+            });
+            if (!current()) { frame.decRef(); return null; }
+            entry.frame = frame;
+            return frame;
+        })().catch(error => {
+            const stillCurrent = current();
+            if (scope.get(path) === entry) scope.delete(path);
+            if (!stillCurrent) return null;
+            throw error;
+        });
+        return entry.pending;
+    }
+
+    public releasePageSpriteFrames(owner: Node): void {
+        const entries = this._pageSpriteFrames.get(owner);
+        if (!entries) return;
+        // 先令异步请求失效；即使同一帧重新打开页面，旧请求也不能写入新页面。
+        this._pageSpriteFrames.delete(owner);
+        const frames = new Set<SpriteFrame>();
+        for (const entry of entries.values()) if (entry.frame) frames.add(entry.frame);
+        // 隐藏但复用的节点也必须清掉贴图，防止保留已释放的 SpriteFrame。
+        if (owner.isValid) {
+            for (const sprite of owner.getComponentsInChildren(Sprite)) {
+                if (sprite.spriteFrame && frames.has(sprite.spriteFrame)) sprite.spriteFrame = null;
+            }
+        }
+        for (const entry of entries.values()) entry.frame?.decRef();
+        entries.clear();
+    }
+
+    /** 仅用于常驻的小图标、头像池等；页面图片使用 loadPageSpriteFrame。 */
     public loadSpriteFrame(path: string): Promise<SpriteFrame> {
         const cached = this._spriteFrameCache.get(path);
         if (cached && cached.isValid) return Promise.resolve(cached);
@@ -1403,12 +1498,20 @@ export class GameFlow extends Component {
 
     /** levels/城市/关卡/图片 → 城市 Bundle + 关卡/图片。 */
     private _levelImageTarget(path: string): { cityKey: string; request: string } {
-        const match = /^levels\/(city-\d{2}-[a-z]+)\/(.+)$/.exec(path);
+        const match = /^levels\/(city-\d{2}-[a-zA-Z0-9]+)\/(.+)$/.exec(path);
         if (!match) throw new Error(`无效的城市关卡图片路径：${path}`);
         return { cityKey: match[1], request: match[2] };
     }
 
     private _loadSpriteFrom(source: AssetManager.Bundle, path: string, request = path): Promise<SpriteFrame> {
+        // 封面可能直接使用关卡上图。缓存必须独立持有引用，否则退出关卡的 decRef 会销毁仍在显示的封面。
+        const retain = (frame: SpriteFrame): SpriteFrame => {
+            if (this._spriteFrameCache.get(path) !== frame) {
+                frame.addRef();
+                this._spriteFrameCache.set(path, frame);
+            }
+            return frame;
+        };
         return new Promise((resolve, reject) => {
             source.load(request, SpriteFrame, (error, asset) => {
                 if (error) {
@@ -1418,13 +1521,11 @@ export class GameFlow extends Component {
                             reject(retryError);
                             return;
                         }
-                        this._spriteFrameCache.set(path, retryAsset);
-                        resolve(retryAsset);
+                        resolve(retain(retryAsset));
                     });
                     return;
                 }
-                this._spriteFrameCache.set(path, asset);
-                resolve(asset);
+                resolve(retain(asset));
             });
         });
     }
@@ -1513,9 +1614,10 @@ export class GameFlow extends Component {
             await music;
             report(0.99);
 
-            // v2 旧档迁移：按城市顺序展开全部关卡 key 供映射
+            // v2 旧档迁移保持原城市顺序，新增前置专题不能占用旧关卡编号。
             const allKeys: string[] = [];
             for (const city of this._cities) {
+                if (city.key === 'city-00-HotTips' || city.key === 'city-01-2026Hotmeme') continue;
                 for (const dir of city.levels) {
                     allKeys.push(`${city.key}/${dir}`);
                 }
@@ -1633,6 +1735,90 @@ export class GameFlow extends Component {
 
     public async loadGameSpriteFrame(path: string): Promise<SpriteFrame> {
         return this._loadSpriteFrom(await this._loadGameBundle(), path);
+    }
+
+    private _loadSecondaryBundle(): Promise<AssetManager.Bundle> {
+        if (this._secondaryBundle) return Promise.resolve(this._secondaryBundle);
+        if (this._secondaryBundlePending) return this._secondaryBundlePending;
+        this._secondaryBundlePending = new Promise<AssetManager.Bundle>((resolve, reject) => {
+            assetManager.loadBundle('SecondaryUI', (error, bundle) => {
+                if (error) reject(error);
+                else if (this._secondaryDisposed) reject(new Error('游戏流程已销毁'));
+                else { this._secondaryBundle = bundle; resolve(bundle); }
+            });
+        }).finally(() => { this._secondaryBundlePending = null; });
+        return this._secondaryBundlePending;
+    }
+
+    /** 首次打开才加载，合并重复点击；页面节点复用，封面仍按页面生命周期释放。 */
+    private _ensureSecondaryPage(kind: 'rank' | 'collect'): Promise<RankScreen | CollectScreen> {
+        const existing = this[kind];
+        if (existing?.isValid) return Promise.resolve(existing);
+        const pending = this._secondaryPagesPending.get(kind);
+        if (pending) return pending;
+        const request = (async () => {
+            const bundle = await this._loadSecondaryBundle();
+            if (this._secondaryDisposed) throw new Error('游戏流程已销毁');
+            const prefab = await new Promise<Prefab>((resolve, reject) => {
+                bundle.load(`prefabs/${kind === 'rank' ? 'RankScreen' : 'CollectScreen'}`, Prefab, (error, loaded) => {
+                    if (error) { reject(error); return; }
+                    loaded.addRef();
+                    if (this._secondaryDisposed) { loaded.decRef(); reject(new Error('游戏流程已销毁')); return; }
+                    this._secondaryPrefabs.set(kind, loaded);
+                    resolve(loaded);
+                });
+            });
+            if (this._secondaryDisposed) throw new Error('游戏流程已销毁');
+            const screens = this.node.parent?.getChildByName('Screens');
+            if (!screens) throw new Error('界面容器不存在');
+            const node = instantiate(prefab);
+            node.active = false;
+            node.name = kind === 'rank' ? 'Rank' : 'Collect';
+            const page = kind === 'rank' ? node.getComponent(RankScreen) : node.getComponent(CollectScreen);
+            if (!page) { node.destroy(); throw new Error('页面预制体缺少界面组件'); }
+            node.parent = screens;
+            if (kind === 'rank') this.rank = page as RankScreen;
+            else this.collect = page as CollectScreen;
+            return page;
+        })().catch(error => {
+            const prefab = this._secondaryPrefabs.get(kind);
+            if (prefab) { this._secondaryPrefabs.delete(kind); prefab.decRef(); }
+            throw error;
+        }).finally(() => { this._secondaryPagesPending.delete(kind); });
+        this._secondaryPagesPending.set(kind, request);
+        return request;
+    }
+
+    private _cancelSecondaryNavigation(): void {
+        ++this._secondaryNavigationVersion;
+        if (this._secondaryPageLoading && this._loadingNode) this._loadingNode.active = false;
+        this._secondaryPageLoading = false;
+    }
+
+    private async _openSecondaryPage(kind: 'rank' | 'collect'): Promise<void> {
+        this._cancelSecondaryNavigation();
+        const version = this._secondaryNavigationVersion;
+        const active = () => !this._secondaryDisposed && version === this._secondaryNavigationVersion;
+        if (!this[kind]?.isValid && this._loadingNode) {
+            this._setLoadingProgress(0);
+            this._secondaryPageLoading = true;
+            this._loadingNode.active = true;
+            this._loadingNode.setSiblingIndex(this._loadingNode.parent!.children.length - 1);
+        }
+        try {
+            const page = await this._ensureSecondaryPage(kind);
+            if (!active()) return;
+            this._secondaryPageLoading = false;
+            this._setLoadingProgress(1);
+            this._switchTo(page);
+            void this.platform.showInterstitial(() => this.isValid && page.node.activeInHierarchy, true);
+        } catch (error) {
+            if (!active()) return;
+            this._secondaryPageLoading = false;
+            if (this._loadingNode) this._loadingNode.active = false;
+            console.warn('[GameFlow] 页面加载失败', kind, error);
+            this.toast('页面加载失败，请重试');
+        }
     }
 
     /** 首页不持有局内预制体引用；第一次进关在加载遮罩下创建，后续复用。 */

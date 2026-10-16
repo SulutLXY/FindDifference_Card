@@ -78,7 +78,7 @@ def build(table, output, check=False):
             if preset_reviews and len(preset_reviews) != 10: raise ValueError('填写预设评价时须为10条，以 | 分隔')
             if len(set(preset_reviews)) != len(preset_reviews): raise ValueError('同一道美食的预设评价不能重复')
             if not all([id_, food, city, city_name, asset]): raise ValueError('ID、名称、城市和素材名称不能为空')
-            if not re.fullmatch(r'city-\d{2}-[a-z]+',city): raise ValueError('城市ID格式错误')
+            if not re.fullmatch(r'city-\d{2}-[a-zA-Z0-9]+',city): raise ValueError('城市ID格式错误')
             if level and not re.fullmatch(r'level-\d{2}',level): raise ValueError('关卡目录格式错误')
             if id_ in ids: raise ValueError('重复美食ID: ' + id_)
             ids.add(id_)

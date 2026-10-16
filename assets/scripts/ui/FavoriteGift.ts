@@ -55,8 +55,9 @@ export class FavoriteGift extends UIScreen {
     }
 
     private _bind(node: Node, callback: () => void): void {
-        node.on(Input.EventType.TOUCH_END, callback, this);
-        this._bindings.push({ node, callback });
+        const handler = this.buttonTouchHandler(node, callback);
+        node.on(Input.EventType.TOUCH_END, handler, this);
+        this._bindings.push({ node, callback: handler });
     }
 
     private _close(): void { if (this._modal?.isValid) this._modal.active = false; }

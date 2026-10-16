@@ -37,7 +37,7 @@ for (const food of catalog.foods) {
     assert.equal(unlocked, false);
 }
 assert.equal(calls, 80);
-flow.showFoodTips({key:'city-01-beijing/level-01', icon:'wrong-level-cover'}, true);
+flow.showFoodTips({key:'city-02-beijing/level-01', icon:'wrong-level-cover'}, true);
 assert.equal(calls, 80, 'unconfigured food must never display the level cover');
 assert.equal(warnings, 1);
 console.log('PASS: all 40 acquisition popups and collection details use designed food SpriteFrames; missing mappings never fall back to level icons.');

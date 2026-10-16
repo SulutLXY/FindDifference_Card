@@ -220,7 +220,8 @@ export class LevelSelectScreen extends UIScreen {
         const thumbnail = this.findChildDeep(card, 'Thumbnail');
         if (!thumbnail || !path) return;
         try {
-            const frame = await this.flow.loadSpriteFrame(path);
+            const frame = await this.flow.loadPageSpriteFrame(path, this.node);
+            if (!frame?.isValid || !this.node.activeInHierarchy || !thumbnail.isValid) return;
             const sprite = thumbnail.getComponent(Sprite);
             if (sprite && thumbnail.isValid) {
                 // 按模板默认尺寸（UITransform）显示，避免 RAW 模式下原图过大被裁
@@ -238,6 +239,7 @@ export class LevelSelectScreen extends UIScreen {
     }
 
     private _clearRuntimeCards(): void {
+        this.flow.releasePageSpriteFrames(this.node);
         for (const card of this._runtimeCards) card.destroy();
         this._runtimeCards = [];
     }

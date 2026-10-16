@@ -20,8 +20,28 @@ function methods(file,names,extra={}){
  await assert.rejects(s.setupLevel({name:'test',topImage:'a',bottomImage:'b'}));assert.equal(refs,0);
  let finish;s.flow.acquireLevelFrame=()=>new Promise(r=>{finish=()=>{refs++;r({decRef(){refs--}})}});
  const pending=s.setupLevel({name:'test',topImage:'a',bottomImage:'b'});s.clearLevel();finish();await assert.rejects(pending);assert.equal(refs,0);
+ // Slow top/bottom downloads cannot finish setup or expose one partially bound image.
+ const imageLoads=[],imageProgress=[];
+ s.flow.acquireLevelFrame=path=>new Promise(resolve=>imageLoads.push({path,resolve:()=>{refs++;resolve({decRef(){refs--;}});}}));
+ let imagesReady=false;
+ const slowImages=s.setupLevel({name:'slow',topImage:'top',bottomImage:'bottom'},v=>imageProgress.push(v)).then(()=>imagesReady=true);
+ assert.equal(imageLoads[0].path,'top');assert.equal(imagesReady,false);
+ imageLoads[0].resolve();await new Promise(setImmediate);
+ assert.equal(imageLoads[1].path,'bottom');assert.equal(imagesReady,false);
+ assert.equal(sprites.TopImage.spriteFrame,null);assert.equal(sprites.BottomImage.spriteFrame,null);
+ assert.ok(imageProgress.every(v=>v<1));
+ imageLoads[1].resolve();await slowImages;
+ assert.ok(sprites.TopImage.spriteFrame);assert.ok(sprites.BottomImage.spriteFrame);
+ assert.equal(imageProgress.at(-1),1);s.clearLevel();assert.equal(refs,0);
+ const SpriteType=class{};SpriteType.SizeMode={CUSTOM:'custom'};
+ const Binding=methods('assets/scripts/ui/GameScreen.ts',['_applySpriteFrame'],{Sprite:SpriteType});
+ const binding=new Binding(),sprite={enabled:false},target={isValid:true,getComponent:()=>sprite};
+ assert.throws(()=>binding._applySpriteFrame(null,{isValid:true}),/节点不存在/);
+ assert.throws(()=>binding._applySpriteFrame(target,{isValid:true,texture:null}),/纹理尚未就绪/);
+ const readyFrame={isValid:true,texture:{isValid:true}};binding._applySpriteFrame(target,readyFrame);
+ assert.equal(sprite.spriteFrame,readyFrame);assert.equal(sprite.enabled,true);
  let day='2026-10-09';
- const Flow=methods('assets/scripts/GameFlow.ts',['startLevel','_returnToLobbyOnLoadError','_nextLevelTarget','_ensureLevel','findNextLevel','resultPrimary','_loadCityMeta'],{sidebarDay:()=>day});
+ const Flow=methods('assets/scripts/GameFlow.ts',['startLevel','_cancelSecondaryNavigation','_returnToLobbyOnLoadError','_nextLevelTarget','_ensureLevel','findNextLevel','resultPrimary','_loadCityMeta'],{sidebarDay:()=>day});
  // Use the production global ad guard without running unrelated onLoad UI initialization.
  const source=fs.readFileSync('assets/scripts/GameFlow.ts','utf8');
  const tree=ts.createSourceFile('GameFlow.ts',source,ts.ScriptTarget.Latest,true);
@@ -46,8 +66,20 @@ function methods(file,names,extra={}){
  f.showLobby=()=>{returned++;f._levelLoadVersion++;f._levelLoading=false;f._loadingNode.active=false;};
  const city={key:'a',levels:['01','02','03'],levelConfigs:[0,1,2].map(i=>({key:`a/0${i+1}`,timeLimit:100,maxLives:5}))};
  const nextCity={key:'b',levels:['01'],levelConfigs:[{key:'b/01',timeLimit:100,maxLives:5}]};f._cities=[city,nextCity];
+ // Reproduce a new prefab inserted above Loading; it must not open until images are bound.
+ let gameOpens=0,draws=0,finishDraw;
+ const children=[f._loadingNode];f._loadingNode.parent.children=children;
+ f._loadingNode.setSiblingIndex=index=>{children.splice(children.indexOf(f._loadingNode),1);children.splice(index,0,f._loadingNode);};
+ f._ensureGameScreens=async()=>{if(!children.includes(f.game))children.push(f.game);};
+ f._switchTo=screen=>{assert.equal(screen,f.game);gameOpens++;};
+ f._drawLoadingFrame=()=>++draws===1?Promise.resolve():new Promise(resolve=>finishDraw=resolve);
  const loading=f.startLevel(city,0);await new Promise(setImmediate);assert.equal(f._isPaused,true);assert.equal(f._levelLoading,true);assert.equal(mark,0);assert.equal(footer.active,false);assert.equal(f._loadingNode.active,true);
- resolveSetup();await loading;assert.equal(f._levelLoading,false);assert.equal(f._isPaused,false);assert.equal(mark,1);assert.equal(f._loadingNode.active,false);
+ assert.equal(gameOpens,0,'Gameplay must stay closed while the image setup is pending');
+ resolveSetup();await new Promise(setImmediate);
+ assert.equal(gameOpens,1);assert.equal(children.at(-1),f._loadingNode,'Loading must cover newly instantiated gameplay');
+ assert.equal(f._loadingNode.active,true);assert.equal(f._isPaused,true);assert.equal(mark,0,'Do not start the round before the first rendered frame');
+ finishDraw();await loading;assert.equal(f._levelLoading,false);assert.equal(f._isPaused,false);assert.equal(mark,1);assert.equal(f._loadingNode.active,false);
+ f._drawLoadingFrame=async()=>{};
  assert.equal(f._roundInterstitialProtected,true);assert.equal(f.platform.canShowInterstitial(),false,'Daily first round is protected');
  f.game.setupLevel=async()=>{throw Error('offline')};await f.startLevel(city,0);
  assert.equal(f._isPaused,false);assert.equal(f._levelLoading,false);assert.equal(f._loadingNode.active,false);assert.equal(f._currentLevel,null);assert.equal(returned,1);assert.equal(mark,1);

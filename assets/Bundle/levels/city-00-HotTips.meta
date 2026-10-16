@@ -1,0 +1,14 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "e8ae24bc-43a7-4bf3-af2e-ff08a6a0d676",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isBundle": true,
+    "bundleName": "city-00-HotTips",
+    "priority": 7,
+    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+"
+  }
+}

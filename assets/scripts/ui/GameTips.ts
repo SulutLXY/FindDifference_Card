@@ -21,6 +21,13 @@ export class GameTips extends Component {
     private _boxRight = 150;
     private _hintDone: (() => void) | null = null;
     private _hintInputRoot: Node | null = null;
+    private _geometryDirty = true;
+    private _drawWidth = 0;
+    private _drawHeight = 0;
+    private readonly _nextCenter = new Vec3();
+    private readonly _edge = new Vec3();
+    private readonly _world = new Vec3();
+    private readonly _localEdge = new Vec3();
 
     protected onLoad(): void {
         const hole = new Node('FocusHole');
@@ -73,6 +80,7 @@ export class GameTips extends Component {
         const text = this.node.getChildByPath('TipsBox/TipsText')?.getComponent(Label);
         if (text) text.string = message;
         this._textLayoutKey = '';
+        this._geometryDirty = true;
         this._layoutText();
         this.lateUpdate();
     }
@@ -157,6 +165,7 @@ export class GameTips extends Component {
         this._boxHeight = top - bottom;
         box.getComponent(UITransform)?.setContentSize(this._boxWidth, this._boxHeight);
         this._textLayoutKey = `${text.string}|${text.fontSize}|${text.overflow}`;
+        this._geometryDirty = true;
     }
     public dismiss(): void {
         this._clearHint();
@@ -181,11 +190,22 @@ export class GameTips extends Component {
         const canvas = this.node.parent?.parent?.getComponent(UITransform);
         const width = canvas?.width || 750, height = canvas?.height || 1334;
         const maskHeight = Math.max(2000, height);
-        ui.setContentSize(width, maskHeight);
+        if (ui.width !== width || ui.height !== maskHeight) ui.setContentSize(width, maskHeight);
         const targetUi = this._target.getComponent(UITransform)!;
-        this._center = ui.convertToNodeSpaceAR(targetUi.convertToWorldSpaceAR(this._local));
-        const edge = ui.convertToNodeSpaceAR(targetUi.convertToWorldSpaceAR(new Vec3(this._local.x+this._radius,this._local.y)));
-        this._screenRadius = Vec3.distance(edge,this._center);
+        // 保留每帧坐标检测以跟随目标及祖先的缩放/移动，静止时不重建图形。
+        targetUi.convertToWorldSpaceAR(this._local, this._world);
+        ui.convertToNodeSpaceAR(this._world, this._nextCenter);
+        this._localEdge.set(this._local.x + this._radius, this._local.y, this._local.z);
+        targetUi.convertToWorldSpaceAR(this._localEdge, this._world);
+        ui.convertToNodeSpaceAR(this._world, this._edge);
+        const radius = Vec3.distance(this._edge, this._nextCenter);
+        if (!this._geometryDirty && width === this._drawWidth && height === this._drawHeight
+            && this._center.x === this._nextCenter.x && this._center.y === this._nextCenter.y
+            && this._screenRadius === radius) return;
+        this._geometryDirty = false;
+        this._drawWidth = width; this._drawHeight = height;
+        this._center.set(this._nextCenter);
+        this._screenRadius = radius;
         this._hole.setPosition(this._center);
         if (this._outline) {
             this._outline.clear();

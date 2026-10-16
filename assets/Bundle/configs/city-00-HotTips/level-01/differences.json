@@ -1,0 +1,38 @@
+{
+  "name": "骑士小猫",
+  "type": "normal",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.064567,
+      "y": 0.337097,
+      "radius": 0.216784
+    },
+    {
+      "id": "diff-2",
+      "x": 0.247681,
+      "y": 0.38871,
+      "radius": 0.063643
+    },
+    {
+      "id": "diff-3",
+      "x": 0.531351,
+      "y": 0.26129,
+      "radius": 0.178443
+    },
+    {
+      "id": "diff-4",
+      "x": 0.3313,
+      "y": 0.933871,
+      "radius": 0.115466
+    },
+    {
+      "id": "diff-5",
+      "x": 0.821371,
+      "y": 0.68871,
+      "radius": 0.098189
+    }
+  ],
+  "icon": "thumbnails/city-00-HotTips/level-01/icon/spriteFrame"
+}

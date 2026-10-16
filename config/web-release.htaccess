@@ -1,0 +1,6 @@
+# Apache only; configure equivalent response headers in OSS/CDN separately.
+<IfModule mod_headers.c>
+  <FilesMatch "^(index\.html|release\.json)$">
+    Header set Cache-Control "no-store, max-age=0"
+  </FilesMatch>
+</IfModule>

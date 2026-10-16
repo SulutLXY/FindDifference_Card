@@ -1,6 +1,7 @@
 import { _decorator, Color, Graphics, Label, Node, UITransform } from 'cc';
 import { LevelConfig } from '../core/GameTypes';
 import { UIColors, UIScreen } from './UIScreen';
+import { LobbyEntries } from './LobbyEntries';
 
 const { ccclass, property } = _decorator;
 
@@ -75,6 +76,9 @@ export class ResultModal extends UIScreen {
     }
 
     public present(payload: ResultModalPayload): void {
+        const host = this.flow.node.parent;
+        const entries = host?.getComponent(LobbyEntries) ?? host?.addComponent(LobbyEntries);
+        entries?.bindRewardEntries(this.node);
         const moneyTool = this.findChildDeep(this.node, 'moneyTool');
         if (moneyTool) moneyTool.active = true;
         this.setLabel(this.titleLabel, 'Title', payload.win ? '挑战成功！' : '挑战失败');

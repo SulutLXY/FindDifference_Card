@@ -1,5 +1,5 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
-const ts=require('D:/Cocos/cocoseditors/Creator/3.8.8/resources/resources/3d/engine/node_modules/typescript');
+const ts=require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 for(const dpr of [1,2,3]){
  const exports={},UITransform=class{},host={tt:{getSystemInfoSync:()=>({pixelRatio:dpr})}};
  class Vec2{constructor(x,y){this.x=x;this.y=y;}}

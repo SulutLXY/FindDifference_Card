@@ -205,8 +205,8 @@ export class CitySelectScreen extends UIScreen {
         const banner = this.findChildDeep(card, 'CityBanner');
         if (!banner) return;
         try {
-            const frame = await this.flow.loadSpriteFrame(path);
-            if (!banner.isValid) return;
+            const frame = await this.flow.loadPageSpriteFrame(path, this.node);
+            if (!frame?.isValid || !this.node.activeInHierarchy || !banner.isValid) return;
             let sprite = banner.getComponent(Sprite);
             if (!sprite) sprite = banner.addComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
@@ -264,6 +264,7 @@ export class CitySelectScreen extends UIScreen {
     }
 
     private _clearCards(): void {
+        this.flow.releasePageSpriteFrames(this.node);
         for (const card of this._cards) card.destroy();
         this._cards = [];
     }

@@ -13,3 +13,6 @@ Thumbs.db
 # Python 工具脚本缓存
 __pycache__/
 *.pyc
+
+# 可重新生成的 H5 独立发布包（约 100 MB）
+output/web-mobile-release/

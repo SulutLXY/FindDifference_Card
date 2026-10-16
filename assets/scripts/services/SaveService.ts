@@ -239,6 +239,40 @@ export class SaveService {
 
     /** 启动校准：积分与实际通关集合对齐（防御冗余字段漂移）。 */
     private _normalize(): void {
+        // 插入 2026 热梗后，原城市目录编号顺延；同时保留通关、解锁和评价。
+        const oldCities = ['beijing', 'shanghai', 'nanjing', 'xiamen', 'changsha', 'guangzhou', 'chengdu', 'xian'];
+        const rename = (key: string): string => {
+            for (let i = 0; i < oldCities.length; i++) {
+                const oldKey = `city-${String(i + 1).padStart(2, '0')}-${oldCities[i]}`;
+                if (key === oldKey || key.startsWith(oldKey + '/') || key.startsWith(oldKey + '-')) {
+                    return `city-${String(i + 2).padStart(2, '0')}-${oldCities[i]}` + key.slice(oldKey.length);
+                }
+            }
+            return key;
+        };
+        for (const key of Object.keys(this._data.completed)) {
+            const next = rename(key);
+            if (next === key) continue;
+            const old = this._data.completed[key];
+            const current = this._data.completed[next];
+            const times = [old.bestTime, current?.bestTime].filter(t => typeof t === 'number' && t > 0);
+            this._data.completed[next] = {
+                stars: Math.max(old.stars, current?.stars ?? 0),
+                bestTime: times.length ? Math.min(...times) : 0,
+            };
+            delete this._data.completed[key];
+        }
+        if (Array.isArray(this._data.unlockedCities)) {
+            this._data.unlockedCities = [...new Set(this._data.unlockedCities.map(rename))];
+        }
+        if (this._data.foodReviews) {
+            for (const key of Object.keys(this._data.foodReviews)) {
+                const next = rename(key);
+                if (next === key) continue;
+                this._data.foodReviews[next] ??= this._data.foodReviews[key];
+                delete this._data.foodReviews[key];
+            }
+        }
         this._recountScore();
         // 首次赠送写入存档，库存耗尽后不会在下次启动重新赠送。
         this._persist();

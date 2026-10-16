@@ -1,7 +1,55 @@
-﻿<!DOCTYPE html>
+<%
+  const webBuildId = Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+%>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="find-difference-build" content="<%= webBuildId %>">
+  <script>
+  (function () {
+    var build = '<%= webBuildId %>';
+    var redirecting = false;
+    function checkRelease() {
+      // 只检查当前游戏目录，不读取或删除玩家存档。
+      var entry = new URL('index.html', window.location.href);
+      entry.searchParams.set('_fd_check', Date.now().toString(36) + Math.random().toString(36).slice(2));
+      var controller = typeof AbortController === 'function' ? new AbortController() : null;
+      var timer = controller ? setTimeout(function () { controller.abort(); }, 8000) : null;
+      return fetch(entry.href, { cache: 'no-store', credentials: 'same-origin', signal: controller ? controller.signal : undefined })
+        .then(function (response) {
+          if (!response.ok) throw new Error('入口版本检查失败：' + response.status);
+          return response.text();
+        }).then(function (html) {
+          if (timer) clearTimeout(timer);
+          var match = /<meta\s+name="find-difference-build"\s+content="([a-z0-9-]+)"\s*\/?\s*>/i.exec(html);
+          if (!match || match[1] === build) return;
+          var latest = match[1];
+          var target = new URL(window.location.href);
+          if (target.searchParams.get('_fd_release') === latest) {
+            var stale = new Error('服务器入口缓存尚未刷新，请刷新 CDN 的 index.html 缓存后重试');
+            stale.blockStartup = true;
+            throw stale;
+          }
+          target.searchParams.set('_fd_release', latest);
+          redirecting = true;
+          window.location.replace(target.href);
+          return new Promise(function () {});
+        }).catch(function (error) {
+          console.warn('[WebRelease]', error);
+          if (error.blockStartup) {
+            document.getElementById('WebReleaseError').hidden = false;
+            return new Promise(function () {});
+          }
+          // 网络异常仍可使用当前构建；MD5 文件名保持其依赖一致。
+        }).finally(function () { if (timer) clearTimeout(timer); });
+    }
+    window.__webReleaseReady = checkRelease();
+    window.addEventListener('pageshow', function (event) {
+      if (event.persisted && !redirecting) checkRelease();
+    });
+  }());
+  </script>
 
   <title>Cocos Creator | <%= projectName %></title>
 
@@ -35,14 +83,23 @@
   <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
 
   <link rel="stylesheet" type="text/css" href="<%= cssUrl %>"/>
+  <style>
+    /* Cocos 的 body, canvas, div { display:block } 会覆盖浏览器默认 hidden 样式。 */
+    #WebReleaseError[hidden] { display: none !important; }
+  </style>
 
 </head>
 <body>
+  <div id="WebReleaseError" hidden style="position:fixed;inset:0;z-index:99999;background:#fff;padding:32px;text-align:center">
+    <p>新版本正在更新，请稍后重新加载。</p>
+    <button onclick="window.location.reload()">重新加载</button>
+  </div>
   <div id="GameDiv" cc_exact_fit_screen="true">
       <div id="Cocos3dGameContainer">
         <canvas id="GameCanvas" oncontextmenu="event.preventDefault()" tabindex="99"></canvas>
       </div>
     </div>
-  <%- include(cocosTemplate, {}) %>
+  <%- include(cocosTemplate, {})
+    .replace(/System\.import\(([^)]+)\)/, 'window.__webReleaseReady.then(function () { return System.import($1); })') %>
 </body>
 </html>

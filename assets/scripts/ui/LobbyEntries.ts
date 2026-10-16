@@ -31,16 +31,7 @@ export class LobbyEntries extends UIScreen {
         }
         this._bind('Subscription', () => { this._caller = lobby; void this._openSubscription(); }, lobby);
         this._bind('AddDesktop', () => { this._caller = lobby; this._openDesktop(); }, lobby);
-        const visit = (node: Node) => {
-            if (node.name === 'moneyTool') {
-                this._bind('Gameflow', () => { this._caller = node; this._gift?.openGift(node); }, node);
-                this._bind('Subscription', () => { this._caller = node; void this._openSubscription(); }, node);
-                this._bind('AddDesktop', () => { this._caller = node; this._openDesktop(); }, node);
-                return;
-            }
-            for (const child of node.children) visit(child);
-        };
-        visit(this.node);
+        this.bindRewardEntries(this.node);
         this._bind('Shar', () => {
             if (this.flow.platform.isPcCompanion) this.flow.toast('请在手机抖音中分享游戏');
             else this.flow.share();
@@ -54,6 +45,26 @@ export class LobbyEntries extends UIScreen {
             this._nativeBound = true;
         }
         this.flow.platform.prepareFeedLogin();
+    }
+
+    /** 运行时创建的结算预制体也需要接线；可重复调用。 */
+    public bindRewardEntries(root: Node): void {
+        const lobby = this.flow.lobby?.node;
+        if (!this._gift && lobby) {
+            const group = this.findChildDeep(lobby, 'Gameflow');
+            const entry = group?.getChildByName('Gameflow') ?? group;
+            if (entry) this._gift = entry.getComponent(SidebarGift) ?? entry.addComponent(SidebarGift);
+        }
+        const visit = (node: Node) => {
+            if (node.name === 'moneyTool') {
+                this._bind('Gameflow', () => { this._caller = node; this._gift?.openGift(node); }, node);
+                this._bind('Subscription', () => { this._caller = node; void this._openSubscription(); }, node);
+                this._bind('AddDesktop', () => { this._caller = node; this._openDesktop(); }, node);
+                return;
+            }
+            for (const child of node.children) visit(child);
+        };
+        visit(root);
     }
 
     protected update(): void {
@@ -100,8 +111,9 @@ export class LobbyEntries extends UIScreen {
             this._subscribeButton = this.findChildDeep(modal, 'BtnReview');
             this._subscriptionStatus = this.findChildDeep(modal, 'Tips')?.getComponent(Label) ?? null;
             const bind = (node: Node, callback: () => void) => {
-                node.on(Input.EventType.TOUCH_END, callback, this);
-                this._bindings.push({ node, callback });
+                const handler = this.buttonTouchHandler(node, callback);
+                node.on(Input.EventType.TOUCH_END, handler, this);
+                this._bindings.push({ node, callback: handler });
             };
             const visit = (node: Node) => {
                 if (node.name === 'BtnClose') bind(node, () => this._closeSubscription());
@@ -161,8 +173,10 @@ export class LobbyEntries extends UIScreen {
     private _bind(name: string, callback: () => void, root: Node = this.node): void {
         const node = this.findChildDeep(root, name);
         if (!node) return;
-        node.on(Input.EventType.TOUCH_END, callback, this);
-        this._bindings.push({ node, callback });
+        if (this._bindings.some(binding => binding.node === node)) return;
+        const handler = this.buttonTouchHandler(node, callback);
+        node.on(Input.EventType.TOUCH_END, handler, this);
+        this._bindings.push({ node, callback: handler });
     }
 
     private _perform(result: Promise<string>): void {

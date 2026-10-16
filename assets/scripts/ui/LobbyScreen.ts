@@ -1,10 +1,14 @@
-import { _decorator, Label, Node } from 'cc';
+import { _decorator, Animation, AnimationClip, AssetManager, assetManager, Label, Node, Sprite, SpriteFrame } from 'cc';
 import { UIScreen } from './UIScreen';
 import { LobbyEntries } from './LobbyEntries';
 import { FavoriteGift } from './FavoriteGift';
 import { APP_VERSION } from '../core/AppVersion';
 
 const { ccclass, property } = _decorator;
+
+const HERO_BUNDLE = 'MainGameAimation';
+const HERO_CLIP = 'N_Cat_01/An_MainGame_N_Cat_01';
+const HERO_FRAME = 'N_Cat_01/N_Cat_01_ (1)/spriteFrame';
 
 /**
  * 大厅界面（Screens/Lobby）。
@@ -41,7 +45,19 @@ export class LobbyScreen extends UIScreen {
     @property({ type: Label, tooltip: '底部环境信息（命名 FooterEnv）' })
     public footerEnv: Label | null = null;
 
+    private _heroAnimation: Animation | null = null;
+    private _heroSprite: Sprite | null = null;
+    private _heroAssets: { clip: AnimationClip; frame: SpriteFrame } | null = null;
+    private _heroPending: Promise<void> | null = null;
+    private _heroRequest = 0;
+
     protected onLoad(): void {
+        const hero = this.node.getChildByName('bg_showIcon');
+        this._heroAnimation = hero?.getComponent(Animation) ?? null;
+        this._heroSprite = hero?.getComponent(Sprite) ?? null;
+        if (this._heroAnimation) this._heroAnimation.playOnLoad = false;
+        // 编辑器绑定的静态首帧在动画下载期间保持可见。
+        if (this._heroSprite) this._heroSprite.enabled = !!this._heroSprite.spriteFrame;
         const entryHost = this.flow.node.parent ?? this.node;
         if (!entryHost.getComponent(LobbyEntries)) entryHost.addComponent(LobbyEntries);
         if (!entryHost.getComponent(FavoriteGift)) entryHost.addComponent(FavoriteGift);
@@ -60,6 +76,95 @@ export class LobbyScreen extends UIScreen {
         this.setLabel(this.footerEnv, 'FooterEnv', `当前环境：${this.flow.platform.kind.toUpperCase()}  |  版本号：${APP_VERSION}`);
         // 只显示开始挑战实际进入的关卡名。
         void this._refreshContinueLabel();
+        void this._showHero();
+    }
+
+    protected onDisable(): void {
+        ++this._heroRequest;
+        if (this._heroAnimation?.isValid) this._heroAnimation.stop();
+    }
+
+    protected onDestroy(): void {
+        ++this._heroRequest;
+        if (this._heroAnimation?.isValid) {
+            this._heroAnimation.stop();
+            this._heroAnimation.defaultClip = null;
+            this._heroAnimation.clips = [];
+        }
+        if (this._heroSprite?.isValid) this._heroSprite.spriteFrame = null;
+        this._heroAssets?.clip.decRef();
+        this._heroAssets?.frame.decRef();
+        this._heroAssets = null;
+    }
+
+    /** 选关页提前加载，只准备资源，不激活主页或播放动画。 */
+    public async preloadHero(): Promise<void> {
+        try {
+            await this._loadHeroAssets();
+        } catch (error) {
+            if (this.isValid) console.warn('[LobbyScreen] 首页动画预加载失败，打开时重试', error);
+        }
+    }
+
+    /** 下载期间保留首帧；离开页面后的异步回调不能重新开始播放。 */
+    private async _showHero(): Promise<void> {
+        const animation = this._heroAnimation;
+        const sprite = this._heroSprite;
+        if (!animation || !sprite) return;
+        const request = ++this._heroRequest;
+        try {
+            await this._loadHeroAssets();
+            if (!this.isValid || request !== this._heroRequest || !this.enabledInHierarchy
+                || !animation.isValid || !sprite.isValid || !this._heroAssets) return;
+            const { clip, frame } = this._heroAssets;
+            if (animation.defaultClip !== clip) {
+                animation.clips = [clip];
+                animation.defaultClip = clip;
+            }
+            sprite.spriteFrame = frame;
+            sprite.enabled = true;
+            animation.play(clip.name);
+        } catch (error) {
+            // 首页装饰加载失败不影响按钮使用；下一次打开首页重新尝试。
+            if (this.isValid && request === this._heroRequest) {
+                console.warn('[LobbyScreen] 首页动画加载失败', error);
+            }
+        }
+    }
+
+    /** 合并并发请求，持有资源引用直到界面销毁，返回首页时复用。 */
+    private _loadHeroAssets(): Promise<void> {
+        if (this._heroAssets) return Promise.resolve();
+        if (this._heroPending) return this._heroPending;
+        const pending = (async () => {
+            const bundle = assetManager.getBundle(HERO_BUNDLE) ?? await new Promise<AssetManager.Bundle>((resolve, reject) => {
+                assetManager.loadBundle(HERO_BUNDLE, (error, loaded) => {
+                    if (error || !loaded) reject(error ?? new Error('首页动画资源包加载失败'));
+                    else resolve(loaded);
+                });
+            });
+            if (!this.isValid) return;
+            const [clip, frame] = await Promise.all([
+                new Promise<AnimationClip>((resolve, reject) => {
+                    bundle.load(HERO_CLIP, AnimationClip, (error, loaded) => {
+                        if (error || !loaded) reject(error ?? new Error('首页动画加载失败'));
+                        else resolve(loaded);
+                    });
+                }),
+                new Promise<SpriteFrame>((resolve, reject) => {
+                    bundle.load(HERO_FRAME, SpriteFrame, (error, loaded) => {
+                        if (error || !loaded) reject(error ?? new Error('首页动画首帧加载失败'));
+                        else resolve(loaded);
+                    });
+                }),
+            ]);
+            if (!this.isValid) return;
+            clip.addRef();
+            frame.addRef();
+            this._heroAssets = { clip, frame };
+        })().finally(() => { this._heroPending = null; });
+        this._heroPending = pending;
+        return pending;
     }
 
     private async _refreshContinueLabel(): Promise<void> {

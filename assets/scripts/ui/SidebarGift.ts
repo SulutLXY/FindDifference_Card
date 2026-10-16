@@ -1,4 +1,4 @@
-import { _decorator, BlockInputEvents, Input, Label, Node } from 'cc';
+import { _decorator, BlockInputEvents, EventTouch, Input, Label, Node } from 'cc';
 import { sidebarDay } from '../services/SidebarService';
 import { UIScreen } from './UIScreen';
 
@@ -22,7 +22,7 @@ export class SidebarGift extends UIScreen {
     private get _callerVisible(): boolean { return (this._caller ?? this.node).activeInHierarchy; }
 
     protected onLoad(): void {
-        this.node.on(Input.EventType.TOUCH_END, this._openGift, this);
+        this.node.on(Input.EventType.TOUCH_END, this._entryTouch, this);
         this._unsubscribe = this.flow.platform.sidebar.subscribe(() => {
             if (!this.isValid) return;
             this.refresh();
@@ -55,6 +55,10 @@ export class SidebarGift extends UIScreen {
         this._modal!.setSiblingIndex(this._modal!.parent!.children.length - 1);
         this.refresh();
     }
+
+    private readonly _entryTouch = (event: EventTouch): void => {
+        this.buttonTouchHandler(this.node, () => this._openGift())(event);
+    };
 
     private _closeGift(): void { if (this._modal) this._modal.active = false; }
 
@@ -94,8 +98,9 @@ export class SidebarGift extends UIScreen {
             this._designedAction = this.findChildDeep(designed, 'BtnReview');
             this._action = this._designedAction?.getComponentInChildren(Label) ?? null;
             const bind = (node: Node, callback: () => void) => {
-                node.on(Input.EventType.TOUCH_END, callback, this);
-                this._modalBindings.push({ node, callback });
+                const handler = this.buttonTouchHandler(node, callback);
+                node.on(Input.EventType.TOUCH_END, handler, this);
+                this._modalBindings.push({ node, callback: handler });
             };
             const visit = (node: Node) => {
                 if (node.name === 'BtnClose') bind(node, () => this._closeGift());
@@ -116,7 +121,7 @@ export class SidebarGift extends UIScreen {
         for (const { node, callback } of this._modalBindings) {
             if (node.isValid) node.off(Input.EventType.TOUCH_END, callback, this);
         }
-        this.node.off(Input.EventType.TOUCH_END, this._openGift, this);
+        this.node.off(Input.EventType.TOUCH_END, this._entryTouch, this);
         this._closeGift();
     }
 }

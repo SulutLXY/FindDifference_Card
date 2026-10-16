@@ -10,6 +10,15 @@ class JsonAsset {}
 class SpriteFrame {}
 const requests = [];
 const cities = read('assets/resources/configs/cities.json').cities;
+assert.equal(cities[0], 'city-00-HotTips', 'HotTips must be the first chapter');
+assert.equal(cities[1], 'city-01-2026Hotmeme');
+assert.equal(cities[2], 'city-02-beijing');
+const hotMeme = read(`${root}/configs/city-01-2026Hotmeme.json`);
+assert.equal(hotMeme.name, '2026热梗');
+assert.equal(hotMeme.levels.length, 30);
+const hotTips = read(`${root}/configs/city-00-HotTips.json`);
+assert.equal(hotTips.name, '网络热点');
+assert.deepEqual(hotTips.levels, Array.from({ length: 30 }, (_, i) => `level-${String(i + 1).padStart(2, '0')}`));
 const definitions = [['city-configs', 'configs'], ['city-thumbnails', 'thumbnails'], ...cities.map(key => [key, `levels/${key}`])];
 const bundles = Object.fromEntries(definitions.map(([name, folder]) => [name, {
     name,
@@ -48,7 +57,7 @@ const Flow = vm.runInNewContext(ts.transpileModule(`class Flow { ${body} }; Flow
         if (delayBundle) pendingBundles.push({ name, done });
         else done(null, bundles[name]);
     }, preloadAny(request, options, done) { preloads.push({ request, options }); done(null); } },
-    resources: { load(request, Type, done) { localCalls++; done(null, { isValid: true, request }); } },
+    resources: { load(request, Type, done) { localCalls++; done(null, { isValid: true, request, addRef() {} }); } },
 });
 (async () => {
     const flow = new Flow();

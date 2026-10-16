@@ -31,19 +31,21 @@ import sys
 LEVELS_ROOT = 'assets/Bundle/levels'
 CONFIGS_ROOT = 'assets/Bundle/configs'
 CITY_INDEX_PATH = 'assets/resources/configs/cities.json'
-CITY_RE = re.compile(r'^city-\d{2}-[a-z]+$')
+CITY_RE = re.compile(r'^city-\d{2}-[a-zA-Z0-9]+$')
 LEVEL_RE = re.compile(r'^level-\d{2}$')
 
 # 首次生成城市配置时的城市名（之后以手工修改为准）
 CITY_NAMES = {
-    'city-01-beijing': '北京',
-    'city-02-shanghai': '上海',
-    'city-03-nanjing': '南京',
-    'city-04-xiamen': '厦门',
-    'city-05-changsha': '长沙',
-    'city-06-guangzhou': '广州',
-    'city-07-chengdu': '成都',
-    'city-08-xian': '西安',
+    'city-00-HotTips': '网络热点',
+    'city-01-2026Hotmeme': '2026热梗',
+    'city-02-beijing': '北京',
+    'city-03-shanghai': '上海',
+    'city-04-nanjing': '南京',
+    'city-05-xiamen': '厦门',
+    'city-06-changsha': '长沙',
+    'city-07-guangzhou': '广州',
+    'city-08-chengdu': '成都',
+    'city-09-xian': '西安',
 }
 
 

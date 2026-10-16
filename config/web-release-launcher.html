@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>找茬游戏</title>
+  <style>
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff}
+    #game{position:fixed;inset:0;width:100%;height:100%;border:0}
+    #status{padding:40px 20px;text-align:center;color:#666;font-family:sans-serif}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body>
+  <div id="status">正在加载游戏…</div>
+  <iframe id="game" title="找茬游戏" allow="autoplay; fullscreen" allowfullscreen hidden></iframe>
+  <script>
+  (function () {
+    // 此入口不包含构建版本；即使命中旧入口缓存也会查询最新发布清单。
+    var status = document.getElementById('status');
+    var frame = document.getElementById('game');
+    var base = new URL('./', location.href);
+    var url = new URL('release.json', base);
+    url.searchParams.set('_fd_check', Date.now().toString(36) + Math.random().toString(36).slice(2));
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, 15000);
+    fetch(url.href, { cache: 'no-store', credentials: 'same-origin', signal: controller.signal })
+      .then(function (response) {
+        if (!response.ok) throw new Error('发布清单读取失败：' + response.status);
+        return response.json();
+      }).then(function (release) {
+        if (!/^[a-f0-9]{20}$/.test(release.id)) throw new Error('发布清单无效');
+        var target = new URL('releases/' + release.id + '/index.html', base);
+        target.search = location.search;
+        target.hash = location.hash;
+        frame.src = target.href;
+        frame.hidden = false;
+        status.hidden = true;
+      }).catch(function (error) {
+        console.error('[WebRelease]', error);
+        status.textContent = '游戏加载失败，请检查网络后重新加载。';
+        var retry = document.createElement('button');
+        retry.textContent = '重新加载';
+        retry.onclick = function () { location.reload(); };
+        status.appendChild(document.createElement('br'));
+        status.appendChild(retry);
+      }).finally(function () { clearTimeout(timer); });
+    window.addEventListener('pageshow', function (event) {
+      if (event.persisted) location.reload();
+    });
+  }());
+  </script>
+</body>
+</html>

@@ -88,6 +88,16 @@ export class GameScreen extends UIScreen {
     private _lastFoundElapsed = 0;
     private _hintReminder = false;
     private _timeReminder = false;
+    private _hudSeconds = -1;
+    private _hudLives = -1;
+    private _hudFound = -1;
+    private _hudTotal = -1;
+    private _hudUnlimited: boolean | null = null;
+    private _hudHints = -1;
+    private _hudAddTimes = -1;
+    private _hudHintAd: boolean | null = null;
+    private _hudTimeAd: boolean | null = null;
+    private readonly _timerColor = new Color(65, 72, 95, 255);
 
     protected update(): void {
         if (!this._level) return;
@@ -177,6 +187,9 @@ export class GameScreen extends UIScreen {
     private _levelFrames: SpriteFrame[] = [];
 
     public clearLevel(): void {
+        this._hudSeconds = this._hudLives = this._hudFound = this._hudTotal = -1;
+        this._hudUnlimited = this._hudHintAd = this._hudTimeAd = null;
+        this._hudHints = this._hudAddTimes = -1;
         this._hideComboTips();
         this._clearSuccessText();
         if (this._hintReminder) this._setReminderAnimation(this.resolveNode(this.btnHint, 'BtnHint'), false);
@@ -249,7 +262,7 @@ export class GameScreen extends UIScreen {
             for (const path of [level.topImage, level.bottomImage]) {
                 frames.push(await this.flow.acquireLevelFrame(path));
                 if (!this.isValid || token !== this._setupToken) throw new Error('关卡加载已取消');
-                progress(frames.length / 2);
+                progress(frames.length / 2 * 0.9);
             }
             const [topFrame, bottomFrame] = frames;
             const top = this.resolveNode(this.topImage, 'TopImage');
@@ -263,15 +276,43 @@ export class GameScreen extends UIScreen {
             throw error;
         }
         this.refreshHud();
+        progress(1);
     }
 
-    /** 刷新顶部信息栏。由 GameFlow 在倒计时与状态变化时调用。 */
+    /** 每帧只比较基本数值；各组 UI 仅在显示数据变化时刷新。 */
     public refreshHud(): void {
         const flow = this.flow;
         const unlimited = flow.unlimitedAssists;
+        const hints = flow.save.freeHints, addTimes = flow.save.freeAddTimes;
+        const hintAd = flow.canWatchHintAd, timeAd = flow.canWatchAddTimeAd;
+        if (unlimited !== this._hudUnlimited || hints !== this._hudHints || addTimes !== this._hudAddTimes
+            || hintAd !== this._hudHintAd || timeAd !== this._hudTimeAd) {
+            this._refreshAssistHud(unlimited, hints, addTimes, hintAd, timeAd);
+            this._hudUnlimited = unlimited;
+            this._hudHints = hints; this._hudAddTimes = addTimes;
+            this._hudHintAd = hintAd; this._hudTimeAd = timeAd;
+        }
+        const seconds = Math.max(0, Math.ceil(flow.remainingTime));
+        if (seconds !== this._hudSeconds) {
+            this._refreshTimerHud(seconds);
+            this._hudSeconds = seconds;
+        }
+        const lives = Number.isFinite(flow.lives) ? Math.max(0, Math.floor(flow.lives)) : 0;
+        if (lives !== this._hudLives) {
+            this._refreshLivesHud(lives);
+            this._hudLives = lives;
+        }
+        const found = flow.foundIds.size, total = this._level?.differences.length ?? 0;
+        if (found !== this._hudFound || total !== this._hudTotal) {
+            this._refreshProgressHud(found, total);
+            this._hudFound = found; this._hudTotal = total;
+        }
+    }
+
+    private _refreshAssistHud(unlimited: boolean, hints: number, addTimes: number, hintAd: boolean, timeAd: boolean): void {
         for (const [button, name, count, canWatchAd] of [
-            [this.btnHint, 'BtnHint', flow.save.freeHints, flow.canWatchHintAd],
-            [this.btnAddTime, 'BtnAddTime', flow.save.freeAddTimes, flow.canWatchAddTimeAd],
+            [this.btnHint, 'BtnHint', hints, hintAd],
+            [this.btnAddTime, 'BtnAddTime', addTimes, timeAd],
         ] as const) {
             const root = this.resolveNode(button, name);
             if (!root) continue;
@@ -287,17 +328,20 @@ export class GameScreen extends UIScreen {
             if (times) times.string = !unlimited && count > 0 ? String(count) : '';
         }
 
+    }
+
+    private _refreshTimerHud(seconds: number): void {
         const timer = this.resolveLabel(this.timerLabel, 'Timer');
         if (timer) {
-            const seconds = Math.max(0, Math.ceil(flow.remainingTime));
             const minutes = Math.floor(seconds / 60);
             const rem = seconds % 60;
             const remainder = rem < 10 ? `0${rem}` : String(rem);
             timer.string = `${minutes}:${remainder}`;
-            timer.color = seconds <= 10 ? UIColors.red : new Color(65, 72, 95, 255);
+            timer.color = seconds <= 10 ? UIColors.red : this._timerColor;
         }
+    }
 
-        const count = Number.isFinite(flow.lives) ? Math.max(0, Math.floor(flow.lives)) : 0;
+    private _refreshLivesHud(count: number): void {
         this._refreshLifeItems(count);
         const lives = this.resolveLabel(this.livesLabel, 'Lives');
         if (lives) {
@@ -318,9 +362,10 @@ export class GameScreen extends UIScreen {
             this._lastLives = count;
         }
 
+    }
+
+    private _refreshProgressHud(found: number, total: number): void {
         const level = this._level;
-        const total = level?.differences.length ?? 0;
-        const found = flow.foundIds.size;
 
         // 数字计数和图片槽位同时刷新，不能被下方 ProgressView 分支提前返回跳过。
         const foundCount = this.resolveLabel(this.foundCountLabel, 'ProgressNumber');
@@ -749,11 +794,13 @@ export class GameScreen extends UIScreen {
     }
 
     private _applySpriteFrame(node: Node | null, frame: SpriteFrame): void {
-        if (!node) return;
+        if (!node || !node.isValid) throw new Error('关卡图片显示节点不存在');
+        if (!frame.isValid || !frame.texture?.isValid) throw new Error('关卡图片纹理尚未就绪');
         let sprite = node.getComponent(Sprite);
         if (!sprite) sprite = node.addComponent(Sprite);
         sprite.sizeMode = Sprite.SizeMode.CUSTOM;
         sprite.spriteFrame = frame;
+        sprite.enabled = true;
     }
 
     private _image(path: string): Node | null {
