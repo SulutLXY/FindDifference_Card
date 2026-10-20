@@ -1,5 +1,6 @@
 import { _decorator, BlockInputEvents, Toggle } from 'cc';
 import { UIScreen } from './UIScreen';
+import { LobbyEntries } from './LobbyEntries';
 
 const { ccclass } = _decorator;
 
@@ -17,6 +18,10 @@ export class SettingsModal extends UIScreen {
     }
 
     public present(inGame: boolean): void {
+        // 与动态结算弹窗一致，每次展示明确接线，不能依赖大厅首次扫描。
+        const host = this.flow.node.parent;
+        const entries = host?.getComponent(LobbyEntries) ?? host?.addComponent(LobbyEntries);
+        entries?.bindRewardEntries(this.node);
         const moneyTool = this.findChildDeep(this.node, 'moneyTool');
         if (moneyTool) moneyTool.active = inGame;
         this.open();

@@ -12,6 +12,7 @@ class Node {
  setSiblingIndex(){}
 }
 class UIScreen {
+ buttonTouchHandler(node,callback){return callback;}
  findChildDeep(root,name){for(const c of root.children){if(c.name===name)return c;const n=this.findChildDeep(c,name);if(n)return n;}return null;}
  resolveNode(bound,name){return bound||this.findChildDeep(this.node,name);}
  resolveLabel(){return null;}setLabel(){}open(){this.node.active=true;}
@@ -31,8 +32,9 @@ lobby.active=false;
 for(const tool of tools){tool.getChildByName('Gameflow').events.click();assert.equal(homeGift.getComponent(Gift).owner,tool);tool.getChildByName('AddDesktop').events.click();tool.getChildByName('Subscription').events.click();}
 assert.equal(desktop,2);assert.equal(subscribe,2);
 let closed=0;entries._close=()=>closed++;entries._closeSubscription=()=>closed++;tools[1].active=false;entries.update();assert.equal(closed,2);assert.equal(homeGift.getComponent(Gift).closed,true);
-const {ResultModal}=load('assets/scripts/ui/ResultModal.ts',{cc,'./UIScreen':{UIScreen,UIColors:{red:{}}}});
-const result=new ResultModal();result.node=new Node('ResultModal');const resultShare=result.node.add(new Node('BtnShare'));resultShare.active=false;const resultTool=result.node.add(new Node('moneyTool'));result.present({win:false,stars:0,elapsedSeconds:1,canRevive:true});assert.equal(resultTool.active,true);assert.equal(resultShare.active,true);result.present({win:true,stars:1,elapsedSeconds:1});assert.equal(resultTool.active,true);assert.equal(resultShare.active,true);
-const {SettingsModal}=load('assets/scripts/ui/SettingsModal.ts',{cc,'./UIScreen':{UIScreen}});
-const settings=new SettingsModal();settings.node=canvas.add(new Node('SettingsModal'));const settingsTool=settings.node.add(new Node('moneyTool'));settings.flow={save:{data:{}}};settings.present(true);assert.equal(settingsTool.active,true);settings.present(false);assert.equal(settingsTool.active,false);
+canvas.parts.set(LobbyEntries,entries);
+const {ResultModal}=load('assets/scripts/ui/ResultModal.ts',{cc,'./UIScreen':{UIScreen,UIColors:{red:{}}},'./LobbyEntries':{LobbyEntries}});
+const result=new ResultModal();result.flow={node:{parent:canvas}};result.node=new Node('ResultModal');const resultShare=result.node.add(new Node('BtnShare'));resultShare.active=false;const resultTool=result.node.add(new Node('moneyTool'));result.present({win:false,stars:0,elapsedSeconds:1,canRevive:true});assert.equal(resultTool.active,true);assert.equal(resultShare.active,true);result.present({win:true,stars:1,elapsedSeconds:1});assert.equal(resultTool.active,true);assert.equal(resultShare.active,true);
+const {SettingsModal}=load('assets/scripts/ui/SettingsModal.ts',{cc,'./UIScreen':{UIScreen},'./LobbyEntries':{LobbyEntries}});
+const settings=new SettingsModal();settings.node=canvas.add(new Node('SettingsModal'));const settingsTool=settings.node.add(new Node('moneyTool'));settings.flow={node:{parent:canvas},save:{data:{}}};settings.present(true);assert.equal(settingsTool.active,true);settings.present(false);assert.equal(settingsTool.active,false);
 console.log('PASS: both moneyTool groups bind shared actions while lobby inactive; caller-close cleanup; failure/success and in-game/home visibility.');

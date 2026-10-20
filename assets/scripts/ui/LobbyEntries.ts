@@ -47,7 +47,7 @@ export class LobbyEntries extends UIScreen {
         this.flow.platform.prepareFeedLogin();
     }
 
-    /** 运行时创建的结算预制体也需要接线；可重复调用。 */
+    /** 设置和运行时结算弹窗展示时显式接线；可重复调用。 */
     public bindRewardEntries(root: Node): void {
         const lobby = this.flow.lobby?.node;
         if (!this._gift && lobby) {
@@ -173,7 +173,13 @@ export class LobbyEntries extends UIScreen {
     private _bind(name: string, callback: () => void, root: Node = this.node): void {
         const node = this.findChildDeep(root, name);
         if (!node) return;
-        if (this._bindings.some(binding => binding.node === node)) return;
+        const existing = this._bindings.find(binding => binding.node === node);
+        if (existing) {
+            // 展示时重新确认监听仍在，避免节点重新启用或外部清理监听后失效。
+            node.off(Input.EventType.TOUCH_END, existing.callback, this);
+            node.on(Input.EventType.TOUCH_END, existing.callback, this);
+            return;
+        }
         const handler = this.buttonTouchHandler(node, callback);
         node.on(Input.EventType.TOUCH_END, handler, this);
         this._bindings.push({ node, callback: handler });

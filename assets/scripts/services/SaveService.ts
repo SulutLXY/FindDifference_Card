@@ -46,7 +46,7 @@ export class SaveService {
     }
 
     public unlockCity(key: string): boolean {
-        if (!key) return false;
+        if (typeof key !== 'string' || !key) return false;
         if (this.isCityUnlocked(key)) return true;
         const previous = this._data;
         const cities = Array.isArray(previous.unlockedCities) ? previous.unlockedCities : [];
@@ -262,9 +262,20 @@ export class SaveService {
             };
             delete this._data.completed[key];
         }
-        if (Array.isArray(this._data.unlockedCities)) {
-            this._data.unlockedCities = [...new Set(this._data.unlockedCities.map(rename))];
+        const unlockedCities = new Set<string>(Array.isArray(this._data.unlockedCities)
+            ? this._data.unlockedCities
+                .filter((key): key is string => typeof key === 'string' && key.length > 0)
+                .map(rename)
+            : []);
+        // 旧构建错误地将 Set 展开为 [{}]，有通关记录的大关卡可据此恢复解锁。
+        // 只读取原位置的有效通关，不移动或修改完成记录。
+        for (const key of Object.keys(this._data.completed)) {
+            if (!(this._data.completed[key]?.stars > 0)) continue;
+            const city = /^(city-[^/]+)\//.exec(key);
+            if (city) unlockedCities.add(city[1]);
         }
+        // Creator 的 loose 转译会把 [...Set] 编成 [].concat(Set)，必须显式转数组。
+        this._data.unlockedCities = Array.from(unlockedCities);
         if (this._data.foodReviews) {
             for (const key of Object.keys(this._data.foodReviews)) {
                 const next = rename(key);

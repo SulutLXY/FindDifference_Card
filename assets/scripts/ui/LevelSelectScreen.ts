@@ -1,4 +1,4 @@
-import { _decorator, Color, Graphics, Input, Label, Layout, Mask, Node, ScrollView, Size, Sprite, UITransform, instantiate } from 'cc';
+import { _decorator, Color, Component, Graphics, Input, Label, Layout, Mask, Node, ScrollView, Size, Sprite, UIRenderer, UITransform, instantiate } from 'cc';
 import { CityConfig, LevelConfig } from '../core/GameTypes';
 import { UIColors, UIScreen } from './UIScreen';
 
@@ -46,6 +46,24 @@ export class LevelSelectScreen extends UIScreen {
 
     private _runtimeCards: Node[] = [];
     private _content: Node | null = null;
+    private _cardRendering: { card: Node; components: Component[]; visible: boolean }[] = [];
+
+    /** Mask 只裁剪像素；主动关闭窗口外的渲染组件才能省掉它们的绘制提交。
+     * 保持节点 active，让 Layout 继续计算完整列表高度和卡片位置。
+     */
+    protected lateUpdate(): void {
+        const viewport = this.resolveNode(this.listRoot, 'List')?.getComponent(UITransform);
+        if (!viewport) return;
+        const bounds = viewport.getBoundingBoxToWorld();
+        for (const entry of this._cardRendering) {
+            const ui = entry.card.getComponent(UITransform);
+            if (!ui) continue;
+            const visible = bounds.intersects(ui.getBoundingBoxToWorld());
+            if (visible === entry.visible) continue;
+            entry.visible = visible;
+            for (const component of entry.components) component.enabled = visible;
+        }
+    }
 
     protected onLoad(): void {
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showCitySelect());
@@ -85,10 +103,21 @@ export class LevelSelectScreen extends UIScreen {
             card.parent = container;
             card.active = true;
             this._fillCard(card, level, index, cityIndex);
+            this._cardRendering.push({
+                card,
+                // 只管理原本启用的组件，保留模板中刻意禁用的组件状态。
+                components: [
+                    ...card.getComponentsInChildren(UIRenderer),
+                    ...card.getComponentsInChildren(Mask),
+                ].filter(component => component.enabled),
+                visible: true,
+            });
         });
 
         this._hideManualCards(root);
+        container.getComponent(Layout)?.updateLayout();
         this._scrollToTop();
+        this.lateUpdate();
     }
 
     /**
@@ -242,6 +271,7 @@ export class LevelSelectScreen extends UIScreen {
         this.flow.releasePageSpriteFrames(this.node);
         for (const card of this._runtimeCards) card.destroy();
         this._runtimeCards = [];
+        this._cardRendering = [];
     }
 
     /** 无模板时的内置简易卡。 */

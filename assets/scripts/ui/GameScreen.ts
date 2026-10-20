@@ -173,6 +173,13 @@ export class GameScreen extends UIScreen {
     private _progressConfigured = false;
     private _progressTotal = 0;
     private readonly _markers: Node[] = [];
+    private readonly _markerRadii = new Map<Node, number>();
+    private readonly _markerGraphics = new Map<Node, Graphics>();
+    private _markersDirty = false;
+
+    protected lateUpdate(): void {
+        if (this._markersDirty) this._redrawFoundMarkers();
+    }
     private readonly _wrongMarkers = new Set<Node>();
     private _wrongFrame: Promise<SpriteFrame> | null = null;
 
@@ -401,12 +408,33 @@ export class GameScreen extends UIScreen {
             const marker = new Node(`FoundMarker-${difference.id}`);
             marker.setPosition(position.x, position.y);
             marker.parent = image;
-            const graphics = marker.addComponent(Graphics);
-            graphics.lineWidth = 7;
-            graphics.strokeColor = UIColors.red;
-            graphics.circle(0, 0, DifferenceController.radiusToLocal(difference, size.width, size.height));
-            graphics.stroke();
+            marker.layer = image.layer;
             this._markers.push(marker);
+            this._markerRadii.set(marker, DifferenceController.radiusToLocal(difference, size.width, size.height));
+            if (!this._markerGraphics.has(image)) {
+                const layer = new Node('FoundMarkers');
+                layer.layer = image.layer;
+                layer.parent = image;
+                const graphics = layer.addComponent(Graphics);
+                graphics.strokeColor = UIColors.red;
+                this._markerGraphics.set(image, graphics);
+            }
+        }
+        this._redrawFoundMarkers();
+    }
+
+    /** 每张图共用一个 Graphics；静止时不重绘，动画期间每帧最多重绘一次。 */
+    private _redrawFoundMarkers(): void {
+        this._markersDirty = false;
+        for (const [image, graphics] of this._markerGraphics) {
+            graphics.clear();
+            for (const marker of this._markers) {
+                if (!marker.isValid || marker.parent !== image) continue;
+                const scale = marker.scale.x;
+                graphics.lineWidth = 7 * scale;
+                graphics.circle(marker.position.x, marker.position.y, this._markerRadii.get(marker)! * scale);
+                graphics.stroke();
+            }
         }
     }
 
@@ -438,8 +466,12 @@ export class GameScreen extends UIScreen {
                 started = true;
                 tween(marker)
                     .delay(i * interval)
-                    .to(half, { scale: new Vec3(1.25, 1.25, 1) }, { easing: 'quadOut' })
-                    .to(half, { scale: Vec3.ONE }, { easing: 'quadInOut' })
+                    .to(half, { scale: new Vec3(1.25, 1.25, 1) }, {
+                        easing: 'quadOut', onUpdate: () => { this._markersDirty = true; },
+                    })
+                    .to(half, { scale: Vec3.ONE }, {
+                        easing: 'quadInOut', onUpdate: () => { this._markersDirty = true; },
+                    })
                     .call(() => { if (last) finish(); })
                     .start();
             }
@@ -837,7 +869,14 @@ export class GameScreen extends UIScreen {
     }
 
     private _clearMarkers(): void {
-        for (const marker of this._markers) marker.destroy();
+        for (const marker of this._markers) {
+            Tween.stopAllByTarget(marker);
+            marker.destroy();
+        }
         this._markers.length = 0;
+        this._markerRadii.clear();
+        for (const graphics of this._markerGraphics.values()) graphics.node.destroy();
+        this._markerGraphics.clear();
+        this._markersDirty = false;
     }
 }
