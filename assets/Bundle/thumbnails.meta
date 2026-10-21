@@ -6,9 +6,6 @@
   "files": [],
   "subMetas": {},
   "userData": {
-    "isBundle": true,
-    "bundleName": "city-thumbnails",
-    "priority": 7,
-    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+"
+    "isBundle": false
   }
 }

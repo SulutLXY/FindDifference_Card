@@ -3437,7 +3437,7 @@
       "b": 14,
       "a": 255
     },
-    "_string": "选择城市",
+    "_string": "关卡选择",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 49,

@@ -57,6 +57,7 @@ function methods(file,names,extra={}){
  let persisted={},mark=0;f.save=new Save();f.save._data={totalScore:0};
  f.save._persist=()=>{persisted={...f.save._data};return true;};
  f.save.data=f.save._data;
+ f.save.setLastPlayedCity=()=>{};
  const beginRound=f.save.beginDailyFirstRound.bind(f.save);
  f.save.beginDailyFirstRound=d=>{mark++;const first=beginRound(d);f.save.data=f.save._data;return first;};
  f.platform={};installGuard.call(f);
@@ -94,10 +95,10 @@ function methods(file,names,extra={}){
  attempts=[];f.isCityUnlocked=()=>false;
  f.game.setupLevel=async level=>{attempts.push(level.key);if(level.key==='a/03')throw Error('broken final level');};
  await f.startLevel(city,2,'streak','skip-next');
- assert.deepEqual(attempts,['a/03','b/01'],'Fallback supports the city boundary without marking the failed level complete');assert.equal(mark,3);
+ assert.deepEqual(attempts,['a/03'],'Fallback never enters another independent chapter');assert.equal(mark,2);assert.equal(returned,3);
  attempts=[];f.game.setupLevel=async level=>{attempts.push(level.key);throw Error('offline');};
  await f.startLevel(nextCity,0,'streak','skip-next');
- assert.deepEqual(attempts,['b/01']);assert.equal(returned,3,'No successor returns to the lobby');assert.equal(mark,3);
+ assert.deepEqual(attempts,['b/01']);assert.equal(returned,4,'No successor returns to the lobby');assert.equal(mark,2);
  // A missing config can be skipped without loading the entire city's configs.
  attempts=[];f._ensureLevel=async(city,index)=>{attempts.push(index);if(index===1)throw Error('bad JSON');return city.levelConfigs[index];};
  f.game.setupLevel=async()=>{};
@@ -126,7 +127,7 @@ function methods(file,names,extra={}){
  day='2026-10-10';await f.startLevel(nextCity,0);
  assert.equal(f._roundInterstitialProtected,true);assert.equal(f.platform.canShowInterstitial(),false,'New-day first round is protected in any city');
  await f.startLevel(nextCity,0,'retry');assert.equal(f.platform.canShowInterstitial(),true,'New-day second round allows ads');
- const metaFlow=new Flow();metaFlow._loadBundleJson=async()=>({json:{levels:['level-00','level-01','level-02']}});
+ const metaFlow=new Flow();metaFlow._loadJson=async()=>({json:{levels:['level-00','level-01','level-02']}});
  const meta=await metaFlow._loadCityMeta({},'city-01');
  assert.deepEqual(Array.from(meta.levels),['level-01','level-02'],'Old placeholder must not be loaded or selected');
  console.log('PASS: loading/fallback, daily first-round ad protection, retries, day rollover, persistence, and level-00 exclusion.');

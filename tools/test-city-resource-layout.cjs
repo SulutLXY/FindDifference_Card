@@ -12,11 +12,12 @@ const requests = [];
 const cities = read('assets/resources/configs/cities.json').cities;
 assert.equal(cities[0], 'city-00-HotTips', 'HotTips must be the first chapter');
 assert.equal(cities[1], 'city-01-2026Hotmeme');
-assert.equal(cities[2], 'city-02-beijing');
-const hotMeme = read(`${root}/configs/city-01-2026Hotmeme.json`);
+assert.equal(cities[2], 'city-PetStory');
+assert.equal(cities[3], 'city-02-beijing');
+const hotMeme = read(`assets/resources/configs/city-01-2026Hotmeme.json`);
 assert.equal(hotMeme.name, '2026热梗');
 assert.equal(hotMeme.levels.length, 30);
-const hotTips = read(`${root}/configs/city-00-HotTips.json`);
+const hotTips = read(`assets/resources/configs/city-00-HotTips.json`);
 assert.equal(hotTips.name, '网络热点');
 assert.deepEqual(hotTips.levels, Array.from({ length: 30 }, (_, i) => `level-${String(i + 1).padStart(2, '0')}`));
 const definitions = [['city-configs', 'configs'], ['city-thumbnails', 'thumbnails'], ...cities.map(key => [key, `levels/${key}`])];
@@ -43,7 +44,7 @@ const bundles = Object.fromEntries(definitions.map(([name, folder]) => [name, {
 }]));
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
-const names = ['_cityBundles', '_cityBundlePending', '_loadCityMeta', '_loadLevel', '_timeFor', '_loadCityBundle', '_loadBundleJson', 'loadSpriteFrame', '_loadSpriteFrom', '_levelImageTarget', 'acquireLevelFrame', 'preloadNextLevel'];
+const names = ['_cityBundles', '_cityBundlePending', '_loadCityMeta', '_loadLevel', '_timeFor', '_loadCityBundle', '_loadBundleJson', 'loadSpriteFrame', '_loadSpriteFrom', '_levelImageTarget', 'acquireLevelFrame', 'preloadNextLevel', '_nextLevelTarget'];
 const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
 let bundleCalls = 0, localCalls = 0, delayBundle = false;
 const pendingBundles = [], preloads = [];
@@ -61,6 +62,7 @@ const Flow = vm.runInNewContext(ts.transpileModule(`class Flow { ${body} }; Flow
 });
 (async () => {
     const flow = new Flow();
+    flow._loadJson = async request => ({ json: read(`assets/resources/${request}.json`) });
     flow._grades = read('assets/resources/configs/levels.json');
     flow._spriteFrameCache = new Map();
     const configs = await flow._loadCityBundle();
@@ -76,7 +78,7 @@ const Flow = vm.runInNewContext(ts.transpileModule(`class Flow { ${body} }; Flow
     assert.ok(!read(`${root}.meta`).userData.isBundle, 'The organizing parent must not be another Bundle');
     assert.equal(read(`${root}/levels.meta`).userData.isBundle, false, 'levels must only be an organizing folder');
     const directories = fs.readdirSync(`${root}/levels`, { withFileTypes: true }).filter(e => e.isDirectory()).map(e => e.name).sort();
-    assert.deepEqual(cities, directories);
+    assert.deepEqual([...cities].sort(), directories, 'Index includes all city bundles, with explicit display ordering');
     let levels = 0;
     for (const key of cities) {
         const city = await flow._loadCityMeta(configs, key);
@@ -87,7 +89,7 @@ const Flow = vm.runInNewContext(ts.transpileModule(`class Flow { ${body} }; Flow
         await flow.loadSpriteFrame(city.banner);
         assert.ok(!requests.some(p => p.folder.startsWith('levels/')), 'City metadata/icons must not load gameplay images');
         for (const dir of city.levels) {
-            const config = read(`${root}/configs/${key}/${dir}/differences.json`);
+            const config = read(`assets/resources/configs/${key}/${dir}/differences.json`);
             const level = await flow._loadLevel(configs, key, dir);
             assert.equal(level.key, `${key}/${dir}`, 'Save identity must remain stable');
             assert.equal(level.name, config.name);
@@ -132,6 +134,7 @@ const Flow = vm.runInNewContext(ts.transpileModule(`class Flow { ${body} }; Flow
         assert.equal(options.priority, -1);
     }
     flow._cities.push(await flow._loadCityMeta(configs, cities[1]));
+    flow.isCityUnlocked = () => true;
     flow._currentLevel = await flow._loadLevel(configs, cities[0], flow._currentCity.levels.at(-1));
     preloads.length = 0;
     await flow.preloadNextLevel(flow._currentLevel);

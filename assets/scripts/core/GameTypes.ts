@@ -87,12 +87,21 @@ export interface CityMeta {
     name: string;
     banner?: string;
     levels: string[];
+    /** sequential：逐小关通关；rewarded：首次广告解锁整个大关卡。 */
+    unlockMode?: 'sequential' | 'rewarded';
+    /** sequential 大关卡的前置大关卡；缺省为免费起步。 */
+    prerequisiteCity?: string;
 }
 
 /** 运行时城市数据：levels 按需懒加载填充 levelConfigs。 */
 export interface CityConfig extends CityMeta {
     levelsLoaded: boolean;
     levelConfigs: LevelConfig[];
+}
+
+export interface ChapterRulesConfig {
+    version: number;
+    legacyOrders: string[][];
 }
 
 /** 藏品条目（收藏页展示数据）。icon 为 resources 下 SpriteFrame 路径（不含扩展名）。 */
@@ -135,6 +144,9 @@ export interface SaveData {
     completed: Record<string, LevelProgress>;
     /** 通过激励视频提前解锁的城市目录名。 */
     unlockedCities?: string[];
+    /** 继续游戏以最后进入的大关卡为准，不按全局小关序号跳转。 */
+    lastPlayedCityKey?: string;
+    chapterRulesVersion?: number;
     totalScore: number;
     /** 图鉴/成就（后续版本使用）：条目 id → 获得时间戳 */
     achievements: Record<string, number>;

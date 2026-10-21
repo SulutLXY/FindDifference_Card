@@ -22,7 +22,7 @@ for (const food of catalog.foods) {
     assert(food.levelKey, `${food.name} must have an acquisition level`);
     assert(!keys.has(food.levelKey), `duplicate acquisition level: ${food.levelKey}`);
     keys.add(food.levelKey);
-    const level = JSON.parse(fs.readFileSync(`assets/Bundle/configs/${food.levelKey}/differences.json`, 'utf8'));
+    const level = JSON.parse(fs.readFileSync(`assets/resources/configs/${food.levelKey}/differences.json`, 'utf8'));
     const cover = `thumbnails/${food.levelKey}/icon/spriteFrame`;
     flow.showFoodTips({...level, key: food.levelKey, icon: cover}, true);
     assert.equal(payload.icon, food.icon);

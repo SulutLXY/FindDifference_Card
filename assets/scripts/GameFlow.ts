@@ -30,6 +30,7 @@ import {
 } from 'cc';
 import {
     CityConfig,
+    ChapterRulesConfig,
     FoodCatalogEntry,
     CityIndex,
     DifferenceConfig,
@@ -460,11 +461,18 @@ export class GameFlow extends Component {
         await this.showLevelSelect(city);
     }
 
-    /** 开始挑战目标：第一个未通关的关（全部通关返回 null）。 */
+    /** 继续上次大关卡的首个未通关小关；仅两章旧专题保留顺序链。 */
     public async findContinueTarget(): Promise<{ city: CityConfig; levelIndex: number; level: LevelConfig } | null> {
-        for (let ci = 0; ci < this._cities.length; ci++) {
+        // 独立大关卡只继续本章；初次进入从网络热点开始。
+        const preferred = this._currentCity ?? this._cities.find(city => city.key === this.save.data?.lastPlayedCityKey);
+        const current = preferred && this.isCityUnlocked(this._cities.indexOf(preferred))
+            ? preferred : this._cities.find(city => city.key === 'city-00-HotTips') ?? this._cities[0];
+        const sequence = current?.key === 'city-00-HotTips'
+            ? [current, this._cities.find(city => city.key === 'city-01-2026Hotmeme')].filter((city): city is CityConfig => !!city)
+            : current ? [current] : [];
+        for (const city of sequence) {
+            const ci = this._cities.indexOf(city);
             if (!this.isCityUnlocked(ci)) continue;
-            const city = this._cities[ci];
             for (let li = 0; li < city.levels.length; li++) {
                 const key = `${city.key}/${city.levels[li]}`;
                 if (this.isLevelUnlocked(ci, li) && !this.save.isCompleted(key)) {
@@ -473,10 +481,14 @@ export class GameFlow extends Component {
                 }
             }
         }
+        // 本章全通后可重玩本章，不自动切到其他独立大关卡。
+        if (current?.levels.length && this.isCityUnlocked(this._cities.indexOf(current))) {
+            return { city: current, levelIndex: 0, level: await this._ensureLevel(current, 0) };
+        }
         return null;
     }
 
-    /** 开始挑战：第一个未通关的关（全部通关则重玩第一关）。 */
+    /** 开始挑战：继续当前大关卡，全部通关则重玩本章第一关。 */
     public async startContinue(): Promise<void> {
         if (this._bootFailed) {
             await this._bootstrap();
@@ -487,7 +499,9 @@ export class GameFlow extends Component {
             if (target) {
                 await this.startLevel(target.city, target.levelIndex);
             } else if (this._cities.length > 0) {
-                await this.startLevel(this._cities[0], 0);
+                const city = this._currentCity && this.isCityUnlocked(this._cities.indexOf(this._currentCity))
+                    ? this._currentCity : this._cities[0];
+                await this.startLevel(city, 0);
             } else {
                 throw new Error('没有可用的城市关卡');
             }
@@ -585,6 +599,7 @@ export class GameFlow extends Component {
             await this._drawLoadingFrame();
             if (!active()) return;
             const dailyFirst = this.save.beginDailyFirstRound(sidebarDay());
+            this.save.setLastPlayedCity(city.key);
             this._roundInterstitialProtected = dailyFirst;
             this._isPaused = false;
             if (this._loadingNode) this._loadingNode.active = false;
@@ -847,21 +862,23 @@ export class GameFlow extends Component {
     // 解锁判定（积分制：通关集合驱动）
     // ------------------------------------------------------------------
 
-    /** 城市解锁：首城、广告提前解锁，或前一城全部通关。 */
+    /** 大关卡独立配置；仅顺序专题允许通过前置专题通关自动解锁。 */
     public isCityUnlocked(cityIndex: number): boolean {
         const city = this._cities[cityIndex];
         if (!city) return false;
-        if (cityIndex === 0 || this.save.isCityUnlocked(city.key)) return true;
-        const prev = this._cities[cityIndex - 1];
-        if (!prev) return false;
-        return prev.levels.every(dir => this.save.isCompleted(`${prev.key}/${dir}`));
+        if (this.save.isCityUnlocked(city.key)) return true;
+        if (city.unlockMode !== 'sequential') return false;
+        if (!city.prerequisiteCity) return true;
+        const prev = this._cities.find(item => item.key === city.prerequisiteCity);
+        return !!prev && prev.levels.length > 0 && prev.levels.every(dir => this.save.isCompleted(`${prev.key}/${dir}`));
     }
 
     /** 关卡解锁：城市已解锁，且同城前一关已通关（首关除外）。 */
     public isLevelUnlocked(cityIndex: number, levelIndex: number): boolean {
         const city = this._cities[cityIndex];
         if (!city || !this.isCityUnlocked(cityIndex)) return false;
-        if (levelIndex <= 0) return true;
+        if (!Number.isInteger(levelIndex) || levelIndex < 0 || levelIndex >= city.levels.length) return false;
+        if (city.unlockMode !== 'sequential' || levelIndex === 0) return true;
         return this.save.isCompleted(`${city.key}/${city.levels[levelIndex - 1]}`);
     }
 
@@ -871,7 +888,7 @@ export class GameFlow extends Component {
         return { done, total: city.levels.length };
     }
 
-    /** 下一关：同城下一关 → 下一城第一关（已解锁时）。结算「下一关」按钮用。 */
+    /** 下一关按本章配置推进；仅网络热点允许衔接2026热梗。 */
     public findNextLevel(after: LevelConfig): { city: CityConfig; levelIndex: number } | null {
         const city = this._currentCity;
         if (!city) return null;
@@ -882,10 +899,10 @@ export class GameFlow extends Component {
     /** 根据目录定位后继关卡，不依赖可能尚未加载或损坏的配置。 */
     private _nextLevelTarget(city: CityConfig, levelIndex: number, allowLockedCity = false): { city: CityConfig; levelIndex: number } | null {
         if (levelIndex + 1 < city.levels.length) return { city, levelIndex: levelIndex + 1 };
-        const cityIndex = this._cities.findIndex(item => item.key === city.key);
-        if (cityIndex >= 0 && cityIndex + 1 < this._cities.length && this._cities[cityIndex + 1].levels.length > 0
-            && (allowLockedCity || this.isCityUnlocked(cityIndex + 1))) {
-            return { city: this._cities[cityIndex + 1], levelIndex: 0 };
+        // 只保留网络热点到2026热梗的原顺序链，不跳进独立广告大关卡。
+        if (city.key === 'city-00-HotTips') {
+            const next = this._cities.find(item => item.key === 'city-01-2026Hotmeme');
+            if (next?.levels.length && this.isCityUnlocked(this._cities.indexOf(next))) return { city: next, levelIndex: 0 };
         }
         return null;
     }
@@ -1372,12 +1389,12 @@ export class GameFlow extends Component {
             if (!city || !active()) return;
             const index = city.levels.findIndex(dir => `${city.key}/${dir}` === level.key);
             if (index < 0) return;
-            const nextCity = index + 1 < city.levels.length ? city : this._cities[cityIndex + 1];
-            const dir = nextCity?.levels[nextCity === city ? index + 1 : 0];
+            const targetLevel = this._nextLevelTarget(city, index);
+            const nextCity = targetLevel?.city;
+            const dir = nextCity?.levels[targetLevel!.levelIndex];
             if (!nextCity || !dir) return;
-            const bundle = await this._loadCityBundle();
             if (!active()) return;
-            const next = await this._loadLevel(bundle, nextCity.key, dir);
+            const next = await this._loadLevel(null, nextCity.key, dir);
             for (const path of [next.topImage, next.bottomImage]) {
                 if (!active()) return;
                 if (!path.startsWith('levels/')) continue;
@@ -1433,13 +1450,10 @@ export class GameFlow extends Component {
         const current = () => !this._pageSpritesDisposed && owner.isValid && owner.activeInHierarchy
             && this._pageSpriteFrames.get(owner) === scope && scope.get(path) === entry;
         entry.pending = (async () => {
-            const folder = path.startsWith('levels/') ? 'levels'
-                : path.startsWith('thumbnails/') ? 'thumbnails'
-                : path.startsWith('configs/city-') ? 'configs' : null;
-            const target = folder === 'levels' ? this._levelImageTarget(path) : null;
-            const bundle = folder ? await this._loadCityBundle(folder, target?.cityKey) : resources;
+            const target = this._chapterSpriteTarget(path);
+            const bundle = target ? await this._loadCityBundle('levels', target.cityKey) : resources;
             if (!current()) return null;
-            const request = target ? target.request : folder ? path.slice(folder.length + 1) : path;
+            const request = target ? target.request : path;
             // 每个页面拥有一份独立引用，不写入常驻小图标缓存。
             const frame = await new Promise<SpriteFrame>((resolve, reject) => {
                 const complete = (error: Error | null, loaded: SpriteFrame) => {
@@ -1484,23 +1498,30 @@ export class GameFlow extends Component {
     public loadSpriteFrame(path: string): Promise<SpriteFrame> {
         const cached = this._spriteFrameCache.get(path);
         if (cached && cached.isValid) return Promise.resolve(cached);
-        // 大图按城市选包；配置与小图去掉分类前缀后加载。
-        const folder = path.startsWith('levels/') ? 'levels'
-            : path.startsWith('thumbnails/') ? 'thumbnails'
-            : path.startsWith('configs/city-') ? 'configs' : null;
-        const target = folder === 'levels' ? this._levelImageTarget(path) : null;
-        const source = folder
-            ? this._loadCityBundle(folder, target?.cityKey)
+        // 配置图标、缩略图及玩法大图全部归属各自大关卡包。
+        const target = this._chapterSpriteTarget(path);
+        const source = target
+            ? this._loadCityBundle('levels', target.cityKey)
             : Promise.resolve(resources);
-        const request = target ? target.request : folder ? path.slice(folder.length + 1) : path;
+        const request = target ? target.request : path;
         return source.then(bundle => this._loadSpriteFrom(bundle, path, request));
     }
 
     /** levels/城市/关卡/图片 → 城市 Bundle + 关卡/图片。 */
     private _levelImageTarget(path: string): { cityKey: string; request: string } {
-        const match = /^levels\/(city-\d{2}-[a-zA-Z0-9]+)\/(.+)$/.exec(path);
+        const match = /^levels\/(city-(?:\d{2}-)?[a-zA-Z0-9]+)\/(.+)$/.exec(path);
         if (!match) throw new Error(`无效的城市关卡图片路径：${path}`);
         return { cityKey: match[1], request: match[2] };
+    }
+
+    private _chapterSpriteTarget(path: string): { cityKey: string; request: string } | null {
+        if (path.startsWith('levels/')) return this._levelImageTarget(path);
+        const thumbnail = /^thumbnails\/(city-(?:\d{2}-)?[a-zA-Z0-9]+)\/(.+)$/.exec(path);
+        if (thumbnail) return { cityKey: thumbnail[1], request: `thumbnails/${thumbnail[2]}` };
+        const banner = /^configs\/(city-(?:\d{2}-)?[a-zA-Z0-9]+)-icon(\/spriteFrame)?$/.exec(path);
+        if (banner) return { cityKey: banner[1], request: `configs/${banner[1]}-icon${banner[2] ?? ''}` };
+        if (path.startsWith('thumbnails/') || path.startsWith('configs/city-')) throw new Error(`无效的关卡资源路径：${path}`);
+        return null;
     }
 
     private _loadSpriteFrom(source: AssetManager.Bundle, path: string, request = path): Promise<SpriteFrame> {
@@ -1582,22 +1603,21 @@ export class GameFlow extends Component {
             return result;
         };
         try {
-            const [gradesAsset, platformAsset, cityBundle, foodAsset] = await Promise.all([
+            const [gradesAsset, platformAsset, cityIndexAsset, foodAsset] = await Promise.all([
                 initial(this._loadJson('configs/levels')),
                 initial(this._loadJson('configs/platform-config')),
-                initial(this._loadCityBundle()),
+                initial(this._loadJson('configs/cities')),
                 initial(this._loadJson('configs/food-catalog')),
             ]);
             this._foods = (foodAsset.json as { foods: FoodCatalogEntry[] }).foods;
             this._grades = gradesAsset.json as GradeConfig;
             this.platform.configure(platformAsset.json as PlatformConfig);
 
-            const cityIndexAsset = await this._loadJson('configs/cities');
             const index = cityIndexAsset.json as CityIndex;
             report(0.45);
             let cityDone = 0;
             this._cities = await Promise.all(index.cities.map(async key => {
-                const city = await this._loadCityMeta(cityBundle, key);
+                const city = await this._loadCityMeta(null, key);
                 report(0.45 + ++cityDone / index.cities.length * 0.3);
                 return city;
             }));
@@ -1617,12 +1637,17 @@ export class GameFlow extends Component {
             // v2 旧档迁移保持原城市顺序，新增前置专题不能占用旧关卡编号。
             const allKeys: string[] = [];
             for (const city of this._cities) {
-                if (city.key === 'city-00-HotTips' || city.key === 'city-01-2026Hotmeme') continue;
+                if (city.key === 'city-00-HotTips' || city.key === 'city-01-2026Hotmeme'
+                    || city.key === 'city-PetStory') continue;
                 for (const dir of city.levels) {
                     allKeys.push(`${city.key}/${dir}`);
                 }
             }
-            this.save.migrateLegacy(allKeys);
+            const migratedLegacy = this.save.migrateLegacy(allKeys);
+            const rules = (await this._loadJson('configs/chapter-rules')).json as ChapterRulesConfig;
+            if (!this.save.migrateChapterRules(rules, this._cities, migratedLegacy)) {
+                throw new Error('旧关卡解锁进度保存失败，请重试');
+            }
 
             if (!this.isValid) return;
             report(1);
@@ -1641,12 +1666,14 @@ export class GameFlow extends Component {
         }
     }
 
-    private async _loadCityMeta(bundle: AssetManager.Bundle, key: string): Promise<CityConfig> {
-        const asset = await this._loadBundleJson(bundle, key);
-        const meta = asset.json as { name?: string; banner?: string; levels?: string[] };
+    private async _loadCityMeta(_bundle: AssetManager.Bundle | null, key: string): Promise<CityConfig> {
+        const asset = await this._loadBundleJson(await this._loadCityBundle('levels', key), 'configs/city');
+        const meta = asset.json as { name?: string; banner?: string; levels?: string[]; unlockMode?: CityConfig['unlockMode']; prerequisiteCity?: string };
         return {
             key,
             name: meta.name ?? key,
+            unlockMode: meta.unlockMode === 'sequential' ? 'sequential' : 'rewarded',
+            prerequisiteCity: meta.prerequisiteCity,
             banner: meta.banner ?? `configs/${key}-icon/spriteFrame`,
             levels: (meta.levels ?? []).filter(dir => dir !== 'level-00'),
             levelsLoaded: false,
@@ -1667,14 +1694,14 @@ export class GameFlow extends Component {
         if (!city.levels[levelIndex]) throw new Error('关卡目录不存在');
         const cached = city.levelConfigs[levelIndex];
         if (cached) return cached;
-        const level = await this._loadLevel(await this._loadCityBundle(), city.key, city.levels[levelIndex]);
+        const level = await this._loadLevel(null, city.key, city.levels[levelIndex]);
         city.levelConfigs[levelIndex] = level;
         return level;
     }
 
-    private async _loadLevel(bundle: AssetManager.Bundle, cityKey: string, levelDir: string): Promise<LevelConfig> {
+    private async _loadLevel(_bundle: AssetManager.Bundle | null, cityKey: string, levelDir: string): Promise<LevelConfig> {
         const key = `${cityKey}/${levelDir}`;
-        const asset = await this._loadBundleJson(bundle, `${key}/differences`);
+        const asset = await this._loadBundleJson(await this._loadCityBundle('levels', cityKey), `configs/${levelDir}/differences`);
         const file = asset.json as LevelFileConfig;
         const topImage = file.topImage ?? `levels/${key}/scene-a/spriteFrame`;
         const bottomImage = file.bottomImage ?? `levels/${key}/scene-b/spriteFrame`;
@@ -1702,10 +1729,10 @@ export class GameFlow extends Component {
         return base + Math.max(0, differenceCount - baseline) * increment;
     }
 
-    /** 配置、小图和各城市大图分别按需加载；并发请求合并，失败后可重试。 */
-    private _loadCityBundle(folder: 'configs' | 'thumbnails' | 'levels' = 'configs', cityKey?: string): Promise<AssetManager.Bundle> {
-        if (folder === 'levels' && !cityKey) return Promise.reject(new Error('城市大图加载缺少城市标识'));
-        const name = folder === 'levels' ? cityKey! : `city-${folder}`;
+    /** 每章一个完整资源包，配置、小图、大图共享请求及缓存。 */
+    private _loadCityBundle(_folder: 'configs' | 'thumbnails' | 'levels' = 'levels', cityKey?: string): Promise<AssetManager.Bundle> {
+        if (!cityKey) return Promise.reject(new Error('关卡资源包加载缺少大关卡标识'));
+        const name = cityKey;
         const cached = this._cityBundles.get(name);
         if (cached) return Promise.resolve(cached);
         const pending = this._cityBundlePending.get(name);

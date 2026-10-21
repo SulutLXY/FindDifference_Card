@@ -72,7 +72,7 @@ export class CitySelectScreen extends UIScreen {
     }
 
     protected onOpen(): void {
-        this.setLabel(this.pageTitle, 'PageTitle', '选择城市');
+        this.setLabel(this.pageTitle, 'PageTitle', '关卡选择');
         this.rebuild();
     }
 
@@ -127,10 +127,6 @@ export class CitySelectScreen extends UIScreen {
             }, this);
         }
 
-        // 全局关卡编号：前序城市关卡数累加 + 1
-        let levelStart = 1;
-        for (let i = 0; i < cityIndex; i++) levelStart += this.flow.cities[i].levels.length;
-
         this._setCardLabel(card, 'CityName', city.name);
         // 城市名：已解锁保持模板默认色，未解锁灰蓝
         const nameLabel = this.findChildDeep(card, 'CityName')?.getComponent(Label);
@@ -140,7 +136,14 @@ export class CitySelectScreen extends UIScreen {
         }
         // 进度始终显示「完成/总数」，未解锁即为 0/15
         this._setCardLabel(card, 'CityProgress', `${progress.done}/${progress.total}`);
-        this._setCardLabel(card, 'Levelnumber', progress.total > 0 ? `第${levelStart}-${levelStart + progress.total - 1}关` : '');
+        this._setCardLabel(card, 'Levelnumber', progress.total > 0 ? `${city.name}1-${progress.total}关` : '');
+        const rangeLabel = this.findChildDeep(card, 'Levelnumber')?.getComponent(Label);
+        if (rangeLabel) {
+            rangeLabel.enableWrapText = false;
+            rangeLabel.overflow = Label.Overflow.SHRINK;
+        }
+        const unlockLabel = unlockButton?.getComponentInChildren(Label);
+        if (unlockLabel) unlockLabel.string = city.unlockMode === 'sequential' ? '可提前解锁' : '看广告解锁';
 
         // 卡片背景始终保留设计色；城市标记未解锁时置灰，解锁后恢复彩色。
         const cityAim = this.findChildDeep(card, 'Cityaim')?.getComponent(Sprite);
@@ -172,8 +175,12 @@ export class CitySelectScreen extends UIScreen {
         card.off(Input.EventType.TOUCH_END);
         card.on(Input.EventType.TOUCH_END, () => {
             if (!this.flow.isCityUnlocked(cityIndex)) {
-                const prev = this.flow.cities[cityIndex - 1];
-                this.flow.toast(prev ? `通关${prev.name}后解锁` : '尚未解锁');
+                if (city.unlockMode !== 'sequential') {
+                    void this._unlockCity(city, cityIndex);
+                    return;
+                }
+                const prev = this.flow.cities.find(item => item.key === city.prerequisiteCity);
+                this.flow.toast(prev ? `通关${prev.name}后解锁，或看广告提前解锁` : '尚未解锁');
                 return;
             }
             void this.flow.enterCity(city);

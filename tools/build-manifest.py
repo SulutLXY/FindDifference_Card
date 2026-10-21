@@ -29,15 +29,17 @@ import re
 import sys
 
 LEVELS_ROOT = 'assets/Bundle/levels'
-CONFIGS_ROOT = 'assets/Bundle/configs'
+def chapter_config_root(city):
+    return os.path.join(LEVELS_ROOT, city, 'configs')
 CITY_INDEX_PATH = 'assets/resources/configs/cities.json'
-CITY_RE = re.compile(r'^city-\d{2}-[a-zA-Z0-9]+$')
+CITY_RE = re.compile(r'^city-(?:\d{2}-)?[a-zA-Z0-9]+$')
 LEVEL_RE = re.compile(r'^level-\d{2}$')
 
 # 首次生成城市配置时的城市名（之后以手工修改为准）
 CITY_NAMES = {
     'city-00-HotTips': '网络热点',
     'city-01-2026Hotmeme': '2026热梗',
+    'city-PetStory': '宠物故事',
     'city-02-beijing': '北京',
     'city-03-shanghai': '上海',
     'city-04-nanjing': '南京',
@@ -52,6 +54,12 @@ CITY_NAMES = {
 def sprite_path_to_file(sprite_path):
     """把 resources 相对路径（.../spriteFrame）转为磁盘文件路径（自动补扩展名）。"""
     rel = sprite_path.replace('/spriteFrame', '')
+    thumbnail = re.match(r'^thumbnails/(city-(?:\d{2}-)?[a-zA-Z0-9]+)/(.*)$', rel)
+    banner = re.match(r'^configs/(city-(?:\d{2}-)?[a-zA-Z0-9]+)-icon$', rel)
+    if thumbnail:
+        rel = f'levels/{thumbnail[1]}/thumbnails/{thumbnail[2]}'
+    elif banner:
+        rel = f'levels/{banner[1]}/configs/{banner[1]}-icon'
     base = os.path.join('assets/Bundle', rel)
     for ext in ('.png', '.jpg', '.jpeg'):
         if os.path.isfile(base + ext):
@@ -63,7 +71,7 @@ def check_level(city_dir, level_dir):
     """校验单个关卡，返回问题列表。"""
     problems = []
     base = os.path.join(LEVELS_ROOT, city_dir, level_dir)
-    diff_path = os.path.join(CONFIGS_ROOT, city_dir, level_dir, 'differences.json')
+    diff_path = os.path.join(chapter_config_root(city_dir), level_dir, 'differences.json')
     label = f'{city_dir}/{level_dir}'
 
     if not os.path.isfile(diff_path):
@@ -110,21 +118,30 @@ def check_level(city_dir, level_dir):
     return problems
 
 
+def city_sort_key(city):
+    # 命名不含数字的专题明确插在 2026 热梗后；原城市目录和存档 key 不变。
+    if city == 'city-PetStory':
+        return (1, 1, city)
+    match = re.match(r'^city-(\d{2})-', city)
+    return (int(match.group(1)), 0, city) if match else (100, 0, city)
+
+
 def main():
     if not os.path.isdir(LEVELS_ROOT):
         print(f'错误: 未找到 {LEVELS_ROOT}')
         return 1
 
     city_dirs = sorted(
-        d for d in os.listdir(LEVELS_ROOT)
-        if os.path.isdir(os.path.join(LEVELS_ROOT, d)) and CITY_RE.match(d)
+        (d for d in os.listdir(LEVELS_ROOT)
+         if os.path.isdir(os.path.join(LEVELS_ROOT, d)) and CITY_RE.match(d)),
+        key=city_sort_key,
     )
     if not city_dirs:
         print(f'错误: {LEVELS_ROOT} 下没有 city-* 目录')
         return 1
 
     # 1. 全局城市索引
-    os.makedirs(CONFIGS_ROOT, exist_ok=True)
+    os.makedirs(LEVELS_ROOT, exist_ok=True)
     index_path = CITY_INDEX_PATH
     json.dump({'cities': city_dirs}, open(index_path, 'w', encoding='utf-8'),
               ensure_ascii=False, indent=2)
@@ -139,7 +156,7 @@ def main():
         level_dirs = sorted(
             d for d in os.listdir(city_path)
             if os.path.isdir(os.path.join(city_path, d)) and LEVEL_RE.match(d) and d != 'level-00'
-            and os.path.isfile(os.path.join(CONFIGS_ROOT, city_dir, d, 'differences.json'))
+            and os.path.isfile(os.path.join(chapter_config_root(city_dir), d, 'differences.json'))
         )
         skipped = sorted(
             d for d in os.listdir(city_path)
@@ -150,7 +167,7 @@ def main():
             print(f'  提示: {city_dir} 下 {", ".join(skipped)} 为旧占位或无 differences.json，已排除出清单')
 
         # 2. 刷新城市配置：保留手工字段，更新 levels
-        manifest_path = os.path.join(CONFIGS_ROOT, city_dir + '.json')
+        manifest_path = os.path.join(chapter_config_root(city_dir), 'city.json')
         manifest = {}
         if os.path.isfile(manifest_path):
             try:
@@ -158,6 +175,9 @@ def main():
             except Exception:
                 manifest = {}
         manifest.setdefault('name', CITY_NAMES.get(city_dir, city_dir))
+        manifest.setdefault('unlockMode', 'sequential' if city_dir in ('city-00-HotTips', 'city-01-2026Hotmeme') else 'rewarded')
+        if city_dir == 'city-01-2026Hotmeme':
+            manifest.setdefault('prerequisiteCity', 'city-00-HotTips')
         manifest.setdefault('banner', f'configs/{city_dir}-icon/spriteFrame')
         manifest['levels'] = level_dirs
         json.dump(manifest, open(manifest_path, 'w', encoding='utf-8'),
@@ -170,7 +190,7 @@ def main():
 
         done = sum(
             1 for d in level_dirs
-            if os.path.isfile(os.path.join(CONFIGS_ROOT, city_dir, d, 'differences.json'))
+            if os.path.isfile(os.path.join(chapter_config_root(city_dir), d, 'differences.json'))
         )
         banner = ' | '.join(f'{p}' for p in all_problems[-3:]) if all_problems else ''
         print(f'{city_dir} ({manifest["name"]}): {done}/{len(level_dirs)} 关')

@@ -26,13 +26,14 @@ const rules = flowSource.slice(flowSource.indexOf('    public isCityUnlocked('),
 const Rules = vm.runInNewContext(compile(`class Rules { ${rules} }; Rules;`));
 const flow = new Rules();
 flow.save = save;
-flow._cities = ['a', 'b', 'c', 'd'].map(key => ({ key, levels: ['1', '2'] }));
+flow._cities = ['a', 'b', 'c', 'd'].map((key, index) => ({ key, levels: ['1', '2'],
+    unlockMode: index < 2 ? 'sequential' : 'rewarded', prerequisiteCity: index === 1 ? 'a' : undefined }));
 assert.equal(flow.isCityUnlocked(0), true);
 assert.equal(flow.isCityUnlocked(1), false);
 assert.equal(flow.isCityUnlocked(2), true);
 assert.equal(flow.isCityUnlocked(3), false);
 assert.equal(flow.isLevelUnlocked(2, 0), true);
-assert.equal(flow.isLevelUnlocked(2, 1), false);
+assert.equal(flow.isLevelUnlocked(2, 1), true, 'Reward unlock opens the whole independent chapter');
 const source = fs.readFileSync('assets/scripts/ui/CitySelectScreen.ts', 'utf8');
 const method = source.slice(source.indexOf('    private async _unlockCity('), source.indexOf('    private async _loadBanner('));
 const Screen = vm.runInNewContext(compile(`class Screen { ${method} }; Screen;`));

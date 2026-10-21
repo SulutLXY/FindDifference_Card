@@ -78,17 +78,17 @@ def build(table, output, check=False):
             if preset_reviews and len(preset_reviews) != 10: raise ValueError('填写预设评价时须为10条，以 | 分隔')
             if len(set(preset_reviews)) != len(preset_reviews): raise ValueError('同一道美食的预设评价不能重复')
             if not all([id_, food, city, city_name, asset]): raise ValueError('ID、名称、城市和素材名称不能为空')
-            if not re.fullmatch(r'city-\d{2}-[a-zA-Z0-9]+',city): raise ValueError('城市ID格式错误')
+            if not re.fullmatch(r'city-(?:\d{2}-)?[a-zA-Z0-9]+',city): raise ValueError('城市ID格式错误')
             if level and not re.fullmatch(r'level-\d{2}',level): raise ValueError('关卡目录格式错误')
             if id_ in ids: raise ValueError('重复美食ID: ' + id_)
             ids.add(id_)
             if not (bundle/'levels'/city).is_dir(): raise ValueError('城市目录不存在: ' + city)
             key = ''
             if level:
-                city_config = bundle/'configs'/(city+'.json')
+                city_config = bundle/'levels'/city/'configs/city.json'
                 if city not in cities or not city_config.exists(): raise ValueError('该城市尚未配置可玩关卡')
                 if level not in json.loads(city_config.read_text(encoding='utf-8-sig'))['levels']: raise ValueError('关卡未列入城市配置: '+level)
-                level_config = bundle/'configs'/city/level/'differences.json'
+                level_config = bundle/'levels'/city/'configs'/level/'differences.json'
                 if not level_config.exists(): raise ValueError('关卡文件不存在: '+level)
                 key = city+'/'+level
                 if key in levels: raise ValueError('关卡重复关联: '+key)
@@ -106,7 +106,7 @@ def build(table, output, check=False):
                 if not matches: matches = [p for p in images if p.stem == Path(asset).stem]
             if len(matches) != 1: raise ValueError(f'素材匹配到 {len(matches)} 个文件，需手动确认: {asset}')
             image = matches[0]
-            if not image.is_relative_to(bundle/'thumbnails'/city): raise ValueError('素材实际目录与城市不一致: '+str(image))
+            if not image.is_relative_to(bundle/'levels'/city/'thumbnails'): raise ValueError('素材实际目录与城市不一致: '+str(image))
             meta = metadata.get(image, {})
             frames = [m for m in meta.get('subMetas', {}).values() if m.get('importer') == 'sprite-frame']
             if len(frames) != 1 or not meta.get('uuid'): raise ValueError('素材未导入为 SpriteFrame: '+str(image))

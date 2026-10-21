@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "legacyOrders": [
+    [
+      "city-02-beijing",
+      "city-03-shanghai",
+      "city-04-nanjing",
+      "city-05-xiamen",
+      "city-06-changsha",
+      "city-07-guangzhou",
+      "city-08-chengdu",
+      "city-09-xian"
+    ],
+    [
+      "city-00-HotTips",
+      "city-01-2026Hotmeme",
+      "city-02-beijing",
+      "city-03-shanghai",
+      "city-04-nanjing",
+      "city-05-xiamen",
+      "city-06-changsha",
+      "city-07-guangzhou",
+      "city-08-chengdu",
+      "city-09-xian"
+    ],
+    [
+      "city-00-HotTips",
+      "city-01-2026Hotmeme",
+      "city-PetStory",
+      "city-02-beijing",
+      "city-03-shanghai",
+      "city-04-nanjing",
+      "city-05-xiamen",
+      "city-06-changsha",
+      "city-07-guangzhou",
+      "city-08-chengdu",
+      "city-09-xian"
+    ]
+  ]
+}

@@ -1,5 +1,5 @@
 import { sys } from 'cc';
-import { LevelProgress, SaveData } from '../core/GameTypes';
+import { ChapterRulesConfig, CityConfig, LevelProgress, SaveData } from '../core/GameTypes';
 
 const SAVE_KEY = 'find-difference.save.v3';
 /** v2 旧档 key，启动时读取并迁移后删除 */
@@ -7,6 +7,7 @@ const LEGACY_KEY = 'find-difference.save.v2';
 
 const DEFAULT_SAVE: SaveData = {
     version: 3,
+    chapterRulesVersion: 2,
     completed: {},
     totalScore: 0,
     achievements: {},
@@ -39,6 +40,45 @@ export class SaveService {
 
     public isCompleted(key: string): boolean {
         return (this._data.completed[key]?.stars ?? 0) > 0;
+    }
+
+    public setLastPlayedCity(key: string): void {
+        if (this._data.lastPlayedCityKey === key) return;
+        this._data.lastPlayedCityKey = key;
+        this._persist();
+    }
+
+    /** 仅旧玩家执行：先恢复旧顺序下的资格，再一次性提交新规则版本。 */
+    public migrateChapterRules(config: ChapterRulesConfig, cities: CityConfig[], forceLegacy = false): boolean {
+        if (!forceLegacy && (this._data.chapterRulesVersion ?? 1) >= config.version) return true;
+        const previous = this._data;
+        const unlocked = new Set(previous.unlockedCities ?? []);
+        const byKey = new Map(cities.map(city => [city.key, city]));
+        for (const order of config.legacyOrders) {
+            for (let index = 0; index < order.length; index++) {
+                const city = byKey.get(order[index]);
+                if (!city?.levels.length) continue;
+                const before = index > 0 ? byKey.get(order[index - 1]) : undefined;
+                if (index === 0 || (before?.levels.length
+                    && before.levels.every(dir => this.isCompleted(`${before.key}/${dir}`)))) unlocked.add(city.key);
+            }
+        }
+        for (const city of cities) {
+            if (city.levels.some(dir => this.isCompleted(`${city.key}/${dir}`))) unlocked.add(city.key);
+        }
+        const available = cities.filter(city => unlocked.has(city.key));
+        const incomplete = (city: CityConfig) => city.levels.some(dir => !this.isCompleted(`${city.key}/${dir}`));
+        const resume = available.find(city => incomplete(city)
+            && city.levels.some(dir => this.isCompleted(`${city.key}/${dir}`)))
+            ?? available.find(incomplete) ?? available[0];
+        const lastCity = byKey.get(previous.lastPlayedCityKey ?? '');
+        this._data = {
+            ...previous, unlockedCities: Array.from(unlocked), chapterRulesVersion: config.version,
+            lastPlayedCityKey: lastCity && unlocked.has(lastCity.key) ? lastCity.key : resume?.key,
+        };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
     }
 
     public isCityUnlocked(key: string): boolean {
@@ -306,6 +346,7 @@ export class SaveService {
             return {
                 ...DEFAULT_SAVE,
                 ...parsed,
+                chapterRulesVersion: parsed.chapterRulesVersion ?? 1,
                 completed: parsed.completed ?? {},
                 achievements: parsed.achievements ?? {},
             };
