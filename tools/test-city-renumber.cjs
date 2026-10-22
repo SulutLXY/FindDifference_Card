@@ -58,7 +58,7 @@ storage.clear();
 storage.set('find-difference.save.v2', JSON.stringify({ unlockedLevel: 16, levels: { '16': { stars: 2, bestTime: 30 } } }));
 save = new SaveService();
 const cities = JSON.parse(fs.readFileSync('assets/resources/configs/cities.json', 'utf8')).cities;
-const keys = cities.filter(city => /^city-0[2-9]-/.test(city)).flatMap(city => JSON.parse(fs.readFileSync(`assets/resources/configs/${city}.json`, 'utf8')).levels.map(level => `${city}/${level}`));
+const keys = cities.filter(city => /^city-0[2-9]-/.test(city)).flatMap(city => JSON.parse(fs.readFileSync('assets/resources/configs/cities.json', 'utf8')).chapters[city].levels.map(level => `${city}/${level}`));
 save.migrateLegacy(keys);
 assert.equal(save.isCompleted('city-02-beijing/level-01'), true);
 assert.equal(save.progressOf('city-03-shanghai/level-01').stars, 2);

@@ -22,6 +22,6 @@
     "level-19",
     "level-20"
   ],
-  "banner": "configs/city-PetStory-icon/spriteFrame",
+  "banner": "chapter-covers/city-PetStory-icon/spriteFrame",
   "unlockMode": "rewarded"
 }

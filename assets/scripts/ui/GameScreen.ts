@@ -170,6 +170,10 @@ export class GameScreen extends UIScreen {
         this._resetLivesAnimation();
         this._clearWrongMarkers();
     }
+    protected onDestroy(): void {
+        this.clearLevel();
+        super.onDestroy();
+    }
     private _progressConfigured = false;
     private _progressTotal = 0;
     private readonly _markers: Node[] = [];
@@ -215,7 +219,7 @@ export class GameScreen extends UIScreen {
             const sprite = this._image(name)?.getComponent(Sprite);
             if (sprite) sprite.spriteFrame = null;
         }
-        for (const frame of this._levelFrames) frame.decRef();
+        for (const frame of this._levelFrames) this.flow.releaseLevelFrame(frame);
         this._levelFrames = [];
     }
     private _zoomScale = 1;
@@ -278,7 +282,7 @@ export class GameScreen extends UIScreen {
             this._applySpriteFrame(bottom, bottomFrame);
             this._levelFrames = frames;
         } catch (error) {
-            for (const frame of frames) frame.decRef();
+            for (const frame of frames) this.flow.releaseLevelFrame(frame);
             console.error(`[GameScreen] 关卡图片加载失败: ${level.topImage} / ${level.bottomImage}`, error);
             throw error;
         }

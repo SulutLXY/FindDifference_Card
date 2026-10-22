@@ -4,16 +4,16 @@
 
 以下两份启动配置位于本地 resources Bundle，使用默认本地构建配置，不在远程 city-configs 中；修改后重新构建并更新平台代码包即可同步：
 
-- `assets/resources/configs/cities.json`：展示顺序与大关卡索引。
+- `assets/resources/configs/cities.json`：展示顺序及完整章节元信息，由各章源清单生成，启动与存档迁移不读取远程章节包。
 - `assets/resources/configs/chapter-rules.json`：旧版资格兼容规则与迁移版本。
 
 GameFlow 分别通过 `resources.load('configs/cities')`、`resources.load('configs/chapter-rules')` 读取，无需从远端取得这两份文件。新增配置不会自动修改已发布的旧代码包，必须重新构建。
 
-每个远程大关卡包现在独立包含完整内容：`assets/Bundle/levels/<city>/configs/city.json` 存本章清单与解锁模式，`configs/level-*/differences.json` 存差异点，`configs/<city>-icon.jpg` 存章节封面，`thumbnails/` 存小图，`level-*/` 存玩法大图。原共享 `city-configs`、`city-thumbnails` 不再作为新版本的独立 Bundle。
+每个远程大关卡包包含本章差异点、小关缩略图和玩法大图。`assets/Bundle/levels/<city>/configs/city.json` 是章节源清单，修改后运行 `tools/build-manifest.py` 汇总到主包。大关卡封面放在独立 `chapter-covers` 包，美食图标放在独立 `food-icons` 包。完整布局和释放规则见 [README-content-bundles.md](README-content-bundles.md)。
 
 此次目录迁移首次发布时，需要重新构建并上传所有迁移后的章节包，再更新主包。后续仅新增大关卡时，上传对应新章节包并更新主包总配置即可。只上传新章节包不会让旧主包发现新章节。为兼容未更新玩家，服务器必须保留旧版共享包及旧版仍引用的哈希文件，不能覆盖或删除旧资源。
 
-目录迁移后的测试夹具尚待同步，当前交接状态与验证范围见 `HANDOFF-0.1.3.0-2026-10-21.md`。
+本次调整后的验证范围见 `README-content-bundles.md`；早期阶段记录保留于 `HANDOFF-0.1.3.0-2026-10-21.md`。
 
 ## 新规则
 

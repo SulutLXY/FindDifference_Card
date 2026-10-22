@@ -4,7 +4,8 @@ const assert = require('node:assert/strict');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const compile = source => ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2018 } }).outputText;
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
-const cities = read('assets/resources/configs/cities.json').cities.map(key => ({ key, ...read(`assets/resources/configs/${key}.json`) }));
+const indexData = read('assets/resources/configs/cities.json');
+const cities = indexData.cities.map(key => indexData.chapters[key]);
 const config = read('assets/resources/configs/chapter-rules.json');
 // 顺序与迁移配置必须随本地首包更新，不能落入远程配置 Bundle。
 const resourcesMeta = read('assets/resources.meta').userData;

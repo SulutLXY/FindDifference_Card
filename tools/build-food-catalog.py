@@ -106,7 +106,7 @@ def build(table, output, check=False):
                 if not matches: matches = [p for p in images if p.stem == Path(asset).stem]
             if len(matches) != 1: raise ValueError(f'素材匹配到 {len(matches)} 个文件，需手动确认: {asset}')
             image = matches[0]
-            if not image.is_relative_to(bundle/'levels'/city/'thumbnails'): raise ValueError('素材实际目录与城市不一致: '+str(image))
+            if not image.is_relative_to(bundle/'food-icons'/city): raise ValueError('美食图标包目录与城市不一致: '+str(image))
             meta = metadata.get(image, {})
             frames = [m for m in meta.get('subMetas', {}).values() if m.get('importer') == 'sprite-frame']
             if len(frames) != 1 or not meta.get('uuid'): raise ValueError('素材未导入为 SpriteFrame: '+str(image))

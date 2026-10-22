@@ -1,0 +1,14 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "06f0fb95-b307-43cc-85da-3f889dc4cf5e",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isBundle": true,
+    "bundleName": "chapter-covers",
+    "priority": 7,
+    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+"
+  }
+}

@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const file = 'assets/scripts/GameFlow.ts';
 const tree = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
-const names = ['_pageSpriteFrames', '_pageSpritesDisposed', 'loadPageSpriteFrame', 'releasePageSpriteFrames', '_levelImageTarget', 'acquireLevelFrame'];
+const names = ['_pageSpriteFrames', '_pageSpritesDisposed', '_levelFrameBundles', 'loadPageSpriteFrame', 'releasePageSpriteFrames', '_levelImageTarget', '_chapterSpriteTarget', 'acquireLevelFrame', 'releaseLevelFrame'];
 const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
 const requests = [];
 const bundle = { load(path, type, callback) { requests.push({ path, callback }); } };
@@ -24,6 +24,7 @@ function finish(loaded, error = null) { assert.ok(requests.length); requests.shi
 const path = 'levels/city-00-HotTips/level-07/scene-a/spriteFrame';
 (async () => {
     const flow = new Flow(); flow._loadCityBundle = async () => bundle;
+    flow._contentBundles = {retain: () => () => {}, use: async (_, action) => action(bundle)};
     const a = page(), b = page();
     const first = flow.loadPageSpriteFrame(path, a);
     assert.equal(flow.loadPageSpriteFrame(path, a), first, 'Same-page concurrent loads are merged');
@@ -37,7 +38,7 @@ const path = 'levels/city-00-HotTips/level-07/scene-a/spriteFrame';
     flow.releasePageSpriteFrames(a);
     assert.equal(a.sprite.spriteFrame, null); assert.equal(shared.refs, 2);
     assert.equal(b.sprite.spriteFrame, shared); assert.ok(shared.isValid);
-    shared.decRef(); assert.equal(shared.refs, 1, 'Leaving gameplay preserves the other page');
+    flow.releaseLevelFrame(shared); assert.equal(shared.refs, 1, 'Leaving gameplay preserves the other page');
     flow.releasePageSpriteFrames(b); assert.equal(shared.refs, 0); assert.equal(shared.isValid, false);
     flow.releasePageSpriteFrames(b); // idempotent close / disable / destroy
     assert.equal(flow._pageSpriteFrames.size, 0);

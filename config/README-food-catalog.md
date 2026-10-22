@@ -19,8 +19,8 @@ python tools/build-food-catalog.py --check
 
 - 美食ID：稳定唯一标识，建立后不要随意改动。
 - 美食名称、城市ID、城市名称：用于美食收藏列表及详情。
-- 关卡目录：如 `level-03`，填写城市内真实存在并列入 `assets/Bundle/configs/city-02-beijing.json` 的关卡；空白表示待关联，收藏页仍展示但不自动解锁。关卡配置在 `configs/城市/关卡/differences.json`，大图在 `levels/城市/关卡`。
-- 素材名称、资产路径：项目相对路径，包含扩展名，如 `assets/Bundle/thumbnails/city-02-beijing/city-02-beijing-BeiJingKaoYa.png`。
+- 关卡目录：如 `level-03`，填写城市内真实存在并列入 `assets/Bundle/levels/city-02-beijing/configs/city.json` 的关卡；空白表示待关联，收藏页仍展示但不自动解锁。关卡配置在 `levels/城市/configs/关卡/differences.json`，大图在 `levels/城市/关卡`。
+- 素材名称、资产路径：项目相对路径，包含扩展名，如 `assets/Bundle/food-icons/city-02-beijing/city-02-beijing-BeiJingKaoYa.png`。美食图标单独使用 `food-icons` Bundle，收藏页或详情弹窗使用时加载，最后一个页面关闭后释放。
 - 素材UUID：匹配文件位置的稳定依据。资源移动或改后缀后保留 UUID，工具能找到并回写新路径。刻意换图时需要同步更新 UUID 或清空后按新素材名称定位。
 - 美食介绍：最多40字（含标点），在 FoodTips 中展示；空白时显示“美食介绍待补充”。
 - 预设评价：填写时为10条，每条2至20字（含标点），用 `|` 分隔，同一道菜不重复。不是其他玩家的联网评价；空白时只展示存在的本机评价。玩家自行输入评价仍沿用50字上限。

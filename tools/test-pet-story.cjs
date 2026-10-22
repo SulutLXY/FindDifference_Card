@@ -15,11 +15,17 @@ const Flow = vm.runInNewContext(ts.transpileModule(`class Flow { ${body} }; Flow
 const flow = new Flow();
 flow._grades = read('assets/resources/configs/levels.json');
 flow._loadJson = async key => ({ json: read(`assets/resources/${key}.json`) });
-const imageFile = request => ['.jpg', '.png', '.jpeg'].map(ext => 'assets/Bundle/' + request.replace(/\/spriteFrame$/, ext)).find(fs.existsSync);
+flow._cityIndex = read('assets/resources/configs/cities.json');
+flow._contentBundles = {use: async (key, action) => action({name:key})};
+flow._loadBundleJson = async (bundle, request) => ({json:read(`assets/Bundle/levels/${bundle.name}/${request}.json`),decRef(){}});
+const imageFile = request => {
+    request = request.replace(/^thumbnails\/(city-[^/]+)\//, 'levels/$1/thumbnails/');
+    return ['.jpg', '.png', '.jpeg'].map(ext => 'assets/Bundle/' + request.replace(/\/spriteFrame$/, ext)).find(fs.existsSync);
+};
 (async () => {
     const city = await flow._loadCityMeta({}, 'city-PetStory');
     assert.equal(city.name, '宠物故事');
-    assert.equal(city.banner, 'configs/city-PetStory-icon/spriteFrame');
+    assert.equal(city.banner, 'chapter-covers/city-PetStory-icon/spriteFrame');
     assert.deepEqual(Array.from(city.levels), Array.from({ length: 20 }, (_, i) => `level-${String(i + 1).padStart(2, '0')}`));
     assert.ok(imageFile(city.banner));
     const bundleMeta = read('assets/Bundle/levels/city-PetStory.meta').userData;

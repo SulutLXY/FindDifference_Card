@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
-const ts = require('D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
+const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const file = 'assets/scripts/GameFlow.ts';
 const source = fs.readFileSync(file, 'utf8');
 const tree = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true);
@@ -22,7 +22,8 @@ for (const food of catalog.foods) {
     assert(food.levelKey, `${food.name} must have an acquisition level`);
     assert(!keys.has(food.levelKey), `duplicate acquisition level: ${food.levelKey}`);
     keys.add(food.levelKey);
-    const level = JSON.parse(fs.readFileSync(`assets/resources/configs/${food.levelKey}/differences.json`, 'utf8'));
+    const [city, dir] = food.levelKey.split('/');
+    const level = JSON.parse(fs.readFileSync(`assets/Bundle/levels/${city}/configs/${dir}/differences.json`, 'utf8'));
     const cover = `thumbnails/${food.levelKey}/icon/spriteFrame`;
     flow.showFoodTips({...level, key: food.levelKey, icon: cover}, true);
     assert.equal(payload.icon, food.icon);

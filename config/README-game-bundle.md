@@ -1,5 +1,7 @@
 # 局内资源拆分
 
+> 2026-10-21 内容包已调整：主包保存完整章节索引，`chapter-covers` 保存章节封面，`food-icons` 独立保存美食图标，每章包含自己的差异点、小关缩略图及大图。当前结构、释放规则和验收范围以 [README-content-bundles.md](README-content-bundles.md) 为准。以下保留早期拆包过程记录，旧共享包路径不再作为当前构建依据。
+
 ## 2026 热梗接入（2026-10-15）
 
 新增 `city-01-2026Hotmeme`（2026热梗）30 关，位于网络热点之后。原北京至西安整体顺延至 `city-02-beijing` 至 `city-09-xian`，共 10 大关卡、180 小关卡。configs、levels、thumbnails、Bundle 名称和美食配置表同步顺延，资源 UUID 保留。复制的新专题继续使用现有差异点，替换正式素材时需同步校对标注。

@@ -79,9 +79,11 @@ export interface LevelConfig {
 /** 首包城市索引（resources/configs/cities.json，由 tools/build-manifest.py 生成）。 */
 export interface CityIndex {
     cities: string[];
+    /** 由每章源清单生成，启动/迁移不访问远程章节包。 */
+    chapters: Record<string, CityMeta>;
 }
 
-/** 城市清单（configs/城市目录名.json）：levels 由工具刷新，name/banner 等手工维护。 */
+/** 章节源清单（levels/城市/configs/city.json），构建工具汇总到首包索引。 */
 export interface CityMeta {
     key: string;
     name: string;

@@ -32,6 +32,6 @@
     "level-29",
     "level-30"
   ],
-  "banner": "configs/city-00-HotTips-icon/spriteFrame",
+  "banner": "chapter-covers/city-00-HotTips-icon/spriteFrame",
   "unlockMode": "sequential"
 }

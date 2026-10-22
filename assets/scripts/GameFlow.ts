@@ -43,6 +43,7 @@ import {
 } from './core/GameTypes';
 import { PlatformService } from './services/PlatformService';
 import { SaveService } from './services/SaveService';
+import { ContentBundlePool } from './services/ContentBundlePool';
 import { SidebarService, sidebarDay } from './services/SidebarService';
 import { createRankProvider } from './services/rank/RankProvider';
 import { registerGameFlow } from './ui/UIScreen';
@@ -62,6 +63,7 @@ const { ccclass, property } = _decorator;
 interface PageSpriteEntry {
     frame: SpriteFrame | null;
     pending: Promise<SpriteFrame | null>;
+    releaseBundle?: () => void;
 }
 
 /**
@@ -69,7 +71,7 @@ interface PageSpriteEntry {
  * 负责界面切换、倒计时、激励视频与结算。
  * 场景中唯一实例，界面组件通过 GameFlow.instance 访问。
  *
- * 关卡组织：levels/ 按 city-* 目录分组，每城独立 Bundle；配置与小图分别独立成包。
+ * 章节索引在首包；封面、美食图标独立成包；各章配置、小关缩略图和大图随章加载。
  * resources/configs/cities.json 为城市索引，city-configs 的 城市目录名.json 列关卡清单，
  * 进关时只读取目标关卡配置，选关页读取本城全部关卡配置。
  */
@@ -147,9 +149,9 @@ export class GameFlow extends Component {
     /** 封面/横幅按页面持有；页面关闭或列表重建时释放，不使用内存预算。 */
     private readonly _pageSpriteFrames = new Map<Node, Map<string, PageSpriteEntry>>();
     private _pageSpritesDisposed = false;
-    /** 配置、小图及各城市大图 Bundle，首次使用时加载并缓存。 */
-    private readonly _cityBundles = new Map<string, AssetManager.Bundle>();
-    private readonly _cityBundlePending = new Map<string, Promise<AssetManager.Bundle>>();
+    private readonly _contentBundles = new ContentBundlePool();
+    private readonly _levelFrameBundles = new Map<SpriteFrame, Array<() => void>>();
+    private _cityIndex: CityIndex | null = null;
     private _gameBundle: AssetManager.Bundle | null = null;
     private _gameBundlePending: Promise<AssetManager.Bundle> | null = null;
     private _gameScreensPending: Promise<void> | null = null;
@@ -444,14 +446,17 @@ export class GameFlow extends Component {
         this._cancelSecondaryNavigation();
         const target = city ?? this._currentCity ?? this._cities[0] ?? null;
         if (!target) return;
+        const navigationVersion = this._secondaryNavigationVersion;
         this._currentCity = target;
         try {
             await this.ensureCity(target);
         } catch (error) {
+            if (!this.isValid || navigationVersion !== this._secondaryNavigationVersion) return;
             console.error(`[GameFlow] 城市关卡加载失败: ${target.key}`, error);
             this._returnToLobbyOnLoadError('关卡加载失败，已返回主界面');
             return;
         }
+        if (!this.isValid || navigationVersion !== this._secondaryNavigationVersion) return;
         this._switchTo(this.levelSelect);
         void this.lobby?.preloadHero();
     }
@@ -561,6 +566,7 @@ export class GameFlow extends Component {
         }
         this._setLoadingProgress(0);
         let fallback: { city: CityConfig; levelIndex: number } | null = null;
+        const releaseBundle = this._contentBundles.retain(city.key);
         try {
             await this._drawLoadingFrame();
             if (!active()) return;
@@ -616,6 +622,7 @@ export class GameFlow extends Component {
                 this._returnToLobbyOnLoadError('关卡加载失败，已返回主界面');
             }
         } finally {
+            releaseBundle();
             if (active()) this._levelLoading = false;
         }
         // 先解除本次加载锁，再尝试一次后继关卡；后继失败统一回首页。
@@ -829,6 +836,8 @@ export class GameFlow extends Component {
         this._disposeSecondaryPages();
         this._pageSpritesDisposed = true;
         for (const owner of this._pageSpriteFrames.keys()) this.releasePageSpriteFrames(owner);
+        this.game?.clearLevel();
+        this._contentBundles.dispose();
         ++this._levelLoadVersion;
         this._finishLoadingFrame?.();
         this._stopResultTone();
@@ -1383,6 +1392,7 @@ export class GameFlow extends Component {
         const active = () => this.isValid && version === this._levelLoadVersion
             && this._currentLevel === level && !!this.game?.node.activeInHierarchy;
         this._prefetchRunning = true;
+        let releaseBundle: (() => void) | undefined;
         try {
             const cityIndex = this._cities.findIndex(city => city === this._currentCity);
             const city = this._cities[cityIndex];
@@ -1394,6 +1404,7 @@ export class GameFlow extends Component {
             const dir = nextCity?.levels[targetLevel!.levelIndex];
             if (!nextCity || !dir) return;
             if (!active()) return;
+            releaseBundle = this._contentBundles.retain(nextCity.key);
             const next = await this._loadLevel(null, nextCity.key, dir);
             for (const path of [next.topImage, next.bottomImage]) {
                 if (!active()) return;
@@ -1411,6 +1422,7 @@ export class GameFlow extends Component {
         } catch (error) {
             console.warn('[GameFlow] 下一关预加载失败，进入时重试', error);
         } finally {
+            releaseBundle?.();
             this._prefetchRunning = false;
             const pending = this._prefetchPending;
             this._prefetchPending = null;
@@ -1424,14 +1436,28 @@ export class GameFlow extends Component {
     public async acquireLevelFrame(path: string): Promise<SpriteFrame> {
         const remote = path.startsWith('levels/');
         const target = remote ? this._levelImageTarget(path) : null;
-        const bundle = target ? await this._loadCityBundle('levels', target.cityKey) : resources;
-        const request = target ? target.request : path;
-        return new Promise((resolve, reject) => {
-            bundle.load(request, SpriteFrame, (error, frame) => {
-                if (error) reject(error);
-                else { frame.addRef(); resolve(frame); }
+        const release = target ? this._contentBundles.retain(target.cityKey) : () => {};
+        try {
+            const bundle = target ? await this._loadCityBundle('levels', target.cityKey) : resources;
+            const frame = await new Promise<SpriteFrame>((resolve, reject) => {
+                bundle.load(target ? target.request : path, SpriteFrame, (error, loaded) => {
+                    if (error) reject(error);
+                    else { loaded.addRef(); resolve(loaded); }
+                });
             });
-        });
+            const leases = this._levelFrameBundles.get(frame) ?? [];
+            leases.push(release);
+            this._levelFrameBundles.set(frame, leases);
+            return frame;
+        } catch (error) { release(); throw error; }
+    }
+
+    public releaseLevelFrame(frame: SpriteFrame): void {
+        const leases = this._levelFrameBundles.get(frame);
+        const release = leases?.pop();
+        if (!leases?.length) this._levelFrameBundles.delete(frame);
+        frame.decRef();
+        release?.();
     }
 
     /** 页面内去重并合并并发加载；失效页面的加载结果返回 null。 */
@@ -1451,26 +1477,30 @@ export class GameFlow extends Component {
             && this._pageSpriteFrames.get(owner) === scope && scope.get(path) === entry;
         entry.pending = (async () => {
             const target = this._chapterSpriteTarget(path);
-            const bundle = target ? await this._loadCityBundle('levels', target.cityKey) : resources;
-            if (!current()) return null;
-            const request = target ? target.request : path;
-            // 每个页面拥有一份独立引用，不写入常驻小图标缓存。
-            const frame = await new Promise<SpriteFrame>((resolve, reject) => {
-                const complete = (error: Error | null, loaded: SpriteFrame) => {
-                    if (error) reject(error);
-                    else { loaded.addRef(); resolve(loaded); }
-                };
-                bundle.load(request, SpriteFrame, (error, loaded) => {
-                    if (error && current()) bundle.load(`${request}/spriteFrame`, SpriteFrame, complete);
-                    else complete(error, loaded);
+            if (target) entry.releaseBundle = this._contentBundles.retain(target.cityKey);
+            const load = async (bundle: AssetManager.Bundle): Promise<SpriteFrame | null> => {
+                if (!current()) return null;
+                const request = target ? target.request : path;
+                // 每个页面拥有一份独立引用，不写入常驻小图标缓存。
+                const frame = await new Promise<SpriteFrame>((resolve, reject) => {
+                    const complete = (error: Error | null, loaded: SpriteFrame) => {
+                        if (error) reject(error);
+                        else { loaded.addRef(); resolve(loaded); }
+                    };
+                    bundle.load(request, SpriteFrame, (error, loaded) => {
+                        if (error && current()) bundle.load(`${request}/spriteFrame`, SpriteFrame, complete);
+                        else complete(error, loaded);
+                    });
                 });
-            });
-            if (!current()) { frame.decRef(); return null; }
-            entry.frame = frame;
-            return frame;
+                if (!current()) { frame.decRef(); return null; }
+                entry.frame = frame;
+                return frame;
+            };
+            return target ? await this._contentBundles.use(target.cityKey, load) : await load(resources);
         })().catch(error => {
             const stillCurrent = current();
             if (scope.get(path) === entry) scope.delete(path);
+            entry.releaseBundle?.();
             if (!stillCurrent) return null;
             throw error;
         });
@@ -1490,7 +1520,10 @@ export class GameFlow extends Component {
                 if (sprite.spriteFrame && frames.has(sprite.spriteFrame)) sprite.spriteFrame = null;
             }
         }
-        for (const entry of entries.values()) entry.frame?.decRef();
+        for (const entry of entries.values()) {
+            entry.frame?.decRef();
+            entry.releaseBundle?.();
+        }
         entries.clear();
     }
 
@@ -1498,13 +1531,12 @@ export class GameFlow extends Component {
     public loadSpriteFrame(path: string): Promise<SpriteFrame> {
         const cached = this._spriteFrameCache.get(path);
         if (cached && cached.isValid) return Promise.resolve(cached);
-        // 配置图标、缩略图及玩法大图全部归属各自大关卡包。
+        // 内容图片按封面、收藏图标、章节三个渠道路由。
         const target = this._chapterSpriteTarget(path);
-        const source = target
-            ? this._loadCityBundle('levels', target.cityKey)
-            : Promise.resolve(resources);
         const request = target ? target.request : path;
-        return source.then(bundle => this._loadSpriteFrom(bundle, path, request));
+        return target
+            ? this._contentBundles.use(target.cityKey, bundle => this._loadSpriteFrom(bundle, path, request))
+            : this._loadSpriteFrom(resources, path, request);
     }
 
     /** levels/城市/关卡/图片 → 城市 Bundle + 关卡/图片。 */
@@ -1516,10 +1548,10 @@ export class GameFlow extends Component {
 
     private _chapterSpriteTarget(path: string): { cityKey: string; request: string } | null {
         if (path.startsWith('levels/')) return this._levelImageTarget(path);
+        const shared = /^(chapter-covers|food-icons)\/(.+)$/.exec(path);
+        if (shared) return { cityKey: shared[1], request: shared[2] };
         const thumbnail = /^thumbnails\/(city-(?:\d{2}-)?[a-zA-Z0-9]+)\/(.+)$/.exec(path);
         if (thumbnail) return { cityKey: thumbnail[1], request: `thumbnails/${thumbnail[2]}` };
-        const banner = /^configs\/(city-(?:\d{2}-)?[a-zA-Z0-9]+)-icon(\/spriteFrame)?$/.exec(path);
-        if (banner) return { cityKey: banner[1], request: `configs/${banner[1]}-icon${banner[2] ?? ''}` };
         if (path.startsWith('thumbnails/') || path.startsWith('configs/city-')) throw new Error(`无效的关卡资源路径：${path}`);
         return null;
     }
@@ -1614,6 +1646,7 @@ export class GameFlow extends Component {
             this.platform.configure(platformAsset.json as PlatformConfig);
 
             const index = cityIndexAsset.json as CityIndex;
+            this._cityIndex = index;
             report(0.45);
             let cityDone = 0;
             this._cities = await Promise.all(index.cities.map(async key => {
@@ -1667,14 +1700,14 @@ export class GameFlow extends Component {
     }
 
     private async _loadCityMeta(_bundle: AssetManager.Bundle | null, key: string): Promise<CityConfig> {
-        const asset = await this._loadBundleJson(await this._loadCityBundle('levels', key), 'configs/city');
-        const meta = asset.json as { name?: string; banner?: string; levels?: string[]; unlockMode?: CityConfig['unlockMode']; prerequisiteCity?: string };
+        const meta = this._cityIndex?.chapters?.[key];
+        if (!meta) throw new Error(`主包缺少章节索引: ${key}，请重新生成关卡清单`);
         return {
             key,
             name: meta.name ?? key,
             unlockMode: meta.unlockMode === 'sequential' ? 'sequential' : 'rewarded',
             prerequisiteCity: meta.prerequisiteCity,
-            banner: meta.banner ?? `configs/${key}-icon/spriteFrame`,
+            banner: meta.banner ?? `chapter-covers/${key}-icon/spriteFrame`,
             levels: (meta.levels ?? []).filter(dir => dir !== 'level-00'),
             levelsLoaded: false,
             levelConfigs: [],
@@ -1684,9 +1717,9 @@ export class GameFlow extends Component {
     /** 懒加载城市内全部关卡配置（幂等）。 */
     public async ensureCity(city: CityConfig): Promise<void> {
         if (city.levelsLoaded) return;
-        for (let i = 0; i < city.levels.length; i++) {
-            await this._ensureLevel(city, i);
-        }
+        await this._contentBundles.use(city.key, async () => {
+            for (let i = 0; i < city.levels.length; i++) await this._ensureLevel(city, i);
+        });
         city.levelsLoaded = true;
     }
 
@@ -1701,8 +1734,12 @@ export class GameFlow extends Component {
 
     private async _loadLevel(_bundle: AssetManager.Bundle | null, cityKey: string, levelDir: string): Promise<LevelConfig> {
         const key = `${cityKey}/${levelDir}`;
-        const asset = await this._loadBundleJson(await this._loadCityBundle('levels', cityKey), `configs/${levelDir}/differences`);
-        const file = asset.json as LevelFileConfig;
+        const file = await this._contentBundles.use(cityKey, async bundle => {
+            const asset = await this._loadBundleJson(bundle, `configs/${levelDir}/differences`);
+            // 运行时只保留普通配置数据，配对归还 JsonAsset 引用。
+            try { return JSON.parse(JSON.stringify(asset.json)) as LevelFileConfig; }
+            finally { asset.decRef(); }
+        });
         const topImage = file.topImage ?? `levels/${key}/scene-a/spriteFrame`;
         const bottomImage = file.bottomImage ?? `levels/${key}/scene-b/spriteFrame`;
         return {
@@ -1732,19 +1769,7 @@ export class GameFlow extends Component {
     /** 每章一个完整资源包，配置、小图、大图共享请求及缓存。 */
     private _loadCityBundle(_folder: 'configs' | 'thumbnails' | 'levels' = 'levels', cityKey?: string): Promise<AssetManager.Bundle> {
         if (!cityKey) return Promise.reject(new Error('关卡资源包加载缺少大关卡标识'));
-        const name = cityKey;
-        const cached = this._cityBundles.get(name);
-        if (cached) return Promise.resolve(cached);
-        const pending = this._cityBundlePending.get(name);
-        if (pending) return pending;
-        const request = new Promise<AssetManager.Bundle>((resolve, reject) => {
-            assetManager.loadBundle(name, (error: Error | null, bundle: AssetManager.Bundle) => {
-                if (error || !bundle) reject(error ?? new Error(`[GameFlow] ${name} Bundle 加载失败`));
-                else { this._cityBundles.set(name, bundle); resolve(bundle); }
-            });
-        }).finally(() => { this._cityBundlePending.delete(name); });
-        this._cityBundlePending.set(name, request);
-        return request;
+        return this._contentBundles.load(cityKey);
     }
 
     /** 局内素材独立加载；失败后可重试，并合并同时发起的加载请求。 */
@@ -1891,7 +1916,10 @@ export class GameFlow extends Component {
 
     private _loadBundleJson(bundle: AssetManager.Bundle, path: string): Promise<JsonAsset> {
         return new Promise((resolve, reject) => {
-            bundle.load(path, JsonAsset, (error, asset) => (error ? reject(error) : resolve(asset)));
+            bundle.load(path, JsonAsset, (error, asset) => {
+                if (error) reject(error);
+                else { asset.addRef(); resolve(asset); }
+            });
         });
     }
 }

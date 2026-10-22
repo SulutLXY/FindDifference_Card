@@ -7,17 +7,18 @@
 
 行为：
 1. 扫描 assets/Bundle/levels/ 下所有 city-* 目录，生成 resources/configs/cities.json；
-2. 每城生成/刷新 configs/city-XX-name.json 的 levels 清单，
+2. 每章生成/刷新 levels/city-XX-name/configs/city.json 的 levels 清单，并汇总到首包索引，
    城市展示信息（name/banner 等手工字段）已存在时保留、不覆盖；
 3. 逐关校验 differences.json 与引用的图片资源，输出校验报告；
 4. 校验失败时以非零码退出，可接入打包前检查。
 
 目录约定：
     assets/resources/configs/cities.json 城市索引（首包）
-    configs/city-XX-name.json 城市信息 + 关卡清单（本工具生成 levels 部分）
-    configs/city-XX-name-icon.jpg 城市图标
-    configs/city-XX-name/level-YY/differences.json 关卡配置
-    thumbnails/city-XX-name/level-YY/icon.jpg 选关封面
+    chapter-covers/city-XX-name-icon.jpg 章节封面（独立包）
+    food-icons/city-XX-name/美食图片.png 美食图标（独立包）
+    levels/city-XX-name/configs/city.json 章节源清单
+    levels/city-XX-name/configs/level-YY/differences.json 关卡配置
+    levels/city-XX-name/thumbnails/level-YY/icon.jpg 小关选关封面
     levels/city-XX-name/level-YY/
             scene-a.jpg       上图（图片路径被覆盖时可省略）
             scene-b.jpg       下图
@@ -59,7 +60,7 @@ def sprite_path_to_file(sprite_path):
     if thumbnail:
         rel = f'levels/{thumbnail[1]}/thumbnails/{thumbnail[2]}'
     elif banner:
-        rel = f'levels/{banner[1]}/configs/{banner[1]}-icon'
+        rel = f'chapter-covers/{banner[1]}-icon'
     base = os.path.join('assets/Bundle', rel)
     for ext in ('.png', '.jpg', '.jpeg'):
         if os.path.isfile(base + ext):
@@ -143,9 +144,7 @@ def main():
     # 1. 全局城市索引
     os.makedirs(LEVELS_ROOT, exist_ok=True)
     index_path = CITY_INDEX_PATH
-    json.dump({'cities': city_dirs}, open(index_path, 'w', encoding='utf-8'),
-              ensure_ascii=False, indent=2)
-    print(f'已生成 {index_path}: {len(city_dirs)} 个城市')
+    chapters = {}
 
     all_problems = []
     total_levels = 0
@@ -178,10 +177,11 @@ def main():
         manifest.setdefault('unlockMode', 'sequential' if city_dir in ('city-00-HotTips', 'city-01-2026Hotmeme') else 'rewarded')
         if city_dir == 'city-01-2026Hotmeme':
             manifest.setdefault('prerequisiteCity', 'city-00-HotTips')
-        manifest.setdefault('banner', f'configs/{city_dir}-icon/spriteFrame')
+        manifest.setdefault('banner', f'chapter-covers/{city_dir}-icon/spriteFrame')
         manifest['levels'] = level_dirs
         json.dump(manifest, open(manifest_path, 'w', encoding='utf-8'),
                   ensure_ascii=False, indent=2)
+        chapters[city_dir] = {'key': city_dir, **manifest}
 
         # 3. 逐关校验
         for level_dir in level_dirs:
@@ -195,6 +195,10 @@ def main():
         banner = ' | '.join(f'{p}' for p in all_problems[-3:]) if all_problems else ''
         print(f'{city_dir} ({manifest["name"]}): {done}/{len(level_dirs)} 关')
 
+    with open(index_path, 'w', encoding='utf-8') as output:
+        json.dump({'cities': city_dirs, 'chapters': chapters}, output, ensure_ascii=False, indent=2)
+        output.write('\n')
+    print(f'已生成 {index_path}: {len(city_dirs)} 个章节，含启动所需完整清单')
     print(f'\n共 {len(city_dirs)} 城 {total_levels} 关')
     if all_problems:
         print(f'校验发现 {len(all_problems)} 个问题:')
