@@ -28,7 +28,7 @@ const LEVEL_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
  * - LockIcon            锁图标（仅未解锁时显示）
  * - Thumbnail           关卡封面：未解锁置灰（Sprite 乘法着色），已解锁保持模板默认
  *
- * 解锁规则：城市内按文件夹顺序线性解锁（前一关通关）。
+ * 专题直接进入，首关免费；通关免费推进；提前跳关需看视频永久解锁目标关。
  */
 @ccclass('LevelSelectScreen')
 export class LevelSelectScreen extends UIScreen {
@@ -46,6 +46,8 @@ export class LevelSelectScreen extends UIScreen {
 
     private _runtimeCards: Node[] = [];
     private _content: Node | null = null;
+    private _unlockPending = false;
+    private _selectionVersion = 0;
     private _cardRendering: { card: Node; components: Component[]; visible: boolean }[] = [];
 
     /** Mask 只裁剪像素；主动关闭窗口外的渲染组件才能省掉它们的绘制提交。
@@ -75,11 +77,13 @@ export class LevelSelectScreen extends UIScreen {
     }
 
     protected onClose(): void {
+        this._selectionVersion++;
         this._clearRuntimeCards();
     }
 
     /** 动态生成本城全部正式关卡卡片。 */
     public rebuild(): void {
+        this._selectionVersion++;
         this._clearRuntimeCards();
         const city = this.flow.currentCity;
         if (!city || !city.levelsLoaded) return;
@@ -192,7 +196,12 @@ export class LevelSelectScreen extends UIScreen {
         const unlocked = this.flow.isLevelUnlocked(cityIndex, levelIndex);
         const progress = this.flow.save.progressOf(level.key);
 
-        this._setCardLabel(card, 'CardNumber', `第${levelIndex + 1}关`);
+        this._setCardLabel(card, 'CardNumber', unlocked ? `第${levelIndex + 1}关` : `第${levelIndex + 1}关 · 看视频解锁`);
+        const numberLabel = card.getChildByName('CardNumber')?.getComponent(Label);
+        if (numberLabel) {
+            numberLabel.enableWrapText = false;
+            numberLabel.overflow = Label.Overflow.SHRINK;
+        }
         this._setCardLabel(card, 'CardName', level.name);
         // 关卡名：已解锁保持模板默认色，未解锁灰蓝
         if (!unlocked) {
@@ -225,13 +234,26 @@ export class LevelSelectScreen extends UIScreen {
 
         card.off(Input.EventType.TOUCH_END);
         card.on(Input.EventType.TOUCH_END, () => {
-            if (!this.flow.isLevelUnlocked(cityIndex, levelIndex)) {
-                this.flow.toast(levelIndex > 0 ? '先通关上一关' : '城市尚未解锁');
-                return;
-            }
-            const city = this.flow.currentCity;
-            if (city) void this.flow.startLevel(city, levelIndex);
+            void this._enterLevel(levelIndex);
         }, this);
+    }
+
+    private async _enterLevel(levelIndex: number): Promise<void> {
+        if (this._unlockPending) return;
+        const city = this.flow.currentCity;
+        if (!city) return;
+        const version = this._selectionVersion;
+        this._unlockPending = true;
+        try {
+            if (!await this.flow.requestLevelUnlock(city, levelIndex)) return;
+            if (!this.isValid || !this.node.activeInHierarchy || version !== this._selectionVersion
+                || this.flow.currentCity !== city) return;
+            // 先刷新永久解锁状态，图片加载失败后返回选关也无需再次看视频。
+            this.rebuild();
+            await this.flow.startLevel(city, levelIndex);
+        } finally {
+            this._unlockPending = false;
+        }
     }
 
     /** 未解锁关卡封面灰度化（Thumbnail Sprite 组件 Grayscale，与城市页一致；已解锁恢复彩色）。 */

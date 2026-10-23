@@ -44,8 +44,32 @@ export class SaveService {
 
     public setLastPlayedCity(key: string): void {
         if (this._data.lastPlayedCityKey === key) return;
-        this._data.lastPlayedCityKey = key;
+        this._data = { ...this._data, lastPlayedCityKey: key, lastPlayedLevelKey: undefined };
         this._persist();
+    }
+
+    public setLastPlayedLevel(cityKey: string, levelKey: string): boolean {
+        const previous = this._data;
+        this._data = { ...previous, lastPlayedCityKey: cityKey, lastPlayedLevelKey: levelKey };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
+    public isLevelUnlocked(key: string): boolean {
+        return Array.isArray(this._data.unlockedLevels) && this._data.unlockedLevels.includes(key);
+    }
+
+    /** 广告只授予目标关卡游玩资格；保存失败不得解锁。 */
+    public unlockLevel(key: string): boolean {
+        if (typeof key !== 'string' || !key) return false;
+        if (this.isLevelUnlocked(key)) return true;
+        const previous = this._data;
+        const levels = Array.isArray(previous.unlockedLevels) ? previous.unlockedLevels : [];
+        this._data = { ...previous, unlockedLevels: [...levels, key] };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
     }
 
     /** 仅旧玩家执行：先恢复旧顺序下的资格，再一次性提交新规则版本。 */

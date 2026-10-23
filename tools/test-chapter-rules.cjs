@@ -45,18 +45,29 @@ const completedChapter = city => Object.fromEntries(city.levels.map(dir => [`${c
     assert.equal(fresh.migrateChapterRules(config, cities), true);
     const f = flow(fresh);
     assert.equal(f.isCityUnlocked(index(hot.key)), true);
-    assert.equal(f.isCityUnlocked(index(meme.key)), false);
-    for (const city of cities.slice(2)) assert.equal(f.isCityUnlocked(index(city.key)), false, `${city.key}: first entry must require an ad`);
+    assert.equal(f.isCityUnlocked(index(meme.key)), true);
+    for (const city of cities) assert.equal(f.isCityUnlocked(index(city.key)), true, `${city.key}: entry requires no ad or completion`);
+    assert.equal(f.isLevelUnlocked(index(meme.key), 0), true);
+    assert.equal(f.isLevelUnlocked(index(meme.key), 1), false);
+    for (const city of cities) {
+        assert.equal(city.unlockMode, 'sequential');
+        for (let li = 0; li < city.levels.length; li++) {
+            assert.equal(f.isLevelUnlocked(index(city.key), li), li === 0, `${city.key}: only the first level starts open`);
+        }
+        for (const li of [-1, city.levels.length, 0.5, NaN]) assert.equal(f.isLevelUnlocked(index(city.key), li), false);
+    }
     fresh.completeLevel(`${hot.key}/${hot.levels[0]}`, 2, 15);
     assert.equal(f.isLevelUnlocked(0, 1), true); assert.equal(f.isLevelUnlocked(0, 2), false);
     for (const dir of hot.levels) fresh.completeLevel(`${hot.key}/${dir}`, 2, 15);
     assert.equal(f.isCityUnlocked(index(meme.key)), true);
     for (const dir of meme.levels) fresh.completeLevel(`${meme.key}/${dir}`, 2, 15);
-    assert.equal(f.isCityUnlocked(index(pet.key)), false, 'Completing sequential chapters cannot unlock independent chapters');
-    fresh.unlockCity(pet.key);
-    assert.equal(f.isLevelUnlocked(index(pet.key), 19), true, 'One completed unlock opens all chapter levels');
+    assert.equal(f.isCityUnlocked(index(pet.key)), true);
+    assert.equal(f.isLevelUnlocked(index(pet.key), 19), false, 'Entering a chapter does not skip its progression');
+    fresh.completeLevel(`${pet.key}/${pet.levels[0]}`, 2, 15);
+    assert.equal(f.isLevelUnlocked(index(pet.key), 1), true);
+    assert.equal(f.isLevelUnlocked(index(pet.key), 2), false);
     assert.equal(f.isLevelUnlocked(index(pet.key), 20), false);
-    assert.equal(f._nextLevelTarget(pet, 19, true), null, 'No skip fallback into a locked independent chapter');
+    assert.equal(f._nextLevelTarget(pet, 19, true), null, 'No skip fallback into another independent chapter');
     assert.equal(f._nextLevelTarget(meme, 29), null);
     assert.equal(f._nextLevelTarget(hot, 29).city.key, meme.key);
     fresh.setLastPlayedCity(pet.key);
@@ -100,5 +111,5 @@ const completedChapter = city => Object.fromEntries(city.levels.map(dir => [`${c
     assert.equal(v2.data.lastPlayedCityKey, shanghai.key, 'v2 progress also continues in the old partial chapter');
     const layout = fs.readFileSync('assets/scripts/ui/CitySelectScreen.ts', 'utf8');
     assert.ok(layout.includes("'关卡选择'")); assert.ok(layout.includes('`${city.name}1-${progress.total}关`'));
-    console.log('PASS: new per-chapter unlock policy, local numbering, old implicit/ad unlocks, exact continuation, save preservation, one-time migration and failed-write retry.');
+    console.log('PASS: all chapters free, first levels open, progression unlocks next levels without ads, local numbering, old implicit/ad unlocks, exact continuation, save preservation, one-time migration and failed-write retry.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

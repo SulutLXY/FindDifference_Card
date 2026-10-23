@@ -33,6 +33,5 @@
     "level-30"
   ],
   "banner": "chapter-covers/city-01-2026Hotmeme-icon/spriteFrame",
-  "unlockMode": "sequential",
-  "prerequisiteCity": "city-00-HotTips"
+  "unlockMode": "sequential"
 }

@@ -57,7 +57,8 @@ function methods(file,names,extra={}){
  let persisted={},mark=0;f.save=new Save();f.save._data={totalScore:0};
  f.save._persist=()=>{persisted={...f.save._data};return true;};
  f.save.data=f.save._data;
- f.save.setLastPlayedCity=()=>{};
+ f.save.setLastPlayedLevel=()=>true;
+ f.isLevelUnlocked=()=>true;
  const beginRound=f.save.beginDailyFirstRound.bind(f.save);
  f.save.beginDailyFirstRound=d=>{mark++;const first=beginRound(d);f.save.data=f.save._data;return first;};
  f.platform={};installGuard.call(f);
@@ -103,6 +104,15 @@ function methods(file,names,extra={}){
  attempts=[];f._ensureLevel=async(city,index)=>{attempts.push(index);if(index===1)throw Error('bad JSON');return city.levelConfigs[index];};
  f.game.setupLevel=async()=>{};
  await f.startLevel(city,1,'streak','skip-next');assert.deepEqual(attempts,[1,2]);assert.equal(f._currentLevel.key,'a/03');
+ // Loading fallback can only enter an already available level.
+ const beforeBlockedFallback=returned;
+ f.isLevelUnlocked=(_,index)=>index!==2;
+ attempts=[];f._ensureLevel=async(city,index)=>{attempts.push(index);throw Error('offline');};
+ await f.startLevel(city,1,'streak','skip-next');
+ assert.deepEqual(attempts,[1]);assert.equal(returned,beforeBlockedFallback+1,'A locked successor must not be auto-entered');
+ attempts=[];await f.startLevel(city,2);
+ assert.deepEqual(attempts,[],'Direct startLevel calls must not bypass the unlock check');
+ f.isLevelUnlocked=()=>true;
  // Navigation away during an in-flight load must not trigger automatic skipping.
  f._ensureLevel=async(city,index)=>city.levelConfigs[index];attempts=[];let failLoad;
  f.game.setupLevel=level=>{attempts.push(level.key);return new Promise((_,reject)=>{failLoad=reject;});};
@@ -117,6 +127,7 @@ function methods(file,names,extra={}){
  const button=new Flow(),requested=[];button._currentCity=city;button._cities=[city,nextCity];
  button._currentLevel={key:'a/01',differences:[{}]};button._foundIds=new Set(['hit']);button.resultModal={close(){}};
  button.startLevel=async(...args)=>requested.push(args);
+ button.requestReward=()=>{throw Error('Normal next level must not request a video');};
  button.resultPrimary();assert.equal(requested.length,1);assert.equal(requested[0][0],city);
  assert.deepEqual(requested[0].slice(1),[1,'streak','skip-next'],'Next-level button must opt into the skip fallback');
  // Re-entering level one has no level-number exemption; restarting preserves the daily marker.

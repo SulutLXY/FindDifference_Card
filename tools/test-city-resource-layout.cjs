@@ -76,12 +76,12 @@ const Flow=createFlow({JsonAsset,SpriteFrame,Sprite:class{},resources:{},assetMa
         assert.deepEqual(loads.slice(before),[city.key]);
         assert.equal(bundles.size,0,'Chapter resources and package metadata must not accumulate');
     }
-    assert.equal(count,200);assert.equal(cities.length,11);assert.equal(foods.length,40);
+    assert.equal(count,225);assert.equal(cities.length,12);assert.equal(foods.length,40);
     for(const name of ['chapter-covers','food-icons',...index.cities]) {
         const meta=read(root(name)+'.meta').userData;
         assert.equal(meta.isBundle,true);assert.equal(meta.bundleName,name);
         const config=read('settings/v2/packages/builder.json').bundleConfig.custom[meta.bundleConfigID].configs.miniGame;
         assert.equal(config.fallbackOptions.isRemote,true);
     }
-    console.log('PASS layout: local startup index, isolated covers/food packages, 11 chapters, 200 levels, 40 food icons and unload after use');
+    console.log('PASS layout: local startup index, isolated covers/food packages, 12 chapters, 225 levels, 40 food icons and unload after use');
 })().catch(error=>{console.error(error);process.exitCode=1;});

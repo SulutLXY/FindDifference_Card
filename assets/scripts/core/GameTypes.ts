@@ -1,6 +1,6 @@
 export type AppScreen = 'lobby' | 'cities' | 'levels' | 'game';
 
-export type RewardPlacement = 'revive' | 'hint' | 'add-time' | 'unlock-city';
+export type RewardPlacement = 'revive' | 'hint' | 'add-time' | 'unlock-level';
 
 export interface FoodCatalogEntry {
     id: string;
@@ -89,10 +89,8 @@ export interface CityMeta {
     name: string;
     banner?: string;
     levels: string[];
-    /** sequential：逐小关通关；rewarded：首次广告解锁整个大关卡。 */
-    unlockMode?: 'sequential' | 'rewarded';
-    /** sequential 大关卡的前置大关卡；缺省为免费起步。 */
-    prerequisiteCity?: string;
+    /** 专题直接进入，首关免费，后续小关通关前一关后免费开放。 */
+    unlockMode?: 'sequential';
 }
 
 /** 运行时城市数据：levels 按需懒加载填充 levelConfigs。 */
@@ -148,6 +146,10 @@ export interface SaveData {
     unlockedCities?: string[];
     /** 继续游戏以最后进入的大关卡为准，不按全局小关序号跳转。 */
     lastPlayedCityKey?: string;
+    /** 最后成功加载的小关，用于跳关后的继续游戏。 */
+    lastPlayedLevelKey?: string;
+    /** 完整观看激励视频后永久解锁的小关，不计入通关成绩。 */
+    unlockedLevels?: string[];
     chapterRulesVersion?: number;
     totalScore: number;
     /** 图鉴/成就（后续版本使用）：条目 id → 获得时间戳 */

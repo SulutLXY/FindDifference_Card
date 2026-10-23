@@ -5,7 +5,7 @@
 | 位置 | 内容 | 加载时机 |
 | --- | --- | --- |
 | `assets/resources/configs/cities.json` | 章节顺序及名称、解锁方式、封面路径、关卡清单 | 启动及旧存档迁移，只读本地索引 |
-| `assets/Bundle/chapter-covers` | 11 张大关卡封面，Bundle 为 `chapter-covers` | 关卡选择页 |
+| `assets/Bundle/chapter-covers` | 12 张大关卡封面，Bundle 为 `chapter-covers` | 关卡选择页 |
 | `assets/Bundle/food-icons/<city>` | 40 张美食图标，Bundle 为 `food-icons` | 收藏页或美食详情弹窗 |
 | `assets/Bundle/levels/<city>` | 本章配置、小关缩略图、玩法图片 | 进入该章或受控的下一关预下载 |
 
@@ -13,7 +13,7 @@
 
 小关缩略图的逻辑路径仍为 `thumbnails/<city>/<level>/icon/spriteFrame`，路由到该章包内 `thumbnails/<level>/icon/spriteFrame`。封面使用 `chapter-covers/<city>-icon/spriteFrame`；美食图标使用 `food-icons/<city>/<name>/spriteFrame`。美食目录 Excel 和生成器已同步到新路径。
 
-51 张迁移图片连同 `.meta` 移动，图片内容和 UUID 保持不变。200 关差异点数据没有修改，包括用户暂时保留的边缘越界标注。
+51 张迁移图片连同 `.meta` 移动，图片内容和 UUID 保持不变。原有 200 关差异点数据没有修改，包括用户暂时保留的边缘越界标注。新增「2025年度梗」25 关沿用源素材 319 个差异点，现共 12 章/225 关；接入说明见 [2025-hotmeme-resource-audit-2026-10-23.md](2025-hotmeme-resource-audit-2026-10-23.md)。
 
 ## 内存生命周期
 
@@ -31,11 +31,11 @@
 
 ## 验证与发布
 
-已通过 TypeScript 检查；内容包生命周期、页面图片引用、共享贴图、11 章/200 关资源路径、宠物故事、40 条美食映射、章节规则、旧存档迁移和关卡加载的脚本测试。美食表 `--check` 无待修复项，Python 目录生成器回归 11 项通过。
+已通过 TypeScript 检查；内容包生命周期、页面图片引用、共享贴图、12 章/225 关资源路径、宠物故事、40 条美食映射、章节规则、旧存档迁移和关卡加载的脚本测试。美食表 `--check` 无待修复项，Python 目录生成器回归 11 项通过。
 
-相关测试：`test-content-bundle-lifetime.cjs`、`test-city-resource-layout.cjs`、`test-page-sprite-lifetime.cjs`、`test-sprite-cache-lifetime.cjs`、`test-pet-story.cjs`、`test-chapter-rules.cjs`、`test-city-renumber.cjs`、`test-city-unlock.cjs`、`test-level-loading.cjs`、`test-food-icons.cjs`、`test_food_catalog.py`。
+相关测试：`test-content-bundle-lifetime.cjs`、`test-city-resource-layout.cjs`、`test-page-sprite-lifetime.cjs`、`test-sprite-cache-lifetime.cjs`、`test-pet-story.cjs`、`test-2025-hotmeme.cjs`、`test_manifest.py`、`test-chapter-rules.cjs`、`test-city-renumber.cjs`、`test-city-unlock.cjs`、`test-level-loading.cjs`、`test-food-icons.cjs`、`test_food_catalog.py`。
 
-关卡生成器仍报告原有 27 项坐标/半径标注问题，本次保持原数据。完整游戏包静态检查还存在主场景引用 PleyGame 资源的既有断言失败，未作为本次资源迁移验收通过项。未执行实际构建、上传和真机测试。
+关卡生成器报告 31 项坐标/半径标注问题（原有 27 项及 2025年度梗源素材 4 项），保持原数据。完整游戏包静态检查还存在主场景引用 PleyGame 资源的既有断言失败，未作为本次资源迁移验收通过项。未执行实际构建、上传和真机测试。
 
 发布必须重新构建主包、`chapter-covers`、`food-icons` 及迁移后的所有章节包，先部署同次构建远程产物，再更新主包。服务器保留旧版本资源及哈希文件供旧客户端使用。
 

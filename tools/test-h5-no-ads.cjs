@@ -35,7 +35,7 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
     flow._showSimulatedAd = () => { throw Error('Simulation must not run'); };
     flow.toast = () => { throw Error('H5 should not show an ad error'); };
     let rewards = 0;
-    for (const placement of ['hint', 'add-time', 'revive', 'unlock-city']) {
+    for (const placement of ['hint', 'add-time', 'revive', 'unlock-level']) {
         await flow.requestReward(placement, () => rewards++);
         assert.equal(flow._isPaused, false);
     }
@@ -89,22 +89,22 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
         const cancelled = flow.requestReward('hint', () => { granted = true; });
         close({ isEnded: false }); await cancelled; assert.equal(granted, false);
 
-        // Returning from a paused game must not silently block city unlock ads.
+        // Paused gameplay blocks assists; chapters no longer request reward ads.
         flow._isPaused = true;
         await flow.requestReward('hint', () => { throw Error('Paused gameplay must stay blocked'); });
         assert.equal(created, 2);
-        const unlock = flow.requestReward('unlock-city', () => { granted = true; });
-        assert.equal(created, 3, 'City unlock must reach the native SDK even when gameplay is paused');
-        await flow.requestReward('unlock-city', () => { throw Error('Duplicate reward'); });
-        assert.equal(created, 3, 'Only one reward ad may be pending');
-        close({ isEnded: true }); await unlock;
-        assert.equal(granted, true);
-        assert.equal(flow._isPaused, true, 'City unlock preserves the existing pause state');
+
         granted = false;
-        const unlockCancelled = flow.requestReward('unlock-city', () => { granted = true; });
-        assert.equal(created, 4, 'Closing the previous ad must allow retry');
-        close({ isEnded: false }); await unlockCancelled;
-        assert.equal(granted, false, 'Incomplete city ads must not grant an unlock');
+        const unlock = flow.requestReward('unlock-level', () => { granted = true; });
+        assert.equal(created, 3, 'Level selection must allow a native video while gameplay is paused');
+        await flow.requestReward('unlock-level', () => { throw Error('Duplicate unlock'); });
+        assert.equal(created, 3);
+        close({ isEnded: true }); await unlock;
+        assert.equal(granted, true); assert.equal(flow._isPaused, true);
+        granted = false;
+        const cancelledUnlock = flow.requestReward('unlock-level', () => { granted = true; });
+        close({ isEnded: false }); await cancelledUnlock;
+        assert.equal(granted, false); assert.equal(flow._isPaused, true);
 
         flow._isGameOver = true;
         const revive = flow.requestReward('revive', () => {});

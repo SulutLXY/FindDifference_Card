@@ -1,0 +1,334 @@
+{
+  "chapter": "city-2025Hotmeme",
+  "source": "D:\\CocosCreator\\关卡\\找不同2\\2025年梗图",
+  "coverSource": "D:\\CocosCreator\\关卡\\找不同2\\2025年梗图\\1.哈基米豆浆展示\\scene-a.jpg",
+  "missingConfigurations": [],
+  "annotationProblems": [
+    {
+      "level": "level-02",
+      "id": "diff-6",
+      "field": "radius",
+      "value": 0.254108
+    },
+    {
+      "level": "level-02",
+      "id": "diff-12",
+      "field": "y",
+      "value": 1.012903
+    },
+    {
+      "level": "level-13",
+      "id": "diff-12",
+      "field": "y",
+      "value": 1.15
+    },
+    {
+      "level": "level-13",
+      "id": "diff-12",
+      "field": "radius",
+      "value": 0.301514
+    }
+  ],
+  "levels": [
+    {
+      "number": 1,
+      "sourceFolder": "1.哈基米豆浆展示",
+      "level": "level-01",
+      "images": {
+        "scene-a.jpg": "2d1bc3a9f33246569c6fa8371917bcfae9d029985898c979be92ab79e0209659",
+        "scene-b.jpg": "7d75d1278ee8474174a22bf0c110b59d0d758b2df57a6e4cf4520706865158fe"
+      },
+      "name": "哈基米南北绿豆",
+      "differenceCount": 10,
+      "configSha256": "5dcc78ebcdc0f477b47c09e4485cc4bdb57a150698a5802a5af716adab6976dd"
+    },
+    {
+      "number": 2,
+      "sourceFolder": "2.乌萨奇点名",
+      "level": "level-02",
+      "images": {
+        "scene-a.jpg": "0e10ee089ddce8090354bba651a3000cc4f3698863f1f8c30255751a6f0eaa37",
+        "scene-b.jpg": "4cce3822055db1b14d50fa74c052aee7431dfc2814384cbc9049299959fd26f8"
+      },
+      "name": "乌萨奇，到",
+      "differenceCount": 12,
+      "configSha256": "c457c861621754c824c29430cae44f2634f9d04902cd6312bf1bb568c669eac6"
+    },
+    {
+      "number": 3,
+      "sourceFolder": "3.红光哪吒跳舞",
+      "level": "level-03",
+      "images": {
+        "scene-a.jpg": "e25a959a6d618c30319213e65eab383c3affe7caaf1d04260cde3edce6e6f971",
+        "scene-b.jpg": "1072b3e93ce754af6823db67f6c90a45d942ae0e57724b0efd5c99a9bd84f31f"
+      },
+      "name": "天雷滚滚好怕怕",
+      "differenceCount": 12,
+      "configSha256": "27d9d034293088c27131c83b2b5a90879979916b0c764a32cf0c45eaa98881fa"
+    },
+    {
+      "number": 4,
+      "sourceFolder": "4.来财仪式",
+      "level": "level-04",
+      "images": {
+        "scene-a.jpg": "c906a5a6d948bf81bcc16ba38751b292f974d0f609afc4ed2202ac1af60a4710",
+        "scene-b.jpg": "87bd5c2534a6190250cf4c12a5c041616d9c617e6e04aaac676a200c84934101"
+      },
+      "name": "来财，来",
+      "differenceCount": 16,
+      "configSha256": "358e8c20258b6a12157654efe242174d6877029f15b567a130700d8da274912d"
+    },
+    {
+      "number": 5,
+      "sourceFolder": "5.中医直播看眼睛",
+      "level": "level-05",
+      "images": {
+        "scene-a.jpg": "b9667d97822122c69d527230f78b8a57e867e3566ba454932e8fe63cf20a42e2",
+        "scene-b.jpg": "b840dedd2fbb9c54da743dbedbd1b604a22bf8dac66c9136e10b28879455dbf2"
+      },
+      "name": "look my eyes",
+      "differenceCount": 16,
+      "configSha256": "3322c4cfbbbfaa06c4ecb13b5007364bff4d6d54a42f380e3b8fa5566c7c8fbb"
+    },
+    {
+      "number": 6,
+      "sourceFolder": "6.大展宏图广场舞",
+      "level": "level-06",
+      "images": {
+        "scene-a.jpg": "66cd0b6474210e1805bdb907c4c17fbb5aa7b6b22e93d5a590f5d426a2234e64",
+        "scene-b.jpg": "fd39beb85058da0eaf54991e5ef4cbe386b9e05e0ed80456610e69e09a51c9be"
+      },
+      "name": "大展宏图",
+      "differenceCount": 12,
+      "configSha256": "921bb9a12158c65023e6a5a2f9487c729a043d7d1f4d6a505be4ab99756d7e71"
+    },
+    {
+      "number": 7,
+      "sourceFolder": "7.大会说唱乐队",
+      "level": "level-07",
+      "images": {
+        "scene-a.jpg": "fa497c1d3732d6d7e8360520dc1183af2b3051d27f5a415b71a11e8a41383eba",
+        "scene-b.jpg": "48e335980d2930245ecc720188b7187a914044c167eff917d6128e103b252a0b"
+      },
+      "name": "从从容容游刃有余",
+      "differenceCount": 15,
+      "configSha256": "22da51085b2e8ba0f1adf19ee04d93108dc518cf5f66824bf42d077ac209b3d4"
+    },
+    {
+      "number": 8,
+      "sourceFolder": "8.颗秒姿势",
+      "level": "level-08",
+      "images": {
+        "scene-a.jpg": "473ed5713401320dd782afdcdf3040f5012c6ecfcddfe4eccc1b355125e9b69b",
+        "scene-b.jpg": "75ba047d656cf331eecf2dce890e5b14676df5529ccca29a4e62ba2fe392386b"
+      },
+      "name": "颗秒",
+      "differenceCount": 10,
+      "configSha256": "3790ef5fd52eda5071a88e36ace01a0dde591201dea4fd3f22c8ce690df71bd4"
+    },
+    {
+      "number": 9,
+      "sourceFolder": "9.西装男团舞台",
+      "level": "level-09",
+      "images": {
+        "scene-a.jpg": "7704a6c38ce8f3ad88d82f2982e89935b16899390c5a23b5388a19337467bc04",
+        "scene-b.jpg": "c132c38d8aa9815d8fc6fd22a3e5a2d4a106d5fb896763d01d69f1cc8e5f47b6"
+      },
+      "name": "扫腿舞",
+      "differenceCount": 12,
+      "configSha256": "fa8df878dd1c5e5953a6984576ef4d559384f94a788e03350c600c56bf2bdf0a"
+    },
+    {
+      "number": 10,
+      "sourceFolder": "10.猪槽火锅",
+      "level": "level-10",
+      "images": {
+        "scene-a.jpg": "39556596b3cd8c8a9ad9c93a98feebabf405e8a4449ee5fff199e4bbb8817469",
+        "scene-b.jpg": "9c014b1a4c1cb719e771c3b336f6920d42484215ff591fe021335828cfd4c473"
+      },
+      "name": "城巴佬",
+      "differenceCount": 15,
+      "configSha256": "93f711de8a0826c6ca98eaed7122e68d9599b966aefeecb96a7c6c53ba07f928"
+    },
+    {
+      "number": 11,
+      "sourceFolder": "11.音乐班直播连麦",
+      "level": "level-11",
+      "images": {
+        "scene-a.jpg": "3e8f492d81452d25a27c70693d1c53a8a4cb6d30229c28a4b19cdb1ce645aa7c",
+        "scene-b.jpg": "992625f5cc614ae1519f3f768b53f1b432a6a7e696a14f1dd98c854ed875695d"
+      },
+      "name": "抖音音乐班",
+      "differenceCount": 10,
+      "configSha256": "87d886f33a49ee35fc30df0e9638a6eb123723576aae2d8881de69a1ac64f890"
+    },
+    {
+      "number": 12,
+      "sourceFolder": "12.叮咚鸡大狗叫",
+      "level": "level-12",
+      "images": {
+        "scene-a.jpg": "9558d90e1fbfd920b3d811e7b37bac4227c53b74a3ca436011389d17b4b128e1",
+        "scene-b.jpg": "cb9ab7cd9ef10e37a17d4c56619fd648537b8a28c5d1e8a541ce66160389de97"
+      },
+      "name": "叮咚鸡",
+      "differenceCount": 12,
+      "configSha256": "fab08ad4fc7e3ab1bd923a60e0a57f16f9500666b3896cfc8b4f71c8b44cba63"
+    },
+    {
+      "number": 13,
+      "sourceFolder": "13.猫咪愤怒哈气",
+      "level": "level-13",
+      "images": {
+        "scene-a.jpg": "d71376588a75bda174e8344fa4de21a643be0f01caeb11ff3e79fed2a24b9f0f",
+        "scene-b.jpg": "fe79640f6757ebd663094a2573608171cce919fb34c886a8638c62ce7636984c"
+      },
+      "name": "圆头耄耋",
+      "differenceCount": 12,
+      "configSha256": "d3b3baae1037024cdd8d4de0bd971f1ff2be63e373444f0947d791926615026f"
+    },
+    {
+      "number": 14,
+      "sourceFolder": "14.早餐阿玛提拉斯",
+      "level": "level-14",
+      "images": {
+        "scene-a.jpg": "0a8c2a2f98151bd3264e0249fa9df7de93d66570adc561c2ddad172da61a97db",
+        "scene-b.jpg": "cb77c7360b1088955d9510f9e7205e14a39f7c4f1c2d206dc69f1bbd13a52310"
+      },
+      "name": "阿玛提拉斯",
+      "differenceCount": 10,
+      "configSha256": "ab8e72df7cb75eb00abbf689051d05b110102072cc780c20763762db18fdf6ca"
+    },
+    {
+      "number": 15,
+      "sourceFolder": "15.开车神操作",
+      "level": "level-15",
+      "images": {
+        "scene-a.jpg": "00be9e7d6e487daa6d4261d35b7fe99da4e47e85ea8753b0bfc4d7dc305ffa7a",
+        "scene-b.jpg": "88cf0a4c27cfaa6e78191132fee575b16e4740d1f632501ceae9e5d302332aea"
+      },
+      "name": "驾校老奶奶",
+      "differenceCount": 15,
+      "configSha256": "ec9751e72317fbe17622a6fa5b88c0725a77e9eb5c6ea4d179391138a86e7e77"
+    },
+    {
+      "number": 16,
+      "sourceFolder": "16.秦始皇骑大白熊",
+      "level": "level-16",
+      "images": {
+        "scene-a.jpg": "b40fd0766b5d6639782c851aaa509b2081d97d23e5d78ef702e164ecd9c286f9",
+        "scene-b.jpg": "f96161469ed7ea65b7321685c477b92b968df11687e2b91f7cfb2abd46d87e35"
+      },
+      "name": "秦始皇骑大白熊",
+      "differenceCount": 12,
+      "configSha256": "46dc64dd6a13ca422cdf9325f6d447c3bc59d07aba95418f169b00870857b5dd"
+    },
+    {
+      "number": 17,
+      "sourceFolder": "17.做完你的做你的",
+      "level": "level-17",
+      "images": {
+        "scene-a.jpg": "d82dff858ac9fbeeb33945fabb14cb1fb6c9647249a178116753ea909c629750",
+        "scene-b.jpg": "afa10a6cdfd3863376f0cb95a648f78b3947fd3668ae0a9344ea94261056eb57"
+      },
+      "name": "做完你的做你的",
+      "differenceCount": 16,
+      "configSha256": "89c751980df16857e27fc34ca1a132bee536b7a9b3ec4ac579fc62b264aa665b"
+    },
+    {
+      "number": 18,
+      "sourceFolder": "18.何意味",
+      "level": "level-18",
+      "images": {
+        "scene-a.jpg": "b1e3703ae50c471865929ee7549944f7c24572037bf90c97a88de8658d23582f",
+        "scene-b.jpg": "3ba269b6e0ad42d740506e699ff0ab3a1802d19458905a81b967ac75172e29ff"
+      },
+      "name": "何意味",
+      "differenceCount": 10,
+      "configSha256": "c4c33d6e2b1d1bcefa77ac8c77b383a2b7a24a839828a26d15a2df81bf939c53"
+    },
+    {
+      "number": 19,
+      "sourceFolder": "19.灵感菇",
+      "level": "level-19",
+      "images": {
+        "scene-a.jpg": "01f3d2236e0977dcdc6bd435e90a0c12065d5c9c9dbb572fa22ec32112cf5996",
+        "scene-b.jpg": "1248c944e7e8c4ba00ac0a04f3bf78bedcf195cd6626a406b021cd541ff5b526"
+      },
+      "name": "灵感菇",
+      "differenceCount": 12,
+      "configSha256": "44a4626efbebb19bfce3aeaef8965dfc40296b6548f005c701f4099957fd0af0"
+    },
+    {
+      "number": 20,
+      "sourceFolder": "20.被资本做局了",
+      "level": "level-20",
+      "images": {
+        "scene-a.jpg": "a9c0881a19d4619c323d12db6f933fa377cec5110dff49a30427aa6e5551b9bc",
+        "scene-b.jpg": "215131459285e986b9c4eb1c35afc08729214a8f2567432b967815d93a1eaed7"
+      },
+      "name": "被资本做局了",
+      "differenceCount": 15,
+      "configSha256": "5454107c149f7bef7357d167a6fcd7d84c3054ad6e7c793dca04d68f652eedfd"
+    },
+    {
+      "number": 21,
+      "sourceFolder": "21.法修散打",
+      "level": "level-21",
+      "images": {
+        "scene-a.jpg": "2d0124c8cd17534d04a17a09274f3d3ebe1a87f7795451dff2e0bc8a6fb930ba",
+        "scene-b.jpg": "2f269fffd81fc82b82fd9425f6d267d6ef16b727786def95c1d407cb8f2f2e8b"
+      },
+      "name": "法修散打",
+      "differenceCount": 12,
+      "configSha256": "71cf9a0ec13fe7d564a0cacd5fdeacff605b4f47f1abe56de827b23c01d677e5"
+    },
+    {
+      "number": 22,
+      "sourceFolder": "22.大东北",
+      "level": "level-22",
+      "images": {
+        "scene-a.jpg": "ac8ccf3088ec3b642edfae538b2e689ffdeb233776c48a06d401ca69c9b1f008",
+        "scene-b.jpg": "6432e55f9070a3525f2119cbc6495491b0729b68baf0e17023b6f6c9fd4651cc"
+      },
+      "name": "大东北",
+      "differenceCount": 10,
+      "configSha256": "238f0e2c3b26e756bdd25ee1a6cdc3f6b0e81040df70b62f23a671407ec5fd03"
+    },
+    {
+      "number": 23,
+      "sourceFolder": "23.苦命鸳鸯",
+      "level": "level-23",
+      "images": {
+        "scene-a.jpg": "3a6261967765c768a07f8993bc9de45758a1802482f55d270bbf072e98a30cf5",
+        "scene-b.jpg": "cd3ecc768369e038de6d99931fce48f8e587c86471cc6e37f3587d092dfb642b"
+      },
+      "name": "苦命鸳鸯",
+      "differenceCount": 15,
+      "configSha256": "9ef7f020c243dff358f93ea22c2bca82a41cdfb5daea96def372abcff64059ef"
+    },
+    {
+      "number": 24,
+      "sourceFolder": "24.改结局",
+      "level": "level-24",
+      "images": {
+        "scene-a.jpg": "ea0860b3fad3e0c81fb8e999f8c4f906a985964dee1931a585fc29568a5d0018",
+        "scene-b.jpg": "48af8160b0230c185e9e1b5f086d779e600a1551322561418b083ad43ba9d34f"
+      },
+      "name": "改结局",
+      "differenceCount": 15,
+      "configSha256": "e8299d7796c5371d820fefd6fb6ac1a09e16379c23d3741718a550dcfab15408"
+    },
+    {
+      "number": 25,
+      "sourceFolder": "25.没建模经济",
+      "level": "level-25",
+      "images": {
+        "scene-a.jpg": "da29387ae7b2d47f77be8f1814ffe71fa947ee49c52bed60344c7f2e7260ccef",
+        "scene-b.jpg": "fc2653fea2b075c554c8274ea45e11f148de7622ffd3d85f88243900764d5392"
+      },
+      "name": "没建模经济",
+      "differenceCount": 13,
+      "configSha256": "2b33b001a289ec11cd045a57be9d022939c29d99ede923c8d1394e8de2389578"
+    }
+  ]
+}

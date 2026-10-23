@@ -466,12 +466,23 @@ export class GameFlow extends Component {
         await this.showLevelSelect(city);
     }
 
-    /** 继续上次大关卡的首个未通关小关；仅两章旧专题保留顺序链。 */
+    /** 优先从最后游玩的小关继续；无记录的旧存档按原章节进度继续。 */
     public async findContinueTarget(): Promise<{ city: CityConfig; levelIndex: number; level: LevelConfig } | null> {
         // 独立大关卡只继续本章；初次进入从网络热点开始。
         const preferred = this._currentCity ?? this._cities.find(city => city.key === this.save.data?.lastPlayedCityKey);
         const current = preferred && this.isCityUnlocked(this._cities.indexOf(preferred))
             ? preferred : this._cities.find(city => city.key === 'city-00-HotTips') ?? this._cities[0];
+        const lastIndex = current?.levels.findIndex(dir => `${current.key}/${dir}` === this.save.data?.lastPlayedLevelKey) ?? -1;
+        if (current && lastIndex >= 0 && this.isLevelUnlocked(this._cities.indexOf(current), lastIndex)) {
+            let target = { city: current, levelIndex: lastIndex };
+            // 通关后向前继续，不因中间跳过的小关退回旧进度。
+            while (this.save.isCompleted(`${target.city.key}/${target.city.levels[target.levelIndex]}`)) {
+                const next = this._nextLevelTarget(target.city, target.levelIndex);
+                if (!next || !this.isLevelUnlocked(this._cities.indexOf(next.city), next.levelIndex)) break;
+                target = next;
+            }
+            return { ...target, level: await this._ensureLevel(target.city, target.levelIndex) };
+        }
         const sequence = current?.key === 'city-00-HotTips'
             ? [current, this._cities.find(city => city.key === 'city-01-2026Hotmeme')].filter((city): city is CityConfig => !!city)
             : current ? [current] : [];
@@ -551,6 +562,10 @@ export class GameFlow extends Component {
 
     public async startLevel(city: CityConfig, levelIndex: number, musicSource: 'select' | 'streak' | 'retry' = 'select', failureAction: 'lobby' | 'skip-next' = 'lobby'): Promise<void> {
         if (this._levelLoading) return;
+        if (!this.isLevelUnlocked(this._cities.indexOf(city), levelIndex)) {
+            this.toast('请先通关上一关，或在选关页看视频解锁本关');
+            return;
+        }
         this._cancelSecondaryNavigation();
         this._updateGameMusic(city, levelIndex, musicSource);
         const version = ++this._levelLoadVersion;
@@ -605,7 +620,7 @@ export class GameFlow extends Component {
             await this._drawLoadingFrame();
             if (!active()) return;
             const dailyFirst = this.save.beginDailyFirstRound(sidebarDay());
-            this.save.setLastPlayedCity(city.key);
+            this.save.setLastPlayedLevel(city.key, level.key);
             this._roundInterstitialProtected = dailyFirst;
             this._isPaused = false;
             if (this._loadingNode) this._loadingNode.active = false;
@@ -616,6 +631,7 @@ export class GameFlow extends Component {
             this.game?.clearLevel();
             console.error('[GameFlow] 关卡加载失败', error);
             if (failureAction === 'skip-next') fallback = this._nextLevelTarget(city, levelIndex, true);
+            if (fallback && !this.isLevelUnlocked(this._cities.indexOf(fallback.city), fallback.levelIndex)) fallback = null;
             if (fallback) {
                 this.toast('下一关加载失败，正在进入再下一关');
             } else {
@@ -871,24 +887,19 @@ export class GameFlow extends Component {
     // 解锁判定（积分制：通关集合驱动）
     // ------------------------------------------------------------------
 
-    /** 大关卡独立配置；仅顺序专题允许通过前置专题通关自动解锁。 */
+    /** 所有专题直接开放，旧存档的广告解锁记录不再作为入口条件。 */
     public isCityUnlocked(cityIndex: number): boolean {
-        const city = this._cities[cityIndex];
-        if (!city) return false;
-        if (this.save.isCityUnlocked(city.key)) return true;
-        if (city.unlockMode !== 'sequential') return false;
-        if (!city.prerequisiteCity) return true;
-        const prev = this._cities.find(item => item.key === city.prerequisiteCity);
-        return !!prev && prev.levels.length > 0 && prev.levels.every(dir => this.save.isCompleted(`${prev.key}/${dir}`));
+        return Number.isInteger(cityIndex) && cityIndex >= 0 && cityIndex < this._cities.length;
     }
 
-    /** 关卡解锁：城市已解锁，且同城前一关已通关（首关除外）。 */
+    /** 每章首关免费开放，后续小关通关前一关后免费开放。 */
     public isLevelUnlocked(cityIndex: number, levelIndex: number): boolean {
         const city = this._cities[cityIndex];
         if (!city || !this.isCityUnlocked(cityIndex)) return false;
         if (!Number.isInteger(levelIndex) || levelIndex < 0 || levelIndex >= city.levels.length) return false;
-        if (city.unlockMode !== 'sequential' || levelIndex === 0) return true;
-        return this.save.isCompleted(`${city.key}/${city.levels[levelIndex - 1]}`);
+        const key = `${city.key}/${city.levels[levelIndex]}`;
+        return levelIndex === 0 || this.save.isCompleted(key) || this.save.isLevelUnlocked(key)
+            || this.save.isCompleted(`${city.key}/${city.levels[levelIndex - 1]}`);
     }
 
     /** 城市进度（无需加载关卡配置）。 */
@@ -908,7 +919,7 @@ export class GameFlow extends Component {
     /** 根据目录定位后继关卡，不依赖可能尚未加载或损坏的配置。 */
     private _nextLevelTarget(city: CityConfig, levelIndex: number, allowLockedCity = false): { city: CityConfig; levelIndex: number } | null {
         if (levelIndex + 1 < city.levels.length) return { city, levelIndex: levelIndex + 1 };
-        // 只保留网络热点到2026热梗的原顺序链，不跳进独立广告大关卡。
+        // 只保留网络热点到2026热梗的原顺序链，其他专题在章内推进。
         if (city.key === 'city-00-HotTips') {
             const next = this._cities.find(item => item.key === 'city-01-2026Hotmeme');
             if (next?.levels.length && this.isCityUnlocked(this._cities.indexOf(next))) return { city: next, levelIndex: 0 };
@@ -1356,9 +1367,23 @@ export class GameFlow extends Component {
 
     private _rewardPending = false;
 
+    /** 选关跳关只解锁目标关；是否进入由选关页当前导航状态决定。 */
+    public async requestLevelUnlock(city: CityConfig, levelIndex: number): Promise<boolean> {
+        const cityIndex = this._cities.indexOf(city);
+        if (!this.isCityUnlocked(cityIndex) || !Number.isInteger(levelIndex)
+            || levelIndex < 0 || levelIndex >= city.levels.length) return false;
+        if (this.isLevelUnlocked(cityIndex, levelIndex)) return true;
+        let unlocked = false;
+        await this.requestReward('unlock-level', () => {
+            unlocked = this.save.unlockLevel(`${city.key}/${city.levels[levelIndex]}`);
+            if (!unlocked) this.toast('关卡解锁保存失败，请稍后重试');
+        });
+        return unlocked;
+    }
+
     public async requestReward(placement: RewardPlacement, onReward: () => void): Promise<void> {
-        // 城市解锁不依赖对局暂停状态；广告并发单独保护，包含结算后的复活请求。
-        if (this._rewardPending || (placement !== 'unlock-city' && this._isPaused && !this._isGameOver)) return;
+        // 广告并发单独保护，包含结算后的复活请求。
+        if (this._rewardPending || (placement !== 'unlock-level' && this._isPaused && !this._isGameOver)) return;
         const wasPaused = this._isPaused;
         this._rewardPending = true;
         this._isPaused = true;
@@ -1371,7 +1396,7 @@ export class GameFlow extends Component {
             return;
         } finally {
             this._rewardPending = false;
-            this._isPaused = placement === 'unlock-city' ? wasPaused : this._isGameOver;
+            this._isPaused = placement === 'unlock-level' ? wasPaused : this._isGameOver;
         }
         if (result.success && result.completed) {
             onReward();
@@ -1668,16 +1693,16 @@ export class GameFlow extends Component {
             report(0.99);
 
             // v2 旧档迁移保持原城市顺序，新增前置专题不能占用旧关卡编号。
+            const rules = (await this._loadJson('configs/chapter-rules')).json as ChapterRulesConfig;
             const allKeys: string[] = [];
-            for (const city of this._cities) {
-                if (city.key === 'city-00-HotTips' || city.key === 'city-01-2026Hotmeme'
-                    || city.key === 'city-PetStory') continue;
+            for (const key of rules.legacyOrders[0]) {
+                const city = this._cities.find(item => item.key === key);
+                if (!city) continue;
                 for (const dir of city.levels) {
                     allKeys.push(`${city.key}/${dir}`);
                 }
             }
             const migratedLegacy = this.save.migrateLegacy(allKeys);
-            const rules = (await this._loadJson('configs/chapter-rules')).json as ChapterRulesConfig;
             if (!this.save.migrateChapterRules(rules, this._cities, migratedLegacy)) {
                 throw new Error('旧关卡解锁进度保存失败，请重试');
             }
@@ -1705,8 +1730,7 @@ export class GameFlow extends Component {
         return {
             key,
             name: meta.name ?? key,
-            unlockMode: meta.unlockMode === 'sequential' ? 'sequential' : 'rewarded',
-            prerequisiteCity: meta.prerequisiteCity,
+            unlockMode: 'sequential',
             banner: meta.banner ?? `chapter-covers/${key}-icon/spriteFrame`,
             levels: (meta.levels ?? []).filter(dir => dir !== 'level-00'),
             levelsLoaded: false,

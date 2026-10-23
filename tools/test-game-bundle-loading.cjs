@@ -105,7 +105,7 @@ function flow() {
     f.platform = { configure() {} }; f.save = { migrateChapterRules() { return true; }, migrateLegacy(keys) {
         assert.equal(keys[0], 'city-02-beijing/level-01', 'Prepending HotTips must not shift legacy save identities');
         assert.equal(keys.length, 120);
-        assert.ok(keys.every(key => !key.startsWith('city-00-HotTips/') && !key.startsWith('city-01-2026Hotmeme/') && !key.startsWith('city-PetStory/')));
+        assert.ok(keys.every(key => !key.startsWith('city-00-HotTips/') && !key.startsWith('city-01-2026Hotmeme/') && !key.startsWith('city-2025Hotmeme/') && !key.startsWith('city-PetStory/')));
         migrated = true;
     } };
     f._loadingNode = { active: true };

@@ -40,6 +40,7 @@ LEVEL_RE = re.compile(r'^level-\d{2}$')
 CITY_NAMES = {
     'city-00-HotTips': '网络热点',
     'city-01-2026Hotmeme': '2026热梗',
+    'city-2025Hotmeme': '2025年度梗',
     'city-PetStory': '宠物故事',
     'city-02-beijing': '北京',
     'city-03-shanghai': '上海',
@@ -120,7 +121,9 @@ def check_level(city_dir, level_dir):
 
 
 def city_sort_key(city):
-    # 命名不含数字的专题明确插在 2026 热梗后；原城市目录和存档 key 不变。
+    # 新专题使用独立 key 插入展示列表，原城市目录和存档 key 不变。
+    if city == 'city-2025Hotmeme':
+        return (1, 2, city)
     if city == 'city-PetStory':
         return (1, 1, city)
     match = re.match(r'^city-(\d{2})-', city)
@@ -139,6 +142,31 @@ def main():
     )
     if not city_dirs:
         print(f'错误: {LEVELS_ROOT} 下没有 city-* 目录')
+        return 1
+
+    # 已明确列入章节清单的关卡不能因缺失配置而被静默删掉、导致关卡顺序变化。
+    # 在写入任何清单前统一检查，避免半成品专题覆盖已发布索引。
+    missing_configs = []
+    for city_dir in city_dirs:
+        manifest_path = os.path.join(chapter_config_root(city_dir), 'city.json')
+        if not os.path.isfile(manifest_path):
+            continue
+        try:
+            with open(manifest_path, encoding='utf-8') as source:
+                manifest = json.load(source)
+        except (OSError, ValueError) as error:
+            print(f'错误: 章节清单读取失败: {manifest_path}: {error}')
+            return 1
+        for level in manifest.get('levels', []):
+            if level == 'level-00':
+                continue
+            config_path = os.path.join(chapter_config_root(city_dir), level, 'differences.json')
+            if not os.path.isfile(config_path):
+                missing_configs.append(config_path)
+    if missing_configs:
+        for config_path in missing_configs:
+            print(f'错误: 已列入清单的关卡缺少配置: {config_path}')
+        print('未更新章节清单和主包索引，请补齐配置后重试。')
         return 1
 
     # 1. 全局城市索引
@@ -174,9 +202,8 @@ def main():
             except Exception:
                 manifest = {}
         manifest.setdefault('name', CITY_NAMES.get(city_dir, city_dir))
-        manifest.setdefault('unlockMode', 'sequential' if city_dir in ('city-00-HotTips', 'city-01-2026Hotmeme') else 'rewarded')
-        if city_dir == 'city-01-2026Hotmeme':
-            manifest.setdefault('prerequisiteCity', 'city-00-HotTips')
+        manifest['unlockMode'] = 'sequential'
+        manifest.pop('prerequisiteCity', None)
         manifest.setdefault('banner', f'chapter-covers/{city_dir}-icon/spriteFrame')
         manifest['levels'] = level_dirs
         json.dump(manifest, open(manifest_path, 'w', encoding='utf-8'),

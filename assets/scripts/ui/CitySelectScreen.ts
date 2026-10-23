@@ -1,7 +1,6 @@
 import {
     _decorator,
     Color,
-    EventTouch,
     Graphics,
     Input,
     Label,
@@ -20,9 +19,6 @@ import { UIColors, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
 
-/** 未解锁城市名颜色 */
-const CITY_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
-
 /**
  * 城市选择界面（Screens/CitySelect）。
  *
@@ -37,12 +33,12 @@ const CITY_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
  * 3. 无模板时使用内置简易卡片
  * - CityName      Label，城市名
  * - CityProgress  Label，进度「X/Y」，前方固定文本（如「已完成：」）由模板自带 Label 承担
- * - Levelnumber   Label，关卡范围「第X-Y关」（按全局关卡编号）
+ * - Levelnumber   Label，关卡范围（按本章编号）
  * - rank_row      进度条底槽 + 子节点 rank_row-001 填充条（锚点靠左，代码按进度改宽度）
  * - CityBanner    Sprite，章节封面包中的 banner，由首包章节索引指定
- * - LockIcon      锁图标（未解锁时显示；模板里直接用 CityLockTip 当锁也可以）
+ * - LockIcon      旧模板锁图标，运行时隐藏
  *
- * ProgressPoint 与 BtnUnlock 互斥；城市可通关前城或看激励视频解锁。
+ * 所有专题可直接进入；显示 ProgressPoint，隐藏旧模板的 BtnUnlock。
  */
 @ccclass('CitySelectScreen')
 export class CitySelectScreen extends UIScreen {
@@ -63,8 +59,6 @@ export class CitySelectScreen extends UIScreen {
 
     private _cards: Node[] = [];
     private _content: Node | null = null;
-    private _unlockPending = false;
-    private readonly _nameColors = new WeakMap<Node, Color>();
 
     protected onLoad(): void {
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showLobby());
@@ -88,7 +82,7 @@ export class CitySelectScreen extends UIScreen {
             ?? root.getChildByName('CityCard')
             ?? root.getChildByName('CityCard1');
 
-        this.flow.cities.forEach((city, index) => {
+        this.flow.cities.forEach(city => {
             let card: Node;
             if (this.cardPrefab) {
                 card = instantiate(this.cardPrefab);
@@ -102,7 +96,7 @@ export class CitySelectScreen extends UIScreen {
             this._cards.push(card);
             card.parent = container;
             card.active = true;
-            this._fillCard(card, city, index);
+            this._fillCard(card, city);
         });
 
         // 隐藏手动参考卡
@@ -112,29 +106,17 @@ export class CitySelectScreen extends UIScreen {
         this._scrollToTop();
     }
 
-    private _fillCard(card: Node, city: CityConfig, cityIndex: number): void {
-        const unlocked = this.flow.isCityUnlocked(cityIndex);
+    private _fillCard(card: Node, city: CityConfig): void {
         const progress = this.flow.cityProgress(city);
         const progressPoint = this.findChildDeep(card, 'ProgressPoint');
         const unlockButton = this.findChildDeep(card, 'BtnUnlock');
-        if (progressPoint) progressPoint.active = unlocked;
+        if (progressPoint) progressPoint.active = true;
         if (unlockButton) {
-            unlockButton.active = !unlocked;
+            unlockButton.active = false;
             unlockButton.off(Input.EventType.TOUCH_END, undefined, this);
-            unlockButton.on(Input.EventType.TOUCH_END, (event: EventTouch) => {
-                event.propagationStopped = true;
-                void this._unlockCity(city, cityIndex);
-            }, this);
         }
 
         this._setCardLabel(card, 'CityName', city.name);
-        // 城市名：已解锁保持模板默认色，未解锁灰蓝
-        const nameLabel = this.findChildDeep(card, 'CityName')?.getComponent(Label);
-        if (nameLabel) {
-            if (!this._nameColors.has(card)) this._nameColors.set(card, nameLabel.color.clone());
-            nameLabel.color = unlocked ? this._nameColors.get(card)! : CITY_NAME_LOCKED_COLOR;
-        }
-        // 进度始终显示「完成/总数」，未解锁即为 0/15
         this._setCardLabel(card, 'CityProgress', `${progress.done}/${progress.total}`);
         this._setCardLabel(card, 'Levelnumber', progress.total > 0 ? `${city.name}1-${progress.total}关` : '');
         const rangeLabel = this.findChildDeep(card, 'Levelnumber')?.getComponent(Label);
@@ -142,12 +124,8 @@ export class CitySelectScreen extends UIScreen {
             rangeLabel.enableWrapText = false;
             rangeLabel.overflow = Label.Overflow.SHRINK;
         }
-        const unlockLabel = unlockButton?.getComponentInChildren(Label);
-        if (unlockLabel) unlockLabel.string = city.unlockMode === 'sequential' ? '可提前解锁' : '看广告解锁';
-
-        // 卡片背景始终保留设计色；城市标记未解锁时置灰，解锁后恢复彩色。
         const cityAim = this.findChildDeep(card, 'Cityaim')?.getComponent(Sprite);
-        if (cityAim) cityAim.grayscale = !unlocked;
+        if (cityAim) cityAim.grayscale = false;
 
         // 进度条：rank_row 底槽 + rank_row-001 填充（锚点已靠左，按完成比例改宽度）
         const barRoot = this.findChildDeep(card, 'rank_row');
@@ -158,57 +136,22 @@ export class CitySelectScreen extends UIScreen {
             fillUi.width = barRootUi.width * ratio;
         }
 
-        // 锁：LockIcon 优先，兼容模板里直接用 CityLockTip 当锁图标
-        const lock = card.getChildByName('LockIcon') ?? card.getChildByName('CityLockTip');
-        if (lock) lock.active = !unlocked;
-
-        // 城市横幅置灰：同步设置（与选关页同一模式，grayscale 是组件属性与帧无关）
-        const bannerSprite = this.findChildDeep(card, 'CityBanner')?.getComponent(Sprite);
-        if (bannerSprite) {
-            bannerSprite.grayscale = !unlocked;
-            console.log(`[CitySelect] sync-gray city=${city.key} unlocked=${unlocked} grayscale=${bannerSprite.grayscale}`);
+        // 兼容旧模板，隐藏所有专题锁定提示。
+        for (const name of ['LockIcon', 'CityLockTip']) {
+            const lock = this.findChildDeep(card, name);
+            if (lock) lock.active = false;
         }
-
-        // 城市图标与城市配置共同存放在 configs。
-        void this._loadBanner(card, city.banner || `chapter-covers/${city.key}-icon/spriteFrame`, unlocked);
+        const bannerSprite = this.findChildDeep(card, 'CityBanner')?.getComponent(Sprite);
+        if (bannerSprite) bannerSprite.grayscale = false;
+        void this._loadBanner(card, city.banner || `chapter-covers/${city.key}-icon/spriteFrame`);
 
         card.off(Input.EventType.TOUCH_END);
         card.on(Input.EventType.TOUCH_END, () => {
-            if (!this.flow.isCityUnlocked(cityIndex)) {
-                if (city.unlockMode !== 'sequential') {
-                    void this._unlockCity(city, cityIndex);
-                    return;
-                }
-                const prev = this.flow.cities.find(item => item.key === city.prerequisiteCity);
-                this.flow.toast(prev ? `通关${prev.name}后解锁，或看广告提前解锁` : '尚未解锁');
-                return;
-            }
             void this.flow.enterCity(city);
         }, this);
     }
 
-    private async _unlockCity(city: CityConfig, cityIndex: number): Promise<void> {
-        if (this._unlockPending || this.flow.isCityUnlocked(cityIndex)) return;
-        this._unlockPending = true;
-        try {
-            await this.flow.requestReward('unlock-city', () => {
-                if (!this.flow.save.unlockCity(city.key)) {
-                    this.flow.toast('解锁保存失败，请稍后重试');
-                    return;
-                }
-                if (this.isValid && this.node.activeInHierarchy) {
-                    this._cards.forEach((card, index) => {
-                        if (card.isValid) this._fillCard(card, this.flow.cities[index], index);
-                    });
-                }
-                this.flow.toast(`${city.name}已解锁`);
-            });
-        } finally {
-            this._unlockPending = false;
-        }
-    }
-
-    private async _loadBanner(card: Node, path: string, unlocked: boolean): Promise<void> {
+    private async _loadBanner(card: Node, path: string): Promise<void> {
         const banner = this.findChildDeep(card, 'CityBanner');
         if (!banner) return;
         try {

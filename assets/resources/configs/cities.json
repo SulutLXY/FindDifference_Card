@@ -3,6 +3,7 @@
     "city-00-HotTips",
     "city-01-2026Hotmeme",
     "city-PetStory",
+    "city-2025Hotmeme",
     "city-02-beijing",
     "city-03-shanghai",
     "city-04-nanjing",
@@ -87,8 +88,7 @@
         "level-30"
       ],
       "banner": "chapter-covers/city-01-2026Hotmeme-icon/spriteFrame",
-      "unlockMode": "sequential",
-      "prerequisiteCity": "city-00-HotTips"
+      "unlockMode": "sequential"
     },
     "city-PetStory": {
       "key": "city-PetStory",
@@ -116,7 +116,40 @@
         "level-20"
       ],
       "banner": "chapter-covers/city-PetStory-icon/spriteFrame",
-      "unlockMode": "rewarded"
+      "unlockMode": "sequential"
+    },
+    "city-2025Hotmeme": {
+      "key": "city-2025Hotmeme",
+      "name": "2025年度梗",
+      "levels": [
+        "level-01",
+        "level-02",
+        "level-03",
+        "level-04",
+        "level-05",
+        "level-06",
+        "level-07",
+        "level-08",
+        "level-09",
+        "level-10",
+        "level-11",
+        "level-12",
+        "level-13",
+        "level-14",
+        "level-15",
+        "level-16",
+        "level-17",
+        "level-18",
+        "level-19",
+        "level-20",
+        "level-21",
+        "level-22",
+        "level-23",
+        "level-24",
+        "level-25"
+      ],
+      "banner": "chapter-covers/city-2025Hotmeme-icon/spriteFrame",
+      "unlockMode": "sequential"
     },
     "city-02-beijing": {
       "key": "city-02-beijing",
@@ -139,7 +172,7 @@
         "level-15"
       ],
       "banner": "chapter-covers/city-02-beijing-icon/spriteFrame",
-      "unlockMode": "rewarded"
+      "unlockMode": "sequential"
     },
     "city-03-shanghai": {
       "key": "city-03-shanghai",
@@ -162,7 +195,7 @@
         "level-15"
       ],
       "banner": "chapter-covers/city-03-shanghai-icon/spriteFrame",
-      "unlockMode": "rewarded"
+      "unlockMode": "sequential"
     },
     "city-04-nanjing": {
       "key": "city-04-nanjing",
@@ -185,7 +218,7 @@
         "level-15"
       ],
       "banner": "chapter-covers/city-04-nanjing-icon/spriteFrame",
-      "unlockMode": "rewarded"
+      "unlockMode": "sequential"
     },
     "city-05-xiamen": {
       "key": "city-05-xiamen",
@@ -208,7 +241,7 @@
         "level-15"
       ],
       "banner": "chapter-covers/city-05-xiamen-icon/spriteFrame",
-      "unlockMode": "rewarded"
+      "unlockMode": "sequential"
     },
     "city-06-changsha": {
       "key": "city-06-changsha",
@@ -231,7 +264,7 @@
         "level-15"
       ],
       "banner": "chapter-covers/city-06-changsha-icon/spriteFrame",
-      "unlockMode": "rewarded"
+      "unlockMode": "sequential"
     },
     "city-07-guangzhou": {
       "key": "city-07-guangzhou",
@@ -254,7 +287,7 @@
         "level-15"
       ],
       "banner": "chapter-covers/city-07-guangzhou-icon/spriteFrame",
-      "unlockMode": "rewarded"
+      "unlockMode": "sequential"
     },
     "city-08-chengdu": {
       "key": "city-08-chengdu",
@@ -277,7 +310,7 @@
         "level-15"
       ],
       "banner": "chapter-covers/city-08-chengdu-icon/spriteFrame",
-      "unlockMode": "rewarded"
+      "unlockMode": "sequential"
     },
     "city-09-xian": {
       "key": "city-09-xian",
@@ -300,7 +333,7 @@
         "level-15"
       ],
       "banner": "chapter-covers/city-09-xian-icon/spriteFrame",
-      "unlockMode": "rewarded"
+      "unlockMode": "sequential"
     }
   }
 }
