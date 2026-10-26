@@ -48,6 +48,17 @@ vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleK
     const shownBefore=shown;
     assert.equal((await p.showRewardedAd('add-time')).completed,true,'Requested reward cancels a pending interstitial');
     await pending;finishLoad();await tick();assert.equal(shown,shownBefore,'Cancelled load cannot display over rewarded video');
+    host.tt.createInterstitialAd=normalCreate;
+    p.canShowInterstitial=()=>false;
+    const beforeForced=created;
+    await p.showInterstitial(()=>true,true);assert.equal(created,beforeForced,'Normal entries retain round protection');
+    const forced=p.showInterstitial(()=>true,true,true);await tick();assert.equal(created,beforeForced+1,'Requested return/selection navigation bypasses cooldown and first-round protection');close();await forced;
+    let finishReward;
+    host.tt.createRewardedVideoAd=()=>({onClose(f){finishReward=f;},onError(){},offClose(){},offError(){},show:async()=>{}});
+    const reward=p.showRewardedAd('level-select');
+    await p.showInterstitial(()=>true,true,true);assert.equal(created,beforeForced+1,'Forced navigation cannot overlap an active reward video');
+    finishReward({isEnded:true});await reward;
+    p.canShowInterstitial=()=>true;
     now+=60000;host.tt.createInterstitialAd=()=>{throw Error('unavailable');};await p.showInterstitial(()=>true);assert.equal(p._interstitialBusy,false);
     console.log('Passed: first settlement and shared entry trigger, configured ID, cooldown/busy guards, stale-page cancellation, close/error recovery.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

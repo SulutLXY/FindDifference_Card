@@ -1,5 +1,5 @@
 {
-  "maxLives": 5,
+  "maxLives": 3,
   "baseTimeSeconds": 120,
   "baseDifferenceCount": 4,
   "secondsPerExtraDifference": 15

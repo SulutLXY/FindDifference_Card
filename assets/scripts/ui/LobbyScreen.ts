@@ -3,6 +3,7 @@ import { UIScreen } from './UIScreen';
 import { LobbyEntries } from './LobbyEntries';
 import { FavoriteGift } from './FavoriteGift';
 import { APP_VERSION } from '../core/AppVersion';
+import { EnergyDisplay } from './EnergyDisplay';
 
 const { ccclass, property } = _decorator;
 
@@ -52,6 +53,7 @@ export class LobbyScreen extends UIScreen {
     private _heroRequest = 0;
 
     protected onLoad(): void {
+        void EnergyDisplay.attach(this.node);
         const hero = this.node.getChildByName('bg_showIcon');
         this._heroAnimation = hero?.getComponent(Animation) ?? null;
         this._heroSprite = hero?.getComponent(Sprite) ?? null;
@@ -63,13 +65,14 @@ export class LobbyScreen extends UIScreen {
         if (!entryHost.getComponent(FavoriteGift)) entryHost.addComponent(FavoriteGift);
         this.wireButton(this.setting, 'Setting', () => this.flow.showSettings(false));
         this.wireButton(this.btnStart, 'BtnStart', () => this.flow.startContinue());
-        this.wireButton(this.btnLevels, 'BtnLevels', () => this.flow.showCitySelect());
+        this.wireButton(this.btnLevels, 'BtnLevels', () => { void this.flow.enterLevelSelection(); });
         this.wireButton(this.btnRank, 'BtnRank', () => this.flow.showRank());
         // 场景按钮名为 Btncollect（小写 c），命名查找与实际节点保持一致
         this.wireButton(this.btnCollect, 'Btncollect', () => this.flow.showCollect());
     }
 
     protected onOpen(): void {
+        this._refreshLevelSelectLabel();
         const rankButton = this.resolveNode(this.btnRank, 'BtnRank');
         if (rankButton) rankButton.active = !this.flow.platform.isHarmony;
         void this._refreshRankVisibility();
@@ -77,6 +80,26 @@ export class LobbyScreen extends UIScreen {
         // 只显示开始挑战实际进入的关卡名。
         void this._refreshContinueLabel();
         void this._showHero();
+    }
+
+    private _accessElapsed = 0;
+
+    protected update(dt: number): void {
+        this._accessElapsed += dt;
+        if (this._accessElapsed < 1) return;
+        this._accessElapsed = 0;
+        this._refreshLevelSelectLabel();
+    }
+
+    private _refreshLevelSelectLabel(): void {
+        const label = this.resolveNode(this.btnLevels, 'BtnLevels')?.getComponentInChildren(Label);
+        if (!label) return;
+        const text = this.flow.save.hasLevelSelectAccess() ? '选择关卡' : '选择关卡\n视频解锁 24 小时';
+        if (label.string === text) return;
+        label.string = text;
+        label.fontSize = 26;
+        label.lineHeight = 30;
+        label.overflow = Label.Overflow.SHRINK;
     }
 
     protected onDisable(): void {

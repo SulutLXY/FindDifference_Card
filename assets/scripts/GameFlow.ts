@@ -1,4 +1,5 @@
 import { FoodTips } from './ui/FoodTips';
+import { EventTips } from './ui/EventTips';
 import { GameTips } from './ui/GameTips';
 import { PREVIEW } from 'cc/env';
 import {
@@ -112,7 +113,7 @@ export class GameFlow extends Component {
     /** 排行榜平台适配层：抖音真实榜单，其余环境本地兜底（见 services/rank） */
     public readonly rankProvider = createRankProvider(this.platform, this.save);
 
-    private _grades: GradeConfig = { maxLives: 5, baseTimeSeconds: 120, baseDifferenceCount: 4, secondsPerExtraDifference: 15 };
+    private _grades: GradeConfig = { maxLives: 3, baseTimeSeconds: 120, baseDifferenceCount: 4, secondsPerExtraDifference: 15 };
     private _cities: CityConfig[] = [];
     private _currentCity: CityConfig | null = null;
     private _currentLevel: LevelConfig | null = null;
@@ -177,6 +178,7 @@ export class GameFlow extends Component {
     /** 随机音乐模式下连续游玩的关数，每满两关换一首 */
     private _gameMusicStreak = 0;
     private _foodTips: FoodTips | null = null;
+    private _eventTips: EventTips | null = null;
     private _foods: FoodCatalogEntry[] = [];
 
     public get foods(): readonly FoodCatalogEntry[] { return this._foods; }
@@ -250,6 +252,11 @@ export class GameFlow extends Component {
         if (foodTips) {
             foodTips.active = false;
             this._foodTips = foodTips.getComponent(FoodTips) ?? foodTips.addComponent(FoodTips);
+        }
+        const eventTips = this.node.parent?.getChildByName('EventTips');
+        if (eventTips) {
+            eventTips.active = false;
+            this._eventTips = eventTips.getComponent(EventTips) ?? eventTips.addComponent(EventTips);
         }
         const uiRoot = this.node.parent;
         if (uiRoot && !uiRoot.getComponent(UIAnimationBinding)) uiRoot.addComponent(UIAnimationBinding);
@@ -347,6 +354,19 @@ export class GameFlow extends Component {
         this._switchTo(this.lobby);
     }
 
+    private _returnAdPending = false;
+
+    /** 玩家主动返回主页时请求插屏；加载失败等内部跳转仍使用 showLobby。 */
+    public returnToLobby(): void {
+        if (this._returnAdPending) return;
+        this.showLobby();
+        const navigation = this._secondaryNavigationVersion;
+        this._returnAdPending = true;
+        void this.platform.showInterstitial(() => this.isValid && navigation === this._secondaryNavigationVersion
+            && !!this.lobby?.node.activeInHierarchy, true, true)
+            .finally(() => { this._returnAdPending = false; });
+    }
+
     public showSettings(inGame: boolean): void {
         if (!this._settings || (inGame && (this._isPaused || this._isGameOver))) return;
         this._settingsInGame = inGame;
@@ -441,6 +461,49 @@ export class GameFlow extends Component {
         void this.lobby?.preloadHero();
     }
 
+    /** 选关入口授权独立于小关解锁；完整观看后从此刻起有效 24 小时。 */
+    public async requestLevelSelectAccess(): Promise<boolean> {
+        if (this.save.hasLevelSelectAccess()) return true;
+        let granted = false;
+        await this.requestReward('level-select', () => {
+            granted = this.save.grantLevelSelectAccess();
+            if (!granted) this.toast('选关资格保存失败，请重试');
+        });
+        return granted;
+    }
+
+    private _levelSelectEntryPending = false;
+
+    public async enterLevelSelection(): Promise<void> {
+        if (this._levelSelectEntryPending || this._returnAdPending || this._rewardPending || !this.lobby?.node.activeInHierarchy) return;
+        this._levelSelectEntryPending = true;
+        const navigation = this._secondaryNavigationVersion;
+        const active = () => this.isValid && navigation === this._secondaryNavigationVersion && !!this.lobby?.node.activeInHierarchy;
+        try {
+            if (this.save.hasLevelSelectAccess()) {
+                await this.platform.showInterstitial(active, true, true);
+            } else if (!await this.requestLevelSelectAccess()) {
+                return;
+            }
+            if (active() && this.save.hasLevelSelectAccess()) this.showCitySelect();
+        } finally {
+            this._levelSelectEntryPending = false;
+        }
+    }
+
+    public get energyAdsRemaining(): number { return this.save.energyAdsRemaining(sidebarDay()); }
+
+    public async requestEnergyReward(): Promise<void> {
+        if (this.save.energy >= this.save.energyRecoveryLimit) return;
+        if (!this.energyAdsRemaining) { this.toast('今日体力视频次数已用完'); return; }
+        await this.requestReward('energy', () => {
+            const before = this.save.energy;
+            if (before >= this.save.energyLimit) { this.toast('体力已恢复至上限'); return; }
+            if (this.save.claimEnergyAd(sidebarDay())) this.toast(`体力 +${this.save.energy - before}`);
+            else this.toast('体力领取失败，请稍后重试');
+        });
+    }
+
     /** 城市内关卡页。city 缺省时用当前城市（或第一城）。 */
     public async showLevelSelect(city?: CityConfig): Promise<void> {
         this._cancelSecondaryNavigation();
@@ -504,12 +567,16 @@ export class GameFlow extends Component {
         return null;
     }
 
+    private _continuePending = false;
+
     /** 开始挑战：继续当前大关卡，全部通关则重玩本章第一关。 */
     public async startContinue(): Promise<void> {
         if (this._bootFailed) {
             await this._bootstrap();
             return;
         }
+        if (this._continuePending || this._levelLoading) return;
+        this._continuePending = true;
         try {
             const target = await this.findContinueTarget();
             if (target) {
@@ -524,6 +591,8 @@ export class GameFlow extends Component {
         } catch (error) {
             console.error('[GameFlow] 当前关卡加载失败', error);
             this._returnToLobbyOnLoadError('关卡加载失败，已返回主界面');
+        } finally {
+            this._continuePending = false;
         }
     }
 
@@ -561,9 +630,14 @@ export class GameFlow extends Component {
     private _levelLoadVersion = 0;
 
     public async startLevel(city: CityConfig, levelIndex: number, musicSource: 'select' | 'streak' | 'retry' = 'select', failureAction: 'lobby' | 'skip-next' = 'lobby'): Promise<void> {
-        if (this._levelLoading) return;
+        if (this._levelLoading || this._rewardPending || this._levelSelectEntryPending || this._returnAdPending) return;
         if (!this.isLevelUnlocked(this._cities.indexOf(city), levelIndex)) {
             this.toast('请先通关上一关，或在选关页看视频解锁本关');
+            return;
+        }
+        if (this.save.energy < 1) {
+            if (this._loadingNode?.active) this.showLobby();
+            this.toast('体力不足，无法开始挑战');
             return;
         }
         this._cancelSecondaryNavigation();
@@ -619,6 +693,10 @@ export class GameFlow extends Component {
             }
             await this._drawLoadingFrame();
             if (!active()) return;
+            if (!this.save.consumeEnergy()) {
+                this._returnToLobbyOnLoadError(this.save.energy < 1 ? '体力不足，已返回主页' : '体力保存失败，请重试');
+                return;
+            }
             const dailyFirst = this.save.beginDailyFirstRound(sidebarDay());
             this.save.setLastPlayedLevel(city.key, level.key);
             this._roundInterstitialProtected = dailyFirst;
@@ -747,6 +825,7 @@ export class GameFlow extends Component {
         }
         this._stopResultTone();
         this._foodTips?.close();
+        this._eventTips?.close();
         this._settings?.close();
         this._settingsInGame = false;
         this._comboSoundRequest++;
@@ -849,6 +928,7 @@ export class GameFlow extends Component {
     }
 
     protected onDestroy(): void {
+        this._eventTips?.close();
         this._disposeSecondaryPages();
         this._pageSpritesDisposed = true;
         for (const owner of this._pageSpriteFrames.keys()) this.releasePageSpriteFrames(owner);
@@ -1353,7 +1433,6 @@ export class GameFlow extends Component {
         if (!level) return;
         const win = this._foundIds.size >= level.differences.length;
         const next = win ? this.findNextLevel(level) : null;
-        this.resultModal?.close();
         if (next) {
             void this.startLevel(next.city, next.levelIndex, 'streak', 'skip-next');
         } else if (this._currentCity) {
@@ -1367,8 +1446,21 @@ export class GameFlow extends Component {
 
     private _rewardPending = false;
 
-    /** 选关跳关只解锁目标关；是否进入由选关页当前导航状态决定。 */
+    /** 点击锁定关卡先确认，不在卡片点击时直接请求广告。 */
     public async requestLevelUnlock(city: CityConfig, levelIndex: number): Promise<boolean> {
+        const cityIndex = this._cities.indexOf(city);
+        if (!this.isCityUnlocked(cityIndex) || !Number.isInteger(levelIndex)
+            || levelIndex < 0 || levelIndex >= city.levels.length) return false;
+        if (this.isLevelUnlocked(cityIndex, levelIndex)) return true;
+        if (!this._eventTips?.isValid) {
+            this.toast('解锁弹窗暂不可用，请稍后重试');
+            return false;
+        }
+        return this._eventTips.present(city, levelIndex);
+    }
+
+    /** 仅由确认弹窗的单关按钮调用；是否进入由当前导航状态决定。 */
+    public async watchLevelUnlockVideo(city: CityConfig, levelIndex: number): Promise<boolean> {
         const cityIndex = this._cities.indexOf(city);
         if (!this.isCityUnlocked(cityIndex) || !Number.isInteger(levelIndex)
             || levelIndex < 0 || levelIndex >= city.levels.length) return false;
@@ -1381,9 +1473,18 @@ export class GameFlow extends Component {
         return unlocked;
     }
 
+    /** 整章每次点击只播放一个视频，累计进度由本次 EventTips 会话持有。 */
+    public async watchChapterUnlockVideo(city: CityConfig): Promise<boolean> {
+        if (!this.isCityUnlocked(this._cities.indexOf(city)) || !city.levels.length) return false;
+        let completed = false;
+        await this.requestReward('unlock-chapter', () => { completed = true; });
+        return completed;
+    }
+
     public async requestReward(placement: RewardPlacement, onReward: () => void): Promise<void> {
         // 广告并发单独保护，包含结算后的复活请求。
-        if (this._rewardPending || (placement !== 'unlock-level' && this._isPaused && !this._isGameOver)) return;
+        const isUnlock = placement === 'unlock-level' || placement === 'unlock-chapter' || placement === 'level-select' || placement === 'energy';
+        if (this._rewardPending || (!isUnlock && this._isPaused && !this._isGameOver)) return;
         const wasPaused = this._isPaused;
         this._rewardPending = true;
         this._isPaused = true;
@@ -1396,7 +1497,7 @@ export class GameFlow extends Component {
             return;
         } finally {
             this._rewardPending = false;
-            this._isPaused = placement === 'unlock-level' ? wasPaused : this._isGameOver;
+            this._isPaused = isUnlock ? wasPaused : this._isGameOver;
         }
         if (result.success && result.completed) {
             onReward();
@@ -1730,7 +1831,6 @@ export class GameFlow extends Component {
         return {
             key,
             name: meta.name ?? key,
-            unlockMode: 'sequential',
             banner: meta.banner ?? `chapter-covers/${key}-icon/spriteFrame`,
             levels: (meta.levels ?? []).filter(dir => dir !== 'level-00'),
             levelsLoaded: false,

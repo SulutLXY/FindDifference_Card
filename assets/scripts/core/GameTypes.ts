@@ -1,6 +1,6 @@
 export type AppScreen = 'lobby' | 'cities' | 'levels' | 'game';
 
-export type RewardPlacement = 'revive' | 'hint' | 'add-time' | 'unlock-level';
+export type RewardPlacement = 'revive' | 'hint' | 'add-time' | 'unlock-level' | 'unlock-chapter' | 'level-select' | 'energy';
 
 export interface FoodCatalogEntry {
     id: string;
@@ -83,14 +83,12 @@ export interface CityIndex {
     chapters: Record<string, CityMeta>;
 }
 
-/** 章节源清单（levels/城市/configs/city.json），构建工具汇总到首包索引。 */
+/** 章节内容信息；公共解锁规则由 GameFlow 控制，不随各章资源发布。 */
 export interface CityMeta {
     key: string;
     name: string;
     banner?: string;
     levels: string[];
-    /** 专题直接进入，首关免费，后续小关通关前一关后免费开放。 */
-    unlockMode?: 'sequential';
 }
 
 /** 运行时城市数据：levels 按需懒加载填充 levelConfigs。 */
@@ -140,6 +138,13 @@ export interface LevelProgress {
 /** 存档（v3）：通关集合 + 积分。积分 = 已通关关卡数，每通关一关 +1。 */
 export interface SaveData {
     version: number;
+    /** 开局体力；旧档首次升级补入初始 10 点。 */
+    energy?: number;
+    energyUpdatedAt?: number;
+    energyAdDay?: string;
+    energyAdsUsed?: number;
+    /** 激励视频授予的选关入口有效期，毫秒时间戳。 */
+    levelSelectExpiresAt?: number;
     /** key（城市目录/关卡目录）→ 通关成绩 */
     completed: Record<string, LevelProgress>;
     /** 通过激励视频提前解锁的城市目录名。 */

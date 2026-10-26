@@ -84,7 +84,7 @@ export class RankScreen extends UIScreen {
 
     protected onLoad(): void {
         this._provider = this.flow.rankProvider;
-        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showLobby());
+        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.returnToLobby());
         this.wireButton(this.tabFriend, 'TabFriend', () => this._switchTab('friend'));
         this.wireButton(this.tabGlobal, 'TabGlobal', () => this._switchTab('global'));
         this._setupScrollContainer();

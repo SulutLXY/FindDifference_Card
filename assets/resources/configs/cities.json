@@ -49,8 +49,7 @@
         "level-29",
         "level-30"
       ],
-      "banner": "chapter-covers/city-00-HotTips-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-00-HotTips-icon/spriteFrame"
     },
     "city-01-2026Hotmeme": {
       "key": "city-01-2026Hotmeme",
@@ -87,8 +86,7 @@
         "level-29",
         "level-30"
       ],
-      "banner": "chapter-covers/city-01-2026Hotmeme-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-01-2026Hotmeme-icon/spriteFrame"
     },
     "city-PetStory": {
       "key": "city-PetStory",
@@ -115,8 +113,7 @@
         "level-19",
         "level-20"
       ],
-      "banner": "chapter-covers/city-PetStory-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-PetStory-icon/spriteFrame"
     },
     "city-2025Hotmeme": {
       "key": "city-2025Hotmeme",
@@ -148,8 +145,7 @@
         "level-24",
         "level-25"
       ],
-      "banner": "chapter-covers/city-2025Hotmeme-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-2025Hotmeme-icon/spriteFrame"
     },
     "city-02-beijing": {
       "key": "city-02-beijing",
@@ -171,8 +167,7 @@
         "level-14",
         "level-15"
       ],
-      "banner": "chapter-covers/city-02-beijing-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-02-beijing-icon/spriteFrame"
     },
     "city-03-shanghai": {
       "key": "city-03-shanghai",
@@ -194,8 +189,7 @@
         "level-14",
         "level-15"
       ],
-      "banner": "chapter-covers/city-03-shanghai-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-03-shanghai-icon/spriteFrame"
     },
     "city-04-nanjing": {
       "key": "city-04-nanjing",
@@ -217,8 +211,7 @@
         "level-14",
         "level-15"
       ],
-      "banner": "chapter-covers/city-04-nanjing-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-04-nanjing-icon/spriteFrame"
     },
     "city-05-xiamen": {
       "key": "city-05-xiamen",
@@ -240,8 +233,7 @@
         "level-14",
         "level-15"
       ],
-      "banner": "chapter-covers/city-05-xiamen-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-05-xiamen-icon/spriteFrame"
     },
     "city-06-changsha": {
       "key": "city-06-changsha",
@@ -263,8 +255,7 @@
         "level-14",
         "level-15"
       ],
-      "banner": "chapter-covers/city-06-changsha-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-06-changsha-icon/spriteFrame"
     },
     "city-07-guangzhou": {
       "key": "city-07-guangzhou",
@@ -286,8 +277,7 @@
         "level-14",
         "level-15"
       ],
-      "banner": "chapter-covers/city-07-guangzhou-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-07-guangzhou-icon/spriteFrame"
     },
     "city-08-chengdu": {
       "key": "city-08-chengdu",
@@ -309,8 +299,7 @@
         "level-14",
         "level-15"
       ],
-      "banner": "chapter-covers/city-08-chengdu-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-08-chengdu-icon/spriteFrame"
     },
     "city-09-xian": {
       "key": "city-09-xian",
@@ -332,8 +321,7 @@
         "level-14",
         "level-15"
       ],
-      "banner": "chapter-covers/city-09-xian-icon/spriteFrame",
-      "unlockMode": "sequential"
+      "banner": "chapter-covers/city-09-xian-icon/spriteFrame"
     }
   }
 }

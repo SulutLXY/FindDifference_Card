@@ -1,7 +1,7 @@
 {
   "name": "FindDifference",
   "uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-  "version": "0.1.3.1",
+  "version": "0.1.4.1",
   "creator": {
     "version": "3.8.8"
   },
@@ -9,6 +9,9 @@
   "scripts": {
     "version:sync": "node tools/sync-app-version.cjs",
     "test:version": "node tools/test-app-version.cjs",
-    "web:package": "node tools/package-web-release.cjs"
+    "web:package": "node tools/package-web-release.cjs",
+    "remote:package": "node tools/package-remote-update.cjs",
+    "test:remote-update": "node tools/test-remote-update.cjs",
+    "test:event-tips": "node tools/test-event-tips.cjs"
   }
 }

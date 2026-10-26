@@ -58,7 +58,7 @@ export class CollectScreen extends UIScreen {
 
     protected onLoad(): void {
         this._ensureBackButton();
-        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showLobby());
+        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.returnToLobby());
         this._ensureList();
         this._btnPrev = this.resolveNode(null, 'btnback');
         this._btnNext = this.resolveNode(null, 'btnnext');

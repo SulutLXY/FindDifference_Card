@@ -1,4 +1,4 @@
-import { _decorator, Color, Graphics, Label, Node, UITransform } from 'cc';
+import { _decorator, Color, Graphics, Label, Node, Tween, tween, UIOpacity, UITransform, Vec3 } from 'cc';
 import { LevelConfig } from '../core/GameTypes';
 import { UIColors, UIScreen } from './UIScreen';
 import { LobbyEntries } from './LobbyEntries';
@@ -27,9 +27,9 @@ export interface ResultModalPayload {
  *   按评级激活（1~3 颗），失败时全灭
  * - BtnRevive   看广告复活按钮（Node，失败时按需显示）
  * - BtnPrimary  主按钮（Node，文案自动切换「下一关 / 再玩一次」）
- * - BtnHome     返回选关按钮（Node）
+ * - BtnHome     返回主页按钮（Node）
  * - BtnShare    分享成绩按钮（Node，成功和失败均显示）
- * - BtnClose    右上角关闭按钮（Node，场景缺失时代码构建，成功/失败都回关卡选择页）
+ * - BtnClose    右上角关闭按钮（Node，场景缺失时代码构建，成功/失败都回主页）
  */
 @ccclass('ResultModal')
 export class ResultModal extends UIScreen {
@@ -54,7 +54,7 @@ export class ResultModal extends UIScreen {
     @property({ type: Node, tooltip: '主按钮（命名 BtnPrimary，文案自动切换）' })
     public btnPrimary: Node | null = null;
 
-    @property({ type: Node, tooltip: '返回选关按钮（命名 BtnHome）' })
+    @property({ type: Node, tooltip: '返回主页按钮（命名 BtnHome）' })
     public btnHome: Node | null = null;
 
     @property({ type: Node, tooltip: '分享成绩按钮（命名 BtnShare，成功和失败均显示）' })
@@ -63,19 +63,55 @@ export class ResultModal extends UIScreen {
     @property({ type: Node, tooltip: '右上角关闭按钮（命名 BtnClose，场景缺失时代码构建）' })
     public btnClose: Node | null = null;
 
+    private _reviveTween: Tween<Node> | null = null;
+    private _reviveFade: Tween<UIOpacity> | null = null;
+    private _reviveNode: Node | null = null;
+    private _reviveScale: Vec3 | null = null;
+    private _reviveOpacity = 255;
+
+    private _stopRevivePulse(): void {
+        this._reviveTween?.stop();
+        this._reviveFade?.stop();
+        this._reviveTween = null;
+        this._reviveFade = null;
+        if (this._reviveNode?.isValid && this._reviveScale) {
+            this._reviveNode.setScale(this._reviveScale);
+            const opacity = this._reviveNode.getComponent(UIOpacity);
+            if (opacity) opacity.opacity = this._reviveOpacity;
+        }
+        this._reviveNode = null;
+    }
+
+    private _startRevivePulse(node: Node): void {
+        this._stopRevivePulse();
+        this._reviveNode = node;
+        const scale = this._reviveScale = node.scale.clone();
+        const opacity = node.getComponent(UIOpacity) ?? node.addComponent(UIOpacity);
+        this._reviveOpacity = opacity.opacity;
+        this._reviveTween = tween(node).repeatForever(tween<Node>()
+            .to(0.65, { scale: new Vec3(scale.x * 1.06, scale.y * 1.06, scale.z) }, { easing: 'sineInOut' })
+            .to(0.65, { scale }, { easing: 'sineInOut' })).start();
+        this._reviveFade = tween(opacity).repeatForever(tween<UIOpacity>()
+            .to(0.65, { opacity: this._reviveOpacity * 0.72 }, { easing: 'sineInOut' })
+            .to(0.65, { opacity: this._reviveOpacity }, { easing: 'sineInOut' })).start();
+    }
+
+    protected onDisable(): void { this._stopRevivePulse(); super.onDisable(); }
+    protected onDestroy(): void { this._stopRevivePulse(); super.onDestroy(); }
+
     protected onLoad(): void {
         this._ensureCloseButton();
         this.wireButton(this.btnRevive, 'BtnRevive', () => {
             void this.flow.requestReward('revive', () => this.flow.revive());
         });
         this.wireButton(this.btnPrimary, 'BtnPrimary', () => this.flow.resultPrimary());
-        this.wireButton(this.btnHome, 'BtnHome', () => this.flow.showLevelSelect());
+        this.wireButton(this.btnHome, 'BtnHome', () => this.flow.returnToLobby());
         this.wireButton(this.btnShare, 'BtnShare', () => this.flow.share());
-        // 关闭按钮：成功/失败统一回关卡选择页（showLevelSelect 会自行关闭本弹窗）
-        this.wireButton(this.btnClose, 'BtnClose', () => void this.flow.showLevelSelect());
+        this.wireButton(this.btnClose, 'BtnClose', () => this.flow.returnToLobby());
     }
 
     public present(payload: ResultModalPayload): void {
+        this._stopRevivePulse();
         const host = this.flow.node.parent;
         const entries = host?.getComponent(LobbyEntries) ?? host?.addComponent(LobbyEntries);
         entries?.bindRewardEntries(this.node);
@@ -99,7 +135,13 @@ export class ResultModal extends UIScreen {
         if (title) title.color = payload.win ? TITLE_COLOR_WIN : UIColors.red;
 
         const revive = this.resolveNode(this.btnRevive, 'BtnRevive');
-        if (revive) revive.active = payload.canRevive;
+        if (revive) {
+            revive.active = !payload.win && payload.canRevive;
+            const label = revive.getComponentInChildren(Label);
+            if (label) label.string = '复活';
+        }
+        const homeLabel = this.resolveNode(this.btnHome, 'BtnHome')?.getComponentInChildren(Label);
+        if (homeLabel) homeLabel.string = '返回主页';
 
         const share = this.resolveNode(this.btnShare, 'BtnShare');
         if (share) share.active = true;
@@ -111,6 +153,7 @@ export class ResultModal extends UIScreen {
         }
 
         this.open();
+        if (revive?.active) this._startRevivePulse(revive);
     }
 
     /** 场景未摆放 BtnClose 时自动创建右上角圆形 X 关闭键。 */

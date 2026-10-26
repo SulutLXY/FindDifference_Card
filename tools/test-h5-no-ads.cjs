@@ -35,14 +35,14 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
     flow._showSimulatedAd = () => { throw Error('Simulation must not run'); };
     flow.toast = () => { throw Error('H5 should not show an ad error'); };
     let rewards = 0;
-    for (const placement of ['hint', 'add-time', 'revive', 'unlock-level']) {
+    for (const placement of ['hint', 'add-time', 'revive', 'unlock-level', 'unlock-chapter']) {
         await flow.requestReward(placement, () => rewards++);
         assert.equal(flow._isPaused, false);
     }
-    assert.equal(rewards, 4);
+    assert.equal(rewards, 5);
     flow._isGameOver = true;
     await flow.requestReward('revive', () => { rewards++; flow._isGameOver = false; flow._isPaused = false; });
-    assert.equal(rewards, 5); assert.equal(flow._isPaused, false);
+    assert.equal(rewards, 6); assert.equal(flow._isPaused, false);
     await h5.showInterstitial(() => { throw Error('H5 must skip interstitial checks'); }, true);
     await h5.onRoundFinished(() => true);
     assert.equal(sdkCalls, 0);
@@ -89,7 +89,7 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
         const cancelled = flow.requestReward('hint', () => { granted = true; });
         close({ isEnded: false }); await cancelled; assert.equal(granted, false);
 
-        // Paused gameplay blocks assists; chapters no longer request reward ads.
+        // Paused gameplay blocks assists; selection unlocks still allow reward ads.
         flow._isPaused = true;
         await flow.requestReward('hint', () => { throw Error('Paused gameplay must stay blocked'); });
         assert.equal(created, 2);
@@ -106,10 +106,16 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
         close({ isEnded: false }); await cancelledUnlock;
         assert.equal(granted, false); assert.equal(flow._isPaused, true);
 
+        granted = false;
+        const chapter = flow.requestReward('unlock-chapter', () => { granted = true; });
+        assert.equal(created, 5);
+        close({ isEnded: true }); await chapter;
+        assert.equal(granted, true); assert.equal(flow._isPaused, true);
+
         flow._isGameOver = true;
         const revive = flow.requestReward('revive', () => {});
         await flow.requestReward('revive', () => { throw Error('Duplicate revive'); });
-        assert.equal(created, 5, 'Game-over state must not bypass the pending ad guard');
+        assert.equal(created, 6, 'Game-over state must not bypass the pending ad guard');
         close({ isEnded: true }); await revive;
     }
     assert.ok(!flowSource.includes('_showSimulatedAd'), 'Remove obsolete simulation UI');

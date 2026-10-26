@@ -1,5 +1,6 @@
 import { _decorator, Color, Component, Graphics, Input, Label, Layout, Mask, Node, ScrollView, Size, Sprite, UIRenderer, UITransform, instantiate } from 'cc';
 import { CityConfig, LevelConfig } from '../core/GameTypes';
+import { EnergyDisplay } from './EnergyDisplay';
 import { UIColors, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
@@ -28,7 +29,7 @@ const LEVEL_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
  * - LockIcon            锁图标（仅未解锁时显示）
  * - Thumbnail           关卡封面：未解锁置灰（Sprite 乘法着色），已解锁保持模板默认
  *
- * 专题直接进入，首关免费；通关免费推进；提前跳关需看视频永久解锁目标关。
+ * 专题直接进入，首关免费；锁定小关先打开 EventTips，由玩家确认单关或整章视频解锁。
  */
 @ccclass('LevelSelectScreen')
 export class LevelSelectScreen extends UIScreen {
@@ -68,6 +69,7 @@ export class LevelSelectScreen extends UIScreen {
     }
 
     protected onLoad(): void {
+        void EnergyDisplay.attach(this.node);
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showCitySelect());
         this._setupScrollContainer();
     }

@@ -86,6 +86,7 @@ function setup({ cached = false, failure = null, placeholder = null } = {}) {
         if (name === 'cc') return { _decorator: { ccclass: () => Type => Type, property: () => () => {} },
             Animation, AnimationClip, Sprite, SpriteFrame, assetManager: manager };
         if (name === './UIScreen') return { UIScreen };
+        if (name === './EnergyDisplay') return { EnergyDisplay: { attach() {} } };
         return {};
     } });
     const screen = new exports.LobbyScreen();

@@ -1,3 +1,4 @@
+import { EnergyDisplay } from './EnergyDisplay';
 import {
     _decorator,
     Animation,
@@ -233,6 +234,7 @@ export class GameScreen extends UIScreen {
     private static readonly TAP_SLOP = 12;
 
     protected onLoad(): void {
+        void EnergyDisplay.attach(this.node);
         this._comboBox = this.findChildDeep(this.node, 'ComboTipsBox');
         this._hideComboTips();
         void this._loadComboFrames().catch(error => console.warn('[GameScreen] 连击图片预加载失败', error));
@@ -712,17 +714,22 @@ export class GameScreen extends UIScreen {
         imageNode.on(Input.EventType.TOUCH_START, (event: EventTouch) => this._onGestureStart(event), this);
         imageNode.on(Input.EventType.TOUCH_MOVE, (event: EventTouch) => this._onGestureMove(event), this);
         imageNode.on(Input.EventType.TOUCH_END, (event: EventTouch) => this._onGestureEnd(event, imageNode), this);
-        imageNode.on(Input.EventType.TOUCH_CANCEL, () => this._resetGesture(), this);
+        imageNode.on(Input.EventType.TOUCH_CANCEL, (event: EventTouch) => this._onGestureCancel(event), this);
     }
 
     private _onGestureStart(event: EventTouch): void {
         const touches = event.getAllTouches();
         this._gestureMoved = false;
         if (touches.length >= 2) {
+            this._gestureMoved = true;
+            this._ignoreTapUntilRelease = true;
             this._pinchStartDistance = this._touchDistance(touches[0].getUILocation(), touches[1].getUILocation());
             this._pinchStartScale = this._zoomScale;
             return;
         }
+        // 新的单指按下是一轮新手势，不能继承此前取消/丢失抬起事件的点击屏蔽。
+        this._resetGesture();
+        this._ignoreTapUntilRelease = false;
         const location = event.getUILocation();
         this._lastTouch.set(location.x, location.y);
         this._touchStart.set(location.x, location.y);
@@ -772,13 +779,24 @@ export class GameScreen extends UIScreen {
 
     private _onGestureEnd(event: EventTouch, imageNode: Node): void {
         const suppressTap = this._gestureMoved || this._ignoreTapUntilRelease;
-        const remainingTouches = event.getAllTouches().length;
+        const remainingTouches = this._remainingTouchCount(event);
         this._resetGesture();
+        this._ignoreTapUntilRelease = remainingTouches > 0 && suppressTap;
         if (suppressTap) {
-            if (remainingTouches === 0) this._ignoreTapUntilRelease = false;
             return;
         }
         this._onImageTouch(event, imageNode);
+    }
+
+    private _remainingTouchCount(event: EventTouch): number {
+        // 引擎约定不含结束触点；也兼容宿主在 end/cancel 中仍携带它的情况。
+        const ended = event.touch?.getID();
+        return event.getAllTouches().filter(touch => touch.getID() !== ended).length;
+    }
+
+    private _onGestureCancel(event: EventTouch): void {
+        this._resetGesture();
+        this._ignoreTapUntilRelease = this._remainingTouchCount(event) > 0;
     }
 
     private _resetGesture(): void {

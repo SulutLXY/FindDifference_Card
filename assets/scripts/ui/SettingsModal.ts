@@ -1,4 +1,4 @@
-import { _decorator, BlockInputEvents, Toggle } from 'cc';
+import { _decorator, BlockInputEvents, Label, Toggle } from 'cc';
 import { UIScreen } from './UIScreen';
 import { LobbyEntries } from './LobbyEntries';
 
@@ -10,7 +10,7 @@ export class SettingsModal extends UIScreen {
         if (!this.node.getComponent(BlockInputEvents)) this.node.addComponent(BlockInputEvents);
         this.wireButton(null, 'BtnClose', () => this.flow.closeSettings());
         this.wireButton(null, 'BtnPrimary', () => this.flow.continueFromSettings());
-        this.wireButton(null, 'BtnHome', () => void this.flow.showLevelSelect());
+        this.wireButton(null, 'BtnHome', () => this.flow.returnToLobby());
         const music = this.resolveNode(null, 'icon_BGmusic/Choice')?.getComponent(Toggle);
         const sound = this.resolveNode(null, 'icon_ComboSound/Choice')?.getComponent(Toggle);
         music?.node.on(Toggle.EventType.TOGGLE, () => this.flow.setMusicEnabled(music.isChecked), this);
@@ -18,6 +18,8 @@ export class SettingsModal extends UIScreen {
     }
 
     public present(inGame: boolean): void {
+        const homeLabel = this.resolveNode(null, 'BtnHome')?.getComponentInChildren(Label);
+        if (homeLabel) homeLabel.string = '返回主页';
         // 与动态结算弹窗一致，每次展示明确接线，不能依赖大厅首次扫描。
         const host = this.flow.node.parent;
         const entries = host?.getComponent(LobbyEntries) ?? host?.addComponent(LobbyEntries);

@@ -15,6 +15,7 @@ import {
     instantiate,
 } from 'cc';
 import { CityConfig } from '../core/GameTypes';
+import { EnergyDisplay } from './EnergyDisplay';
 import { UIColors, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
@@ -61,7 +62,8 @@ export class CitySelectScreen extends UIScreen {
     private _content: Node | null = null;
 
     protected onLoad(): void {
-        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showLobby());
+        void EnergyDisplay.attach(this.node);
+        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.returnToLobby());
         this._setupScrollContainer();
     }
 

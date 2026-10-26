@@ -17,7 +17,7 @@ vm.runInNewContext(compile(fs.readFileSync('assets/scripts/services/SaveService.
 });
 const { SaveService } = exportsSave;
 const Flow = methods('assets/scripts/GameFlow.ts', ['isCityUnlocked', 'isLevelUnlocked', 'requestLevelUnlock',
-    'requestReward', 'findContinueTarget', '_nextLevelTarget']);
+    'watchLevelUnlockVideo', 'requestReward', 'findContinueTarget', '_nextLevelTarget']);
 const Screen = methods('assets/scripts/ui/LevelSelectScreen.ts', ['_enterLevel']);
 const city = { key: 'city-PetStory', levels: Array.from({ length: 20 }, (_, i) => `level-${String(i + 1).padStart(2, '0')}`) };
 const key = i => `${city.key}/${city.levels[i]}`;
@@ -26,6 +26,8 @@ function createFlow(save = new SaveService()) {
     flow.save = save; flow._cities = [city]; flow._currentCity = city; flow.currentCity = city;
     flow._isPaused = true; flow._isGameOver = false; flow._rewardPending = false;
     flow.toast = () => {}; flow._ensureLevel = async (c, i) => ({ key: `${c.key}/${c.levels[i]}` });
+    // 此处专测确认后的单关授权与导航；真实弹窗的确认/关闭流程见 test-event-tips.cjs。
+    flow._eventTips = { isValid: true, present: (c, i) => flow.watchLevelUnlockVideo(c, i) };
     return flow;
 }
 (async () => {

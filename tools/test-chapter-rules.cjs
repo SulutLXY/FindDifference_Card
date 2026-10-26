@@ -50,7 +50,7 @@ const completedChapter = city => Object.fromEntries(city.levels.map(dir => [`${c
     assert.equal(f.isLevelUnlocked(index(meme.key), 0), true);
     assert.equal(f.isLevelUnlocked(index(meme.key), 1), false);
     for (const city of cities) {
-        assert.equal(city.unlockMode, 'sequential');
+        assert.ok(!('unlockMode' in city) && !('prerequisiteCity' in city), 'Shared unlock rules must not be duplicated per chapter');
         for (let li = 0; li < city.levels.length; li++) {
             assert.equal(f.isLevelUnlocked(index(city.key), li), li === 0, `${city.key}: only the first level starts open`);
         }

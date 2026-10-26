@@ -1,8 +1,8 @@
 # 应用与资源版本
 
-唯一修改入口：`config/app-version.json`，当前为 `0.1.3.1`。
+唯一修改入口：`config/app-version.json`，当前为 `0.1.4.1`。
 
-- 前三位是资源版本（`0.1.3`），第四位是代码修订。
+- 前三位是资源版本（`0.1.4`），第四位是代码修订。
 - 抖音启动模板在引擎基础设施初始化之后、远程资源加载之前比较本地版本。
 - 第四位变化不清缓存。前三位不同（包括回滚），或首次接入没有有效记录，清除全部 Cocos 资源缓存，再正常加载配套资源。
 - 清理只调用 Cocos cacheManager，不删除平台用户数据目录、不清 localStorage、不修改玩家存档。
@@ -15,14 +15,14 @@
 2. 执行 `npm run version:sync`，同步项目版本、FooterEnv 常量和抖音启动版本，并开启 MD5 Cache。该命令不修改资源服务器地址。
 3. 执行 `npm run test:version`。
 4. 在 Cocos 重新构建抖音包。不要复用旧构建产物；确认实际构建任务使用新配置。
-5. 将同次抖音构建的 `build/douyins/remote/` 同步到构建 settings 中 `assets.server` 对应的 `remote/` 目录，再上传代码包。例如 server 为 `https://…/tt/0.0.4/`，则本地 `remote/main/config.<hash>.json` 对应 `https://…/tt/0.0.4/remote/main/config.<hash>.json`。不要使用项目下旧的 `build/remote`；修改 outputName 后，以实际代码包同级的 remote 目录为准。可以增量上传新增或变化的文件，但必须保留旧包仍引用的文件。
+5. 将同次抖音构建的 remote 产物同步到构建 settings 中 `assets.server` 对应的 `remote/` 目录，再上传代码包。例如 server 为 `https://…/tt/0.0.4/`，则本地 `remote/city-PetStory/config.<hash>.json` 对应 `https://…/tt/0.0.4/remote/city-PetStory/config.<hash>.json`。当前构建示例为代码包 `build/douyin/` 配套 `build/remote/`；构建任务变化时不能凭目录名判断，应核对代码包 `assets.bundleVers` 与 remote 配置文件哈希。使用 `npm run remote:package -- --previous build/remote0 --current build/remote --build build/douyin --out build/remote-update` 校验并生成上传增量，具体要求见 [内容包说明](README-content-bundles.md#生成上传增量)。必须保留旧包仍引用的文件。
 6. 确认生成的游戏包包含 app-version.js、resource-version.js，启动脚本有资源校验；开启 MD5 时文件可能带哈希后缀。
 7. 真机验证首次进入、老用户升级、第四位更新、断网重试和存档保留。
 
 代码包由抖音平台更新，该逻辑不下载或删除平台代码包。
 仅第四位更新时资源目录不变；如果场景、预制体、图片、音频、关卡 JSON 等资源也改变，应增加前三位。
 资源版本号与 OSS 目录名可以不同，启动时不按目录名拦截。资源地址以实际构建 settings 为准。
-仍建议资源更新采用独立目录，由发布者在构建前设置，并上传配套资源；目录名不需要与版本号相等。
+如果资源更新采用独立目录，必须让新目录包含所有被引用的资源；增量工具应使用 `--full`，不能假定旧目录文件可在新目录复用。目录名不需要与版本号相等。复用同一目录内的未变哈希文件时，使用增量模式并保留旧哈希。
 
 ## 重新构建后出现远程 config 404
 

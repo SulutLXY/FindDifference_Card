@@ -7,6 +7,7 @@ const LEGACY_KEY = 'find-difference.save.v2';
 
 const DEFAULT_SAVE: SaveData = {
     version: 3,
+    energy: 10,
     chapterRulesVersion: 2,
     completed: {},
     totalScore: 0,
@@ -22,15 +23,91 @@ const DEFAULT_SAVE: SaveData = {
  * 解锁判定（依赖关卡顺序）由 GameFlow 负责，本服务只存取数据。
  */
 export class SaveService {
+    public readonly energyLimit = 99;
+    public readonly energyRecoveryLimit = 10;
+    private readonly _energyInterval = 8 * 60 * 1000;
     private _data: SaveData;
 
     constructor() {
         this._data = this._load();
         this._normalize();
+        this._recoverEnergy();
     }
 
     public get data(): Readonly<SaveData> {
         return this._data;
+    }
+
+    public get energy(): number {
+        this._recoverEnergy();
+        return this._data.energy ?? 0;
+    }
+
+    public get energyRecoverySeconds(): number {
+        if (this.energy >= this.energyRecoveryLimit) return 0;
+        return Math.max(0, Math.ceil(((this._data.energyUpdatedAt ?? Date.now()) + this._energyInterval - Date.now()) / 1000));
+    }
+
+    /** 保留不足 8 分钟的余量；达到自动恢复上限后不累计时间，也不削减额外体力。 */
+    private _recoverEnergy(now = Date.now()): void {
+        const previous = this._data;
+        let energy = Number.isSafeInteger(previous.energy) ? Math.max(0, Math.min(this.energyLimit, previous.energy!)) : 0;
+        let updated = previous.energyUpdatedAt;
+        if (!Number.isSafeInteger(updated) || updated! < 0 || updated! > now) updated = now;
+        if (energy < this.energyRecoveryLimit) {
+            const restored = Math.floor((now - updated!) / this._energyInterval);
+            energy = Math.min(this.energyRecoveryLimit, energy + restored);
+            updated = energy === this.energyRecoveryLimit ? now : updated! + restored * this._energyInterval;
+        }
+        if (energy === previous.energy && updated === previous.energyUpdatedAt) return;
+        this._data = { ...previous, energy, energyUpdatedAt: updated };
+        if (!this._persist()) this._data = previous;
+    }
+
+    public energyAdsRemaining(day: string): number {
+        const used = this._data.energyAdDay === day && Number.isSafeInteger(this._data.energyAdsUsed)
+            ? Math.max(0, this._data.energyAdsUsed!) : 0;
+        return Math.max(0, 3 - used);
+    }
+
+    /** 完整看完广告才原子保存体力和当日次数，失败时都不扣。 */
+    public claimEnergyAd(day: string): boolean {
+        const energy = this.energy;
+        const remaining = this.energyAdsRemaining(day);
+        if (energy >= this.energyLimit || remaining <= 0) return false;
+        const previous = this._data;
+        const next = Math.min(this.energyLimit, energy + 5);
+        this._data = { ...previous, energy: next, energyAdDay: day, energyAdsUsed: 4 - remaining,
+            energyUpdatedAt: next >= this.energyRecoveryLimit ? Date.now() : previous.energyUpdatedAt };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
+    /** 仅在关卡已准备好、即将开始时扣除，保存失败则不允许开始。 */
+    public consumeEnergy(): boolean {
+        const energy = this.energy;
+        if (energy < 1) return false;
+        const previous = this._data;
+        this._data = { ...previous, energy: energy - 1,
+            energyUpdatedAt: energy >= this.energyRecoveryLimit ? Date.now() : previous.energyUpdatedAt };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
+    public hasLevelSelectAccess(now = Date.now()): boolean {
+        const expires = this._data.levelSelectExpiresAt;
+        return typeof expires === 'number' && Number.isSafeInteger(expires) && expires > now;
+    }
+
+    public grantLevelSelectAccess(now = Date.now()): boolean {
+        if (!Number.isSafeInteger(now) || now < 0) return false;
+        const previous = this._data;
+        this._data = { ...previous, levelSelectExpiresAt: now + 24 * 60 * 60 * 1000 };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
     }
 
     /** 积分 = 已通关关卡数 */
@@ -62,11 +139,16 @@ export class SaveService {
 
     /** 广告只授予目标关卡游玩资格；保存失败不得解锁。 */
     public unlockLevel(key: string): boolean {
-        if (typeof key !== 'string' || !key) return false;
-        if (this.isLevelUnlocked(key)) return true;
+        return this.unlockLevels([key]);
+    }
+
+    /** 整章解锁一次性保存全部小关资格；不写通关成绩，失败时整体回滚。 */
+    public unlockLevels(keys: string[]): boolean {
+        if (!Array.isArray(keys) || !keys.length || keys.some(key => typeof key !== 'string' || !key)) return false;
+        if (keys.every(key => this.isLevelUnlocked(key))) return true;
         const previous = this._data;
         const levels = Array.isArray(previous.unlockedLevels) ? previous.unlockedLevels : [];
-        this._data = { ...previous, unlockedLevels: [...levels, key] };
+        this._data = { ...previous, unlockedLevels: Array.from(new Set([...levels, ...keys])) };
         if (this._persist()) return true;
         this._data = previous;
         return false;

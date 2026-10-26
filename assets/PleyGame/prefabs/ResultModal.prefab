@@ -1743,7 +1743,7 @@
       "b": 24,
       "a": 255
     },
-    "_string": "返回选关",
+    "_string": "返回主页",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 29,
@@ -2493,7 +2493,7 @@
       "b": 24,
       "a": 255
     },
-    "_string": "看广告复活",
+    "_string": "复活",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 29,

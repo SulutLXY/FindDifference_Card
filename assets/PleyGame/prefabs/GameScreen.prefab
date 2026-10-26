@@ -2468,8 +2468,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 612.4999999999999,
+      "x": 40,
+      "y": 612.5,
       "z": 0
     },
     "_lrot": {
@@ -2548,10 +2548,10 @@
     "_string": "第1关",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 47,
-    "_fontSize": 46,
+    "_actualFontSize": 37,
+    "_fontSize": 36,
     "_fontFamily": "Arial",
-    "_lineHeight": 48,
+    "_lineHeight": 40,
     "_overflow": 2,
     "_enableWrapText": true,
     "_font": null,
@@ -3545,8 +3545,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -295,
-      "y": 590,
+      "x": -320,
+      "y": 600,
       "z": 0
     },
     "_lrot": {
@@ -4537,7 +4537,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 0,
+      "x": 40,
       "y": 568,
       "z": 0
     },
@@ -4550,8 +4550,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.85,
+      "y": 0.85,
       "z": 1
     },
     "_mobility": 0,

@@ -1,0 +1,60 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const ts=require(process.env.TYPESCRIPT_PATH||'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
+const storage=new Map();let fail=false;
+let clock=1700000000000;
+class FakeDate extends Date { static now(){return clock;} }
+const output={};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/services/SaveService.ts','utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2018,module:ts.ModuleKind.CommonJS}}).outputText,{
+ exports:output,Date:FakeDate,console:{warn(){}},require:()=>({sys:{localStorage:{getItem:k=>storage.get(k),setItem(k,v){if(fail)throw Error('disk full');storage.set(k,v);}}}}),
+});
+const {SaveService}=output;
+let save=new SaveService();assert.equal(save.energy,10);assert.equal(save.consumeEnergy(),true);assert.equal(save.energy,9);
+save=new SaveService();assert.equal(save.energy,9,'Restart must not restore the initial grant');
+let before=storage.get('find-difference.save.v3');fail=true;
+assert.equal(save.consumeEnergy(),false);assert.equal(save.energy,9);assert.equal(storage.get('find-difference.save.v3'),before);
+fail=false;for(let i=0;i<9;i++)assert.equal(save.consumeEnergy(),true);
+assert.equal(save.energy,0);assert.equal(save.consumeEnergy(),false);assert.equal(new SaveService().energy,0);
+const now=1700000000000,day=24*60*60*1000;
+assert.equal(save.hasLevelSelectAccess(now),false);assert.equal(save.grantLevelSelectAccess(now),true);
+save=new SaveService();assert.equal(save.hasLevelSelectAccess(now+day-1),true);assert.equal(save.hasLevelSelectAccess(now+day),false);
+assert.equal(save.energy,0,'Access grant does not replenish energy');
+before=storage.get('find-difference.save.v3');fail=true;assert.equal(save.grantLevelSelectAccess(now+day),false);
+assert.equal(save.hasLevelSelectAccess(now+day),false);assert.equal(storage.get('find-difference.save.v3'),before);fail=false;
+// Legacy save gets energy once without changing completion or reward balances.
+storage.set('find-difference.save.v3',JSON.stringify({version:3,completed:{'city-Test/level-01':{stars:2,bestTime:20}},freeHints:6}));
+save=new SaveService();assert.equal(save.energy,10);assert.equal(save.freeHints,6);assert.equal(save.isCompleted('city-Test/level-01'),true);
+save.consumeEnergy();assert.equal(new SaveService().energy,9);
+save.reset();assert.equal(save.energy,10);assert.equal(save.hasLevelSelectAccess(now),false);
+assert.equal(save.energyRecoverySeconds,0);
+save.consumeEnergy();assert.equal(save.energyRecoverySeconds,480);
+clock+=7*60*1000;assert.equal(save.energy,9);assert.equal(save.energyRecoverySeconds,60);
+save.consumeEnergy();assert.equal(save.energy,8);assert.equal(save.energyRecoverySeconds,60,'Consumption below cap preserves partial recovery');
+clock+=60000;save=new SaveService();assert.equal(save.energy,9);assert.equal(save.energyRecoverySeconds,480);
+clock+=24*60*60*1000;save=new SaveService();assert.equal(save.energy,10);assert.equal(save.energyRecoverySeconds,0);
+clock+=24*60*60*1000;save.consumeEnergy();assert.equal(save.energyRecoverySeconds,480,'Full energy does not bank time');
+const adDay='2026-10-26';
+assert.equal(save.energyAdsRemaining(adDay),3);assert.equal(save.claimEnergyAd(adDay),true);assert.equal(save.energy,14);
+assert.equal(save.energyAdsRemaining(adDay),2);assert.equal(save.energyRecoverySeconds,0);
+clock+=day;save=new SaveService();assert.equal(save.energy,14,'Offline recovery must not increase or truncate bonus energy');
+for(let i=0;i<14;i++)save.consumeEnergy();
+clock+=5*60*1000;
+fail=true;assert.equal(save.claimEnergyAd(adDay),false);assert.equal(save.energy,0);assert.equal(save.energyAdsRemaining(adDay),2);fail=false;
+assert.equal(save.claimEnergyAd(adDay),true);assert.equal(save.energy,5);assert.equal(save.energyRecoverySeconds,180);
+save=new SaveService();assert.equal(save.energy,5);assert.equal(save.energyAdsRemaining(adDay),1);
+assert.equal(save.claimEnergyAd(adDay),true);assert.equal(save.energy,10);assert.equal(save.energyAdsRemaining(adDay),0);
+save.consumeEnergy();assert.equal(save.claimEnergyAd(adDay),false);assert.equal(save.energy,9);
+assert.equal(save.energyAdsRemaining('2026-10-27'),3);assert.equal(save.claimEnergyAd('2026-10-27'),true);
+while(save.energy>=10)save.consumeEnergy();
+assert.equal(save.energy,9);assert.equal(save.energyRecoverySeconds,480,'Dropping below recovery cap starts a fresh interval');
+clock-=60000;assert.equal(save.energyRecoverySeconds,480,'Clock rollback resets the baseline');
+// Stored bonuses survive reload and stop at 99, independently of the recovery cap.
+storage.set('find-difference.save.v3',JSON.stringify({...save.data,energy:97,energyUpdatedAt:clock-day,energyAdDay:'old',energyAdsUsed:0}));
+save=new SaveService();assert.equal(save.energy,97);assert.equal(save.energyRecoverySeconds,0);
+assert.equal(save.claimEnergyAd(adDay),true);assert.equal(save.energy,99);assert.equal(save.energyAdsRemaining(adDay),2);
+assert.equal(save.claimEnergyAd(adDay),false);assert.equal(save.energyAdsRemaining(adDay),2,'Storage cap must not consume ad quota');
+clock+=day;save=new SaveService();assert.equal(save.energy,99);assert.equal(save.energyRecoverySeconds,0);
+while(save.energy>10)save.consumeEnergy();assert.equal(save.energy,10);clock+=day;assert.equal(save.energy,10);
+save.consumeEnergy();assert.equal(save.energyRecoverySeconds,480);clock+=479999;assert.equal(save.energy,9);assert.equal(save.energyRecoverySeconds,1);
+clock++;assert.equal(save.energy,10);assert.equal(save.energyRecoverySeconds,0);
+console.log('PASS: initial/legacy energy, persisted consumption, zero blocking, failed-write rollback and exact 24-hour selection access.');
+console.log('PASS: 8-minute/offline recovery to 10, bonus storage to 99, reload preservation, fresh recovery after dropping to 9, partial intervals, daily ads and atomic reward rollback.');

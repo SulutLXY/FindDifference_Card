@@ -23,6 +23,7 @@ export class PlatformService {
     public readonly playerInfo = new PlayerInfoService(() => this.kind, this._host);
     private _config: PlatformConfig = EMPTY_CONFIG;
     private _interstitialBusy = false;
+    private _rewardedBusy = false;
     private _finishInterstitial: (() => void) | null = null;
     private _interstitialLoading = false;
     /** 引擎按钮重新收到触摸，说明原生遮罩已退出；清理遗漏的关闭回调或未展示请求。 */
@@ -135,8 +136,9 @@ export class PlatformService {
     }
 
     /** Each requested entry attempts an ad; native frequency limits still apply. Resolves on close/error. */
-    public async showInterstitial(canShow: () => boolean, bypassCooldown = false): Promise<void> {
-        if (this.kind !== 'douyin' || this.isPcCompanion || !this.canShowInterstitial()) return;
+    public async showInterstitial(canShow: () => boolean, bypassCooldown = false, bypassRoundProtection = false): Promise<void> {
+        if (this.kind !== 'douyin' || this.isPcCompanion || this._rewardedBusy
+            || (!bypassRoundProtection && !this.canShowInterstitial())) return;
         const tt = this._host.tt;
         const adUnitId = this._config.douyinInterstitialAdUnitId;
         if (!adUnitId || typeof tt?.createInterstitialAd !== 'function' || this._finishInterstitial
@@ -176,7 +178,7 @@ export class PlatformService {
             timer = setTimeout(() => onError({ errMsg: '插屏加载超时' }), 15000);
             await Promise.race([Promise.resolve(ad.load()), closed]);
             if (settled) return;
-            if (!canShow() || !this.canShowInterstitial()) { cleanup(); return; }
+            if (!canShow() || this._rewardedBusy || (!bypassRoundProtection && !this.canShowInterstitial())) { cleanup(); return; }
             this._interstitialLoading = false;
             this._interstitialBusy = true;
             await Promise.race([Promise.resolve(ad.show()), closed]);
@@ -225,6 +227,7 @@ export class PlatformService {
         }
         if (this._interstitialLoading) this._finishInterstitial?.();
         if (this._interstitialBusy) return { success: false, completed: false, simulated: false, reason: '请先关闭插屏广告' };
+        if (this._rewardedBusy) return { success: false, completed: false, simulated: false, reason: '请先完成当前视频' };
 
         const kind = this.kind;
         const sdk = kind === 'wechat' ? this._host.wx : this._host.tt;
@@ -246,6 +249,7 @@ export class PlatformService {
             return { success: false, completed: false, simulated: false, reason: '当前环境不支持激励视频广告，请使用真机预览' };
         }
 
+        this._rewardedBusy = true;
         return new Promise<RewardResult>((resolve) => {
             let settled = false;
             const finish = (result: RewardResult) => {
@@ -284,7 +288,7 @@ export class PlatformService {
                     reason: error instanceof Error ? error.message : '广告调用失败',
                 });
             }
-        });
+        }).finally(() => { this._rewardedBusy = false; });
     }
 
     public share(levelKey: string): void {

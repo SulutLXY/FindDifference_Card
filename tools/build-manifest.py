@@ -8,7 +8,7 @@
 行为：
 1. 扫描 assets/Bundle/levels/ 下所有 city-* 目录，生成 resources/configs/cities.json；
 2. 每章生成/刷新 levels/city-XX-name/configs/city.json 的 levels 清单，并汇总到首包索引，
-   城市展示信息（name/banner 等手工字段）已存在时保留、不覆盖；
+   城市展示信息（name/banner 等手工字段）已存在时保留、不覆盖；内容不变时不写文件；
 3. 逐关校验 differences.json 与引用的图片资源，输出校验报告；
 4. 校验失败时以非零码退出，可接入打包前检查。
 
@@ -35,6 +35,8 @@ def chapter_config_root(city):
 CITY_INDEX_PATH = 'assets/resources/configs/cities.json'
 CITY_RE = re.compile(r'^city-(?:\d{2}-)?[a-zA-Z0-9]+$')
 LEVEL_RE = re.compile(r'^level-\d{2}$')
+# 解锁由 GameFlow 的公共逻辑控制。旧源清单中的字段只为保持已发布包字节稳定而保留。
+LEGACY_RULE_FIELDS = {'unlockMode', 'prerequisiteCity'}
 
 # 首次生成城市配置时的城市名（之后以手工修改为准）
 CITY_NAMES = {
@@ -80,7 +82,8 @@ def check_level(city_dir, level_dir):
         return [f'{label}: 缺少 differences.json']
 
     try:
-        data = json.load(open(diff_path, encoding='utf-8'))
+        with open(diff_path, encoding='utf-8') as source:
+            data = json.load(source)
     except Exception as error:
         return [f'{label}: differences.json 解析失败: {error}']
 
@@ -128,6 +131,21 @@ def city_sort_key(city):
         return (1, 1, city)
     match = re.match(r'^city-(\d{2})-', city)
     return (int(match.group(1)), 0, city) if match else (100, 0, city)
+
+
+def write_json_if_changed(path, data, trailing_newline=False):
+    """保留语义未变文件的原始字节，避免格式化/字段排序使无关章节重新生成哈希。"""
+    try:
+        with open(path, encoding='utf-8') as source:
+            if json.load(source) == data:
+                return
+    except (FileNotFoundError, ValueError):
+        pass
+    os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
+    with open(path, 'w', encoding='utf-8', newline='\n') as output:
+        json.dump(data, output, ensure_ascii=False, indent=2)
+        if trailing_newline:
+            output.write('\n')
 
 
 def main():
@@ -198,17 +216,17 @@ def main():
         manifest = {}
         if os.path.isfile(manifest_path):
             try:
-                manifest = json.load(open(manifest_path, encoding='utf-8'))
+                with open(manifest_path, encoding='utf-8') as source:
+                    manifest = json.load(source)
             except Exception:
                 manifest = {}
         manifest.setdefault('name', CITY_NAMES.get(city_dir, city_dir))
-        manifest['unlockMode'] = 'sequential'
-        manifest.pop('prerequisiteCity', None)
         manifest.setdefault('banner', f'chapter-covers/{city_dir}-icon/spriteFrame')
         manifest['levels'] = level_dirs
-        json.dump(manifest, open(manifest_path, 'w', encoding='utf-8'),
-                  ensure_ascii=False, indent=2)
-        chapters[city_dir] = {'key': city_dir, **manifest}
+        write_json_if_changed(manifest_path, manifest)
+        chapters[city_dir] = {'key': city_dir, **{
+            key: value for key, value in manifest.items() if key not in LEGACY_RULE_FIELDS
+        }}
 
         # 3. 逐关校验
         for level_dir in level_dirs:
@@ -222,9 +240,7 @@ def main():
         banner = ' | '.join(f'{p}' for p in all_problems[-3:]) if all_problems else ''
         print(f'{city_dir} ({manifest["name"]}): {done}/{len(level_dirs)} 关')
 
-    with open(index_path, 'w', encoding='utf-8') as output:
-        json.dump({'cities': city_dirs, 'chapters': chapters}, output, ensure_ascii=False, indent=2)
-        output.write('\n')
+    write_json_if_changed(index_path, {'cities': city_dirs, 'chapters': chapters}, trailing_newline=True)
     print(f'已生成 {index_path}: {len(city_dirs)} 个章节，含启动所需完整清单')
     print(f'\n共 {len(city_dirs)} 城 {total_levels} 关')
     if all_problems:

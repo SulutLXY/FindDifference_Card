@@ -38,6 +38,7 @@ const Flow=createFlow({JsonAsset,SpriteFrame,Sprite:class{},resources:{},assetMa
     for(const key of index.cities) {
         const city=await flow._loadCityMeta(null,key);cities.push(city);
         const source=read(root(key)+'/configs/city.json');
+        delete source.unlockMode; delete source.prerequisiteCity;
         assert.equal(JSON.stringify(index.chapters[key]),JSON.stringify({key,...source}),'Generated index must match source');
         assert.equal(city.banner,'chapter-covers/'+key+'-icon/spriteFrame');
         assert.equal(fs.existsSync(root(key)+'/configs/'+key+'-icon.jpg'),false);
