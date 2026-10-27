@@ -24,7 +24,7 @@ vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleK
     now+=59000;await p.showInterstitial(()=>true);assert.equal(created,0,'protected for the full minute');
     now+=1000;await p.showInterstitial(()=>false);assert.equal(created,0);
     const second=p.showInterstitial(()=>true);await tick();assert.equal(shown,1);fail({errCode:2002});await second;assert.equal(destroyed,1);
-    now+=60000;let checks=0;await p.onRoundFinished(()=>++checks===1);assert.equal(created,2);assert.equal(shown,1);assert.equal(destroyed,2);
+    now+=60000;let checks=0;await p.onRoundFinished(()=>++checks===1);assert.equal(created,2);assert.equal(shown,1);assert.equal(destroyed,1,'Never destroy an unshown native instance');
     now+=60000;
     const missingClose=p.showInterstitial(()=>true);await tick();
     assert.equal(p.interstitialBusy,true);
@@ -52,11 +52,11 @@ vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleK
     p.canShowInterstitial=()=>false;
     const beforeForced=created;
     await p.showInterstitial(()=>true,true);assert.equal(created,beforeForced,'Normal entries retain round protection');
-    const forced=p.showInterstitial(()=>true,true,true);await tick();assert.equal(created,beforeForced+1,'Requested return/selection navigation bypasses cooldown and first-round protection');close();await forced;
+    const forced=p.showInterstitial(()=>true,true,true);await tick();assert.equal(created,beforeForced,'Forced navigation reuses the unshown instance and bypasses protection');close();await forced;
     let finishReward;
     host.tt.createRewardedVideoAd=()=>({onClose(f){finishReward=f;},onError(){},offClose(){},offError(){},show:async()=>{}});
     const reward=p.showRewardedAd('level-select');
-    await p.showInterstitial(()=>true,true,true);assert.equal(created,beforeForced+1,'Forced navigation cannot overlap an active reward video');
+    await p.showInterstitial(()=>true,true,true);assert.equal(created,beforeForced,'Forced navigation cannot overlap an active reward video');
     finishReward({isEnded:true});await reward;
     p.canShowInterstitial=()=>true;
     now+=60000;host.tt.createInterstitialAd=()=>{throw Error('unavailable');};await p.showInterstitial(()=>true);assert.equal(p._interstitialBusy,false);

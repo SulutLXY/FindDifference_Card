@@ -363,7 +363,7 @@ export class GameFlow extends Component {
         const navigation = this._secondaryNavigationVersion;
         this._returnAdPending = true;
         void this.platform.showInterstitial(() => this.isValid && navigation === this._secondaryNavigationVersion
-            && !!this.lobby?.node.activeInHierarchy, true, true)
+            && !!this.lobby?.node.activeInHierarchy, true, true, 'return-home')
             .finally(() => { this._returnAdPending = false; });
     }
 
@@ -480,12 +480,16 @@ export class GameFlow extends Component {
         const navigation = this._secondaryNavigationVersion;
         const active = () => this.isValid && navigation === this._secondaryNavigationVersion && !!this.lobby?.node.activeInHierarchy;
         try {
-            if (this.save.hasLevelSelectAccess()) {
-                await this.platform.showInterstitial(active, true, true);
-            } else if (!await this.requestLevelSelectAccess()) {
+            if (!this.save.hasLevelSelectAccess() && !await this.requestLevelSelectAccess()) {
                 return;
             }
-            if (active() && this.save.hasLevelSelectAccess()) this.showCitySelect();
+            if (!active() || !this.save.hasLevelSelectAccess()) return;
+            // 先进入详情页，再请求插屏，避免加载或缺失关闭回调让玩家一直停在主页。
+            this.showCitySelect();
+            const enteredNavigation = this._secondaryNavigationVersion;
+            // 每次成功进入均请求，包括刚看视频解锁的首次进入；平台仍可能按原生频控拒绝展示。
+            await this.platform.showInterstitial(() => this.isValid && enteredNavigation === this._secondaryNavigationVersion
+                && !!this.citySelect?.node.activeInHierarchy, true, true, 'level-select-entry');
         } finally {
             this._levelSelectEntryPending = false;
         }

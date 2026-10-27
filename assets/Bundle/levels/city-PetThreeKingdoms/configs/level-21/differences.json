@@ -1,0 +1,44 @@
+{
+  "name": "落凤坡",
+  "type": "normal",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.403276,
+      "y": 0.195161,
+      "radius": 0.057275
+    },
+    {
+      "id": "diff-2",
+      "x": 0.128075,
+      "y": 0.229032,
+      "radius": 0.082574
+    },
+    {
+      "id": "diff-3",
+      "x": 0.56628,
+      "y": 0.082258,
+      "radius": 0.04519
+    },
+    {
+      "id": "diff-4",
+      "x": 0.367288,
+      "y": 0.782258,
+      "radius": 0.090897
+    },
+    {
+      "id": "diff-5",
+      "x": 0.057157,
+      "y": 0.709677,
+      "radius": 0.080532
+    },
+    {
+      "id": "diff-6",
+      "x": 0.917692,
+      "y": 0.864516,
+      "radius": 0.105148
+    }
+  ],
+  "icon": "thumbnails/city-PetThreeKingdoms/level-21/icon/spriteFrame"
+}

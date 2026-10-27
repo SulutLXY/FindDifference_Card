@@ -72,7 +72,7 @@ export class LobbyScreen extends UIScreen {
     }
 
     protected onOpen(): void {
-        this._refreshLevelSelectLabel();
+        this._refreshLevelSelectAccess();
         const rankButton = this.resolveNode(this.btnRank, 'BtnRank');
         if (rankButton) rankButton.active = !this.flow.platform.isHarmony;
         void this._refreshRankVisibility();
@@ -88,18 +88,15 @@ export class LobbyScreen extends UIScreen {
         this._accessElapsed += dt;
         if (this._accessElapsed < 1) return;
         this._accessElapsed = 0;
-        this._refreshLevelSelectLabel();
+        this._refreshLevelSelectAccess();
     }
 
-    private _refreshLevelSelectLabel(): void {
-        const label = this.resolveNode(this.btnLevels, 'BtnLevels')?.getComponentInChildren(Label);
-        if (!label) return;
-        const text = this.flow.save.hasLevelSelectAccess() ? '选择关卡' : '选择关卡\n视频解锁 24 小时';
-        if (label.string === text) return;
-        label.string = text;
-        label.fontSize = 26;
-        label.lineHeight = 30;
-        label.overflow = Label.Overflow.SHRINK;
+    private _refreshLevelSelectAccess(): void {
+        const button = this.resolveNode(this.btnLevels, 'BtnLevels');
+        if (!button) return;
+        const hasAccess = this.flow.save.hasLevelSelectAccess();
+        const videoIcon = button.getChildByName('icon_videoplay');
+        if (videoIcon) videoIcon.active = !hasAccess;
     }
 
     protected onDisable(): void {

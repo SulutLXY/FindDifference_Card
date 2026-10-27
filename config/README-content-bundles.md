@@ -5,7 +5,7 @@
 | 位置 | 内容 | 加载时机 |
 | --- | --- | --- |
 | `assets/resources/configs/cities.json` | 章节顺序及名称、封面路径、关卡清单 | 启动及旧存档迁移，只读本地索引 |
-| `assets/Bundle/chapter-covers` | 12 张大关卡封面，Bundle 为 `chapter-covers` | 关卡选择页 |
+| `assets/Bundle/chapter-covers` | 13 张大关卡封面，Bundle 为 `chapter-covers` | 关卡选择页 |
 | `assets/Bundle/food-icons/<city>` | 40 张美食图标，Bundle 为 `food-icons` | 收藏页或美食详情弹窗 |
 | `assets/Bundle/levels/<city>` | 本章配置、小关缩略图、玩法图片 | 进入该章或受控的下一关预下载 |
 
@@ -15,7 +15,9 @@
 
 小关缩略图的逻辑路径仍为 `thumbnails/<city>/<level>/icon/spriteFrame`，路由到该章包内 `thumbnails/<level>/icon/spriteFrame`。封面使用 `chapter-covers/<city>-icon/spriteFrame`；美食图标使用 `food-icons/<city>/<name>/spriteFrame`。美食目录 Excel 和生成器已同步到新路径。
 
-51 张迁移图片连同 `.meta` 移动，图片内容和 UUID 保持不变。原有 200 关差异点数据没有修改，包括用户暂时保留的边缘越界标注。新增「2025年度梗」25 关沿用源素材 319 个差异点，现共 12 章/225 关；接入说明见 [2025-hotmeme-resource-audit-2026-10-23.md](2025-hotmeme-resource-audit-2026-10-23.md)。
+51 张迁移图片连同 `.meta` 移动，图片内容和 UUID 保持不变。原有 200 关差异点数据没有修改，包括用户暂时保留的边缘越界标注。新增「2025年度梗」25 关沿用源素材 319 个差异点，该专题接入时共 12 章/225 关；接入说明见 [2025-hotmeme-resource-audit-2026-10-23.md](2025-hotmeme-resource-audit-2026-10-23.md)。
+
+新增「萌宠三国」30 关后，当前共 13 章/255 关，顺序为宠物故事 → 萌宠三国 → 2025热梗 → 北京。2025 专题显示名由「2025年度梗」改为「2025热梗」，key 保持不变。完整接入说明见 [pet-three-kingdoms-resource-audit-2026-10-27.md](pet-three-kingdoms-resource-audit-2026-10-27.md)。
 
 ## 内存生命周期
 
@@ -33,11 +35,11 @@
 
 ## 验证与发布
 
-已通过 TypeScript 检查；内容包生命周期、页面图片引用、共享贴图、12 章/225 关资源路径、宠物故事、40 条美食映射、章节规则、旧存档迁移和关卡加载的脚本测试。美食表 `--check` 无待修复项，Python 目录生成器回归 11 项通过。
+已通过 TypeScript 检查；内容包生命周期、页面图片引用、共享贴图、13 章/255 关资源路径、宠物故事、40 条美食映射、章节规则、旧存档迁移和关卡加载的脚本测试。美食表 `--check` 无待修复项，Python 目录生成器回归 11 项通过。
 
-相关测试：`test-content-bundle-lifetime.cjs`、`test-city-resource-layout.cjs`、`test-page-sprite-lifetime.cjs`、`test-sprite-cache-lifetime.cjs`、`test-pet-story.cjs`、`test-2025-hotmeme.cjs`、`test_manifest.py`、`test-chapter-rules.cjs`、`test-city-renumber.cjs`、`test-city-unlock.cjs`、`test-level-loading.cjs`、`test-food-icons.cjs`、`test_food_catalog.py`。
+相关测试：`test-content-bundle-lifetime.cjs`、`test-city-resource-layout.cjs`、`test-page-sprite-lifetime.cjs`、`test-sprite-cache-lifetime.cjs`、`test-pet-story.cjs`、`test-2025-hotmeme.cjs`、`test-pet-three-kingdoms.cjs`、`test_manifest.py`、`test-chapter-rules.cjs`、`test-city-renumber.cjs`、`test-city-unlock.cjs`、`test-level-loading.cjs`、`test-food-icons.cjs`、`test_food_catalog.py`。
 
-关卡生成器报告 31 项坐标/半径标注问题（原有 27 项及 2025年度梗源素材 4 项），保持原数据。完整游戏包静态检查还存在主场景引用 PleyGame 资源的既有断言失败，未作为本次资源迁移验收通过项。未执行实际构建、上传和真机测试。
+关卡生成器报告 32 项坐标/半径标注问题（原有 27 项、2025热梗源素材 4 项及萌宠三国源素材 1 项），保持原数据。完整游戏包静态检查还存在主场景引用 PleyGame 资源的既有断言失败，未作为本次资源迁移验收通过项。未执行实际构建、上传和真机测试。
 
 目录迁移首次发布需要部署所有迁移后的包。后续纯新增章节，更新主包索引、上传新章节以及 `chapter-covers` 的增量即可；不修改旧章内容时，不应产生旧章文件增量。修改玩法配置、导入设置或引擎构建设置时仍可能产生相应旧包变化，以实际产物对比为准。
 

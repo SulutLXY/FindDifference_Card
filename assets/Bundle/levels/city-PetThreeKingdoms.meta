@@ -1,0 +1,14 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "50e10fc0-d63a-4f29-b9e6-2cc38f4f55ce",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isBundle": true,
+    "bundleName": "city-PetThreeKingdoms",
+    "priority": 7,
+    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+"
+  }
+}

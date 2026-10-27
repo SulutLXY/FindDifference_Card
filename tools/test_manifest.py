@@ -57,9 +57,9 @@ class ManifestTests(unittest.TestCase):
                 self.assertEqual(json.loads(new_source.read_text(encoding='utf-8'))['levels'], ['level-01', 'level-02'])
 
     def test_topic_order_preserves_existing_city_keys(self):
-        keys = ['city-02-beijing', 'city-PetStory', 'city-2025Hotmeme', 'city-01-2026Hotmeme', 'city-00-HotTips']
+        keys = ['city-02-beijing', 'city-PetThreeKingdoms', 'city-PetStory', 'city-2025Hotmeme', 'city-01-2026Hotmeme', 'city-00-HotTips']
         self.assertEqual(sorted(keys, key=manifest.city_sort_key), [
-            'city-00-HotTips', 'city-01-2026Hotmeme', 'city-PetStory', 'city-2025Hotmeme', 'city-02-beijing'])
+            'city-00-HotTips', 'city-01-2026Hotmeme', 'city-PetStory', 'city-PetThreeKingdoms', 'city-2025Hotmeme', 'city-02-beijing'])
 
     def test_missing_declared_level_does_not_rewrite_any_manifest(self):
         with tempfile.TemporaryDirectory() as directory:

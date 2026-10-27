@@ -5,9 +5,14 @@
 - 不足 10 点时每 8 分钟恢复 1 点，支持离线恢复，最多自然恢复到 10。达到或超过 10 点后停止自动恢复且不累计时间；消耗至 9 点时重新开始 8 分钟倒计时。额外体力不会被自然恢复削减。
 - 仅不足 10 点时可点击体力区域观看视频，完整观看补充 5 点，可超过 10 点，最多存至 99。每天最多 3 次，以北京时间零点换日；未完整观看、播放失败或存档失败不扣次数。补充后仍低于 10 点时保留原恢复进度。
 - 主页、章节列表、小关列表、玩法页共用 EnergyDisplay，只显示“体力 N”。不足 10 点显示 MM:SS 倒计时与视频图标；达到或超过 10 点显示“体力已满”、隐藏视频图标，点击不触发广告。
-- 主页“选择关卡”无有效资格时观看激励视频，成功后开放 24 小时；资格有效时再次从主页进入请求插屏。本次激励解锁后不追加插屏。
+- 主页“选择关卡”左侧视频图标仅在需要解锁时显示，24 小时资格有效时隐藏；返回主页立即刷新，停留主页时每秒检查，到期后重新显示。无有效资格时观看激励视频，成功后开放 24 小时。每次成功进入章节详情页后立即请求插屏，包括刚解锁的首次进入，跳过客户端冷却和首局保护。
+- 按钮文本固定使用场景默认的“选择关卡”。程序不再按资格状态改文案、字号或换行，也不追加“24 小时”说明；仅更新视频图标显隐。
 - 选关入口资格与 EventTips 的单关/整章解锁独立。整章 3 个视频的临时进度仍只保留在一次弹窗操作中。
 - 玩家主动返回主页请求插屏；内部加载失败返回主页不触发。实际广告展示取决于平台 SDK 和填充，H5 延续原有免广告调试行为。
+- 抖音原生频控无法由客户端跳过：启动前 30 秒、上次插屏后 60 秒、激励视频后 60 秒内可能拒绝展示。因此“每次请求”不等于“每次展示成功”，尤其刚看视频解锁选关后。
+- 真机控制台筛选 `[InterstitialAd]`：`return-home` 为返回主页，`level-select-entry` 为选关入口；每次记录请求、跳过原因或展示结果，失败包含平台原始 `errCode` / `errMsg`。广告配置加载日志包含插屏位 ID。
+- 插屏新建后等待原生自动加载的 `onLoad`，不立即重复 `load()`。加载失败后复用同一实例显式重试；兼容 `load()` 通过事件通知但不返回 Promise 的桥接实现，加载完成前不调用 `show()`。
+- 未展示的原生实例不能销毁：频控拒绝、页面离开、激励视频打断加载时保留实例和加载状态；之后复用，避免真机报 `A usable ad already exists`。仅展示成功后关闭/恢复时销毁，下一次再新建。失败日志同时兼容 `errCode`、`errNo`，并记录 `create` / `load` / `show` 阶段。
 
 核心逻辑：`SaveService.ts`（恢复与原子存档）、`GameFlow.ts`（扣费与广告入口）、`EnergyDisplay.ts`（跨页显示）。
 
@@ -24,4 +29,16 @@
 - 默认由各页面 `EnergyDisplay.attach(this.node)` 加载，沿用预制体根节点位置（当前为 -200、600），不再在代码中覆写坐标。若要单独调整某页的位置，可将此预制体直接拖到对应页面内；程序会复用已有组件，不再生成第二份或覆盖其位置。
 - 公共模板在当前运行期间只加载并持有一份，各页面实例跟随页面销毁，不会随着切页重复创建。
 
-相关验证：`tools/test-energy-access.cjs`、`tools/test-energy-navigation.cjs`、`tools/test-level-loading.cjs`、`tools/test-interstitial.cjs`。
+相关验证：`tools/test-energy-access.cjs`、`tools/test-energy-navigation.cjs`、`tools/test-level-loading.cjs`、`tools/test-interstitial.cjs`、`tools/test-navigation-interstitial.cjs`、`tools/test-interstitial-native-lifecycle.cjs`。
+
+## 插屏真机验收
+
+需重新构建并上传配套抖音代码包及资源；仅上传远程资源不会替换旧代码包中的广告逻辑。
+
+1. 手机抖音启动后等待至少 31 秒，且距上次插屏或激励视频至少 61 秒，再从设置/结算/章节列表/收藏等页面点击返回主页，检查 `return-home` 请求及展示结果。
+2. 选关资格有效时，间隔至少 61 秒，从主页点击“选择关卡”，应先进入章节详情并发出 `level-select-entry` 请求。
+3. 无资格时完整看视频解锁，进入详情后同样发出请求；此时原生频控可能拒绝，核对 `errCode` / `errMsg`，不要将平台拒绝误判为按钮未接线。
+4. 立即连续操作复现未展示时，筛选 `[InterstitialAd]`，按“没有请求日志 / 跳过原因 / SDK 错误”定位；同时核对页面底部版本与上传包。
+
+平台限制依据：[抖音小游戏插屏广告说明](https://partner.open-douyin.com/docs/resource/zh-CN/mini-game/develop/guide/open-ability/ad/interstitial-ad)。
+原生实例生命周期依据：[插屏广告注意事项](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/javascript-api/ads/interstitial-ad/interstitial-ad-notice)。

@@ -6,7 +6,7 @@ const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resour
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const cities = read('assets/resources/configs/cities.json').cities;
 assert.equal(cities.indexOf('city-PetStory'), cities.indexOf('city-01-2026Hotmeme') + 1);
-assert.equal(cities[cities.indexOf('city-PetStory') + 1], 'city-2025Hotmeme');
+assert.equal(cities[cities.indexOf('city-PetStory') + 1], 'city-PetThreeKingdoms');
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
 const names = ['_levelImageTarget', '_loadLevel', '_loadCityMeta', '_timeFor', '_nextLevelTarget'];

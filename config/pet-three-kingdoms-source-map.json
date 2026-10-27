@@ -1,0 +1,376 @@
+{
+  "chapter": "city-PetThreeKingdoms",
+  "source": "D:\\CocosCreator\\关卡\\三国",
+  "coverSource": "D:\\CocosCreator\\关卡\\三国\\01-黄巾起义-风格重绘\\scene-a.jpg",
+  "missingConfigurations": [],
+  "annotationProblems": [
+    {
+      "level": "level-04",
+      "id": "diff-5",
+      "field": "y",
+      "value": -0.016129
+    }
+  ],
+  "levels": [
+    {
+      "number": 1,
+      "sourceFolder": "01-黄巾起义-风格重绘",
+      "level": "level-01",
+      "name": "黄巾起义",
+      "differenceCount": 8,
+      "configSha256": "b0f1619bbe242ea15f22f21882d5d7f20edfa838acc07bfef30c20a6ae17677c",
+      "images": {
+        "scene-a.jpg": "8935d2ea9c250ad3765426cc8009c835ee11824fd18a2ed203476cac1b79c6c8",
+        "scene-b.jpg": "4da95c2e432caee9c841bd8d003c1cae655a3f448be7b3b0488e11b48a476a0e"
+      }
+    },
+    {
+      "number": 2,
+      "sourceFolder": "02-桃园结义-风格重绘",
+      "level": "level-02",
+      "name": "桃园结义",
+      "differenceCount": 11,
+      "configSha256": "bfffae0b1bdff24ad7ae82b9ca8eca455005c913b08230d479a928e81563a13b",
+      "images": {
+        "scene-a.jpg": "a41b2e7d5f39d2f7b03dff1093223b601f91ac72c7c6a7bf2a763f3d63b7d19e",
+        "scene-b.jpg": "8fab927c235540f7dff33bbfe79ae65b025c5fdc5696286e76a0ad0c5c589743"
+      }
+    },
+    {
+      "number": 3,
+      "sourceFolder": "03-温酒斩华雄-风格重绘",
+      "level": "level-03",
+      "name": "温酒斩华雄",
+      "differenceCount": 12,
+      "configSha256": "4e9ceef2d196e1eb5eddb8b792cd61ccb331007b057e16cc002f7c5ab317dacf",
+      "images": {
+        "scene-a.jpg": "9ff8bd622efedb8c56509dcd8a772d007d8a00e7eabdaa25e45ecac0329d9c33",
+        "scene-b.jpg": "67e89765ee67a21ca668fdcca67976ecb9cd15569b22d25e493fa3e7d4eb081f"
+      }
+    },
+    {
+      "number": 4,
+      "sourceFolder": "04-三英战吕布-风格重绘",
+      "level": "level-04",
+      "name": "三英战吕布",
+      "differenceCount": 15,
+      "configSha256": "af88c79a53e07929e06784d9277202468ad2b040f356dfc2d717b7b11b8b68e0",
+      "images": {
+        "scene-a.jpg": "b05d2bc679f6557591c6ab4074640f14b9ff41b75333922886b3aa018024b960",
+        "scene-b.jpg": "1d84f40e344ecd2c53fdaf29ef3c8293d233ec47d5ceccf92b67951702922f65"
+      }
+    },
+    {
+      "number": 5,
+      "sourceFolder": "05-孙坚匿玉玺-风格重绘",
+      "level": "level-05",
+      "name": "孙坚匿玉玺",
+      "differenceCount": 10,
+      "configSha256": "2c424d85a9db77fcbbe7fecf0f7f0cccd32c3e7af60d7682f2bc0c058d6886de",
+      "images": {
+        "scene-a.jpg": "5bd3b3977700dc804a66d8645e7016888cd683de8f3be56abd7bc09b510a998a",
+        "scene-b.jpg": "21b3c31de19bb769b0c7253cac535edef054d3652054cdbcc9402b41b63dbd47"
+      }
+    },
+    {
+      "number": 6,
+      "sourceFolder": "06-辕门射戟-风格重绘",
+      "level": "level-06",
+      "name": "辕门射戟",
+      "differenceCount": 12,
+      "configSha256": "f70650bee42f548db546e0dad68bb904f9917fc41846dced4c1033c0b0d66f32",
+      "images": {
+        "scene-a.jpg": "945da609f6b04f3fb5559580f2c3dcc05047d1e6241f191b5115e371799c9db2",
+        "scene-b.jpg": "fd7c38739ce2fb85d281bbc644cc3d528de765f3247df2a0cf5dc41543fc6a8a"
+      }
+    },
+    {
+      "number": 7,
+      "sourceFolder": "07-煮酒论英雄-风格重绘",
+      "level": "level-07",
+      "name": "煮酒论英雄",
+      "differenceCount": 16,
+      "configSha256": "216d0fd2bce2761d6932babc3a0acd762022359291cbcec0ada0fec615bc51e4",
+      "images": {
+        "scene-a.jpg": "0bef383eda9e6444f93b9ccaf0f6cdec4f1989428af265fa4a44df384fa4b548",
+        "scene-b.jpg": "5432f93857bbe772c8bb3ac52ad7b3307e795976dcdbb5063f9c63865d1e43ce"
+      }
+    },
+    {
+      "number": 8,
+      "sourceFolder": "08-神亭岭大战孙策-风格重绘",
+      "level": "level-08",
+      "name": "神亭岭大战孙策",
+      "differenceCount": 9,
+      "configSha256": "e483f730145634f8863231da1b444f084cc1f5a5dd98df410d9615c7a22c6d08",
+      "images": {
+        "scene-a.jpg": "93410ab449cebf18a4cf9844a12f176e6a87ad1a6cde2ed5c4354b05772a94f7",
+        "scene-b.jpg": "4390d8fbe191c7757888b5e9b7f655d50098199eea9b3a6f4c971c46f473ce24"
+      }
+    },
+    {
+      "number": 9,
+      "sourceFolder": "09-火烧乌巢-风格重绘",
+      "level": "level-09",
+      "name": "火烧乌巢",
+      "differenceCount": 15,
+      "configSha256": "32e4f79240dab4bf8da9e16dd6b12bd6bb9725552449905c24aecb1c39bcb6ea",
+      "images": {
+        "scene-a.jpg": "a92c11cc798c3bab44acdc8ea061155bab64a77f28a811507ec03d30ecf2b575",
+        "scene-b.jpg": "7f7594628ed536878bba5fdd1ea05cf01c9f6f4a330b68b787e2f278e80c65a4"
+      }
+    },
+    {
+      "number": 10,
+      "sourceFolder": "10-远征乌桓-风格重绘",
+      "level": "level-10",
+      "name": "远征乌桓",
+      "differenceCount": 12,
+      "configSha256": "07ad836e00b6b0b912b1b02b56a9d534be179b8194079d90ed660b0643ddab92",
+      "images": {
+        "scene-a.jpg": "1e0a57da62c9cf47ca1db267fc8b7ccd0466a678f9912be65aeba7f40693f9f3",
+        "scene-b.jpg": "1d6687ab886945bbe08d786cce992b8410984dac748fc019381cb91aab22d513"
+      }
+    },
+    {
+      "number": 11,
+      "sourceFolder": "11-割须弃袍-风格重绘",
+      "level": "level-11",
+      "name": "割须弃袍",
+      "differenceCount": 15,
+      "configSha256": "aabb15c0d8426be99d5af71d0e34da37d82d806e3e9c65c6b9bad5eb78d8f33c",
+      "images": {
+        "scene-a.jpg": "e8c5c3d2766cbdb0b9b37cbda238da7ea798de234e9669420aed8ec120897764",
+        "scene-b.jpg": "9179aaec22b2d6fcb28323e9012c3463f015f89a5084dbd9683408b1320746e5"
+      }
+    },
+    {
+      "number": 12,
+      "sourceFolder": "12-隆中对-风格重绘",
+      "level": "level-12",
+      "name": "隆中对",
+      "differenceCount": 12,
+      "configSha256": "b3782f4b43a703c6f5af50f1a8e965b6919f0b0213fe1e058eb5be6feef705e4",
+      "images": {
+        "scene-a.jpg": "d4d5aaf6c6198b92d8b9a51534ff16d52e60122c234fe538df7a6650a1f4b4db",
+        "scene-b.jpg": "63746f866e1f13abaac87cb07f20e94bb7d86577b0eae5e8cf6d89a4ec894001"
+      }
+    },
+    {
+      "number": 13,
+      "sourceFolder": "13-长坂坡单骑救主-风格重绘",
+      "level": "level-13",
+      "name": "长坂坡单骑救主",
+      "differenceCount": 12,
+      "configSha256": "373786048d790bed9f7542d477a1c6cd92ad5a9cb3a762871853cd3bbdd8df3f",
+      "images": {
+        "scene-a.jpg": "1f88ba2b8947c18b75f2d882e48c718e0264ebbee8e83b90ae81832875a0ed54",
+        "scene-b.jpg": "a04e4b8aefb90d0c95b45571a9a6a0f600599ecfa7863dc04fc92690220a9986"
+      }
+    },
+    {
+      "number": 14,
+      "sourceFolder": "14-舌战群儒-风格重绘",
+      "level": "level-14",
+      "name": "舌战群儒",
+      "differenceCount": 16,
+      "configSha256": "938b5619732e2f4fca1368c6ee02bb1f1d868809a444aed499050ff7d30e33e6",
+      "images": {
+        "scene-a.jpg": "a5476ab0c04f771118fa903cf5886092a578fc4b26f97f6e0bcfe40b9927ddcf",
+        "scene-b.jpg": "be698ecc56e852fbd798808a7b26eec85d201eaa18f2e81b114a4b7696c15f6b"
+      }
+    },
+    {
+      "number": 15,
+      "sourceFolder": "15-草船借箭-风格重绘",
+      "level": "level-15",
+      "name": "草船借箭",
+      "differenceCount": 12,
+      "configSha256": "f9ecdc0bb681f12f6d1033dfa45358fe7260d7b6c207c405aea482b08bc22a48",
+      "images": {
+        "scene-a.jpg": "382b56c07e328d2effdf2dbca945c278056aa6e24bfb0fb20c087796fd40c9bc",
+        "scene-b.jpg": "ce3f929904d75d86eb7c5f8cded4ed048b953b1f9bfaa7658cfade464fa9c483"
+      }
+    },
+    {
+      "number": 16,
+      "sourceFolder": "16-曹孟德横槊赋诗-风格重绘与内容补充",
+      "level": "level-16",
+      "name": "曹孟德横槊赋诗",
+      "differenceCount": 17,
+      "configSha256": "d5a01385d5b2784faf8ac146377c087544c3c7e9036a95edfd363916ed28df30",
+      "images": {
+        "scene-a.jpg": "f9292f80ba8ed9e3f60a126c97007d6aa841eee86b1b5c0cefd2041722fb3f38",
+        "scene-b.jpg": "c55b5781f4bebb853e3b33736232a6d8560d20236722df4d2a578565359ac4c1"
+      }
+    },
+    {
+      "number": 17,
+      "sourceFolder": "17-凤雏巧献连环计-风格重绘与内容补充",
+      "level": "level-17",
+      "name": "连环计",
+      "differenceCount": 15,
+      "configSha256": "9ff5e4d17bcf500e6263ad4abb9eea318850cc59e08e91479a3f9e024d5b9ac1",
+      "images": {
+        "scene-a.jpg": "1b47329571065d4bf39dd7d3382d41f0efe4941f2f1b2749c13ba2fe023781fe",
+        "scene-b.jpg": "87229bac781d0b7441ee0211d4890f1d779a3d2a8d632a1e15f5ec1f6d30b652"
+      }
+    },
+    {
+      "number": 18,
+      "sourceFolder": "18-孔明借东风火烧赤壁-风格重绘与内容补充",
+      "level": "level-18",
+      "name": "借东风火烧赤壁",
+      "differenceCount": 15,
+      "configSha256": "0cfeeb2c488554f38fb01a651520322483f4facc9bd1e575209e75a2b6e37e0f",
+      "images": {
+        "scene-a.jpg": "f12631d93d0b83541f0dc03aa57067071cadd82e9a1bf4f623dc275997cd092c",
+        "scene-b.jpg": "da72ccf9c51c8349f42b7380184fb1ee58d150c9ecc3dcf2ee8e8f37a23f0f45"
+      }
+    },
+    {
+      "number": 19,
+      "sourceFolder": "19-关羽华容道义释曹操-风格重绘与内容补充",
+      "level": "level-19",
+      "name": "华容道",
+      "differenceCount": 10,
+      "configSha256": "3febf8a74463daa16198af7c9f92a216908ec98abbc5963f9e58702fabb81a8a",
+      "images": {
+        "scene-a.jpg": "f68102f79cca5f66f759c6c25144402db95c9fddf234f7fb17221579d7a17870",
+        "scene-b.jpg": "12d4ce089c467149917ba9be133e555d05fe73324dca5484206127293fdde661"
+      }
+    },
+    {
+      "number": 20,
+      "sourceFolder": "20-张辽威震逍遥津-风格重绘与内容补充",
+      "level": "level-20",
+      "name": "威震逍遥津",
+      "differenceCount": 12,
+      "configSha256": "197f6945f49a8b68d16a88871f2697291da6a2b1baabb2f27ca2267eeab32d3a",
+      "images": {
+        "scene-a.jpg": "0ede5755fa1af0793e7c00bcaa40093824feadddf1cdfb8600ae8b86abb1176b",
+        "scene-b.jpg": "bca33c4cce659614f731ea588f5e57a6f2be55c28859f85f07d4b2b929d446cd"
+      }
+    },
+    {
+      "number": 21,
+      "sourceFolder": "21-落凤坡-风格重绘与内容补充",
+      "level": "level-21",
+      "name": "落凤坡",
+      "differenceCount": 6,
+      "configSha256": "eaf1ef91c49718b832f0f38e6dc131c9f987b37cf4bc2f3bc178d71c3d1a0250",
+      "images": {
+        "scene-a.jpg": "af5a11205a70c6d44f38b52ba9ccc5a458fd1aacbf32f3a7272842a3005b38ee",
+        "scene-b.jpg": "af5a11205a70c6d44f38b52ba9ccc5a458fd1aacbf32f3a7272842a3005b38ee"
+      }
+    },
+    {
+      "number": 22,
+      "sourceFolder": "22-定军山斩夏侯渊-风格重绘与内容补充",
+      "level": "level-22",
+      "name": "定军山",
+      "differenceCount": 6,
+      "configSha256": "9a2ff710cbe5180ebbc2f0d6c8fdc67fa65cd5faab5fb6add264b85e5368f494",
+      "images": {
+        "scene-a.jpg": "25a4862bebdf12d5e59bbea25b3e467ef9debf553005253db6af24a202718216",
+        "scene-b.jpg": "25a4862bebdf12d5e59bbea25b3e467ef9debf553005253db6af24a202718216"
+      }
+    },
+    {
+      "number": 23,
+      "sourceFolder": "23-水淹七军-风格重绘与内容补充",
+      "level": "level-23",
+      "name": "水淹七军",
+      "differenceCount": 5,
+      "configSha256": "5acbfe322c9a898951464ae8b21b7581325a38fbeff5d4b71d9630c569bbbf41",
+      "images": {
+        "scene-a.jpg": "64b317efabc36d79b2557b0cd9671e0cb28705f278018d48402bdc8fb051798f",
+        "scene-b.jpg": "64b317efabc36d79b2557b0cd9671e0cb28705f278018d48402bdc8fb051798f"
+      }
+    },
+    {
+      "number": 24,
+      "sourceFolder": "24-刮骨疗毒-风格重绘与内容补充",
+      "level": "level-24",
+      "name": "刮骨疗毒",
+      "differenceCount": 8,
+      "configSha256": "c02278bb2d22ca15c1aeddd5f010ff485f3e566281a03348f2870e6ab1461556",
+      "images": {
+        "scene-a.jpg": "35c18e1c0304c36b29341382b3739222145b318bee4cb250e32c1befeff34295",
+        "scene-b.jpg": "35c18e1c0304c36b29341382b3739222145b318bee4cb250e32c1befeff34295"
+      }
+    },
+    {
+      "number": 25,
+      "sourceFolder": "25-火烧连营白帝城托孤-风格重绘与内容补充",
+      "level": "level-25",
+      "name": "白帝城托孤",
+      "differenceCount": 7,
+      "configSha256": "37251e119497b72af948c7a2c12354cdb5288368e41b60b15460c4009c71b447",
+      "images": {
+        "scene-a.jpg": "d4947c7e7dc34140d3126622bf754ed23df7540e26035271d8bea25511a4bf7a",
+        "scene-b.jpg": "d4947c7e7dc34140d3126622bf754ed23df7540e26035271d8bea25511a4bf7a"
+      }
+    },
+    {
+      "number": 26,
+      "sourceFolder": "26-七擒孟获-风格重绘与内容补充",
+      "level": "level-26",
+      "name": "七擒孟获",
+      "differenceCount": 6,
+      "configSha256": "0d23bae313fc8ebfaa4cbf91486dd7ac5ec0c14c07b17d5c96f741598358aa7c",
+      "images": {
+        "scene-a.jpg": "4c624b26c741c0276330587d0ebf2d5dda8d78fb34ed578fc25b2cd14cc07b2e",
+        "scene-b.jpg": "4c624b26c741c0276330587d0ebf2d5dda8d78fb34ed578fc25b2cd14cc07b2e"
+      }
+    },
+    {
+      "number": 27,
+      "sourceFolder": "27-空城计-风格重绘与内容补充",
+      "level": "level-27",
+      "name": "空城计",
+      "differenceCount": 7,
+      "configSha256": "eba9710688179e0986041ed8c6540c83e4245b561de56d2c369eae4ebd0bc260",
+      "images": {
+        "scene-a.jpg": "a51e07b67612931b25d4efcf5f7791a7e277bc31dd7a1dd125f32987dea02484",
+        "scene-b.jpg": "a51e07b67612931b25d4efcf5f7791a7e277bc31dd7a1dd125f32987dea02484"
+      }
+    },
+    {
+      "number": 28,
+      "sourceFolder": "28-武侯禳星-风格重绘与内容补充",
+      "level": "level-28",
+      "name": "武侯禳星",
+      "differenceCount": 6,
+      "configSha256": "34e2016866e967d58cfc56ae08ecbfe882531a58e9725dcf5728204459fd83a9",
+      "images": {
+        "scene-a.jpg": "3751c95105b6cbd834c8164d1ae0f8cd3d8a1da9a25d32ea700b7f9041c1588b",
+        "scene-b.jpg": "3751c95105b6cbd834c8164d1ae0f8cd3d8a1da9a25d32ea700b7f9041c1588b"
+      }
+    },
+    {
+      "number": 29,
+      "sourceFolder": "29-单骑退雄兵-风格重绘与内容补充",
+      "level": "level-29",
+      "name": "单骑退雄兵",
+      "differenceCount": 8,
+      "configSha256": "feab0b2967ceeb18580faec3ba06a5a89ba1b795388e81dff7b4645a8b4c851f",
+      "images": {
+        "scene-a.jpg": "2c522f91c5c69c1942b0a46b2c03b95eb33a4a19654a7f51e61682866d3b1f58",
+        "scene-b.jpg": "2c522f91c5c69c1942b0a46b2c03b95eb33a4a19654a7f51e61682866d3b1f58"
+      }
+    },
+    {
+      "number": 30,
+      "sourceFolder": "30-姜维九伐中原-风格重绘与内容补充",
+      "level": "level-30",
+      "name": "九伐中原",
+      "differenceCount": 10,
+      "configSha256": "1e285c12dded1e535de78e7588ab5c67c1e1be8c4e6cfe4468ca0095a2401982",
+      "images": {
+        "scene-a.jpg": "8c15a4c3d1c3e6be28e75de1c066ee4e6ac9292f7f3f4f4ccf680c36fea34156",
+        "scene-b.jpg": "8c15a4c3d1c3e6be28e75de1c066ee4e6ac9292f7f3f4f4ccf680c36fea34156"
+      }
+    }
+  ]
+}

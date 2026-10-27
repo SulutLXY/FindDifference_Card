@@ -1,0 +1,44 @@
+{
+  "name": "定军山",
+  "type": "normal",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.394808,
+      "y": 0.343548,
+      "radius": 0.058644
+    },
+    {
+      "id": "diff-2",
+      "x": 0.737752,
+      "y": 0.540323,
+      "radius": 0.063233
+    },
+    {
+      "id": "diff-3",
+      "x": 0.894405,
+      "y": 0.635484,
+      "radius": 0.070692
+    },
+    {
+      "id": "diff-4",
+      "x": 0.121724,
+      "y": 0.164516,
+      "radius": 0.045847
+    },
+    {
+      "id": "diff-5",
+      "x": 0.161946,
+      "y": 0.859677,
+      "radius": 0.102276
+    },
+    {
+      "id": "diff-6",
+      "x": 0.556754,
+      "y": 0.780645,
+      "radius": 0.06022
+    }
+  ],
+  "icon": "thumbnails/city-PetThreeKingdoms/level-22/icon/spriteFrame"
+}

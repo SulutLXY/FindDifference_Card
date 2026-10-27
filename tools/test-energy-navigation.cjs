@@ -7,7 +7,7 @@ function methods(file,names,extra={}) {
 }
 const Flow=methods('assets/scripts/GameFlow.ts',['enterLevelSelection','requestLevelSelectAccess','requestReward','requestEnergyReward','energyAdsRemaining','returnToLobby'],{sidebarDay:()=> '2026-10-26'});
 (async()=>{
- const f=new Flow();f.isValid=true;f.lobby={node:{activeInHierarchy:true}};f._secondaryNavigationVersion=0;f._isPaused=false;
+ const f=new Flow();f.isValid=true;f.lobby={node:{activeInHierarchy:true}};f.citySelect={node:{activeInHierarchy:true}};f._secondaryNavigationVersion=0;f._isPaused=false;
  let access=false,ads=0,rewards=0,entered=0,claims=0,energy=0,quota=3,finish;
  f.save={hasLevelSelectAccess:()=>access,grantLevelSelectAccess:()=>access=true,get energy(){return energy;},energyLimit:99,energyRecoveryLimit:10,
   energyAdsRemaining:()=>quota,claimEnergyAd:()=>{claims++;energy=Math.min(99,energy+5);quota--;return true;}};
@@ -16,8 +16,8 @@ const Flow=methods('assets/scripts/GameFlow.ts',['enterLevelSelection','requestL
  const first=f.enterLevelSelection();await f.enterLevelSelection();assert.equal(rewards,1);assert.equal(ads,0);assert.equal(entered,0);
  finish({success:true,completed:false});await first;assert.equal(entered,0);assert.equal(access,false);
  const good=f.enterLevelSelection();finish({success:true,completed:true});await good;
- assert.equal(entered,1);assert.equal(access,true);assert.equal(ads,0,'Unlock reward does not chain an interstitial');
- await f.enterLevelSelection();assert.equal(entered,2);assert.equal(ads,1,'Valid pass enters via interstitial');
+ assert.equal(entered,1);assert.equal(access,true);assert.equal(ads,1,'First successful entry also requests an interstitial; native SDK controls reward frequency');
+ await f.enterLevelSelection();assert.equal(entered,2);assert.equal(ads,2,'Valid pass requests an interstitial on every entry');
  access=false;const stale=f.enterLevelSelection();f._secondaryNavigationVersion++;finish({success:true,completed:true});await stale;
  assert.equal(access,true);assert.equal(entered,2,'Earned pass persists but stale result cannot navigate');
  f._isPaused=false;const cancelled=f.requestEnergyReward();await f.requestEnergyReward();assert.equal(f._isPaused,true);
@@ -28,7 +28,7 @@ const Flow=methods('assets/scripts/GameFlow.ts',['enterLevelSelection','requestL
  energy=9;const bonus=f.requestEnergyReward();finish({success:true,completed:true});await bonus;assert.equal(energy,14,'A video started below 10 grants the whole +5');
  const calls=rewards;for(const value of [14,99]){energy=value;await f.requestEnergyReward();assert.equal(rewards,calls,'No ad at or above 10');}
  energy=0;quota=0;await f.requestEnergyReward();assert.equal(rewards,calls,'No ad after daily limit');
- f.showLobby=()=>{f.lobby.node.activeInHierarchy=true;};f.returnToLobby();await new Promise(setImmediate);assert.equal(ads,2,'Return home requests interstitial');
+ f.showLobby=()=>{f.lobby.node.activeInHierarchy=true;};f.returnToLobby();await new Promise(setImmediate);assert.equal(ads,3,'Return home requests interstitial');
  const Display=methods('assets/scripts/ui/EnergyDisplay.ts',['_refresh','_onRewardClick']);const d=new Display();let clicked=0;d.flow={save:{energy:9,energyLimit:99,energyRecoveryLimit:10,energyRecoverySeconds:61},requestEnergyReward:()=>clicked++};
  d.energyLabel={string:''};d.countdownLabel={string:''};d.countdownRoot={active:false};d.videoIcon={active:false};
  d._refresh();assert.equal(d.energyLabel.string,'体力 9');assert.equal(d.countdownRoot.active,true);assert.equal(d.countdownLabel.string,'01:01');assert.equal(d.videoIcon.active,true);

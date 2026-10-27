@@ -42,7 +42,8 @@ LEGACY_RULE_FIELDS = {'unlockMode', 'prerequisiteCity'}
 CITY_NAMES = {
     'city-00-HotTips': '网络热点',
     'city-01-2026Hotmeme': '2026热梗',
-    'city-2025Hotmeme': '2025年度梗',
+    'city-2025Hotmeme': '2025热梗',
+    'city-PetThreeKingdoms': '萌宠三国',
     'city-PetStory': '宠物故事',
     'city-02-beijing': '北京',
     'city-03-shanghai': '上海',
@@ -126,6 +127,8 @@ def check_level(city_dir, level_dir):
 def city_sort_key(city):
     # 新专题使用独立 key 插入展示列表，原城市目录和存档 key 不变。
     if city == 'city-2025Hotmeme':
+        return (1, 3, city)
+    if city == 'city-PetThreeKingdoms':
         return (1, 2, city)
     if city == 'city-PetStory':
         return (1, 1, city)

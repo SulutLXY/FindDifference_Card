@@ -17,6 +17,8 @@ pkg.scripts = { ...pkg.scripts, 'version:sync': 'node tools/sync-app-version.cjs
 write('package.json', JSON.stringify(pkg, null, 2) + '\n');
 // Update future build options, never rewrite historical successful task records.
 for (const file of ['profiles/v2/packages/builder.json', 'profiles/v2/packages/bytedance-mini-game.json', 'profiles/v2/packages/web-mobile.json']) {
+    // Creator only generates a platform profile after that platform is configured.
+    if (!fs.existsSync(path.join(root, file))) continue;
     const config = read(file);
     const common = config.builder ? config.builder.common : config.common;
     if (common && ['bytedance-mini-game', 'web-mobile'].includes(common.platform)) {

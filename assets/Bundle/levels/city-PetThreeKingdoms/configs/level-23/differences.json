@@ -1,0 +1,38 @@
+{
+  "name": "水淹七军",
+  "type": "normal",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.689062,
+      "y": 0.441935,
+      "radius": 0.057818
+    },
+    {
+      "id": "diff-2",
+      "x": 0.84995,
+      "y": 0.709677,
+      "radius": 0.05775
+    },
+    {
+      "id": "diff-3",
+      "x": 0.136542,
+      "y": 0.38871,
+      "radius": 0.063969
+    },
+    {
+      "id": "diff-4",
+      "x": 0.06245,
+      "y": 0.43871,
+      "radius": 0.045648
+    },
+    {
+      "id": "diff-5",
+      "x": 0.138659,
+      "y": 0.637097,
+      "radius": 0.077587
+    }
+  ],
+  "icon": "thumbnails/city-PetThreeKingdoms/level-23/icon/spriteFrame"
+}

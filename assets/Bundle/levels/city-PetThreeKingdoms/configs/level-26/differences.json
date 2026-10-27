@@ -1,0 +1,44 @@
+{
+  "name": "七擒孟获",
+  "type": "normal",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.453024,
+      "y": 0.535484,
+      "radius": 0.072581
+    },
+    {
+      "id": "diff-2",
+      "x": 0.972732,
+      "y": 0.522581,
+      "radius": 0.073577
+    },
+    {
+      "id": "diff-3",
+      "x": 0.800202,
+      "y": 0.66129,
+      "radius": 0.046885
+    },
+    {
+      "id": "diff-4",
+      "x": 0.860534,
+      "y": 0.664516,
+      "radius": 0.039011
+    },
+    {
+      "id": "diff-5",
+      "x": 0.388458,
+      "y": 0.65,
+      "radius": 0.051233
+    },
+    {
+      "id": "diff-6",
+      "x": 0.100554,
+      "y": 0.485484,
+      "radius": 0.060003
+    }
+  ],
+  "icon": "thumbnails/city-PetThreeKingdoms/level-26/icon/spriteFrame"
+}
