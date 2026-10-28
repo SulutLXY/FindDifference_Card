@@ -293,11 +293,11 @@
       "sourceFolder": "24-刮骨疗毒-风格重绘与内容补充",
       "level": "level-24",
       "name": "刮骨疗毒",
-      "differenceCount": 8,
-      "configSha256": "c02278bb2d22ca15c1aeddd5f010ff485f3e566281a03348f2870e6ab1461556",
+      "differenceCount": 12,
+      "configSha256": "3847d8b2413d63c31db9b1c63fd5bc5bdd20b071d6248f4c25701d3dbeae17a4",
       "images": {
         "scene-a.jpg": "35c18e1c0304c36b29341382b3739222145b318bee4cb250e32c1befeff34295",
-        "scene-b.jpg": "35c18e1c0304c36b29341382b3739222145b318bee4cb250e32c1befeff34295"
+        "scene-b.jpg": "b0a2af0a97987d10ec9fe4c2b4ba565a903cdc0f98bb6b17fc5f65e222ce40c9"
       }
     },
     {
@@ -305,11 +305,11 @@
       "sourceFolder": "25-火烧连营白帝城托孤-风格重绘与内容补充",
       "level": "level-25",
       "name": "白帝城托孤",
-      "differenceCount": 7,
-      "configSha256": "37251e119497b72af948c7a2c12354cdb5288368e41b60b15460c4009c71b447",
+      "differenceCount": 14,
+      "configSha256": "f7af61d5aef1772218d489415f6bf3386a4c1b72980408a824f0b7db2babe0b7",
       "images": {
         "scene-a.jpg": "d4947c7e7dc34140d3126622bf754ed23df7540e26035271d8bea25511a4bf7a",
-        "scene-b.jpg": "d4947c7e7dc34140d3126622bf754ed23df7540e26035271d8bea25511a4bf7a"
+        "scene-b.jpg": "740314f6f614ca40320dfbe17003d21c3fec30fe7bc33e48b62ff67fbd0b22e1"
       }
     },
     {
@@ -317,11 +317,11 @@
       "sourceFolder": "26-七擒孟获-风格重绘与内容补充",
       "level": "level-26",
       "name": "七擒孟获",
-      "differenceCount": 6,
-      "configSha256": "0d23bae313fc8ebfaa4cbf91486dd7ac5ec0c14c07b17d5c96f741598358aa7c",
+      "differenceCount": 16,
+      "configSha256": "bd642977d08be83591058d553b65a201404f3962cc1ff0c40e7cde3c10154f4b",
       "images": {
         "scene-a.jpg": "4c624b26c741c0276330587d0ebf2d5dda8d78fb34ed578fc25b2cd14cc07b2e",
-        "scene-b.jpg": "4c624b26c741c0276330587d0ebf2d5dda8d78fb34ed578fc25b2cd14cc07b2e"
+        "scene-b.jpg": "54d343d457ac47b2b324a79822e966a1ff9da1e780f84cf53847078dcccc43d8"
       }
     },
     {
@@ -329,11 +329,11 @@
       "sourceFolder": "27-空城计-风格重绘与内容补充",
       "level": "level-27",
       "name": "空城计",
-      "differenceCount": 7,
-      "configSha256": "eba9710688179e0986041ed8c6540c83e4245b561de56d2c369eae4ebd0bc260",
+      "differenceCount": 12,
+      "configSha256": "205c6d603f80298bd4188837f942b11903e55e45c0b2a74b9140e59a3702c938",
       "images": {
         "scene-a.jpg": "a51e07b67612931b25d4efcf5f7791a7e277bc31dd7a1dd125f32987dea02484",
-        "scene-b.jpg": "a51e07b67612931b25d4efcf5f7791a7e277bc31dd7a1dd125f32987dea02484"
+        "scene-b.jpg": "f7d01edb91f7f4930b996dade5465694d184a9f3c61fd6a9d0df0c572d17d832"
       }
     },
     {
@@ -341,11 +341,11 @@
       "sourceFolder": "28-武侯禳星-风格重绘与内容补充",
       "level": "level-28",
       "name": "武侯禳星",
-      "differenceCount": 6,
-      "configSha256": "34e2016866e967d58cfc56ae08ecbfe882531a58e9725dcf5728204459fd83a9",
+      "differenceCount": 16,
+      "configSha256": "28c068c20bd945fd7d336d7c40250a761db27d5dbe74f88fe02f3e7e70cabad4",
       "images": {
         "scene-a.jpg": "3751c95105b6cbd834c8164d1ae0f8cd3d8a1da9a25d32ea700b7f9041c1588b",
-        "scene-b.jpg": "3751c95105b6cbd834c8164d1ae0f8cd3d8a1da9a25d32ea700b7f9041c1588b"
+        "scene-b.jpg": "bc369b0be52b653959edc20334e24d661f769f99585b6e87bbf537ee6b8e87e7"
       }
     },
     {
@@ -353,11 +353,11 @@
       "sourceFolder": "29-单骑退雄兵-风格重绘与内容补充",
       "level": "level-29",
       "name": "单骑退雄兵",
-      "differenceCount": 8,
-      "configSha256": "feab0b2967ceeb18580faec3ba06a5a89ba1b795388e81dff7b4645a8b4c851f",
+      "differenceCount": 12,
+      "configSha256": "5e4c797d1e9b0d1937c16ebdbbd17f7b6711d514c4bd69139774bb41b2e19b64",
       "images": {
         "scene-a.jpg": "2c522f91c5c69c1942b0a46b2c03b95eb33a4a19654a7f51e61682866d3b1f58",
-        "scene-b.jpg": "2c522f91c5c69c1942b0a46b2c03b95eb33a4a19654a7f51e61682866d3b1f58"
+        "scene-b.jpg": "df86ff65202f700b7f9dbcee8a067c3745a4c1119ee99adbb312cd33508175ba"
       }
     },
     {
@@ -365,11 +365,11 @@
       "sourceFolder": "30-姜维九伐中原-风格重绘与内容补充",
       "level": "level-30",
       "name": "九伐中原",
-      "differenceCount": 10,
-      "configSha256": "1e285c12dded1e535de78e7588ab5c67c1e1be8c4e6cfe4468ca0095a2401982",
+      "differenceCount": 15,
+      "configSha256": "3c6bcb18bf19a17cfdd482ae35f4528a784b113bf9bf428b98f10d01fb321304",
       "images": {
         "scene-a.jpg": "8c15a4c3d1c3e6be28e75de1c066ee4e6ac9292f7f3f4f4ccf680c36fea34156",
-        "scene-b.jpg": "8c15a4c3d1c3e6be28e75de1c066ee4e6ac9292f7f3f4f4ccf680c36fea34156"
+        "scene-b.jpg": "c4ce7fb825837c2a2675ef7f51cc48461943aa2b0e6c2c4860a476824b47e1b2"
       }
     }
   ]
