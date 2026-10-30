@@ -1,7 +1,6 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const scene=JSON.parse(fs.readFileSync('assets/PleyGame/prefabs/GameScreen.prefab','utf8'));
 const game=fs.readFileSync('assets/scripts/ui/GameScreen.ts','utf8');
-const hud=game.slice(game.indexOf('const flow = this.flow;',game.indexOf('public refreshHud()')),game.indexOf('const timer =',game.indexOf('public refreshHud()')));
 const labels={},sprites={};class Label{} class Sprite{}
 function node(index){
  const item=scene[index];
@@ -11,18 +10,21 @@ function node(index){
 }
 function find(root,name){for(const child of root.children){if(child.name===name)return child;const nested=find(child,name);if(nested)return nested;}return null;}
 const hint=node(scene.findIndex(n=>n._name==='BtnHint')),time=node(scene.findIndex(n=>n._name==='BtnAddTime'));
-const ctx={btnHint:hint,btnAddTime:time,flow:{save:{freeHints:7,freeAddTimes:3},canWatchHintAd:true,canWatchAddTimeAd:true},resolveNode:n=>n,findChildDeep:find};
+const ctx={btnHint:hint,btnAddTime:time,flow:{save:{freeHints:7,freeAddTimes:3}},resolveNode:n=>n,findChildDeep:find};
 const ts=require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
-const script=ts.transpileModule('(function(){'+hud+'})',{compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText;
-const refresh=vm.runInNewContext(script,{Label,Sprite});
+const tree=ts.createSourceFile('GameScreen.ts',game,ts.ScriptTarget.Latest,true);
+const method=tree.statements.find(ts.isClassDeclaration).members.find(m=>m.name?.getText(tree)==='_refreshAssistHud').getText(tree);
+const Screen=vm.runInNewContext(ts.transpileModule(`class Screen {${method}};Screen;`,{compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{Label,Sprite});
+ctx._refreshAssistHud=Screen.prototype._refreshAssistHud;
+function refresh(){this._refreshAssistHud(this.flow.unlimitedAssists,this.flow.save.freeHints,this.flow.save.freeAddTimes);}
 refresh.call(ctx);
 assert.equal(find(hint,'Times').getComponent().string,'7');assert.equal(find(time,'Times').getComponent().string,'3');
 for(const button of [hint,time]){assert.equal(find(button,'icon_Tips01').active,true);assert.equal(find(button,'icon_videoplay').active,false);assert.equal(button.getComponent(Sprite).grayscale,false);}
 ctx.flow.save.freeHints=0;ctx.flow.save.freeAddTimes=0;refresh.call(ctx);
 assert.equal(find(hint,'Times').getComponent().string,'');assert.equal(find(time,'Times').getComponent().string,'');
 for(const button of [hint,time]){assert.equal(find(button,'icon_Tips01').active,false);assert.equal(find(button,'icon_videoplay').active,true);assert.equal(find(button,'Times').active,false);assert.equal(button.getComponent(Sprite).grayscale,false);}
-ctx.flow.canWatchHintAd=false;ctx.flow.canWatchAddTimeAd=false;refresh.call(ctx);
-for(const button of [hint,time]){assert.equal(find(button,'icon_videoplay').active,false);assert.equal(button.getComponent(Sprite).grayscale,true);}
+for(let i=0;i<10;i++)refresh.call(ctx);
+for(const button of [hint,time]){assert.equal(find(button,'icon_videoplay').active,true);assert.equal(button.getComponent(Sprite).grayscale,false);}
 ctx.flow.save.freeHints=1;refresh.call(ctx);assert.equal(hint.getComponent(Sprite).grayscale,false);assert.equal(find(hint,'icon_Tips01').active,true);
 ctx.flow.unlimitedAssists=true;
 for(const count of [0, 2]) {
@@ -37,4 +39,4 @@ for(const count of [0, 2]) {
 }
 ctx.flow.unlimitedAssists=false;refresh.call(ctx);
 assert.equal(find(hint,'Times').active,true);assert.equal(find(hint,'Times').getComponent().string,'2');
-console.log('Passed: actual scene stock/ad/exhausted icons, counts, grayscale, and restored inventory.');
+console.log('Passed: actual prefab stock counts, unlimited ad availability, H5 icons and restored inventory.');

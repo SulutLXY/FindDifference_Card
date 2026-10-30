@@ -10,11 +10,11 @@ export class EnergyDisplay extends UIScreen {
     public energyLabel: Label | null = null;
     @property({ type: Label, displayName: '恢复倒计时' })
     public countdownLabel: Label | null = null;
-    @property({ type: Node, displayName: '状态文字容器', tooltip: '始终显示，体力不足显示倒计时，达到 10 点显示体力已满' })
+    @property({ type: Node, displayName: '状态文字容器', tooltip: '始终显示，体力不足显示倒计时，达到 15 点显示体力已满' })
     public countdownRoot: Node | null = null;
-    @property({ type: Node, displayName: '体力点击区域', tooltip: '体力不足 10 点时点击观看视频，达到 10 点后点击无效' })
+    @property({ type: Node, displayName: '体力点击区域', tooltip: '体力不足 15 点时点击观看视频，达到 15 点后点击无效' })
     public rewardButton: Node | null = null;
-    @property({ type: Node, displayName: '视频播放图标', tooltip: '仅在体力不足 10 点时显示' })
+    @property({ type: Node, displayName: '视频播放图标', tooltip: '仅在体力不足 15 点时显示' })
     public videoIcon: Node | null = null;
     private _elapsed = 0;
     private static _prefab: Prefab | null = null;

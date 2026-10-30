@@ -96,8 +96,6 @@ export class GameScreen extends UIScreen {
     private _hudUnlimited: boolean | null = null;
     private _hudHints = -1;
     private _hudAddTimes = -1;
-    private _hudHintAd: boolean | null = null;
-    private _hudTimeAd: boolean | null = null;
     private readonly _timerColor = new Color(65, 72, 95, 255);
 
     protected update(): void {
@@ -200,7 +198,7 @@ export class GameScreen extends UIScreen {
 
     public clearLevel(): void {
         this._hudSeconds = this._hudLives = this._hudFound = this._hudTotal = -1;
-        this._hudUnlimited = this._hudHintAd = this._hudTimeAd = null;
+        this._hudUnlimited = null;
         this._hudHints = this._hudAddTimes = -1;
         this._hideComboTips();
         this._clearSuccessText();
@@ -297,13 +295,10 @@ export class GameScreen extends UIScreen {
         const flow = this.flow;
         const unlimited = flow.unlimitedAssists;
         const hints = flow.save.freeHints, addTimes = flow.save.freeAddTimes;
-        const hintAd = flow.canWatchHintAd, timeAd = flow.canWatchAddTimeAd;
-        if (unlimited !== this._hudUnlimited || hints !== this._hudHints || addTimes !== this._hudAddTimes
-            || hintAd !== this._hudHintAd || timeAd !== this._hudTimeAd) {
-            this._refreshAssistHud(unlimited, hints, addTimes, hintAd, timeAd);
+        if (unlimited !== this._hudUnlimited || hints !== this._hudHints || addTimes !== this._hudAddTimes) {
+            this._refreshAssistHud(unlimited, hints, addTimes);
             this._hudUnlimited = unlimited;
             this._hudHints = hints; this._hudAddTimes = addTimes;
-            this._hudHintAd = hintAd; this._hudTimeAd = timeAd;
         }
         const seconds = Math.max(0, Math.ceil(flow.remainingTime));
         if (seconds !== this._hudSeconds) {
@@ -322,19 +317,17 @@ export class GameScreen extends UIScreen {
         }
     }
 
-    private _refreshAssistHud(unlimited: boolean, hints: number, addTimes: number, hintAd: boolean, timeAd: boolean): void {
-        for (const [button, name, count, canWatchAd] of [
-            [this.btnHint, 'BtnHint', hints, hintAd],
-            [this.btnAddTime, 'BtnAddTime', addTimes, timeAd],
+    private _refreshAssistHud(unlimited: boolean, hints: number, addTimes: number): void {
+        for (const [button, name, count] of [
+            [this.btnHint, 'BtnHint', hints],
+            [this.btnAddTime, 'BtnAddTime', addTimes],
         ] as const) {
             const root = this.resolveNode(button, name);
             if (!root) continue;
             const tipsIcon = this.findChildDeep(root, 'icon_Tips01');
             const videoIcon = this.findChildDeep(root, 'icon_videoplay');
             if (tipsIcon) tipsIcon.active = unlimited || count > 0;
-            if (videoIcon) videoIcon.active = !unlimited && count === 0 && canWatchAd;
-            const sprite = root.getComponent(Sprite);
-            if (sprite) sprite.grayscale = !unlimited && count === 0 && !canWatchAd;
+            if (videoIcon) videoIcon.active = !unlimited && count === 0;
             const timesNode = root ? this.findChildDeep(root, 'Times') : null;
             if (timesNode) timesNode.active = !unlimited && count > 0;
             const times = timesNode?.getComponent(Label) ?? timesNode?.getComponentInChildren(Label);

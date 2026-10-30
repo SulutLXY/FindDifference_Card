@@ -20,7 +20,7 @@ function platform(env, host) {
 const flowSource = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', flowSource, ts.ScriptTarget.Latest, true);
 const cls = tree.statements.find(ts.isClassDeclaration);
-const names = ['requestReward', 'unlimitedAssists', 'canWatchHintAd', 'canWatchAddTimeAd', 'requestHint', 'requestAddTime', 'addTime'];
+const names = ['requestReward', 'unlimitedAssists', 'requestHint', 'requestAddTime', 'addTime'];
 const method = cls.members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
 const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { console });
 
@@ -47,9 +47,8 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
     await h5.onRoundFinished(() => true);
     assert.equal(sdkCalls, 0);
 
-    // Even exhausted stock and zero per-level limits cannot limit H5 assists.
+    // H5 assists stay free and unlimited without touching stock.
     flow._currentLevel = { differences: [{ id: 'a' }] }; flow._foundIds = new Set();
-    flow._hintAdsUsed = flow._addTimeAdsUsed = 99; flow.hintAdsPerLevel = flow.addTimeAdsPerLevel = 0;
     flow._remainingTime = 100; let hints = 0;
     flow.useHint = () => hints++;
     flow.playHintSound = flow.playAddTimeSound = () => {};
@@ -58,8 +57,6 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
         consumeAddTime() { throw Error('Must not consume H5 stock'); }, grantAssist() { throw Error('Must not grant H5 stock'); } };
     for (let i = 0; i < 20; i++) { await flow.requestHint(); await flow.requestAddTime(); }
     assert.equal(hints, 20); assert.equal(flow._remainingTime, 700);
-    assert.equal(flow._hintAdsUsed, 99); assert.equal(flow._addTimeAdsUsed, 99);
-    assert.equal(flow.canWatchHintAd, true); assert.equal(flow.canWatchAddTimeAd, true);
     flow._isGameOver = true;
     await flow.requestHint(); await flow.requestAddTime();
     assert.equal(hints, 20); assert.equal(flow._remainingTime, 700, 'Game-over guard still applies');
@@ -76,14 +73,18 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
         assert.equal(p.kind, kind);
         flow.platform = p; flow._isGameOver = false; flow._isPaused = false;
         assert.equal(flow.unlimitedAssists, false);
-        assert.equal(flow.canWatchHintAd, false); assert.equal(flow.canWatchAddTimeAd, false);
         flow.toast = () => {};
-        await flow.requestHint(); await flow.requestAddTime();
-        assert.equal(created, 0, 'Native exhausted limits still block extra ads');
+        flow.save = { freeHints: 0, freeAddTimes: 0, consumeFreeHint: () => false, consumeAddTime: () => false, grantAssist: () => true };
+        const hintAd = flow.requestHint();
+        assert.equal(created, 1, 'Per-level caps removed; native assists open ads');
+        close({ isEnded: false }); await hintAd;
+        const timeAd = flow.requestAddTime();
+        assert.equal(created, 2, 'No per-level cap on add-time either');
+        close({ isEnded: false }); await timeAd;
         assert.equal(hints, 20); assert.equal(flow._remainingTime, 700);
         let granted = false;
         const reward = flow.requestReward('hint', () => { granted = true; });
-        assert.equal(granted, false); assert.equal(created, 1);
+        assert.equal(granted, false); assert.equal(created, 3);
         close({ isEnded: true }); await reward; assert.equal(granted, true);
         granted = false; flow.toast = () => {};
         const cancelled = flow.requestReward('hint', () => { granted = true; });
@@ -92,13 +93,13 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
         // Paused gameplay blocks assists; selection unlocks still allow reward ads.
         flow._isPaused = true;
         await flow.requestReward('hint', () => { throw Error('Paused gameplay must stay blocked'); });
-        assert.equal(created, 2);
+        assert.equal(created, 4);
 
         granted = false;
         const unlock = flow.requestReward('unlock-level', () => { granted = true; });
-        assert.equal(created, 3, 'Level selection must allow a native video while gameplay is paused');
+        assert.equal(created, 5, 'Level selection must allow a native video while gameplay is paused');
         await flow.requestReward('unlock-level', () => { throw Error('Duplicate unlock'); });
-        assert.equal(created, 3);
+        assert.equal(created, 5);
         close({ isEnded: true }); await unlock;
         assert.equal(granted, true); assert.equal(flow._isPaused, true);
         granted = false;
@@ -108,16 +109,16 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
 
         granted = false;
         const chapter = flow.requestReward('unlock-chapter', () => { granted = true; });
-        assert.equal(created, 5);
+        assert.equal(created, 7);
         close({ isEnded: true }); await chapter;
         assert.equal(granted, true); assert.equal(flow._isPaused, true);
 
         flow._isGameOver = true;
         const revive = flow.requestReward('revive', () => {});
         await flow.requestReward('revive', () => { throw Error('Duplicate revive'); });
-        assert.equal(created, 6, 'Game-over state must not bypass the pending ad guard');
+        assert.equal(created, 8, 'Game-over state must not bypass the pending ad guard');
         close({ isEnded: true }); await revive;
     }
     assert.ok(!flowSource.includes('_showSimulatedAd'), 'Remove obsolete simulation UI');
-    console.log('PASS: H5 ad bypass and unlimited assists without stock/counter changes; native limits and complete/cancel behavior retained.');
+    console.log('PASS: H5 ad bypass and unlimited assists without stock changes; native uncapped assists and complete/cancel behavior retained.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -6,7 +6,7 @@ const compile = text => ts.transpileModule(text, { compilerOptions: { module: ts
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
 const names = new Set(['_maybeShowAssistTutorial', '_presentAssistTutorial', 'ASSIST_STUCK_SECONDS', 'ASSIST_LOW_TIME_SECONDS',
-    'unlimitedAssists', 'canWatchHintAd', 'canWatchAddTimeAd', 'requestHint', 'requestAddTime', 'requestReward', 'addTime']);
+    'unlimitedAssists', 'requestHint', 'requestAddTime', 'requestReward', 'addTime']);
 const methods = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.has(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
 class GameTips {}
 const Flow = vm.runInNewContext(compile(`class GameFlow { ${methods} }; GameFlow;`), { GameTips, console });
@@ -25,8 +25,7 @@ function setup(kind, stock = 0) {
     const platform = new exports.PlatformService(); platform.configure({ douyinRewardedAdUnitId: 'test-reward' });
     const flow = new Flow();
     flow.platform = platform; flow.isValid = true; flow._isGameOver = flow._isPaused = false;
-    flow._assistRoundVersion = 1; flow._hintAdsUsed = flow._addTimeAdsUsed = 0;
-    flow.hintAdsPerLevel = flow.addTimeAdsPerLevel = 2;
+    flow._assistRoundVersion = 1;
     flow._currentLevel = { differences: [{ id: 'a' }] }; flow._foundIds = new Set();
     flow._elapsedTime = 21; flow._lastFoundElapsed = 0; flow._remainingTime = kind === 'add-time' ? 20 : 120;
     flow.save = { data: { tutorialCompleted: true, tutorialHintShown: kind === 'zoom' }, freeHints: stock, freeAddTimes: stock,
@@ -71,11 +70,11 @@ const tick = () => new Promise(resolve => setImmediate(resolve));
         assert.equal(stock.flow.save[kind === 'hint' ? 'freeHints' : 'freeAddTimes'], 0);
         assert.equal(stock.hints(), kind === 'hint' ? 1 : 0);
         assert.equal(stock.flow._remainingTime, before + (kind === 'add-time' ? 30 : 0));
-        const limit = setup(kind); limit.flow._hintAdsUsed = limit.flow._addTimeAdsUsed = 2;
-        limit.tap(); await tick(); assert.equal(limit.ads(), 0); assert.equal(limit.messages.length, 1);
+        const limit = setup(kind); limit.tap(); await tick();
+        assert.equal(limit.ads(), 1, 'Per-level caps removed; another ad is offered'); assert.equal(limit.messages.length, 0);
         const stale = setup(kind); stale.flow._assistRoundVersion++; stale.tap(); await tick(); assert.equal(stale.ads(), 0);
         const miss = setup(kind); miss.tap(false); await tick(); assert.equal(miss.ads(), 0); assert.equal(miss.flow._isPaused, false);
     }
     const zoom = setup('zoom'); zoom.tap(); assert.equal(zoom.zooms(), 1); assert.equal(zoom.ads(), 0);
-    console.log('PASS: idle/low-time tutorial clicks use Douyin rewarded ads with empty inventory; completion/cancel/error, stock consumption, round limits, stale callbacks and zoom behavior.');
+    console.log('PASS: idle/low-time tutorial clicks use Douyin rewarded ads with empty inventory; completion/cancel/error, stock consumption, uncapped repeats, stale callbacks and zoom behavior.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

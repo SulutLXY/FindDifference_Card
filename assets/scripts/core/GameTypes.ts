@@ -138,7 +138,7 @@ export interface LevelProgress {
 /** 存档（v3）：通关集合 + 积分。积分 = 已通关关卡数，每通关一关 +1。 */
 export interface SaveData {
     version: number;
-    /** 开局体力；旧档首次升级补入初始 10 点。 */
+    /** 开局体力；缺少该字段的旧档首次升级补入初始 15 点。 */
     energy?: number;
     energyUpdatedAt?: number;
     energyAdDay?: string;

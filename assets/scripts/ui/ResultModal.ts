@@ -28,7 +28,7 @@ export interface ResultModalPayload {
  * - BtnRevive   看广告复活按钮（Node，失败时按需显示）
  * - BtnPrimary  主按钮（Node，文案自动切换「下一关 / 再玩一次」）
  * - BtnHome     返回主页按钮（Node）
- * - BtnShare    分享成绩按钮（Node，成功和失败均显示）
+ * - BtnShare    分享成绩按钮（Node，仅成功时显示）
  * - BtnClose    右上角关闭按钮（Node，场景缺失时代码构建，成功/失败都回主页）
  */
 @ccclass('ResultModal')
@@ -57,7 +57,7 @@ export class ResultModal extends UIScreen {
     @property({ type: Node, tooltip: '返回主页按钮（命名 BtnHome）' })
     public btnHome: Node | null = null;
 
-    @property({ type: Node, tooltip: '分享成绩按钮（命名 BtnShare，成功和失败均显示）' })
+    @property({ type: Node, tooltip: '分享成绩按钮（命名 BtnShare，仅成功时显示）' })
     public btnShare: Node | null = null;
 
     @property({ type: Node, tooltip: '右上角关闭按钮（命名 BtnClose，场景缺失时代码构建）' })
@@ -144,7 +144,7 @@ export class ResultModal extends UIScreen {
         if (homeLabel) homeLabel.string = '返回主页';
 
         const share = this.resolveNode(this.btnShare, 'BtnShare');
-        if (share) share.active = true;
+        if (share) share.active = payload.win;
 
         const primary = this.resolveNode(this.btnPrimary, 'BtnPrimary');
         const primaryLabel = primary?.getComponentInChildren(Label);

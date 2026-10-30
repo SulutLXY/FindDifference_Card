@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const ts = require('D:/Cocos/cocoseditors/Creator/3.8.8/resources/resources/3d/engine/node_modules/typescript');
+const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const root = path.resolve(__dirname, '..');
 function load(file, deps = {}, logger = console) {
     const exports = {};
@@ -115,10 +115,6 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     // Actual SaveService and GameFlow claim/consume methods, with memory-only storage.
     raw = JSON.stringify({ freeHints: 0, freeAddTimes: 0 });
     const flow = Object.create(GameFlow.prototype);
-    flow._hintAdsUsed = 0;
-    flow._addTimeAdsUsed = 0;
-    flow.hintAdsPerLevel = 2;
-    flow.addTimeAdsPerLevel = 2;
     flow.save = new SaveService();
     flow.platform = { sidebar: { supported: true, fromSidebarToday: false } };
     flow.toast = () => {};
@@ -135,20 +131,26 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     flow.game = { node: { activeInHierarchy: true }, refreshHud() {} };
     flow._currentLevel = { differences: [{ id: 'a' }, { id: 'b' }, { id: 'c' }] };
     flow._foundIds = new Set();
-    flow.onDifferenceFound = difference => flow._foundIds.add(difference.id);
+    let hints = 0;
+    flow.useHint = () => { hints++; };
+    flow.playHintSound = flow.playAddTimeSound = () => {};
     let adCalls = 0;
     flow.requestReward = async (_, reward) => { adCalls++; reward(); };
     await flow.requestHint();
     assert.equal(flow.save.freeHints, 1);
-    assert.equal(flow._foundIds.has('a'), true);
+    assert.equal(hints, 1);
     await flow.requestHint();
     assert.equal(flow.save.freeHints, 0);
     assert.equal(adCalls, 0);
     await flow.requestHint();
     assert.equal(adCalls, 1, 'ads resume only after free hints are exhausted');
-    assert.equal(flow._foundIds.size, 3);
+    assert.equal(hints, 3);
     await flow.requestHint();
-    assert.equal(adCalls, 1, 'no remaining differences does not consume or launch ads');
+    assert.equal(adCalls, 2, 'no per-level cap; ads remain available');
+    assert.equal(hints, 4);
+    flow._foundIds.add('a'); flow._foundIds.add('b'); flow._foundIds.add('c');
+    await flow.requestHint();
+    assert.equal(adCalls, 2, 'no remaining differences does not consume or launch ads');
 
     assert.equal(flow.save.claimSidebar('2099-01-01', 2), 'claimed');
     const saved = raw;
@@ -160,8 +162,9 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     assert.equal(flow.save.consumeFreeHint(), false);
     assert.equal(flow.save.freeHints, 2);
     flow._foundIds.clear();
+    const hintsBeforeFailedWrite = hints;
     await flow.requestHint();
-    assert.equal(flow._foundIds.size, 0, 'failed inventory write cannot apply a hint');
+    assert.equal(hints, hintsBeforeFailedWrite, 'failed inventory write cannot apply a hint');
     failWrite = false;
     flow._isPaused = true;
     await flow.requestHint();
@@ -208,6 +211,7 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     }
     class UIScreen {
         schedule() {}
+        buttonTouchHandler(_node, callback) { return callback; }
         findChildDeep(root, name) {
             for (const child of root.children) {
                 if (child.name === name) return child;

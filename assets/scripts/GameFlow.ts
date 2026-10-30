@@ -495,11 +495,8 @@ export class GameFlow extends Component {
         }
     }
 
-    public get energyAdsRemaining(): number { return this.save.energyAdsRemaining(sidebarDay()); }
-
     public async requestEnergyReward(): Promise<void> {
         if (this.save.energy >= this.save.energyRecoveryLimit) return;
-        if (!this.energyAdsRemaining) { this.toast('今日体力视频次数已用完'); return; }
         await this.requestReward('energy', () => {
             const before = this.save.energy;
             if (before >= this.save.energyLimit) { this.toast('体力已恢复至上限'); return; }
@@ -682,8 +679,6 @@ export class GameFlow extends Component {
             this._isGameOver = false;
             this._reviveUsed = false;
             this._assistRoundVersion++;
-            this._hintAdsUsed = 0;
-            this._addTimeAdsUsed = 0;
             this._setLoadingProgress(0.2);
             await this.game.setupLevel(level, value => {
                 if (active()) this._setLoadingProgress(0.2 + value * 0.8);
@@ -795,10 +790,8 @@ export class GameFlow extends Component {
         this._tutorial = node.getComponent(GameTips) ?? node.addComponent(GameTips);
         const level = this._currentLevel;
         const round = this._assistRoundVersion;
-        const hintAction = this.unlimitedAssists || this.save.freeHints > 0 ? '使用提示'
-            : this.canWatchHintAd ? '看广告获取提示' : '查看提示次数';
-        const timeAction = this.unlimitedAssists || this.save.freeAddTimes > 0 ? '加时30秒'
-            : this.canWatchAddTimeAd ? '看广告加时30秒' : '查看加时次数';
+        const hintAction = this.unlimitedAssists || this.save.freeHints > 0 ? '使用提示' : '看广告获取提示';
+        const timeAction = this.unlimitedAssists || this.save.freeAddTimes > 0 ? '加时30秒' : '看广告加时30秒';
         const text = kind === 'hint' ? `找不到？点击${hintAction}，指出一处不同`
             : kind === 'zoom' ? '点击放大镜查看细节，可拖动，再点一次还原'
             : `时间不足！点击${timeAction}`;
@@ -1226,26 +1219,10 @@ export class GameFlow extends Component {
     }
 
     private _assistRoundVersion = 0;
-    private _hintAdsUsed = 0;
-    private _addTimeAdsUsed = 0;
 
-    @property({ tooltip: '每关提示广告次数上限' })
-    public hintAdsPerLevel = 2;
-
-    @property({ tooltip: '每关加时广告次数上限' })
-    public addTimeAdsPerLevel = 1;
-
-    /** 无广告网页版可直接使用辅助功能，不消耗库存或每关广告次数。 */
+    /** 无广告网页版可直接使用辅助功能，不消耗库存。 */
     public get unlimitedAssists(): boolean {
         return this.platform.kind === 'h5';
-    }
-
-    public get canWatchHintAd(): boolean {
-        return this.unlimitedAssists || this._hintAdsUsed < this.hintAdsPerLevel;
-    }
-
-    public get canWatchAddTimeAd(): boolean {
-        return this.unlimitedAssists || this._addTimeAdsUsed < this.addTimeAdsPerLevel;
     }
 
     public async requestHint(): Promise<void> {
@@ -1266,11 +1243,9 @@ export class GameFlow extends Component {
             this.game.refreshHud();
             return;
         }
-        if (!this.canWatchHintAd) { this.toast('免费次数已用完'); return; }
         const round = this._assistRoundVersion;
         await this.requestReward('hint', () => {
             if (!this.save.grantAssist('hint')) { this.toast('保存失败，请稍后再试'); return; }
-            if (round === this._assistRoundVersion) this._hintAdsUsed++;
             if (round === this._assistRoundVersion && !this._isGameOver && this.game?.node.activeInHierarchy
                 && this.save.consumeFreeHint()) this.useHint();
             this.game?.refreshHud();
@@ -1307,11 +1282,9 @@ export class GameFlow extends Component {
             this.addTime(30);
             return;
         }
-        if (!this.canWatchAddTimeAd) { this.toast('免费次数已用完'); return; }
         const round = this._assistRoundVersion;
         await this.requestReward('add-time', () => {
             if (!this.save.grantAssist('add-time')) { this.toast('保存失败，请稍后再试'); return; }
-            if (round === this._assistRoundVersion) this._addTimeAdsUsed++;
             if (round === this._assistRoundVersion && !this._isGameOver && this.game?.node.activeInHierarchy
                 && this.save.consumeAddTime()) this.addTime(30);
             this.game?.refreshHud();
@@ -1419,7 +1392,7 @@ export class GameFlow extends Component {
         if (!this._isGameOver) return;
         this._stopResultTone();
         this._reviveUsed = true;
-        this._lives = 1;
+        this._lives = 3;
         this._remainingTime = Math.max(this._remainingTime, 30);
         this._isGameOver = false;
         // 广告结束时失败状态仍为true；复活必须同时解除广告留下的暂停状态。
@@ -1428,7 +1401,7 @@ export class GameFlow extends Component {
         this._lastFoundAt = 0;
         this.resultModal?.close();
         this.game?.refreshHud();
-        this.toast('复活成功：生命 +1，时间 +30秒');
+        this.toast('复活成功：生命恢复至3点');
     }
 
     /** 结算面板主按钮：胜利且有下一关则进下一关，否则重玩本关。 */

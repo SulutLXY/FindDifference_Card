@@ -20,11 +20,11 @@ class Color {}
 class UITransform {}
 const Screen = load('assets/scripts/ui/GameScreen.ts', [
     'refreshHud', '_refreshTimerHud', 'clearLevel', '_hudSeconds', '_hudLives', '_hudFound', '_hudTotal',
-    '_hudUnlimited', '_hudHints', '_hudAddTimes', '_hudHintAd', '_hudTimeAd', '_timerColor',
+    '_hudUnlimited', '_hudHints', '_hudAddTimes', '_timerColor',
 ], { Color, UIColors: { red: 'red' } });
 const screen = new Screen();
 const flow = screen.flow = { unlimitedAssists: false, save: { freeHints: 1, freeAddTimes: 2 },
-    canWatchHintAd: true, canWatchAddTimeAd: true, remainingTime: 120, lives: 5, foundIds: new Set() };
+    remainingTime: 120, lives: 5, foundIds: new Set() };
 screen._level = { differences: [1, 2, 3] };
 const calls = { timer: 0, assists: 0, lives: 0, progress: 0 };
 const label = {};
@@ -41,7 +41,7 @@ assert.equal(label.string, '1:59'); assert.equal(calls.timer, 2);
 flow.lives--; screen.refreshHud(); assert.equal(calls.lives, 2);
 flow.foundIds.add('first'); screen.refreshHud(); assert.equal(calls.progress, 2);
 flow.save.freeHints--; screen.refreshHud(); assert.equal(calls.assists, 2);
-flow.canWatchHintAd = false; screen.refreshHud(); assert.equal(calls.assists, 3);
+flow.save.freeAddTimes--; screen.refreshHud(); assert.equal(calls.assists, 3);
 flow.unlimitedAssists = true; screen.refreshHud(); assert.equal(calls.assists, 4);
 flow.remainingTime = 10; screen.refreshHud(); assert.equal(label.color, 'red');
 flow.remainingTime += 30; screen.refreshHud(); assert.equal(label.color, screen._timerColor);

@@ -7,7 +7,7 @@ const LEGACY_KEY = 'find-difference.save.v2';
 
 const DEFAULT_SAVE: SaveData = {
     version: 3,
-    energy: 10,
+    energy: 15,
     chapterRulesVersion: 2,
     completed: {},
     totalScore: 0,
@@ -24,7 +24,7 @@ const DEFAULT_SAVE: SaveData = {
  */
 export class SaveService {
     public readonly energyLimit = 99;
-    public readonly energyRecoveryLimit = 10;
+    public readonly energyRecoveryLimit = 15;
     private readonly _energyInterval = 8 * 60 * 1000;
     private _data: SaveData;
 
@@ -64,20 +64,15 @@ export class SaveService {
         if (!this._persist()) this._data = previous;
     }
 
-    public energyAdsRemaining(day: string): number {
-        const used = this._data.energyAdDay === day && Number.isSafeInteger(this._data.energyAdsUsed)
-            ? Math.max(0, this._data.energyAdsUsed!) : 0;
-        return Math.max(0, 3 - used);
-    }
-
-    /** 完整看完广告才原子保存体力和当日次数，失败时都不扣。 */
+    /** 完整看完广告才原子保存体力；每日次数不限，计数仅作记录，失败时不扣。 */
     public claimEnergyAd(day: string): boolean {
         const energy = this.energy;
-        const remaining = this.energyAdsRemaining(day);
-        if (energy >= this.energyLimit || remaining <= 0) return false;
+        if (energy >= this.energyLimit) return false;
         const previous = this._data;
+        const used = previous.energyAdDay === day && Number.isSafeInteger(previous.energyAdsUsed)
+            ? previous.energyAdsUsed! : 0;
         const next = Math.min(this.energyLimit, energy + 5);
-        this._data = { ...previous, energy: next, energyAdDay: day, energyAdsUsed: 4 - remaining,
+        this._data = { ...previous, energy: next, energyAdDay: day, energyAdsUsed: used + 1,
             energyUpdatedAt: next >= this.energyRecoveryLimit ? Date.now() : previous.energyUpdatedAt };
         if (this._persist()) return true;
         this._data = previous;
