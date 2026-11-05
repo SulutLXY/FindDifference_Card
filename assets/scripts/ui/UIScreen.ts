@@ -102,6 +102,7 @@ export abstract class UIScreen extends Component {
     protected buttonTouchHandler(node: Node, callback: () => void): (event?: EventTouch) => void {
         return (event?: EventTouch) => {
             if (!node.isValid || !node.activeInHierarchy) return;
+            if (this.flow.feed?.isPreview) return;
             const button = node.getComponent(Button);
             if (button && (!button.enabledInHierarchy || !button.interactable)) return;
             const ui = node.getComponent(UITransform);

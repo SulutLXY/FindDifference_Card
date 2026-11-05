@@ -13,12 +13,18 @@ const Service = exportsObject.PlayerInfoService;
 (async () => {
     const harmony = new Service(()=>'douyin',{tt:{getSystemInfoSync:()=>({platform:'openHarmony'})}});
     assert.equal(harmony.isOpenHarmony,true);
+    assert.equal(harmony.systemInfoKnown,true);
+    const ideHarmony = new Service(()=>'douyin',{tt:{getSystemInfoSync:()=>({platform:'devtools',system:'OpenHarmony 5.0.1'})}});
+    assert.equal(ideHarmony.isOpenHarmony,true);assert.equal(ideHarmony.systemInfoKnown,true);
+    const malformed = new Service(()=>'douyin',{tt:{getSystemInfoSync:()=>({platform:5,system:null})}});
+    assert.equal(malformed.isOpenHarmony,false);assert.equal(malformed.systemInfoKnown,false);
     const android = new Service(()=>'douyin',{tt:{getSystemInfoSync:()=>({platform:'android'})}});
     assert.equal(android.isOpenHarmony,false);
     const asyncHarmony = new Service(()=>'douyin',{tt:{getSystemInfoSync:()=>{throw Error('sync unavailable');},getSystemInfo:o=>o.success({platform:'openHarmony'})}});
     assert.equal(asyncHarmony.isOpenHarmony,false);
     await asyncHarmony.getSystemInfo();
     assert.equal(asyncHarmony.isOpenHarmony,true);
+    assert.equal(asyncHarmony.systemInfoKnown,true);
     const calls = [];
     const tt = {
         getSystemInfo: o => o.success({ appName: 'Douyin', model: 'test', screenWidth: 390, secret: 'omit' }),

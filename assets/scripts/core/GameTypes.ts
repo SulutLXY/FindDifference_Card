@@ -1,6 +1,8 @@
 export type AppScreen = 'lobby' | 'cities' | 'levels' | 'game';
 
-export type RewardPlacement = 'revive' | 'hint' | 'add-time' | 'unlock-level' | 'unlock-chapter' | 'level-select' | 'energy';
+export type CollectCategory = 'food' | 'porcelain';
+
+export type RewardPlacement = 'revive' | 'hint' | 'add-time' | 'unlock-level' | 'unlock-chapter' | 'unlock-city' | 'level-select' | 'energy' | 'daily-sign-in';
 
 export interface FoodCatalogEntry {
     id: string;
@@ -11,6 +13,10 @@ export interface FoodCatalogEntry {
     desc: string;
     icon: string;
     reviews: string[];
+    /** 旧美食目录未填时按 food；瓷器使用 porcelain。 */
+    category?: CollectCategory;
+    /** 资产排序编号；未填时沿用目录中的记录顺序。 */
+    assetNumber?: number;
 }
 
 export interface FoodDetails {
@@ -59,7 +65,7 @@ export interface LevelFileConfig {
     differences: DifferenceConfig[];
 }
 
-/** 组装完成的关卡运行时数据。key = "城市目录/关卡目录"，是存档与解锁的唯一标识。 */
+/** 组装完成的关卡数据。key 是永久 ID，不代表当前章节或资源位置。 */
 export interface LevelConfig {
     key: string;
     name: string;
@@ -81,18 +87,43 @@ export interface CityIndex {
     cities: string[];
     /** 由每章源清单生成，启动/迁移不访问远程章节包。 */
     chapters: Record<string, CityMeta>;
+    navigation?: string[];
+    topics?: TopicConfig[];
 }
+
+/** 只组织叶子章节，不对应新资源包。 */
+export interface TopicConfig {
+    key: string;
+    name: string;
+    banner?: string;
+    chapters: string[];
+    defaultChapter: string;
+}
+
+export type ChapterSelection = CityConfig | TopicConfig;
 
 /** 章节内容信息；公共解锁规则由 GameFlow 控制，不随各章资源发布。 */
 export interface CityMeta {
     key: string;
     name: string;
     banner?: string;
-    levels: string[];
+    levels: Array<string | ChapterLevelEntry>;
+    nextChapter?: string;
+    legacyKeys?: string[];
+}
+
+/** 数组位置决定推关顺序；id 永久不变，name 和 folder 可独立修改。 */
+export interface ChapterLevelEntry {
+    id: string;
+    name: string;
+    folder: string;
 }
 
 /** 运行时城市数据：levels 按需懒加载填充 levelConfigs。 */
-export interface CityConfig extends CityMeta {
+export interface CityConfig extends Omit<CityMeta, 'levels'> {
+    levels: string[];
+    levelIds?: Record<string, string>;
+    levelNames?: Record<string, string>;
     levelsLoaded: boolean;
     levelConfigs: LevelConfig[];
 }
@@ -110,6 +141,10 @@ export interface CollectItem {
     icon: string;
     /** 是否已获得；false 时图标置灰、获得时间显示「暂未获得」 */
     obtained?: boolean;
+    category?: CollectCategory;
+    assetNumber?: number;
+    /** 本次打开页面时的新增排序快照，查看后不立即重排。 */
+    newlyObtained?: boolean;
     /** 解锁时间展示文本（如 2026.09.25），未获得时忽略 */
     unlockTime?: string;
     /** 扩展数据（来源关卡、稀有度等，后续版本按需使用） */
@@ -117,6 +152,7 @@ export interface CollectItem {
 }
 
 export interface PlatformConfig {
+    feed?: import('./Feed').FeedConfig;
     cdnBaseUrl: string;
     apiBaseUrl: string;
     shareLandingUrl: string;
@@ -137,6 +173,10 @@ export interface LevelProgress {
 
 /** 存档（v3）：通关集合 + 积分。积分 = 已通关关卡数，每通关一关 +1。 */
 export interface SaveData {
+    feed?: import('./Feed').FeedProgress;
+    dailySignIn?: import('./DailySignIn').DailySignInProgress;
+    /** 上次成功启动时的章节顺序快照，仅用于保留调整前已开放资格。 */
+    contentLayout?: Record<string, string[]>;
     version: number;
     /** 开局体力；缺少该字段的旧档首次升级补入初始 15 点。 */
     energy?: number;
@@ -155,6 +195,10 @@ export interface SaveData {
     lastPlayedLevelKey?: string;
     /** 完整观看激励视频后永久解锁的小关，不计入通关成绩。 */
     unlockedLevels?: string[];
+    /** 视频领取的收藏 ID；自然通关获得的收藏仍由 completed 判定。 */
+    unlockedCollectibles?: string[];
+    /** 已在收藏页实际展示过的收藏 ID。 */
+    viewedCollectibles?: string[];
     chapterRulesVersion?: number;
     totalScore: number;
     /** 图鉴/成就（后续版本使用）：条目 id → 获得时间戳 */

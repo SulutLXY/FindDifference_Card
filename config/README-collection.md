@@ -1,0 +1,16 @@
+# 收藏页功能（2026-11-04）
+
+编辑预制体：`assets/LobbySources/SecondaryUI/prefabs/CollectScreen.prefab`。逻辑：`assets/scripts/ui/CollectScreen.ts`。
+
+- `haveCollected_sliderBG/haveCollected_slider` 显示全部已获得数量/全部条目数量，筛选后仍保持总进度。按预制体提供的填充条宽度计算，保持左端不动，不修改页面布局或适配。
+- `Togle` 的三个按钮依次为全部、美食、瓷器；组件已绑定 `tabAll`、`tabFood`、`tabPorcelain`，也支持原节点名查找。选中与未选中背景使用组件绑定的两张图片，按下动画复用已有 `An_BtnClik_01` 和全局 `UIAnimationBinding`。
+- 每页 9 个收藏，切换分类回到该分类第 1 页。空分类显示 `0/0`，隐藏两侧翻页按钮。2026-11-05 青花瓷60关已加入正式索引，当前收藏共60件：40道美食、20件瓷器，瓷器页签已可显示。
+- 已自然通关获得或视频领取的收藏为已获得。未获得时显示 `LockIcon`，点击卡片（包括视频图标）直接请求激励视频；完整观看成功后同时保存收藏、对应关卡资格和必要的所属城市入口资格，不伪造通关、星级、积分，也不开放其他小关。已有收藏点击打开详情。
+- 广告取消、加载失败不发奖励；存档失败整体回滚；连续点击只发起一次广告。页面离开后广告奖励仍保存，但不会重新打开旧页面。
+- 打开页面先按“未查看的新增收藏 → 已查看的已获得收藏 → 未获得收藏”分组，各组按资产编号升序。目录记录可选 `assetNumber`；没有编号时使用现有配置表记录顺序，同编号按记录顺序排列。当前原始条目 ID、关卡关联和图片 UUID 保持不变。
+- `TipsIcon` 只在已获得且没有已读记录时显示。当前页图片成功显示后的下一帧，才把仍可见的卡片记为已查看并隐藏标记。未翻到的页、未加载成功或已被切走的卡片不会消除标记；保存失败也保留标记。当前会话不因已读状态变化重新排序，避免条目跳动；下次进入重新排序。
+- 新增存档字段 `unlockedCollectibles`、`viewedCollectibles`，使用稳定的收藏 ID；保留老玩家原有通关收藏与其他存档。没有已读记录的既有收藏首次展示后会记录为已读。
+
+美食目录沿用 `assets/resources/configs/food-catalog.json` 的 `foods`，旧条目未填 `category` 时按美食。瓷器使用独立 `assets/resources/configs/porcelain-catalog.json` 的 `items`，条目为 `category: "porcelain"`，维护稳定 ID、名称、图片路径和对应关卡永久 ID。启动时仅合入已列入正式章节索引的瓷器关卡；美食 Excel 生成器不覆盖瓷器配置。资源和后续补标流程见 [README-qing-hua-ci.md](README-qing-hua-ci.md)。
+
+验证：`node tools/test-collection.cjs` 覆盖进度条、筛选背景与动画、分页、排序与已读、自然获得、完整视频领取、目标关卡和城市资格、重复点击、广告取消/失败、保存回滚、重启和迟到回调。另验证页面资源引用、页面图片生命周期、既有关卡解锁和 TypeScript。

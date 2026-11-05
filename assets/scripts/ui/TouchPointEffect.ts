@@ -39,25 +39,36 @@ export class TouchPointEffect extends Component {
         input.on(Input.EventType.TOUCH_START, this._onPress, this);
     }
 
+    /** 特效仍覆盖整个 Canvas，但视觉比例与设计界面一致。 */
+    private _syncScale(): void {
+        const screens = this.node.getChildByName('Screens');
+        if (this._layer && screens) this._layer.setScale(screens.scale);
+    }
+
+    protected lateUpdate(): void { this._syncScale(); }
+
     private _onPress(event: EventTouch): void {
         // Cocos 已将鼠标按下转换为 TOUCH_START；不再额外监听 MOUSE_DOWN。
         if (this._handled.has(event)) return;
         this._handled.add(event);
         this.playClickSound?.(event);
         const layer = this._layer;
-        const transform = layer?.getComponent(UITransform);
-        if (!layer || !transform) return;
+        if (!layer) return;
         layer.setSiblingIndex(this.node.children.length - 1);
         const location = event.getUILocation();
-        const position = transform.convertToNodeSpaceAR(new Vec3(location.x, location.y, 0));
+        // 保留 UI 坐标，到生成时按当前特效层换算，避免加载/窗口切换后偏移。
+        const position = new Vec3(location.x, location.y, 0);
         if (this._prefab) this._spawn(position);
         else this._pending.push(position);
     }
 
     private _spawn(position: Vec3): void {
         if (!this._prefab || !this._layer) return;
+        this._syncScale();
+        const transform = this._layer.getComponent(UITransform);
+        if (!transform) return;
         const effect = instantiate(this._prefab);
-        effect.setPosition(position);
+        effect.setPosition(transform.convertToNodeSpaceAR(position));
         this._layer.addChild(effect);
         // 预设内的 Animation.playOnLoad 自动播放，每次按下使用独立实例。
         this._effects.add(effect);

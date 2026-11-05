@@ -1,3 +1,7 @@
+# 收藏、排行榜和选关页面（2026-11-03更新）
+
+当前统一归入远程 LobbySources，在 GameScreen 显示后后台准备。收藏和排行榜目录已实际移动到 assets/LobbySources/SecondaryUI；城市/章节和关卡选择页位于 assets/LobbySources/prefabs。现行加载和发布规则见 [README-game-first-loading.md](README-game-first-loading.md)。下面保留原独立 SecondaryUI 拆分记录，旧包路径不再用于新版本。抖音实际打开排行榜仍使用原生入口；后台准备的 RankScreen 是其他平台的页面兜底。
+
 # 收藏与排行榜页面按需加载
 
 主场景不再包含 Rank、Collect 页面树，GameFlow 的 rank/collect 场景绑定留空。

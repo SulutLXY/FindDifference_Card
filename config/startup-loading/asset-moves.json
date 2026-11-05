@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-05",
+  "moves": [
+    {
+      "source": "assets/LobbySources/textures/UI_Sprite/icons/icon_settings.png",
+      "bytes": 14414,
+      "target": "assets/resources/textures/UI_Sprite/V3/icons/icon_settings.png",
+      "sha256": "4c6429c0f3181f3a65b84796571bf2ccef9eb022ccfb853be5d21b26899ff6b1"
+    },
+    {
+      "source": "assets/LobbySources/textures/UI_Sprite/icons/icon_settings.png.meta",
+      "target": "assets/resources/textures/UI_Sprite/V3/icons/icon_settings.png.meta",
+      "sha256": "179c60d9341a96d70c2586a3cc3c7579ce2b94f3e32c0da9de8d0535a0ff1764"
+    },
+    {
+      "source": "assets/SupportTexture/ADDCollectGame01.png",
+      "bytes": 10526,
+      "target": "assets/resources/textures/SupportTexture/ADDCollectGame01.png",
+      "sha256": "f3171d0d3bbe50993f0f8e796e2c7fecfeac3d4774151e2b77608f9ce59902bc"
+    },
+    {
+      "source": "assets/SupportTexture/ADDCollectGame01.png.meta",
+      "bytes": 2954,
+      "target": "assets/resources/textures/SupportTexture/ADDCollectGame01.png.meta",
+      "sha256": "627767507c6548f48d44ba9481685b8e5cc299f670268c5163033f42a8f0764e"
+    },
+    {
+      "source": "assets/SupportTexture/ADDCollectGame02.png",
+      "bytes": 6820,
+      "target": "assets/resources/textures/SupportTexture/ADDCollectGame02.png",
+      "sha256": "9c4bc789884ac43b59486c748a53e49d226891f37b264e1831f55e35fba332a4"
+    },
+    {
+      "source": "assets/SupportTexture/ADDCollectGame02.png.meta",
+      "bytes": 2954,
+      "target": "assets/resources/textures/SupportTexture/ADDCollectGame02.png.meta",
+      "sha256": "6d9c5ba22413c31d804ab2908412822ab6203da46b94d12f578151d8aa02b448"
+    },
+    {
+      "source": "assets/SupportTexture/ADDCollectGame03.png",
+      "bytes": 29350,
+      "target": "assets/resources/textures/SupportTexture/ADDCollectGame03.png",
+      "sha256": "bb47facd834e056b221b2dd44ca0a7edbd76b7883af314056e291ec94397bee4"
+    },
+    {
+      "source": "assets/SupportTexture/ADDCollectGame03.png.meta",
+      "bytes": 2954,
+      "target": "assets/resources/textures/SupportTexture/ADDCollectGame03.png.meta",
+      "sha256": "2c9a67c8c8c9e4f0a8181d297d707b5fbb77ac667d7339f187b52b9199e3f574"
+    },
+    {
+      "source": "assets/SupportTexture/ADDSubscription_01.png",
+      "bytes": 6224,
+      "target": "assets/resources/textures/SupportTexture/ADDSubscription_01.png",
+      "sha256": "f0accf2ba034c7c3c49b976dce7ceec62fc8a36d936e9f411a84c5c7f2536208"
+    },
+    {
+      "source": "assets/SupportTexture/ADDSubscription_01.png.meta",
+      "bytes": 2972,
+      "target": "assets/resources/textures/SupportTexture/ADDSubscription_01.png.meta",
+      "sha256": "f9323e9dc7cc407f9a0236693309e8b09f4fe2f094612e6a72cd0ba5f7aab979"
+    },
+    {
+      "source": "assets/SupportTexture/ADDSubscription_02.png",
+      "bytes": 20228,
+      "target": "assets/resources/textures/SupportTexture/ADDSubscription_02.png",
+      "sha256": "f3ba9dea46fac17a4befd94afb64528773c128b39a39027e40284be552b088e3"
+    },
+    {
+      "source": "assets/SupportTexture/ADDSubscription_02.png.meta",
+      "bytes": 2972,
+      "target": "assets/resources/textures/SupportTexture/ADDSubscription_02.png.meta",
+      "sha256": "4cb7b750cb9e65f4b59d469849e06c88f4d371296cb347eddb4548d6854fc6f3"
+    },
+    {
+      "source": "assets/SupportTexture/guanggao_Tex.jpg",
+      "bytes": 42102,
+      "target": "assets/resources/textures/SupportTexture/guanggao_Tex.jpg",
+      "sha256": "a98923b794c1b20ba8ed7a261f5f8d00fe06243b03154dd0024e14296400a317"
+    },
+    {
+      "source": "assets/SupportTexture/guanggao_Tex.jpg.meta",
+      "bytes": 2967,
+      "target": "assets/resources/textures/SupportTexture/guanggao_Tex.jpg.meta",
+      "sha256": "699cf3bba63c3d96cdb8f1406912f3497015bd81647f0ee0191278737cb5fe4f"
+    },
+    {
+      "source": "assets/SupportTexture.meta",
+      "target": "assets/resources/textures/SupportTexture.meta",
+      "sha256": "a4d7c48d823672e6595d354233d2c34b2427b09a0b26c333a026efb3b987442c"
+    }
+  ],
+  "rootMetadataChange": "SupportTexture directory UUID retained; removed separate bundle flag"
+}

@@ -16,7 +16,15 @@ const tree=ts.createSourceFile('GameScreen.ts',game,ts.ScriptTarget.Latest,true)
 const method=tree.statements.find(ts.isClassDeclaration).members.find(m=>m.name?.getText(tree)==='_refreshAssistHud').getText(tree);
 const Screen=vm.runInNewContext(ts.transpileModule(`class Screen {${method}};Screen;`,{compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{Label,Sprite});
 ctx._refreshAssistHud=Screen.prototype._refreshAssistHud;
-function refresh(){this._refreshAssistHud(this.flow.unlimitedAssists,this.flow.save.freeHints,this.flow.save.freeAddTimes);}
+const description=find(time,'AddTimeDescription');assert.ok(description);assert.equal(description.active,true);
+const descriptionIndex=scene.findIndex(n=>n._name==='AddTimeDescription');
+assert.equal(scene[scene[descriptionIndex]._parent.__id__]._name,'BtnAddTime','Static text must not inherit the video icon visibility');
+const authoredText=description.getComponent(Label).string;assert.equal(authoredText,'+60秒');
+function refresh(){
+ this._refreshAssistHud(this.flow.unlimitedAssists,this.flow.save.freeHints,this.flow.save.freeAddTimes);
+ assert.equal(description.active,true,'Stock and H5 refresh must keep the authored description visible');
+ assert.equal(description.getComponent(Label).string,authoredText,'Keep prefab description text');
+}
 refresh.call(ctx);
 assert.equal(find(hint,'Times').getComponent().string,'7');assert.equal(find(time,'Times').getComponent().string,'3');
 for(const button of [hint,time]){assert.equal(find(button,'icon_Tips01').active,true);assert.equal(find(button,'icon_videoplay').active,false);assert.equal(button.getComponent(Sprite).grayscale,false);}

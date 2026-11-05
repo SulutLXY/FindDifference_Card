@@ -53,6 +53,7 @@ const tick = () => new Promise(resolve => setImmediate(resolve));
         for (const outcome of ['complete', 'cancel', 'error']) {
             const ctx = setup(kind);
             assert.ok(ctx.overlay().text.includes('看广告'));
+            if (kind === 'add-time') assert.ok(ctx.overlay().text.includes('加时60秒'));
             assert.equal(ctx.ads(), 0, 'Idle warning alone must never open an ad');
             const before = ctx.flow._remainingTime;
             ctx.tap(); await tick();
@@ -61,7 +62,7 @@ const tick = () => new Promise(resolve => setImmediate(resolve));
             if (outcome === 'error') ctx.error(); else ctx.close(outcome === 'complete');
             await tick();
             assert.equal(ctx.hints(), kind === 'hint' && outcome === 'complete' ? 1 : 0);
-            assert.equal(ctx.flow._remainingTime, before + (kind === 'add-time' && outcome === 'complete' ? 30 : 0));
+            assert.equal(ctx.flow._remainingTime, before + (kind === 'add-time' && outcome === 'complete' ? 60 : 0));
             assert.equal(ctx.flow._isPaused, false);
         }
         const stock = setup(kind, 1); const before = stock.flow._remainingTime;
@@ -69,7 +70,7 @@ const tick = () => new Promise(resolve => setImmediate(resolve));
         assert.equal(stock.ads(), 0);
         assert.equal(stock.flow.save[kind === 'hint' ? 'freeHints' : 'freeAddTimes'], 0);
         assert.equal(stock.hints(), kind === 'hint' ? 1 : 0);
-        assert.equal(stock.flow._remainingTime, before + (kind === 'add-time' ? 30 : 0));
+        assert.equal(stock.flow._remainingTime, before + (kind === 'add-time' ? 60 : 0));
         const limit = setup(kind); limit.tap(); await tick();
         assert.equal(limit.ads(), 1, 'Per-level caps removed; another ad is offered'); assert.equal(limit.messages.length, 0);
         const stale = setup(kind); stale.flow._assistRoundVersion++; stale.tap(); await tick(); assert.equal(stale.ads(), 0);

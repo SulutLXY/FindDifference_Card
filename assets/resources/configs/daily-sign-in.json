@@ -1,0 +1,11 @@
+{
+  "days": [
+    { "kind": "hint", "amount": 1 },
+    { "kind": "energy", "amount": 1 },
+    { "kind": "hint", "amount": 1 },
+    { "kind": "energy", "amount": 1 },
+    { "kind": "hint", "amount": 1 },
+    { "kind": "energy", "amount": 2 },
+    { "kind": "hint", "amount": 3 }
+  ]
+}

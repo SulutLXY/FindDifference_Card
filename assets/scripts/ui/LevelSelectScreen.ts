@@ -1,4 +1,4 @@
-import { _decorator, Color, Component, Graphics, Input, Label, Layout, Mask, Node, ScrollView, Size, Sprite, UIRenderer, UITransform, instantiate } from 'cc';
+import { _decorator, Color, Graphics, Input, Label, Layout, Node, ScrollView, Sprite, UITransform, instantiate } from 'cc';
 import { CityConfig, LevelConfig } from '../core/GameTypes';
 import { EnergyDisplay } from './EnergyDisplay';
 import { UIColors, UIScreen } from './UIScreen';
@@ -17,7 +17,9 @@ const LEVEL_NAME_LOCKED_COLOR = new Color(0x44, 0x59, 0x88, 255);
  * 命名规则（未拖拽绑定时按此自动查找）：
  * - BtnBack      返回城市列表按钮（Node）
  * - PageTitle    页面标题（Label，运行时刷新为城市名）
- * - List         关卡卡片窗口：代码自动补 Mask 遮罩 + ScrollView 竖向滑动
+ * - PageTitle_BG/Number  可选章节完成进度，缺少时跳过
+ * - List         固定网格，每页默认 8 关，不添加滑动容器
+ * - Page/PageLaber、button_page_prev、button_page_next  页码与翻页按钮
  * - Card1        卡片模板（可选，结构与动态填充约定见下）
  *
  * 卡片模板结构约定（Card1）：
@@ -45,36 +47,41 @@ export class LevelSelectScreen extends UIScreen {
     @property({ type: Node, tooltip: '卡片模板（可选）。不绑定时自动使用 List 下的 Card1' })
     public cardTemplate: Node | null = null;
 
+    @property({ type: Label, tooltip: '可选章节进度；未绑定时查找 PageTitle_BG/Number，缺少时跳过' })
+    public chapterProgress: Label | null = null;
+
+    @property({ type: Label, tooltip: '页码；未绑定时查找 Page/PageLaber' })
+    public pageLabel: Label | null = null;
+
+    @property({ type: Node, tooltip: '上一页；未绑定时查找 Page/button_page_prev' })
+    public btnPrevious: Node | null = null;
+
+    @property({ type: Node, tooltip: '下一页；未绑定时查找 Page/button_page_next' })
+    public btnNext: Node | null = null;
+
+    @property({ min: 1, step: 1, tooltip: '每页关卡数，默认 8（两列四行）' })
+    public pageSize = 8;
+
     private _runtimeCards: Node[] = [];
-    private _content: Node | null = null;
     private _unlockPending = false;
     private _selectionVersion = 0;
-    private _cardRendering: { card: Node; components: Component[]; visible: boolean }[] = [];
-
-    /** Mask 只裁剪像素；主动关闭窗口外的渲染组件才能省掉它们的绘制提交。
-     * 保持节点 active，让 Layout 继续计算完整列表高度和卡片位置。
-     */
-    protected lateUpdate(): void {
-        const viewport = this.resolveNode(this.listRoot, 'List')?.getComponent(UITransform);
-        if (!viewport) return;
-        const bounds = viewport.getBoundingBoxToWorld();
-        for (const entry of this._cardRendering) {
-            const ui = entry.card.getComponent(UITransform);
-            if (!ui) continue;
-            const visible = bounds.intersects(ui.getBoundingBoxToWorld());
-            if (visible === entry.visible) continue;
-            entry.visible = visible;
-            for (const component of entry.components) component.enabled = visible;
-        }
-    }
+    private _chapterKey = '';
+    private _pageIndex = 0;
+    private _pageCount = 0;
 
     protected onLoad(): void {
         void EnergyDisplay.attach(this.node);
-        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.showCitySelect());
-        this._setupScrollContainer();
+        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.returnToChapterSelection());
+        this._setupPageContainer();
+        this.btnPrevious = this._optionalPageNode(this.btnPrevious, 'button_page_prev');
+        this.btnNext = this._optionalPageNode(this.btnNext, 'button_page_next');
+        // 按下动画由 Canvas 上的 UIAnimationBinding 播放预制体已绑定的点击片段。
+        if (this.btnPrevious) this.wireButton(this.btnPrevious, '', () => this._goToPage(this._pageIndex - 1));
+        if (this.btnNext) this.wireButton(this.btnNext, '', () => this._goToPage(this._pageIndex + 1));
     }
 
     protected onOpen(): void {
+        this._selectInitialPage();
         this.rebuild();
     }
 
@@ -83,21 +90,59 @@ export class LevelSelectScreen extends UIScreen {
         this._clearRuntimeCards();
     }
 
-    /** 动态生成本城全部正式关卡卡片。 */
+    /** 进入章节时定位最靠前的锁定关卡；全部解锁后定位星级最低的关卡。 */
+    private _selectInitialPage(): void {
+        const city = this.flow.currentCity;
+        if (!city?.levelsLoaded) return;
+        const cityIndex = this.flow.cities.indexOf(city);
+        let target = city.levelConfigs.findIndex((_, index) => !this.flow.isLevelUnlocked(cityIndex, index));
+        if (target < 0) {
+            target = 0;
+            let lowestStars = Infinity;
+            city.levelConfigs.forEach((level, index) => {
+                const stars = this.flow.save.progressOf(level.key)?.stars ?? 0;
+                // 同星级保留章节配置中更靠前的一关；未游玩按 0 星处理。
+                if (stars < lowestStars) {
+                    lowestStars = stars;
+                    target = index;
+                }
+            });
+        }
+        this._chapterKey = city.key;
+        this._pageIndex = Math.floor(target / this._effectivePageSize());
+    }
+
+    /** 只创建当前页卡片和封面；手动翻页、解锁刷新不重新定位。 */
     public rebuild(): void {
         this._selectionVersion++;
         this._clearRuntimeCards();
         const city = this.flow.currentCity;
-        if (!city || !city.levelsLoaded) return;
+        if (!city || !city.levelsLoaded) {
+            this._pageCount = 0;
+            this._refreshPagination();
+            return;
+        }
+
+        if (this._chapterKey !== city.key) {
+            this._selectInitialPage();
+        }
+        const pageSize = this._effectivePageSize();
+        this._pageCount = Math.ceil(city.levelConfigs.length / pageSize);
+        this._pageIndex = Math.max(0, Math.min(this._pageIndex, this._pageCount - 1));
 
         this.setLabel(this.pageTitle, 'PageTitle', city.name);
+        const progress = this.flow.cityProgress(city);
+        const progressLabel = this.chapterProgress?.isValid ? this.chapterProgress
+            : this.findChildDeep(this.node, 'PageTitle_BG')?.getChildByName('Number')?.getComponent(Label);
+        if (progressLabel) progressLabel.string = `${progress.done}/${progress.total}`;
 
         const root = this.resolveNode(this.listRoot, 'List') ?? this.node;
-        const container = this._content ?? root;
         const template = this._resolveTemplate(root);
         const cityIndex = this.flow.cities.indexOf(city as CityConfig);
+        const start = this._pageIndex * pageSize;
+        this._hideManualCards(root);
 
-        city.levelConfigs.forEach((level, index) => {
+        city.levelConfigs.slice(start, start + pageSize).forEach((level, index) => {
             let card: Node;
             if (template) {
                 card = instantiate(template);
@@ -106,79 +151,56 @@ export class LevelSelectScreen extends UIScreen {
                 card = this._buildFallbackCard();
             }
             this._runtimeCards.push(card);
-            card.parent = container;
+            card.parent = root;
             card.active = true;
-            this._fillCard(card, level, index, cityIndex);
-            this._cardRendering.push({
-                card,
-                // 只管理原本启用的组件，保留模板中刻意禁用的组件状态。
-                components: [
-                    ...card.getComponentsInChildren(UIRenderer),
-                    ...card.getComponentsInChildren(Mask),
-                ].filter(component => component.enabled),
-                visible: true,
-            });
+            this._fillCard(card, level, start + index, cityIndex);
         });
 
-        this._hideManualCards(root);
-        container.getComponent(Layout)?.updateLayout();
-        this._scrollToTop();
-        this.lateUpdate();
+        root.getComponent(Layout)?.updateLayout();
+        this._refreshPagination();
     }
 
-    /**
-     * 把 List 改造成「遮罩 + 滑动」结构（幂等）：
-     * List 自身挂 Mask 和 ScrollView 作为可视窗口；
-     * 创建 Content 子节点作为卡片容器，并把 List 上原 Layout 的网格参数转移过去。
-     */
-    private _setupScrollContainer(): void {
+    /** 保留预制体的网格参数与尺寸，不再创建 Content、Mask 或 ScrollView。 */
+    private _setupPageContainer(): void {
         const root = this.resolveNode(this.listRoot, 'List');
         if (!root) return;
-        const rootUi = root.getComponent(UITransform);
-
-        if (!root.getComponent(Mask)) {
-            const mask = root.addComponent(Mask);
-            mask.type = Mask.Type.GRAPHICS_RECT;
+        const scrollView = root.getComponent(ScrollView);
+        if (scrollView) {
+            scrollView.stopAutoScroll();
+            scrollView.enabled = false;
         }
-
-        const scrollView = root.getComponent(ScrollView) ?? root.addComponent(ScrollView);
-        scrollView.horizontal = false;
-        scrollView.vertical = true;
-        scrollView.inertia = true;
-
-        this._content = root.getChildByName('Content');
-        if (!this._content) {
-            this._content = new Node('Content');
-            this._content.parent = root;
-            const ui = this._content.addComponent(UITransform);
-            const size = rootUi?.contentSize ?? new Size(750, 1334);
-            ui.setContentSize(size.width, size.height);
-        }
-
-        const oldLayout = root.getComponent(Layout);
-        if (oldLayout && oldLayout.enabled) {
-            const layout = this._content.getComponent(Layout) ?? this._content.addComponent(Layout);
-            layout.type = oldLayout.type;
-            layout.resizeMode = Layout.ResizeMode.CONTAINER;
-            layout.spacingX = oldLayout.spacingX;
-            layout.spacingY = oldLayout.spacingY;
-            layout.paddingLeft = oldLayout.paddingLeft;
-            layout.paddingRight = oldLayout.paddingRight;
-            layout.paddingTop = oldLayout.paddingTop;
-            layout.paddingBottom = oldLayout.paddingBottom;
-            layout.horizontalDirection = oldLayout.horizontalDirection;
-            layout.verticalDirection = oldLayout.verticalDirection;
+        const layout = root.getComponent(Layout);
+        if (layout) {
+            layout.resizeMode = Layout.ResizeMode.NONE;
             layout.enabled = true;
-            oldLayout.enabled = false;
         }
-
-        scrollView.content = this._content;
-        scrollView.scrollToTop(0);
     }
 
-    private _scrollToTop(): void {
-        const root = this.resolveNode(this.listRoot, 'List');
-        root?.getComponent(ScrollView)?.scrollToTop(0.1);
+    private _effectivePageSize(): number {
+        return Number.isFinite(this.pageSize) ? Math.max(1, Math.floor(this.pageSize)) : 8;
+    }
+
+    private _optionalPageNode(bound: Node | null, name: string): Node | null {
+        if (bound?.isValid) return bound;
+        const page = this.findChildDeep(this.node, 'Page');
+        return page ? this.findChildDeep(page, name) : null;
+    }
+
+    private _refreshPagination(): void {
+        const label = this.pageLabel?.isValid ? this.pageLabel
+            : this._optionalPageNode(null, 'PageLaber')?.getComponent(Label)
+                ?? this._optionalPageNode(null, 'PageLabel')?.getComponent(Label);
+        if (label) label.string = `${this._pageCount > 0 ? this._pageIndex + 1 : 0}/${this._pageCount}`;
+        const previous = this._optionalPageNode(this.btnPrevious, 'button_page_prev');
+        const next = this._optionalPageNode(this.btnNext, 'button_page_next');
+        if (previous) previous.active = this._pageCount > 0 && this._pageIndex > 0;
+        if (next) next.active = this._pageIndex + 1 < this._pageCount;
+    }
+
+    private _goToPage(index: number): void {
+        if (!Number.isInteger(index) || index < 0 || index >= this._pageCount || index === this._pageIndex) return;
+        this._pageIndex = index;
+        this.rebuild();
     }
 
     /** 模板来源：优先 cardTemplate 绑定，其次 List 直接子级下的 Card1。 */
@@ -272,9 +294,11 @@ export class LevelSelectScreen extends UIScreen {
     private async _loadThumbnailByPath(card: Node, path: string): Promise<void> {
         const thumbnail = this.findChildDeep(card, 'Thumbnail');
         if (!thumbnail || !path) return;
+        const version = this._selectionVersion;
         try {
             const frame = await this.flow.loadPageSpriteFrame(path, this.node);
-            if (!frame?.isValid || !this.node.activeInHierarchy || !thumbnail.isValid) return;
+            if (version !== this._selectionVersion || !frame?.isValid
+                || !this.node.activeInHierarchy || !thumbnail.isValid) return;
             const sprite = thumbnail.getComponent(Sprite);
             if (sprite && thumbnail.isValid) {
                 // 按模板默认尺寸（UITransform）显示，避免 RAW 模式下原图过大被裁
@@ -293,9 +317,12 @@ export class LevelSelectScreen extends UIScreen {
 
     private _clearRuntimeCards(): void {
         this.flow.releasePageSpriteFrames(this.node);
-        for (const card of this._runtimeCards) card.destroy();
+        for (const card of this._runtimeCards) {
+            // destroy 在帧尾执行，先隐藏，避免旧卡片占用本次网格位置或接受点击。
+            card.active = false;
+            card.destroy();
+        }
         this._runtimeCards = [];
-        this._cardRendering = [];
     }
 
     /** 无模板时的内置简易卡。 */

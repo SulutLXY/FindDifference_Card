@@ -228,6 +228,12 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     });
     raw = JSON.stringify({ freeHints: 0, freeAddTimes: 0 });
     const uiRuntime = sdkHost();
+    let sidebarJumps = 0;
+    uiRuntime.host.tt.navigateToScene = request => {
+        sidebarJumps++;
+        assert.equal(request.scene, 'sidebar');
+        request.success({ errMsg: 'navigateToScene:ok' });
+    };
     const uiSidebar = new SidebarService(uiRuntime.host);
     await uiSidebar.start();
     flow.save = new SaveService();
@@ -244,14 +250,18 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     gift.onLoad();
     gift.node.events.click();
     assert.equal(gift._modal.active, true);
-    assert.equal(gift._action.string, '去侧边栏');
-    await gift._performAction();
+    assert.equal(gift._action.string, '跳转侧边栏');
+    firstAction.events.click();
+    await new Promise(setImmediate);
+    assert.equal(sidebarJumps, 1, 'Authored action button actually calls native sidebar navigation');
     assert.equal(gift._modal.active, false);
     assert.equal(flow.save.freeHints, 0);
+    assert.equal(gift._action.string, '跳转侧边栏', 'Successful navigation alone does not enable claiming');
     uiRuntime.show(sidebarOptions);
     assert.equal(gift._modal.active, true, 'return reopens the reward dialog');
-    assert.equal(gift._action.string, '领取奖励');
-    await gift._performAction();
+    assert.equal(gift._action.string, '立即领取');
+    firstAction.events.click();
+    await new Promise(setImmediate);
     await gift._performAction();
     assert.equal(flow.save.freeHints, 2);
     assert.equal(gift._action.string, '今日已领取');
@@ -276,12 +286,31 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     assert.equal(tips.getComponent(Label).string, '今日已领取，明日再来');
     raw = JSON.stringify({ freeHints: 0 }); flow.save = new SaveService();
     customGift.refresh(); assert.equal(action.active, true);
-    assert.equal(action.getComponent(Label).string, '领取奖励');
+    assert.equal(action.getComponent(Label).string, '立即领取');
+    // Latest ordinary entry must switch back, even after an earlier valid sidebar visit today.
+    uiRuntime.show({ launch_from: 'share', location: 'sidebar_card' });
+    assert.equal(action.getComponent(Label).string, '跳转侧边栏');
+    action.getComponent(Label).string = '立即领取';
+    const beforeJumps = sidebarJumps;
+    action.events.click(); await new Promise(setImmediate);
+    assert.equal(sidebarJumps, beforeJumps + 1, 'Click uses live source rather than stale label text');
+    assert.equal(flow.save.freeHints, 0);
+    assert.equal(action.getComponent(Label).string, '跳转侧边栏');
+    uiRuntime.show(sidebarOptions);
+    assert.equal(action.getComponent(Label).string, '立即领取');
     await customGift._performAction();
     assert.equal(flow.save.freeHints, 2); assert.equal(action.active, false);
     close.events.click(); assert.equal(designed.active, false);
     customGift.onDestroy(); assert.equal(designed.isValid, true, 'scene modal is never destroyed');
     assert.equal(close.events.click, undefined, 'scene handlers removed');
+    // The actual scene must start with the non-sidebar action and expose a wired label.
+    const sceneData = JSON.parse(fs.readFileSync(path.join(root, 'assets/scene/game.scene'), 'utf8'));
+    const modalNode = sceneData.find(node => node.__type__ === 'cc.Node' && node._name === 'ADDGameflow');
+    const windowNode = modalNode._children.map(ref => sceneData[ref.__id__]).find(node => node._name === 'TipsWindow');
+    const actionNode = windowNode._children.map(ref => sceneData[ref.__id__]).find(node => node._name === 'BtnReview');
+    const actionLabelNode = actionNode._children.map(ref => sceneData[ref.__id__]).find(node => node._name === 'Label');
+    const actionLabel = actionLabelNode._components.map(ref => sceneData[ref.__id__]).find(component => component.__type__ === 'cc.Label');
+    assert.equal(actionLabel._string, '跳转侧边栏');
     uiSidebar.dispose();
     console.log('PASS: startup bridge, latest return source, support/failure/timeout, daily rollover, persistence, duplicate claims, free hints and ad fallback.');
     console.log('PASS: lobby entry -> guide -> jump -> return -> claim -> already claimed; dialog cleanup.');

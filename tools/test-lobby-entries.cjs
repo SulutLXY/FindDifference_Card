@@ -1,6 +1,10 @@
 const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:assert/strict');
-const ts = require('D:/Cocos/cocoseditors/Creator/3.8.8/resources/resources/3d/engine/node_modules/typescript');
+const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const output = {};
+const playerInfo = {};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/services/PlayerInfoService.ts', 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2018 },
+}).outputText, { exports: playerInfo, setTimeout, clearTimeout });
 const testMath = Object.create(Math);
 let pc = false, login, subscribeCalls = 0, share;
 const host = { tt: {
@@ -16,7 +20,7 @@ vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/services/P
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2018 },
 }).outputText, { exports: output, globalThis: host, console, setTimeout, clearTimeout, Math: testMath,
     require: name => name === 'cc/env' ? { BYTEDANCE: true, WECHAT: false }
-        : name.includes('Sidebar') ? { SidebarService: class {} } : { PlayerInfoService: class {} },
+        : name.includes('Sidebar') ? { SidebarService: class {} } : playerInfo,
 });
 (async () => {
     const service = new output.PlatformService();

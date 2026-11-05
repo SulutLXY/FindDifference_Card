@@ -1,0 +1,212 @@
+{
+  "name": "网络热点",
+  "levels": [
+    {
+      "id": "city-00-HotTips/level-01",
+      "name": "骑士小猫",
+      "folder": "qi-shi-xiao-mao"
+    },
+    {
+      "id": "city-00-HotTips/level-02",
+      "name": "闪身步",
+      "folder": "shan-shen-bu"
+    },
+    {
+      "id": "wang-luo-re-dian/mo-fang-xiao-hou-zi-shi",
+      "name": "模仿小猴姿勢",
+      "folder": "mo-fang-xiao-hou-zi-shi"
+    },
+    {
+      "id": "wang-luo-re-dian/chou-zhi-tiao-zhan",
+      "name": "抽纸挑战",
+      "folder": "chou-zhi-tiao-zhan"
+    },
+    {
+      "id": "wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren",
+      "name": "异世界来了个年轻人",
+      "folder": "yi-shi-jie-lai-le-ge-nian-qing-ren"
+    },
+    {
+      "id": "wang-luo-re-dian/sha-xian-ai-qing-gu-shi",
+      "name": "沙县爱情故事",
+      "folder": "sha-xian-ai-qing-gu-shi"
+    },
+    {
+      "id": "wang-luo-re-dian/gong-fu-xiao-mi",
+      "name": "功夫小咪",
+      "folder": "gong-fu-xiao-mi"
+    },
+    {
+      "id": "wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai",
+      "name": "选到一样就买",
+      "folder": "xuan-dao-yi-yang-jiu-mai"
+    },
+    {
+      "id": "wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan",
+      "name": "上课偷吃挑战",
+      "folder": "shang-ke-tou-chi-tiao-zhan"
+    },
+    {
+      "id": "wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta",
+      "name": "挑战切超长蛋挞",
+      "folder": "tiao-zhan-qie-chao-chang-dan-ta"
+    },
+    {
+      "id": "wang-luo-re-dian/qiu-ri-shou-cang",
+      "name": "秋日收藏",
+      "folder": "qiu-ri-shou-cang"
+    },
+    {
+      "id": "wang-luo-re-dian/ci-bu-yi-yang-jiu-pao-bu",
+      "name": "词不一样就跑步",
+      "folder": "ci-bu-yi-yang-jiu-pao-bu"
+    },
+    {
+      "id": "city-00-HotTips/level-03",
+      "name": "羽毛球关灯",
+      "folder": "yu-mao-qiu-guan-deng"
+    },
+    {
+      "id": "city-00-HotTips/level-04",
+      "name": "双截棍打乒乓球",
+      "folder": "shuang-jie-gun-da-ping-pang-qiu"
+    },
+    {
+      "id": "city-00-HotTips/level-05",
+      "name": "浪子踢球",
+      "folder": "lang-zi-ti-qiu"
+    },
+    {
+      "id": "city-00-HotTips/level-06",
+      "name": "AI检测脸",
+      "folder": "ai-jian-ce-lian"
+    },
+    {
+      "id": "city-00-HotTips/level-07",
+      "name": "巧克力月饼",
+      "folder": "qiao-ke-li-yue-bing"
+    },
+    {
+      "id": "city-00-HotTips/level-08",
+      "name": "芭蕾站酒瓶",
+      "folder": "ba-lei-zhan-jiu-ping"
+    },
+    {
+      "id": "city-00-HotTips/level-09",
+      "name": "谁赢了谁吃",
+      "folder": "shui-ying-le-shui-chi"
+    },
+    {
+      "id": "city-00-HotTips/level-10",
+      "name": "偷吃大赛",
+      "folder": "tou-chi-da-sai"
+    },
+    {
+      "id": "city-00-HotTips/level-11",
+      "name": "专注打弹珠",
+      "folder": "zhuan-zhu-da-dan-zhu"
+    },
+    {
+      "id": "city-00-HotTips/level-12",
+      "name": "复刻光头强打篮球",
+      "folder": "fu-ke-guang-tou-qiang-da-lan-qiu"
+    },
+    {
+      "id": "city-00-HotTips/level-13",
+      "name": "取号叫餐被选中belike",
+      "folder": "qu-hao-jiao-can-bei-xuan-zhong-belike"
+    },
+    {
+      "id": "city-00-HotTips/level-14",
+      "name": "动物模仿",
+      "folder": "dong-wu-mo-fang"
+    },
+    {
+      "id": "city-00-HotTips/level-15",
+      "name": "苹果炖牛肋条",
+      "folder": "ping-guo-dun-niu-lei-tiao"
+    },
+    {
+      "id": "city-00-HotTips/level-16",
+      "name": "手速抢零食",
+      "folder": "shou-su-qiang-ling-shi"
+    },
+    {
+      "id": "city-00-HotTips/level-17",
+      "name": "狗熊哆嗦毛",
+      "folder": "gou-xiong-duo-suo-mao"
+    },
+    {
+      "id": "city-00-HotTips/level-18",
+      "name": "雪山救狐狸",
+      "folder": "xue-shan-jiu-hu-li"
+    },
+    {
+      "id": "city-00-HotTips/level-19",
+      "name": "妙脆角小猫",
+      "folder": "miao-cui-jiao-xiao-mao"
+    },
+    {
+      "id": "city-00-HotTips/level-20",
+      "name": "戴夫厨房",
+      "folder": "dai-fu-chu-fang"
+    },
+    {
+      "id": "city-00-HotTips/level-21",
+      "name": "我的刀盾",
+      "folder": "wo-de-dao-dun"
+    },
+    {
+      "id": "city-00-HotTips/level-22",
+      "name": "负鼠表情包",
+      "folder": "fu-shu-biao-qing-bao"
+    },
+    {
+      "id": "city-00-HotTips/level-23",
+      "name": "野生狗奶",
+      "folder": "ye-sheng-gou-nai"
+    },
+    {
+      "id": "city-00-HotTips/level-24",
+      "name": "偷吃大赛2",
+      "folder": "tou-chi-da-sai-2"
+    },
+    {
+      "id": "city-00-HotTips/level-25",
+      "name": "猫猫偷袭人类幼崽",
+      "folder": "mao-mao-tou-xi-ren-lei-you-zai"
+    },
+    {
+      "id": "city-00-HotTips/level-26",
+      "name": "就一小碗",
+      "folder": "jiu-yi-xiao-wan"
+    },
+    {
+      "id": "city-00-HotTips/level-27",
+      "name": "舞狮",
+      "folder": "wu-shi"
+    },
+    {
+      "id": "city-00-HotTips/level-28",
+      "name": "冰淇淋捕鱼",
+      "folder": "bing-qi-lin-bu-yu"
+    },
+    {
+      "id": "city-00-HotTips/level-29",
+      "name": "网约车尾号",
+      "folder": "wang-yue-che-wei-hao"
+    },
+    {
+      "id": "city-00-HotTips/level-30",
+      "name": "松鼠的自助餐",
+      "folder": "song-shu-de-zi-zhu-can"
+    }
+  ],
+  "banner": "chapter-covers/city-00-HotTips-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "nextChapter": "nian-du-re-geng",
+  "legacyKeys": [
+    "city-00-HotTips"
+  ]
+}

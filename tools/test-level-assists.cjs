@@ -19,14 +19,14 @@ vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/services/S
  a.useHint=()=>hints++;a.playHintSound=a.playAddTimeSound=()=>{};
  a.requestReward=async(_,reward)=>{ads++;if(completed)reward();};
  await a.requestHint();await a.requestHint();assert.equal(ads,0);assert.equal(save.freeHints,0);assert.equal(hints,2);
- await a.requestAddTime();await a.requestAddTime();assert.equal(ads,0);assert.equal(save.freeAddTimes,0);assert.equal(a._remainingTime,120);
- await a.requestHint();await a.requestAddTime();assert.equal(save.freeHints,0);assert.equal(save.freeAddTimes,0);assert.equal(a._remainingTime,120);
- completed=true;await a.requestHint();await a.requestHint();await a.requestAddTime();await a.requestAddTime();assert.equal(hints,4);assert.equal(a._remainingTime,180);assert.equal(save.freeAddTimes,0);
+ await a.requestAddTime();await a.requestAddTime();assert.equal(ads,0);assert.equal(save.freeAddTimes,0);assert.equal(a._remainingTime,180);
+ await a.requestHint();await a.requestAddTime();assert.equal(save.freeHints,0);assert.equal(save.freeAddTimes,0);assert.equal(a._remainingTime,180);
+ completed=true;await a.requestHint();await a.requestHint();await a.requestAddTime();await a.requestAddTime();assert.equal(hints,4);assert.equal(a._remainingTime,300);assert.equal(save.freeAddTimes,0);
  assert.equal(save.grantAssist('add-time',3),true);assert.equal(new saveExports.SaveService().freeAddTimes,3);
  writeFails=true;assert.equal(save.consumeAddTime(),false);assert.equal(save.freeAddTimes,3);assert.equal(save.grantAssist('hint'),false);assert.equal(save.freeHints,0);writeFails=false;
  const beforeAds=ads;await a.requestHint();assert.equal(ads,beforeAds+1,'No per-level cap; hint ad still offered');assert.equal(hints,5);
  assert.equal(save.consumeAddTime(),true);assert.equal(save.consumeAddTime(),true);assert.equal(save.consumeAddTime(),true);
- await a.requestAddTime();assert.equal(ads,beforeAds+2);assert.equal(a._remainingTime,210,'No per-level cap; add-time ad still offered');
+ await a.requestAddTime();assert.equal(ads,beforeAds+2);assert.equal(a._remainingTime,360,'No per-level cap; each add-time ad grants 60 seconds');
  assert.equal(new saveExports.SaveService().freeHints,0);assert.equal(new saveExports.SaveService().freeAddTimes,0);
  a.requestReward=async(_,reward)=>{a._assistRoundVersion++;reward();};await a.requestHint();assert.equal(save.freeHints,1);
  const ui=fs.readFileSync('assets/scripts/ui/GameScreen.ts','utf8');assert.ok(ui.includes("times.string = !unlimited && count > 0 ? String(count) : ''"));

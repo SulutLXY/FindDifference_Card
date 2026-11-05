@@ -1,0 +1,160 @@
+{
+  "name": "萌宠三国",
+  "levels": [
+    {
+      "id": "city-PetThreeKingdoms/level-01",
+      "name": "黄巾起义",
+      "folder": "huang-jin-qi-yi"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-02",
+      "name": "桃园结义",
+      "folder": "tao-yuan-jie-yi"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-03",
+      "name": "温酒斩华雄",
+      "folder": "wen-jiu-zhan-hua-xiong"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-04",
+      "name": "三英战吕布",
+      "folder": "san-ying-zhan-lv-bu"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-05",
+      "name": "孙坚匿玉玺",
+      "folder": "sun-jian-ni-yu-xi"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-06",
+      "name": "辕门射戟",
+      "folder": "yuan-men-she-ji"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-07",
+      "name": "煮酒论英雄",
+      "folder": "zhu-jiu-lun-ying-xiong"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-08",
+      "name": "神亭岭大战孙策",
+      "folder": "shen-ting-ling-da-zhan-sun-ce"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-09",
+      "name": "火烧乌巢",
+      "folder": "huo-shao-wu-chao"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-10",
+      "name": "远征乌桓",
+      "folder": "yuan-zheng-wu-huan"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-11",
+      "name": "割须弃袍",
+      "folder": "ge-xu-qi-pao"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-12",
+      "name": "隆中对",
+      "folder": "long-zhong-dui"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-13",
+      "name": "长坂坡单骑救主",
+      "folder": "chang-ban-po-dan-qi-jiu-zhu"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-14",
+      "name": "舌战群儒",
+      "folder": "she-zhan-qun-ru"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-15",
+      "name": "草船借箭",
+      "folder": "cao-chuan-jie-jian"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-16",
+      "name": "曹孟德横槊赋诗",
+      "folder": "cao-meng-de-heng-shuo-fu-shi"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-17",
+      "name": "连环计",
+      "folder": "lian-huan-ji"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-18",
+      "name": "借东风火烧赤壁",
+      "folder": "jie-dong-feng-huo-shao-chi-bi"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-19",
+      "name": "华容道",
+      "folder": "hua-rong-dao"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-20",
+      "name": "威震逍遥津",
+      "folder": "wei-zhen-xiao-yao-jin"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-21",
+      "name": "落凤坡",
+      "folder": "luo-feng-po"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-22",
+      "name": "定军山",
+      "folder": "ding-jun-shan"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-23",
+      "name": "水淹七军",
+      "folder": "shui-yan-qi-jun"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-24",
+      "name": "刮骨疗毒",
+      "folder": "gua-gu-liao-du"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-25",
+      "name": "白帝城托孤",
+      "folder": "bai-di-cheng-tuo-gu"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-26",
+      "name": "七擒孟获",
+      "folder": "qi-qin-meng-huo"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-27",
+      "name": "空城计",
+      "folder": "kong-cheng-ji"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-28",
+      "name": "武侯禳星",
+      "folder": "wu-hou-rang-xing"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-29",
+      "name": "单骑退雄兵",
+      "folder": "dan-qi-tui-xiong-bing"
+    },
+    {
+      "id": "city-PetThreeKingdoms/level-30",
+      "name": "九伐中原",
+      "folder": "jiu-fa-zhong-yuan"
+    }
+  ],
+  "banner": "chapter-covers/city-PetThreeKingdoms-icon/spriteFrame",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-PetThreeKingdoms"
+  ]
+}

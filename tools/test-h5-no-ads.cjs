@@ -56,10 +56,10 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
     flow.save = { freeHints: 0, freeAddTimes: 0, consumeFreeHint() { throw Error('Must not consume H5 stock'); },
         consumeAddTime() { throw Error('Must not consume H5 stock'); }, grantAssist() { throw Error('Must not grant H5 stock'); } };
     for (let i = 0; i < 20; i++) { await flow.requestHint(); await flow.requestAddTime(); }
-    assert.equal(hints, 20); assert.equal(flow._remainingTime, 700);
+    assert.equal(hints, 20); assert.equal(flow._remainingTime, 1300);
     flow._isGameOver = true;
     await flow.requestHint(); await flow.requestAddTime();
-    assert.equal(hints, 20); assert.equal(flow._remainingTime, 700, 'Game-over guard still applies');
+    assert.equal(hints, 20); assert.equal(flow._remainingTime, 1300, 'Game-over guard still applies');
     flow._isGameOver = false;
 
     // Native builds keep native reward completion/cancellation behavior.
@@ -81,7 +81,7 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
         const timeAd = flow.requestAddTime();
         assert.equal(created, 2, 'No per-level cap on add-time either');
         close({ isEnded: false }); await timeAd;
-        assert.equal(hints, 20); assert.equal(flow._remainingTime, 700);
+        assert.equal(hints, 20); assert.equal(flow._remainingTime, 1300);
         let granted = false;
         const reward = flow.requestReward('hint', () => { granted = true; });
         assert.equal(granted, false); assert.equal(created, 3);

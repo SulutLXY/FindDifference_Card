@@ -97,21 +97,5 @@ game.lateUpdate();
 game.drawFoundMarker(differences[0]);
 assert.equal(game._markerGraphics.size, 2, 'reopening creates fresh batches');
 
-class UITransform {}
-const Select = load('assets/scripts/ui/LevelSelectScreen.ts', ['_cardRendering', 'lateUpdate'], { UITransform });
-const select = new Select();
-let onScreen = false;
-const bounds = { intersects: box => box.visible };
-select.resolveNode = () => ({ getComponent: () => ({ getBoundingBoxToWorld: () => bounds }) });
-let changes = 0;
-const renderer = { get enabled() { return this.value; }, set enabled(v) { this.value = v; changes++; }, value: true };
-const card = { getComponent: () => ({ getBoundingBoxToWorld: () => ({ visible: onScreen }) }) };
-select._cardRendering = [{ card, components: [renderer], visible: true }];
-select.lateUpdate();
-assert.equal(renderer.enabled, false);
-select.lateUpdate();
-assert.equal(changes, 1, 'unchanged visibility does not toggle components');
-onScreen = true;
-select.lateUpdate();
-assert.equal(renderer.enabled, true, 'scrolling back restores rendering');
-console.log('PASS render batching: two marker renderers, pulse geometry, idle frames, cleanup/reopen and scroll culling');
+// 选关页已改为只生成当前页，不再使用长列表滚动裁剪；分页行为见 test-level-pagination.cjs。
+console.log('PASS render batching: two marker renderers, pulse geometry, idle frames and cleanup/reopen');

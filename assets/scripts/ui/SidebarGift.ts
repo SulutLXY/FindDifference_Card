@@ -43,7 +43,7 @@ export class SidebarGift extends UIScreen {
         if (this._status) this._status.string = claimed ? '今日已领取，明日再来'
             : sidebar.fromSidebarToday ? '已从侧边栏进入，可以领取啦！' : '每天从首页侧边栏进入，即可领取';
         if (this._action) this._action.string = claimed ? '今日已领取'
-            : sidebar.navigating ? '正在打开…' : sidebar.fromSidebarToday ? '领取奖励' : '去侧边栏';
+            : sidebar.navigating ? '正在打开…' : sidebar.fromSidebarToday ? '立即领取' : '跳转侧边栏';
         if (this._designedAction) this._designedAction.active = !claimed;
     }
 
@@ -63,6 +63,8 @@ export class SidebarGift extends UIScreen {
     private _closeGift(): void { if (this._modal) this._modal.active = false; }
 
     private async _performAction(): Promise<void> {
+        // 点击时重新读取最新 onShow 来源，不依赖按钮上一次显示的文案。
+        this.refresh();
         const sidebar = this.flow.platform.sidebar;
         if (sidebar.navigating || this.flow.save.hasClaimedSidebar(sidebarDay())) return;
         if (sidebar.fromSidebarToday) {
@@ -109,7 +111,7 @@ export class SidebarGift extends UIScreen {
             visit(designed);
             if (this._designedAction) bind(this._designedAction, () => { void this._performAction(); });
             const step = this.findChildDeep(designed, 'Title-003')?.getComponent(Label);
-            if (step) step.string = '第三步：领取奖励';
+            if (step) step.string = '第三步：返回游戏后点击“立即领取”';
             return;
         }
     }

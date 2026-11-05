@@ -78,19 +78,28 @@ def build(table, output, check=False):
             if preset_reviews and len(preset_reviews) != 10: raise ValueError('填写预设评价时须为10条，以 | 分隔')
             if len(set(preset_reviews)) != len(preset_reviews): raise ValueError('同一道美食的预设评价不能重复')
             if not all([id_, food, city, city_name, asset]): raise ValueError('ID、名称、城市和素材名称不能为空')
-            if not re.fullmatch(r'city-(?:\d{2}-)?[a-zA-Z0-9]+',city): raise ValueError('城市ID格式错误')
-            if level and not re.fullmatch(r'level-\d{2}',level): raise ValueError('关卡目录格式错误')
+            if not re.fullmatch(r'[a-zA-Z0-9][a-zA-Z0-9-]*',city): raise ValueError('章节目录格式错误')
+            if level and not re.fullmatch(r'[a-zA-Z0-9][a-zA-Z0-9-]*',level): raise ValueError('关卡目录格式错误')
             if id_ in ids: raise ValueError('重复美食ID: ' + id_)
             ids.add(id_)
-            if not (bundle/'levels'/city).is_dir(): raise ValueError('城市目录不存在: ' + city)
+            index_data = json.loads((ROOT/'assets/resources/configs/cities.json').read_text(encoding='utf-8-sig'))
+            old_level_key = city+'/'+level
+            physical_city = next((k for k, c in index_data.get('chapters', {}).items()
+                                  if k == city or city in c.get('legacyKeys', [])), city)
+            if not (bundle/'levels'/physical_city).is_dir(): raise ValueError('城市目录不存在: ' + city)
             key = ''
             if level:
-                city_config = bundle/'levels'/city/'configs/city.json'
-                if city not in cities or not city_config.exists(): raise ValueError('该城市尚未配置可玩关卡')
-                if level not in json.loads(city_config.read_text(encoding='utf-8-sig'))['levels']: raise ValueError('关卡未列入城市配置: '+level)
-                level_config = bundle/'levels'/city/'configs'/level/'differences.json'
+                city_config = bundle/'levels'/physical_city/'configs/city.json'
+                if physical_city not in cities or not city_config.exists(): raise ValueError('该城市尚未配置可玩关卡')
+                entries = json.loads(city_config.read_text(encoding='utf-8-sig'))['levels']
+                entry = next((item for item in entries
+                              if (isinstance(item, dict) and (item.get('id') == old_level_key or item.get('folder') == level))
+                              or (isinstance(item, str) and item == level)), None)
+                if entry is None: raise ValueError('关卡未列入章节配置: '+level)
+                level_folder = entry['folder'] if isinstance(entry, dict) else level
+                level_config = bundle/'levels'/physical_city/'configs'/level_folder/'differences.json'
                 if not level_config.exists(): raise ValueError('关卡文件不存在: '+level)
-                key = city+'/'+level
+                key = entry['id'] if isinstance(entry, dict) else city+'/'+level
                 if key in levels: raise ValueError('关卡重复关联: '+key)
                 levels.add(key)
                 level_data = json.loads(level_config.read_text(encoding='utf-8-sig'))

@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-03",
+  "output": "build/lobby-pages-validation/douyin",
+  "remoteBundles": [
+    "bei-jing",
+    "chang-sha",
+    "chapter-covers",
+    "cheng-du",
+    "chong-wu-gu-shi",
+    "food-icons",
+    "guang-zhou",
+    "LobbySources",
+    "MainGameAimation",
+    "meng-chong-san-guo",
+    "nan-jing",
+    "nian-du-re-geng",
+    "shang-hai",
+    "wang-luo-re-dian",
+    "xi-an",
+    "xia-men"
+  ],
+  "menuPrefabPaths": [
+    "prefabs/CitySelectScreen",
+    "prefabs/LevelSelectScreen",
+    "prefabs/LobbyScreen",
+    "SecondaryUI/prefabs/CollectScreen",
+    "SecondaryUI/prefabs/RankScreen"
+  ],
+  "rawCodeAndLocalBytes": 8120374,
+  "rawRemoteBytes": 146965316,
+  "notes": [
+    "Debug local verification build; not uploaded or published.",
+    "No device cold-start timing performed."
+  ]
+}

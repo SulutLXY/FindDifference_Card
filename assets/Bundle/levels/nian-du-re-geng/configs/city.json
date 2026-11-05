@@ -1,0 +1,287 @@
+{
+  "name": "年度热梗",
+  "levels": [
+    {
+      "id": "city-01-2026Hotmeme/level-01",
+      "name": "中国人能飞",
+      "folder": "zhong-guo-ren-neng-fei"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-02",
+      "name": "世界巨星登场",
+      "folder": "shi-jie-ju-xing-deng-chang"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-03",
+      "name": "开心一下",
+      "folder": "kai-xin-yi-xia"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-04",
+      "name": "马尔福",
+      "folder": "ma-er-fu"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-05",
+      "name": "三巨头",
+      "folder": "san-ju-tou"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-06",
+      "name": "嘉豪",
+      "folder": "jia-hao"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-07",
+      "name": "月薪喵落泪DJ",
+      "folder": "yue-xin-miao-luo-lei-dj"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-08",
+      "name": "琵琶曲",
+      "folder": "pi-pa-qu"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-09",
+      "name": "尴尬狗",
+      "folder": "gan-ga-gou"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-10",
+      "name": "what a day",
+      "folder": "what-a-day"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-11",
+      "name": "老吴，内个",
+      "folder": "lao-wu-nei-ge"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-12",
+      "name": "绷不住",
+      "folder": "beng-bu-zhu"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-13",
+      "name": "百万英镑",
+      "folder": "bai-wan-ying-bang"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-14",
+      "name": "大狗叫",
+      "folder": "da-gou-jiao"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-15",
+      "name": "甲乙丙丁",
+      "folder": "jia-yi-bing-ding"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-16",
+      "name": "节奏挑战",
+      "folder": "jie-zou-tiao-zhan"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-17",
+      "name": "我要验牌",
+      "folder": "wo-yao-yan-pai"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-18",
+      "name": "双闪雷霆步",
+      "folder": "shuang-shan-lei-ting-bu"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-19",
+      "name": "豆包型人格",
+      "folder": "dou-bao-xing-ren-ge"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-20",
+      "name": "创意早餐参赛挑战",
+      "folder": "chuang-yi-zao-can-can-sai-tiao-zhan"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-21",
+      "name": "养龙虾",
+      "folder": "yang-long-xia"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-22",
+      "name": "确诊一匹马",
+      "folder": "que-zhen-yi-pi-ma"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-23",
+      "name": "哭哭马",
+      "folder": "ku-ku-ma"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-24",
+      "name": "超长长长蛋挞",
+      "folder": "chao-chang-chang-chang-dan-ta"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-25",
+      "name": "我也要死吗",
+      "folder": "wo-ye-yao-si-ma"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-26",
+      "name": "夯爆了",
+      "folder": "hang-bao-le"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-27",
+      "name": "素颜巴黎",
+      "folder": "su-yan-ba-li"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-28",
+      "name": "咕咕嘎嘎",
+      "folder": "gu-gu-ga-ga"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-29",
+      "name": "病友舞",
+      "folder": "bing-you-wu"
+    },
+    {
+      "id": "city-01-2026Hotmeme/level-30",
+      "name": "不烧心",
+      "folder": "bu-shao-xin"
+    },
+    {
+      "id": "city-2025Hotmeme/level-01",
+      "name": "哈基米南北绿豆",
+      "folder": "ha-ji-mi-nan-bei-lv-dou"
+    },
+    {
+      "id": "city-2025Hotmeme/level-02",
+      "name": "乌萨奇，到",
+      "folder": "wu-sa-qi-dao"
+    },
+    {
+      "id": "city-2025Hotmeme/level-03",
+      "name": "天雷滚滚好怕怕",
+      "folder": "tian-lei-gun-gun-hao-pa-pa"
+    },
+    {
+      "id": "city-2025Hotmeme/level-04",
+      "name": "来财，来",
+      "folder": "lai-cai-lai"
+    },
+    {
+      "id": "city-2025Hotmeme/level-05",
+      "name": "look my eyes",
+      "folder": "look-my-eyes"
+    },
+    {
+      "id": "city-2025Hotmeme/level-06",
+      "name": "大展宏图",
+      "folder": "da-zhan-hong-tu"
+    },
+    {
+      "id": "city-2025Hotmeme/level-07",
+      "name": "从从容容游刃有余",
+      "folder": "cong-cong-rong-rong-you-ren-you-yu"
+    },
+    {
+      "id": "city-2025Hotmeme/level-08",
+      "name": "颗秒",
+      "folder": "ke-miao"
+    },
+    {
+      "id": "city-2025Hotmeme/level-09",
+      "name": "扫腿舞",
+      "folder": "sao-tui-wu"
+    },
+    {
+      "id": "city-2025Hotmeme/level-10",
+      "name": "城巴佬",
+      "folder": "cheng-ba-lao"
+    },
+    {
+      "id": "city-2025Hotmeme/level-11",
+      "name": "抖音音乐班",
+      "folder": "dou-yin-yin-yue-ban"
+    },
+    {
+      "id": "city-2025Hotmeme/level-12",
+      "name": "叮咚鸡",
+      "folder": "ding-dong-ji"
+    },
+    {
+      "id": "city-2025Hotmeme/level-13",
+      "name": "圆头耄耋",
+      "folder": "yuan-tou-mao-die"
+    },
+    {
+      "id": "city-2025Hotmeme/level-14",
+      "name": "阿玛提拉斯",
+      "folder": "a-ma-ti-la-si"
+    },
+    {
+      "id": "city-2025Hotmeme/level-15",
+      "name": "驾校老奶奶",
+      "folder": "jia-xiao-lao-nai-nai"
+    },
+    {
+      "id": "city-2025Hotmeme/level-16",
+      "name": "秦始皇骑大白熊",
+      "folder": "qin-shi-huang-qi-da-bai-xiong"
+    },
+    {
+      "id": "city-2025Hotmeme/level-17",
+      "name": "做完你的做你的",
+      "folder": "zuo-wan-ni-de-zuo-ni-de"
+    },
+    {
+      "id": "city-2025Hotmeme/level-18",
+      "name": "何意味",
+      "folder": "he-yi-wei"
+    },
+    {
+      "id": "city-2025Hotmeme/level-19",
+      "name": "灵感菇",
+      "folder": "ling-gan-gu"
+    },
+    {
+      "id": "city-2025Hotmeme/level-20",
+      "name": "被资本做局了",
+      "folder": "bei-zi-ben-zuo-ju-le"
+    },
+    {
+      "id": "city-2025Hotmeme/level-21",
+      "name": "法修散打",
+      "folder": "fa-xiu-san-da"
+    },
+    {
+      "id": "city-2025Hotmeme/level-22",
+      "name": "大东北",
+      "folder": "da-dong-bei"
+    },
+    {
+      "id": "city-2025Hotmeme/level-23",
+      "name": "苦命鸳鸯",
+      "folder": "ku-ming-yuan-yang"
+    },
+    {
+      "id": "city-2025Hotmeme/level-24",
+      "name": "改结局",
+      "folder": "gai-jie-ju"
+    },
+    {
+      "id": "city-2025Hotmeme/level-25",
+      "name": "没建模经济",
+      "folder": "mei-jian-mo-jing-ji"
+    }
+  ],
+  "banner": "chapter-covers/city-01-2026Hotmeme-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-01-2026Hotmeme",
+    "city-2025Hotmeme"
+  ]
+}

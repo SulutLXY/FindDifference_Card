@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-05",
+  "chapters": 13,
+  "topics": 6,
+  "levels": 325,
+  "networkHotspots": 40,
+  "newHotspotPositions": [
+    3,
+    12
+  ],
+  "newHotspotDifferences": 133,
+  "porcelainLevels": 60,
+  "porcelainDifferences": 730,
+  "collectibles": 60,
+  "imageExport": {
+    "encoder": "Photoshop 13.0.0",
+    "quality": 8,
+    "qualityScale": 12,
+    "format": "JPEG",
+    "size": [
+      1024,
+      672
+    ],
+    "resize": "full-image-bicubic-no-crop"
+  },
+  "verifiedNativeJpegs": 140,
+  "runtimeIndex": "assets\\resources\\import\\c2\\c22c058f-2af3-4bd8-91b3-69e4e4f4bc3f.c71f8.json",
+  "existingAnnotationWarnings": 32,
+  "newAnnotationWarnings": [
+    "qing-hua-ci/shou-yan-kai-xi: 差异点 #14 radius 非法: 0.222586"
+  ],
+  "sourceMaps": [
+    "config/hot-gameplay-import-2026-11-05.json",
+    "config/qing-hua-ci-source-map.json"
+  ],
+  "buildFinished": true,
+  "deviceVerified": false,
+  "uploaded": false
+}

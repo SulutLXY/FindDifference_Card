@@ -6,9 +6,9 @@
     python tools/build-manifest.py
 
 行为：
-1. 扫描 assets/Bundle/levels/ 下所有 city-* 目录，生成 resources/configs/cities.json；
-2. 每章生成/刷新 levels/city-XX-name/configs/city.json 的 levels 清单，并汇总到首包索引，
-   城市展示信息（name/banner 等手工字段）已存在时保留、不覆盖；内容不变时不写文件；
+1. 按 config/chapter-order.json 的明确顺序读取各章节，生成 resources/configs/cities.json；
+2. schemaVersion=2 时只读取各章 configs/city.json 的显式 id/name/folder 列表，保留人工顺序；
+   兼容旧格式时才扫描 level-NN。内容不变时不写文件；
 3. 逐关校验 differences.json 与引用的图片资源，输出校验报告；
 4. 校验失败时以非零码退出，可接入打包前检查。
 
@@ -17,9 +17,9 @@
     chapter-covers/city-XX-name-icon.jpg 章节封面（独立包）
     food-icons/city-XX-name/美食图片.png 美食图标（独立包）
     levels/city-XX-name/configs/city.json 章节源清单
-    levels/city-XX-name/configs/level-YY/differences.json 关卡配置
-    levels/city-XX-name/thumbnails/level-YY/icon.jpg 小关选关封面
-    levels/city-XX-name/level-YY/
+    levels/<chapter>/configs/<folder>/differences.json 关卡配置
+    levels/<chapter>/thumbnails/<folder>/icon.jpg 小关选关封面
+    levels/<chapter>/<folder>/
             scene-a.jpg       上图（图片路径被覆盖时可省略）
             scene-b.jpg       下图
 """
@@ -33,7 +33,9 @@ LEVELS_ROOT = 'assets/Bundle/levels'
 def chapter_config_root(city):
     return os.path.join(LEVELS_ROOT, city, 'configs')
 CITY_INDEX_PATH = 'assets/resources/configs/cities.json'
-CITY_RE = re.compile(r'^city-(?:\d{2}-)?[a-zA-Z0-9]+$')
+CHAPTER_ORDER_PATH = 'config/chapter-order.json'
+TOPICS_ROOT = 'config/topics'
+CITY_RE = re.compile(r'^[a-zA-Z0-9][a-zA-Z0-9-]*$')
 LEVEL_RE = re.compile(r'^level-\d{2}$')
 # 解锁由 GameFlow 的公共逻辑控制。旧源清单中的字段只为保持已发布包字节稳定而保留。
 LEGACY_RULE_FIELDS = {'unlockMode', 'prerequisiteCity'}
@@ -59,7 +61,7 @@ CITY_NAMES = {
 def sprite_path_to_file(sprite_path):
     """把 resources 相对路径（.../spriteFrame）转为磁盘文件路径（自动补扩展名）。"""
     rel = sprite_path.replace('/spriteFrame', '')
-    thumbnail = re.match(r'^thumbnails/(city-(?:\d{2}-)?[a-zA-Z0-9]+)/(.*)$', rel)
+    thumbnail = re.match(r'^thumbnails/([a-zA-Z0-9-]+)/(.*)$', rel)
     banner = re.match(r'^configs/(city-(?:\d{2}-)?[a-zA-Z0-9]+)-icon$', rel)
     if thumbnail:
         rel = f'levels/{thumbnail[1]}/thumbnails/{thumbnail[2]}'
@@ -165,9 +167,57 @@ def main():
         print(f'错误: {LEVELS_ROOT} 下没有 city-* 目录')
         return 1
 
+    order_config = {}
+    if os.path.isfile(CHAPTER_ORDER_PATH):
+        try:
+            with open(CHAPTER_ORDER_PATH, encoding='utf-8') as source:
+                order_config = json.load(source)
+                declared = order_config['chapters']
+            if not isinstance(declared, list) or not declared or any(not isinstance(key, str) or not CITY_RE.fullmatch(key) for key in declared):
+                raise ValueError('章节列表必须包含合法的英文/拼音目录名')
+            if len(set(declared)) != len(declared) or any(key not in city_dirs for key in declared):
+                raise ValueError('章节列表重复或目录不存在')
+            city_dirs = declared
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            print(f'错误: 章节顺序配置无效: {error}')
+            return 1
+
+    navigation = order_config.get('navigation', city_dirs)
+    topics, owned = [], set()
+    try:
+        if not isinstance(navigation, list) or not navigation or len(set(navigation)) != len(navigation):
+            raise ValueError('顶层章节索引为空或重复')
+        for key in navigation:
+            if not isinstance(key, str) or not CITY_RE.fullmatch(key):
+                raise ValueError('非法的顶层章节名称')
+            if key in city_dirs:
+                children = [key]
+            else:
+                with open(os.path.join(TOPICS_ROOT, key + '.json'), encoding='utf-8') as source:
+                    topic = json.load(source)
+                if not isinstance(topic, dict):
+                    raise ValueError(f'{key} 专题配置必须是对象')
+                children = topic.get('chapters')
+                if (topic.get('key') != key or not topic.get('name') or not isinstance(children, list)
+                        or not children or len(set(children)) != len(children)
+                        or topic.get('defaultChapter') not in children):
+                    raise ValueError(f'{key} 的名称、子章节或默认开放城市无效')
+                topics.append(topic)
+            for child in children:
+                if child not in city_dirs or child in owned:
+                    raise ValueError(f'城市子章节不存在或被重复引用: {child}')
+                owned.add(child)
+        if owned != set(city_dirs):
+            raise ValueError('有城市未纳入顶层章节索引或专题子章节')
+    except (OSError, ValueError, TypeError) as error:
+        print(f'错误: 专题层级配置无效: {error}')
+        return 1
+
     # 已明确列入章节清单的关卡不能因缺失配置而被静默删掉、导致关卡顺序变化。
     # 在写入任何清单前统一检查，避免半成品专题覆盖已发布索引。
     missing_configs = []
+    stable_ids = set()
+    manifests = {}
     for city_dir in city_dirs:
         manifest_path = os.path.join(chapter_config_root(city_dir), 'city.json')
         if not os.path.isfile(manifest_path):
@@ -178,9 +228,29 @@ def main():
         except (OSError, ValueError) as error:
             print(f'错误: 章节清单读取失败: {manifest_path}: {error}')
             return 1
-        for level in manifest.get('levels', []):
+        manifests[city_dir] = manifest
+        folders = set()
+        for entry in manifest.get('levels', []):
+            if isinstance(entry, dict):
+                level, identity, name = entry.get('folder'), entry.get('id'), entry.get('name')
+                if not isinstance(level, str) or not re.fullmatch(r'[a-zA-Z0-9][a-zA-Z0-9-]*', level):
+                    print(f'错误: {city_dir} 关卡目录必须使用英文/拼音和连字符: {level}')
+                    return 1
+                if not isinstance(identity, str) or not identity or not isinstance(name, str) or not name.strip():
+                    print(f'错误: {city_dir}/{level} 缺少固定 id 或显示 name')
+                    return 1
+            elif isinstance(entry, str) and manifest.get('schemaVersion') != 2:
+                level, identity = entry, f'{city_dir}/{entry}'
+            else:
+                print(f'错误: {city_dir} 关卡条目格式无效')
+                return 1
             if level == 'level-00':
                 continue
+            if identity in stable_ids or level in folders:
+                print(f'错误: 重复关卡 id 或章内目录: {identity}, {city_dir}/{level}')
+                return 1
+            stable_ids.add(identity)
+            folders.add(level)
             config_path = os.path.join(chapter_config_root(city_dir), level, 'differences.json')
             if not os.path.isfile(config_path):
                 missing_configs.append(config_path)
@@ -189,6 +259,18 @@ def main():
             print(f'错误: 已列入清单的关卡缺少配置: {config_path}')
         print('未更新章节清单和主包索引，请补齐配置后重试。')
         return 1
+    for city, manifest in manifests.items():
+        if manifest.get('nextChapter') and manifest['nextChapter'] not in city_dirs:
+            print(f'错误: {city} 的 nextChapter 不在章节列表中')
+            return 1
+        visited = set()
+        target = city
+        while target:
+            if target in visited:
+                print(f'错误: nextChapter 存在循环: {city}')
+                return 1
+            visited.add(target)
+            target = manifests.get(target, {}).get('nextChapter')
 
     # 1. 全局城市索引
     os.makedirs(LEVELS_ROOT, exist_ok=True)
@@ -206,6 +288,9 @@ def main():
             if os.path.isdir(os.path.join(city_path, d)) and LEVEL_RE.match(d) and d != 'level-00'
             and os.path.isfile(os.path.join(chapter_config_root(city_dir), d, 'differences.json'))
         )
+        configured = manifests.get(city_dir, {})
+        if configured.get('schemaVersion') == 2:
+            level_dirs = [entry['folder'] for entry in configured['levels']]
         skipped = sorted(
             d for d in os.listdir(city_path)
             if os.path.isdir(os.path.join(city_path, d)) and LEVEL_RE.match(d)
@@ -225,7 +310,8 @@ def main():
                 manifest = {}
         manifest.setdefault('name', CITY_NAMES.get(city_dir, city_dir))
         manifest.setdefault('banner', f'chapter-covers/{city_dir}-icon/spriteFrame')
-        manifest['levels'] = level_dirs
+        if manifest.get('schemaVersion') != 2:
+            manifest['levels'] = level_dirs
         write_json_if_changed(manifest_path, manifest)
         chapters[city_dir] = {'key': city_dir, **{
             key: value for key, value in manifest.items() if key not in LEGACY_RULE_FIELDS
@@ -243,8 +329,13 @@ def main():
         banner = ' | '.join(f'{p}' for p in all_problems[-3:]) if all_problems else ''
         print(f'{city_dir} ({manifest["name"]}): {done}/{len(level_dirs)} 关')
 
-    write_json_if_changed(index_path, {'cities': city_dirs, 'chapters': chapters}, trailing_newline=True)
+    index = {'cities': city_dirs, 'chapters': chapters}
+    if 'navigation' in order_config:
+        index.update(navigation=navigation, topics=topics)
+    write_json_if_changed(index_path, index, trailing_newline=True)
     print(f'已生成 {index_path}: {len(city_dirs)} 个章节，含启动所需完整清单')
+    if 'navigation' in order_config:
+        print(f'逻辑层级: {len(navigation)} 个顶层专题，{len(topics)} 个专题包含城市子章节')
     print(f'\n共 {len(city_dirs)} 城 {total_levels} 关')
     if all_problems:
         print(f'校验发现 {len(all_problems)} 个问题:')

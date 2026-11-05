@@ -1,0 +1,69 @@
+{
+  "name": "窗前插花",
+  "type": "porcelain",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.243448,
+      "y": 0.109677,
+      "radius": 0.091154
+    },
+    {
+      "id": "diff-2",
+      "x": 0.440323,
+      "y": 0.508065,
+      "radius": 0.107207
+    },
+    {
+      "id": "diff-3",
+      "x": 0.82878,
+      "y": 0.690323,
+      "radius": 0.087469
+    },
+    {
+      "id": "diff-4",
+      "x": 0.314365,
+      "y": 0.835484,
+      "radius": 0.072867
+    },
+    {
+      "id": "diff-5",
+      "x": 0.052923,
+      "y": 0.15,
+      "radius": 0.113455
+    },
+    {
+      "id": "diff-6",
+      "x": 0.914516,
+      "y": 0.840323,
+      "radius": 0.096411
+    },
+    {
+      "id": "diff-7",
+      "x": 0.847833,
+      "y": 0.066129,
+      "radius": 0.061966
+    },
+    {
+      "id": "diff-8",
+      "x": 0.559929,
+      "y": 0.872581,
+      "radius": 0.065018
+    },
+    {
+      "id": "diff-9",
+      "x": 0.141835,
+      "y": 0.872581,
+      "radius": 0.186184
+    },
+    {
+      "id": "diff-10",
+      "x": 0.772681,
+      "y": 0.427419,
+      "radius": 0.142265
+    }
+  ],
+  "icon": "thumbnails/qing-hua-ci/chuang-qian-cha-hua/icon/spriteFrame",
+  "collectibleId": "qing-hua-ci-qing-hua-hua-jiao"
+}

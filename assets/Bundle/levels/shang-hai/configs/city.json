@@ -1,0 +1,86 @@
+{
+  "name": "上海",
+  "levels": [
+    {
+      "id": "city-03-shanghai/level-01",
+      "name": "步行街",
+      "folder": "bu-xing-jie"
+    },
+    {
+      "id": "city-03-shanghai/level-02",
+      "name": "制作南翔小笼包",
+      "folder": "zhi-zuo-nan-xiang-xiao-long-bao"
+    },
+    {
+      "id": "city-03-shanghai/level-03",
+      "name": "南翔小笼包",
+      "folder": "nan-xiang-xiao-long-bao"
+    },
+    {
+      "id": "city-03-shanghai/level-04",
+      "name": "东方明珠",
+      "folder": "dong-fang-ming-zhu"
+    },
+    {
+      "id": "city-03-shanghai/level-05",
+      "name": "制作本帮红烧肉",
+      "folder": "zhi-zuo-ben-bang-hong-shao-rou"
+    },
+    {
+      "id": "city-03-shanghai/level-06",
+      "name": "本帮红烧肉",
+      "folder": "ben-bang-hong-shao-rou"
+    },
+    {
+      "id": "city-03-shanghai/level-07",
+      "name": "上海博物馆",
+      "folder": "shang-hai-bo-wu-guan"
+    },
+    {
+      "id": "city-03-shanghai/level-08",
+      "name": "制作腌笃鲜",
+      "folder": "zhi-zuo-yan-du-xian"
+    },
+    {
+      "id": "city-03-shanghai/level-09",
+      "name": "腌笃鲜",
+      "folder": "yan-du-xian"
+    },
+    {
+      "id": "city-03-shanghai/level-10",
+      "name": "上海迪士尼度假区",
+      "folder": "shang-hai-di-shi-ni-du-jia-qu"
+    },
+    {
+      "id": "city-03-shanghai/level-11",
+      "name": "制作草头圈子",
+      "folder": "zhi-zuo-cao-tou-quan-zi"
+    },
+    {
+      "id": "city-03-shanghai/level-12",
+      "name": "草头圈子",
+      "folder": "cao-tou-quan-zi"
+    },
+    {
+      "id": "city-03-shanghai/level-13",
+      "name": "外滩",
+      "folder": "wai-tan"
+    },
+    {
+      "id": "city-03-shanghai/level-14",
+      "name": "八宝辣酱制作",
+      "folder": "ba-bao-la-jiang-zhi-zuo"
+    },
+    {
+      "id": "city-03-shanghai/level-15",
+      "name": "八宝辣酱",
+      "folder": "ba-bao-la-jiang"
+    }
+  ],
+  "banner": "chapter-covers/city-03-shanghai-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-03-shanghai"
+  ]
+}

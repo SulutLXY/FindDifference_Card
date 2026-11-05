@@ -1,0 +1,86 @@
+{
+  "name": "厦门",
+  "levels": [
+    {
+      "id": "city-05-xiamen/level-01",
+      "name": "白城沙滩",
+      "folder": "bai-cheng-sha-tan"
+    },
+    {
+      "id": "city-05-xiamen/level-02",
+      "name": "制作沙茶面",
+      "folder": "zhi-zuo-sha-cha-mian"
+    },
+    {
+      "id": "city-05-xiamen/level-03",
+      "name": "沙茶面",
+      "folder": "sha-cha-mian"
+    },
+    {
+      "id": "city-05-xiamen/level-04",
+      "name": "鼓浪屿",
+      "folder": "gu-lang-yu"
+    },
+    {
+      "id": "city-05-xiamen/level-05",
+      "name": "制作土笋冻",
+      "folder": "zhi-zuo-tu-sun-dong"
+    },
+    {
+      "id": "city-05-xiamen/level-06",
+      "name": "土笋冻",
+      "folder": "tu-sun-dong"
+    },
+    {
+      "id": "city-05-xiamen/level-07",
+      "name": "南普陀寺",
+      "folder": "nan-pu-tuo-si"
+    },
+    {
+      "id": "city-05-xiamen/level-08",
+      "name": "制作姜母鸭",
+      "folder": "zhi-zuo-jiang-mu-ya"
+    },
+    {
+      "id": "city-05-xiamen/level-09",
+      "name": "姜母鸭",
+      "folder": "jiang-mu-ya"
+    },
+    {
+      "id": "city-05-xiamen/level-10",
+      "name": "厦门大学",
+      "folder": "xia-men-da-xue"
+    },
+    {
+      "id": "city-05-xiamen/level-11",
+      "name": "制作海蛎煎",
+      "folder": "zhi-zuo-hai-li-jian"
+    },
+    {
+      "id": "city-05-xiamen/level-12",
+      "name": "海蛎煎",
+      "folder": "hai-li-jian"
+    },
+    {
+      "id": "city-05-xiamen/level-13",
+      "name": "中山路步行街",
+      "folder": "zhong-shan-lu-bu-xing-jie"
+    },
+    {
+      "id": "city-05-xiamen/level-14",
+      "name": "制作花生汤",
+      "folder": "zhi-zuo-hua-sheng-tang"
+    },
+    {
+      "id": "city-05-xiamen/level-15",
+      "name": "花生汤",
+      "folder": "hua-sheng-tang"
+    }
+  ],
+  "banner": "chapter-covers/city-05-xiamen-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-05-xiamen"
+  ]
+}

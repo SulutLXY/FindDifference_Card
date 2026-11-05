@@ -27,7 +27,7 @@ vm.runInNewContext(compile(fs.readFileSync('assets/scripts/services/PlatformServ
 });
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
-const names = ['showLobby', 'returnToLobby', 'showCitySelect', 'enterLevelSelection', 'requestLevelSelectAccess',
+const names = ['backFromCitySelection', 'showLobby', 'returnToLobby', 'showCitySelect', 'enterLevelSelection', 'requestLevelSelectAccess',
     'requestReward', '_switchTo', '_cancelSecondaryNavigation'];
 const methods = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree)))
     .map(m => m.getText(tree)).join('\n');
@@ -40,7 +40,7 @@ function setup(access = true) {
     flow.platform.configure(config);
     flow.platform.canShowInterstitial = () => false; // Reproduce protected first round.
     flow.platform._lastInterstitialAttempt = Date.now(); // Navigation must bypass an active local cooldown.
-    const screen = active => ({ node: { activeInHierarchy: active }, preloadHero() {},
+    const screen = active => ({ isValid: true, node: { activeInHierarchy: active }, preloadHero() {},
         open() { this.node.activeInHierarchy = true; }, close() { this.node.activeInHierarchy = false; } });
     flow.lobby = screen(false);
     flow.citySelect = screen(false);
@@ -64,8 +64,9 @@ function bindScreen(screenName, flow) {
     const callbacks = new Map();
     const screen = new Screen();
     Object.assign(screen, { flow, node: { children: [], getComponent: () => ({}), getChildByName: () => null },
-        wireButton: (_, name, callback) => callbacks.set(name, callback), resolveNode: () => null,
-        _ensureCloseButton() {}, _ensureBackButton() {}, _ensureList() {}, _setupScrollContainer() {} });
+        wireButton: (_, name, callback) => callbacks.set(name, callback), resolveNode: () => null, findChildDeep: () => null,
+        _attachDailyEntry() {}, _ensureCloseButton() {}, _ensureBackButton() {}, _ensureList() {}, _setupScrollContainer() {},
+        _setupTabs() {}, _setupPageContainer() {}, _optionalPageNode: () => null });
     screen.onLoad();
     return callbacks;
 }
@@ -135,28 +136,28 @@ async function assertHomeClick(screenName, buttonName) {
     };
     f.showLobby();
     const stale = f.enterLevelSelection();
+    await tick();
     f.showLobby();
     loaded(); await stale;
     assert.equal(ads.at(-1).shown, undefined);
     assert.equal(ads.at(-1).destroyed, undefined, 'Cancelled unshown ads remain reusable on native SDK');
     assert.equal(f._levelSelectEntryPending, false);
     assert.ok(logs.some(([message, context]) => message.includes('跳过') && context.reason.includes('页面')));
-    // The authored icon is editable in Creator and lies inside the button, left of its label.
-    const scene = JSON.parse(fs.readFileSync('assets/scene/game.scene', 'utf8'));
+    // The icon remains authored under the button; its placement is editable in Creator.
+    const scene = JSON.parse(fs.readFileSync('assets/LobbySources/prefabs/LobbyScreen.prefab', 'utf8'));
     const button = scene.find(item => item._name === 'BtnLevels');
     const child = name => button._children.map(ref => scene[ref.__id__]).find(item => item._name === name);
     const icon = child('icon_videoplay'), label = child('Label');
     assert.equal(icon._active, true);
-    const ui = node => node._components.map(ref => scene[ref.__id__]).find(c => c.__type__ === 'cc.UITransform');
     const sprite = icon._components.map(ref => scene[ref.__id__]).find(c => c.__type__ === 'cc.Sprite');
     assert.equal(sprite._spriteFrame.__uuid__, '645554eb-c26d-4151-bfb6-22acd54e7700@f9941');
-    assert.ok(icon._lpos.x < label._lpos.x, 'Video icon stays left of the label; preserve editor-authored text placement');
-    assert.ok(icon._lpos.x - ui(icon)._contentSize.width / 2 >= -ui(button)._contentSize.width / 2);
+    assert.equal(icon._parent.__id__, scene.indexOf(button));
+    assert.equal(label._parent.__id__, scene.indexOf(button));
     function validate(value) {
         if (!value || typeof value !== 'object') return;
         if ('__id__' in value) assert.ok(scene[value.__id__], `Missing scene reference ${value.__id__}`);
         Object.values(value).forEach(validate);
     }
     validate(scene);
-    console.log('PASS: actual home button bindings, native SDK on protected return/entry, first reward entry, frequency rejection diagnostics, stale load cancellation, editable left video icon.');
+    console.log('PASS: actual home button bindings, native SDK on protected return/entry, first reward entry, frequency rejection diagnostics, stale load cancellation and editable video icon.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

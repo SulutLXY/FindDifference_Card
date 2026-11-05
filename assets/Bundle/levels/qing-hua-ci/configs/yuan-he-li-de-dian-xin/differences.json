@@ -1,0 +1,69 @@
+{
+  "name": "圆盒里的点心",
+  "type": "porcelain",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.148185,
+      "y": 0.095161,
+      "radius": 0.056819
+    },
+    {
+      "id": "diff-2",
+      "x": 0.482661,
+      "y": 0.551613,
+      "radius": 0.045847
+    },
+    {
+      "id": "diff-3",
+      "x": 0.652016,
+      "y": 0.459677,
+      "radius": 0.069971
+    },
+    {
+      "id": "diff-4",
+      "x": 0.827722,
+      "y": 0.132258,
+      "radius": 0.103276
+    },
+    {
+      "id": "diff-5",
+      "x": 0.734577,
+      "y": 0.685484,
+      "radius": 0.105025
+    },
+    {
+      "id": "diff-6",
+      "x": 0.114315,
+      "y": 0.814516,
+      "radius": 0.092331
+    },
+    {
+      "id": "diff-7",
+      "x": 0.088911,
+      "y": 0.664516,
+      "radius": 0.061587
+    },
+    {
+      "id": "diff-8",
+      "x": 0.191583,
+      "y": 0.225806,
+      "radius": 0.029077
+    },
+    {
+      "id": "diff-9",
+      "x": 0.529234,
+      "y": 0.467742,
+      "radius": 0.045677
+    },
+    {
+      "id": "diff-10",
+      "x": 0.494304,
+      "y": 0.716129,
+      "radius": 0.123637
+    }
+  ],
+  "icon": "thumbnails/qing-hua-ci/yuan-he-li-de-dian-xin/icon/spriteFrame",
+  "collectibleId": "qing-hua-ci-ying-xi-tu-yuan-he"
+}

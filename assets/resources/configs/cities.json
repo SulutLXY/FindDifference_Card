@@ -1,365 +1,1812 @@
 {
   "cities": [
-    "city-00-HotTips",
-    "city-01-2026Hotmeme",
-    "city-PetStory",
-    "city-PetThreeKingdoms",
-    "city-2025Hotmeme",
-    "city-02-beijing",
-    "city-03-shanghai",
-    "city-04-nanjing",
-    "city-05-xiamen",
-    "city-06-changsha",
-    "city-07-guangzhou",
-    "city-08-chengdu",
-    "city-09-xian"
+    "wang-luo-re-dian",
+    "nian-du-re-geng",
+    "chong-wu-gu-shi",
+    "meng-chong-san-guo",
+    "bei-jing",
+    "shang-hai",
+    "nan-jing",
+    "xia-men",
+    "chang-sha",
+    "guang-zhou",
+    "cheng-du",
+    "xi-an",
+    "qing-hua-ci"
   ],
   "chapters": {
-    "city-00-HotTips": {
-      "key": "city-00-HotTips",
+    "wang-luo-re-dian": {
+      "key": "wang-luo-re-dian",
       "name": "网络热点",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15",
-        "level-16",
-        "level-17",
-        "level-18",
-        "level-19",
-        "level-20",
-        "level-21",
-        "level-22",
-        "level-23",
-        "level-24",
-        "level-25",
-        "level-26",
-        "level-27",
-        "level-28",
-        "level-29",
-        "level-30"
+        {
+          "id": "city-00-HotTips/level-01",
+          "name": "骑士小猫",
+          "folder": "qi-shi-xiao-mao"
+        },
+        {
+          "id": "city-00-HotTips/level-02",
+          "name": "闪身步",
+          "folder": "shan-shen-bu"
+        },
+        {
+          "id": "wang-luo-re-dian/mo-fang-xiao-hou-zi-shi",
+          "name": "模仿小猴姿勢",
+          "folder": "mo-fang-xiao-hou-zi-shi"
+        },
+        {
+          "id": "wang-luo-re-dian/chou-zhi-tiao-zhan",
+          "name": "抽纸挑战",
+          "folder": "chou-zhi-tiao-zhan"
+        },
+        {
+          "id": "wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren",
+          "name": "异世界来了个年轻人",
+          "folder": "yi-shi-jie-lai-le-ge-nian-qing-ren"
+        },
+        {
+          "id": "wang-luo-re-dian/sha-xian-ai-qing-gu-shi",
+          "name": "沙县爱情故事",
+          "folder": "sha-xian-ai-qing-gu-shi"
+        },
+        {
+          "id": "wang-luo-re-dian/gong-fu-xiao-mi",
+          "name": "功夫小咪",
+          "folder": "gong-fu-xiao-mi"
+        },
+        {
+          "id": "wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai",
+          "name": "选到一样就买",
+          "folder": "xuan-dao-yi-yang-jiu-mai"
+        },
+        {
+          "id": "wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan",
+          "name": "上课偷吃挑战",
+          "folder": "shang-ke-tou-chi-tiao-zhan"
+        },
+        {
+          "id": "wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta",
+          "name": "挑战切超长蛋挞",
+          "folder": "tiao-zhan-qie-chao-chang-dan-ta"
+        },
+        {
+          "id": "wang-luo-re-dian/qiu-ri-shou-cang",
+          "name": "秋日收藏",
+          "folder": "qiu-ri-shou-cang"
+        },
+        {
+          "id": "wang-luo-re-dian/ci-bu-yi-yang-jiu-pao-bu",
+          "name": "词不一样就跑步",
+          "folder": "ci-bu-yi-yang-jiu-pao-bu"
+        },
+        {
+          "id": "city-00-HotTips/level-03",
+          "name": "羽毛球关灯",
+          "folder": "yu-mao-qiu-guan-deng"
+        },
+        {
+          "id": "city-00-HotTips/level-04",
+          "name": "双截棍打乒乓球",
+          "folder": "shuang-jie-gun-da-ping-pang-qiu"
+        },
+        {
+          "id": "city-00-HotTips/level-05",
+          "name": "浪子踢球",
+          "folder": "lang-zi-ti-qiu"
+        },
+        {
+          "id": "city-00-HotTips/level-06",
+          "name": "AI检测脸",
+          "folder": "ai-jian-ce-lian"
+        },
+        {
+          "id": "city-00-HotTips/level-07",
+          "name": "巧克力月饼",
+          "folder": "qiao-ke-li-yue-bing"
+        },
+        {
+          "id": "city-00-HotTips/level-08",
+          "name": "芭蕾站酒瓶",
+          "folder": "ba-lei-zhan-jiu-ping"
+        },
+        {
+          "id": "city-00-HotTips/level-09",
+          "name": "谁赢了谁吃",
+          "folder": "shui-ying-le-shui-chi"
+        },
+        {
+          "id": "city-00-HotTips/level-10",
+          "name": "偷吃大赛",
+          "folder": "tou-chi-da-sai"
+        },
+        {
+          "id": "city-00-HotTips/level-11",
+          "name": "专注打弹珠",
+          "folder": "zhuan-zhu-da-dan-zhu"
+        },
+        {
+          "id": "city-00-HotTips/level-12",
+          "name": "复刻光头强打篮球",
+          "folder": "fu-ke-guang-tou-qiang-da-lan-qiu"
+        },
+        {
+          "id": "city-00-HotTips/level-13",
+          "name": "取号叫餐被选中belike",
+          "folder": "qu-hao-jiao-can-bei-xuan-zhong-belike"
+        },
+        {
+          "id": "city-00-HotTips/level-14",
+          "name": "动物模仿",
+          "folder": "dong-wu-mo-fang"
+        },
+        {
+          "id": "city-00-HotTips/level-15",
+          "name": "苹果炖牛肋条",
+          "folder": "ping-guo-dun-niu-lei-tiao"
+        },
+        {
+          "id": "city-00-HotTips/level-16",
+          "name": "手速抢零食",
+          "folder": "shou-su-qiang-ling-shi"
+        },
+        {
+          "id": "city-00-HotTips/level-17",
+          "name": "狗熊哆嗦毛",
+          "folder": "gou-xiong-duo-suo-mao"
+        },
+        {
+          "id": "city-00-HotTips/level-18",
+          "name": "雪山救狐狸",
+          "folder": "xue-shan-jiu-hu-li"
+        },
+        {
+          "id": "city-00-HotTips/level-19",
+          "name": "妙脆角小猫",
+          "folder": "miao-cui-jiao-xiao-mao"
+        },
+        {
+          "id": "city-00-HotTips/level-20",
+          "name": "戴夫厨房",
+          "folder": "dai-fu-chu-fang"
+        },
+        {
+          "id": "city-00-HotTips/level-21",
+          "name": "我的刀盾",
+          "folder": "wo-de-dao-dun"
+        },
+        {
+          "id": "city-00-HotTips/level-22",
+          "name": "负鼠表情包",
+          "folder": "fu-shu-biao-qing-bao"
+        },
+        {
+          "id": "city-00-HotTips/level-23",
+          "name": "野生狗奶",
+          "folder": "ye-sheng-gou-nai"
+        },
+        {
+          "id": "city-00-HotTips/level-24",
+          "name": "偷吃大赛2",
+          "folder": "tou-chi-da-sai-2"
+        },
+        {
+          "id": "city-00-HotTips/level-25",
+          "name": "猫猫偷袭人类幼崽",
+          "folder": "mao-mao-tou-xi-ren-lei-you-zai"
+        },
+        {
+          "id": "city-00-HotTips/level-26",
+          "name": "就一小碗",
+          "folder": "jiu-yi-xiao-wan"
+        },
+        {
+          "id": "city-00-HotTips/level-27",
+          "name": "舞狮",
+          "folder": "wu-shi"
+        },
+        {
+          "id": "city-00-HotTips/level-28",
+          "name": "冰淇淋捕鱼",
+          "folder": "bing-qi-lin-bu-yu"
+        },
+        {
+          "id": "city-00-HotTips/level-29",
+          "name": "网约车尾号",
+          "folder": "wang-yue-che-wei-hao"
+        },
+        {
+          "id": "city-00-HotTips/level-30",
+          "name": "松鼠的自助餐",
+          "folder": "song-shu-de-zi-zhu-can"
+        }
       ],
-      "banner": "chapter-covers/city-00-HotTips-icon/spriteFrame"
+      "banner": "chapter-covers/city-00-HotTips-icon/spriteFrame",
+      "schemaVersion": 2,
+      "nextChapter": "nian-du-re-geng",
+      "legacyKeys": [
+        "city-00-HotTips"
+      ]
     },
-    "city-01-2026Hotmeme": {
-      "key": "city-01-2026Hotmeme",
-      "name": "2026热梗",
+    "nian-du-re-geng": {
+      "key": "nian-du-re-geng",
+      "name": "年度热梗",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15",
-        "level-16",
-        "level-17",
-        "level-18",
-        "level-19",
-        "level-20",
-        "level-21",
-        "level-22",
-        "level-23",
-        "level-24",
-        "level-25",
-        "level-26",
-        "level-27",
-        "level-28",
-        "level-29",
-        "level-30"
+        {
+          "id": "city-01-2026Hotmeme/level-01",
+          "name": "中国人能飞",
+          "folder": "zhong-guo-ren-neng-fei"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-02",
+          "name": "世界巨星登场",
+          "folder": "shi-jie-ju-xing-deng-chang"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-03",
+          "name": "开心一下",
+          "folder": "kai-xin-yi-xia"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-04",
+          "name": "马尔福",
+          "folder": "ma-er-fu"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-05",
+          "name": "三巨头",
+          "folder": "san-ju-tou"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-06",
+          "name": "嘉豪",
+          "folder": "jia-hao"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-07",
+          "name": "月薪喵落泪DJ",
+          "folder": "yue-xin-miao-luo-lei-dj"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-08",
+          "name": "琵琶曲",
+          "folder": "pi-pa-qu"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-09",
+          "name": "尴尬狗",
+          "folder": "gan-ga-gou"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-10",
+          "name": "what a day",
+          "folder": "what-a-day"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-11",
+          "name": "老吴，内个",
+          "folder": "lao-wu-nei-ge"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-12",
+          "name": "绷不住",
+          "folder": "beng-bu-zhu"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-13",
+          "name": "百万英镑",
+          "folder": "bai-wan-ying-bang"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-14",
+          "name": "大狗叫",
+          "folder": "da-gou-jiao"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-15",
+          "name": "甲乙丙丁",
+          "folder": "jia-yi-bing-ding"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-16",
+          "name": "节奏挑战",
+          "folder": "jie-zou-tiao-zhan"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-17",
+          "name": "我要验牌",
+          "folder": "wo-yao-yan-pai"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-18",
+          "name": "双闪雷霆步",
+          "folder": "shuang-shan-lei-ting-bu"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-19",
+          "name": "豆包型人格",
+          "folder": "dou-bao-xing-ren-ge"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-20",
+          "name": "创意早餐参赛挑战",
+          "folder": "chuang-yi-zao-can-can-sai-tiao-zhan"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-21",
+          "name": "养龙虾",
+          "folder": "yang-long-xia"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-22",
+          "name": "确诊一匹马",
+          "folder": "que-zhen-yi-pi-ma"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-23",
+          "name": "哭哭马",
+          "folder": "ku-ku-ma"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-24",
+          "name": "超长长长蛋挞",
+          "folder": "chao-chang-chang-chang-dan-ta"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-25",
+          "name": "我也要死吗",
+          "folder": "wo-ye-yao-si-ma"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-26",
+          "name": "夯爆了",
+          "folder": "hang-bao-le"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-27",
+          "name": "素颜巴黎",
+          "folder": "su-yan-ba-li"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-28",
+          "name": "咕咕嘎嘎",
+          "folder": "gu-gu-ga-ga"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-29",
+          "name": "病友舞",
+          "folder": "bing-you-wu"
+        },
+        {
+          "id": "city-01-2026Hotmeme/level-30",
+          "name": "不烧心",
+          "folder": "bu-shao-xin"
+        },
+        {
+          "id": "city-2025Hotmeme/level-01",
+          "name": "哈基米南北绿豆",
+          "folder": "ha-ji-mi-nan-bei-lv-dou"
+        },
+        {
+          "id": "city-2025Hotmeme/level-02",
+          "name": "乌萨奇，到",
+          "folder": "wu-sa-qi-dao"
+        },
+        {
+          "id": "city-2025Hotmeme/level-03",
+          "name": "天雷滚滚好怕怕",
+          "folder": "tian-lei-gun-gun-hao-pa-pa"
+        },
+        {
+          "id": "city-2025Hotmeme/level-04",
+          "name": "来财，来",
+          "folder": "lai-cai-lai"
+        },
+        {
+          "id": "city-2025Hotmeme/level-05",
+          "name": "look my eyes",
+          "folder": "look-my-eyes"
+        },
+        {
+          "id": "city-2025Hotmeme/level-06",
+          "name": "大展宏图",
+          "folder": "da-zhan-hong-tu"
+        },
+        {
+          "id": "city-2025Hotmeme/level-07",
+          "name": "从从容容游刃有余",
+          "folder": "cong-cong-rong-rong-you-ren-you-yu"
+        },
+        {
+          "id": "city-2025Hotmeme/level-08",
+          "name": "颗秒",
+          "folder": "ke-miao"
+        },
+        {
+          "id": "city-2025Hotmeme/level-09",
+          "name": "扫腿舞",
+          "folder": "sao-tui-wu"
+        },
+        {
+          "id": "city-2025Hotmeme/level-10",
+          "name": "城巴佬",
+          "folder": "cheng-ba-lao"
+        },
+        {
+          "id": "city-2025Hotmeme/level-11",
+          "name": "抖音音乐班",
+          "folder": "dou-yin-yin-yue-ban"
+        },
+        {
+          "id": "city-2025Hotmeme/level-12",
+          "name": "叮咚鸡",
+          "folder": "ding-dong-ji"
+        },
+        {
+          "id": "city-2025Hotmeme/level-13",
+          "name": "圆头耄耋",
+          "folder": "yuan-tou-mao-die"
+        },
+        {
+          "id": "city-2025Hotmeme/level-14",
+          "name": "阿玛提拉斯",
+          "folder": "a-ma-ti-la-si"
+        },
+        {
+          "id": "city-2025Hotmeme/level-15",
+          "name": "驾校老奶奶",
+          "folder": "jia-xiao-lao-nai-nai"
+        },
+        {
+          "id": "city-2025Hotmeme/level-16",
+          "name": "秦始皇骑大白熊",
+          "folder": "qin-shi-huang-qi-da-bai-xiong"
+        },
+        {
+          "id": "city-2025Hotmeme/level-17",
+          "name": "做完你的做你的",
+          "folder": "zuo-wan-ni-de-zuo-ni-de"
+        },
+        {
+          "id": "city-2025Hotmeme/level-18",
+          "name": "何意味",
+          "folder": "he-yi-wei"
+        },
+        {
+          "id": "city-2025Hotmeme/level-19",
+          "name": "灵感菇",
+          "folder": "ling-gan-gu"
+        },
+        {
+          "id": "city-2025Hotmeme/level-20",
+          "name": "被资本做局了",
+          "folder": "bei-zi-ben-zuo-ju-le"
+        },
+        {
+          "id": "city-2025Hotmeme/level-21",
+          "name": "法修散打",
+          "folder": "fa-xiu-san-da"
+        },
+        {
+          "id": "city-2025Hotmeme/level-22",
+          "name": "大东北",
+          "folder": "da-dong-bei"
+        },
+        {
+          "id": "city-2025Hotmeme/level-23",
+          "name": "苦命鸳鸯",
+          "folder": "ku-ming-yuan-yang"
+        },
+        {
+          "id": "city-2025Hotmeme/level-24",
+          "name": "改结局",
+          "folder": "gai-jie-ju"
+        },
+        {
+          "id": "city-2025Hotmeme/level-25",
+          "name": "没建模经济",
+          "folder": "mei-jian-mo-jing-ji"
+        }
       ],
-      "banner": "chapter-covers/city-01-2026Hotmeme-icon/spriteFrame"
+      "banner": "chapter-covers/city-01-2026Hotmeme-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-01-2026Hotmeme",
+        "city-2025Hotmeme"
+      ]
     },
-    "city-PetStory": {
-      "key": "city-PetStory",
+    "chong-wu-gu-shi": {
+      "key": "chong-wu-gu-shi",
       "name": "宠物故事",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15",
-        "level-16",
-        "level-17",
-        "level-18",
-        "level-19",
-        "level-20"
+        {
+          "id": "city-PetStory/level-01",
+          "name": "白虎与黑狗保姆",
+          "folder": "bai-hu-yu-hei-gou-bao-mu"
+        },
+        {
+          "id": "city-PetStory/level-02",
+          "name": "狗狗婚礼",
+          "folder": "gou-gou-hun-li"
+        },
+        {
+          "id": "city-PetStory/level-03",
+          "name": "橘猫摆摊",
+          "folder": "ju-mao-bai-tan"
+        },
+        {
+          "id": "city-PetStory/level-04",
+          "name": "动物海盗团",
+          "folder": "dong-wu-hai-dao-tuan"
+        },
+        {
+          "id": "city-PetStory/level-05",
+          "name": "萌宠闪身步",
+          "folder": "meng-chong-shan-shen-bu"
+        },
+        {
+          "id": "city-PetStory/level-06",
+          "name": "猫咪烧烤",
+          "folder": "mao-mi-shao-kao"
+        },
+        {
+          "id": "city-PetStory/level-07",
+          "name": "干嘛猫的vlog",
+          "folder": "gan-ma-mao-de-vlog"
+        },
+        {
+          "id": "city-PetStory/level-08",
+          "name": "神秘八爪鱼",
+          "folder": "shen-mi-ba-zhao-yu"
+        },
+        {
+          "id": "city-PetStory/level-09",
+          "name": "姹紫嫣红",
+          "folder": "cha-zi-yan-hong"
+        },
+        {
+          "id": "city-PetStory/level-10",
+          "name": "鸡哥算了",
+          "folder": "ji-ge-suan-le"
+        },
+        {
+          "id": "city-PetStory/level-11",
+          "name": "土拨鼠",
+          "folder": "tu-bo-shu"
+        },
+        {
+          "id": "city-PetStory/level-12",
+          "name": "弱小无助",
+          "folder": "ruo-xiao-wu-zhu"
+        },
+        {
+          "id": "city-PetStory/level-13",
+          "name": "整点薯条",
+          "folder": "zheng-dian-shu-tiao"
+        },
+        {
+          "id": "city-PetStory/level-14",
+          "name": "压力山大",
+          "folder": "ya-li-shan-da"
+        },
+        {
+          "id": "city-PetStory/level-15",
+          "name": "铲屎官日常",
+          "folder": "chan-shi-guan-ri-chang"
+        },
+        {
+          "id": "city-PetStory/level-16",
+          "name": "孜然妙脆角",
+          "folder": "zi-ran-miao-cui-jiao"
+        },
+        {
+          "id": "city-PetStory/level-17",
+          "name": "小猫踏步舞",
+          "folder": "xiao-mao-ta-bu-wu"
+        },
+        {
+          "id": "city-PetStory/level-18",
+          "name": "剪指甲",
+          "folder": "jian-zhi-jia"
+        },
+        {
+          "id": "city-PetStory/level-19",
+          "name": "猫咪浴帽",
+          "folder": "mao-mi-yu-mao"
+        },
+        {
+          "id": "city-PetStory/level-20",
+          "name": "猫咪合租",
+          "folder": "mao-mi-he-zu"
+        }
       ],
-      "banner": "chapter-covers/city-PetStory-icon/spriteFrame"
+      "banner": "chapter-covers/city-PetStory-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-PetStory"
+      ]
     },
-    "city-PetThreeKingdoms": {
-      "key": "city-PetThreeKingdoms",
+    "meng-chong-san-guo": {
+      "key": "meng-chong-san-guo",
       "name": "萌宠三国",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15",
-        "level-16",
-        "level-17",
-        "level-18",
-        "level-19",
-        "level-20",
-        "level-21",
-        "level-22",
-        "level-23",
-        "level-24",
-        "level-25",
-        "level-26",
-        "level-27",
-        "level-28",
-        "level-29",
-        "level-30"
+        {
+          "id": "city-PetThreeKingdoms/level-01",
+          "name": "黄巾起义",
+          "folder": "huang-jin-qi-yi"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-02",
+          "name": "桃园结义",
+          "folder": "tao-yuan-jie-yi"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-03",
+          "name": "温酒斩华雄",
+          "folder": "wen-jiu-zhan-hua-xiong"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-04",
+          "name": "三英战吕布",
+          "folder": "san-ying-zhan-lv-bu"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-05",
+          "name": "孙坚匿玉玺",
+          "folder": "sun-jian-ni-yu-xi"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-06",
+          "name": "辕门射戟",
+          "folder": "yuan-men-she-ji"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-07",
+          "name": "煮酒论英雄",
+          "folder": "zhu-jiu-lun-ying-xiong"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-08",
+          "name": "神亭岭大战孙策",
+          "folder": "shen-ting-ling-da-zhan-sun-ce"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-09",
+          "name": "火烧乌巢",
+          "folder": "huo-shao-wu-chao"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-10",
+          "name": "远征乌桓",
+          "folder": "yuan-zheng-wu-huan"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-11",
+          "name": "割须弃袍",
+          "folder": "ge-xu-qi-pao"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-12",
+          "name": "隆中对",
+          "folder": "long-zhong-dui"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-13",
+          "name": "长坂坡单骑救主",
+          "folder": "chang-ban-po-dan-qi-jiu-zhu"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-14",
+          "name": "舌战群儒",
+          "folder": "she-zhan-qun-ru"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-15",
+          "name": "草船借箭",
+          "folder": "cao-chuan-jie-jian"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-16",
+          "name": "曹孟德横槊赋诗",
+          "folder": "cao-meng-de-heng-shuo-fu-shi"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-17",
+          "name": "连环计",
+          "folder": "lian-huan-ji"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-18",
+          "name": "借东风火烧赤壁",
+          "folder": "jie-dong-feng-huo-shao-chi-bi"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-19",
+          "name": "华容道",
+          "folder": "hua-rong-dao"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-20",
+          "name": "威震逍遥津",
+          "folder": "wei-zhen-xiao-yao-jin"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-21",
+          "name": "落凤坡",
+          "folder": "luo-feng-po"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-22",
+          "name": "定军山",
+          "folder": "ding-jun-shan"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-23",
+          "name": "水淹七军",
+          "folder": "shui-yan-qi-jun"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-24",
+          "name": "刮骨疗毒",
+          "folder": "gua-gu-liao-du"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-25",
+          "name": "白帝城托孤",
+          "folder": "bai-di-cheng-tuo-gu"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-26",
+          "name": "七擒孟获",
+          "folder": "qi-qin-meng-huo"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-27",
+          "name": "空城计",
+          "folder": "kong-cheng-ji"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-28",
+          "name": "武侯禳星",
+          "folder": "wu-hou-rang-xing"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-29",
+          "name": "单骑退雄兵",
+          "folder": "dan-qi-tui-xiong-bing"
+        },
+        {
+          "id": "city-PetThreeKingdoms/level-30",
+          "name": "九伐中原",
+          "folder": "jiu-fa-zhong-yuan"
+        }
       ],
-      "banner": "chapter-covers/city-PetThreeKingdoms-icon/spriteFrame"
+      "banner": "chapter-covers/city-PetThreeKingdoms-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-PetThreeKingdoms"
+      ]
     },
-    "city-2025Hotmeme": {
-      "key": "city-2025Hotmeme",
-      "name": "2025热梗",
-      "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15",
-        "level-16",
-        "level-17",
-        "level-18",
-        "level-19",
-        "level-20",
-        "level-21",
-        "level-22",
-        "level-23",
-        "level-24",
-        "level-25"
-      ],
-      "banner": "chapter-covers/city-2025Hotmeme-icon/spriteFrame"
-    },
-    "city-02-beijing": {
-      "key": "city-02-beijing",
+    "bei-jing": {
+      "key": "bei-jing",
       "name": "北京",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15"
+        {
+          "id": "city-02-beijing/level-01",
+          "name": "紫禁城",
+          "folder": "zi-jin-cheng"
+        },
+        {
+          "id": "city-02-beijing/level-02",
+          "name": "制作北京烤鸭",
+          "folder": "zhi-zuo-bei-jing-kao-ya"
+        },
+        {
+          "id": "city-02-beijing/level-03",
+          "name": "北京烤鸭",
+          "folder": "bei-jing-kao-ya"
+        },
+        {
+          "id": "city-02-beijing/level-04",
+          "name": "八达岭长城",
+          "folder": "ba-da-ling-chang-cheng"
+        },
+        {
+          "id": "city-02-beijing/level-05",
+          "name": "制作涮羊肉",
+          "folder": "zhi-zuo-shuan-yang-rou"
+        },
+        {
+          "id": "city-02-beijing/level-06",
+          "name": "涮羊肉",
+          "folder": "shuan-yang-rou"
+        },
+        {
+          "id": "city-02-beijing/level-07",
+          "name": "颐和园",
+          "folder": "yi-he-yuan"
+        },
+        {
+          "id": "city-02-beijing/level-08",
+          "name": "制作杂酱面",
+          "folder": "zhi-zuo-za-jiang-mian"
+        },
+        {
+          "id": "city-02-beijing/level-09",
+          "name": "炸酱面",
+          "folder": "zha-jiang-mian"
+        },
+        {
+          "id": "city-02-beijing/level-10",
+          "name": "鸟巢",
+          "folder": "niao-chao"
+        },
+        {
+          "id": "city-02-beijing/level-11",
+          "name": "制作卤煮火烧",
+          "folder": "zhi-zuo-lu-zhu-huo-shao"
+        },
+        {
+          "id": "city-02-beijing/level-12",
+          "name": "卤煮火烧",
+          "folder": "lu-zhu-huo-shao"
+        },
+        {
+          "id": "city-02-beijing/level-13",
+          "name": "景山公园",
+          "folder": "jing-shan-gong-yuan"
+        },
+        {
+          "id": "city-02-beijing/level-14",
+          "name": "制作豆汁焦圈",
+          "folder": "zhi-zuo-dou-zhi-jiao-quan"
+        },
+        {
+          "id": "city-02-beijing/level-15",
+          "name": "豆汁焦圈",
+          "folder": "dou-zhi-jiao-quan"
+        }
       ],
-      "banner": "chapter-covers/city-02-beijing-icon/spriteFrame"
+      "banner": "chapter-covers/city-02-beijing-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-02-beijing"
+      ]
     },
-    "city-03-shanghai": {
-      "key": "city-03-shanghai",
+    "shang-hai": {
+      "key": "shang-hai",
       "name": "上海",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15"
+        {
+          "id": "city-03-shanghai/level-01",
+          "name": "步行街",
+          "folder": "bu-xing-jie"
+        },
+        {
+          "id": "city-03-shanghai/level-02",
+          "name": "制作南翔小笼包",
+          "folder": "zhi-zuo-nan-xiang-xiao-long-bao"
+        },
+        {
+          "id": "city-03-shanghai/level-03",
+          "name": "南翔小笼包",
+          "folder": "nan-xiang-xiao-long-bao"
+        },
+        {
+          "id": "city-03-shanghai/level-04",
+          "name": "东方明珠",
+          "folder": "dong-fang-ming-zhu"
+        },
+        {
+          "id": "city-03-shanghai/level-05",
+          "name": "制作本帮红烧肉",
+          "folder": "zhi-zuo-ben-bang-hong-shao-rou"
+        },
+        {
+          "id": "city-03-shanghai/level-06",
+          "name": "本帮红烧肉",
+          "folder": "ben-bang-hong-shao-rou"
+        },
+        {
+          "id": "city-03-shanghai/level-07",
+          "name": "上海博物馆",
+          "folder": "shang-hai-bo-wu-guan"
+        },
+        {
+          "id": "city-03-shanghai/level-08",
+          "name": "制作腌笃鲜",
+          "folder": "zhi-zuo-yan-du-xian"
+        },
+        {
+          "id": "city-03-shanghai/level-09",
+          "name": "腌笃鲜",
+          "folder": "yan-du-xian"
+        },
+        {
+          "id": "city-03-shanghai/level-10",
+          "name": "上海迪士尼度假区",
+          "folder": "shang-hai-di-shi-ni-du-jia-qu"
+        },
+        {
+          "id": "city-03-shanghai/level-11",
+          "name": "制作草头圈子",
+          "folder": "zhi-zuo-cao-tou-quan-zi"
+        },
+        {
+          "id": "city-03-shanghai/level-12",
+          "name": "草头圈子",
+          "folder": "cao-tou-quan-zi"
+        },
+        {
+          "id": "city-03-shanghai/level-13",
+          "name": "外滩",
+          "folder": "wai-tan"
+        },
+        {
+          "id": "city-03-shanghai/level-14",
+          "name": "八宝辣酱制作",
+          "folder": "ba-bao-la-jiang-zhi-zuo"
+        },
+        {
+          "id": "city-03-shanghai/level-15",
+          "name": "八宝辣酱",
+          "folder": "ba-bao-la-jiang"
+        }
       ],
-      "banner": "chapter-covers/city-03-shanghai-icon/spriteFrame"
+      "banner": "chapter-covers/city-03-shanghai-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-03-shanghai"
+      ]
     },
-    "city-04-nanjing": {
-      "key": "city-04-nanjing",
+    "nan-jing": {
+      "key": "nan-jing",
       "name": "南京",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15"
+        {
+          "id": "city-04-nanjing/level-01",
+          "name": "夫子庙",
+          "folder": "fu-zi-miao"
+        },
+        {
+          "id": "city-04-nanjing/level-02",
+          "name": "制作盐水鸭",
+          "folder": "zhi-zuo-yan-shui-ya"
+        },
+        {
+          "id": "city-04-nanjing/level-03",
+          "name": "盐水鸭",
+          "folder": "yan-shui-ya"
+        },
+        {
+          "id": "city-04-nanjing/level-04",
+          "name": "鸡鸣寺",
+          "folder": "ji-ming-si"
+        },
+        {
+          "id": "city-04-nanjing/level-05",
+          "name": "制作桂花糖芋苗",
+          "folder": "zhi-zuo-gui-hua-tang-yu-miao"
+        },
+        {
+          "id": "city-04-nanjing/level-06",
+          "name": "桂花糖芋苗",
+          "folder": "gui-hua-tang-yu-miao"
+        },
+        {
+          "id": "city-04-nanjing/level-07",
+          "name": "南京博物馆",
+          "folder": "nan-jing-bo-wu-guan"
+        },
+        {
+          "id": "city-04-nanjing/level-08",
+          "name": "制作金陵烤鸭",
+          "folder": "zhi-zuo-jin-ling-kao-ya"
+        },
+        {
+          "id": "city-04-nanjing/level-09",
+          "name": "金陵烤鸭",
+          "folder": "jin-ling-kao-ya"
+        },
+        {
+          "id": "city-04-nanjing/level-10",
+          "name": "台城城墙",
+          "folder": "tai-cheng-cheng-qiang"
+        },
+        {
+          "id": "city-04-nanjing/level-11",
+          "name": "制作牛肉锅贴",
+          "folder": "zhi-zuo-niu-rou-guo-tie"
+        },
+        {
+          "id": "city-04-nanjing/level-12",
+          "name": "牛肉锅贴",
+          "folder": "niu-rou-guo-tie"
+        },
+        {
+          "id": "city-04-nanjing/level-13",
+          "name": "玄武湖",
+          "folder": "xuan-wu-hu"
+        },
+        {
+          "id": "city-04-nanjing/level-14",
+          "name": "制作鸭血粉丝",
+          "folder": "zhi-zuo-ya-xue-fen-si"
+        },
+        {
+          "id": "city-04-nanjing/level-15",
+          "name": "鸭血粉丝",
+          "folder": "ya-xue-fen-si"
+        }
       ],
-      "banner": "chapter-covers/city-04-nanjing-icon/spriteFrame"
+      "banner": "chapter-covers/city-04-nanjing-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-04-nanjing"
+      ]
     },
-    "city-05-xiamen": {
-      "key": "city-05-xiamen",
+    "xia-men": {
+      "key": "xia-men",
       "name": "厦门",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15"
+        {
+          "id": "city-05-xiamen/level-01",
+          "name": "白城沙滩",
+          "folder": "bai-cheng-sha-tan"
+        },
+        {
+          "id": "city-05-xiamen/level-02",
+          "name": "制作沙茶面",
+          "folder": "zhi-zuo-sha-cha-mian"
+        },
+        {
+          "id": "city-05-xiamen/level-03",
+          "name": "沙茶面",
+          "folder": "sha-cha-mian"
+        },
+        {
+          "id": "city-05-xiamen/level-04",
+          "name": "鼓浪屿",
+          "folder": "gu-lang-yu"
+        },
+        {
+          "id": "city-05-xiamen/level-05",
+          "name": "制作土笋冻",
+          "folder": "zhi-zuo-tu-sun-dong"
+        },
+        {
+          "id": "city-05-xiamen/level-06",
+          "name": "土笋冻",
+          "folder": "tu-sun-dong"
+        },
+        {
+          "id": "city-05-xiamen/level-07",
+          "name": "南普陀寺",
+          "folder": "nan-pu-tuo-si"
+        },
+        {
+          "id": "city-05-xiamen/level-08",
+          "name": "制作姜母鸭",
+          "folder": "zhi-zuo-jiang-mu-ya"
+        },
+        {
+          "id": "city-05-xiamen/level-09",
+          "name": "姜母鸭",
+          "folder": "jiang-mu-ya"
+        },
+        {
+          "id": "city-05-xiamen/level-10",
+          "name": "厦门大学",
+          "folder": "xia-men-da-xue"
+        },
+        {
+          "id": "city-05-xiamen/level-11",
+          "name": "制作海蛎煎",
+          "folder": "zhi-zuo-hai-li-jian"
+        },
+        {
+          "id": "city-05-xiamen/level-12",
+          "name": "海蛎煎",
+          "folder": "hai-li-jian"
+        },
+        {
+          "id": "city-05-xiamen/level-13",
+          "name": "中山路步行街",
+          "folder": "zhong-shan-lu-bu-xing-jie"
+        },
+        {
+          "id": "city-05-xiamen/level-14",
+          "name": "制作花生汤",
+          "folder": "zhi-zuo-hua-sheng-tang"
+        },
+        {
+          "id": "city-05-xiamen/level-15",
+          "name": "花生汤",
+          "folder": "hua-sheng-tang"
+        }
       ],
-      "banner": "chapter-covers/city-05-xiamen-icon/spriteFrame"
+      "banner": "chapter-covers/city-05-xiamen-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-05-xiamen"
+      ]
     },
-    "city-06-changsha": {
-      "key": "city-06-changsha",
+    "chang-sha": {
+      "key": "chang-sha",
       "name": "长沙",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15"
+        {
+          "id": "city-06-changsha/level-01",
+          "name": "五一广场",
+          "folder": "wu-yi-guang-chang"
+        },
+        {
+          "id": "city-06-changsha/level-02",
+          "name": "制作剁椒鱼头",
+          "folder": "zhi-zuo-duo-jiao-yu-tou"
+        },
+        {
+          "id": "city-06-changsha/level-03",
+          "name": "剁椒鱼头",
+          "folder": "duo-jiao-yu-tou"
+        },
+        {
+          "id": "city-06-changsha/level-04",
+          "name": "橘子洲头",
+          "folder": "ju-zi-zhou-tou"
+        },
+        {
+          "id": "city-06-changsha/level-05",
+          "name": "臭豆腐制作",
+          "folder": "chou-dou-fu-zhi-zuo"
+        },
+        {
+          "id": "city-06-changsha/level-06",
+          "name": "臭豆腐",
+          "folder": "chou-dou-fu"
+        },
+        {
+          "id": "city-06-changsha/level-07",
+          "name": "文和友",
+          "folder": "wen-he-you"
+        },
+        {
+          "id": "city-06-changsha/level-08",
+          "name": "长沙米粉制作",
+          "folder": "chang-sha-mi-fen-zhi-zuo"
+        },
+        {
+          "id": "city-06-changsha/level-09",
+          "name": "长沙米粉",
+          "folder": "chang-sha-mi-fen"
+        },
+        {
+          "id": "city-06-changsha/level-10",
+          "name": "岳麓山",
+          "folder": "yue-lu-shan"
+        },
+        {
+          "id": "city-06-changsha/level-11",
+          "name": "糖油粑粑",
+          "folder": "tang-you-ba-ba"
+        },
+        {
+          "id": "city-06-changsha/level-12",
+          "name": "糖油粑粑",
+          "folder": "tang-you-ba-ba-3b688c"
+        },
+        {
+          "id": "city-06-changsha/level-13",
+          "name": "岳麓书院",
+          "folder": "yue-lu-shu-yuan"
+        },
+        {
+          "id": "city-06-changsha/level-14",
+          "name": "口味虾制作",
+          "folder": "kou-wei-xia-zhi-zuo"
+        },
+        {
+          "id": "city-06-changsha/level-15",
+          "name": "口味虾",
+          "folder": "kou-wei-xia"
+        }
       ],
-      "banner": "chapter-covers/city-06-changsha-icon/spriteFrame"
+      "banner": "chapter-covers/city-06-changsha-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-06-changsha"
+      ]
     },
-    "city-07-guangzhou": {
-      "key": "city-07-guangzhou",
+    "guang-zhou": {
+      "key": "guang-zhou",
       "name": "广州",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15"
+        {
+          "id": "city-07-guangzhou/level-01",
+          "name": "陈家祠",
+          "folder": "chen-jia-ci"
+        },
+        {
+          "id": "city-07-guangzhou/level-02",
+          "name": "制作白切鸡",
+          "folder": "zhi-zuo-bai-qie-ji"
+        },
+        {
+          "id": "city-07-guangzhou/level-03",
+          "name": "白切鸡",
+          "folder": "bai-qie-ji"
+        },
+        {
+          "id": "city-07-guangzhou/level-04",
+          "name": "东山口",
+          "folder": "dong-shan-kou"
+        },
+        {
+          "id": "city-07-guangzhou/level-05",
+          "name": "叉烧制作",
+          "folder": "cha-shao-zhi-zuo"
+        },
+        {
+          "id": "city-07-guangzhou/level-06",
+          "name": "叉烧",
+          "folder": "cha-shao"
+        },
+        {
+          "id": "city-07-guangzhou/level-07",
+          "name": "沙面",
+          "folder": "sha-mian"
+        },
+        {
+          "id": "city-07-guangzhou/level-08",
+          "name": "肠粉制作",
+          "folder": "chang-fen-zhi-zuo"
+        },
+        {
+          "id": "city-07-guangzhou/level-09",
+          "name": "肠粉",
+          "folder": "chang-fen"
+        },
+        {
+          "id": "city-07-guangzhou/level-10",
+          "name": "小蛮腰",
+          "folder": "xiao-man-yao"
+        },
+        {
+          "id": "city-07-guangzhou/level-11",
+          "name": "制作干炒牛河",
+          "folder": "zhi-zuo-gan-chao-niu-he"
+        },
+        {
+          "id": "city-07-guangzhou/level-12",
+          "name": "干炒牛河",
+          "folder": "gan-chao-niu-he"
+        },
+        {
+          "id": "city-07-guangzhou/level-13",
+          "name": "永庆坊",
+          "folder": "yong-qing-fang"
+        },
+        {
+          "id": "city-07-guangzhou/level-14",
+          "name": "艇仔粥制作",
+          "folder": "ting-zai-zhou-zhi-zuo"
+        },
+        {
+          "id": "city-07-guangzhou/level-15",
+          "name": "艇仔粥",
+          "folder": "ting-zai-zhou"
+        }
       ],
-      "banner": "chapter-covers/city-07-guangzhou-icon/spriteFrame"
+      "banner": "chapter-covers/city-07-guangzhou-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-07-guangzhou"
+      ]
     },
-    "city-08-chengdu": {
-      "key": "city-08-chengdu",
+    "cheng-du": {
+      "key": "cheng-du",
       "name": "成都",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15"
+        {
+          "id": "city-08-chengdu/level-01",
+          "name": "成都大熊猫",
+          "folder": "cheng-du-da-xiong-mao"
+        },
+        {
+          "id": "city-08-chengdu/level-02",
+          "name": "制作回锅肉",
+          "folder": "zhi-zuo-hui-guo-rou"
+        },
+        {
+          "id": "city-08-chengdu/level-03",
+          "name": "回锅肉",
+          "folder": "hui-guo-rou"
+        },
+        {
+          "id": "city-08-chengdu/level-04",
+          "name": "草堂铺子",
+          "folder": "cao-tang-pu-zi"
+        },
+        {
+          "id": "city-08-chengdu/level-05",
+          "name": "制作夫妻肺片",
+          "folder": "zhi-zuo-fu-qi-fei-pian"
+        },
+        {
+          "id": "city-08-chengdu/level-06",
+          "name": "夫妻肺片",
+          "folder": "fu-qi-fei-pian"
+        },
+        {
+          "id": "city-08-chengdu/level-07",
+          "name": "宽窄巷子",
+          "folder": "kuan-zhai-xiang-zi"
+        },
+        {
+          "id": "city-08-chengdu/level-08",
+          "name": "制作麻婆豆腐",
+          "folder": "zhi-zuo-ma-po-dou-fu"
+        },
+        {
+          "id": "city-08-chengdu/level-09",
+          "name": "麻婆豆腐",
+          "folder": "ma-po-dou-fu"
+        },
+        {
+          "id": "city-08-chengdu/level-10",
+          "name": "三星堆",
+          "folder": "san-xing-dui"
+        },
+        {
+          "id": "city-08-chengdu/level-11",
+          "name": "制作担担面",
+          "folder": "zhi-zuo-dan-dan-mian"
+        },
+        {
+          "id": "city-08-chengdu/level-12",
+          "name": "担担面",
+          "folder": "dan-dan-mian"
+        },
+        {
+          "id": "city-08-chengdu/level-13",
+          "name": "武侯祠",
+          "folder": "wu-hou-ci"
+        },
+        {
+          "id": "city-08-chengdu/level-14",
+          "name": "制作龙抄手",
+          "folder": "zhi-zuo-long-chao-shou"
+        },
+        {
+          "id": "city-08-chengdu/level-15",
+          "name": "龙抄手",
+          "folder": "long-chao-shou"
+        }
       ],
-      "banner": "chapter-covers/city-08-chengdu-icon/spriteFrame"
+      "banner": "chapter-covers/city-08-chengdu-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-08-chengdu"
+      ]
     },
-    "city-09-xian": {
-      "key": "city-09-xian",
+    "xi-an": {
+      "key": "xi-an",
       "name": "西安",
       "levels": [
-        "level-01",
-        "level-02",
-        "level-03",
-        "level-04",
-        "level-05",
-        "level-06",
-        "level-07",
-        "level-08",
-        "level-09",
-        "level-10",
-        "level-11",
-        "level-12",
-        "level-13",
-        "level-14",
-        "level-15"
+        {
+          "id": "city-09-xian/level-01",
+          "name": "八仙庵",
+          "folder": "ba-xian-an"
+        },
+        {
+          "id": "city-09-xian/level-02",
+          "name": "制作牛羊肉泡馍",
+          "folder": "zhi-zuo-niu-yang-rou-pao-mo"
+        },
+        {
+          "id": "city-09-xian/level-03",
+          "name": "牛羊肉泡馍",
+          "folder": "niu-yang-rou-pao-mo"
+        },
+        {
+          "id": "city-09-xian/level-04",
+          "name": "兵马俑",
+          "folder": "bing-ma-yong"
+        },
+        {
+          "id": "city-09-xian/level-05",
+          "name": "制作胡辣汤",
+          "folder": "zhi-zuo-hu-la-tang"
+        },
+        {
+          "id": "city-09-xian/level-06",
+          "name": "胡辣汤",
+          "folder": "hu-la-tang"
+        },
+        {
+          "id": "city-09-xian/level-07",
+          "name": "大雁塔",
+          "folder": "da-yan-ta"
+        },
+        {
+          "id": "city-09-xian/level-08",
+          "name": "制作肉夹馍",
+          "folder": "zhi-zuo-rou-jia-mo"
+        },
+        {
+          "id": "city-09-xian/level-09",
+          "name": "肉夹馍",
+          "folder": "rou-jia-mo"
+        },
+        {
+          "id": "city-09-xian/level-10",
+          "name": "钟楼",
+          "folder": "zhong-lou"
+        },
+        {
+          "id": "city-09-xian/level-11",
+          "name": "制作葫芦鸡",
+          "folder": "zhi-zuo-hu-lu-ji"
+        },
+        {
+          "id": "city-09-xian/level-12",
+          "name": "葫芦鸡",
+          "folder": "hu-lu-ji"
+        },
+        {
+          "id": "city-09-xian/level-13",
+          "name": "西安城墙",
+          "folder": "xi-an-cheng-qiang"
+        },
+        {
+          "id": "city-09-xian/level-14",
+          "name": "制作biangbiang面",
+          "folder": "zhi-zuo-biangbiang-mian"
+        },
+        {
+          "id": "city-09-xian/level-15",
+          "name": "biangbiang面",
+          "folder": "biangbiang-mian"
+        }
       ],
-      "banner": "chapter-covers/city-09-xian-icon/spriteFrame"
+      "banner": "chapter-covers/city-09-xian-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-09-xian"
+      ]
+    },
+    "qing-hua-ci": {
+      "key": "qing-hua-ci",
+      "schemaVersion": 2,
+      "name": "青花瓷",
+      "banner": "chapter-covers/qing-hua-ci-icon/spriteFrame",
+      "levels": [
+        {
+          "id": "qing-hua-ci/qing-hua-san-qi-tong-gui",
+          "name": "青花三器同柜",
+          "folder": "qing-hua-san-qi-tong-gui"
+        },
+        {
+          "id": "qing-hua-ci/yao-kou-jiao-huo",
+          "name": "窑口交货",
+          "folder": "yao-kou-jiao-huo"
+        },
+        {
+          "id": "qing-hua-ci/jiu-si-kai-tan",
+          "name": "酒肆开坛",
+          "folder": "jiu-si-kai-tan"
+        },
+        {
+          "id": "qing-hua-ci/long-wen-da-pan",
+          "name": "龙纹大盘",
+          "folder": "long-wen-da-pan"
+        },
+        {
+          "id": "qing-hua-ci/da-pan-zhuang-xia",
+          "name": "大盘装匣",
+          "folder": "da-pan-zhuang-xia"
+        },
+        {
+          "id": "qing-hua-ci/yan-xi-jiang-kai",
+          "name": "宴席将开",
+          "folder": "yan-xi-jiang-kai"
+        },
+        {
+          "id": "qing-hua-ci/feng-shou-yu-juan-wei",
+          "name": "凤首与卷尾",
+          "folder": "feng-shou-yu-juan-wei"
+        },
+        {
+          "id": "qing-hua-ci/zhi-zuo-feng-shou-bian-hu",
+          "name": "制作凤首扁壶",
+          "folder": "zhi-zuo-feng-shou-bian-hu"
+        },
+        {
+          "id": "qing-hua-ci/qing-hua-feng-shou-hu-zhen-yin",
+          "name": "青花凤首壶斟饮",
+          "folder": "qing-hua-feng-shou-hu-zhen-yin"
+        },
+        {
+          "id": "qing-hua-ci/hai-ao-shan-xing-bi-jia",
+          "name": "海鳌山形笔架",
+          "folder": "hai-ao-shan-xing-bi-jia"
+        },
+        {
+          "id": "qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia",
+          "name": "手捏海鳌山形笔架",
+          "folder": "shou-nie-hai-ao-shan-xing-bi-jia"
+        },
+        {
+          "id": "qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia",
+          "name": "童子注水鳌形笔架",
+          "folder": "tong-zi-zhu-shui-ao-xing-bi-jia"
+        },
+        {
+          "id": "qing-hua-ci/zhang-xin-da-xiao-de-ming-pin",
+          "name": "掌心大小的名品",
+          "folder": "zhang-xin-da-xiao-de-ming-pin"
+        },
+        {
+          "id": "qing-hua-ci/cha-fang-bei-cha",
+          "name": "茶房备茶",
+          "folder": "cha-fang-bei-cha"
+        },
+        {
+          "id": "qing-hua-ci/jin-tian-ye-yong-ya-shou-bei",
+          "name": "今天也用压手杯",
+          "folder": "jin-tian-ye-yong-ya-shou-bei"
+        },
+        {
+          "id": "qing-hua-ci/da-shao-yu-xiao-e-zuo",
+          "name": "大勺与小鹅座",
+          "folder": "da-shao-yu-xiao-e-zuo"
+        },
+        {
+          "id": "qing-hua-ci/gei-gu-shao-pei-yi-zhi-e",
+          "name": "给古勺配一只鹅",
+          "folder": "gei-gu-shao-pei-yi-zhi-e"
+        },
+        {
+          "id": "qing-hua-ci/yi-shao-yi-zuo",
+          "name": "一勺一座",
+          "folder": "yi-shao-yi-zuo"
+        },
+        {
+          "id": "qing-hua-ci/ping-shang-zhui-gan",
+          "name": "瓶上追赶",
+          "folder": "ping-shang-zhui-gan"
+        },
+        {
+          "id": "qing-hua-ci/xiao-he-yue-xia-zhui-han-xin",
+          "name": "萧何月下追韩信",
+          "folder": "xiao-he-yue-xia-zhui-han-xin"
+        },
+        {
+          "id": "qing-hua-ci/fu-di-li-de-cang-ci",
+          "name": "府邸里的藏瓷",
+          "folder": "fu-di-li-de-cang-ci"
+        },
+        {
+          "id": "qing-hua-ci/wen-ren-si-ai-hao",
+          "name": "文人四爱好",
+          "folder": "wen-ren-si-ai-hao"
+        },
+        {
+          "id": "qing-hua-ci/tao-yuan-ming-cai-ju",
+          "name": "陶渊明采菊",
+          "folder": "tao-yuan-ming-cai-ju"
+        },
+        {
+          "id": "qing-hua-ci/qing-hua-dai-jin-shu-fang",
+          "name": "青花带进书房",
+          "folder": "qing-hua-dai-jin-shu-fang"
+        },
+        {
+          "id": "qing-hua-ci/yuan-dai-qing-hua-shuang-ping",
+          "name": "元代青花双瓶",
+          "folder": "yuan-dai-qing-hua-shuang-ping"
+        },
+        {
+          "id": "qing-hua-ci/xiang-er-shuang-ping-qi-yun",
+          "name": "象耳双瓶启运",
+          "folder": "xiang-er-shuang-ping-qi-yun"
+        },
+        {
+          "id": "qing-hua-ci/gong-zhuo-shang-de-xiang-er-shuang-ping",
+          "name": "供桌上的象耳双瓶",
+          "folder": "gong-zhuo-shang-de-xiang-er-shuang-ping"
+        },
+        {
+          "id": "qing-hua-ci/wan-shou-da-zun",
+          "name": "万寿大尊",
+          "folder": "wan-shou-da-zun"
+        },
+        {
+          "id": "qing-hua-ci/shou-li-jin-cheng",
+          "name": "寿礼进呈",
+          "folder": "shou-li-jin-cheng"
+        },
+        {
+          "id": "qing-hua-ci/shou-yan-kai-xi",
+          "name": "寿宴开席",
+          "folder": "shou-yan-kai-xi"
+        },
+        {
+          "id": "qing-hua-ci/hua-kou-pu-tao-pan",
+          "name": "花口葡萄盘",
+          "folder": "hua-kou-pu-tao-pan"
+        },
+        {
+          "id": "qing-hua-ci/xiu-chu-hua-ban-pan-yan",
+          "name": "修出花瓣盘沿",
+          "folder": "xiu-chu-hua-ban-pan-yan"
+        },
+        {
+          "id": "qing-hua-ci/yuan-fang-de-can-zhuo",
+          "name": "远方的餐桌",
+          "folder": "yuan-fang-de-can-zhuo"
+        },
+        {
+          "id": "qing-hua-ci/qing-hua-gao-zu-pan",
+          "name": "青花高足盘",
+          "folder": "qing-hua-gao-zu-pan"
+        },
+        {
+          "id": "qing-hua-ci/pan-yu-gao-zu-de-cheng-xing",
+          "name": "盘与高足的成型",
+          "folder": "pan-yu-gao-zu-de-cheng-xing"
+        },
+        {
+          "id": "qing-hua-ci/jie-ri-gong-guo",
+          "name": "节日供果",
+          "folder": "jie-ri-gong-guo"
+        },
+        {
+          "id": "qing-hua-ci/seng-mao-hu",
+          "name": "僧帽壶",
+          "folder": "seng-mao-hu"
+        },
+        {
+          "id": "qing-hua-ci/yuan-xing-de-li-wu",
+          "name": "远行的礼物",
+          "folder": "yuan-xing-de-li-wu"
+        },
+        {
+          "id": "qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju",
+          "name": "寺院里的茶与供具",
+          "folder": "si-yuan-li-de-cha-yu-gong-ju"
+        },
+        {
+          "id": "qing-hua-ci/a-la-bo-wen-zhu-tai",
+          "name": "阿拉伯文烛台",
+          "folder": "a-la-bo-wen-zhu-tai"
+        },
+        {
+          "id": "qing-hua-ci/yang-qi-lai-dao-zuo-fang",
+          "name": "样器来到作坊",
+          "folder": "yang-qi-lai-dao-zuo-fang"
+        },
+        {
+          "id": "qing-hua-ci/gong-zhuo-tian-zhu",
+          "name": "供桌添烛",
+          "folder": "gong-zhuo-tian-zhu"
+        },
+        {
+          "id": "qing-hua-ci/ying-xi-tu-yuan-he",
+          "name": "婴戏图圆盒",
+          "folder": "ying-xi-tu-yuan-he"
+        },
+        {
+          "id": "qing-hua-ci/ting-yuan-li-de-hai-zi-men",
+          "name": "庭院里的孩子们",
+          "folder": "ting-yuan-li-de-hai-zi-men"
+        },
+        {
+          "id": "qing-hua-ci/yuan-he-li-de-dian-xin",
+          "name": "圆盒里的点心",
+          "folder": "yuan-he-li-de-dian-xin"
+        },
+        {
+          "id": "qing-hua-ci/lan-ting-hui-bi-tong",
+          "name": "《兰亭会》笔筒",
+          "folder": "lan-ting-hui-bi-tong"
+        },
+        {
+          "id": "qing-hua-ci/qu-shui-liu-shang",
+          "name": "曲水流觞",
+          "folder": "qu-shui-liu-shang"
+        },
+        {
+          "id": "qing-hua-ci/qing-dai-shu-fang-luo-bi",
+          "name": "清代书房落笔",
+          "folder": "qing-dai-shu-fang-luo-bi"
+        },
+        {
+          "id": "qing-hua-ci/qing-hua-hua-jiao",
+          "name": "青花花浇",
+          "folder": "qing-hua-hua-jiao"
+        },
+        {
+          "id": "qing-hua-ci/jiu-qi-pei-shang-xin-tong-dan",
+          "name": "旧器配上新铜胆",
+          "folder": "jiu-qi-pei-shang-xin-tong-dan"
+        },
+        {
+          "id": "qing-hua-ci/chuang-qian-cha-hua",
+          "name": "窗前插花",
+          "folder": "chuang-qian-cha-hua"
+        },
+        {
+          "id": "qing-hua-ci/xi-shuai-guan",
+          "name": "蟋蟀罐",
+          "folder": "xi-shuai-guan"
+        },
+        {
+          "id": "qing-hua-ci/zuo-zhi-hui-tou-qi-de-gai",
+          "name": "做只会透气的盖",
+          "folder": "zuo-zhi-hui-tou-qi-de-gai"
+        },
+        {
+          "id": "qing-hua-ci/qiu-yuan-guan-xi-shuai",
+          "name": "秋院观蟋蟀",
+          "folder": "qiu-yuan-guan-xi-shuai"
+        },
+        {
+          "id": "qing-hua-ci/lian-chi-yu-zao-wen-guan",
+          "name": "莲池鱼藻纹罐",
+          "folder": "lian-chi-yu-zao-wen-guan"
+        },
+        {
+          "id": "qing-hua-ci/shang-chuan-li-de-ci-qi-huo-cang",
+          "name": "商船里的瓷器货舱",
+          "folder": "shang-chuan-li-de-ci-qi-huo-cang"
+        },
+        {
+          "id": "qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she",
+          "name": "海外府邸的瓷器陈设",
+          "folder": "hai-wai-fu-di-de-ci-qi-chen-she"
+        },
+        {
+          "id": "qing-hua-ci/jin-tian-de-qi-xing-she-ji-zhan",
+          "name": "今天的器型设计展",
+          "folder": "jin-tian-de-qi-xing-she-ji-zhan"
+        },
+        {
+          "id": "qing-hua-ci/dian-yao-qian-de-xin-zuo-pin",
+          "name": "电窑前的新作品",
+          "folder": "dian-yao-qian-de-xin-zuo-pin"
+        },
+        {
+          "id": "qing-hua-ci/qing-hua-hui-dao-can-zhuo",
+          "name": "青花回到餐桌",
+          "folder": "qing-hua-hui-dao-can-zhuo"
+        }
+      ]
     }
-  }
+  },
+  "navigation": [
+    "wang-luo-re-dian",
+    "nian-du-re-geng",
+    "chong-wu-gu-shi",
+    "meng-chong-san-guo",
+    "lian-ai-mei-shi",
+    "qing-hua-ci"
+  ],
+  "topics": [
+    {
+      "key": "lian-ai-mei-shi",
+      "name": "恋爱美食",
+      "banner": "chapter-covers/city-02-beijing-icon/spriteFrame",
+      "chapters": [
+        "bei-jing",
+        "shang-hai",
+        "nan-jing",
+        "xia-men",
+        "chang-sha",
+        "guang-zhou",
+        "cheng-du",
+        "xi-an"
+      ],
+      "defaultChapter": "bei-jing"
+    }
+  ]
 }

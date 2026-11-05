@@ -1,0 +1,69 @@
+{
+  "name": "青花凤首壶斟饮",
+  "type": "porcelain",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.37999,
+      "y": 0.466129,
+      "radius": 0.05935
+    },
+    {
+      "id": "diff-2",
+      "x": 0.567339,
+      "y": 0.593548,
+      "radius": 0.080079
+    },
+    {
+      "id": "diff-3",
+      "x": 0.971673,
+      "y": 0.104839,
+      "radius": 0.101626
+    },
+    {
+      "id": "diff-4",
+      "x": 0.948387,
+      "y": 0.333871,
+      "radius": 0.070027
+    },
+    {
+      "id": "diff-5",
+      "x": 0.266734,
+      "y": 0.809677,
+      "radius": 0.112349
+    },
+    {
+      "id": "diff-6",
+      "x": 0.11749,
+      "y": 0.735484,
+      "radius": 0.055989
+    },
+    {
+      "id": "diff-7",
+      "x": 0.7187,
+      "y": 0.940323,
+      "radius": 0.094213
+    },
+    {
+      "id": "diff-8",
+      "x": 0.634022,
+      "y": 0.325806,
+      "radius": 0.04924
+    },
+    {
+      "id": "diff-9",
+      "x": 0.763155,
+      "y": 0.503226,
+      "radius": 0.046885
+    },
+    {
+      "id": "diff-10",
+      "x": 0.871119,
+      "y": 0.817742,
+      "radius": 0.070692
+    }
+  ],
+  "icon": "thumbnails/qing-hua-ci/qing-hua-feng-shou-hu-zhen-yin/icon/spriteFrame",
+  "collectibleId": "qing-hua-ci-feng-shou-bian-hu"
+}

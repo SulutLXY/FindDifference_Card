@@ -1,0 +1,86 @@
+{
+  "name": "西安",
+  "levels": [
+    {
+      "id": "city-09-xian/level-01",
+      "name": "八仙庵",
+      "folder": "ba-xian-an"
+    },
+    {
+      "id": "city-09-xian/level-02",
+      "name": "制作牛羊肉泡馍",
+      "folder": "zhi-zuo-niu-yang-rou-pao-mo"
+    },
+    {
+      "id": "city-09-xian/level-03",
+      "name": "牛羊肉泡馍",
+      "folder": "niu-yang-rou-pao-mo"
+    },
+    {
+      "id": "city-09-xian/level-04",
+      "name": "兵马俑",
+      "folder": "bing-ma-yong"
+    },
+    {
+      "id": "city-09-xian/level-05",
+      "name": "制作胡辣汤",
+      "folder": "zhi-zuo-hu-la-tang"
+    },
+    {
+      "id": "city-09-xian/level-06",
+      "name": "胡辣汤",
+      "folder": "hu-la-tang"
+    },
+    {
+      "id": "city-09-xian/level-07",
+      "name": "大雁塔",
+      "folder": "da-yan-ta"
+    },
+    {
+      "id": "city-09-xian/level-08",
+      "name": "制作肉夹馍",
+      "folder": "zhi-zuo-rou-jia-mo"
+    },
+    {
+      "id": "city-09-xian/level-09",
+      "name": "肉夹馍",
+      "folder": "rou-jia-mo"
+    },
+    {
+      "id": "city-09-xian/level-10",
+      "name": "钟楼",
+      "folder": "zhong-lou"
+    },
+    {
+      "id": "city-09-xian/level-11",
+      "name": "制作葫芦鸡",
+      "folder": "zhi-zuo-hu-lu-ji"
+    },
+    {
+      "id": "city-09-xian/level-12",
+      "name": "葫芦鸡",
+      "folder": "hu-lu-ji"
+    },
+    {
+      "id": "city-09-xian/level-13",
+      "name": "西安城墙",
+      "folder": "xi-an-cheng-qiang"
+    },
+    {
+      "id": "city-09-xian/level-14",
+      "name": "制作biangbiang面",
+      "folder": "zhi-zuo-biangbiang-mian"
+    },
+    {
+      "id": "city-09-xian/level-15",
+      "name": "biangbiang面",
+      "folder": "biangbiang-mian"
+    }
+  ],
+  "banner": "chapter-covers/city-09-xian-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-09-xian"
+  ]
+}

@@ -11,15 +11,15 @@ class Host {
 }
 const Display=vm.runInNewContext(ts.transpileModule(`class EnergyDisplay {${body}}; EnergyDisplay;`,{compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{
  console:{warn(){}},Prefab:class{},resources:{load(path,type,callback){assert.equal(path,'prefabs/EnergyDisplay');loads++;complete=callback;}},
- instantiate(prefab){instances++;return {position:{x:-200,y:600},set parent(host){host.children.push(this);}}},
+ instantiate(prefab){instances++;return {position:{x:-190,y:610},set parent(host){host.children.push(this);}}},
 });
 (async()=>{
  const a=new Host(),b=new Host(),gone=new Host();
  const first=Display.attach(a),duplicate=Display.attach(a),second=Display.attach(b),stale=Display.attach(gone);
  assert.equal(loads,1);assert.equal(first,duplicate);gone.isValid=false;
  const prefab={isValid:true,addRef(){refs++;return this;}};complete(null,prefab);
- await Promise.all([first,second,stale]);assert.equal(instances,2);assert.equal(refs,1);assert.equal(a.children[0].position.y,600);assert.equal(b.children[0].position.y,600);
- await Display.attach(a);assert.equal(instances,2);assert.equal(a.children[0].position.x,-200,'Existing placement survives repeated attach');
+ await Promise.all([first,second,stale]);assert.equal(instances,2);assert.equal(refs,1);assert.equal(a.children[0].position.y,610);assert.equal(b.children[0].position.y,610);
+ await Display.attach(a);assert.equal(instances,2);assert.equal(a.children[0].position.x,-190,'Existing placement survives repeated attach');
  const authored=new Host();authored.children.push({position:{x:12,y:34},customStyle:true});await Display.attach(authored);
  assert.equal(instances,2);assert.equal(authored.children[0].position.x,12,'Editor-authored instance is reused');
  await Display.attach(new Host());assert.equal(loads,1);assert.equal(instances,3);
@@ -36,7 +36,7 @@ const Display=vm.runInNewContext(ts.transpileModule(`class EnergyDisplay {${body
  for(const field of ['energyLabel','countdownLabel'])assert.equal(data[component[field].__id__].__type__,'cc.Label');
  for(const field of ['countdownRoot','rewardButton','videoIcon'])assert.equal(data[component[field].__id__].__type__,'cc.Node');
  assert.equal(data[component.videoIcon.__id__]._name,'icon_videoplay');
- assert.equal(data[1]._lpos.x,-200);assert.equal(data[1]._lpos.y,600);
+ assert.equal(data[1]._lpos.x,-190);assert.equal(data[1]._lpos.y,610);
  assert.doesNotMatch(source,/\.fontSize\s*=|\.color\s*=|setContentSize\(|new Node\(/,'Runtime must preserve prefab styling');
  console.log('PASS: shared prefab loading, concurrent attach deduplication, destroyed hosts, editor instance preservation, retry, serialized references and editable styling.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

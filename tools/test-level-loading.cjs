@@ -48,7 +48,7 @@ function methods(file,names,extra={}){
  const onLoad=tree.statements.find(ts.isClassDeclaration).members.find(m=>m.name?.getText(tree)==='onLoad');
  const guard=onLoad.body.statements.find(s=>s.getText(tree).startsWith('this.platform.canShowInterstitial ='));
  const installGuard=vm.runInNewContext(ts.transpileModule('(function(){'+guard.getText(tree)+'})', {compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{sidebarDay:()=>day});
- const f=new Flow();f._contentBundles={retain:()=>()=>{}};f.isValid=true;f._levelLoadVersion=0;f._assistRoundVersion=0;f._foundIds=new Set();
+ let homeWarmups=0;const f=new Flow();f._preloadLobby=async()=>{homeWarmups++;};f._contentBundles={retain:()=>()=>{}};f.isValid=true;f._levelLoadVersion=0;f._assistRoundVersion=0;f._foundIds=new Set();
  f._ensureLevel=async(city,index)=>city.levelConfigs[index];
  f._updateGameMusic=()=>{};f._updateComboGroup=()=>{};f._ensureGameScreens=async()=>{};
  f._showFirstLevelTutorial=()=>{};f._drawLoadingFrame=async()=>{};f._setLoadingProgress=()=>{};f._switchTo=()=>{};f.toast=()=>{};f.preloadNextLevel=()=>{};
@@ -83,6 +83,7 @@ function methods(file,names,extra={}){
  assert.equal(gameOpens,1);assert.equal(children.at(-1),f._loadingNode,'Loading must cover newly instantiated gameplay');
  assert.equal(f._loadingNode.active,true);assert.equal(f._isPaused,true);assert.equal(mark,0,'Do not start the round before the first rendered frame');
  finishDraw();await loading;assert.equal(f._levelLoading,false);assert.equal(f._isPaused,false);assert.equal(mark,1);assert.equal(f._loadingNode.active,false);
+ assert.equal(homeWarmups,0,'First playable frame must not immediately download the menu');assert.equal(f._lobbyWarmupRemaining,8);
  assert.equal(spent,1,'Exactly one energy for the ready round');assert.equal(f.save.energy,99);
  f._drawLoadingFrame=async()=>{};
  assert.equal(f._roundInterstitialProtected,true);assert.equal(f.platform.canShowInterstitial(),false,'Daily first round is protected');

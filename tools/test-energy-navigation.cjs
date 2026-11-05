@@ -7,7 +7,7 @@ function methods(file,names,extra={}) {
 }
 const Flow=methods('assets/scripts/GameFlow.ts',['enterLevelSelection','requestLevelSelectAccess','requestReward','requestEnergyReward','returnToLobby'],{sidebarDay:()=> '2026-10-26'});
 (async()=>{
- const f=new Flow();f.isValid=true;f.lobby={node:{activeInHierarchy:true}};f.citySelect={node:{activeInHierarchy:true}};f._secondaryNavigationVersion=0;f._isPaused=false;
+ const f=new Flow();f.isValid=true;f.lobby={isValid:true,node:{activeInHierarchy:true}};f.citySelect={node:{activeInHierarchy:true}};f._secondaryNavigationVersion=0;f._isPaused=false;
  let access=false,ads=0,rewards=0,entered=0,claims=0,energy=0,finish;
  f.save={hasLevelSelectAccess:()=>access,grantLevelSelectAccess:()=>access=true,get energy(){return energy;},energyLimit:99,energyRecoveryLimit:15,
   claimEnergyAd:()=>{claims++;energy=Math.min(99,energy+5);return true;}};
@@ -31,11 +31,11 @@ const Flow=methods('assets/scripts/GameFlow.ts',['enterLevelSelection','requestL
  f.showLobby=()=>{f.lobby.node.activeInHierarchy=true;};f.returnToLobby();await new Promise(setImmediate);assert.equal(ads,3,'Return home requests interstitial');
  const Display=methods('assets/scripts/ui/EnergyDisplay.ts',['_refresh','_onRewardClick']);const d=new Display();let clicked=0;d.flow={save:{energy:9,energyLimit:99,energyRecoveryLimit:15,energyRecoverySeconds:61},requestEnergyReward:()=>clicked++};
  d.energyLabel={string:''};d.countdownLabel={string:''};d.countdownRoot={active:false};d.videoIcon={active:false};
- d._refresh();assert.equal(d.energyLabel.string,'体力 9');assert.equal(d.countdownRoot.active,true);assert.equal(d.countdownLabel.string,'01:01');assert.equal(d.videoIcon.active,true);
+ d._refresh();assert.equal(d.energyLabel.string,'9');assert.equal(d.countdownRoot.active,true);assert.equal(d.countdownLabel.string,'01:01');assert.equal(d.videoIcon.active,true);
  d._onRewardClick();assert.equal(clicked,1);
  d.flow.save.energyRecoverySeconds=60;d._refresh();assert.equal(d.countdownLabel.string,'01:00');
  d.flow.save.energy=15;d._onRewardClick();assert.equal(clicked,1,'Click rechecks actual energy before next display refresh');
- for(const energy of [15,16,98,99]){d.flow.save.energy=energy;d._refresh();assert.equal(d.energyLabel.string,`体力 ${energy}`);assert.equal(d.countdownRoot.active,true);assert.equal(d.countdownLabel.string,'体力已满');assert.equal(d.videoIcon.active,false);d._onRewardClick();assert.equal(clicked,1);}
+ for(const energy of [15,16,98,99]){d.flow.save.energy=energy;d._refresh();assert.equal(d.energyLabel.string,String(energy));assert.equal(d.countdownRoot.active,true);assert.equal(d.countdownLabel.string,'');assert.equal(d.videoIcon.active,false);d._onRewardClick();assert.equal(clicked,1);}
  d.flow.save.energy=9;d._refresh();assert.equal(d.countdownLabel.string,'01:00');assert.equal(d.videoIcon.active,true);d._onRewardClick();assert.equal(clicked,2);
  for(const energy of [10,11,12,13,14]){d.flow.save.energy=energy;d._refresh();assert.equal(d.countdownLabel.string,'01:00');assert.equal(d.videoIcon.active,true);d._onRewardClick();}
  assert.equal(clicked,7,'Energy from 10 through 14 must retain countdown and video access');

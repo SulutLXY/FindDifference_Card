@@ -31,7 +31,7 @@ function assertLocal(value) {
     if (!value || typeof value !== 'object') return;
     if (value.__uuid__) {
         const asset = assets.get(value.__uuid__)?.replace(/\\/g, '/');
-        assert.ok(!asset?.includes('PleyGame'), 'Startup must not reference gameplay assets');
+        assert.ok(!asset?.includes('LobbySources'), 'Startup must not reference remote lobby assets');
         assert.ok(!asset?.startsWith('assets/Bundle/'), 'Startup templates must load remote city images dynamically');
     }
     for (const item of Object.values(value)) assertLocal(item);
@@ -42,9 +42,9 @@ const settings = read('settings/v2/packages/builder.json').bundleConfig.custom;
 const gameMeta = read('assets/PleyGame.meta').userData;
 assert.equal(gameMeta.bundleName, 'MainGameSources');
 assert.equal(settings.default.configs.miniGame.overwriteSettings['bytedance-mini-game'].isRemote, false);
-assert.equal(settings[gameMeta.bundleConfigID].configs.miniGame.fallbackOptions.isRemote, true);
+assert.equal(gameMeta.bundleConfigID, 'default');
 assert.equal(settings[gameMeta.bundleConfigID].configs.miniGame.overwriteSettings['bytedance-mini-game'].compressionType, 'merge_dep');
-assert.equal(read('profiles/v2/packages/bytedance-mini-game.json').builder.common.mainBundleIsRemote, false);
+assert.equal(read('profiles/v2/packages/bytedance-mini-game.json').builder.common.mainBundleIsRemote ?? false, false);
 
 const gameFiles = walk('assets/PleyGame').filter(f => !f.endsWith('.meta'));
 const localFiles = walk('assets/resources').filter(f => !f.endsWith('.meta'));
@@ -102,7 +102,7 @@ function flow() {
     f._loadBundleJson = async (_, request) => ({ json: read('assets/Bundle/' + request + '.json') });
     f._loadCityMeta = async (_, key) => read('assets/resources/configs/cities.json').chapters[key];
     let migrated = false, continueCalls = 0;
-    f.platform = { configure() {} }; f.save = { migrateChapterRules() { return true; }, migrateLegacy(keys) {
+    f.platform = { configure() {} }; f.save = { migrateContentLayout() { return true; }, migrateChapterRules() { return true; }, migrateLegacy(keys) {
         assert.equal(keys[0], 'city-02-beijing/level-01', 'Prepending HotTips must not shift legacy save identities');
         assert.equal(keys.length, 120);
         assert.ok(keys.every(key => !key.startsWith('city-00-HotTips/') && !key.startsWith('city-01-2026Hotmeme/') && !key.startsWith('city-2025Hotmeme/') && !key.startsWith('city-PetStory/')));
@@ -141,15 +141,16 @@ function flow() {
 
     const resume = flow(), completed = new Set(), started = [];
     resume._cities = ['a', 'b'].map(key => ({ key, levels: ['01', '02'], levelConfigs: [{ key: key + '/01' }, { key: key + '/02' }] }));
-    resume.save = { isCompleted: key => completed.has(key), isCityUnlocked: () => false };
+    resume.save = { isCompleted: key => completed.has(key), isCityUnlocked: () => false, isLevelUnlocked: () => false };
     resume._ensureLevel = async (city, index) => city.levelConfigs[index];
     resume.startLevel = async (city, index) => { started.push(city.key + '/' + city.levels[index]); };
     await resume.startContinue(); assert.equal(started.pop(), 'a/01', 'New players start at the first level');
     completed.add('a/01');
     await resume.startContinue(); assert.equal(started.pop(), 'a/02', 'Resume the next incomplete level');
     completed.add('a/02');
-    await resume.startContinue(); assert.equal(started.pop(), 'b/01', 'Continue into the next unlocked city');
+    await resume.startContinue(); assert.equal(started.pop(), 'a/01', 'Completed independent chapters replay their own first level');
+    resume._currentCity=resume._cities[1];
     completed.add('b/01'); completed.add('b/02');
-    await resume.startContinue(); assert.equal(started.pop(), 'a/01', 'Retain the all-complete replay behavior');
+    await resume.startContinue(); assert.equal(started.pop(), 'b/01', 'Replay the explicitly selected completed chapter');
     console.log('PASS: valid scene/prefab references, no gameplay startup dependencies, lazy UI loading, retry, reuse, and migrated audio paths.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

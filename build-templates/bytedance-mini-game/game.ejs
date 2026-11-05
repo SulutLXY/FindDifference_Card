@@ -1,3 +1,20 @@
+// Capture Feed entry before engine loading, so a quick click is never lost.
+(function () {
+    if (typeof tt === 'undefined' || globalThis.__findDifferenceFeed) return;
+    const state = globalThis.__findDifferenceFeed = { latest: null, listeners: [], supported: false };
+    try {
+        if (typeof tt.onFeedStatusChange !== 'function'
+            || (typeof tt.canIUse === 'function' && !tt.canIUse('onFeedStatusChange'))) return;
+        tt.onFeedStatusChange(function (event) {
+            state.latest = event;
+            state.listeners.slice().forEach(function (listener) {
+                try { listener(event); } catch (error) { console.warn('[Feed] refresh failed', error); }
+            });
+        });
+        state.supported = true;
+    } catch (error) { console.warn('[Feed] lifecycle unavailable', error); }
+})();
+
 // Capture launch events before loading the adapter/engine or any scene.
 (function () {
     if (typeof tt === 'undefined' || typeof tt.onShow !== 'function') return;

@@ -4,21 +4,55 @@ import { UIScreen } from './UIScreen';
 
 const { ccclass } = _decorator;
 
-/** Favorites education and an independent daily return reward. */
+/** 官方收藏入口、不可用时的教学引导，以及独立的每日收藏回访奖励。 */
 @ccclass('FavoriteGift')
 export class FavoriteGift extends UIScreen {
     private _modal: Node | null = null;
     private _status: Label | null = null;
     private _entry: Node | null = null;
+    private _favoritePending = false;
+    private _favoriteRequest = 0;
+    private _favoriteCaller: Node | null = null;
     private _unsubscribe: (() => void) | null = null;
     private readonly _bindings: Array<{ node: Node; callback: () => void }> = [];
 
     protected start(): void {
-        const lobby = this.flow.lobby?.node;
-        if (lobby) this._entry = this.findChildDeep(lobby, 'CollectGame');
-        if (this._entry) this._bind(this._entry, () => this._open());
+        this.bindLobby();
         this._unsubscribe = this.flow.platform.sidebar.subscribe(() => this.refresh());
         this.refresh();
+    }
+
+    public bindLobby(): void {
+        const lobby = this.flow.lobby?.node;
+        const entry = lobby ? this.findChildDeep(lobby, 'CollectGame') : null;
+        if (entry && entry !== this._entry) { this._entry = entry; this._bind(entry, () => this._requestFavorite()); }
+    }
+
+    private _requestFavorite(): void {
+        if (this._favoritePending) return;
+        const entry = this._entry;
+        if (!entry?.isValid || !entry.activeInHierarchy) return;
+        this._favoritePending = true;
+        this._favoriteCaller = entry;
+        const request = ++this._favoriteRequest;
+        const active = () => this.isValid && this.node.activeInHierarchy && entry.isValid
+            && entry.activeInHierarchy && this._entry === entry && request === this._favoriteRequest;
+        let guideShown = false;
+        this._close();
+        // 不等待登录、动画或定时器，保留本次用户点击的同步调用链。
+        void this.flow.platform.favoriteGame(() => { guideShown = true; }).then(message => {
+            if (!active()) return;
+            this.flow.toast(message);
+            // 未收藏也属于正常回调，不再追加第二个弹窗。
+            if (!guideShown) this._open();
+        }).catch(() => {
+            if (!active()) return;
+            this.flow.toast('收藏暂不可用，请按引导手动收藏');
+            this._open();
+        }).finally(() => {
+            this._favoritePending = false;
+            this._favoriteCaller = null;
+        });
     }
 
     public refresh(): void {
@@ -64,11 +98,16 @@ export class FavoriteGift extends UIScreen {
 
     protected update(): void {
         if (this._entry && !this._entry.activeInHierarchy) this._close();
+        if (this._favoriteCaller && !this._favoriteCaller.activeInHierarchy) {
+            this._favoriteCaller = null;
+            this._favoriteRequest++;
+        }
     }
 
-    protected onDisable(): void { this._close(); }
+    protected onDisable(): void { this._favoriteRequest++; this._close(); }
 
     protected onDestroy(): void {
+        this._favoriteRequest++;
         this._close(); this._unsubscribe?.();
         for (const { node, callback } of this._bindings) {
             if (node.isValid) node.off(Input.EventType.TOUCH_END, callback, this);

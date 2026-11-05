@@ -26,7 +26,7 @@ const sources = [
     ['UIPanels', 'assets/resources/textures/UI_Sprite/V3/panels'],
     ['UIButtons', 'assets/resources/textures/UI_Sprite/V3/buttons'],
     ['GameIcons', 'assets/PleyGame/Texture/icons'],
-    ['SecondaryIcons', 'assets/SecondaryUI/textures'],
+    ['SecondaryIcons', 'assets/LobbySources/SecondaryUI/textures'],
 ];
 for (const [name, sourceDir] of sources) {
     const asset = imports.find(({ data }) => objects(data, obj => obj.name === name && Array.isArray(obj.spriteFrames)).length);

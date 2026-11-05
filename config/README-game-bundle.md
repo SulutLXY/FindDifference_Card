@@ -1,5 +1,7 @@
 # 局内资源拆分
 
+> 2026-11-03：当前已改为玩法包本地、主页远程，在 GameScreen 下后台准备主页。启动和资源归属以 [README-game-first-loading.md](README-game-first-loading.md) 为准；下文旧的“主页留在启动场景、玩法包远程”说明为历史记录。
+
 > 2026-10-21 内容包已调整：主包保存完整章节索引，`chapter-covers` 保存章节封面，`food-icons` 独立保存美食图标，每章包含自己的差异点、小关缩略图及大图。当前结构、释放规则和验收范围以 [README-content-bundles.md](README-content-bundles.md) 为准。以下保留早期拆包过程记录，旧共享包路径不再作为当前构建依据。
 
 ## 2026 热梗接入（2026-10-15）

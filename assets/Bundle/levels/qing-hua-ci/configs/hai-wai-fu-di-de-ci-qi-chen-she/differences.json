@@ -1,0 +1,69 @@
+{
+  "name": "海外府邸的瓷器陈设",
+  "type": "porcelain",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.567339,
+      "y": 0.93871,
+      "radius": 0.125454
+    },
+    {
+      "id": "diff-2",
+      "x": 0.230746,
+      "y": 0.698387,
+      "radius": 0.072077
+    },
+    {
+      "id": "diff-3",
+      "x": 0.29002,
+      "y": 0.430645,
+      "radius": 0.02021
+    },
+    {
+      "id": "diff-4",
+      "x": 0.18629,
+      "y": 0.083871,
+      "radius": 0.056429
+    },
+    {
+      "id": "diff-5",
+      "x": 0.040222,
+      "y": 0.156452,
+      "radius": 0.085742
+    },
+    {
+      "id": "diff-6",
+      "x": 0.653075,
+      "y": 0.103226,
+      "radius": 0.077587
+    },
+    {
+      "id": "diff-7",
+      "x": 0.916633,
+      "y": 0.35,
+      "radius": 0.040064
+    },
+    {
+      "id": "diff-8",
+      "x": 0.451966,
+      "y": 0.495161,
+      "radius": 0.107824
+    },
+    {
+      "id": "diff-9",
+      "x": 0.964264,
+      "y": 0.162903,
+      "radius": 0.111477
+    },
+    {
+      "id": "diff-10",
+      "x": 0.679536,
+      "y": 0.427419,
+      "radius": 0.174052
+    }
+  ],
+  "icon": "thumbnails/qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she/icon/spriteFrame",
+  "collectibleId": "qing-hua-ci-lian-chi-yu-zao-wen-guan"
+}

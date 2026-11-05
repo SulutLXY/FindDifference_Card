@@ -1,0 +1,111 @@
+{
+  "name": "宠物故事",
+  "levels": [
+    {
+      "id": "city-PetStory/level-01",
+      "name": "白虎与黑狗保姆",
+      "folder": "bai-hu-yu-hei-gou-bao-mu"
+    },
+    {
+      "id": "city-PetStory/level-02",
+      "name": "狗狗婚礼",
+      "folder": "gou-gou-hun-li"
+    },
+    {
+      "id": "city-PetStory/level-03",
+      "name": "橘猫摆摊",
+      "folder": "ju-mao-bai-tan"
+    },
+    {
+      "id": "city-PetStory/level-04",
+      "name": "动物海盗团",
+      "folder": "dong-wu-hai-dao-tuan"
+    },
+    {
+      "id": "city-PetStory/level-05",
+      "name": "萌宠闪身步",
+      "folder": "meng-chong-shan-shen-bu"
+    },
+    {
+      "id": "city-PetStory/level-06",
+      "name": "猫咪烧烤",
+      "folder": "mao-mi-shao-kao"
+    },
+    {
+      "id": "city-PetStory/level-07",
+      "name": "干嘛猫的vlog",
+      "folder": "gan-ma-mao-de-vlog"
+    },
+    {
+      "id": "city-PetStory/level-08",
+      "name": "神秘八爪鱼",
+      "folder": "shen-mi-ba-zhao-yu"
+    },
+    {
+      "id": "city-PetStory/level-09",
+      "name": "姹紫嫣红",
+      "folder": "cha-zi-yan-hong"
+    },
+    {
+      "id": "city-PetStory/level-10",
+      "name": "鸡哥算了",
+      "folder": "ji-ge-suan-le"
+    },
+    {
+      "id": "city-PetStory/level-11",
+      "name": "土拨鼠",
+      "folder": "tu-bo-shu"
+    },
+    {
+      "id": "city-PetStory/level-12",
+      "name": "弱小无助",
+      "folder": "ruo-xiao-wu-zhu"
+    },
+    {
+      "id": "city-PetStory/level-13",
+      "name": "整点薯条",
+      "folder": "zheng-dian-shu-tiao"
+    },
+    {
+      "id": "city-PetStory/level-14",
+      "name": "压力山大",
+      "folder": "ya-li-shan-da"
+    },
+    {
+      "id": "city-PetStory/level-15",
+      "name": "铲屎官日常",
+      "folder": "chan-shi-guan-ri-chang"
+    },
+    {
+      "id": "city-PetStory/level-16",
+      "name": "孜然妙脆角",
+      "folder": "zi-ran-miao-cui-jiao"
+    },
+    {
+      "id": "city-PetStory/level-17",
+      "name": "小猫踏步舞",
+      "folder": "xiao-mao-ta-bu-wu"
+    },
+    {
+      "id": "city-PetStory/level-18",
+      "name": "剪指甲",
+      "folder": "jian-zhi-jia"
+    },
+    {
+      "id": "city-PetStory/level-19",
+      "name": "猫咪浴帽",
+      "folder": "mao-mi-yu-mao"
+    },
+    {
+      "id": "city-PetStory/level-20",
+      "name": "猫咪合租",
+      "folder": "mao-mi-he-zu"
+    }
+  ],
+  "banner": "chapter-covers/city-PetStory-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-PetStory"
+  ]
+}

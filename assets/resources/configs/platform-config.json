@@ -16,5 +16,26 @@
     "35x1m3p2bq2aafrfu1",
     "fhp4ov3kaej1hkam80"
   ],
-  "douyinFavoriteEntryRules": []
+  "douyinFavoriteEntryRules": [],
+  "feed": {
+    "enabled": false,
+    "serverlessEnabled": false,
+    "revisitEnabled": true,
+    "acquisitionEnabled": false,
+    "acquisitionContentID": "",
+    "contents": [
+      {
+        "contentID": "CONTENT13630007554",
+        "scene": 2,
+        "recommendationText": "拖图脑洞，益智轻松闯关！",
+        "subscriptionText": "免费领取道具"
+      },
+      {
+        "contentID": "CONTENT16082553858",
+        "scene": 2,
+        "recommendationText": "您的体力已满快来继续挑战吧！",
+        "subscriptionText": "体力已满，开启挑战"
+      }
+    ]
+  }
 }

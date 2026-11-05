@@ -68,6 +68,16 @@ export class ResultModal extends UIScreen {
     private _reviveNode: Node | null = null;
     private _reviveScale: Vec3 | null = null;
     private _reviveOpacity = 255;
+    private _shareWin = false;
+    private _shareVersion = 0;
+
+    private async _refreshShareVisibility(): Promise<void> {
+        const version = ++this._shareVersion;
+        await this.flow.platform?.detectHarmony?.();
+        if (!this.isValid || !this.node.activeInHierarchy || version !== this._shareVersion) return;
+        const share = this.resolveNode(this.btnShare, 'BtnShare');
+        if (share) share.active = this._shareWin && this.flow.platform?.supportsSharing !== false;
+    }
 
     private _stopRevivePulse(): void {
         this._reviveTween?.stop();
@@ -96,8 +106,8 @@ export class ResultModal extends UIScreen {
             .to(0.65, { opacity: this._reviveOpacity }, { easing: 'sineInOut' })).start();
     }
 
-    protected onDisable(): void { this._stopRevivePulse(); super.onDisable(); }
-    protected onDestroy(): void { this._stopRevivePulse(); super.onDestroy(); }
+    protected onDisable(): void { this._shareVersion++; this._stopRevivePulse(); super.onDisable(); }
+    protected onDestroy(): void { this._shareVersion++; this._stopRevivePulse(); super.onDestroy(); }
 
     protected onLoad(): void {
         this._ensureCloseButton();
@@ -144,7 +154,8 @@ export class ResultModal extends UIScreen {
         if (homeLabel) homeLabel.string = '返回主页';
 
         const share = this.resolveNode(this.btnShare, 'BtnShare');
-        if (share) share.active = payload.win;
+        this._shareWin = payload.win;
+        if (share) share.active = payload.win && this.flow.platform?.supportsSharing !== false;
 
         const primary = this.resolveNode(this.btnPrimary, 'BtnPrimary');
         const primaryLabel = primary?.getComponentInChildren(Label);
@@ -153,6 +164,7 @@ export class ResultModal extends UIScreen {
         }
 
         this.open();
+        void this._refreshShareVisibility();
         if (revive?.active) this._startRevivePulse(revive);
     }
 

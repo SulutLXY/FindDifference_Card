@@ -49,11 +49,13 @@ class CatalogTests(unittest.TestCase):
         foods = json.loads(self.output.read_text(encoding='utf-8'))['foods']
         by_level = {food['levelKey']: food for food in foods}
         count = 0
-        for path in (catalog.ROOT/'assets/Bundle/levels').glob('city-*/configs/level-*/differences.json'):
+        index = json.loads((catalog.ROOT/'assets/resources/configs/cities.json').read_text(encoding='utf-8'))
+        for path in (catalog.ROOT/'assets/Bundle/levels').glob('*/configs/*/differences.json'):
             level = json.loads(path.read_text(encoding='utf-8-sig'))
             if level.get('type') != 'food': continue
             count += 1
-            key = path.parents[2].name + '/' + path.parent.name
+            key = next(entry['id'] for entry in index['chapters'][path.parents[2].name]['levels']
+                       if entry['folder'] == path.parent.name)
             self.assertIn(key, by_level)
             food = by_level[key]
             self.assertEqual(catalog.food_name(level.get('food') or level['name']),catalog.food_name(food['name']))
@@ -99,7 +101,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_invalid_city_or_level_rejected(self):
         self.change({'C2':'../'})
-        with self.assertRaisesRegex(ValueError,'城市ID格式错误'): catalog.build(self.table,self.output)
+        with self.assertRaisesRegex(ValueError,'章节目录格式错误'): catalog.build(self.table,self.output)
 
     def test_content_limits_and_name_correction(self):
         catalog.build(self.table,self.output)

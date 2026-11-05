@@ -17,10 +17,17 @@ export class LobbyEntries extends UIScreen {
     private _subscriptionChecking = false;
     private _subscriptionVersion = 0;
     private _caller: Node | null = null;
+    private _feedGuideClosed: (() => void) | null = null;
     private _gift: SidebarGift | null = null;
+    private readonly _compatibilityActive = new WeakMap<Node, boolean>();
 
-    protected start(): void {
-        const lobby = this.flow.lobby?.node ?? this.node;
+    private _lobbyBound: Node | null = null;
+    public bindLobby(): void {
+        const lobby = this.flow.lobby?.node;
+        if (!lobby) return;
+        this._refreshPlatformEntries(lobby);
+        if (this._lobbyBound === lobby) return;
+        this._lobbyBound = lobby;
         const group = this.findChildDeep(lobby, 'Gameflow');
         const gift = group?.getChildByName('Gameflow');
         const rewardEntry = gift ?? group;
@@ -39,6 +46,10 @@ export class LobbyEntries extends UIScreen {
         this._bind('LiveStreamingCompanion', () => { this._caller = lobby; this._open('PC 直播伴侣', [],
             this.flow.platform.isPcCompanion ? '当前正在 PC 直播伴侣中运行，可直接开始挑战'
                 : '主播请在电脑的抖音直播伴侣「游戏玩法」中启动本游戏'); }, lobby);
+    }
+
+    protected start(): void {
+        this.bindLobby();
         const tt = (globalThis as any).tt;
         if (typeof tt?.onTouchEnd === 'function' && typeof tt?.offTouchEnd === 'function') {
             tt.onTouchEnd(this._nativeTouchEnd);
@@ -49,6 +60,7 @@ export class LobbyEntries extends UIScreen {
 
     /** 设置和运行时结算弹窗展示时显式接线；可重复调用。 */
     public bindRewardEntries(root: Node): void {
+        this._refreshPlatformEntries(root);
         const lobby = this.flow.lobby?.node;
         if (!this._gift && lobby) {
             const group = this.findChildDeep(lobby, 'Gameflow');
@@ -67,6 +79,28 @@ export class LobbyEntries extends UIScreen {
         visit(root);
     }
 
+    /** 主页、设置及结算页共用；保留美术预先隐藏的入口，不改布局。 */
+    private _refreshPlatformEntries(root: Node): void {
+        const platform = this.flow.platform;
+        const apply = () => {
+            if (this.isValid === false || root.isValid === false) return;
+            const visit = (node: Node) => {
+                const allowed = node.name === 'Subscription' ? platform?.supportsFeedSubscription !== false
+                    : node.name === 'Shar' ? platform?.supportsSharing !== false
+                        : node.name === 'LiveStreamingCompanion' ? !platform?.isHarmony : null;
+                if (allowed !== null) {
+                    if (!this._compatibilityActive.has(node)) this._compatibilityActive.set(node, node.active !== false);
+                    node.active = this._compatibilityActive.get(node)! && allowed;
+                }
+                for (const child of node.children) visit(child);
+            };
+            visit(root);
+            if (platform?.supportsFeedSubscription === false) this._closeSubscription();
+        };
+        apply();
+        void platform?.detectHarmony?.().then(apply);
+    }
+
     protected update(): void {
         if (this._caller && (!this._caller.isValid || !this._caller.activeInHierarchy)) {
             this._close(); this._closeSubscription(); this._gift?.closeGift(); this._caller = null;
@@ -79,6 +113,7 @@ export class LobbyEntries extends UIScreen {
 
     /** Native synchronous callback required by full-scene Feed subscriptions. */
     private readonly _nativeTouchEnd = (event: any): void => {
+        if (this.flow?.platform?.supportsFeedSubscription === false) return;
         const button = this._subscribeButton;
         if (!button?.isValid || !button.activeInHierarchy || !this.node.activeInHierarchy) return;
         const tt = (globalThis as any).tt;
@@ -99,7 +134,22 @@ export class LobbyEntries extends UIScreen {
         }
     };
 
+    public openFeedSubscription(caller: Node, onClose?: () => void): boolean {
+        if (this.flow.feed?.isPreview || this.flow.platform.supportsFeedSubscription === false) return false;
+        let root = this.node;
+        while (root.parent) root = root.parent;
+        if (!this.findChildDeep(root, 'ADDSubscription')) return false;
+        this._caller = caller;
+        this._feedGuideClosed = onClose ?? null;
+        void this._openSubscription();
+        return true;
+    }
+
     private async _openSubscription(): Promise<void> {
+        if (this.flow.platform.supportsFeedSubscription === false) {
+            this.flow.toast('当前系统暂不支持订阅功能');
+            return;
+        }
         this._close();
         let root = this.node;
         while (root.parent) root = root.parent;
@@ -148,6 +198,8 @@ export class LobbyEntries extends UIScreen {
     }
 
     private _requestSubscription(): void {
+        if (this.flow.feed?.isPreview) return;
+        if (this.flow.platform.supportsFeedSubscription === false) return;
         if (this._subscriptionBusy) return;
         if (this.flow.platform.feedSubscribed === true) { this.flow.toast('已完成订阅'); return; }
         // A slow status query must neither swallow the click nor overwrite its result.
@@ -168,6 +220,9 @@ export class LobbyEntries extends UIScreen {
     private _closeSubscription(): void {
         ++this._subscriptionVersion;
         if (this._subscriptionModal?.isValid) this._subscriptionModal.active = false;
+        const closed = this._feedGuideClosed;
+        this._feedGuideClosed = null;
+        closed?.();
     }
 
     private _bind(name: string, callback: () => void, root: Node = this.node): void {

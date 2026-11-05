@@ -2,6 +2,7 @@ import {
     _decorator,
     Color,
     Graphics,
+    EventTouch,
     Input,
     Label,
     Layout,
@@ -14,7 +15,7 @@ import {
     UITransform,
     instantiate,
 } from 'cc';
-import { CityConfig } from '../core/GameTypes';
+import { ChapterSelection } from '../core/GameTypes';
 import { EnergyDisplay } from './EnergyDisplay';
 import { UIColors, UIScreen } from './UIScreen';
 
@@ -39,7 +40,7 @@ const { ccclass, property } = _decorator;
  * - CityBanner    Sprite，章节封面包中的 banner，由首包章节索引指定
  * - LockIcon      旧模板锁图标，运行时隐藏
  *
- * 所有专题可直接进入；显示 ProgressPoint，隐藏旧模板的 BtnUnlock。
+ * 顶层专题直接进入；分组内的城市按默认开放/永久视频解锁规则显示入口。
  */
 @ccclass('CitySelectScreen')
 export class CitySelectScreen extends UIScreen {
@@ -63,12 +64,11 @@ export class CitySelectScreen extends UIScreen {
 
     protected onLoad(): void {
         void EnergyDisplay.attach(this.node);
-        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.returnToLobby());
+        this.wireButton(this.btnBack, 'BtnBack', () => this.flow.backFromCitySelection());
         this._setupScrollContainer();
     }
 
     protected onOpen(): void {
-        this.setLabel(this.pageTitle, 'PageTitle', '关卡选择');
         this.rebuild();
     }
 
@@ -77,6 +77,7 @@ export class CitySelectScreen extends UIScreen {
     }
 
     public rebuild(): void {
+        this.setLabel(this.pageTitle, 'PageTitle', this.flow.chapterSelectionTitle);
         this._clearCards();
         const root = this.resolveNode(this.listRoot, 'List') ?? this.node;
         const container = this._content ?? root;
@@ -84,7 +85,7 @@ export class CitySelectScreen extends UIScreen {
             ?? root.getChildByName('CityCard')
             ?? root.getChildByName('CityCard1');
 
-        this.flow.cities.forEach(city => {
+        this.flow.chapterSelections.forEach(city => {
             let card: Node;
             if (this.cardPrefab) {
                 card = instantiate(this.cardPrefab);
@@ -108,26 +109,35 @@ export class CitySelectScreen extends UIScreen {
         this._scrollToTop();
     }
 
-    private _fillCard(card: Node, city: CityConfig): void {
-        const progress = this.flow.cityProgress(city);
+    private _fillCard(card: Node, city: ChapterSelection): void {
+        const group = 'chapters' in city;
+        const unlocked = group || this.flow.isCityUnlocked(this.flow.cities.indexOf(city));
+        const progress = this.flow.selectionProgress(city);
         const progressPoint = this.findChildDeep(card, 'ProgressPoint');
         const unlockButton = this.findChildDeep(card, 'BtnUnlock');
-        if (progressPoint) progressPoint.active = true;
+        if (progressPoint) progressPoint.active = unlocked;
         if (unlockButton) {
-            unlockButton.active = false;
+            unlockButton.active = !unlocked;
             unlockButton.off(Input.EventType.TOUCH_END, undefined, this);
+            if (!unlocked) unlockButton.on(Input.EventType.TOUCH_END, (event?: EventTouch) => {
+                if (event) event.propagationStopped = true;
+                void this.flow.enterChapterSelection(city);
+            }, this);
+            const label = unlockButton.getComponentInChildren(Label);
+            if (label) label.string = '看视频解锁';
         }
 
         this._setCardLabel(card, 'CityName', city.name);
         this._setCardLabel(card, 'CityProgress', `${progress.done}/${progress.total}`);
-        this._setCardLabel(card, 'Levelnumber', progress.total > 0 ? `${city.name}1-${progress.total}关` : '');
+        this._setCardLabel(card, 'Levelnumber', group ? `${city.chapters.length}个城市 · ${progress.total}关`
+            : !unlocked ? '观看1个视频永久解锁' : progress.total > 0 ? `${city.name}1-${progress.total}关` : '');
         const rangeLabel = this.findChildDeep(card, 'Levelnumber')?.getComponent(Label);
         if (rangeLabel) {
             rangeLabel.enableWrapText = false;
             rangeLabel.overflow = Label.Overflow.SHRINK;
         }
         const cityAim = this.findChildDeep(card, 'Cityaim')?.getComponent(Sprite);
-        if (cityAim) cityAim.grayscale = false;
+        if (cityAim) cityAim.grayscale = !unlocked;
 
         // 进度条：rank_row 底槽 + rank_row-001 填充（锚点已靠左，按完成比例改宽度）
         const barRoot = this.findChildDeep(card, 'rank_row');
@@ -138,22 +148,23 @@ export class CitySelectScreen extends UIScreen {
             fillUi.width = barRootUi.width * ratio;
         }
 
-        // 兼容旧模板，隐藏所有专题锁定提示。
+        // 顶层专题不锁定，城市子章节显示真实资格。
         for (const name of ['LockIcon', 'CityLockTip']) {
             const lock = this.findChildDeep(card, name);
-            if (lock) lock.active = false;
+            if (lock) lock.active = !unlocked;
         }
+        this._setCardLabel(card, 'CityLockTip', unlocked ? '' : '看视频解锁该城市');
         const bannerSprite = this.findChildDeep(card, 'CityBanner')?.getComponent(Sprite);
-        if (bannerSprite) bannerSprite.grayscale = false;
-        void this._loadBanner(card, city.banner || `chapter-covers/${city.key}-icon/spriteFrame`);
+        if (bannerSprite) bannerSprite.grayscale = !unlocked;
+        void this._loadBanner(card, city.banner || `chapter-covers/${city.key}-icon/spriteFrame`, !unlocked);
 
         card.off(Input.EventType.TOUCH_END);
         card.on(Input.EventType.TOUCH_END, () => {
-            void this.flow.enterCity(city);
+            void this.flow.enterChapterSelection(city);
         }, this);
     }
 
-    private async _loadBanner(card: Node, path: string): Promise<void> {
+    private async _loadBanner(card: Node, path: string, grayscale = false): Promise<void> {
         const banner = this.findChildDeep(card, 'CityBanner');
         if (!banner) return;
         try {
@@ -162,6 +173,7 @@ export class CitySelectScreen extends UIScreen {
             let sprite = banner.getComponent(Sprite);
             if (!sprite) sprite = banner.addComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
+            sprite.grayscale = grayscale;
             if (banner.isValid) {
                 sprite.spriteFrame = frame;
                 console.log(`[CitySelect] banner-loaded path=${path}`);

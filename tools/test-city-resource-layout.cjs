@@ -5,7 +5,7 @@ const index=read('assets/resources/configs/cities.json');
 const loads=[], requests=[], removed=[];
 const imageFile = p => ['.jpg','.png','.jpeg','.webp'].map(ext=>p.replace(/\/spriteFrame$/,'')+ext).find(fs.existsSync);
 class JsonAsset {} class SpriteFrame {}
-const root=name=>'assets/Bundle/'+(name.startsWith('city-')?'levels/':'')+name;
+const root=name=>'assets/Bundle/'+(index.cities.includes(name)?'levels/':'')+name;
 const bundles=new Map();
 // Local scenes/templates must not pull the new remote picture packages into startup dependencies.
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(dir+'/'+e.name):[dir+'/'+e.name]);
@@ -40,7 +40,7 @@ const Flow=createFlow({JsonAsset,SpriteFrame,Sprite:class{},resources:{},assetMa
         const source=read(root(key)+'/configs/city.json');
         delete source.unlockMode; delete source.prerequisiteCity;
         assert.equal(JSON.stringify(index.chapters[key]),JSON.stringify({key,...source}),'Generated index must match source');
-        assert.equal(city.banner,'chapter-covers/'+key+'-icon/spriteFrame');
+        assert.equal(city.banner,index.chapters[key].banner);
         assert.equal(fs.existsSync(root(key)+'/configs/'+key+'-icon.jpg'),false);
     }
     assert.equal(loads.length,0,'Boot metadata and save migration must not request ANY chapter bundle');
@@ -63,7 +63,7 @@ const Flow=createFlow({JsonAsset,SpriteFrame,Sprite:class{},resources:{},assetMa
         await flow._contentBundles.use(city.key,async()=>{
             for(const dir of city.levels) {
                 const level=await flow._loadLevel(null,city.key,dir);count++;
-                assert.equal(level.key,city.key+'/'+dir);
+                assert.equal(level.key,city.levelIds[dir]);
                 for(const field of ['topImage','bottomImage','icon']) {
                     const target=flow._chapterSpriteTarget(level[field]);
                     assert.equal(target.cityKey,city.key);
@@ -77,12 +77,12 @@ const Flow=createFlow({JsonAsset,SpriteFrame,Sprite:class{},resources:{},assetMa
         assert.deepEqual(loads.slice(before),[city.key]);
         assert.equal(bundles.size,0,'Chapter resources and package metadata must not accumulate');
     }
-    assert.equal(count,255);assert.equal(cities.length,13);assert.equal(foods.length,40);
+    assert.equal(count,325);assert.equal(cities.length,13);assert.equal(foods.length,40);
     for(const name of ['chapter-covers','food-icons',...index.cities]) {
         const meta=read(root(name)+'.meta').userData;
         assert.equal(meta.isBundle,true);assert.equal(meta.bundleName,name);
         const config=read('settings/v2/packages/builder.json').bundleConfig.custom[meta.bundleConfigID].configs.miniGame;
         assert.equal(config.fallbackOptions.isRemote,true);
     }
-    console.log('PASS layout: local startup index, isolated covers/food packages, 13 chapters, 255 levels, 40 food icons and unload after use');
+    console.log('PASS layout: local startup index, isolated covers/food packages, 13 chapters, 325 levels, 40 food icons and unload after use');
 })().catch(error=>{console.error(error);process.exitCode=1;});

@@ -1,0 +1,16 @@
+{
+  "key": "lian-ai-mei-shi",
+  "name": "恋爱美食",
+  "banner": "chapter-covers/city-02-beijing-icon/spriteFrame",
+  "chapters": [
+    "bei-jing",
+    "shang-hai",
+    "nan-jing",
+    "xia-men",
+    "chang-sha",
+    "guang-zhou",
+    "cheng-du",
+    "xi-an"
+  ],
+  "defaultChapter": "bei-jing"
+}

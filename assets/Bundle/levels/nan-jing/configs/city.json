@@ -1,0 +1,86 @@
+{
+  "name": "南京",
+  "levels": [
+    {
+      "id": "city-04-nanjing/level-01",
+      "name": "夫子庙",
+      "folder": "fu-zi-miao"
+    },
+    {
+      "id": "city-04-nanjing/level-02",
+      "name": "制作盐水鸭",
+      "folder": "zhi-zuo-yan-shui-ya"
+    },
+    {
+      "id": "city-04-nanjing/level-03",
+      "name": "盐水鸭",
+      "folder": "yan-shui-ya"
+    },
+    {
+      "id": "city-04-nanjing/level-04",
+      "name": "鸡鸣寺",
+      "folder": "ji-ming-si"
+    },
+    {
+      "id": "city-04-nanjing/level-05",
+      "name": "制作桂花糖芋苗",
+      "folder": "zhi-zuo-gui-hua-tang-yu-miao"
+    },
+    {
+      "id": "city-04-nanjing/level-06",
+      "name": "桂花糖芋苗",
+      "folder": "gui-hua-tang-yu-miao"
+    },
+    {
+      "id": "city-04-nanjing/level-07",
+      "name": "南京博物馆",
+      "folder": "nan-jing-bo-wu-guan"
+    },
+    {
+      "id": "city-04-nanjing/level-08",
+      "name": "制作金陵烤鸭",
+      "folder": "zhi-zuo-jin-ling-kao-ya"
+    },
+    {
+      "id": "city-04-nanjing/level-09",
+      "name": "金陵烤鸭",
+      "folder": "jin-ling-kao-ya"
+    },
+    {
+      "id": "city-04-nanjing/level-10",
+      "name": "台城城墙",
+      "folder": "tai-cheng-cheng-qiang"
+    },
+    {
+      "id": "city-04-nanjing/level-11",
+      "name": "制作牛肉锅贴",
+      "folder": "zhi-zuo-niu-rou-guo-tie"
+    },
+    {
+      "id": "city-04-nanjing/level-12",
+      "name": "牛肉锅贴",
+      "folder": "niu-rou-guo-tie"
+    },
+    {
+      "id": "city-04-nanjing/level-13",
+      "name": "玄武湖",
+      "folder": "xuan-wu-hu"
+    },
+    {
+      "id": "city-04-nanjing/level-14",
+      "name": "制作鸭血粉丝",
+      "folder": "zhi-zuo-ya-xue-fen-si"
+    },
+    {
+      "id": "city-04-nanjing/level-15",
+      "name": "鸭血粉丝",
+      "folder": "ya-xue-fen-si"
+    }
+  ],
+  "banner": "chapter-covers/city-04-nanjing-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-04-nanjing"
+  ]
+}

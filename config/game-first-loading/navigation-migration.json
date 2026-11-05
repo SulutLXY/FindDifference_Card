@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-03",
+  "pages": [
+    "CitySelect",
+    "LevelSelect"
+  ],
+  "moved": [
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/panel_CityCard_BG.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/panels/panel_CityCard_BG.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_aim.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/icons/icon_aim.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/panel_slider01.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/panels/panel_slider01.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/panel_slider01BG.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/panels/panel_slider01BG.png"
+    }
+  ],
+  "mergedDirectory": {
+    "from": "assets/SecondaryUI",
+    "to": "assets/LobbySources/SecondaryUI"
+  },
+  "removedSceneObjects": 143
+}

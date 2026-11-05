@@ -10,7 +10,7 @@ export class EnergyDisplay extends UIScreen {
     public energyLabel: Label | null = null;
     @property({ type: Label, displayName: '恢复倒计时' })
     public countdownLabel: Label | null = null;
-    @property({ type: Node, displayName: '状态文字容器', tooltip: '始终显示，体力不足显示倒计时，达到 15 点显示体力已满' })
+    @property({ type: Node, displayName: '状态文字容器', tooltip: '保持节点显示，体力不足显示倒计时，达到 15 点将文字置空' })
     public countdownRoot: Node | null = null;
     @property({ type: Node, displayName: '体力点击区域', tooltip: '体力不足 15 点时点击观看视频，达到 15 点后点击无效' })
     public rewardButton: Node | null = null;
@@ -83,12 +83,12 @@ export class EnergyDisplay extends UIScreen {
         const save = this.flow.save;
         const energy = save.energy;
         const full = energy >= save.energyRecoveryLimit;
-        const text = `体力 ${energy}`;
+        const text = String(energy);
         if (this.energyLabel.string !== text) this.energyLabel.string = text;
         if (this.countdownRoot) this.countdownRoot.active = true;
         if (this.countdownLabel) {
             const seconds = save.energyRecoverySeconds;
-            const remaining = full ? '体力已满' : `${Math.floor(seconds / 60).toString().padStart(2, '0')}:${(seconds % 60).toString().padStart(2, '0')}`;
+            const remaining = full ? '' : `${Math.floor(seconds / 60).toString().padStart(2, '0')}:${(seconds % 60).toString().padStart(2, '0')}`;
             if (this.countdownLabel.string !== remaining) this.countdownLabel.string = remaining;
         }
         if (this.videoIcon) this.videoIcon.active = !full;

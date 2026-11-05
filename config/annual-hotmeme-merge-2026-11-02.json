@@ -1,0 +1,1410 @@
+{
+  "source": "city-2025Hotmeme",
+  "target": "nian-du-re-geng",
+  "name": "年度热梗",
+  "levels": [
+    {
+      "id": "city-2025Hotmeme/level-01",
+      "name": "哈基米南北绿豆",
+      "oldFolder": "level-01",
+      "folder": "ha-ji-mi-nan-bei-lv-dou"
+    },
+    {
+      "id": "city-2025Hotmeme/level-02",
+      "name": "乌萨奇，到",
+      "oldFolder": "level-02",
+      "folder": "wu-sa-qi-dao"
+    },
+    {
+      "id": "city-2025Hotmeme/level-03",
+      "name": "天雷滚滚好怕怕",
+      "oldFolder": "level-03",
+      "folder": "tian-lei-gun-gun-hao-pa-pa"
+    },
+    {
+      "id": "city-2025Hotmeme/level-04",
+      "name": "来财，来",
+      "oldFolder": "level-04",
+      "folder": "lai-cai-lai"
+    },
+    {
+      "id": "city-2025Hotmeme/level-05",
+      "name": "look my eyes",
+      "oldFolder": "level-05",
+      "folder": "look-my-eyes"
+    },
+    {
+      "id": "city-2025Hotmeme/level-06",
+      "name": "大展宏图",
+      "oldFolder": "level-06",
+      "folder": "da-zhan-hong-tu"
+    },
+    {
+      "id": "city-2025Hotmeme/level-07",
+      "name": "从从容容游刃有余",
+      "oldFolder": "level-07",
+      "folder": "cong-cong-rong-rong-you-ren-you-yu"
+    },
+    {
+      "id": "city-2025Hotmeme/level-08",
+      "name": "颗秒",
+      "oldFolder": "level-08",
+      "folder": "ke-miao"
+    },
+    {
+      "id": "city-2025Hotmeme/level-09",
+      "name": "扫腿舞",
+      "oldFolder": "level-09",
+      "folder": "sao-tui-wu"
+    },
+    {
+      "id": "city-2025Hotmeme/level-10",
+      "name": "城巴佬",
+      "oldFolder": "level-10",
+      "folder": "cheng-ba-lao"
+    },
+    {
+      "id": "city-2025Hotmeme/level-11",
+      "name": "抖音音乐班",
+      "oldFolder": "level-11",
+      "folder": "dou-yin-yin-yue-ban"
+    },
+    {
+      "id": "city-2025Hotmeme/level-12",
+      "name": "叮咚鸡",
+      "oldFolder": "level-12",
+      "folder": "ding-dong-ji"
+    },
+    {
+      "id": "city-2025Hotmeme/level-13",
+      "name": "圆头耄耋",
+      "oldFolder": "level-13",
+      "folder": "yuan-tou-mao-die"
+    },
+    {
+      "id": "city-2025Hotmeme/level-14",
+      "name": "阿玛提拉斯",
+      "oldFolder": "level-14",
+      "folder": "a-ma-ti-la-si"
+    },
+    {
+      "id": "city-2025Hotmeme/level-15",
+      "name": "驾校老奶奶",
+      "oldFolder": "level-15",
+      "folder": "jia-xiao-lao-nai-nai"
+    },
+    {
+      "id": "city-2025Hotmeme/level-16",
+      "name": "秦始皇骑大白熊",
+      "oldFolder": "level-16",
+      "folder": "qin-shi-huang-qi-da-bai-xiong"
+    },
+    {
+      "id": "city-2025Hotmeme/level-17",
+      "name": "做完你的做你的",
+      "oldFolder": "level-17",
+      "folder": "zuo-wan-ni-de-zuo-ni-de"
+    },
+    {
+      "id": "city-2025Hotmeme/level-18",
+      "name": "何意味",
+      "oldFolder": "level-18",
+      "folder": "he-yi-wei"
+    },
+    {
+      "id": "city-2025Hotmeme/level-19",
+      "name": "灵感菇",
+      "oldFolder": "level-19",
+      "folder": "ling-gan-gu"
+    },
+    {
+      "id": "city-2025Hotmeme/level-20",
+      "name": "被资本做局了",
+      "oldFolder": "level-20",
+      "folder": "bei-zi-ben-zuo-ju-le"
+    },
+    {
+      "id": "city-2025Hotmeme/level-21",
+      "name": "法修散打",
+      "oldFolder": "level-21",
+      "folder": "fa-xiu-san-da"
+    },
+    {
+      "id": "city-2025Hotmeme/level-22",
+      "name": "大东北",
+      "oldFolder": "level-22",
+      "folder": "da-dong-bei"
+    },
+    {
+      "id": "city-2025Hotmeme/level-23",
+      "name": "苦命鸳鸯",
+      "oldFolder": "level-23",
+      "folder": "ku-ming-yuan-yang"
+    },
+    {
+      "id": "city-2025Hotmeme/level-24",
+      "name": "改结局",
+      "oldFolder": "level-24",
+      "folder": "gai-jie-ju"
+    },
+    {
+      "id": "city-2025Hotmeme/level-25",
+      "name": "没建模经济",
+      "oldFolder": "level-25",
+      "folder": "mei-jian-mo-jing-ji"
+    }
+  ],
+  "preservedFiles": [
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-01/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ha-ji-mi-nan-bei-lv-dou/scene-a.jpg",
+      "sha256": "2d1bc3a9f33246569c6fa8371917bcfae9d029985898c979be92ab79e0209659"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-01/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ha-ji-mi-nan-bei-lv-dou/scene-a.jpg.meta",
+      "sha256": "00e7e4f3a11504d73aee5d3ed447eb040e499996ab0bed53e8005b602c096eda"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-01/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ha-ji-mi-nan-bei-lv-dou/scene-b.jpg",
+      "sha256": "7d75d1278ee8474174a22bf0c110b59d0d758b2df57a6e4cf4520706865158fe"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-01/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ha-ji-mi-nan-bei-lv-dou/scene-b.jpg.meta",
+      "sha256": "31c124467c28abf3c6937a38a393203fda9f15ef61cceb4ede8c4165df2933a9"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-01.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ha-ji-mi-nan-bei-lv-dou.meta",
+      "sha256": "9e9c4d5ccfad688733e9ade77bb8c5060752826b768027fcf32227cbb93646f6"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-01/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/ha-ji-mi-nan-bei-lv-dou/differences.json.meta",
+      "sha256": "d9fa25de8fb919656807e9c621bda25e7be2514f4ffa04ca7a7c85b9d44bf046"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-01.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/ha-ji-mi-nan-bei-lv-dou.meta",
+      "sha256": "a5e005892ed34d82309b100dc36439f5515e4ded59ff85c33eeb251aa11b541f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-01/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ha-ji-mi-nan-bei-lv-dou/icon.jpg",
+      "sha256": "89953cd08be3238eba6e63132c2c58993aaeb36a252d3222d2c47fe8486f8b65"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-01/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ha-ji-mi-nan-bei-lv-dou/icon.jpg.meta",
+      "sha256": "0d7d035820e48d86137b85b59778ee541e491234e0c985f89a1f9bd6ab5544d5"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-01.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ha-ji-mi-nan-bei-lv-dou.meta",
+      "sha256": "4d8bc533c651cda533ed5d19a9c339aab10f46b08c19491991deb97fb5f7a152"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-02/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/wu-sa-qi-dao/scene-a.jpg",
+      "sha256": "0e10ee089ddce8090354bba651a3000cc4f3698863f1f8c30255751a6f0eaa37"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-02/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/wu-sa-qi-dao/scene-a.jpg.meta",
+      "sha256": "f83238f96bf5b826a401400a0454ee83e1895c48a766a257a81867aa538d530a"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-02/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/wu-sa-qi-dao/scene-b.jpg",
+      "sha256": "4cce3822055db1b14d50fa74c052aee7431dfc2814384cbc9049299959fd26f8"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-02/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/wu-sa-qi-dao/scene-b.jpg.meta",
+      "sha256": "d8fb4ec99b7c7e08dd70c74dda52a05f3bcc9b2e304384fd316df730d25b1413"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-02.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/wu-sa-qi-dao.meta",
+      "sha256": "aa998c48fd21f18b0b9d50272e2d206874221a57273a75cb6bc37d2eae78eff7"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-02/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/wu-sa-qi-dao/differences.json.meta",
+      "sha256": "2bdd1c181347fb3f27b20f3b6bbca9826e25c2cda2ffcbfea15629b3e365f584"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-02.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/wu-sa-qi-dao.meta",
+      "sha256": "7f130ae24e4bc01decfb3fa26f96f45421a06c446a46337c424e3c9ae3d18678"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-02/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/wu-sa-qi-dao/icon.jpg",
+      "sha256": "69391c5a10c32523d074d58e5cb6b662e289e9f1694511c1b94c6d70fc0afc93"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-02/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/wu-sa-qi-dao/icon.jpg.meta",
+      "sha256": "77aa557b719c658f93d4ecfef7b5a0b99b4cceebaffe7a4681fe1fc9070d92d7"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-02.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/wu-sa-qi-dao.meta",
+      "sha256": "307a47bc1740d0e2c23f6a80136e28fa1d3ad999c6507689b8962b7cf13380b3"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-03/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/tian-lei-gun-gun-hao-pa-pa/scene-a.jpg",
+      "sha256": "e25a959a6d618c30319213e65eab383c3affe7caaf1d04260cde3edce6e6f971"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-03/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/tian-lei-gun-gun-hao-pa-pa/scene-a.jpg.meta",
+      "sha256": "9c99b61ab092d0454f8f802716e6c7b17ba4ca9ac6040eec6351676a280409b4"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-03/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/tian-lei-gun-gun-hao-pa-pa/scene-b.jpg",
+      "sha256": "1072b3e93ce754af6823db67f6c90a45d942ae0e57724b0efd5c99a9bd84f31f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-03/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/tian-lei-gun-gun-hao-pa-pa/scene-b.jpg.meta",
+      "sha256": "7124c7b471447f80d8489d00d984317cfb8d199c7043877fdf387f94d7c69641"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-03.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/tian-lei-gun-gun-hao-pa-pa.meta",
+      "sha256": "849310b3aa34738aa0106cb922ec305e3078748fdc179438492bbe7e1f6405a9"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-03/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/tian-lei-gun-gun-hao-pa-pa/differences.json.meta",
+      "sha256": "c134742e3aa24cd96e281637af6e7db13f28306753f1daa6592bb3c2dbe546b4"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-03.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/tian-lei-gun-gun-hao-pa-pa.meta",
+      "sha256": "75a863a8175befd9b4eb36f1d51a16b9f07d48f6ee96f3db83aaf1ee8b625264"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-03/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/tian-lei-gun-gun-hao-pa-pa/icon.jpg",
+      "sha256": "6f0c9cdab3e707d61229feef7d741a9a76285cfa39aae55bf9453da1e2f494aa"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-03/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/tian-lei-gun-gun-hao-pa-pa/icon.jpg.meta",
+      "sha256": "849ae4e22e62eab68e5125f99140a074dc5462df3e34f3ac9f9e2bd83eb9c720"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-03.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/tian-lei-gun-gun-hao-pa-pa.meta",
+      "sha256": "cb682150b9992e50f7242b50fdb4c182cf1b378b59f846782cbb5e8146dcac7e"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-04/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/lai-cai-lai/scene-a.jpg",
+      "sha256": "c906a5a6d948bf81bcc16ba38751b292f974d0f609afc4ed2202ac1af60a4710"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-04/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/lai-cai-lai/scene-a.jpg.meta",
+      "sha256": "b1b83fa2ef6e6149cf3bc8e2dfd8b47ca907912a005100d86f36793c3e39a61b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-04/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/lai-cai-lai/scene-b.jpg",
+      "sha256": "87bd5c2534a6190250cf4c12a5c041616d9c617e6e04aaac676a200c84934101"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-04/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/lai-cai-lai/scene-b.jpg.meta",
+      "sha256": "80c5ed8d8262a2866653263e7d3c45b88784843e705fd98abecac73c5939aba8"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-04.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/lai-cai-lai.meta",
+      "sha256": "befabe4d0fda2cda1896d9f6110cd906f3c92e0b03f3ec79a6facc3fa7b17b45"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-04/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/lai-cai-lai/differences.json.meta",
+      "sha256": "47092320c5d53cef4290f3bae517ebe336da688f62a7bd19ab480e2e84e13fc1"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-04.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/lai-cai-lai.meta",
+      "sha256": "e0ac22db074ae3a4f9d22e2571886158c41a28902837cefe5093f4bcc5e30797"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-04/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/lai-cai-lai/icon.jpg",
+      "sha256": "42642573552bb5b60533b2ad4c01608a64bd8153c74b4904cda29ed79ec6c7a4"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-04/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/lai-cai-lai/icon.jpg.meta",
+      "sha256": "fccab210d9ea7a07c46d277f0ada6be40eeb5ca318b0feecc9cdc0fd5f2ae849"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-04.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/lai-cai-lai.meta",
+      "sha256": "39ec4cb733d19bd4d3aedb3b18fc44af56cc79f47f4eb576940d4c3cf3c8fb1e"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-05/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/look-my-eyes/scene-a.jpg",
+      "sha256": "b9667d97822122c69d527230f78b8a57e867e3566ba454932e8fe63cf20a42e2"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-05/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/look-my-eyes/scene-a.jpg.meta",
+      "sha256": "b585bc9b8d812bc02b701f76c9f90657926ede7cb1147afc0caeff37b8cef274"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-05/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/look-my-eyes/scene-b.jpg",
+      "sha256": "b840dedd2fbb9c54da743dbedbd1b604a22bf8dac66c9136e10b28879455dbf2"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-05/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/look-my-eyes/scene-b.jpg.meta",
+      "sha256": "39b0aef1279a303b148d1b5a6eba249035e7dfd02f99997a9a9b206706983331"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-05.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/look-my-eyes.meta",
+      "sha256": "6d7c0d6d3c8ce842c1c9fca3e49910ab8575db5f4207cd36c7df60d0635de56f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-05/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/look-my-eyes/differences.json.meta",
+      "sha256": "c4e0549ad8898ddb7c3858cd91d66645c7a33f475a7ea8e71b6889656620a372"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-05.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/look-my-eyes.meta",
+      "sha256": "c5807774566e25b892b26a10e46cb023586560d4cb24f592a3c027505dc7f230"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-05/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/look-my-eyes/icon.jpg",
+      "sha256": "60fdb9deda65f3d91c28c6330c66bd8abaed5388f30cc7f211f10ecb480deae7"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-05/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/look-my-eyes/icon.jpg.meta",
+      "sha256": "01803a897d77fdac9d3e02863b04c46c26a2ba45a58e4882ae797d46945c012b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-05.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/look-my-eyes.meta",
+      "sha256": "282449a0fff9eb2ae180655e08487721b8a671f8919de0a188f72a7cb6846ead"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-06/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/da-zhan-hong-tu/scene-a.jpg",
+      "sha256": "66cd0b6474210e1805bdb907c4c17fbb5aa7b6b22e93d5a590f5d426a2234e64"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-06/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/da-zhan-hong-tu/scene-a.jpg.meta",
+      "sha256": "aed0c7c55e33938ef1214527d6d8a422021d7df3b075b435e321ac6ce8d883f1"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-06/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/da-zhan-hong-tu/scene-b.jpg",
+      "sha256": "fd39beb85058da0eaf54991e5ef4cbe386b9e05e0ed80456610e69e09a51c9be"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-06/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/da-zhan-hong-tu/scene-b.jpg.meta",
+      "sha256": "f8a923f87fac95aaeb6cbc75f83de16aa3ea278214729e9d598de64225a8cda0"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-06.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/da-zhan-hong-tu.meta",
+      "sha256": "54de3e8d869b71638a8e4529e1371b8cb92200f512d8e979c09b9fa769b4b09a"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-06/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/da-zhan-hong-tu/differences.json.meta",
+      "sha256": "79d74e9c411b8036bb57aafc4b0413d00e3cdfca527c3d7e159a8a4c57ba73a5"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-06.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/da-zhan-hong-tu.meta",
+      "sha256": "fb35d42ae5e04bdfee3923659d09f2cf337410bad8e7c11bfe88864136de2abf"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-06/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/da-zhan-hong-tu/icon.jpg",
+      "sha256": "4a9c221df25d42133ad5e824125d5bdb0883cc0896f7bc0dee15f67503544f76"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-06/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/da-zhan-hong-tu/icon.jpg.meta",
+      "sha256": "587baa088f904ee42ab256e31c39d9243fa4191ce73c67e2b68c013337c7c703"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-06.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/da-zhan-hong-tu.meta",
+      "sha256": "224d61c404d9eb7755d097a1b0649b399939a395649894bc4fcf4209962b4ec2"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-07/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/cong-cong-rong-rong-you-ren-you-yu/scene-a.jpg",
+      "sha256": "fa497c1d3732d6d7e8360520dc1183af2b3051d27f5a415b71a11e8a41383eba"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-07/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/cong-cong-rong-rong-you-ren-you-yu/scene-a.jpg.meta",
+      "sha256": "4618d430eaab900fcf19131e57d8b5c01a676a96f98d047c06b3cf372f6b1e6d"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-07/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/cong-cong-rong-rong-you-ren-you-yu/scene-b.jpg",
+      "sha256": "48e335980d2930245ecc720188b7187a914044c167eff917d6128e103b252a0b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-07/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/cong-cong-rong-rong-you-ren-you-yu/scene-b.jpg.meta",
+      "sha256": "2a8f1600d0f2eae4b42449efed41cc41f9f5808d55beaaa73dca9aedb5de188b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-07.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/cong-cong-rong-rong-you-ren-you-yu.meta",
+      "sha256": "9c72a9b3d8f19ebbb113a58a1c18aab3397cdf0534c9fd3da79d9658f7917784"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-07/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/cong-cong-rong-rong-you-ren-you-yu/differences.json.meta",
+      "sha256": "1f931e8926965284a4f628f02cb063b5ec4fe06fc79ce96aa595cbefa5331e3a"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-07.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/cong-cong-rong-rong-you-ren-you-yu.meta",
+      "sha256": "0d2660d1e72607e68c5fa51e7256742dcccd46e287cefc6447a96d6464d140f5"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-07/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/cong-cong-rong-rong-you-ren-you-yu/icon.jpg",
+      "sha256": "22f94cd987414a6f442b4d43091665c90d62cd9467b4d21a165e62f696c1af3a"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-07/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/cong-cong-rong-rong-you-ren-you-yu/icon.jpg.meta",
+      "sha256": "960dd5fb1e9a9de2c86169c486a545a9955253da463ff21f48445cf94be5fbcd"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-07.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/cong-cong-rong-rong-you-ren-you-yu.meta",
+      "sha256": "2c7781a8e0623714b8bd52ed9cdbd41b8916704a1fb432c8a98240b89e557e9f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-08/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ke-miao/scene-a.jpg",
+      "sha256": "473ed5713401320dd782afdcdf3040f5012c6ecfcddfe4eccc1b355125e9b69b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-08/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ke-miao/scene-a.jpg.meta",
+      "sha256": "a5183be5245711b3e9dad04074cc4d788b06fd68b4515f19ab77629db1812c23"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-08/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ke-miao/scene-b.jpg",
+      "sha256": "75ba047d656cf331eecf2dce890e5b14676df5529ccca29a4e62ba2fe392386b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-08/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ke-miao/scene-b.jpg.meta",
+      "sha256": "434470870ae1ed71f87f83936d0948a117e30cc663f139159541939c52285f5d"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-08.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ke-miao.meta",
+      "sha256": "8710596a989e3a8328a1bb4325274c536160ecef5b87c09a5200bf4a1b333432"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-08/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/ke-miao/differences.json.meta",
+      "sha256": "af974cd28e445470093eda63d3398390bb030b15fc8f49bdd6ee13855a331bef"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-08.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/ke-miao.meta",
+      "sha256": "379cd2b7a71a2a27cdeda811df3e6ffe187f4fa9ee8f10db2aa3b8c9bc9c9383"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-08/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ke-miao/icon.jpg",
+      "sha256": "efd8d935bc2286e4c3a009f156b0e9cdca96790a5175d6614e796d6b88b38ba6"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-08/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ke-miao/icon.jpg.meta",
+      "sha256": "8db5783ce34dae136883535db28428106d8c4dd9611e67e5b34584c2f0181e59"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-08.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ke-miao.meta",
+      "sha256": "be215411b19e4ea1728aeac4a4d7219a6a469b9ea84e22911f3cf796a3010620"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-09/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/sao-tui-wu/scene-a.jpg",
+      "sha256": "7704a6c38ce8f3ad88d82f2982e89935b16899390c5a23b5388a19337467bc04"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-09/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/sao-tui-wu/scene-a.jpg.meta",
+      "sha256": "6449f556122ece820e1f378b26700759a974b3618a5da651a1d99bb554102e13"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-09/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/sao-tui-wu/scene-b.jpg",
+      "sha256": "c132c38d8aa9815d8fc6fd22a3e5a2d4a106d5fb896763d01d69f1cc8e5f47b6"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-09/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/sao-tui-wu/scene-b.jpg.meta",
+      "sha256": "193b49b2e0a400787345d2c043efeb014e39dcf5dbbbd76d77dcf106f59a76f3"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-09.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/sao-tui-wu.meta",
+      "sha256": "8ef763f2517b0cc7f29f201d4f3cd95c4c589e2a0018bb81e5394cf15fdd5f2b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-09/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/sao-tui-wu/differences.json.meta",
+      "sha256": "158071c0d81576316bc982bc206f9eb8764fcce5d93ba1830ff65937aa2fc715"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-09.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/sao-tui-wu.meta",
+      "sha256": "91503bb08a9c228bbc85db30535f326835eab7425d1aa87915ed6875550d9eea"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-09/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/sao-tui-wu/icon.jpg",
+      "sha256": "3c13414204435879b96a6844e4460f4a8bd760f3459a63fabb61c3c09b89335e"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-09/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/sao-tui-wu/icon.jpg.meta",
+      "sha256": "9817fbea46d19bd6a1bfb293c991cd4c3d634f655bd0284715202b864f4570d3"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-09.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/sao-tui-wu.meta",
+      "sha256": "140a8ec80538e3e9e5c401e297d36a5743e801079ed9616d78c56f9ba94e91ef"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-10/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/cheng-ba-lao/scene-a.jpg",
+      "sha256": "39556596b3cd8c8a9ad9c93a98feebabf405e8a4449ee5fff199e4bbb8817469"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-10/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/cheng-ba-lao/scene-a.jpg.meta",
+      "sha256": "737a40e3ced3b3f927f23aad89b45d2cf0b75f76fe1f1c400a6975cb2edf9919"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-10/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/cheng-ba-lao/scene-b.jpg",
+      "sha256": "9c014b1a4c1cb719e771c3b336f6920d42484215ff591fe021335828cfd4c473"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-10/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/cheng-ba-lao/scene-b.jpg.meta",
+      "sha256": "54f09d8c6d845ee575d1620931af586682109ccfeb12bd8ae84c0386e7c018ee"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-10.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/cheng-ba-lao.meta",
+      "sha256": "67adb0ce708361e50216baff3074832e8001e14b42fe403432e8c98f04cc67fb"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-10/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/cheng-ba-lao/differences.json.meta",
+      "sha256": "d5404f8686b67041eaf509c3fc5c69ef47e3e85a85e49bb29a41ccc352007103"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-10.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/cheng-ba-lao.meta",
+      "sha256": "d74ebd0e6fbb6f5c181af3e1c2f2cb8c03edec077cd6298437f368d5efd59cb1"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-10/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/cheng-ba-lao/icon.jpg",
+      "sha256": "e75f82d586c3ff54b482ccbd1336b2b0a6fcf88ba0806d73976606350202b53f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-10/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/cheng-ba-lao/icon.jpg.meta",
+      "sha256": "0a0809f968250f329f3b7fd87a5a2f0827b60c34d3cac5399abf6a78c70c68b6"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-10.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/cheng-ba-lao.meta",
+      "sha256": "5418bb06e458305df6b86c6a411e665926c6499717854346112d0405ec9a89dd"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-11/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/dou-yin-yin-yue-ban/scene-a.jpg",
+      "sha256": "3e8f492d81452d25a27c70693d1c53a8a4cb6d30229c28a4b19cdb1ce645aa7c"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-11/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/dou-yin-yin-yue-ban/scene-a.jpg.meta",
+      "sha256": "0ea42400b45b110ff0a670f1aff4c791404be159a3f7838c1a66f2cecfa387c5"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-11/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/dou-yin-yin-yue-ban/scene-b.jpg",
+      "sha256": "992625f5cc614ae1519f3f768b53f1b432a6a7e696a14f1dd98c854ed875695d"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-11/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/dou-yin-yin-yue-ban/scene-b.jpg.meta",
+      "sha256": "980f64a3fff0f0051f848209a1eeffc2a5f517d8efc602c5870d237bbeb3b04e"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-11.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/dou-yin-yin-yue-ban.meta",
+      "sha256": "eda9236036765d41d6dbd52390d3ed493fae7011c0a0366ecfc8d58d20411b68"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-11/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/dou-yin-yin-yue-ban/differences.json.meta",
+      "sha256": "30f68c689e46c699c982641a9fc154be8114b5e43d39461e5ec12c35f5237e8a"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-11.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/dou-yin-yin-yue-ban.meta",
+      "sha256": "636a5624e7a0424475dd95f606e5f0e69739c5ece115ffca3118500aa31c0273"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-11/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/dou-yin-yin-yue-ban/icon.jpg",
+      "sha256": "4ee6ea508050aabc48202cbc147df454dc700353f0ca28d82b71f0455f9c11e4"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-11/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/dou-yin-yin-yue-ban/icon.jpg.meta",
+      "sha256": "2b297511f1e0e02cd3f53e9b981c167ffe79ee470cf76cd80006960de81c94b9"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-11.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/dou-yin-yin-yue-ban.meta",
+      "sha256": "07d51d7252adcba4227c331f49a6c855a37f931933a8d7f88c305bce19ff0c3f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-12/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ding-dong-ji/scene-a.jpg",
+      "sha256": "9558d90e1fbfd920b3d811e7b37bac4227c53b74a3ca436011389d17b4b128e1"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-12/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ding-dong-ji/scene-a.jpg.meta",
+      "sha256": "7bd99bbbd758902633e6ad6b332705064149d46dae899fc335fc9e72c7c82795"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-12/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ding-dong-ji/scene-b.jpg",
+      "sha256": "cb9ab7cd9ef10e37a17d4c56619fd648537b8a28c5d1e8a541ce66160389de97"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-12/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ding-dong-ji/scene-b.jpg.meta",
+      "sha256": "c606890543ed488dd55a50c05b52dce7542ac9fc656f2bb2ecb46460461c7227"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-12.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ding-dong-ji.meta",
+      "sha256": "879eb326b75f7dc54371bde3ad99ade243527c964814124d403a13ed9160a3f8"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-12/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/ding-dong-ji/differences.json.meta",
+      "sha256": "8a0de7e78c7498ba95268f02015be3f0b09c231cd0d8f385c6b79ab4212c2bbd"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-12.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/ding-dong-ji.meta",
+      "sha256": "8cda1d684d3c473799341a2574a375183eb63eede979063a7b3ea954c3c65dc0"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-12/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ding-dong-ji/icon.jpg",
+      "sha256": "c0d441c9ae5a0252ff642c8651efd6de8da1608566ab67a4530ab91a0b78cd27"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-12/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ding-dong-ji/icon.jpg.meta",
+      "sha256": "879c0ccd2f181361af9facb5d2f4365db70fa1cfcd711f0a59b34d97e03ab63a"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-12.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ding-dong-ji.meta",
+      "sha256": "bd0da7d193673708aa6d17f2749f100419e372fd8425a58aba622158fe50db87"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-13/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/yuan-tou-mao-die/scene-a.jpg",
+      "sha256": "d71376588a75bda174e8344fa4de21a643be0f01caeb11ff3e79fed2a24b9f0f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-13/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/yuan-tou-mao-die/scene-a.jpg.meta",
+      "sha256": "325973473fddb37d839a8ac2ae0e81929bacbd23df42e81959b9ceb49b8bb2b7"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-13/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/yuan-tou-mao-die/scene-b.jpg",
+      "sha256": "fe79640f6757ebd663094a2573608171cce919fb34c886a8638c62ce7636984c"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-13/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/yuan-tou-mao-die/scene-b.jpg.meta",
+      "sha256": "ef5e863cb33a4b01adcccf1c61bd456c2329d618592d01c56aedadbeca6e1003"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-13.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/yuan-tou-mao-die.meta",
+      "sha256": "73fea34be907478c480c10ae32cc8327d197044d66cbe98da4d90085a8ee97d4"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-13/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/yuan-tou-mao-die/differences.json.meta",
+      "sha256": "485562dcc66246b4a7cbe583fcbf031c4efe3384332d583edaaf7ce7f4fb0e2c"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-13.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/yuan-tou-mao-die.meta",
+      "sha256": "84d10e9d4e0000fcbf8a264e70b50c7834628117869a59e68b6ffb4c59819ba1"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-13/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/yuan-tou-mao-die/icon.jpg",
+      "sha256": "cbd6939f5d5a5834611b5a5d7661d8a7a205eaaa84cdcc4ae3dd9b4d5a15d608"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-13/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/yuan-tou-mao-die/icon.jpg.meta",
+      "sha256": "02e07de95f7ff7970592fc7a1f65d391cac847f1dadaaa4f68f454f153005a14"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-13.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/yuan-tou-mao-die.meta",
+      "sha256": "7fe30445392fd31d458dbc394e0c4544a987b2d89ed326a7716c7dbb66dce84a"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-14/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/a-ma-ti-la-si/scene-a.jpg",
+      "sha256": "0a8c2a2f98151bd3264e0249fa9df7de93d66570adc561c2ddad172da61a97db"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-14/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/a-ma-ti-la-si/scene-a.jpg.meta",
+      "sha256": "cb99ba704a2e38327dfa958fd047b257fd8c7b8d35ad24c21238f5be8aa891a8"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-14/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/a-ma-ti-la-si/scene-b.jpg",
+      "sha256": "cb77c7360b1088955d9510f9e7205e14a39f7c4f1c2d206dc69f1bbd13a52310"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-14/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/a-ma-ti-la-si/scene-b.jpg.meta",
+      "sha256": "21c41c4893efad2514234793202f0c959238e2530611f9f1c3a5f61596b75f54"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-14.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/a-ma-ti-la-si.meta",
+      "sha256": "c6bfd19ccdd245b7af8b24f44101afb699b4d3419243338b9582137fcfaa14c4"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-14/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/a-ma-ti-la-si/differences.json.meta",
+      "sha256": "a8986be0e08f95d35e7541c7a9671d0041e0e0d8983bb2276c082f43bcd3c4ac"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-14.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/a-ma-ti-la-si.meta",
+      "sha256": "ea03f3d7674b16062f7c781d617484341bca35889e8eafbaffe41e9063f6e4f2"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-14/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/a-ma-ti-la-si/icon.jpg",
+      "sha256": "ee4699002ff1835dea5b006f7ef221758724de0729da6d679a41830260615797"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-14/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/a-ma-ti-la-si/icon.jpg.meta",
+      "sha256": "74e0c970e77c94a16f84d1b130c568eb9b1e9c768da5f5d091f8cd2dc63302ae"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-14.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/a-ma-ti-la-si.meta",
+      "sha256": "ee948f82ad4d423ce9513be0f3bb95c43abc4b0bf09b72fe89b99d294af7a71d"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-15/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/jia-xiao-lao-nai-nai/scene-a.jpg",
+      "sha256": "00be9e7d6e487daa6d4261d35b7fe99da4e47e85ea8753b0bfc4d7dc305ffa7a"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-15/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/jia-xiao-lao-nai-nai/scene-a.jpg.meta",
+      "sha256": "56cb5d9c4a9f94a797993b1397e955934c816972ef3d55b82132715082bab4ac"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-15/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/jia-xiao-lao-nai-nai/scene-b.jpg",
+      "sha256": "88cf0a4c27cfaa6e78191132fee575b16e4740d1f632501ceae9e5d302332aea"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-15/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/jia-xiao-lao-nai-nai/scene-b.jpg.meta",
+      "sha256": "57b29e197c40e65e4febb435a17e2ec78ef0ff6d0d2c2172a7dea49fc9290d0e"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-15.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/jia-xiao-lao-nai-nai.meta",
+      "sha256": "ad5418a7fbbf6168aff0a797d97123dc999e82087cea4032fc9711b3962dc87e"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-15/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/jia-xiao-lao-nai-nai/differences.json.meta",
+      "sha256": "2703982fb7be94a0b2d1e2ce778338728ab80b34eeeea4ae6f6f83539076dffd"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-15.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/jia-xiao-lao-nai-nai.meta",
+      "sha256": "6d4cd02dff3c5b69a0db00b4370c7c5a22fd982db4804ffad7e1612d18e3917a"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-15/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/jia-xiao-lao-nai-nai/icon.jpg",
+      "sha256": "fdf2d536bffe81b5d4fb844e18bc8e628c6c7b79a0c539c24839d7a5ae7e22a2"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-15/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/jia-xiao-lao-nai-nai/icon.jpg.meta",
+      "sha256": "342b83ebffc466f88f2f1d51caf09ce011f881fdabe8d9df33262d4aefc58975"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-15.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/jia-xiao-lao-nai-nai.meta",
+      "sha256": "73502ccc6978d0d912f85b3f015955a61bb9ffc5f7a8dc8051737988d1a2ecbc"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-16/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/qin-shi-huang-qi-da-bai-xiong/scene-a.jpg",
+      "sha256": "b40fd0766b5d6639782c851aaa509b2081d97d23e5d78ef702e164ecd9c286f9"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-16/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/qin-shi-huang-qi-da-bai-xiong/scene-a.jpg.meta",
+      "sha256": "0014a0961bed6d0785c3952d250de1d9ce61e1a065c2685a60cfa47f230a90ee"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-16/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/qin-shi-huang-qi-da-bai-xiong/scene-b.jpg",
+      "sha256": "f96161469ed7ea65b7321685c477b92b968df11687e2b91f7cfb2abd46d87e35"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-16/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/qin-shi-huang-qi-da-bai-xiong/scene-b.jpg.meta",
+      "sha256": "2b8fd8ff93ad1c8fcce261c3aab82626d8b359bd3e95de916e30fa6e4032613b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-16.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/qin-shi-huang-qi-da-bai-xiong.meta",
+      "sha256": "7d02cecf0bff3a44b4177c1180fc77c68b7ee78926ceb056e654ce2416c441f6"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-16/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/qin-shi-huang-qi-da-bai-xiong/differences.json.meta",
+      "sha256": "dac3e91b29cc5ec50ace4644ac811a908a9868df99d34b6e97051f7629db704b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-16.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/qin-shi-huang-qi-da-bai-xiong.meta",
+      "sha256": "639a8cc40a8218cdc7a7cbc6941635cabe9871271ef9a987437cf50b1624a0aa"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-16/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/qin-shi-huang-qi-da-bai-xiong/icon.jpg",
+      "sha256": "90c73c0d40af586c3f9526608070d6754e4480bf0c1881323add5a688a18756a"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-16/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/qin-shi-huang-qi-da-bai-xiong/icon.jpg.meta",
+      "sha256": "86bf42ca959bcd3a5119943db098ee9bf726e30d09b44c49be3cdf28125987dd"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-16.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/qin-shi-huang-qi-da-bai-xiong.meta",
+      "sha256": "bf2db03018ca0d90f27392f7dd6a273c36e0e179ab2f751abcae0e6733de819f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-17/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/zuo-wan-ni-de-zuo-ni-de/scene-a.jpg",
+      "sha256": "d82dff858ac9fbeeb33945fabb14cb1fb6c9647249a178116753ea909c629750"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-17/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/zuo-wan-ni-de-zuo-ni-de/scene-a.jpg.meta",
+      "sha256": "3421fd046f1f1bac64ffd1edb2925b45c0f97bb8ad82626737f2d619ac7edc21"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-17/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/zuo-wan-ni-de-zuo-ni-de/scene-b.jpg",
+      "sha256": "afa10a6cdfd3863376f0cb95a648f78b3947fd3668ae0a9344ea94261056eb57"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-17/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/zuo-wan-ni-de-zuo-ni-de/scene-b.jpg.meta",
+      "sha256": "f1ebe26acfd8bb2f0c8191556ab4e27a51a6c6c580debb37ab1c0e77b765ff19"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-17.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/zuo-wan-ni-de-zuo-ni-de.meta",
+      "sha256": "f7d8fc35ad556fab04b2c8796ae8f58db9481b707f9622746f6df9f4aad71a50"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-17/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/zuo-wan-ni-de-zuo-ni-de/differences.json.meta",
+      "sha256": "d8dedf6a79ffb1016bcacee5e6a699fe450d88d12e8f62c0a3873ad4c485bc12"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-17.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/zuo-wan-ni-de-zuo-ni-de.meta",
+      "sha256": "22d2276f71f4dd2012d95ed607d37bc896c2dfb084557cafd2f007dd59dba360"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-17/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/zuo-wan-ni-de-zuo-ni-de/icon.jpg",
+      "sha256": "659ed20772f77f1fb5620fdf06e23c2c24f6e30b416f0489560395afd493c00c"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-17/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/zuo-wan-ni-de-zuo-ni-de/icon.jpg.meta",
+      "sha256": "fdfb49302e0a0b626146eea0723f9e8f504306408dc59378abc0819f0e0bd4f5"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-17.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/zuo-wan-ni-de-zuo-ni-de.meta",
+      "sha256": "3aa193afff0b8b7c8043416c10e250dcc1117cb8b302bc1845a50c054f58bd33"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-18/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/he-yi-wei/scene-a.jpg",
+      "sha256": "b1e3703ae50c471865929ee7549944f7c24572037bf90c97a88de8658d23582f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-18/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/he-yi-wei/scene-a.jpg.meta",
+      "sha256": "72841827cd6589593df40828700efb1bad74f21b1d5342f3738afaec3837dc36"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-18/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/he-yi-wei/scene-b.jpg",
+      "sha256": "3ba269b6e0ad42d740506e699ff0ab3a1802d19458905a81b967ac75172e29ff"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-18/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/he-yi-wei/scene-b.jpg.meta",
+      "sha256": "0318f473d7d9f5f848cd50cef00b117141edb2e4affd8238ce38c2c2a19d58a1"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-18.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/he-yi-wei.meta",
+      "sha256": "f7617a7d49e3db39ac58fffa60918bb0fd61b41eecf77ba8a52b36c8b54adafb"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-18/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/he-yi-wei/differences.json.meta",
+      "sha256": "69a6bb1dc2a8631642a6434dd7a00bb14065986f8bf38f3062009a2ba372999f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-18.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/he-yi-wei.meta",
+      "sha256": "59fdbd9226492448cbc2548d6c026fc168c0164286703265ba8a55a3726bc8e8"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-18/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/he-yi-wei/icon.jpg",
+      "sha256": "d1c5a0ab1054d52eab189999e71a6f68f901a7820c6f34b31401f0801b3b6fb9"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-18/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/he-yi-wei/icon.jpg.meta",
+      "sha256": "670839d5c5d589f6cc0509f648d512a5129d31375a70649e68f3b1e8d3c8565c"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-18.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/he-yi-wei.meta",
+      "sha256": "a15b0b9310673b8db05b9be9ae57c23ad09cbe22480b63ac69b6ffbd9d211c6e"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-19/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ling-gan-gu/scene-a.jpg",
+      "sha256": "01f3d2236e0977dcdc6bd435e90a0c12065d5c9c9dbb572fa22ec32112cf5996"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-19/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ling-gan-gu/scene-a.jpg.meta",
+      "sha256": "b3fb3c55c2ed296ffdb5133902fb7bbae42f49cab5798da7fce1e5bd51f65566"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-19/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ling-gan-gu/scene-b.jpg",
+      "sha256": "1248c944e7e8c4ba00ac0a04f3bf78bedcf195cd6626a406b021cd541ff5b526"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-19/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ling-gan-gu/scene-b.jpg.meta",
+      "sha256": "78a5ec3ee8194e34e06c358c2d66ba5ecf5c4c46fbcbf950a1a7a45fdf079514"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-19.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ling-gan-gu.meta",
+      "sha256": "bc22aa19b03200841adbf0cab611dcca63956ee06b4e0f723f9cb499129b5beb"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-19/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/ling-gan-gu/differences.json.meta",
+      "sha256": "1ea992345cdab955552c7bbf66f0b91d6fd6eb657126c37037631187c252644f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-19.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/ling-gan-gu.meta",
+      "sha256": "9090b046be877336cc7cd43ec7ff4974c3e34c3b3fad8dd21670c9805ca11aea"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-19/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ling-gan-gu/icon.jpg",
+      "sha256": "4010c6cf0e84823d936831698fec6c9e1389e2ca7c3bf51ce6033871a6474859"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-19/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ling-gan-gu/icon.jpg.meta",
+      "sha256": "bb868438094ac16cc7c52b7ef971a58a06a31cccc6ae2ef999ce4163d00a01d4"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-19.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ling-gan-gu.meta",
+      "sha256": "a8d8b5a2f3c9ac2133620eb52c141e801d6ee43dc44d9485fac72317a500df10"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-20/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/bei-zi-ben-zuo-ju-le/scene-a.jpg",
+      "sha256": "a9c0881a19d4619c323d12db6f933fa377cec5110dff49a30427aa6e5551b9bc"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-20/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/bei-zi-ben-zuo-ju-le/scene-a.jpg.meta",
+      "sha256": "7f3ba54475818fb8bb6ef9d0170ce7da16c2656bc0cea20600d7420f40895fef"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-20/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/bei-zi-ben-zuo-ju-le/scene-b.jpg",
+      "sha256": "215131459285e986b9c4eb1c35afc08729214a8f2567432b967815d93a1eaed7"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-20/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/bei-zi-ben-zuo-ju-le/scene-b.jpg.meta",
+      "sha256": "8d612daafbc7b2061e41c426d72fa72f23c583bec0feb991ff00a0aac8ffee8d"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-20.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/bei-zi-ben-zuo-ju-le.meta",
+      "sha256": "0b31be0113f22e3212a51c4dd80d8309d96dfdf025406283ff8659cbc1ef6876"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-20/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/bei-zi-ben-zuo-ju-le/differences.json.meta",
+      "sha256": "a7fa720b4622c1cf2dba38d9bbe12d9a511de123c5da81a840dc04c7226e4aca"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-20.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/bei-zi-ben-zuo-ju-le.meta",
+      "sha256": "2f657d4869f130bdc306c211ed2e7a3009f967aa9c0181233b4ec890598b5e6f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-20/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/bei-zi-ben-zuo-ju-le/icon.jpg",
+      "sha256": "6c4b368b5da9f9444330e94b8db3e764bbe618c370e67b9979f8eeef1d41db48"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-20/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/bei-zi-ben-zuo-ju-le/icon.jpg.meta",
+      "sha256": "3d47c720880ed24847e36d987fd704cf9b9e4fecef5f38acfeaf2bef3367234d"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-20.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/bei-zi-ben-zuo-ju-le.meta",
+      "sha256": "8c5fe12b28c77865b011d27a8cbd007abf829817e658d0161d6247aa3101754c"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-21/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/fa-xiu-san-da/scene-a.jpg",
+      "sha256": "2d0124c8cd17534d04a17a09274f3d3ebe1a87f7795451dff2e0bc8a6fb930ba"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-21/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/fa-xiu-san-da/scene-a.jpg.meta",
+      "sha256": "4b2d9acf9a16c21c458e90b6a1790e607f35aa8327d6897819ea8468195294dc"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-21/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/fa-xiu-san-da/scene-b.jpg",
+      "sha256": "2f269fffd81fc82b82fd9425f6d267d6ef16b727786def95c1d407cb8f2f2e8b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-21/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/fa-xiu-san-da/scene-b.jpg.meta",
+      "sha256": "df17d8d109f69856a4736edef0e468b66cb10a1812f767df7ed81fe01d69318d"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-21.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/fa-xiu-san-da.meta",
+      "sha256": "b3de2e2941bf53d97d805488593503943247b75367289b522f5b6d8f003f848d"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-21/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/fa-xiu-san-da/differences.json.meta",
+      "sha256": "e26cf37e6a1f3d4c8123e105863abfff35acafbd7d8a3d492674f952626b197e"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-21.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/fa-xiu-san-da.meta",
+      "sha256": "ae3c4e7c607e3b45e1054d0727a6522f45335c2c900f853ae97e3fb46d0670a1"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-21/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/fa-xiu-san-da/icon.jpg",
+      "sha256": "a0dfd91108fe621a2ba66505f7225ed23f6811cffe21724dbfa725688bd2ce87"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-21/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/fa-xiu-san-da/icon.jpg.meta",
+      "sha256": "14a49eceb5f07f0db999ef0f921db6d5bcb5d0c9cdb7ceb4905c0d83e5fc7432"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-21.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/fa-xiu-san-da.meta",
+      "sha256": "6830522bfd37e01be143adbb0c4ddd84f3326614c1eab06d362837337cb74989"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-22/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/da-dong-bei/scene-a.jpg",
+      "sha256": "ac8ccf3088ec3b642edfae538b2e689ffdeb233776c48a06d401ca69c9b1f008"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-22/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/da-dong-bei/scene-a.jpg.meta",
+      "sha256": "c9cf75675aae4e4ef115d376710f8e9528dfec8504cf68bbafc366859f104fea"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-22/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/da-dong-bei/scene-b.jpg",
+      "sha256": "6432e55f9070a3525f2119cbc6495491b0729b68baf0e17023b6f6c9fd4651cc"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-22/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/da-dong-bei/scene-b.jpg.meta",
+      "sha256": "b5def96560e2c3893c6a3ce2b814b87e653e8efc677e92dec717fdb96e9189d9"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-22.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/da-dong-bei.meta",
+      "sha256": "1a196956ac5b6d604b15423eec6c94c52ef3da71bdcdd016ab5ad8b6cec5d1c1"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-22/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/da-dong-bei/differences.json.meta",
+      "sha256": "dd0be7f9338db9d7c4ac6f58a0e3233d72337153df230ed038880d6c26f1a367"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-22.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/da-dong-bei.meta",
+      "sha256": "4f1a173fbb4dd26bded806657b56c452b5967bd2ce7ae000a3ab4d808d193595"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-22/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/da-dong-bei/icon.jpg",
+      "sha256": "08435c423c8cc18ea6524e37e9f46d79e4ae60bfa072aab4525ca0f232a4077c"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-22/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/da-dong-bei/icon.jpg.meta",
+      "sha256": "084c5cde0b469aa75e43a290f5f8767bf4ff115c1ea6b5b40034b6ecac45f60e"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-22.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/da-dong-bei.meta",
+      "sha256": "cb68493488c9574caa18a7fc4580a7857073a4d2d2d9a182a4ba81d4259359d7"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-23/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ku-ming-yuan-yang/scene-a.jpg",
+      "sha256": "3a6261967765c768a07f8993bc9de45758a1802482f55d270bbf072e98a30cf5"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-23/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ku-ming-yuan-yang/scene-a.jpg.meta",
+      "sha256": "c48b0c2bb85f506cb1a16d68a5bae61019526ec2884125422d9a663e734d8c1c"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-23/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ku-ming-yuan-yang/scene-b.jpg",
+      "sha256": "cd3ecc768369e038de6d99931fce48f8e587c86471cc6e37f3587d092dfb642b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-23/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ku-ming-yuan-yang/scene-b.jpg.meta",
+      "sha256": "a8fcc7a38bc664bd964b5ea4da60eba38402892f091c8847c8c569c87fe7dd54"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-23.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/ku-ming-yuan-yang.meta",
+      "sha256": "24dc72cb0a991e7bf558f2c4f34f8ce7971b50c6e16b554ea34576e27b8e4bd6"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-23/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/ku-ming-yuan-yang/differences.json.meta",
+      "sha256": "d0daa1d16186669fee984a0b18f109760c031486c8861a0ebc45703efe7d786c"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-23.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/ku-ming-yuan-yang.meta",
+      "sha256": "ae93ac2a7f415375e0a82cfb496ebc09232e04ecc98cfa4bee9425909ba0c464"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-23/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ku-ming-yuan-yang/icon.jpg",
+      "sha256": "fb7fdecd644c7a70720a5165b41c5064b7796d10c6029b9a88cef4830cd37f81"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-23/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ku-ming-yuan-yang/icon.jpg.meta",
+      "sha256": "efaae235e86c1233543ce1924a55f1fdb32fa53f926d2ea84783d493e66acb09"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-23.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/ku-ming-yuan-yang.meta",
+      "sha256": "d58849bfbbf33755458fe1320abdb72fe60f6e8bed1265f1e7b559794194956b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-24/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/gai-jie-ju/scene-a.jpg",
+      "sha256": "ea0860b3fad3e0c81fb8e999f8c4f906a985964dee1931a585fc29568a5d0018"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-24/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/gai-jie-ju/scene-a.jpg.meta",
+      "sha256": "58a20c979e6d05db8e18c21b8e9aef3d19be9f0d5cd566e76510f6b49c3d3f64"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-24/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/gai-jie-ju/scene-b.jpg",
+      "sha256": "48af8160b0230c185e9e1b5f086d779e600a1551322561418b083ad43ba9d34f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-24/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/gai-jie-ju/scene-b.jpg.meta",
+      "sha256": "ad897dd61a0d17d4f3b329787e813a060f19ef13c2f8f5aab221622a4b3dddd3"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-24.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/gai-jie-ju.meta",
+      "sha256": "b4b34e9fd1b924a152ae07cd0ed555d657b4b8c70cc1c4937b89cb1794178903"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-24/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/gai-jie-ju/differences.json.meta",
+      "sha256": "00b33db2590a0efb7db766a9fa132007e0d43861e9936a302c6cca5eb5d716a5"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-24.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/gai-jie-ju.meta",
+      "sha256": "03147a1b4a5fccf6b54b5d11477ff5be48c23599545a4ed8da2b535ad9b2b8f4"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-24/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/gai-jie-ju/icon.jpg",
+      "sha256": "4e45fc7821f0696348897d786310a07e0c250afce5c5f103ebfddbee656a5e30"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-24/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/gai-jie-ju/icon.jpg.meta",
+      "sha256": "b39800560c89c7d900abef1199c6828f9c7730a56af51ac697ab2cfb56f34028"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-24.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/gai-jie-ju.meta",
+      "sha256": "24dd3dead6d6864b5a350d68c234c227f09b7750006c239d274035cbd0845a96"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-25/scene-a.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/mei-jian-mo-jing-ji/scene-a.jpg",
+      "sha256": "da29387ae7b2d47f77be8f1814ffe71fa947ee49c52bed60344c7f2e7260ccef"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-25/scene-a.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/mei-jian-mo-jing-ji/scene-a.jpg.meta",
+      "sha256": "417a82dcc563b4deea4737fee8d6c48e1b7c409c2293e29fddf59f5aa45aa79b"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-25/scene-b.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/mei-jian-mo-jing-ji/scene-b.jpg",
+      "sha256": "fc2653fea2b075c554c8274ea45e11f148de7622ffd3d85f88243900764d5392"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-25/scene-b.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/mei-jian-mo-jing-ji/scene-b.jpg.meta",
+      "sha256": "7c12241b65125e461a97975f2b51306272bea0c1687617aa4dbe3a606050fa57"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/level-25.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/mei-jian-mo-jing-ji.meta",
+      "sha256": "ae7b8b02f75715912c01b8dfae9310b13f8bf80d8fd21545aa26c985d07bd2d0"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-25/differences.json.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/mei-jian-mo-jing-ji/differences.json.meta",
+      "sha256": "32646dfb94fff94b1d394a6532495dd3b31682686c1b5a85a92ceb89bb8d7d6f"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/configs/level-25.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/configs/mei-jian-mo-jing-ji.meta",
+      "sha256": "ace264d6fde2475a8de21b98235496ff21d090407c2e527c7dceb6939b9caa88"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-25/icon.jpg",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/mei-jian-mo-jing-ji/icon.jpg",
+      "sha256": "305abb390a29ffe3f162686e602dfd896e91085630be564278f54a153356cd83"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-25/icon.jpg.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/mei-jian-mo-jing-ji/icon.jpg.meta",
+      "sha256": "08e249d7516c769405f07cab23120a348ebf5e0eb4b6533900543f79da753113"
+    },
+    {
+      "source": "assets/Bundle/levels/city-2025Hotmeme/thumbnails/level-25.meta",
+      "destination": "assets/Bundle/levels/nian-du-re-geng/thumbnails/mei-jian-mo-jing-ji.meta",
+      "sha256": "1d38e58dbd0d328aec1482b7136903b3345c9e26b806e64ac987a9bee5d2bf9b"
+    }
+  ],
+  "legacyTarget": "city-01-2026Hotmeme"
+}

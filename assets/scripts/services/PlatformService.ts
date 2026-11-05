@@ -54,6 +54,9 @@ export class PlatformService {
     private _feedLoginPending = false;
     private _entryBusy = false;
     public feedSubscribed: boolean | null = null;
+    public canUseInteractiveFeatures: () => boolean = () => true;
+    public beforeFeedSubscribe: (() => string | null) | null = null;
+    public onFeedSubscribeSuccess: (() => void) | null = null;
     public get favoriteEntryConfigured(): boolean { return !!this._config.douyinFavoriteEntryRules?.length; }
     public get fromFavoriteToday(): boolean {
         return this.kind === 'douyin' && !this.isPcCompanion
@@ -61,14 +64,17 @@ export class PlatformService {
     }
 
     public async checkFeedStatus(): Promise<string | null> {
+        if (!this.canUseInteractiveFeatures()) return '请进入游戏后再订阅';
         if (this.kind !== 'douyin' || this.isPcCompanion) return '请在手机抖音中使用订阅功能';
+        await this.detectHarmony();
+        if (!this.supportsFeedSubscription) return '当前系统暂不支持订阅功能';
         if (!this._feedLoggedIn) {
             const login = await this.playerInfo.login();
             if (!login.success) return '登录尚未完成，请稍后再试';
             this._feedLoggedIn = true;
         }
         const tt = this._host.tt;
-        if (typeof tt?.checkFeedSubscribeStatus !== 'function') return '当前版本暂不支持订阅状态查询';
+        if (!this._supportsApi(tt, 'checkFeedSubscribeStatus') || !this._supportsAllSceneFeed()) return '当前版本暂不支持全场景订阅';
         return new Promise(resolve => {
             let settled = false;
             const finish = (message: string | null) => {
@@ -96,7 +102,14 @@ export class PlatformService {
 
     /** Prepare login before a click, so subscription retains the user gesture. */
     public prepareFeedLogin(): void {
+        if (!this.canUseInteractiveFeatures()) return;
         if (this.kind !== 'douyin' || this.isPcCompanion || this._feedLoggedIn || this._feedLoginPending) return;
+        if (!this.supportsFeedSubscription) {
+            if (!this.playerInfo.systemInfoKnown) void this.detectHarmony().then(() => {
+                if (this.supportsFeedSubscription) this.prepareFeedLogin();
+            });
+            return;
+        }
         const tt = this._host.tt;
         if (typeof tt?.login !== 'function') return;
         this._feedLoginPending = true;
@@ -111,9 +124,14 @@ export class PlatformService {
         return this._entryCall('addShortcut', {}, () => '桌面添加请求已完成，请检查桌面');
     }
 
-    public favoriteGame(): Promise<string> {
+    /** 在点击回调内同步发起收藏引导；成功调起与是否收藏分别处理。 */
+    public favoriteGame(onGuideShown?: () => void): Promise<string> {
         return this._entryCall('showFavoriteGuide', { type: 'customize' },
-            res => res?.isFavorited === true ? '已收藏游戏' : '暂未收藏游戏');
+            res => {
+                onGuideShown?.();
+                return res?.isFavorited === true ? '已收藏游戏'
+                    : res?.isFavorited === false ? '暂未收藏游戏' : '收藏引导已打开，请在抖音中确认';
+            });
     }
 
     /** Call synchronously from the native touch-end handler; never await login here. */
@@ -121,22 +139,36 @@ export class PlatformService {
         if (this.kind !== 'douyin' || this.isPcCompanion) {
             return this._entryCall('requestFeedSubscribe', {}, () => '');
         }
+        if (!this.supportsFeedSubscription) {
+            if (!this.playerInfo.systemInfoKnown) void this.detectHarmony();
+            return Promise.resolve(this.isHarmony ? '鸿蒙系统暂不支持订阅功能' : '正在识别运行环境，请稍后重试');
+        }
         if (!this._feedLoggedIn) {
             this.prepareFeedLogin();
             return Promise.resolve('正在准备登录，请稍后再点击订阅');
         }
         return this._entryCall('requestFeedSubscribe', { type: 'play', allScene: true }, res => {
-            if (res?.success === true) { this.feedSubscribed = true; return '订阅成功'; }
+            if (res?.success === true) { this.feedSubscribed = true; this.onFeedSubscribeSuccess?.(); return '订阅成功'; }
             return '暂未订阅';
         });
     }
 
     private _entryCall(api: string, args: Record<string, unknown>, message: (res: any) => string): Promise<string> {
+        if (!this.canUseInteractiveFeatures()) return Promise.resolve('请进入游戏后再操作');
         if (this.kind !== 'douyin') return Promise.resolve('请在抖音小游戏真机中使用');
         if (this.isPcCompanion) return Promise.resolve('直播伴侣暂不支持此功能，请在手机抖音使用');
+        if ((api === 'requestFeedSubscribe' || api === 'checkFeedSubscribeStatus') && !this.supportsFeedSubscription) {
+            return Promise.resolve('当前系统暂不支持订阅功能');
+        }
         const tt = this._host.tt;
-        if (typeof tt?.[api] !== 'function') return Promise.resolve('当前版本暂不支持此功能');
+        if (!this._supportsApi(tt, api)) return Promise.resolve('当前版本暂不支持此功能');
         if (this._entryBusy) return Promise.resolve('请完成当前操作后再试');
+        if (api === 'requestFeedSubscribe') {
+            if (!this._supportsAllSceneFeed()) return Promise.resolve('当前版本暂不支持全场景订阅');
+            if (this.feedSubscribed === true) return Promise.resolve('已完成订阅');
+            const blocked = this.beforeFeedSubscribe?.();
+            if (blocked) return Promise.resolve(blocked);
+        }
         this._entryBusy = true;
         return new Promise(resolve => {
             let settled = false;
@@ -147,14 +179,29 @@ export class PlatformService {
             const timer = setTimeout(() => finish('操作超时，请重试'), 15000);
             try {
                 tt[api]({ ...args, success: (res: any) => finish(message(res)),
-                    fail: (res: any) => finish(res?.errMsg || '操作未完成，请稍后重试') });
+                    fail: (res: any) => finish(Number(res?.errNo) === 10302
+                        ? '当前系统暂不支持此功能' : res?.errMsg || '操作未完成，请稍后重试') });
             } catch { finish('当前环境调用失败，请稍后重试'); }
         });
+    }
+
+    private _supportsApi(sdk: any, api: string): boolean {
+        if (typeof sdk?.[api] !== 'function') return false;
+        try { return typeof sdk.canIUse !== 'function' || sdk.canIUse(api) !== false; }
+        catch { return false; }
+    }
+
+    private _supportsAllSceneFeed(): boolean {
+        try {
+            const sdk = this._host.tt;
+            return typeof sdk?.canIUse !== 'function' || sdk.canIUse('checkFeedSubscribeStatus.object.allScene') !== false;
+        } catch { return false; }
     }
 
     /** Each requested entry attempts an ad; native frequency limits still apply. Resolves on close/error. */
     public async showInterstitial(canShow: () => boolean, bypassCooldown = false, bypassRoundProtection = false,
         placement = 'secondary-page'): Promise<void> {
+        if (!this.canUseInteractiveFeatures()) return;
         const tt = this._host.tt;
         const adUnitId = this._config.douyinInterstitialAdUnitId;
         const context = { placement, platform: this.kind, adUnitId, bypassCooldown, bypassRoundProtection };
@@ -166,7 +213,7 @@ export class PlatformService {
         if (this._rewardedBusy) { skipped('激励视频正在播放'); return; }
         if (!bypassRoundProtection && !this.canShowInterstitial()) { skipped('首局保护'); return; }
         if (!adUnitId) { skipped('插屏广告位未配置'); return; }
-        if (typeof tt?.createInterstitialAd !== 'function') { skipped('当前 SDK 不支持 createInterstitialAd'); return; }
+        if (!this._supportsApi(tt, 'createInterstitialAd')) { skipped('当前 SDK 不支持 createInterstitialAd'); return; }
         if (this._finishInterstitial) { skipped('已有插屏正在加载或展示'); return; }
         if (!bypassCooldown && this._lastInterstitialAttempt > 0
             && Date.now() - this._lastInterstitialAttempt < 60000) { skipped('客户端 60 秒冷却'); return; }
@@ -291,11 +338,22 @@ export class PlatformService {
 
     public get isHarmony(): boolean { return this.kind === 'douyin' && this.playerInfo.isOpenHarmony; }
 
+    /** 未识别系统时先隐藏受限入口，避免异步识别前误调用鸿蒙不支持的接口。 */
+    public get supportsSharing(): boolean {
+        return this.kind !== 'douyin' || (this.playerInfo.systemInfoKnown && !this.isHarmony);
+    }
+    public get supportsFeedSubscription(): boolean { return this.supportsSharing; }
+    public get supportsRanking(): boolean { return this.supportsSharing; }
+
+    private _harmonyPending: Promise<boolean> | null = null;
+
     public async detectHarmony(): Promise<boolean> {
         if (this.kind !== 'douyin') return false;
-        if (this.isHarmony) return true;
-        await this.playerInfo.getSystemInfo();
-        return this.isHarmony;
+        if (this.isHarmony || this.playerInfo.systemInfoKnown) return this.isHarmony;
+        if (this._harmonyPending) return this._harmonyPending;
+        this._harmonyPending = this.playerInfo.getSystemInfo().then(() => this.isHarmony)
+            .catch(() => false).finally(() => { this._harmonyPending = null; });
+        return this._harmonyPending;
     }
 
     public configure(config: Partial<PlatformConfig>): void {
@@ -320,6 +378,7 @@ export class PlatformService {
     }
 
     public async showRewardedAd(_placement: RewardPlacement): Promise<RewardResult> {
+        if (!this.canUseInteractiveFeatures()) return { success: false, completed: false, simulated: false, reason: '请进入游戏后再操作' };
         if (this.kind === 'h5') {
             return { success: true, completed: true, simulated: true };
         }
@@ -343,7 +402,7 @@ export class PlatformService {
             };
         }
 
-        if (typeof sdk?.createRewardedVideoAd !== 'function') {
+        if (!this._supportsApi(sdk, 'createRewardedVideoAd')) {
             return { success: false, completed: false, simulated: false, reason: '当前环境不支持激励视频广告，请使用真机预览' };
         }
 
@@ -389,27 +448,34 @@ export class PlatformService {
         }).finally(() => { this._rewardedBusy = false; });
     }
 
-    public share(levelKey: string): void {
+    public share(levelKey: string): boolean {
+        if (!this.canUseInteractiveFeatures()) return false;
         const query = `level=${levelKey}&from=share&campaign=default`;
         if (this.kind === 'wechat') {
+            if (!this._supportsApi(this._host.wx, 'shareAppMessage')) return false;
             this._host.wx.shareAppMessage({ title: '来挑战我的找茬成绩！', query });
-            return;
+            return true;
         }
         if (this.kind === 'douyin') {
-            if (this.isPcCompanion) return;
-            this._host.tt.shareAppMessage({
+            if (this.isPcCompanion || !this.supportsSharing) {
+                if (!this.playerInfo.systemInfoKnown) void this.detectHarmony();
+                return false;
+            }
+            if (!this._supportsApi(this._host.tt, 'shareAppMessage')) return false;
+            try { this._host.tt.shareAppMessage({
                 title: '来挑战我的找茬成绩！',
                 query,
                 ...(this._config.douyinShareTemplateIds?.length ? {
                     templateId: this._config.douyinShareTemplateIds[Math.floor(Math.random() * this._config.douyinShareTemplateIds.length)],
                 } : {}),
-            });
-            return;
+            }); } catch { return false; }
+            return true;
         }
 
         const url = this._config.shareLandingUrl
             ? `${this._config.shareLandingUrl}?${query}`
             : globalThis.location?.href ?? query;
-        this._host.navigator?.clipboard?.writeText(url).catch(() => undefined);
+        this._host.navigator?.clipboard?.writeText?.(url)?.catch(() => undefined);
+        return true;
     }
 }

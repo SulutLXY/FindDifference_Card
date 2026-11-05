@@ -1,0 +1,75 @@
+{
+  "name": "童子注水鳌形笔架",
+  "type": "porcelain",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.202167,
+      "y": 0.593548,
+      "radius": 0.056636
+    },
+    {
+      "id": "diff-2",
+      "x": 0.335534,
+      "y": 0.637097,
+      "radius": 0.036245
+    },
+    {
+      "id": "diff-3",
+      "x": 0.119607,
+      "y": 0.672581,
+      "radius": 0.041216
+    },
+    {
+      "id": "diff-4",
+      "x": 0.106905,
+      "y": 0.808065,
+      "radius": 0.092387
+    },
+    {
+      "id": "diff-5",
+      "x": 0.174647,
+      "y": 0.140323,
+      "radius": 0.039934
+    },
+    {
+      "id": "diff-6",
+      "x": 0.04869,
+      "y": 0.351613,
+      "radius": 0.049055
+    },
+    {
+      "id": "diff-7",
+      "x": 0.9812,
+      "y": 0.585484,
+      "radius": 0.077587
+    },
+    {
+      "id": "diff-8",
+      "x": 0.69753,
+      "y": 0.922581,
+      "radius": 0.065018
+    },
+    {
+      "id": "diff-9",
+      "x": 0.617087,
+      "y": 0.682258,
+      "radius": 0.089075
+    },
+    {
+      "id": "diff-10",
+      "x": 0.723992,
+      "y": 0.243548,
+      "radius": 0.047464
+    },
+    {
+      "id": "diff-11",
+      "x": 0.23498,
+      "y": 0.456452,
+      "radius": 0.037757
+    }
+  ],
+  "icon": "thumbnails/qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia/icon/spriteFrame",
+  "collectibleId": "qing-hua-ci-hai-ao-shan-xing-bi-jia"
+}

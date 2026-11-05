@@ -1,5 +1,6 @@
 import { sys } from 'cc';
 import { ChapterRulesConfig, CityConfig, LevelProgress, SaveData } from '../core/GameTypes';
+import { DailySignInConfig, dailySignInStatus } from '../core/DailySignIn';
 
 const SAVE_KEY = 'find-difference.save.v3';
 /** v2 旧档 key，启动时读取并迁移后删除 */
@@ -27,6 +28,7 @@ export class SaveService {
     public readonly energyRecoveryLimit = 15;
     private readonly _energyInterval = 8 * 60 * 1000;
     private _data: SaveData;
+    private _loadedExistingSave = false;
 
     constructor() {
         this._data = this._load();
@@ -38,6 +40,15 @@ export class SaveService {
         return this._data;
     }
 
+    public updateFeedState(state: NonNullable<SaveData['feed']>): boolean {
+        const previous = this._data;
+        this._data = { ...previous, feed: { ...state, visited: [...state.visited], offered: [...state.offered], uploaded: [...state.uploaded],
+            consumed: [...(state.consumed ?? [])], cleared: [...(state.cleared ?? [])] } };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
     public get energy(): number {
         this._recoverEnergy();
         return this._data.energy ?? 0;
@@ -46,6 +57,13 @@ export class SaveService {
     public get energyRecoverySeconds(): number {
         if (this.energy >= this.energyRecoveryLimit) return 0;
         return Math.max(0, Math.ceil(((this._data.energyUpdatedAt ?? Date.now()) + this._energyInterval - Date.now()) / 1000));
+    }
+
+    /** Absolute time when automatic recovery reaches 15; extra energy already counts as full. */
+    public get energyFullRecoveryAt(): number {
+        const energy = this.energy;
+        return energy >= this.energyRecoveryLimit ? Date.now()
+            : (this._data.energyUpdatedAt ?? Date.now()) + (this.energyRecoveryLimit - energy) * this._energyInterval;
     }
 
     /** 保留不足 8 分钟的余量；达到自动恢复上限后不累计时间，也不削减额外体力。 */
@@ -96,6 +114,40 @@ export class SaveService {
         return typeof expires === 'number' && Number.isSafeInteger(expires) && expires > now;
     }
 
+    public dailyStatus(day: string, config: DailySignInConfig) {
+        return dailySignInStatus(this._data.dailySignIn, day, config);
+    }
+
+    public markDailyPrompt(day: string, config: DailySignInConfig): boolean {
+        if (!this.dailyStatus(day, config).canClaim || (this._data.dailySignIn?.promptDay ?? '') >= day) return false;
+        const previous = this._data;
+        this._data = { ...previous, dailySignIn: { ...previous.dailySignIn, promptDay: day } };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
+    /** 奖励和签到日期一次性保存，正常/双倍互斥；失败可重试。 */
+    public claimDailySignIn(day: string, config: DailySignInConfig, multiplier: 1 | 2, expectedDayIndex: number): boolean {
+        const status = this.dailyStatus(day, config);
+        if (!status.canClaim || status.dayIndex !== expectedDayIndex || ![1, 2].includes(multiplier)) return false;
+        const energy = this.energy;
+        if (status.reward.kind === 'energy' && energy >= this.energyLimit) return false;
+        const amount = status.reward.amount * multiplier;
+        if (!Number.isSafeInteger(amount) || !Number.isSafeInteger(this.freeHints + (status.reward.kind === 'hint' ? amount : 0))) return false;
+        const previous = this._data;
+        const nextEnergy = status.reward.kind === 'energy' ? Math.min(this.energyLimit, energy + amount) : energy;
+        this._data = { ...previous,
+            freeHints: this.freeHints + (status.reward.kind === 'hint' ? amount : 0),
+            energy: nextEnergy,
+            energyUpdatedAt: status.reward.kind === 'energy' && nextEnergy >= this.energyRecoveryLimit ? Date.now() : previous.energyUpdatedAt,
+            dailySignIn: { ...previous.dailySignIn, lastClaimDay: day, dayIndex: status.dayIndex },
+        };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
     public grantLevelSelectAccess(now = Date.now()): boolean {
         if (!Number.isSafeInteger(now) || now < 0) return false;
         const previous = this._data;
@@ -137,6 +189,42 @@ export class SaveService {
         return this.unlockLevels([key]);
     }
 
+    public isCollectibleObtained(id: string, levelKey: string): boolean {
+        return (!!levelKey && this.isCompleted(levelKey))
+            || (Array.isArray(this._data.unlockedCollectibles) && this._data.unlockedCollectibles.includes(id));
+    }
+
+    public hasViewedCollectible(id: string): boolean {
+        return Array.isArray(this._data.viewedCollectibles) && this._data.viewedCollectibles.includes(id);
+    }
+
+    /** 一个视频同时领取收藏和对应关卡资格；开放所属城市入口，不伪造星级、积分或通关。 */
+    public unlockCollectible(id: string, levelKey: string, cityKey: string): boolean {
+        if ([id, levelKey, cityKey].some(value => typeof value !== 'string' || !value)) return false;
+        const previous = this._data;
+        this._data = { ...previous,
+            unlockedCollectibles: Array.from(new Set([...(previous.unlockedCollectibles ?? []), id])),
+            unlockedLevels: Array.from(new Set([...(previous.unlockedLevels ?? []), levelKey])),
+            unlockedCities: Array.from(new Set([...(previous.unlockedCities ?? []), cityKey])),
+        };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
+    /** 只提交当前真正展示过的收藏；保存失败时保留新增标记。 */
+    public markCollectiblesViewed(ids: string[]): boolean {
+        if (!Array.isArray(ids) || ids.some(id => typeof id !== 'string' || !id)) return false;
+        if (ids.every(id => this.hasViewedCollectible(id))) return true;
+        const previous = this._data;
+        this._data = { ...previous,
+            viewedCollectibles: Array.from(new Set([...(previous.viewedCollectibles ?? []), ...ids])),
+        };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
+    }
+
     /** 整章解锁一次性保存全部小关资格；不写通关成绩，失败时整体回滚。 */
     public unlockLevels(keys: string[]): boolean {
         if (!Array.isArray(keys) || !keys.length || keys.some(key => typeof key !== 'string' || !key)) return false;
@@ -155,27 +243,32 @@ export class SaveService {
         const previous = this._data;
         const unlocked = new Set(previous.unlockedCities ?? []);
         const byKey = new Map(cities.map(city => [city.key, city]));
+        for (const city of cities) for (const alias of city.legacyKeys ?? []) byKey.set(alias, city);
+        for (const key of previous.unlockedCities ?? []) {
+            const city = byKey.get(key);
+            if (city) unlocked.add(city.key);
+        }
         for (const order of config.legacyOrders) {
             for (let index = 0; index < order.length; index++) {
                 const city = byKey.get(order[index]);
                 if (!city?.levels.length) continue;
                 const before = index > 0 ? byKey.get(order[index - 1]) : undefined;
                 if (index === 0 || (before?.levels.length
-                    && before.levels.every(dir => this.isCompleted(`${before.key}/${dir}`)))) unlocked.add(city.key);
+                    && before.levels.every(dir => this.isCompleted((before.levelIds?.[dir] ?? `${before.key}/${dir}`))))) unlocked.add(city.key);
             }
         }
         for (const city of cities) {
-            if (city.levels.some(dir => this.isCompleted(`${city.key}/${dir}`))) unlocked.add(city.key);
+            if (city.levels.some(dir => this.isCompleted((city.levelIds?.[dir] ?? `${city.key}/${dir}`)))) unlocked.add(city.key);
         }
         const available = cities.filter(city => unlocked.has(city.key));
-        const incomplete = (city: CityConfig) => city.levels.some(dir => !this.isCompleted(`${city.key}/${dir}`));
+        const incomplete = (city: CityConfig) => city.levels.some(dir => !this.isCompleted((city.levelIds?.[dir] ?? `${city.key}/${dir}`)));
         const resume = available.find(city => incomplete(city)
-            && city.levels.some(dir => this.isCompleted(`${city.key}/${dir}`)))
+            && city.levels.some(dir => this.isCompleted((city.levelIds?.[dir] ?? `${city.key}/${dir}`))))
             ?? available.find(incomplete) ?? available[0];
         const lastCity = byKey.get(previous.lastPlayedCityKey ?? '');
         this._data = {
             ...previous, unlockedCities: Array.from(unlocked), chapterRulesVersion: config.version,
-            lastPlayedCityKey: lastCity && unlocked.has(lastCity.key) ? lastCity.key : resume?.key,
+            lastPlayedCityKey: lastCity && unlocked.has(lastCity.key) ? previous.lastPlayedCityKey : resume?.key,
         };
         if (this._persist()) return true;
         this._data = previous;
@@ -184,6 +277,40 @@ export class SaveService {
 
     public isCityUnlocked(key: string): boolean {
         return Array.isArray(this._data.unlockedCities) && this._data.unlockedCities.includes(key);
+    }
+
+    /** 保留旧布局下已经开放的小关，再原子保存当前布局供下一次调整使用。 */
+    public migrateContentLayout(cities: CityConfig[], legacy: Record<string, string[]>): boolean {
+        const previous = this._data;
+        const oldLayout = previous.contentLayout ?? (this._loadedExistingSave ? legacy : {});
+        const unlocked = new Set(previous.unlockedLevels ?? []);
+        for (const ids of Object.values(oldLayout)) {
+            ids.forEach((id, index) => {
+                if (index === 0 || this.isCompleted(id) || (index > 0 && this.isCompleted(ids[index - 1]))) unlocked.add(id);
+            });
+        }
+        const contentLayout: Record<string, string[]> = {};
+        let lastPlayedCityKey = previous.lastPlayedCityKey;
+        let lastPlayedLevelKey = previous.lastPlayedLevelKey;
+        // 只记得旧章节、尚未记录具体关卡的玩家，也从该章原有内容继续。
+        if (!lastPlayedLevelKey && lastPlayedCityKey && !cities.some(city => city.key === lastPlayedCityKey)) {
+            const oldIds = oldLayout[lastPlayedCityKey] ?? [];
+            lastPlayedLevelKey = oldIds.find(id => unlocked.has(id) && !this.isCompleted(id)) ?? oldIds[0];
+        }
+        for (const city of cities) {
+            const ids = city.levels.map(dir => city.levelIds?.[dir] ?? `${city.key}/${dir}`);
+            contentLayout[city.key] = ids;
+            if (lastPlayedLevelKey && ids.includes(lastPlayedLevelKey)) lastPlayedCityKey = city.key;
+        }
+        const unlockedLevels = Array.from(unlocked);
+        if (JSON.stringify(previous.contentLayout) === JSON.stringify(contentLayout)
+            && JSON.stringify(previous.unlockedLevels ?? []) === JSON.stringify(unlockedLevels)
+            && previous.lastPlayedCityKey === lastPlayedCityKey
+            && previous.lastPlayedLevelKey === lastPlayedLevelKey) return true;
+        this._data = { ...previous, contentLayout, unlockedLevels, lastPlayedCityKey, lastPlayedLevelKey };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
     }
 
     public unlockCity(key: string): boolean {
@@ -331,6 +458,7 @@ export class SaveService {
         try {
             const raw = sys.localStorage.getItem(LEGACY_KEY);
             if (!raw) return false;
+            this._loadedExistingSave = true;
             const legacy = JSON.parse(raw) as { unlockedLevel?: number; levels?: Record<string, { stars: number; bestTime: number }> };
             const unlocked = Math.min(Math.max(legacy.unlockedLevel ?? 0, 0), keys.length);
             for (let i = 0; i < unlocked; i++) {
@@ -364,7 +492,8 @@ export class SaveService {
     }
 
     public reset(): void {
-        this._data = { ...DEFAULT_SAVE, completed: {}, achievements: {} };
+        this._loadedExistingSave = false;
+        this._data = { ...DEFAULT_SAVE, contentLayout: this._data.contentLayout, completed: {}, achievements: {} };
         this._persist();
     }
 
@@ -443,6 +572,7 @@ export class SaveService {
         try {
             const raw = sys.localStorage.getItem(SAVE_KEY);
             if (!raw) return { ...DEFAULT_SAVE, completed: {}, achievements: {} };
+            this._loadedExistingSave = true;
             const parsed = JSON.parse(raw) as Partial<SaveData>;
             return {
                 ...DEFAULT_SAVE,

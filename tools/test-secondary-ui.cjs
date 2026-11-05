@@ -27,10 +27,14 @@ for (const ref of screens._children) assert.ok(!['Rank', 'Collect', 'RankScreen'
 const flowBinding = scene.find(o => 'rank' in o && 'collect' in o);
 assert.equal(flowBinding.rank, null); assert.equal(flowBinding.collect, null);
 for (const name of ['Rank', 'Collect']) {
-    const file = `assets/SecondaryUI/prefabs/${name}Screen.prefab`;
+    const file = `assets/LobbySources/SecondaryUI/prefabs/${name}Screen.prefab`;
     const data = read(file), root = data[data[0].data.__id__];
-    assert.equal(root._active, false); assert.equal(root._parent, null);
-    assert.equal(data.filter(o => o.__type__ === 'cc.Node').length, name === 'Rank' ? 36 : 26);
+    // Prefab content is editable; the loader explicitly deactivates prepared page instances below.
+    assert.equal(root.__type__, 'cc.Node'); assert.equal(root._parent, null);
+    assert.ok(data.some(o => o.__type__ === 'cc.Node' && o._name === 'List'));
+    for (let index = 0; index < data.length; index++) if (data[index].__type__ === 'cc.Node') {
+        for (const ref of data[index]._components) assert.equal(data[ref.__id__].node.__id__, index, `${name}: component owner`);
+    }
     references(data, obj => {
         if (Number.isInteger(obj.__id__)) assert.ok(data[obj.__id__], `${file}: dangling reference`);
         if (obj.__uuid__) {
@@ -43,15 +47,15 @@ for (const name of ['Rank', 'Collect']) {
     assert.ok(root._components.some(ref => data[ref.__id__].__type__.startsWith(hex.slice(0, 5))), `${name}: missing page script`);
     if (name === 'Collect') assert.equal(data.find(o => 'itemTemplate' in o).modal, null);
 }
-assert.equal(walk('assets/SecondaryUI/textures').filter(f => !f.endsWith('.meta')).length, 8);
+assert.equal(walk('assets/LobbySources/SecondaryUI/textures').filter(f => f.endsWith('.png')).length, 8);
 references(scene, obj => {
     if (Number.isInteger(obj.__id__)) assert.ok(scene[obj.__id__], 'Scene has dangling reference');
-    if (obj.__uuid__) assert.ok(!uuids.get(obj.__uuid__)?.startsWith('assets/SecondaryUI/'), 'Startup directly references SecondaryUI');
+    if (obj.__uuid__) assert.ok(!uuids.get(obj.__uuid__)?.startsWith('assets/LobbySources/SecondaryUI/'), 'Startup directly references SecondaryUI');
 });
-const bundleMeta = read('assets/SecondaryUI.meta').userData;
-assert.equal(bundleMeta.bundleName, 'SecondaryUI');
+const bundleMeta = read('assets/LobbySources.meta').userData;
+assert.equal(bundleMeta.bundleName, 'LobbySources');
 assert.equal(read('settings/v2/packages/builder.json').bundleConfig.custom[bundleMeta.bundleConfigID].configs.miniGame.fallbackOptions.isRemote, true);
-console.log('PASS secondary assets: 62 page nodes removed, valid prefab bindings, 8 isolated textures, no startup references');
+console.log('PASS secondary assets: pages outside startup scene, editable prefab bindings, 8 isolated textures, no startup references');
 
 class RankScreen {}
 class CollectScreen {}
@@ -59,14 +63,14 @@ class Prefab {}
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
 const names = ['_secondaryPagesPending', '_secondaryPrefabs', '_secondaryNavigationVersion', '_secondaryPageLoading', '_secondaryDisposed',
-    '_loadSecondaryBundle', '_ensureSecondaryPage', '_openSecondaryPage', '_cancelSecondaryNavigation', '_disposeSecondaryPages', 'showRank', 'showCollect'];
+    '_loadLobbyBundle', '_lobbyBundle', '_lobbyBundlePending', '_loadSecondaryBundle', '_ensureSecondaryPage', '_openSecondaryPage', '_cancelSecondaryNavigation', '_disposeSecondaryPages', 'showRank', 'showCollect'];
 const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
 let bundleRequests = [], prefabRequests = [], instances = [];
 const bundle = { load(request, type, done) { prefabRequests.push({ request, done }); } };
 function makePrefab(request) { return { request, refs: 0, addRef() { this.refs++; }, decRef() { this.refs--; } }; }
 const Flow = vm.runInNewContext(ts.transpileModule(`class Flow { ${body} }; Flow;`, { compilerOptions: { target: ts.ScriptTarget.ES2018 } }).outputText, {
     RankScreen, CollectScreen, Prefab, console: { warn() {} },
-    assetManager: { loadBundle(name, done) { assert.equal(name, 'SecondaryUI'); bundleRequests.push(done); } },
+    assetManager: { loadBundle(name, done) { assert.equal(name, 'LobbySources'); bundleRequests.push(done); } },
     instantiate(prefab) {
         const node = { active: true, isValid: true, destroy() { this.isValid = false; }, getComponent(Type) { return Type === (prefab.request.includes('Rank') ? RankScreen : CollectScreen) ? page : null; } };
         const page = { isValid: true, node, close() { node.active = false; } };

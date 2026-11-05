@@ -50,9 +50,9 @@ const Screen = vm.runInNewContext(compile(`class Screen { ${body} }; Screen;`),
     { Label, Sprite, UITransform, Input: { EventType: { TOUCH_END: 'touch' } } });
 const screen = new Screen();
 let entered = null;
-screen.flow = { cityProgress: () => ({ done: 0, total: 2 }), enterCity: city => { entered = city; },
+screen.flow = { cities: flow._cities, isCityUnlocked: () => true, selectionProgress: () => ({ done: 0, total: 2 }), enterChapterSelection: city => { entered = city; },
     requestReward() { throw Error('Chapter entry must never request a video'); } };
-const nodes = new Map(['ProgressPoint', 'BtnUnlock', 'LockIcon', 'CityLockTip'].map(name => [name, { active: true, off() {} }]));
+const nodes = new Map(['ProgressPoint', 'BtnUnlock', 'LockIcon', 'CityLockTip'].map(name => [name, { active: true, off() {}, getComponentInChildren() { return null; } }]));
 screen.findChildDeep = (_, name) => nodes.get(name);
 screen._setCardLabel = screen._loadBanner = () => {};
 let click;

@@ -1,0 +1,69 @@
+{
+  "name": "今天也用压手杯",
+  "type": "porcelain",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.914516,
+      "y": 0.064516,
+      "radius": 0.083326
+    },
+    {
+      "id": "diff-2",
+      "x": 0.915575,
+      "y": 0.495161,
+      "radius": 0.047874
+    },
+    {
+      "id": "diff-3",
+      "x": 0.504889,
+      "y": 0.837097,
+      "radius": 0.04542
+    },
+    {
+      "id": "diff-4",
+      "x": 0.522883,
+      "y": 0.690323,
+      "radius": 0.090164
+    },
+    {
+      "id": "diff-5",
+      "x": 0.370464,
+      "y": 0.446774,
+      "radius": 0.043578
+    },
+    {
+      "id": "diff-6",
+      "x": 0.264617,
+      "y": 0.401613,
+      "radius": 0.032659
+    },
+    {
+      "id": "diff-7",
+      "x": 0.185232,
+      "y": 0.846774,
+      "radius": 0.090811
+    },
+    {
+      "id": "diff-8",
+      "x": 0.110081,
+      "y": 0.741935,
+      "radius": 0.057818
+    },
+    {
+      "id": "diff-9",
+      "x": 0.897581,
+      "y": 0.822581,
+      "radius": 0.03541
+    },
+    {
+      "id": "diff-10",
+      "x": 0.87006,
+      "y": 0.314516,
+      "radius": 0.059938
+    }
+  ],
+  "icon": "thumbnails/qing-hua-ci/jin-tian-ye-yong-ya-shou-bei/icon/spriteFrame",
+  "collectibleId": "qing-hua-ci-ya-shou-bei"
+}

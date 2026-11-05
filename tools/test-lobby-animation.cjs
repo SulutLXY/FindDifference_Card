@@ -9,7 +9,7 @@ const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(item =>
     item.isDirectory() ? walk(path.join(dir, item.name)) : [path.join(dir, item.name)]);
 const root = 'assets/Bundle/MainGameAimation';
 const remoteUuids = new Set();
-const firstFrameMeta = read(`assets/resources/textures/UI_Sprite/V3/lobby-hero-still.png.meta`);
+const firstFrameMeta = read(`assets/LobbySources/textures/UI_Sprite/V3/lobby-hero-still.png.meta`);
 const allowedFirstFrame = Object.values(firstFrameMeta.subMetas).find(item => item.importer === 'sprite-frame').uuid;
 for (const file of walk(root).filter(file => file.endsWith('.meta'))) {
     const meta = read(file);
@@ -28,7 +28,7 @@ const meta = read(`${root}.meta`).userData;
 assert.equal(meta.isBundle, true);
 assert.equal(meta.bundleName, 'MainGameAimation');
 assert.equal(read('settings/v2/packages/builder.json').bundleConfig.custom[meta.bundleConfigID].configs.miniGame.fallbackOptions.isRemote, true);
-const scene = read('assets/scene/game.scene');
+const scene = read('assets/LobbySources/prefabs/LobbyScreen.prefab');
 const heroNode = scene.find(item => item._name === 'bg_showIcon');
 const components = heroNode._components.map(ref => scene[ref.__id__]);
 assert.equal(components.find(item => item.__type__ === 'cc.Sprite')._spriteFrame.__uuid__, allowedFirstFrame);
@@ -42,6 +42,7 @@ class AnimationClip {}
 class Sprite {}
 class SpriteFrame {}
 class UIScreen {
+    findChildDeep() { return null; }
     wireButton() {}
     resolveNode() { return null; }
     resolveLabel() { return null; }
@@ -90,12 +91,13 @@ function setup({ cached = false, failure = null, placeholder = null } = {}) {
         return {};
     } });
     const screen = new exports.LobbyScreen();
+    screen._attachDailyEntry = async () => {};
     const animation = { isValid: true, playOnLoad: true, defaultClip: null, clips: [], plays: [], stops: 0,
         play(name) { this.plays.push(name); }, stop() { ++this.stops; } };
     const sprite = { isValid: true, enabled: true, spriteFrame: placeholder };
     screen.isValid = screen.enabledInHierarchy = true;
     screen.node = { getChildByName: () => ({ getComponent: Type => Type === Animation ? animation : sprite }) };
-    screen.flow = { node: { parent: { getComponent: () => true } }, platform: { isHarmony: false, kind: 'test', detectHarmony: async () => false } };
+    screen.flow = { promptDailySignIn() {}, node: { parent: { getComponent: () => ({bindLobby(){}}) } }, platform: { isHarmony: false, kind: 'test', detectHarmony: async () => false } };
     screen.onLoad();
     assert.equal(bundleCalls, 0, 'Scene initialization must not download the decoration before the homepage opens');
     assert.equal(animation.playOnLoad, false);

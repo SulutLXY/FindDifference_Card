@@ -1,0 +1,86 @@
+{
+  "name": "成都",
+  "levels": [
+    {
+      "id": "city-08-chengdu/level-01",
+      "name": "成都大熊猫",
+      "folder": "cheng-du-da-xiong-mao"
+    },
+    {
+      "id": "city-08-chengdu/level-02",
+      "name": "制作回锅肉",
+      "folder": "zhi-zuo-hui-guo-rou"
+    },
+    {
+      "id": "city-08-chengdu/level-03",
+      "name": "回锅肉",
+      "folder": "hui-guo-rou"
+    },
+    {
+      "id": "city-08-chengdu/level-04",
+      "name": "草堂铺子",
+      "folder": "cao-tang-pu-zi"
+    },
+    {
+      "id": "city-08-chengdu/level-05",
+      "name": "制作夫妻肺片",
+      "folder": "zhi-zuo-fu-qi-fei-pian"
+    },
+    {
+      "id": "city-08-chengdu/level-06",
+      "name": "夫妻肺片",
+      "folder": "fu-qi-fei-pian"
+    },
+    {
+      "id": "city-08-chengdu/level-07",
+      "name": "宽窄巷子",
+      "folder": "kuan-zhai-xiang-zi"
+    },
+    {
+      "id": "city-08-chengdu/level-08",
+      "name": "制作麻婆豆腐",
+      "folder": "zhi-zuo-ma-po-dou-fu"
+    },
+    {
+      "id": "city-08-chengdu/level-09",
+      "name": "麻婆豆腐",
+      "folder": "ma-po-dou-fu"
+    },
+    {
+      "id": "city-08-chengdu/level-10",
+      "name": "三星堆",
+      "folder": "san-xing-dui"
+    },
+    {
+      "id": "city-08-chengdu/level-11",
+      "name": "制作担担面",
+      "folder": "zhi-zuo-dan-dan-mian"
+    },
+    {
+      "id": "city-08-chengdu/level-12",
+      "name": "担担面",
+      "folder": "dan-dan-mian"
+    },
+    {
+      "id": "city-08-chengdu/level-13",
+      "name": "武侯祠",
+      "folder": "wu-hou-ci"
+    },
+    {
+      "id": "city-08-chengdu/level-14",
+      "name": "制作龙抄手",
+      "folder": "zhi-zuo-long-chao-shou"
+    },
+    {
+      "id": "city-08-chengdu/level-15",
+      "name": "龙抄手",
+      "folder": "long-chao-shou"
+    }
+  ],
+  "banner": "chapter-covers/city-08-chengdu-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-08-chengdu"
+  ]
+}

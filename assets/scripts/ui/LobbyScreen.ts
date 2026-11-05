@@ -40,6 +40,9 @@ export class LobbyScreen extends UIScreen {
     @property({ type: Node, tooltip: '收藏按钮（命名 BtnCollect）' })
     public btnCollect: Node | null = null;
 
+    @property({ type: Node, tooltip: '复用主页设计的七日签到入口；未绑定时查找 SevenDay，不生成额外按钮' })
+    public btnDailySignIn: Node | null = null;
+
     @property({ type: Label, tooltip: '当前关卡提示（BtnStart 下的 currentLevel，单行显示关卡名）' })
     public currentLevel: Label | null = null;
 
@@ -69,12 +72,18 @@ export class LobbyScreen extends UIScreen {
         this.wireButton(this.btnRank, 'BtnRank', () => this.flow.showRank());
         // 场景按钮名为 Btncollect（小写 c），命名查找与实际节点保持一致
         this.wireButton(this.btnCollect, 'Btncollect', () => this.flow.showCollect());
+        void this._attachDailyEntry();
     }
 
     protected onOpen(): void {
+        const host = this.flow.node.parent;
+        host?.getComponent(LobbyEntries)?.bindLobby();
+        host?.getComponent(FavoriteGift)?.bindLobby();
+        void this._attachDailyEntry();
         this._refreshLevelSelectAccess();
+        this._refreshDailyEntry();
         const rankButton = this.resolveNode(this.btnRank, 'BtnRank');
-        if (rankButton) rankButton.active = !this.flow.platform.isHarmony;
+        if (rankButton) rankButton.active = this.flow.platform.supportsRanking !== false && !this.flow.platform.isHarmony;
         void this._refreshRankVisibility();
         this.setLabel(this.footerEnv, 'FooterEnv', `当前环境：${this.flow.platform.kind.toUpperCase()}  |  版本号：${APP_VERSION}`);
         // 只显示开始挑战实际进入的关卡名。
@@ -89,6 +98,29 @@ export class LobbyScreen extends UIScreen {
         if (this._accessElapsed < 1) return;
         this._accessElapsed = 0;
         this._refreshLevelSelectAccess();
+        this._refreshDailyEntry();
+    }
+
+    private _refreshDailyEntry(): void {
+        const entry = this._findDailyEntry();
+        const dot = entry?.getChildByName('Available');
+        if (dot) dot.active = this.flow.dailySignInAvailable;
+        this.flow.promptDailySignIn();
+    }
+
+    private _findDailyEntry(): Node | null {
+        if (this.btnDailySignIn?.isValid) return this.btnDailySignIn;
+        return this.findChildDeep(this.node, 'SevenDay')
+            ?? this.findChildDeep(this.node, 'BtnDailySignIn')
+            ?? this.findChildDeep(this.node, 'DailySignInEntry');
+    }
+
+    private _attachDailyEntry(): void {
+        const entry = this._findDailyEntry();
+        if (!entry) return;
+        entry.off(Node.EventType.TOUCH_END, undefined, this);
+        entry.on(Node.EventType.TOUCH_END, this.buttonTouchHandler(entry, () => { void this.flow.openDailySignIn(); }), this);
+        this._refreshDailyEntry();
     }
 
     private _refreshLevelSelectAccess(): void {
@@ -211,6 +243,6 @@ export class LobbyScreen extends UIScreen {
         const harmony = await this.flow.platform.detectHarmony();
         if (!this.isValid) return;
         const button = this.resolveNode(this.btnRank, 'BtnRank');
-        if (button) button.active = !harmony;
+        if (button) button.active = !harmony && this.flow.platform.supportsRanking !== false;
     }
 }

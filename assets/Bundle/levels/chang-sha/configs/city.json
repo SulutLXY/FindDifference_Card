@@ -1,0 +1,86 @@
+{
+  "name": "长沙",
+  "levels": [
+    {
+      "id": "city-06-changsha/level-01",
+      "name": "五一广场",
+      "folder": "wu-yi-guang-chang"
+    },
+    {
+      "id": "city-06-changsha/level-02",
+      "name": "制作剁椒鱼头",
+      "folder": "zhi-zuo-duo-jiao-yu-tou"
+    },
+    {
+      "id": "city-06-changsha/level-03",
+      "name": "剁椒鱼头",
+      "folder": "duo-jiao-yu-tou"
+    },
+    {
+      "id": "city-06-changsha/level-04",
+      "name": "橘子洲头",
+      "folder": "ju-zi-zhou-tou"
+    },
+    {
+      "id": "city-06-changsha/level-05",
+      "name": "臭豆腐制作",
+      "folder": "chou-dou-fu-zhi-zuo"
+    },
+    {
+      "id": "city-06-changsha/level-06",
+      "name": "臭豆腐",
+      "folder": "chou-dou-fu"
+    },
+    {
+      "id": "city-06-changsha/level-07",
+      "name": "文和友",
+      "folder": "wen-he-you"
+    },
+    {
+      "id": "city-06-changsha/level-08",
+      "name": "长沙米粉制作",
+      "folder": "chang-sha-mi-fen-zhi-zuo"
+    },
+    {
+      "id": "city-06-changsha/level-09",
+      "name": "长沙米粉",
+      "folder": "chang-sha-mi-fen"
+    },
+    {
+      "id": "city-06-changsha/level-10",
+      "name": "岳麓山",
+      "folder": "yue-lu-shan"
+    },
+    {
+      "id": "city-06-changsha/level-11",
+      "name": "糖油粑粑",
+      "folder": "tang-you-ba-ba"
+    },
+    {
+      "id": "city-06-changsha/level-12",
+      "name": "糖油粑粑",
+      "folder": "tang-you-ba-ba-3b688c"
+    },
+    {
+      "id": "city-06-changsha/level-13",
+      "name": "岳麓书院",
+      "folder": "yue-lu-shu-yuan"
+    },
+    {
+      "id": "city-06-changsha/level-14",
+      "name": "口味虾制作",
+      "folder": "kou-wei-xia-zhi-zuo"
+    },
+    {
+      "id": "city-06-changsha/level-15",
+      "name": "口味虾",
+      "folder": "kou-wei-xia"
+    }
+  ],
+  "banner": "chapter-covers/city-06-changsha-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-06-changsha"
+  ]
+}

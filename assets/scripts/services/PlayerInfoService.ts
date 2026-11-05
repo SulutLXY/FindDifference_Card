@@ -34,14 +34,26 @@ export interface PlayerProfile {
 /** 非 Component；通过 GameFlow.platform.playerInfo 使用。 */
 export class PlayerInfoService {
     private _deviceInfo: PlayerDeviceInfo | null = null;
-    public get isOpenHarmony(): boolean {
+    private _readSystemInfoSync(): void {
         if (!this._deviceInfo) {
             try {
                 const sdk = this.sdk(this.channel());
                 if (typeof sdk?.getSystemInfoSync === 'function') this._deviceInfo = sdk.getSystemInfoSync();
             } catch { /* 异步获取设备信息时继续判断。 */ }
         }
-        return this._deviceInfo?.platform?.toLowerCase() === 'openharmony';
+    }
+
+    /** IDE 的 platform 可能仍为 devtools，需要同时读取 system。 */
+    public get isOpenHarmony(): boolean {
+        this._readSystemInfoSync();
+        return String(this._deviceInfo?.platform ?? '').toLowerCase() === 'openharmony'
+            || String(this._deviceInfo?.system ?? '').toLowerCase().includes('openharmony');
+    }
+
+    public get systemInfoKnown(): boolean {
+        this._readSystemInfoSync();
+        return /^(android|ios|windows|mac|macos|openharmony)$/i.test(String(this._deviceInfo?.platform ?? ''))
+            || /android|ios|iphone|ipad|windows|mac os|macos|openharmony/i.test(String(this._deviceInfo?.system ?? ''));
     }
     public profile: PlayerProfile | null = null;
     constructor(

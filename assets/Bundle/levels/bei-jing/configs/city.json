@@ -1,0 +1,86 @@
+{
+  "name": "北京",
+  "levels": [
+    {
+      "id": "city-02-beijing/level-01",
+      "name": "紫禁城",
+      "folder": "zi-jin-cheng"
+    },
+    {
+      "id": "city-02-beijing/level-02",
+      "name": "制作北京烤鸭",
+      "folder": "zhi-zuo-bei-jing-kao-ya"
+    },
+    {
+      "id": "city-02-beijing/level-03",
+      "name": "北京烤鸭",
+      "folder": "bei-jing-kao-ya"
+    },
+    {
+      "id": "city-02-beijing/level-04",
+      "name": "八达岭长城",
+      "folder": "ba-da-ling-chang-cheng"
+    },
+    {
+      "id": "city-02-beijing/level-05",
+      "name": "制作涮羊肉",
+      "folder": "zhi-zuo-shuan-yang-rou"
+    },
+    {
+      "id": "city-02-beijing/level-06",
+      "name": "涮羊肉",
+      "folder": "shuan-yang-rou"
+    },
+    {
+      "id": "city-02-beijing/level-07",
+      "name": "颐和园",
+      "folder": "yi-he-yuan"
+    },
+    {
+      "id": "city-02-beijing/level-08",
+      "name": "制作杂酱面",
+      "folder": "zhi-zuo-za-jiang-mian"
+    },
+    {
+      "id": "city-02-beijing/level-09",
+      "name": "炸酱面",
+      "folder": "zha-jiang-mian"
+    },
+    {
+      "id": "city-02-beijing/level-10",
+      "name": "鸟巢",
+      "folder": "niao-chao"
+    },
+    {
+      "id": "city-02-beijing/level-11",
+      "name": "制作卤煮火烧",
+      "folder": "zhi-zuo-lu-zhu-huo-shao"
+    },
+    {
+      "id": "city-02-beijing/level-12",
+      "name": "卤煮火烧",
+      "folder": "lu-zhu-huo-shao"
+    },
+    {
+      "id": "city-02-beijing/level-13",
+      "name": "景山公园",
+      "folder": "jing-shan-gong-yuan"
+    },
+    {
+      "id": "city-02-beijing/level-14",
+      "name": "制作豆汁焦圈",
+      "folder": "zhi-zuo-dou-zhi-jiao-quan"
+    },
+    {
+      "id": "city-02-beijing/level-15",
+      "name": "豆汁焦圈",
+      "folder": "dou-zhi-jiao-quan"
+    }
+  ],
+  "banner": "chapter-covers/city-02-beijing-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-02-beijing"
+  ]
+}

@@ -5,7 +5,7 @@ const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resour
 const compile = source => ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2018 } }).outputText;
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const indexData = read('assets/resources/configs/cities.json');
-const cities = indexData.cities.map(key => indexData.chapters[key]);
+const cities = indexData.cities.map(key => ({...indexData.chapters[key], levels: indexData.chapters[key].levels.map(entry => typeof entry === 'string' ? entry : entry.folder), levelIds: Object.fromEntries(indexData.chapters[key].levels.map(entry => typeof entry === 'string' ? [entry, `${key}/${entry}`] : [entry.folder,entry.id]))}));
 const config = read('assets/resources/configs/chapter-rules.json');
 // 顺序与迁移配置必须随本地首包更新，不能落入远程配置 Bundle。
 const resourcesMeta = read('assets/resources.meta').userData;
@@ -29,7 +29,7 @@ const tree = ts.createSourceFile('GameFlow.ts', flowSource, ts.ScriptTarget.Late
 const names = ['isCityUnlocked', 'isLevelUnlocked', '_nextLevelTarget', 'findContinueTarget', 'findNextLevel'];
 const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
 const Flow = vm.runInNewContext(compile(`class Flow { ${body} }; Flow;`));
-const index = key => cities.findIndex(city => city.key === key);
+const index = key => cities.findIndex(city => city.key === key || city.legacyKeys?.includes(key));
 const hot = cities[index('city-00-HotTips')], meme = cities[index('city-01-2026Hotmeme')], pet = cities[index('city-PetStory')];
 const beijing = cities[index('city-02-beijing')], shanghai = cities[index('city-03-shanghai')];
 const key = 'find-difference.save.v3';
@@ -37,8 +37,8 @@ function oldSave(completed = {}, unlockedCities = []) {
     data.clear(); data.set(key, JSON.stringify({ version: 3, completed, unlockedCities, freeHints: 7, freeAddTimes: 5, foodReviews: { review: '保留评价' } }));
     return new SaveService();
 }
-function flow(save) { const f = new Flow(); f.save = save; f._cities = cities; f._ensureLevel = async (city, i) => ({ key: `${city.key}/${city.levels[i]}` }); return f; }
-const completedChapter = city => Object.fromEntries(city.levels.map(dir => [`${city.key}/${dir}`, { stars: 3, bestTime: 20 }]));
+function flow(save) { const f = new Flow(); f.save = save; f._cities = cities; f._ensureLevel = async (city, i) => ({ key: city.levelIds[city.levels[i]] }); return f; }
+const completedChapter = city => Object.fromEntries(city.levels.map(dir => [(city.levelIds[dir]), { stars: 3, bestTime: 20 }]));
 (async () => {
     data.clear(); const fresh = new SaveService();
     assert.equal(fresh.data.chapterRulesVersion, 2);
@@ -56,20 +56,20 @@ const completedChapter = city => Object.fromEntries(city.levels.map(dir => [`${c
         }
         for (const li of [-1, city.levels.length, 0.5, NaN]) assert.equal(f.isLevelUnlocked(index(city.key), li), false);
     }
-    fresh.completeLevel(`${hot.key}/${hot.levels[0]}`, 2, 15);
+    fresh.completeLevel((hot.levelIds[hot.levels[0]]), 2, 15);
     assert.equal(f.isLevelUnlocked(0, 1), true); assert.equal(f.isLevelUnlocked(0, 2), false);
-    for (const dir of hot.levels) fresh.completeLevel(`${hot.key}/${dir}`, 2, 15);
+    for (const dir of hot.levels) fresh.completeLevel((hot.levelIds[dir]), 2, 15);
     assert.equal(f.isCityUnlocked(index(meme.key)), true);
-    for (const dir of meme.levels) fresh.completeLevel(`${meme.key}/${dir}`, 2, 15);
+    for (const dir of meme.levels) fresh.completeLevel((meme.levelIds[dir]), 2, 15);
     assert.equal(f.isCityUnlocked(index(pet.key)), true);
     assert.equal(f.isLevelUnlocked(index(pet.key), 19), false, 'Entering a chapter does not skip its progression');
-    fresh.completeLevel(`${pet.key}/${pet.levels[0]}`, 2, 15);
+    fresh.completeLevel((pet.levelIds[pet.levels[0]]), 2, 15);
     assert.equal(f.isLevelUnlocked(index(pet.key), 1), true);
     assert.equal(f.isLevelUnlocked(index(pet.key), 2), false);
     assert.equal(f.isLevelUnlocked(index(pet.key), 20), false);
     assert.equal(f._nextLevelTarget(pet, 19, true), null, 'No skip fallback into another independent chapter');
-    assert.equal(f._nextLevelTarget(meme, 29), null);
-    assert.equal(f._nextLevelTarget(hot, 29).city.key, meme.key);
+    assert.equal(f._nextLevelTarget(meme, meme.levels.length - 1), null);
+    assert.equal(f._nextLevelTarget(hot, hot.levels.length - 1).city.key, meme.key);
     fresh.setLastPlayedCity(pet.key);
     const restored = new SaveService();
     const resume = await flow(restored).findContinueTarget(); assert.equal(resume.city.key, pet.key);
@@ -79,7 +79,7 @@ const completedChapter = city => Object.fromEntries(city.levels.map(dir => [`${c
     assert.equal(fresh.isCityUnlocked(beijing.key), false, 'New users must never receive legacy grants');
 
     const progress = { ...completedChapter(hot), ...completedChapter(meme), ...completedChapter(beijing),
-        [`${shanghai.key}/${shanghai.levels[0]}`]: { stars: 2, bestTime: 36 } };
+        [(shanghai.levelIds[shanghai.levels[0]])]: { stars: 2, bestTime: 36 } };
     const legacy = oldSave(progress, [pet.key]);
     assert.equal(legacy.data.chapterRulesVersion, 1);
     assert.equal(legacy.migrateChapterRules(config, cities), true);
@@ -87,7 +87,7 @@ const completedChapter = city => Object.fromEntries(city.levels.map(dir => [`${c
     assert.equal(legacy.data.lastPlayedCityKey, shanghai.key, 'Prefer the partially completed old chapter over an untouched chapter');
     assert.equal(legacy.data.freeHints, 7); assert.equal(legacy.data.freeAddTimes, 5);
     assert.equal(legacy.getFoodReview('review'), '保留评价');
-    assert.equal(legacy.progressOf(`${shanghai.key}/${shanghai.levels[0]}`).bestTime, 36);
+    assert.equal(legacy.progressOf((shanghai.levelIds[shanghai.levels[0]])).bestTime, 36);
     assert.equal((await flow(legacy).findContinueTarget()).levelIndex, 1, 'Continue exactly after prior completed levels');
     const stored = data.get(key); new SaveService().migrateChapterRules(config, cities);
     assert.equal(data.get(key), stored, 'Migration is one-time and stable across restarts');
@@ -103,13 +103,13 @@ const completedChapter = city => Object.fromEntries(city.levels.map(dir => [`${c
     data.set('find-difference.save.v2', JSON.stringify({ unlockedLevel: 16 }));
     const v2 = new SaveService();
     const keys = config.legacyOrders[0].flatMap(key => {
-        const city = cities.find(city => city.key === key); return city.levels.map(dir => `${key}/${dir}`);
+        const city = cities.find(city => city.key === key || city.legacyKeys?.includes(key)); return city.levels.map(dir => city.levelIds[dir]);
     });
     assert.equal(v2.migrateLegacy(keys), true);
     assert.equal(v2.migrateChapterRules(config, cities, true), true);
-    assert.equal(v2.isCompleted(`${shanghai.key}/${shanghai.levels[0]}`), true);
+    assert.equal(v2.isCompleted((shanghai.levelIds[shanghai.levels[0]])), true);
     assert.equal(v2.data.lastPlayedCityKey, shanghai.key, 'v2 progress also continues in the old partial chapter');
     const layout = fs.readFileSync('assets/scripts/ui/CitySelectScreen.ts', 'utf8');
-    assert.ok(layout.includes("'关卡选择'")); assert.ok(layout.includes('`${city.name}1-${progress.total}关`'));
+    assert.ok(layout.includes("this.flow.chapterSelectionTitle")); assert.ok(layout.includes('`${city.name}1-${progress.total}关`'));
     console.log('PASS: all chapters free, first levels open, progression unlocks next levels without ads, local numbering, old implicit/ad unlocks, exact continuation, save preservation, one-time migration and failed-write retry.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-03",
+  "platform": "bytedance-mini-game",
+  "debug": true,
+  "output": "build/game-first-validation/douyin",
+  "rawCodeAndLocalBytes": 10503874,
+  "rawRemoteBytes": 146908122,
+  "remoteBundles": [
+    "bei-jing",
+    "chang-sha",
+    "chapter-covers",
+    "cheng-du",
+    "chong-wu-gu-shi",
+    "food-icons",
+    "guang-zhou",
+    "LobbySources",
+    "MainGameAimation",
+    "meng-chong-san-guo",
+    "nan-jing",
+    "nian-du-re-geng",
+    "SecondaryUI",
+    "shang-hai",
+    "wang-luo-re-dian",
+    "xi-an",
+    "xia-men"
+  ],
+  "designResolution": {
+    "width": 750,
+    "height": 1334,
+    "policy": 2
+  },
+  "notes": [
+    "Local build only; not uploaded or published.",
+    "Raw directory bytes are not the platform compressed package size.",
+    "Existing atlas direct-reference warnings remain.",
+    "No device cold-start timing performed."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "f62a9228-2b23-4f0a-b5b1-81808ada83f3",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isBundle": true,
+    "bundleName": "LobbySources",
+    "bundleConfigID": "66NbM5tAFFNImQdJTJ7bY+",
+    "priority": 7
+  }
+}

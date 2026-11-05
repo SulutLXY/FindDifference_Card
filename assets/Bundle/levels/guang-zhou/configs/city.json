@@ -1,0 +1,86 @@
+{
+  "name": "广州",
+  "levels": [
+    {
+      "id": "city-07-guangzhou/level-01",
+      "name": "陈家祠",
+      "folder": "chen-jia-ci"
+    },
+    {
+      "id": "city-07-guangzhou/level-02",
+      "name": "制作白切鸡",
+      "folder": "zhi-zuo-bai-qie-ji"
+    },
+    {
+      "id": "city-07-guangzhou/level-03",
+      "name": "白切鸡",
+      "folder": "bai-qie-ji"
+    },
+    {
+      "id": "city-07-guangzhou/level-04",
+      "name": "东山口",
+      "folder": "dong-shan-kou"
+    },
+    {
+      "id": "city-07-guangzhou/level-05",
+      "name": "叉烧制作",
+      "folder": "cha-shao-zhi-zuo"
+    },
+    {
+      "id": "city-07-guangzhou/level-06",
+      "name": "叉烧",
+      "folder": "cha-shao"
+    },
+    {
+      "id": "city-07-guangzhou/level-07",
+      "name": "沙面",
+      "folder": "sha-mian"
+    },
+    {
+      "id": "city-07-guangzhou/level-08",
+      "name": "肠粉制作",
+      "folder": "chang-fen-zhi-zuo"
+    },
+    {
+      "id": "city-07-guangzhou/level-09",
+      "name": "肠粉",
+      "folder": "chang-fen"
+    },
+    {
+      "id": "city-07-guangzhou/level-10",
+      "name": "小蛮腰",
+      "folder": "xiao-man-yao"
+    },
+    {
+      "id": "city-07-guangzhou/level-11",
+      "name": "制作干炒牛河",
+      "folder": "zhi-zuo-gan-chao-niu-he"
+    },
+    {
+      "id": "city-07-guangzhou/level-12",
+      "name": "干炒牛河",
+      "folder": "gan-chao-niu-he"
+    },
+    {
+      "id": "city-07-guangzhou/level-13",
+      "name": "永庆坊",
+      "folder": "yong-qing-fang"
+    },
+    {
+      "id": "city-07-guangzhou/level-14",
+      "name": "艇仔粥制作",
+      "folder": "ting-zai-zhou-zhi-zuo"
+    },
+    {
+      "id": "city-07-guangzhou/level-15",
+      "name": "艇仔粥",
+      "folder": "ting-zai-zhou"
+    }
+  ],
+  "banner": "chapter-covers/city-07-guangzhou-icon/spriteFrame",
+  "unlockMode": "sequential",
+  "schemaVersion": 2,
+  "legacyKeys": [
+    "city-07-guangzhou"
+  ]
+}

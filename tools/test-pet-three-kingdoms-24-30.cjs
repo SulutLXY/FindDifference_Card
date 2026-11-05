@@ -3,9 +3,10 @@ const assert = require('node:assert/strict'), crypto = require('node:crypto');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8').replace(/^\uFEFF/, ''));
 const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
-const chapter = 'city-PetThreeKingdoms', root = `assets/Bundle/levels/${chapter}`;
+const chapter = 'meng-chong-san-guo', root = `assets/Bundle/levels/${chapter}`;
 const index = read('assets/resources/configs/cities.json');
 const map = read('config/pet-three-kingdoms-source-map.json');
+const migration = read('config/named-layout-migration-2026-11-02.json');
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('flow.ts', source, ts.ScriptTarget.Latest, true);
 const names = ['_loadLevel', '_timeFor', '_levelImageTarget', '_chapterSpriteTarget'];
@@ -14,7 +15,7 @@ const members = tree.statements.find(ts.isClassDeclaration).members
 const Flow = vm.runInNewContext(ts.transpileModule(`class Flow { ${members} }; Flow;`, {
     compilerOptions: { target: ts.ScriptTarget.ES2018 },
 }).outputText);
-const flow = new Flow(); flow._grades = read('assets/resources/configs/levels.json');
+const flow = new Flow(); flow._cityIndex = index; flow._grades = read('assets/resources/configs/levels.json');
 flow._contentBundles = { use: async (key, action) => { assert.equal(key, chapter); return action({}); } };
 flow._loadBundleJson = async (_, request) => ({ json: read(`${root}/${request}.json`), decRef() {} });
 function dimensions(file, width, height) {
@@ -27,8 +28,8 @@ function dimensions(file, width, height) {
     assert.equal(index.chapters[chapter].levels.length, 30);
     const counts = [12, 14, 16, 12, 16, 12, 15]; let total = 0;
     for (let number = 24; number <= 30; number++) {
-        const dir = `level-${number}`, row = map.levels.find(r => r.number === number);
-        assert.equal(row.level, dir); assert.equal(row.differenceCount, counts[number - 24]);
+        const dir = index.chapters[chapter].levels[number-1].folder, row = map.levels.find(r => r.number === number);
+        assert.equal(row.level, `level-${number}`); assert.equal(row.differenceCount, counts[number - 24]);
         const level = await flow._loadLevel(null, chapter, dir);
         const configPath = `${root}/configs/${dir}/differences.json`, imported = read(configPath);
         assert.equal(level.name, row.name); assert.equal(level.type, 'normal');
@@ -48,7 +49,11 @@ function dimensions(file, width, height) {
             const target = flow._chapterSpriteTarget(level[field]);
             assert.equal(target.cityKey, chapter);
             assert.equal(target.request, `${dir}/${file.replace('.jpg', '')}/spriteFrame`);
-            assert.equal(hash(`${root}/${dir}/${file}`), row.images[file]);
+            const imagePath = `${root}/${dir}/${file}`;
+            // 第25关下图在本次改名前已有人工修订，保留迁移时的工作区版本。
+            const expected = number === 25 && file === 'scene-b.jpg'
+                ? migration.preservedFiles.find(item => item.destination === imagePath).sha256 : row.images[file];
+            assert.equal(hash(imagePath), expected);
             dimensions(`${root}/${dir}/${file}`, 1024, 672);
         }
         dimensions(`${root}/thumbnails/${dir}/icon.jpg`, 306, 200);

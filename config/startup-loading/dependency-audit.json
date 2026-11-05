@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-05",
+  "sourceOnly": true,
+  "rebuilt": false,
+  "deviceVerified": false,
+  "rootCount": 18,
+  "dependencyCount": 74,
+  "localBundles": [
+    "MainGameSources",
+    "main",
+    "resources"
+  ],
+  "remoteDependencies": [],
+  "unresolvedReferences": [],
+  "startup": {
+    "local": [
+      "main",
+      "resources",
+      "MainGameSources"
+    ],
+    "remote": [
+      "current chapter only"
+    ]
+  },
+  "deferred": {
+    "lobbyShell": "after 8 active gameplay seconds",
+    "chapterCovers": "chapter selection page",
+    "collectibles": "collection/detail/acquisition popup",
+    "heroAnimation": "home page opened",
+    "signIn": "home page sign-in opened",
+    "crossChapterPrefetch": false
+  }
+}

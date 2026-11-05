@@ -19,7 +19,7 @@ export class DouyinRankProvider implements RankProvider {
     }
 
     public async openNative(): Promise<{ success: boolean; message?: string }> {
-        if (this._platform.isHarmony || await this._platform.detectHarmony?.()) {
+        if (this._platform.isHarmony || await this._platform.detectHarmony?.() || this._platform.supportsRanking === false) {
             return { success: false, message: '鸿蒙系统暂不支持抖音排行榜' };
         }
         if (typeof this._tt?.getImRankList !== 'function') {
@@ -51,7 +51,7 @@ export class DouyinRankProvider implements RankProvider {
     }
 
     private async _submit(passed: number): Promise<void> {
-        if (this._platform.isHarmony || await this._platform.detectHarmony?.()) return;
+        if (this._platform.isHarmony || await this._platform.detectHarmony?.() || this._platform.supportsRanking === false) return;
         const login = await this._platform.playerInfo.login(false);
         if (login.success === false || login.data.isAnonymous) {
             console.warn('[DouyinRank] 未登录，成绩未上报');

@@ -124,7 +124,7 @@ export class EventTips extends UIScreen {
                 ++this._watched;
             }
             if (this._watched === 3) {
-                if (this.flow.save.unlockLevels(city.levels.map(dir => `${city.key}/${dir}`))) {
+                if (this.flow.save.unlockLevels(city.levels.map(dir => (city.levelIds?.[dir] ?? `${city.key}/${dir}`)))) {
                     this._finish(true);
                 } else {
                     // 三次已完成，保留本次计数；重试存档不再要求额外观看。

@@ -1,0 +1,69 @@
+{
+  "name": "寺院里的茶与供具",
+  "type": "porcelain",
+  "food": "",
+  "differences": [
+    {
+      "id": "diff-1",
+      "x": 0.942036,
+      "y": 0.395161,
+      "radius": 0.096046
+    },
+    {
+      "id": "diff-2",
+      "x": 0.667893,
+      "y": 0.490323,
+      "radius": 0.057434
+    },
+    {
+      "id": "diff-3",
+      "x": 0.431855,
+      "y": 0.180645,
+      "radius": 0.026007
+    },
+    {
+      "id": "diff-4",
+      "x": 0.111139,
+      "y": 0.096774,
+      "radius": 0.034291
+    },
+    {
+      "id": "diff-5",
+      "x": 0.374698,
+      "y": 0.45,
+      "radius": 0.076626
+    },
+    {
+      "id": "diff-6",
+      "x": 0.204284,
+      "y": 0.641935,
+      "radius": 0.048387
+    },
+    {
+      "id": "diff-7",
+      "x": 0.216986,
+      "y": 0.709677,
+      "radius": 0.035521
+    },
+    {
+      "id": "diff-8",
+      "x": 0.537702,
+      "y": 0.783871,
+      "radius": 0.06403
+    },
+    {
+      "id": "diff-9",
+      "x": 0.698589,
+      "y": 0.658065,
+      "radius": 0.078089
+    },
+    {
+      "id": "diff-10",
+      "x": 0.928276,
+      "y": 0.879032,
+      "radius": 0.118546
+    }
+  ],
+  "icon": "thumbnails/qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju/icon/spriteFrame",
+  "collectibleId": "qing-hua-ci-seng-mao-hu"
+}

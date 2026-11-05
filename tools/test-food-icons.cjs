@@ -13,6 +13,7 @@ const Flow = vm.runInNewContext(ts.transpileModule(`class Flow {${methods}}\nFlo
     {compilerOptions: {target: ts.ScriptTarget.ES2018}}).outputText,
     {console: {warn() { warnings++; }}});
 const catalog = JSON.parse(fs.readFileSync('assets/resources/configs/food-catalog.json', 'utf8'));
+const chapterIndex = JSON.parse(fs.readFileSync('assets/resources/configs/cities.json', 'utf8'));
 const flow = new Flow();
 flow._foods = catalog.foods;
 let calls = 0, payload, unlocked;
@@ -22,7 +23,8 @@ for (const food of catalog.foods) {
     assert(food.levelKey, `${food.name} must have an acquisition level`);
     assert(!keys.has(food.levelKey), `duplicate acquisition level: ${food.levelKey}`);
     keys.add(food.levelKey);
-    const [city, dir] = food.levelKey.split('/');
+    const [city, chapter] = Object.entries(chapterIndex.chapters).find(([, chapter]) => chapter.levels.some(entry => entry.id === food.levelKey));
+    const dir = chapter.levels.find(entry => entry.id === food.levelKey).folder;
     const level = JSON.parse(fs.readFileSync(`assets/Bundle/levels/${city}/configs/${dir}/differences.json`, 'utf8'));
     const cover = `thumbnails/${food.levelKey}/icon/spriteFrame`;
     flow.showFoodTips({...level, key: food.levelKey, icon: cover}, true);

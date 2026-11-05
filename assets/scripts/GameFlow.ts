@@ -14,12 +14,13 @@ import {
     director,
     Director,
     Graphics,
+    game,
+    Game,
     JsonAsset,
     instantiate,
     Label,
     Node,
     Prefab,
-    ResolutionPolicy,
     SpriteFrame,
     Sprite,
     UITransform,
@@ -27,10 +28,11 @@ import {
     Vec3,
     resources,
     tween,
-    view,
 } from 'cc';
 import {
     CityConfig,
+    ChapterSelection,
+    TopicConfig,
     ChapterRulesConfig,
     FoodCatalogEntry,
     CityIndex,
@@ -58,6 +60,11 @@ import { ResultModal } from './ui/ResultModal';
 import { SettingsModal } from './ui/SettingsModal';
 import { UIAnimationBinding } from './ui/UIAnimationBinding';
 import { TouchPointEffect } from './ui/TouchPointEffect';
+import { DailySignInModal } from './ui/DailySignInModal';
+import { DailySignInConfig } from './core/DailySignIn';
+import { FavoriteGift } from './ui/FavoriteGift';
+import { LobbyEntries } from './ui/LobbyEntries';
+import { FeedService } from './services/FeedService';
 
 const { ccclass, property } = _decorator;
 
@@ -89,20 +96,29 @@ export class GameFlow extends Component {
 
     @property({ type: LobbyScreen, tooltip: '大厅界面组件（Screens/Lobby）' })
     public lobby: LobbyScreen | null = null;
+    private _lobbyBundle: AssetManager.Bundle | null = null;
+    private _lobbyBundlePending: Promise<AssetManager.Bundle> | null = null;
+    private _lobbyPending: Promise<LobbyScreen> | null = null;
+    private _lobbyReturnVersion = -1;
+    private _lobbyReturnWasPaused = false;
+    /** Cold startup stays within local gameplay and the current chapter for eight active seconds. */
+    private _lobbyWarmupRemaining: number | null = null;
+    private _lobbyWarmupStarted = false;
 
     @property({ type: CitySelectScreen, tooltip: '城市选择界面组件（Screens/CitySelect）' })
     public citySelect: CitySelectScreen | null = null;
 
     @property({ type: LevelSelectScreen, tooltip: '选关界面组件（Screens/LevelSelect）' })
     public levelSelect: LevelSelectScreen | null = null;
+    private readonly _navigationPagesPending = new Map<'citySelect' | 'levelSelect', Promise<CitySelectScreen | LevelSelectScreen>>();
 
     @property({ type: GameScreen, tooltip: '对局界面：首次进关从 MainGameSources 动态创建，无需拖拽绑定' })
     public game: GameScreen | null = null;
 
-    @property({ type: RankScreen, tooltip: '排行榜：首次打开从 SecondaryUI 创建，无需拖拽绑定' })
+    @property({ type: RankScreen, tooltip: '排行榜：从远程 LobbySources/SecondaryUI 创建，无需拖拽绑定' })
     public rank: RankScreen | null = null;
 
-    @property({ type: CollectScreen, tooltip: '收藏页：首次打开从 SecondaryUI 创建，无需拖拽绑定' })
+    @property({ type: CollectScreen, tooltip: '收藏页：从远程 LobbySources/SecondaryUI 创建，无需拖拽绑定' })
     public collect: CollectScreen | null = null;
 
     @property({ type: ResultModal, tooltip: '结算弹窗：首次进关从 MainGameSources 动态创建，无需拖拽绑定' })
@@ -110,12 +126,22 @@ export class GameFlow extends Component {
 
     public readonly save = new SaveService();
     public readonly platform = new PlatformService();
+    public readonly feed = new FeedService(this.save, this.platform);
+    private _feedStart: (() => void) | null = null;
+    private _feedPauseBeforePreview: boolean | null = null;
+    private _feedOffer: { token: string; version: number } | null = null;
     /** 排行榜平台适配层：抖音真实榜单，其余环境本地兜底（见 services/rank） */
     public readonly rankProvider = createRankProvider(this.platform, this.save);
 
     private _grades: GradeConfig = { maxLives: 3, baseTimeSeconds: 120, baseDifferenceCount: 4, secondsPerExtraDifference: 15 };
     private _cities: CityConfig[] = [];
     private _currentCity: CityConfig | null = null;
+    private _selectedTopic: TopicConfig | null = null;
+    private _dailyConfig: DailySignInConfig | null = null;
+    private _dailySignIn: DailySignInModal | null = null;
+    private _dailyLoading: Promise<DailySignInModal> | null = null;
+    private _dailyOpening = false;
+    private _dailyAttemptDay = '';
     private _currentLevel: LevelConfig | null = null;
     private _remainingTime = 0;
     private _elapsedTime = 0;
@@ -187,6 +213,22 @@ export class GameFlow extends Component {
         this._foodTips?.present({ key: food.levelKey || food.id, name: food.name,
             foodName: food.name, foodDesc: food.desc, icon: food.icon, reviews: food.reviews }, unlocked);
     }
+
+    /** 收藏页直接看视频领取收藏，并永久开放它对应的关卡。 */
+    public async requestCollectibleUnlock(id: string): Promise<boolean> {
+        const item = this._foods.find(food => food.id === id);
+        if (!item) return false;
+        if (this.save.isCollectibleObtained(item.id, item.levelKey)) return true;
+        const city = this._cities.find(chapter => chapter.levels.some(folder =>
+            (chapter.levelIds?.[folder] ?? `${chapter.key}/${folder}`) === item.levelKey));
+        if (!item.levelKey || !city) { this.toast('该收藏暂未关联可玩关卡'); return false; }
+        let unlocked = false;
+        await this.requestReward('unlock-level', () => {
+            unlocked = this.save.unlockCollectible(item.id, item.levelKey, city.key);
+            this.toast(unlocked ? `已获得收藏：${item.name}` : '收藏解锁保存失败，请稍后重试');
+        });
+        return unlocked;
+    }
     private _settings: SettingsModal | null = null;
     private _settingsInGame = false;
     private _settingsOpenedAt = 0;
@@ -242,10 +284,16 @@ export class GameFlow extends Component {
     }
 
     protected onLoad(): void {
+        game.on(Game.EVENT_SHOW, this.promptDailySignIn, this);
         this.platform.canShowInterstitial = () => this.save.data.firstPlayedDay === sidebarDay()
-            && !this._roundInterstitialProtected;
+            && !this._roundInterstitialProtected && !this._dailySignIn?.node.activeInHierarchy;
         GameFlow._instance = this;
         registerGameFlow(this);
+        this.platform.canUseInteractiveFeatures = () => !this.feed.isPreview;
+        this.platform.beforeFeedSubscribe = () => this.feed.reserveSubscriptionAttempt();
+        this.platform.onFeedSubscribeSuccess = () => { void this.feed.scheduleRevisit(); };
+        this.feed.onPreviewChanged = () => this._onFeedPreviewChanged();
+        this.feed.start();
         void this.platform.sidebar.start();
         this._initLoading();
         const foodTips = this.node.parent?.getChildByName('FoodTips');
@@ -261,6 +309,8 @@ export class GameFlow extends Component {
         const uiRoot = this.node.parent;
         if (uiRoot && !uiRoot.getComponent(UIAnimationBinding)) uiRoot.addComponent(UIAnimationBinding);
         if (uiRoot) {
+            if (!uiRoot.getComponent(LobbyEntries)) uiRoot.addComponent(LobbyEntries);
+            if (!uiRoot.getComponent(FavoriteGift)) uiRoot.addComponent(FavoriteGift);
             const touchPoint = uiRoot.getComponent(TouchPointEffect) ?? uiRoot.addComponent(TouchPointEffect);
             touchPoint.playClickSound = event => {
                 if (this._tutorial?.node.activeInHierarchy) return;
@@ -291,7 +341,6 @@ export class GameFlow extends Component {
         this.node.on(AudioSource.EventType.STARTED, this._onResultAudioStarted, this);
         this.node.on(AudioSource.EventType.ENDED, this._onResultAudioEnded, this);
         void this._loadComboClip(0).catch(error => console.warn('[GameFlow] 点击音效预加载失败', error));
-        view.setDesignResolutionSize(750, 1334, ResolutionPolicy.SHOW_ALL);
     }
 
     protected start(): void {
@@ -299,9 +348,12 @@ export class GameFlow extends Component {
     }
 
     protected update(dt: number): void {
+        if (this.feed?.isPreview) return;
+        this._tryFeedOffer();
         if (this.platform.interstitialBusy || this._levelLoading) return;
         if (this._isGameOver || this._isPaused || !this._currentLevel) return;
         if (!this.game || !this.game.node.active) return;
+        this._tickLobbyWarmup(dt);
         this._remainingTime = Math.max(0, this._remainingTime - dt);
         this._elapsedTime += dt;
         this.game.refreshHud();
@@ -311,6 +363,41 @@ export class GameFlow extends Component {
 
     public get cities(): readonly CityConfig[] {
         return this._cities;
+    }
+
+    public get chapterSelections(): ChapterSelection[] {
+        if (this._selectedTopic) return this._selectedTopic.chapters
+            .map(key => this._cities.find(city => city.key === key)).filter((city): city is CityConfig => !!city);
+        const topics = this._cityIndex?.topics ?? [];
+        return (this._cityIndex?.navigation ?? this._cities.map(city => city.key))
+            .map(key => topics.find(topic => topic.key === key) ?? this._cities.find(city => city.key === key))
+            .filter((item): item is ChapterSelection => !!item);
+    }
+
+    public get chapterSelectionTitle(): string { return this._selectedTopic?.name ?? '关卡选择'; }
+
+    public selectionProgress(item: ChapterSelection): { done: number; total: number } {
+        if (!('chapters' in item)) return this.cityProgress(item);
+        return item.chapters.reduce((sum, key) => {
+            const city = this._cities.find(city => city.key === key);
+            const progress = city ? this.cityProgress(city) : { done: 0, total: 0 };
+            return { done: sum.done + progress.done, total: sum.total + progress.total };
+        }, { done: 0, total: 0 });
+    }
+
+    public async enterChapterSelection(item: ChapterSelection): Promise<void> {
+        if ('chapters' in item) this.showCitySelect(item.key);
+        else await this.enterCity(item);
+    }
+
+    public backFromCitySelection(): void {
+        if (this._selectedTopic) this.showCitySelect();
+        else this.returnToLobby();
+    }
+
+    public returnToChapterSelection(): void {
+        const topic = this._cityIndex?.topics?.find(item => item.chapters.includes(this._currentCity?.key ?? ''));
+        this.showCitySelect(topic?.key);
     }
 
     public get currentCity(): CityConfig | null {
@@ -338,7 +425,7 @@ export class GameFlow extends Component {
     }
 
     public get isPaused(): boolean {
-        return this._isPaused || this._levelLoading;
+        return this._isPaused || this._levelLoading || !!this.feed?.isPreview;
     }
 
     public get isGameOver(): boolean {
@@ -351,7 +438,177 @@ export class GameFlow extends Component {
 
     public showLobby(): void {
         this.resultModal?.close();
-        this._switchTo(this.lobby);
+        if (this.lobby?.isValid) { this._switchTo(this.lobby); return; }
+        void this._openLobby();
+    }
+
+    /** Foreground fallback shares the background request, and never opens after navigation changes. */
+    private async _openLobby(): Promise<void> {
+        const paused = this._lobbyReturnVersion === this._secondaryNavigationVersion && this._secondaryPageLoading
+            ? this._lobbyReturnWasPaused : this._isPaused;
+        this._cancelSecondaryNavigation();
+        const version = this._secondaryNavigationVersion;
+        this._lobbyReturnVersion = version;
+        this._lobbyReturnWasPaused = paused;
+        this._isPaused = true;
+        this._secondaryPageLoading = true;
+        if (this._loadingNode) { this._loadingNode.active = true; this._loadingNode.setSiblingIndex(this._loadingNode.parent!.children.length - 1); }
+        try {
+            const lobby = await this._ensureLobby();
+            if (!this.isValid || version !== this._secondaryNavigationVersion) return;
+            this._switchTo(lobby);
+        } catch (error) {
+            if (!this.isValid || version !== this._secondaryNavigationVersion) return;
+            this._isPaused = paused;
+            this._secondaryPageLoading = false;
+            if (!this._currentLevel) this._bootFailed = true;
+            if (this._loadingNode) this._loadingNode.active = this._bootFailed;
+            this.toast('主页加载失败，请检查网络后重试');
+            console.warn('[GameFlow] 主页加载失败', error);
+        }
+    }
+
+    private _loadLobbyBundle(): Promise<AssetManager.Bundle> {
+        if (this._lobbyBundle) return Promise.resolve(this._lobbyBundle);
+        if (this._lobbyBundlePending) return this._lobbyBundlePending;
+        this._lobbyBundlePending = new Promise<AssetManager.Bundle>((resolve, reject) => {
+            assetManager.loadBundle('LobbySources', (error, bundle) => {
+                if (error || !bundle || !this.isValid) reject(error ?? new Error('主页资源包不可用'));
+                else { this._lobbyBundle = bundle; resolve(bundle); }
+            });
+        }).finally(() => { this._lobbyBundlePending = null; });
+        return this._lobbyBundlePending;
+    }
+
+    public async loadLobbyPrefab(path: string): Promise<Prefab> {
+        const bundle = await this._loadLobbyBundle();
+        return new Promise((resolve, reject) => bundle.load(path, Prefab, (error, prefab) => error ? reject(error) : resolve(prefab)));
+    }
+
+    private _ensureLobby(): Promise<LobbyScreen> {
+        if (this.lobby?.isValid) return Promise.resolve(this.lobby);
+        if (this._lobbyPending) return this._lobbyPending;
+        this._lobbyPending = (async () => {
+            const prefab = await this.loadLobbyPrefab('prefabs/LobbyScreen');
+            if (!this.isValid) throw new Error('游戏流程已销毁');
+            const screens = this.node.parent?.getChildByName('Screens');
+            if (!screens) throw new Error('主页容器不存在');
+            const node = instantiate(prefab); node.active = false; node.name = 'Lobby';
+            const lobby = node.getComponent(LobbyScreen);
+            if (!lobby) { node.destroy(); throw new Error('主页预制体缺少 LobbyScreen'); }
+            this.lobby = lobby; node.parent = screens;
+            return lobby;
+        })().finally(() => { this._lobbyPending = null; });
+        return this._lobbyPending;
+    }
+
+    private async _preloadLobby(): Promise<void> {
+        try {
+            await this._ensureLobby();
+            if (!this.isValid) return;
+            const bundle = await this._loadLobbyBundle();
+            await new Promise<void>((resolve, reject) => bundle.load('voice/BGmusic/Main_music00', AudioClip, (error, clip) => {
+                if (error) reject(error);
+                else { if (this.isValid) this._musicClips.set('voice/BGmusic/Main_music00', clip); resolve(); }
+            }));
+        } catch (error) { if (this.isValid) console.warn('[GameFlow] 主页后台预加载失败，返回时可重试', error); }
+    }
+
+    private _tickLobbyWarmup(dt: number): void {
+        if (!this.isValid || this._lobbyWarmupStarted || this._lobbyWarmupRemaining == null) return;
+        if (this.feed?.isPreview || this._levelLoading || this._isPaused || this._isGameOver
+            || !this.game?.node.activeInHierarchy || this.platform.interstitialBusy) return;
+        this._lobbyWarmupRemaining -= Number.isFinite(dt) ? Math.min(Math.max(dt, 0), 1) : 0;
+        if (this._lobbyWarmupRemaining > 0) return;
+        this._lobbyWarmupRemaining = null;
+        this._lobbyWarmupStarted = true;
+        if (!this.lobby?.isValid) void this._preloadLobby();
+    }
+
+    private _ensureNavigationPage(kind: 'citySelect' | 'levelSelect'): Promise<CitySelectScreen | LevelSelectScreen> {
+        if (this[kind]?.isValid) return Promise.resolve(this[kind]!);
+        const pending = this._navigationPagesPending.get(kind);
+        if (pending) return pending;
+        const request = (async () => {
+            const name = kind === 'citySelect' ? 'CitySelect' : 'LevelSelect';
+            const prefab = await this.loadLobbyPrefab(`prefabs/${name}Screen`);
+            if (!this.isValid) throw new Error('游戏流程已销毁');
+            const screens = this.node.parent?.getChildByName('Screens');
+            if (!screens) throw new Error('界面容器不存在');
+            const node = instantiate(prefab); node.active = false; node.name = name;
+            const page = kind === 'citySelect' ? node.getComponent(CitySelectScreen) : node.getComponent(LevelSelectScreen);
+            if (!page) { node.destroy(); throw new Error('导航页面组件缺失'); }
+            if (kind === 'citySelect') this.citySelect = page as CitySelectScreen;
+            else this.levelSelect = page as LevelSelectScreen;
+            node.parent = screens;
+            return page;
+        })().finally(() => this._navigationPagesPending.delete(kind));
+        this._navigationPagesPending.set(kind, request);
+        return request;
+    }
+
+    private async _openNavigationPage(kind: 'citySelect' | 'levelSelect'): Promise<void> {
+        this._cancelSecondaryNavigation();
+        const version = this._secondaryNavigationVersion;
+        this._secondaryPageLoading = true;
+        if (this._loadingNode) { this._loadingNode.active = true; this._loadingNode.setSiblingIndex(this._loadingNode.parent!.children.length - 1); }
+        try {
+            const page = await this._ensureNavigationPage(kind);
+            if (!this.isValid || version !== this._secondaryNavigationVersion) return;
+            this._switchTo(page);
+        } catch (error) {
+            if (!this.isValid || version !== this._secondaryNavigationVersion) return;
+            this._secondaryPageLoading = false;
+            if (this._loadingNode) this._loadingNode.active = false;
+            this.toast('页面加载失败，请重试');
+            console.warn('[GameFlow] 导航页面加载失败', error);
+        }
+    }
+
+    /** 签到属于远程主页包，仅在主页显示；可直接编辑独立预制体。 */
+    public async openDailySignIn(automatic = false): Promise<boolean> {
+        if (this._dailyOpening || !this._dailyConfig || !this.lobby?.node.activeInHierarchy) return false;
+        const day = sidebarDay();
+        if (automatic && (!this.save.dailyStatus(day, this._dailyConfig).canClaim
+            || (this.save.data.dailySignIn?.promptDay ?? '') >= day || this._dailyAttemptDay === day)) return false;
+        if (automatic) this._dailyAttemptDay = day;
+        this._dailyOpening = true;
+        try {
+            const modal = await this._ensureDailySignIn();
+            if (!this.isValid || !this.lobby?.node.activeInHierarchy) return false;
+            if (automatic && !this.save.markDailyPrompt(day, this._dailyConfig)) return false;
+            await modal.present(this._dailyConfig);
+            return true;
+        } catch (error) {
+            console.warn('[DailySignIn] 弹窗加载失败', error);
+            this.toast('签到暂不可用，请稍后从主页重试');
+            return false;
+        } finally { this._dailyOpening = false; }
+    }
+
+    public promptDailySignIn(): void {
+        if (!this._booting && !this._bootFailed && this.lobby?.node.activeInHierarchy) void this.openDailySignIn(true);
+    }
+
+    public get dailySignInAvailable(): boolean {
+        return !!this._dailyConfig && this.save.dailyStatus(sidebarDay(), this._dailyConfig).canClaim;
+    }
+
+    private _ensureDailySignIn(): Promise<DailySignInModal> {
+        if (this._dailySignIn?.isValid) return Promise.resolve(this._dailySignIn);
+        if (this._dailyLoading) return this._dailyLoading;
+        this._dailyLoading = new Promise<DailySignInModal>((resolve, reject) => {
+            void this._loadLobbyBundle().then(bundle => bundle.load('prefabs/DailySignInModal', Prefab, (error, prefab) => {
+                const canvas = this.node.parent;
+                if (error || !prefab || !this.isValid || !canvas) { reject(error ?? new Error('签到界面已销毁')); return; }
+                const node = instantiate(prefab); node.active = false; node.parent = canvas;
+                const modal = node.getComponent(DailySignInModal);
+                if (!modal) { node.destroy(); reject(new Error('签到预制体缺少 DailySignInModal 组件')); return; }
+                this._dailySignIn = modal;
+                resolve(modal);
+            })).catch(reject);
+        }).finally(() => { this._dailyLoading = null; });
+        return this._dailyLoading;
     }
 
     private _returnAdPending = false;
@@ -359,11 +616,14 @@ export class GameFlow extends Component {
     /** 玩家主动返回主页时请求插屏；加载失败等内部跳转仍使用 showLobby。 */
     public returnToLobby(): void {
         if (this._returnAdPending) return;
-        this.showLobby();
-        const navigation = this._secondaryNavigationVersion;
+        const opening = this.lobby?.isValid ? (this.showLobby(), Promise.resolve()) : this._openLobby();
         this._returnAdPending = true;
-        void this.platform.showInterstitial(() => this.isValid && navigation === this._secondaryNavigationVersion
-            && !!this.lobby?.node.activeInHierarchy, true, true, 'return-home')
+        void opening.then(() => {
+            if (!this.isValid || !this.lobby?.node.activeInHierarchy) return;
+            const navigation = this._secondaryNavigationVersion;
+            return this.platform.showInterstitial(() => this.isValid && navigation === this._secondaryNavigationVersion
+                && !!this.lobby?.node.activeInHierarchy, true, true, 'return-home');
+        })
             .finally(() => { this._returnAdPending = false; });
     }
 
@@ -430,6 +690,7 @@ export class GameFlow extends Component {
         this._cancelSecondaryNavigation();
         this._openingNativeRank = true;
         try {
+            if (await this.platform.detectHarmony() || this.platform.supportsRanking === false) return;
             const caller = this.lobby?.node;
             await this.platform.showInterstitial(() => this.isValid && !!caller?.activeInHierarchy, true);
             if (!this.isValid || !caller?.activeInHierarchy) return;
@@ -456,9 +717,10 @@ export class GameFlow extends Component {
     }
 
     /** 城市列表页。 */
-    public showCitySelect(): void {
+    public showCitySelect(topicKey?: string): void | Promise<void> {
+        this._selectedTopic = this._cityIndex?.topics?.find(topic => topic.key === topicKey) ?? null;
+        if (!this.citySelect?.isValid) return this._openNavigationPage('citySelect');
         this._switchTo(this.citySelect);
-        void this.lobby?.preloadHero();
     }
 
     /** 选关入口授权独立于小关解锁；完整观看后从此刻起有效 24 小时。 */
@@ -485,7 +747,8 @@ export class GameFlow extends Component {
             }
             if (!active() || !this.save.hasLevelSelectAccess()) return;
             // 先进入详情页，再请求插屏，避免加载或缺失关闭回调让玩家一直停在主页。
-            this.showCitySelect();
+            await this.showCitySelect();
+            if (!this.isValid || !this.citySelect?.node.activeInHierarchy) return;
             const enteredNavigation = this._secondaryNavigationVersion;
             // 每次成功进入均请求，包括刚看视频解锁的首次进入；平台仍可能按原生频控拒绝展示。
             await this.platform.showInterstitial(() => this.isValid && enteredNavigation === this._secondaryNavigationVersion
@@ -510,10 +773,16 @@ export class GameFlow extends Component {
         this._cancelSecondaryNavigation();
         const target = city ?? this._currentCity ?? this._cities[0] ?? null;
         if (!target) return;
+        if (!this.isCityUnlocked(this._cities.indexOf(target))) { this.toast('请先观看视频解锁该城市'); return; }
         const navigationVersion = this._secondaryNavigationVersion;
         this._currentCity = target;
+        if (!this.levelSelect?.isValid && this._loadingNode) {
+            this._secondaryPageLoading = true;
+            this._loadingNode.active = true;
+            this._loadingNode.setSiblingIndex(this._loadingNode.parent!.children.length - 1);
+        }
         try {
-            await this.ensureCity(target);
+            await Promise.all([this.ensureCity(target), this._ensureNavigationPage('levelSelect')]);
         } catch (error) {
             if (!this.isValid || navigationVersion !== this._secondaryNavigationVersion) return;
             console.error(`[GameFlow] 城市关卡加载失败: ${target.key}`, error);
@@ -522,39 +791,60 @@ export class GameFlow extends Component {
         }
         if (!this.isValid || navigationVersion !== this._secondaryNavigationVersion) return;
         this._switchTo(this.levelSelect);
-        void this.lobby?.preloadHero();
     }
 
     /** 从城市页进入城市：设置当前城市并打开关卡页。 */
     public async enterCity(city: CityConfig): Promise<void> {
+        const navigation = this._secondaryNavigationVersion;
+        if (!this.isCityUnlocked(this._cities.indexOf(city))) {
+            if (!await this.requestCityUnlock(city)) return;
+            if (!this.isValid || navigation !== this._secondaryNavigationVersion || !this.citySelect?.node.activeInHierarchy) return;
+        }
         await this.showLevelSelect(city);
+    }
+
+    /** 一次完整视频永久开放城市入口，不同时解锁该城所有小关。 */
+    public async requestCityUnlock(city: CityConfig): Promise<boolean> {
+        const index = this._cities.indexOf(city);
+        if (index < 0) return false;
+        if (this.isCityUnlocked(index)) return true;
+        let granted = false;
+        await this.requestReward('unlock-city', () => {
+            granted = this.save.unlockCity(city.key);
+            if (!granted) this.toast('城市解锁保存失败，请重试');
+        });
+        if (this.citySelect?.node.activeInHierarchy) this.citySelect.rebuild();
+        return granted;
     }
 
     /** 优先从最后游玩的小关继续；无记录的旧存档按原章节进度继续。 */
     public async findContinueTarget(): Promise<{ city: CityConfig; levelIndex: number; level: LevelConfig } | null> {
         // 独立大关卡只继续本章；初次进入从网络热点开始。
-        const preferred = this._currentCity ?? this._cities.find(city => city.key === this.save.data?.lastPlayedCityKey);
+        const lastKey = this.save.data?.lastPlayedLevelKey;
+        const owner = lastKey && this._cities.find(city => city.levels.some(dir =>
+            (city.levelIds?.[dir] ?? `${city.key}/${dir}`) === lastKey));
+        const preferred = this._currentCity ?? owner ?? this._cities.find(city => city.key === this.save.data?.lastPlayedCityKey);
         const current = preferred && this.isCityUnlocked(this._cities.indexOf(preferred))
-            ? preferred : this._cities.find(city => city.key === 'city-00-HotTips') ?? this._cities[0];
-        const lastIndex = current?.levels.findIndex(dir => `${current.key}/${dir}` === this.save.data?.lastPlayedLevelKey) ?? -1;
+            ? preferred : this._cities[0];
+        const lastIndex = current?.levels.findIndex(dir => (current.levelIds?.[dir] ?? `${current.key}/${dir}`) === this.save.data?.lastPlayedLevelKey) ?? -1;
         if (current && lastIndex >= 0 && this.isLevelUnlocked(this._cities.indexOf(current), lastIndex)) {
             let target = { city: current, levelIndex: lastIndex };
             // 通关后向前继续，不因中间跳过的小关退回旧进度。
-            while (this.save.isCompleted(`${target.city.key}/${target.city.levels[target.levelIndex]}`)) {
+            while (this.save.isCompleted((target.city.levelIds?.[target.city.levels[target.levelIndex]] ?? `${target.city.key}/${target.city.levels[target.levelIndex]}`))) {
                 const next = this._nextLevelTarget(target.city, target.levelIndex);
                 if (!next || !this.isLevelUnlocked(this._cities.indexOf(next.city), next.levelIndex)) break;
                 target = next;
             }
             return { ...target, level: await this._ensureLevel(target.city, target.levelIndex) };
         }
-        const sequence = current?.key === 'city-00-HotTips'
-            ? [current, this._cities.find(city => city.key === 'city-01-2026Hotmeme')].filter((city): city is CityConfig => !!city)
+        const sequence = current?.nextChapter
+            ? [current, this._cities.find(city => city.key === current.nextChapter)].filter((city): city is CityConfig => !!city)
             : current ? [current] : [];
         for (const city of sequence) {
             const ci = this._cities.indexOf(city);
             if (!this.isCityUnlocked(ci)) continue;
             for (let li = 0; li < city.levels.length; li++) {
-                const key = `${city.key}/${city.levels[li]}`;
+                const key = (city.levelIds?.[city.levels[li]] ?? `${city.key}/${city.levels[li]}`);
                 if (this.isLevelUnlocked(ci, li) && !this.save.isCompleted(key)) {
                     const level = await this._ensureLevel(city, li);
                     return { city, levelIndex: li, level };
@@ -630,13 +920,63 @@ export class GameFlow extends Component {
     private _prefetchPending: LevelConfig | null = null;
     private _levelLoadVersion = 0;
 
+    private _onFeedPreviewChanged(): void {
+        if (this.feed.isPreview) {
+            this._feedPauseBeforePreview = this._isPaused;
+            this._isPaused = true;
+            this._musicRequest++;
+            this._musicPath = '';
+            this._musicSource?.stop();
+            if (this.game?.node.activeInHierarchy && this._currentLevel && !this._levelLoading) {
+                void this._drawLoadingFrame().then(() => { if (this.isValid) void this.feed.reportReady(); });
+            }
+            return;
+        }
+        this.platform.prepareFeedLogin();
+        const begin = this._feedStart;
+        this._feedStart = null;
+        if (begin) begin();
+        else {
+            if (this._feedPauseBeforePreview !== null) this._isPaused = this._feedPauseBeforePreview;
+            if (this._currentLevel && this.game?.node.activeInHierarchy && !this._levelLoading) {
+                const version = this._levelLoadVersion;
+                void this.feed.onLevelEntered(this._currentLevel.key).then(token => {
+                    if (this.isValid && version === this._levelLoadVersion && token) this._feedOffer = { token, version };
+                });
+            }
+        }
+        this._feedPauseBeforePreview = null;
+        if (this.game?.node.activeInHierarchy && this._currentCity) {
+            const music = this._currentGameMusic();
+            this._playPageMusic(music.path, music.fromBundle);
+        }
+    }
+
+    private _tryFeedOffer(): void {
+        const offer = this._feedOffer;
+        if (!offer) return;
+        if (offer.version !== this._levelLoadVersion || this._isGameOver || !this.game?.node.activeInHierarchy) {
+            this._feedOffer = null; return;
+        }
+        if (this._isPaused || this._levelLoading || this._rewardPending || this.platform.interstitialBusy
+            || this.feed.isPreview || this._tutorial?.node.activeInHierarchy || this._settings?.node.activeInHierarchy) return;
+        const entries = this.node.parent?.getComponent(LobbyEntries);
+        if (entries?.openFeedSubscription(this.game.node, () => {
+            if (this.isValid && offer.version === this._levelLoadVersion) this._isPaused = this._isGameOver;
+        })) {
+            this._isPaused = true;
+            this.feed.markOffered(offer.token);
+        }
+        this._feedOffer = null;
+    }
+
     public async startLevel(city: CityConfig, levelIndex: number, musicSource: 'select' | 'streak' | 'retry' = 'select', failureAction: 'lobby' | 'skip-next' = 'lobby'): Promise<void> {
         if (this._levelLoading || this._rewardPending || this._levelSelectEntryPending || this._returnAdPending) return;
         if (!this.isLevelUnlocked(this._cities.indexOf(city), levelIndex)) {
             this.toast('请先通关上一关，或在选关页看视频解锁本关');
             return;
         }
-        if (this.save.energy < 1) {
+        if (!this.feed?.isPreview && this.save.energy < 1) {
             if (this._loadingNode?.active) this.showLobby();
             this.toast('体力不足，无法开始挑战');
             return;
@@ -644,6 +984,8 @@ export class GameFlow extends Component {
         this._cancelSecondaryNavigation();
         this._updateGameMusic(city, levelIndex, musicSource);
         const version = ++this._levelLoadVersion;
+        this._feedStart = null;
+        this._feedOffer = null;
         const active = () => this.isValid && version === this._levelLoadVersion;
         this._levelLoading = true;
         this._isPaused = true;
@@ -692,17 +1034,33 @@ export class GameFlow extends Component {
             }
             await this._drawLoadingFrame();
             if (!active()) return;
-            if (!this.save.consumeEnergy()) {
-                this._returnToLobbyOnLoadError(this.save.energy < 1 ? '体力不足，已返回主页' : '体力保存失败，请重试');
-                return;
-            }
-            const dailyFirst = this.save.beginDailyFirstRound(sidebarDay());
-            this.save.setLastPlayedLevel(city.key, level.key);
-            this._roundInterstitialProtected = dailyFirst;
-            this._isPaused = false;
-            if (this._loadingNode) this._loadingNode.active = false;
-            this._showFirstLevelTutorial(level);
-            void this.preloadNextLevel(level);
+            const begin = () => {
+                if (!active() || this.feed?.isPreview) return;
+                if (!this.save.consumeEnergy()) {
+                    this._returnToLobbyOnLoadError(this.save.energy < 1 ? '体力不足，已返回主页' : '体力保存失败，请重试');
+                    return;
+                }
+                const dailyFirst = this.save.beginDailyFirstRound(sidebarDay());
+                this.save.setLastPlayedLevel(city.key, level.key);
+                this._roundInterstitialProtected = dailyFirst;
+                if (this._loadingNode) this._loadingNode.active = false;
+                // Queue only the lobby shell after active play; menu catalogs/hero stay on demand.
+                if (!this._lobbyWarmupStarted && this._lobbyWarmupRemaining == null) this._lobbyWarmupRemaining = 8;
+                this._isPaused = false;
+                this._showFirstLevelTutorial(level);
+                void this.preloadNextLevel(level);
+                void this.feed?.onLevelEntered(level.key).then(token => {
+                    if (active() && token) this._feedOffer = { token, version };
+                });
+            };
+            if (this.feed?.isPreview) {
+                this._feedStart = begin;
+                this._isPaused = true;
+                if (this._loadingNode) this._loadingNode.active = false;
+            } else begin();
+            if (this.feed) void this._drawLoadingFrame().then(() => {
+                if (active()) void this.feed.reportReady();
+            }).catch(error => console.warn('[Feed] 首帧上报等待失败', error));
         } catch (error) {
             if (!active()) return;
             this.game?.clearLevel();
@@ -723,7 +1081,7 @@ export class GameFlow extends Component {
     }
 
     private _showFirstLevelTutorial(level: LevelConfig): void {
-        if (level.key !== `${this._cities[0]?.key}/${this._cities[0]?.levels[0]}`) return;
+        if (level.key !== (this._cities[0]?.levelIds?.[this._cities[0]?.levels[0]] ?? `${this._cities[0]?.key}/${this._cities[0]?.levels[0]}`)) return;
         if (!(PREVIEW && this.previewTutorial) && (this.save.data.tutorialCompleted || this.save.totalScore > 0)) return;
         const difference = level.differences[0];
         if (!difference) return;
@@ -791,7 +1149,7 @@ export class GameFlow extends Component {
         const level = this._currentLevel;
         const round = this._assistRoundVersion;
         const hintAction = this.unlimitedAssists || this.save.freeHints > 0 ? '使用提示' : '看广告获取提示';
-        const timeAction = this.unlimitedAssists || this.save.freeAddTimes > 0 ? '加时30秒' : '看广告加时30秒';
+        const timeAction = this.unlimitedAssists || this.save.freeAddTimes > 0 ? '加时60秒' : '看广告加时60秒';
         const text = kind === 'hint' ? `找不到？点击${hintAction}，指出一处不同`
             : kind === 'zoom' ? '点击放大镜查看细节，可拖动，再点一次还原'
             : `时间不足！点击${timeAction}`;
@@ -823,6 +1181,7 @@ export class GameFlow extends Component {
         this._stopResultTone();
         this._foodTips?.close();
         this._eventTips?.close();
+        this._dailySignIn?.close();
         this._settings?.close();
         this._settingsInGame = false;
         this._comboSoundRequest++;
@@ -847,6 +1206,7 @@ export class GameFlow extends Component {
 
     /** 同类页面延续播放；异步加载完成后只允许当前页面的音乐开始播放。 */
     private _playPageMusic(path: string, fromBundle = false): void {
+        if (this.feed?.isPreview) return;
         const source = this._musicSource;
         if (!source) return;
         if (!this.save.data.musicEnabled) {
@@ -883,6 +1243,8 @@ export class GameFlow extends Component {
             void this._loadGameBundle()
                 .then(bundle => bundle.load(path, AudioClip, onLoaded))
                 .catch(error => onLoaded(error instanceof Error ? error : new Error(String(error))));
+        } else if (path === 'voice/BGmusic/Main_music00') {
+            void this._loadLobbyBundle().then(bundle => bundle.load(path, AudioClip, onLoaded)).catch(error => onLoaded(error));
         } else {
             resources.load(path, AudioClip, onLoaded);
         }
@@ -925,6 +1287,13 @@ export class GameFlow extends Component {
     }
 
     protected onDestroy(): void {
+        this._lobbyWarmupRemaining = null;
+        this._lobbyWarmupStarted = true;
+        this.feed?.dispose();
+        this._feedStart = null;
+        this._feedOffer = null;
+        game.off(Game.EVENT_SHOW, this.promptDailySignIn, this);
+        this._dailySignIn?.close();
         this._eventTips?.close();
         this._disposeSecondaryPages();
         this._pageSpritesDisposed = true;
@@ -964,9 +1333,17 @@ export class GameFlow extends Component {
     // 解锁判定（积分制：通关集合驱动）
     // ------------------------------------------------------------------
 
-    /** 所有专题直接开放，旧存档的广告解锁记录不再作为入口条件。 */
+    /** 顶层专题直接开放；分组内默认城市免费，其余城市保留已有资格或看视频解锁。 */
     public isCityUnlocked(cityIndex: number): boolean {
-        return Number.isInteger(cityIndex) && cityIndex >= 0 && cityIndex < this._cities.length;
+        if (!Number.isInteger(cityIndex) || cityIndex < 0 || cityIndex >= this._cities.length) return false;
+        const city = this._cities[cityIndex];
+        const topic = this._cityIndex?.topics?.find(item => item.chapters.includes(city.key));
+        if (!topic || topic.defaultChapter === city.key) return true;
+        return this.save.isCityUnlocked(city.key) || (city.legacyKeys ?? []).some(key => this.save.isCityUnlocked(key))
+            || city.levels.some(dir => this.save.isCompleted(city.levelIds?.[dir] ?? `${city.key}/${dir}`))
+            || city.levels.slice(1).some(dir => this.save.isLevelUnlocked(city.levelIds?.[dir] ?? `${city.key}/${dir}`))
+            || this.save.data?.lastPlayedCityKey === city.key
+            || (city.legacyKeys ?? []).includes(this.save.data?.lastPlayedCityKey ?? '');
     }
 
     /** 每章首关免费开放，后续小关通关前一关后免费开放。 */
@@ -974,31 +1351,31 @@ export class GameFlow extends Component {
         const city = this._cities[cityIndex];
         if (!city || !this.isCityUnlocked(cityIndex)) return false;
         if (!Number.isInteger(levelIndex) || levelIndex < 0 || levelIndex >= city.levels.length) return false;
-        const key = `${city.key}/${city.levels[levelIndex]}`;
+        const key = (city.levelIds?.[city.levels[levelIndex]] ?? `${city.key}/${city.levels[levelIndex]}`);
         return levelIndex === 0 || this.save.isCompleted(key) || this.save.isLevelUnlocked(key)
-            || this.save.isCompleted(`${city.key}/${city.levels[levelIndex - 1]}`);
+            || this.save.isCompleted((city.levelIds?.[city.levels[levelIndex - 1]] ?? `${city.key}/${city.levels[levelIndex - 1]}`));
     }
 
     /** 城市进度（无需加载关卡配置）。 */
     public cityProgress(city: CityConfig): { done: number; total: number } {
-        const done = city.levels.filter(dir => this.save.isCompleted(`${city.key}/${dir}`)).length;
+        const done = city.levels.filter(dir => this.save.isCompleted((city.levelIds?.[dir] ?? `${city.key}/${dir}`))).length;
         return { done, total: city.levels.length };
     }
 
-    /** 下一关按本章配置推进；仅网络热点允许衔接2026热梗。 */
+    /** 下一关按本章配置推进；跨章节只读取 nextChapter 配置。 */
     public findNextLevel(after: LevelConfig): { city: CityConfig; levelIndex: number } | null {
         const city = this._currentCity;
         if (!city) return null;
-        const index = city.levels.findIndex(dir => `${city.key}/${dir}` === after.key);
+        const index = city.levels.findIndex(dir => (city.levelIds?.[dir] ?? `${city.key}/${dir}`) === after.key);
         return index >= 0 ? this._nextLevelTarget(city, index) : null;
     }
 
     /** 根据目录定位后继关卡，不依赖可能尚未加载或损坏的配置。 */
     private _nextLevelTarget(city: CityConfig, levelIndex: number, allowLockedCity = false): { city: CityConfig; levelIndex: number } | null {
         if (levelIndex + 1 < city.levels.length) return { city, levelIndex: levelIndex + 1 };
-        // 只保留网络热点到2026热梗的原顺序链，其他专题在章内推进。
-        if (city.key === 'city-00-HotTips') {
-            const next = this._cities.find(item => item.key === 'city-01-2026Hotmeme');
+        // 未配置 nextChapter 的独立专题在章内推进。
+        if (city.nextChapter) {
+            const next = this._cities.find(item => item.key === city.nextChapter);
             if (next?.levels.length && this.isCityUnlocked(this._cities.indexOf(next))) return { city: next, levelIndex: 0 };
         }
         return null;
@@ -1014,6 +1391,7 @@ export class GameFlow extends Component {
     public static readonly TOP_COMBO_WINDOW_MS = 3500;
 
     public onDifferenceFound(difference: DifferenceConfig, imageNode?: Node): void {
+        if (this.feed?.isPreview) return;
         if (this._isGameOver || this._isPaused || !this._currentLevel || this._foundIds.has(difference.id)) return;
         this._foundIds.add(difference.id);
         this._lastFoundElapsed = this._elapsedTime;
@@ -1035,6 +1413,7 @@ export class GameFlow extends Component {
     }
 
     public onWrongTap(localPosition: Vec3, imageNode: Node): void {
+        if (this.feed?.isPreview) return;
         if (this._isGameOver || this._isPaused) return;
         ++this._comboSoundRequest;
         this._comboSource?.stop();
@@ -1274,19 +1653,19 @@ export class GameFlow extends Component {
         if (this._isPaused || this._isGameOver || !this.game?.node.activeInHierarchy) return;
         this.playAddTimeSound();
         if (this.unlimitedAssists) {
-            this.addTime(30);
+            this.addTime(60);
             return;
         }
         if (this.save.freeAddTimes > 0) {
             if (!this.save.consumeAddTime()) { this.toast('保存失败，请稍后再试'); return; }
-            this.addTime(30);
+            this.addTime(60);
             return;
         }
         const round = this._assistRoundVersion;
         await this.requestReward('add-time', () => {
             if (!this.save.grantAssist('add-time')) { this.toast('保存失败，请稍后再试'); return; }
             if (round === this._assistRoundVersion && !this._isGameOver && this.game?.node.activeInHierarchy
-                && this.save.consumeAddTime()) this.addTime(30);
+                && this.save.consumeAddTime()) this.addTime(60);
             this.game?.refreshHud();
         });
     }
@@ -1413,7 +1792,7 @@ export class GameFlow extends Component {
         if (next) {
             void this.startLevel(next.city, next.levelIndex, 'streak', 'skip-next');
         } else if (this._currentCity) {
-            void this.startLevel(this._currentCity, Math.max(0, this._currentCity.levels.findIndex(dir => `${this._currentCity!.key}/${dir}` === level.key)), 'streak');
+            void this.startLevel(this._currentCity, Math.max(0, this._currentCity.levels.findIndex(dir => (this._currentCity!.levelIds?.[dir] ?? `${this._currentCity!.key}/${dir}`) === level.key)), 'streak');
         }
     }
 
@@ -1444,7 +1823,7 @@ export class GameFlow extends Component {
         if (this.isLevelUnlocked(cityIndex, levelIndex)) return true;
         let unlocked = false;
         await this.requestReward('unlock-level', () => {
-            unlocked = this.save.unlockLevel(`${city.key}/${city.levels[levelIndex]}`);
+            unlocked = this.save.unlockLevel((city.levelIds?.[city.levels[levelIndex]] ?? `${city.key}/${city.levels[levelIndex]}`));
             if (!unlocked) this.toast('关卡解锁保存失败，请稍后重试');
         });
         return unlocked;
@@ -1459,8 +1838,9 @@ export class GameFlow extends Component {
     }
 
     public async requestReward(placement: RewardPlacement, onReward: () => void): Promise<void> {
+        if (this.feed?.isPreview) return;
         // 广告并发单独保护，包含结算后的复活请求。
-        const isUnlock = placement === 'unlock-level' || placement === 'unlock-chapter' || placement === 'level-select' || placement === 'energy';
+        const isUnlock = placement === 'unlock-level' || placement === 'unlock-chapter' || placement === 'unlock-city' || placement === 'level-select' || placement === 'energy' || placement === 'daily-sign-in';
         if (this._rewardPending || (!isUnlock && this._isPaused && !this._isGameOver)) return;
         const wasPaused = this._isPaused;
         this._rewardPending = true;
@@ -1484,7 +1864,10 @@ export class GameFlow extends Component {
     }
 
     public share(levelKey?: string): void {
-        this.platform.share(levelKey ?? this._currentLevel?.key ?? '1');
+        if (this.platform.share(levelKey ?? this._currentLevel?.key ?? '1') === false) {
+            this.toast(this.platform.isHarmony ? '鸿蒙系统暂不支持分享' : '当前环境暂不支持分享，请稍后重试');
+            return;
+        }
         this.toast(this.platform.kind === 'h5' ? '分享链接已尝试复制' : '已打开分享面板');
     }
 
@@ -1500,12 +1883,12 @@ export class GameFlow extends Component {
             const cityIndex = this._cities.findIndex(city => city === this._currentCity);
             const city = this._cities[cityIndex];
             if (!city || !active()) return;
-            const index = city.levels.findIndex(dir => `${city.key}/${dir}` === level.key);
+            const index = city.levels.findIndex(dir => (city.levelIds?.[dir] ?? `${city.key}/${dir}`) === level.key);
             if (index < 0) return;
             const targetLevel = this._nextLevelTarget(city, index);
             const nextCity = targetLevel?.city;
             const dir = nextCity?.levels[targetLevel!.levelIndex];
-            if (!nextCity || !dir) return;
+            if (!nextCity || !dir || nextCity.key !== city.key) return;
             if (!active()) return;
             releaseBundle = this._contentBundles.retain(nextCity.key);
             const next = await this._loadLevel(null, nextCity.key, dir);
@@ -1513,6 +1896,7 @@ export class GameFlow extends Component {
                 if (!active()) return;
                 if (!path.startsWith('levels/')) continue;
                 const target = this._levelImageTarget(path);
+                if (target.cityKey !== city.key) continue;
                 const images = await this._loadCityBundle('levels', target.cityKey);
                 if (!active()) return;
                 const info = images.getInfoWithPath(target.request, SpriteFrame);
@@ -1644,7 +2028,7 @@ export class GameFlow extends Component {
 
     /** levels/城市/关卡/图片 → 城市 Bundle + 关卡/图片。 */
     private _levelImageTarget(path: string): { cityKey: string; request: string } {
-        const match = /^levels\/(city-(?:\d{2}-)?[a-zA-Z0-9]+)\/(.+)$/.exec(path);
+        const match = /^levels\/([a-zA-Z0-9-]+)\/(.+)$/.exec(path);
         if (!match) throw new Error(`无效的城市关卡图片路径：${path}`);
         return { cityKey: match[1], request: match[2] };
     }
@@ -1653,7 +2037,7 @@ export class GameFlow extends Component {
         if (path.startsWith('levels/')) return this._levelImageTarget(path);
         const shared = /^(chapter-covers|food-icons)\/(.+)$/.exec(path);
         if (shared) return { cityKey: shared[1], request: shared[2] };
-        const thumbnail = /^thumbnails\/(city-(?:\d{2}-)?[a-zA-Z0-9]+)\/(.+)$/.exec(path);
+        const thumbnail = /^thumbnails\/([a-zA-Z0-9-]+)\/(.+)$/.exec(path);
         if (thumbnail) return { cityKey: thumbnail[1], request: `thumbnails/${thumbnail[2]}` };
         if (path.startsWith('thumbnails/') || path.startsWith('configs/city-')) throw new Error(`无效的关卡资源路径：${path}`);
         return null;
@@ -1734,21 +2118,30 @@ export class GameFlow extends Component {
         let initialDone = 0;
         const initial = async <T>(task: Promise<T>): Promise<T> => {
             const result = await task;
-            report(++initialDone / 4 * 0.4);
+            report(++initialDone / 6 * 0.4);
             return result;
         };
         try {
-            const [gradesAsset, platformAsset, cityIndexAsset, foodAsset] = await Promise.all([
+            const [gradesAsset, platformAsset, cityIndexAsset, foodAsset, dailyAsset, porcelainAsset] = await Promise.all([
                 initial(this._loadJson('configs/levels')),
                 initial(this._loadJson('configs/platform-config')),
                 initial(this._loadJson('configs/cities')),
                 initial(this._loadJson('configs/food-catalog')),
+                initial(this._loadJson('configs/daily-sign-in')),
+                initial(this._loadJson('configs/porcelain-catalog')),
             ]);
-            this._foods = (foodAsset.json as { foods: FoodCatalogEntry[] }).foods;
+            this._foods = [...(foodAsset.json as { foods: FoodCatalogEntry[] }).foods];
             this._grades = gradesAsset.json as GradeConfig;
+            this._dailyConfig = dailyAsset.json as DailySignInConfig;
             this.platform.configure(platformAsset.json as PlatformConfig);
+            this.feed?.configure((platformAsset.json as PlatformConfig).feed);
 
             const index = cityIndexAsset.json as CityIndex;
+            // Draft chapters retain their collection mapping without exposing unplayable video rewards.
+            const publishedLevelIds = new Set(index.cities.flatMap(key => index.chapters[key]?.levels
+                .map(level => typeof level === 'string' ? `${key}/${level}` : level.id) ?? []));
+            const porcelain = (porcelainAsset.json as { items?: FoodCatalogEntry[] }).items ?? [];
+            this._foods.push(...porcelain.filter(item => publishedLevelIds.has(item.levelKey)));
             this._cityIndex = index;
             report(0.45);
             let cityDone = 0;
@@ -1758,37 +2151,33 @@ export class GameFlow extends Component {
                 return city;
             }));
             report(0.75);
-            // 场景引用的主页图片在场景进入前已加载；这里加载动态音频并复用缓存。
-            const musicPath = 'voice/BGmusic/Main_music00';
-            const music = new Promise<void>((resolve, reject) => {
-                resources.load(musicPath, AudioClip, (error, clip) => {
-                    if (error) { reject(error); return; }
-                    this._musicClips.set(musicPath, clip);
-                    resolve();
-                });
-            });
-            await music;
             report(0.99);
 
             // v2 旧档迁移保持原城市顺序，新增前置专题不能占用旧关卡编号。
             const rules = (await this._loadJson('configs/chapter-rules')).json as ChapterRulesConfig;
+            const legacyLayout = (await this._loadJson('configs/chapter-layout-legacy')).json as Record<string, string[]>;
             const allKeys: string[] = [];
             for (const key of rules.legacyOrders[0]) {
-                const city = this._cities.find(item => item.key === key);
-                if (!city) continue;
-                for (const dir of city.levels) {
-                    allKeys.push(`${city.key}/${dir}`);
-                }
+                allKeys.push(...(legacyLayout[key] ?? []));
             }
             const migratedLegacy = this.save.migrateLegacy(allKeys);
             if (!this.save.migrateChapterRules(rules, this._cities, migratedLegacy)) {
                 throw new Error('旧关卡解锁进度保存失败，请重试');
             }
+            if (!this.save.migrateContentLayout(this._cities, legacyLayout)) {
+                throw new Error('章节调整前的关卡资格保存失败，请重试');
+            }
 
             if (!this.isValid) return;
             report(1);
             // 保持启动遮罩，按存档直接进入当前关卡；关卡就绪后由 startLevel 关闭遮罩。
-            await this.startContinue();
+            const feedKey = this.feed?.launchLevelKey;
+            const feedTarget = feedKey ? this._cities.map((city, cityIndex) => ({ city, cityIndex,
+                levelIndex: city.levels.findIndex(dir => (city.levelIds?.[dir] ?? `${city.key}/${dir}`) === feedKey) }))
+                .find(target => target.levelIndex >= 0 && this.isCityUnlocked(target.cityIndex)
+                    && this.isLevelUnlocked(target.cityIndex, target.levelIndex)) : null;
+            if (feedTarget) await this.startLevel(feedTarget.city, feedTarget.levelIndex);
+            else await this.startContinue();
         } catch (error) {
             active = false;
             this._bootFailed = true;
@@ -1805,11 +2194,22 @@ export class GameFlow extends Component {
     private async _loadCityMeta(_bundle: AssetManager.Bundle | null, key: string): Promise<CityConfig> {
         const meta = this._cityIndex?.chapters?.[key];
         if (!meta) throw new Error(`主包缺少章节索引: ${key}，请重新生成关卡清单`);
+        const entries = (meta.levels ?? []).filter(entry => entry !== 'level-00').map(entry =>
+            typeof entry === 'string' ? { id: `${key}/${entry}`, name: '', folder: entry } : entry);
+        const levelIds: Record<string, string> = {}, levelNames: Record<string, string> = {};
+        for (const entry of entries) {
+            levelIds[entry.folder] = entry.id;
+            levelNames[entry.folder] = entry.name;
+        }
         return {
             key,
             name: meta.name ?? key,
             banner: meta.banner ?? `chapter-covers/${key}-icon/spriteFrame`,
-            levels: (meta.levels ?? []).filter(dir => dir !== 'level-00'),
+            levels: entries.map(entry => entry.folder),
+            levelIds,
+            levelNames,
+            nextChapter: meta.nextChapter,
+            legacyKeys: meta.legacyKeys,
             levelsLoaded: false,
             levelConfigs: [],
         };
@@ -1834,18 +2234,21 @@ export class GameFlow extends Component {
     }
 
     private async _loadLevel(_bundle: AssetManager.Bundle | null, cityKey: string, levelDir: string): Promise<LevelConfig> {
-        const key = `${cityKey}/${levelDir}`;
+        const meta = this._cityIndex?.chapters?.[cityKey];
+        const entry = meta?.levels.find(item => typeof item !== 'string' && item.folder === levelDir);
+        const definition = typeof entry === 'object' ? entry : undefined;
+        const key = definition?.id ?? `${cityKey}/${levelDir}`;
         const file = await this._contentBundles.use(cityKey, async bundle => {
             const asset = await this._loadBundleJson(bundle, `configs/${levelDir}/differences`);
             // 运行时只保留普通配置数据，配对归还 JsonAsset 引用。
             try { return JSON.parse(JSON.stringify(asset.json)) as LevelFileConfig; }
             finally { asset.decRef(); }
         });
-        const topImage = file.topImage ?? `levels/${key}/scene-a/spriteFrame`;
-        const bottomImage = file.bottomImage ?? `levels/${key}/scene-b/spriteFrame`;
+        const topImage = file.topImage ?? `levels/${cityKey}/${levelDir}/scene-a/spriteFrame`;
+        const bottomImage = file.bottomImage ?? `levels/${cityKey}/${levelDir}/scene-b/spriteFrame`;
         return {
             key,
-            name: file.name ?? levelDir,
+            name: definition?.name ?? file.name ?? levelDir,
             type: file.type ?? 'normal',
             timeLimit: this._timeFor(file.differences?.length ?? 0),
             maxLives: this._grades.maxLives,
@@ -1891,16 +2294,7 @@ export class GameFlow extends Component {
     }
 
     private _loadSecondaryBundle(): Promise<AssetManager.Bundle> {
-        if (this._secondaryBundle) return Promise.resolve(this._secondaryBundle);
-        if (this._secondaryBundlePending) return this._secondaryBundlePending;
-        this._secondaryBundlePending = new Promise<AssetManager.Bundle>((resolve, reject) => {
-            assetManager.loadBundle('SecondaryUI', (error, bundle) => {
-                if (error) reject(error);
-                else if (this._secondaryDisposed) reject(new Error('游戏流程已销毁'));
-                else { this._secondaryBundle = bundle; resolve(bundle); }
-            });
-        }).finally(() => { this._secondaryBundlePending = null; });
-        return this._secondaryBundlePending;
+        return this._loadLobbyBundle();
     }
 
     /** 首次打开才加载，合并重复点击；页面节点复用，封面仍按页面生命周期释放。 */
@@ -1913,7 +2307,7 @@ export class GameFlow extends Component {
             const bundle = await this._loadSecondaryBundle();
             if (this._secondaryDisposed) throw new Error('游戏流程已销毁');
             const prefab = await new Promise<Prefab>((resolve, reject) => {
-                bundle.load(`prefabs/${kind === 'rank' ? 'RankScreen' : 'CollectScreen'}`, Prefab, (error, loaded) => {
+                bundle.load(`SecondaryUI/prefabs/${kind === 'rank' ? 'RankScreen' : 'CollectScreen'}`, Prefab, (error, loaded) => {
                     if (error) { reject(error); return; }
                     loaded.addRef();
                     if (this._secondaryDisposed) { loaded.decRef(); reject(new Error('游戏流程已销毁')); return; }

@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-03",
+  "sceneBeforeSHA256": "4f7aaa85fdf0e5c758cbc8fd6ecc0233c6a6fd1fec5e93caa29c581fda178ffb",
+  "lobbyObjects": 130,
+  "moved": [
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_Collect.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/icons/icon_Collect.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_Shar.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/icons/icon_Shar.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_settings.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/icons/icon_settings.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/button_secondary_white.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/buttons/button_secondary_white.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_album.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/icons/icon_album.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/button_square_pressed.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/buttons/button_square_pressed.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_rank.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/icons/icon_rank.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/backgrounds/bg_homeIcon.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/backgrounds/bg_homeIcon.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/lobby-hero-still.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/lobby-hero-still.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/lobby-hero-detail-still.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/lobby-hero-detail-still.png"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/backgrounds/bg_home.JPG",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/backgrounds/bg_home.JPG"
+    },
+    {
+      "from": "assets/resources/voice/BGmusic/Main_music00.mp3",
+      "to": "assets/LobbySources/voice/BGmusic/Main_music00.mp3"
+    },
+    {
+      "from": "assets/resources/prefabs/DailySignInEntry.prefab",
+      "to": "assets/LobbySources/prefabs/DailySignInEntry.prefab"
+    },
+    {
+      "from": "assets/resources/prefabs/DailySignInModal.prefab",
+      "to": "assets/LobbySources/prefabs/DailySignInModal.prefab"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_signin_hint.png",
+      "to": "assets/LobbySources/textures/UI_Sprite/V3/icons/icon_signin_hint.png"
+    }
+  ],
+  "gameBundle": "local",
+  "lobbyBundle": "remote",
+  "sharedSupportBundle": "local"
+}

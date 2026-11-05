@@ -6,16 +6,18 @@ const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).d
 const compile = s => ts.transpileModule(s, { compilerOptions: { target: ts.ScriptTarget.ES2018 } }).outputText;
 const index = read('assets/resources/configs/cities.json');
 const sourceMap = read('config/2025-hotmeme-source-map.json');
-const key = 'city-2025Hotmeme', root = `assets/Bundle/levels/${key}`;
-assert.equal(sourceMap.chapter, key); assert.equal(sourceMap.levels.length, 25);
+const original = 'city-2025Hotmeme', key = 'nian-du-re-geng', root = `assets/Bundle/levels/${key}`;
+assert.equal(sourceMap.chapter, original); assert.equal(sourceMap.levels.length, 25);
 assert.deepEqual(sourceMap.missingConfigurations, []);
-assert.equal(index.cities.indexOf(key), index.cities.indexOf('city-PetThreeKingdoms') + 1);
-assert.equal(index.cities[index.cities.indexOf(key) + 1], 'city-02-beijing');
+assert.equal(index.cities.indexOf(key), index.cities.indexOf('wang-luo-re-dian') + 1);
+assert.ok(!index.cities.includes(original));
+assert.equal(index.cities[index.cities.indexOf(key) + 1], 'chong-wu-gu-shi');
 const chapterSource = read(`${root}/configs/city.json`);
 delete chapterSource.unlockMode; delete chapterSource.prerequisiteCity;
 assert.deepEqual(index.chapters[key], { key, ...chapterSource });
-assert.equal(index.chapters[key].name, '2025热梗');
-assert.deepEqual(index.chapters[key].levels, Array.from({ length: 25 }, (_, i) => `level-${String(i + 1).padStart(2, '0')}`));
+assert.equal(index.chapters[key].name, '年度热梗');
+assert.equal(index.chapters[key].levels.length,55);
+assert.deepEqual(index.chapters[key].levels.slice(30).map(entry=>entry.id),Array.from({length:25},(_,i)=>`${original}/level-${String(i+1).padStart(2,'0')}`));
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('flow.ts', source, ts.ScriptTarget.Latest, true);
 const cls = tree.statements.find(ts.isClassDeclaration);
@@ -39,8 +41,8 @@ function imageMeta(file, width, height) {
     flow.save = { isCompleted: k => completed.has(k), isLevelUnlocked: k => unlocked.has(k) };
     assert.equal(flow.isCityUnlocked(0), true); assert.equal(flow.isLevelUnlocked(0, 0), true);
     let total = 0;
-    for (const [i, dir] of city.levels.entries()) {
-        const row = sourceMap.levels[i]; assert.equal(row.number, i + 1); assert.equal(row.level, dir);
+    for (const [i, dir] of city.levels.slice(30).entries()) {
+        const row = sourceMap.levels[i]; assert.equal(row.number, i + 1); assert.equal(row.level, `level-${String(i+1).padStart(2,'0')}`);
         assert.equal(Number(row.sourceFolder.match(/^\d+/)[0]), i + 1);
         const level = await flow._loadLevel(null, key, dir);
         assert.equal(level.name, row.name); assert.equal(level.type, 'normal');
@@ -62,15 +64,15 @@ function imageMeta(file, width, height) {
             imageMeta(`${root}/${dir}/${name}`, 1024, 672);
         }
         imageMeta(`${root}/thumbnails/${dir}/icon.jpg`, 306, 200);
-        assert.equal(flow.isLevelUnlocked(0, i), i === 0, 'Only the first level starts free');
+        assert.equal(flow.isLevelUnlocked(0, i + 30), false, 'Only the first level starts free');
     }
     assert.equal(total, 319);
-    unlocked.add(`${key}/level-17`);
-    assert.equal(flow.isLevelUnlocked(0, 16), true); assert.equal(flow.isLevelUnlocked(0, 15), false);
-    assert.equal(flow.isLevelUnlocked(0, 17), false);
-    completed.add(`${key}/level-17`);
-    assert.equal(flow.isLevelUnlocked(0, 17), true, 'Winning an ad-unlocked level opens the next for free');
-    assert.equal(flow._nextLevelTarget(city, 24), null, 'Topic end cannot jump into another chapter');
+    unlocked.add(`${original}/level-17`);
+    assert.equal(flow.isLevelUnlocked(0, 46), true); assert.equal(flow.isLevelUnlocked(0, 45), false);
+    assert.equal(flow.isLevelUnlocked(0, 47), false);
+    completed.add(`${original}/level-17`);
+    assert.equal(flow.isLevelUnlocked(0, 47), true, 'Winning an ad-unlocked level opens the next for free');
+    assert.equal(flow._nextLevelTarget(city, 54), null, 'Topic end cannot jump into another chapter');
     imageMeta('assets/Bundle/chapter-covers/city-2025Hotmeme-icon.jpg', 360, 188);
     const bundleMeta = read(root + '.meta').userData;
     assert.equal(bundleMeta.isBundle, true); assert.equal(bundleMeta.bundleName, key);
@@ -84,12 +86,12 @@ function imageMeta(file, width, height) {
     let migrated = false;
     const rules = read('assets/resources/configs/chapter-rules.json');
     await runMigration.call({ _cities: index.cities.map(k => index.chapters[k]),
-        _loadJson: async () => ({ json: rules }), save: { migrateLegacy(keys) {
-            const expected = rules.legacyOrders[0].flatMap(k => index.chapters[k].levels.map(dir => `${k}/${dir}`));
+        _loadJson: async path => ({ json: path.endsWith("chapter-layout-legacy") ? read("assets/resources/configs/chapter-layout-legacy.json") : rules }), save: { migrateLegacy(keys) {
+            const expected = rules.legacyOrders[0].flatMap(k => read("assets/resources/configs/chapter-layout-legacy.json")[k]);
             assert.deepEqual(Array.from(keys), expected); assert.equal(keys.length, 120);
             assert.equal(keys[0], 'city-02-beijing/level-01'); assert.equal(keys[15], 'city-03-shanghai/level-01');
             assert.ok(keys.every(k => !k.startsWith(key + '/'))); migrated = true;
         } } });
     assert.equal(migrated, true);
-    console.log('PASS: 2025热梗 25 ordered levels, 319 original differences, 50 original images, 25 thumbnails, remote bundle, free progression/video skips and v2 migration.');
+    console.log('PASS: Annual topic appends 25 original 2025 levels after 30 original 2026 levels, 319 original differences, 50 original images, 25 thumbnails, remote bundle, free progression/video skips and v2 migration.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

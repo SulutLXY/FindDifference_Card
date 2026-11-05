@@ -1,0 +1,2087 @@
+{
+  "chapter": "qing-hua-ci",
+  "name": "青花瓷",
+  "published": true,
+  "sourceIcons": "D:\\CocosCreator\\关卡\\瓷器图标",
+  "sourceLevels": "D:\\CocosCreator\\关卡\\青花瓷",
+  "iconSize": [
+    512,
+    512
+  ],
+  "acquisitionRule": "iconNumber * 3",
+  "imageExport": {
+    "encoder": "Photoshop 13.0.0",
+    "quality": 8,
+    "qualityScale": 12,
+    "format": "JPEG",
+    "size": [
+      1024,
+      672
+    ],
+    "resize": "full-image-bicubic-no-crop"
+  },
+  "icons": [
+    {
+      "number": 1,
+      "name": "兽耳大罐",
+      "sourceFile": "1.兽耳大罐.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "b7c84dc41c577d291b3995f8494f2f7b0483859795117835e47cf9d69378a9dd",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/shou-er-da-guan.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-shou-er-da-guan",
+      "acquisitionNumber": 3,
+      "levelKey": "qing-hua-ci/jiu-si-kai-tan",
+      "levelName": "酒肆开坛"
+    },
+    {
+      "number": 2,
+      "name": "龙纹大盘",
+      "sourceFile": "2.龙纹大盘.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "2db03860cc497f871ad8160dc5ed1e359d655c6578059a05a34492a2b06636e5",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/long-wen-da-pan.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-long-wen-da-pan",
+      "acquisitionNumber": 6,
+      "levelKey": "qing-hua-ci/yan-xi-jiang-kai",
+      "levelName": "宴席将开"
+    },
+    {
+      "number": 3,
+      "name": "凤首扁壶",
+      "sourceFile": "3.凤首扁壶.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "9ece504c154f06527ffe0a0d24e6ada8ff70c8e20bdbb6b3112059137cee881b",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/feng-shou-bian-hu.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-feng-shou-bian-hu",
+      "acquisitionNumber": 9,
+      "levelKey": "qing-hua-ci/qing-hua-feng-shou-hu-zhen-yin",
+      "levelName": "青花凤首壶斟饮"
+    },
+    {
+      "number": 4,
+      "name": "海鳌山形笔架",
+      "sourceFile": "4.海鳌山形笔架.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "7dd5e8f422d7ebc29678a42050c5ddb7786fa83b24fae2d92e734cf67d8dd48e",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/hai-ao-shan-xing-bi-jia.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-hai-ao-shan-xing-bi-jia",
+      "acquisitionNumber": 12,
+      "levelKey": "qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia",
+      "levelName": "童子注水鳌形笔架"
+    },
+    {
+      "number": 5,
+      "name": "压手杯",
+      "sourceFile": "5.压手杯.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "c5d5910b26b716ffa634179743ee77f15a1e530cff77e8d3964bdb88fc3b3de5",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/ya-shou-bei.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-ya-shou-bei",
+      "acquisitionNumber": 15,
+      "levelKey": "qing-hua-ci/jin-tian-ye-yong-ya-shou-bei",
+      "levelName": "今天也用压手杯"
+    },
+    {
+      "number": 6,
+      "name": "梵文大杓与鹅形座",
+      "sourceFile": "6.梵文大杓与鹅形座.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "a8286fbb830577bf27645b23017fe426d450cf8dd633bde02d9582f9767aa8c1",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/fan-wen-da-shao-yu-e-xing-zuo.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-fan-wen-da-shao-yu-e-xing-zuo",
+      "acquisitionNumber": 18,
+      "levelKey": "qing-hua-ci/yi-shao-yi-zuo",
+      "levelName": "一勺一座"
+    },
+    {
+      "number": 7,
+      "name": "“萧何追韩信”梅瓶",
+      "sourceFile": "7.“萧何追韩信”梅瓶.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "f9597562c31da27f0eb3a94862050f5ca062fa4668aa77029eb5ad4f9528c29e",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/xiao-he-zhui-han-xin-mei-ping.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-xiao-he-zhui-han-xin-mei-ping",
+      "acquisitionNumber": 21,
+      "levelKey": "qing-hua-ci/fu-di-li-de-cang-ci",
+      "levelName": "府邸里的藏瓷"
+    },
+    {
+      "number": 8,
+      "name": "四爱图梅瓶",
+      "sourceFile": "8.四爱图梅瓶.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "cddc0ff27a6f26489d45f9178f2389dbe7585f09af05fb24d503919bb78cb839",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/si-ai-tu-mei-ping.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-si-ai-tu-mei-ping",
+      "acquisitionNumber": 24,
+      "levelKey": "qing-hua-ci/qing-hua-dai-jin-shu-fang",
+      "levelName": "青花带进书房"
+    },
+    {
+      "number": 9,
+      "name": "大维德象耳双瓶",
+      "sourceFile": "9.大维德象耳双瓶.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "2ca688baff32a6678ca8a4a51adc8a8d9e686ffb19f0150de3cc446a4e969cee",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/da-wei-de-xiang-er-shuang-ping.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-da-wei-de-xiang-er-shuang-ping",
+      "acquisitionNumber": 27,
+      "levelKey": "qing-hua-ci/gong-zhuo-shang-de-xiang-er-shuang-ping",
+      "levelName": "供桌上的象耳双瓶"
+    },
+    {
+      "number": 10,
+      "name": "万寿大尊",
+      "sourceFile": "10.万寿大尊.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "4cc5703428feb932e471f78c558cb5f8d39456abe1fc2f87b2f58984a3da6f74",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/wan-shou-da-zun.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-wan-shou-da-zun",
+      "acquisitionNumber": 30,
+      "levelKey": "qing-hua-ci/shou-yan-kai-xi",
+      "levelName": "寿宴开席"
+    },
+    {
+      "number": 11,
+      "name": "花口葡萄盘",
+      "sourceFile": "11.花口葡萄盘.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "c2dcc0927692522860361d9186b96290012db6f00a07993bcad87e256e941485",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/hua-kou-pu-tao-pan.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-hua-kou-pu-tao-pan",
+      "acquisitionNumber": 33,
+      "levelKey": "qing-hua-ci/yuan-fang-de-can-zhuo",
+      "levelName": "远方的餐桌"
+    },
+    {
+      "number": 12,
+      "name": "青花高足盘",
+      "sourceFile": "12.青花高足盘.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "91d628c54fbe72ab5f5c57d488d30b5cb5e3813ac20a10a305868f7575016c18",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/qing-hua-gao-zu-pan.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-qing-hua-gao-zu-pan",
+      "acquisitionNumber": 36,
+      "levelKey": "qing-hua-ci/jie-ri-gong-guo",
+      "levelName": "节日供果"
+    },
+    {
+      "number": 13,
+      "name": "僧帽壶",
+      "sourceFile": "13.僧帽壶.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "2e6a15c05f94db718667310acf1bc63197c6a72bc97beeb1e39e3595cb73d148",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/seng-mao-hu.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-seng-mao-hu",
+      "acquisitionNumber": 39,
+      "levelKey": "qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju",
+      "levelName": "寺院里的茶与供具"
+    },
+    {
+      "number": 14,
+      "name": "阿拉伯文烛台",
+      "sourceFile": "14.阿拉伯文烛台.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "c548a1134ba8e3978c14b3877e4cbfe680a28945b664801360749d0618c6e938",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/a-la-bo-wen-zhu-tai.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-a-la-bo-wen-zhu-tai",
+      "acquisitionNumber": 42,
+      "levelKey": "qing-hua-ci/gong-zhuo-tian-zhu",
+      "levelName": "供桌添烛"
+    },
+    {
+      "number": 15,
+      "name": "婴戏图圆盒",
+      "sourceFile": "15.婴戏图圆盒.png",
+      "sourceSize": [
+        512,
+        512
+      ],
+      "sourceSha256": "f5daf793f0e5d27977de7994cb0f7ab827fe46dac7bab255244f46fa68b8161b",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/ying-xi-tu-yuan-he.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-ying-xi-tu-yuan-he",
+      "acquisitionNumber": 45,
+      "levelKey": "qing-hua-ci/yuan-he-li-de-dian-xin",
+      "levelName": "圆盒里的点心"
+    },
+    {
+      "number": 16,
+      "name": "《兰亭会》笔筒",
+      "sourceFile": "16.《兰亭会》笔筒.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "898abe045c8fdbe7edf78cc440ae0fa3d83b2c0882510621757584adfeb305f5",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/lan-ting-hui-bi-tong.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-lan-ting-hui-bi-tong",
+      "acquisitionNumber": 48,
+      "levelKey": "qing-hua-ci/qing-dai-shu-fang-luo-bi",
+      "levelName": "清代书房落笔"
+    },
+    {
+      "number": 17,
+      "name": "青花花浇",
+      "sourceFile": "17.青花花浇.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "d2fe79ec43adf047f5e7f23e4caadade258546c06d3533924aa1fc4316481630",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/qing-hua-hua-jiao.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-qing-hua-hua-jiao",
+      "acquisitionNumber": 51,
+      "levelKey": "qing-hua-ci/chuang-qian-cha-hua",
+      "levelName": "窗前插花"
+    },
+    {
+      "number": 18,
+      "name": "蟋蟀罐",
+      "sourceFile": "18.蟋蟀罐.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "969e5fd2ca7f7b50c51799866de88286bbbddae028a90828bc391ec6f189c1f7",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/xi-shuai-guan.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-xi-shuai-guan",
+      "acquisitionNumber": 54,
+      "levelKey": "qing-hua-ci/qiu-yuan-guan-xi-shuai",
+      "levelName": "秋院观蟋蟀"
+    },
+    {
+      "number": 19,
+      "name": "莲池鱼藻纹罐",
+      "sourceFile": "19.莲池鱼藻纹罐.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "f1fc180b3b0e9f3b0c2733f680a20e422f177683615caa1cc625db558d0c0a47",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/lian-chi-yu-zao-wen-guan.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-lian-chi-yu-zao-wen-guan",
+      "acquisitionNumber": 57,
+      "levelKey": "qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she",
+      "levelName": "海外府邸的瓷器陈设"
+    },
+    {
+      "number": 20,
+      "name": "当代青花日用器",
+      "sourceFile": "20.当代青花日用器.png",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceSha256": "d7df18718966a807803c856f07ff46f165231ea0f455058c5ec75e2f46b6272d",
+      "assetPath": "assets/Bundle/food-icons/qing-hua-ci/dang-dai-qing-hua-ri-yong-qi.png",
+      "outputSize": [
+        512,
+        512
+      ],
+      "collectibleId": "qing-hua-ci-dang-dai-qing-hua-ri-yong-qi",
+      "acquisitionNumber": 60,
+      "levelKey": "qing-hua-ci/qing-hua-hui-dao-can-zhuo",
+      "levelName": "青花回到餐桌"
+    }
+  ],
+  "levels": [
+    {
+      "number": 1,
+      "id": "qing-hua-ci/qing-hua-san-qi-tong-gui",
+      "name": "青花三器同柜",
+      "folder": "qing-hua-san-qi-tong-gui",
+      "sourceFolder": "1.青花三器同柜",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-san-qi-tong-gui/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-san-qi-tong-gui/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "1.青花三器同柜.png",
+          "sha256": "82fba8a375272a44839714d1c4e811e96e4d3e7eef2f2c72eb993ce4822ad6d0",
+          "importedSha256": "b2d743db6216fefa915a816147c59d7aa32b431beeab9aa053f7f8aaee2fac56"
+        },
+        {
+          "file": "图片_013_09.jpeg",
+          "sha256": "c9f338e53e6bd4d9095904edafbdcbce94955199a2502066c26524c9b931d259",
+          "importedSha256": "ffa8f319e6758e98a248f5c39f77ac043fc457dd8dc10f687676f09a37f90a0a"
+        }
+      ],
+      "sourceConfig": "青花三器同柜.json",
+      "configSha256": "a1c67ff85b85307f93cf0b785526a5b2a5f46887806dc26818c550c6410c8f0e",
+      "differenceCount": 8,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 2,
+      "id": "qing-hua-ci/yao-kou-jiao-huo",
+      "name": "窑口交货",
+      "folder": "yao-kou-jiao-huo",
+      "sourceFolder": "2.窑口交货",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/yao-kou-jiao-huo/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/yao-kou-jiao-huo/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "2.窑口交货.png",
+          "sha256": "adff736a2f3e23307fbde16fef2973d2e0d484f3a5fe54eb19bfb7a60524a575",
+          "importedSha256": "a81acc5b4e08ce65b67acfe5e60b80c237a40f8632da807f67049e22f1eebd7b"
+        },
+        {
+          "file": "图片_014_09.jpeg",
+          "sha256": "e9ca8f4803db51a1eebf1ba9a1060139f793b7ec1e178034bf13341dbed16cce",
+          "importedSha256": "131055e865aeb473a414ff02516d982831a421d88783b169ee73b12a061c3ad2"
+        }
+      ],
+      "sourceConfig": "窑口交货.json",
+      "configSha256": "cee07d4f6b9bb10c29e334b459924de5e7de52c2cc202e5fc5564694da47762b",
+      "differenceCount": 9,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 3,
+      "id": "qing-hua-ci/jiu-si-kai-tan",
+      "name": "酒肆开坛",
+      "folder": "jiu-si-kai-tan",
+      "sourceFolder": "3.酒肆开坛",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/jiu-si-kai-tan/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/jiu-si-kai-tan/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "3.酒肆开坛.png",
+          "sha256": "939d453c349cd5d6f80ac2753e631af8cb3c9d0f35de8aea5a4a388e5f1ab4c5",
+          "importedSha256": "a762953f216a934619d6ee4b70da2c864fa1725f3ef0abe04b0e9f996b45e076"
+        },
+        {
+          "file": "图片_015_09.jpeg",
+          "sha256": "6c7120dba9ce15df55f1a7daa8d3346de1d90ae55436af8b51d1a6832cd47347",
+          "importedSha256": "7a69e9e93da5d542fd63146077301157e873f527bdaf4a5d9f6d2d074bf89ad8"
+        }
+      ],
+      "sourceConfig": "酒肆开坛.json",
+      "configSha256": "826b75ef9430dd678b37f2478f64a11386f9d3a255230e1593aa2025e9df3fbf",
+      "differenceCount": 13,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-shou-er-da-guan"
+    },
+    {
+      "number": 4,
+      "id": "qing-hua-ci/long-wen-da-pan",
+      "name": "龙纹大盘",
+      "folder": "long-wen-da-pan",
+      "sourceFolder": "4.龙纹大盘",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/long-wen-da-pan/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/long-wen-da-pan/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "4.龙纹大盘.png",
+          "sha256": "47549460df63ffb09107ad5550c3a16403cd0d86024e8a70ded6476fd32e83b7",
+          "importedSha256": "729b57b87c321b0ae7220669027700b31d2bebbc16c256da5ee96bbead8f56f4"
+        },
+        {
+          "file": "图片_016_09.jpeg",
+          "sha256": "a51305057715e45485e40b235d9a35c88a044fff6133001ddddcb96928ab9c33",
+          "importedSha256": "bf7aeba9198b7295676d5625bd882cbd93bda47f2417c5eb4d943eb77ca870fa"
+        }
+      ],
+      "sourceConfig": "龙纹大盘.json",
+      "configSha256": "810e89f80c99f14fe62c2d129374fae2d98d23c807c26885dbd94ec8c389c59a",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 5,
+      "id": "qing-hua-ci/da-pan-zhuang-xia",
+      "name": "大盘装匣",
+      "folder": "da-pan-zhuang-xia",
+      "sourceFolder": "5.大盘装匣",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/da-pan-zhuang-xia/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/da-pan-zhuang-xia/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "5.大盘装匣.png",
+          "sha256": "38992b95f0c205e96521ceafd531cf56139a24e1452f87745b482ea22859dea4",
+          "importedSha256": "254724fc25bdf615d5e38b559bd5fbe97f48a5bb1b0c9eb1470bc29bdb678b09"
+        },
+        {
+          "file": "图片_017_09.jpg",
+          "sha256": "60ab5310639784b2bb265c77646ea5f487288aa5684ca1d166cba141a081ba8b",
+          "importedSha256": "c444d2d4ffc98b15cbda629c7b2cd0abd115ba98574a5596424694a30e27877e"
+        }
+      ],
+      "sourceConfig": "大盘装匣.json",
+      "configSha256": "4fb24222aba86cf89c4276f7f736f5b893e4b5d16ef6ad082bce117abe99e6aa",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 6,
+      "id": "qing-hua-ci/yan-xi-jiang-kai",
+      "name": "宴席将开",
+      "folder": "yan-xi-jiang-kai",
+      "sourceFolder": "6.宴席将开",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/yan-xi-jiang-kai/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/yan-xi-jiang-kai/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "6.宴席将开.png",
+          "sha256": "1e7a656c9f7c8e3cb152edca3e87ea21ad601ffff71c3860698076eddf3ef111",
+          "importedSha256": "5ac1d5c3c979e426c85ef2e0ee60098fa216eb6dc642c359a3882e29c4a4c932"
+        },
+        {
+          "file": "图片_018_09.jpeg",
+          "sha256": "e23a22c6f7194fa1c536218e79b96643aaeb9b11d2bc0f3fe0d2e13d03906552",
+          "importedSha256": "7f4ca0914c0f7546f74e8e34e8963113ee02be61916a7edf9015ee309e73d482"
+        }
+      ],
+      "sourceConfig": "宴席将开.json",
+      "configSha256": "7f18fb3699c5886d21df8e655fc33b1d057ef5bebef13614666a6093c41b2c88",
+      "differenceCount": 16,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-long-wen-da-pan"
+    },
+    {
+      "number": 7,
+      "id": "qing-hua-ci/feng-shou-yu-juan-wei",
+      "name": "凤首与卷尾",
+      "folder": "feng-shou-yu-juan-wei",
+      "sourceFolder": "7.凤首与卷尾",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/feng-shou-yu-juan-wei/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/feng-shou-yu-juan-wei/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "7.凤首与卷尾.png",
+          "sha256": "f5e56bd4c786e0b2ddc4f934abb9681fdbb819dab0b59825a7be22bc290fef7d",
+          "importedSha256": "ae2335d57ba335b3ffa25361e7ac785d24b7a8584703f4ef4b7eadceba743875"
+        },
+        {
+          "file": "图片_019_09.jpeg",
+          "sha256": "2a56a8fc5c4c83308dd347793229b474c4a56af3a9325543993dcc9568620536",
+          "importedSha256": "6cd28c472173d9b03c8d450b8b26bee68e097651bcb676463d975581950a9acf"
+        }
+      ],
+      "sourceConfig": "凤首与卷尾.json",
+      "configSha256": "3af560c6e1a2b8d716bedc3fa59e3084bce5e9c8cdc0ab34bd2f296c9ec9386f",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 8,
+      "id": "qing-hua-ci/zhi-zuo-feng-shou-bian-hu",
+      "name": "制作凤首扁壶",
+      "folder": "zhi-zuo-feng-shou-bian-hu",
+      "sourceFolder": "8.制作凤首扁壶",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/zhi-zuo-feng-shou-bian-hu/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/zhi-zuo-feng-shou-bian-hu/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "8.古窑工匠制作凤首扁壶.png",
+          "sha256": "b05caf45733387b241a27e9e4f65d4d3755b5d581f7757fdb69ab015a2df46d9",
+          "importedSha256": "3170a6ac9d84182a34ce6e6b5aab7e3804e402b1090f9aa7c088bdaaa898fd01"
+        },
+        {
+          "file": "图片_020_09.jpeg",
+          "sha256": "a3c8ca3568048687fca70c7eb1d7d24590a1f1ff6001127a5332d9ca6a765498",
+          "importedSha256": "76867cf32bf6012dc83161a3a2907514d4e5ea74bb5c23c7b1123658500f857a"
+        }
+      ],
+      "sourceConfig": "制作凤首扁壶.json",
+      "configSha256": "06e0c622f3bfbb31d70132d7b651851e04a97773c6f8f2a3c1bcccf4c7017821",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 9,
+      "id": "qing-hua-ci/qing-hua-feng-shou-hu-zhen-yin",
+      "name": "青花凤首壶斟饮",
+      "folder": "qing-hua-feng-shou-hu-zhen-yin",
+      "sourceFolder": "9.青花凤首壶斟饮",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-feng-shou-hu-zhen-yin/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-feng-shou-hu-zhen-yin/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "9.庭院青花凤首壶斟饮.png",
+          "sha256": "7fe3b35fb9b735ecc431d27872652d831f21fdbedb9a3fbf026b2c40baae34b0",
+          "importedSha256": "cb3df426c9e367a35e80cfdf1d9cd26c25cc3c4f0dd70fbd7ddf02e38e6098ae"
+        },
+        {
+          "file": "图片_021_09.jpeg",
+          "sha256": "a71fe7b9cee4c57c78ec58ee42e82a159550fb741f350ed20bc0d5514fc2d432",
+          "importedSha256": "6ab12679a43d4c51ee7495dfac93df90c587c162bf8142d20d4ed4ff4ea50d8c"
+        }
+      ],
+      "sourceConfig": "青花凤首壶斟饮.json",
+      "configSha256": "99824573f1b0852914b624c53cb15b26b6f768f471348a3f1feb9f17e75d1658",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-feng-shou-bian-hu"
+    },
+    {
+      "number": 10,
+      "id": "qing-hua-ci/hai-ao-shan-xing-bi-jia",
+      "name": "海鳌山形笔架",
+      "folder": "hai-ao-shan-xing-bi-jia",
+      "sourceFolder": "10.海鳌山形笔架",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/hai-ao-shan-xing-bi-jia/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/hai-ao-shan-xing-bi-jia/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "10.海鳌山形笔架.png",
+          "sha256": "275a45be4d070cc64b7f54461c2df7ff94c070e53d4348260f5e7c5a5a1eb131",
+          "importedSha256": "fdef55eadf37b744df55fc63afb586dcfaa21d9a96a124a70ebfedc6323f44cd"
+        },
+        {
+          "file": "图片_022_09.jpeg",
+          "sha256": "794903cd242cb1b0015323a70e1961cc8c87ca8c556d7aaaf7be41abf067d9ac",
+          "importedSha256": "e272832f2aeafaca5fb5a3250e8e4553a538795ae8f044b0d6c5721e190ea47d"
+        }
+      ],
+      "sourceConfig": "海鳌山形笔架.json",
+      "configSha256": "2be09fcdf37c8295c3b44c255b26a70afc524b3516329fab8193a1ba0ec86e8d",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 11,
+      "id": "qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia",
+      "name": "手捏海鳌山形笔架",
+      "folder": "shou-nie-hai-ao-shan-xing-bi-jia",
+      "sourceFolder": "11.手捏海鳌山形笔架",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "11.陶匠手捏海鳌山形笔架.png",
+          "sha256": "e6fbaec9b722e43bd0440518da3fbea94c1c1def3f31dbdf4781d4e41f94b14f",
+          "importedSha256": "ae213b0c3a0017d6aa2c7fb195b704d29cd88a05f61216229fa9bfc20bca17be"
+        },
+        {
+          "file": "图片_023_09.jpeg",
+          "sha256": "a4877eb6f7bee86e708166ed6d9284caf27aadd4b5217f10dad231461abae2f7",
+          "importedSha256": "3335f49a7672c60b3e1902a23f54fe240f587525023698c4b1ee8f3e7a9c452d"
+        }
+      ],
+      "sourceConfig": "手捏海鳌山形笔架.json",
+      "configSha256": "ffd1f0c291aa0cc8d975cf4553bf54410c6d1d4b1ad5fa791c36df71b7584e6b",
+      "differenceCount": 13,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 12,
+      "id": "qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia",
+      "name": "童子注水鳌形笔架",
+      "folder": "tong-zi-zhu-shui-ao-xing-bi-jia",
+      "sourceFolder": "12.童子注水鳌形笔架",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "12.童子为鳌形笔架注水.png",
+          "sha256": "7feb571642dc95c91701943f0efc7d7ae76560df0b7dcb4ee3c01d1cf8afa488",
+          "importedSha256": "d297875571fe30e065d80f96b3aeacc9fdbb33a1059097b76dd7dc2ddfce716b"
+        },
+        {
+          "file": "图片_024_09.jpeg",
+          "sha256": "a94f300adaff06a816b4ec45b9ea96aec164c4a94412225594cf6039eaf40a11",
+          "importedSha256": "27620b3ab4ecc76a34a3f6884f926142ddddcf0cb4c31c882156809e0bc75eef"
+        }
+      ],
+      "sourceConfig": "童子注水鳌形笔架.json",
+      "configSha256": "28f666de940dbf009f43d6bd87ead140b59d6065385ec5311505ac02a8155a1f",
+      "differenceCount": 11,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-hai-ao-shan-xing-bi-jia"
+    },
+    {
+      "number": 13,
+      "id": "qing-hua-ci/zhang-xin-da-xiao-de-ming-pin",
+      "name": "掌心大小的名品",
+      "folder": "zhang-xin-da-xiao-de-ming-pin",
+      "sourceFolder": "13.掌心大小的名品",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/zhang-xin-da-xiao-de-ming-pin/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/zhang-xin-da-xiao-de-ming-pin/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "13.掌心大小的名品.png",
+          "sha256": "97e8d53fb73994ac26c5e7004f27200605f3bc2e0d7b5902d51c9029e26f34a2",
+          "importedSha256": "9a7ff2734737e4237671303aea9c736f82b75568422f9deb146c02ab879ce1ed"
+        },
+        {
+          "file": "图片_025_09.jpeg",
+          "sha256": "897c5154ac794a9b014967117a1c6b0d71ed1bd1492762502b18d979af41d7f2",
+          "importedSha256": "0f17e14d466930cab0fd07c61d52740e5fbeac89cafc90f24c538aeb03eb2ddc"
+        }
+      ],
+      "sourceConfig": "掌心大小的名品.json",
+      "configSha256": "944a82be193c8e64d89e8f61643a0d7f587dcb83aaca6a1a3a434e31cb711053",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 14,
+      "id": "qing-hua-ci/cha-fang-bei-cha",
+      "name": "茶房备茶",
+      "folder": "cha-fang-bei-cha",
+      "sourceFolder": "14.茶房备茶",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/cha-fang-bei-cha/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/cha-fang-bei-cha/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "14.茶房备茶.png",
+          "sha256": "0652083b7aac75bdfb2a558a5d813547b915e7b5c7eed473a6a09a0f7267022c",
+          "importedSha256": "276b8bfc59f2a07c90c8b3224530f76754416a6e56be0811eb3d99310d5474e6"
+        },
+        {
+          "file": "图片_026_09.jpeg",
+          "sha256": "08ae2f8c02477854646153730a6afed2c552b3d6cf2ab41bf602b2b8901a0bf7",
+          "importedSha256": "3284e0bbdeb656ab14a83fb38e075fe3851a63e13a909c4e1a49229e89af6d2b"
+        }
+      ],
+      "sourceConfig": "茶房备茶.json",
+      "configSha256": "510514da46d1f7b746f9086d4dc49aa9c1b1ee9ea3cdab1f7f8c5cc153119a27",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 15,
+      "id": "qing-hua-ci/jin-tian-ye-yong-ya-shou-bei",
+      "name": "今天也用压手杯",
+      "folder": "jin-tian-ye-yong-ya-shou-bei",
+      "sourceFolder": "15.今天也用压手杯",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/jin-tian-ye-yong-ya-shou-bei/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/jin-tian-ye-yong-ya-shou-bei/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "15.今天也用压手杯.png",
+          "sha256": "9a774cffe81ff6fe5bac74a46afbc9e352c69d2bc60d57d8e6f6e7dcb089926e",
+          "importedSha256": "0c2e548541ba3bdb01b4c887831f98a5ebfa66efa86aa4590576f037d8c30339"
+        },
+        {
+          "file": "图片_027_09.jpeg",
+          "sha256": "b192f665dc710069a03e0e5d758fa742ca7cbbfa1de5a8fdc2bfe8d70513ab2d",
+          "importedSha256": "aacf8aa0c818ad901b0924547ef44f9e52bfa98ad41092871ec1f316ccf2f83b"
+        }
+      ],
+      "sourceConfig": "今天也用压手杯.json",
+      "configSha256": "5e192c1070a72fd4e762412eeaa891a42c025851c8a8e64694485e2f437b550a",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-ya-shou-bei"
+    },
+    {
+      "number": 16,
+      "id": "qing-hua-ci/da-shao-yu-xiao-e-zuo",
+      "name": "大勺与小鹅座",
+      "folder": "da-shao-yu-xiao-e-zuo",
+      "sourceFolder": "16.大勺与小鹅座",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/da-shao-yu-xiao-e-zuo/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/da-shao-yu-xiao-e-zuo/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "16.大勺与小鹅座.png",
+          "sha256": "393bc11fad20421b60983ee0cd0f7d1bc260d44306701da4aea3faf4f1060a85",
+          "importedSha256": "5425bb71a3a2aec003bbbb2ee5f329f0890975e652cc320efdf01cd00a801a41"
+        },
+        {
+          "file": "图片_028_09.jpeg",
+          "sha256": "4bf368f914ed6caed84c984f76797877d5da860507e8bd733f97cbfeada98d2c",
+          "importedSha256": "70da9b1a820b3fc7228356c4ba60742121611747c3d805a30340313ed436694d"
+        }
+      ],
+      "sourceConfig": "大勺与小鹅座.json",
+      "configSha256": "23dd3e7025b31bffa7fbb3459bdd7d79a960ce81fea4bdec0f71314ca652580d",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 17,
+      "id": "qing-hua-ci/gei-gu-shao-pei-yi-zhi-e",
+      "name": "给古勺配一只鹅",
+      "folder": "gei-gu-shao-pei-yi-zhi-e",
+      "sourceFolder": "17.给古勺配一只鹅",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/gei-gu-shao-pei-yi-zhi-e/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/gei-gu-shao-pei-yi-zhi-e/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "17.给古勺配一只鹅.png",
+          "sha256": "eecfc63ae741e0e5b8b93a6f032e446abe8599a489efaaf6f66af6b210bc6612",
+          "importedSha256": "24d1bd1f3292f0c1a8dc531d1adb9cc43ccdf861f881c3145ecb965bd12219df"
+        },
+        {
+          "file": "图片_029_09.jpeg",
+          "sha256": "4b38d372fcd9916acb20096f27720bae9816d98a7736abadd92273f1c45fac11",
+          "importedSha256": "4fc729470a26b7bb141221c3696fd0c59f6f28d53fea69620acdd7f2d8bff51f"
+        }
+      ],
+      "sourceConfig": "给古勺配一只鹅.json",
+      "configSha256": "d1328f787267ed36c35a35eba6da335d7874b17be24d07a5b2a61c711e2583bb",
+      "differenceCount": 16,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 18,
+      "id": "qing-hua-ci/yi-shao-yi-zuo",
+      "name": "一勺一座",
+      "folder": "yi-shao-yi-zuo",
+      "sourceFolder": "18.一勺一座",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/yi-shao-yi-zuo/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/yi-shao-yi-zuo/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "18.一勺一座妥善安放.png",
+          "sha256": "02080c5557a6febb1bc77259dd21b233d9100495176712664c4ed2639bb2a708",
+          "importedSha256": "1c8ff5ea86f843540d77287e5999daeebb9173098daa08f91ff2003adae3c89f"
+        },
+        {
+          "file": "图片_030_09.jpeg",
+          "sha256": "53b9c83a3872ad5f0bac9da326c8dcf35c1716748ee3977ba0c76a1a4d0e0616",
+          "importedSha256": "859185a015950ddc1dcf3555889ac0304740a980aac0f0345d1f0ddb95ea8ea9"
+        }
+      ],
+      "sourceConfig": "一勺一座.json",
+      "configSha256": "5f5afd332803a52917f38a662107964aa68098b9daeb1de795cbad16685a7144",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-fan-wen-da-shao-yu-e-xing-zuo"
+    },
+    {
+      "number": 19,
+      "id": "qing-hua-ci/ping-shang-zhui-gan",
+      "name": "瓶上追赶",
+      "folder": "ping-shang-zhui-gan",
+      "sourceFolder": "19.瓶上追赶",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/ping-shang-zhui-gan/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/ping-shang-zhui-gan/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "19.瓶上有一场追赶.png",
+          "sha256": "7e33245a3257f17f149d9fce2f294fc708083dbc0cb043884c023c4693cd68c2",
+          "importedSha256": "3e0fdab43e3c06befdada80036a81ccc78439f81b7c33842748c3d4ae6155d98"
+        },
+        {
+          "file": "图片_031_09.jpeg",
+          "sha256": "751ffcb683f017744275cde949669cc2ece264186139f43f5aefc074fdc0e13a",
+          "importedSha256": "53c8316973e59af7e8228257dfba2346e2485ad62bca64f2d71350acd56828fe"
+        }
+      ],
+      "sourceConfig": "瓶上追赶.json",
+      "configSha256": "731eae7b198e90fd78c248c3952123ee9ea60040b6ca3d5ab834b8693465141c",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 20,
+      "id": "qing-hua-ci/xiao-he-yue-xia-zhui-han-xin",
+      "name": "萧何月下追韩信",
+      "folder": "xiao-he-yue-xia-zhui-han-xin",
+      "sourceFolder": "20.萧何月下追韩信",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/xiao-he-yue-xia-zhui-han-xin/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/xiao-he-yue-xia-zhui-han-xin/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "20.月下追到渡口.png",
+          "sha256": "1cf9a452ab5cc0ba61caf88ab1684798110829a01afcd070a8df7e94e223c7e2",
+          "importedSha256": "ceb3e0c5e99659aee83eecd354390946e3eb60be55c739adf3ae4376f0185e03"
+        },
+        {
+          "file": "图片_032_09.jpeg",
+          "sha256": "b80f0ce7ac7f99a2239deb43bc1f4c124760744d71e575e4c25c9bae9ccc343d",
+          "importedSha256": "51c93dba91737d7c8749426ac41b48fb44cc138f0165342bb6fbe1e411647686"
+        }
+      ],
+      "sourceConfig": "萧何月下追韩信.json",
+      "configSha256": "cfbf0ab3c75356c4d2437028c30137ade6b8cbdc2ea4bab9fc836a67f215df08",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 21,
+      "id": "qing-hua-ci/fu-di-li-de-cang-ci",
+      "name": "府邸里的藏瓷",
+      "folder": "fu-di-li-de-cang-ci",
+      "sourceFolder": "21.府邸里的藏瓷",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/fu-di-li-de-cang-ci/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/fu-di-li-de-cang-ci/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "21.府邸里的藏瓷.png",
+          "sha256": "86049ff9e734d306c4aee5228531f5d934afcf2587675b5e735f9c32a19559ca",
+          "importedSha256": "d0b88f05ce8568892854838b46dea0a9af49d03a30ca3d2c94b428221a7af188"
+        },
+        {
+          "file": "图片_033_09.jpeg",
+          "sha256": "a1acca5f9f798bb4e0d72127b7e7c18889a16fd9f38d86d282cfee07964788e7",
+          "importedSha256": "d60d724e91467144bdae9961c9ac227a0121e143d5ce1fa9d29a5586f9dbff16"
+        }
+      ],
+      "sourceConfig": "府邸里的藏瓷.json",
+      "configSha256": "78a1ac6eb6040a1a4b3d5f8fcf6c64939ffd5c9d172514c396d808e48d22d360",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-xiao-he-zhui-han-xin-mei-ping"
+    },
+    {
+      "number": 22,
+      "id": "qing-hua-ci/wen-ren-si-ai-hao",
+      "name": "文人四爱好",
+      "folder": "wen-ren-si-ai-hao",
+      "sourceFolder": "22.文人四爱好",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/wen-ren-si-ai-hao/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/wen-ren-si-ai-hao/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "22.四位文人的爱好.png",
+          "sha256": "8d508a4f5311a11df92ed69825205de9ebbb346ae7ee54656d25d348d4329f48",
+          "importedSha256": "2ddd8d7e6c9120476ed6189aaedeb1f9fba73dee778ca359b01da83697b93791"
+        },
+        {
+          "file": "图片_034_09.jpeg",
+          "sha256": "ad17472c094f9c7bf7e10cc77aa2c311a6de352452545382771a87dd2104b388",
+          "importedSha256": "1311ce74511cdee8791c08d128751e0af1c288e4472cc1b82c5a33f35bd81d6c"
+        }
+      ],
+      "sourceConfig": "文人四爱好.json",
+      "configSha256": "4916a25f665e1ec0212f88109073094cbee1739ea1d23bec2f964f04d8976a00",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 23,
+      "id": "qing-hua-ci/tao-yuan-ming-cai-ju",
+      "name": "陶渊明采菊",
+      "folder": "tao-yuan-ming-cai-ju",
+      "sourceFolder": "23.陶渊明采菊",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/tao-yuan-ming-cai-ju/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/tao-yuan-ming-cai-ju/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "23.陶渊明采菊.png",
+          "sha256": "c0c5c59144b74c42c951fcb5f3a9d119a88a9bbd3dbb842f4d7c5df2511b7045",
+          "importedSha256": "474d1e385dfd956a4a9d4ed3654a02a4cb2182193fa3766b4b7030610d45aabf"
+        },
+        {
+          "file": "图片_035_09.jpeg",
+          "sha256": "fdd4aee52448cbf4d626ac8cd8de8b7911d737bfa3dfd7f0ba0fe4568bd264a0",
+          "importedSha256": "7d1d1914b40b2c784101ac9934b2211776d6f3d472353d468a1df6859cd7dab7"
+        }
+      ],
+      "sourceConfig": "陶渊明采菊.json",
+      "configSha256": "ae5f153463762bff04288089eb099269c433452fde89f879f2c088bd89ca65ef",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 24,
+      "id": "qing-hua-ci/qing-hua-dai-jin-shu-fang",
+      "name": "青花带进书房",
+      "folder": "qing-hua-dai-jin-shu-fang",
+      "sourceFolder": "24.青花带进书房",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-dai-jin-shu-fang/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-dai-jin-shu-fang/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "24.把青花带进书房.png",
+          "sha256": "978ab96641ca853a5296877fcf6f8bef9ca26a15bb10d6ca3db460327b005d4e",
+          "importedSha256": "7655fdf178d2b8c654573f102e56bf1738b856fe1490e134cee8a671607106a6"
+        },
+        {
+          "file": "图片_036_09.jpeg",
+          "sha256": "f9a0c89f267cd0571adb1e61ef232fc89fe5f169c2c9253325332da019d698ef",
+          "importedSha256": "475ad3a846bf47b30e7a6bc05c0773f0f46287cef42cedca0c415cd6578a9f98"
+        }
+      ],
+      "sourceConfig": "青花带进书房.json",
+      "configSha256": "96e2c990a4ec7e952c50da3032000e029d714a027fa173f7788a75af57fd1ce8",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-si-ai-tu-mei-ping"
+    },
+    {
+      "number": 25,
+      "id": "qing-hua-ci/yuan-dai-qing-hua-shuang-ping",
+      "name": "元代青花双瓶",
+      "folder": "yuan-dai-qing-hua-shuang-ping",
+      "sourceFolder": "25.元代青花双瓶",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/yuan-dai-qing-hua-shuang-ping/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/yuan-dai-qing-hua-shuang-ping/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "25.博物馆里的元代青花双瓶-1.png",
+          "sha256": "b9a022660991f46cb94c91efffc9c517c7d742ef5c97d597b43b480690f1b674",
+          "importedSha256": "76689207b6e1304e582a494f144ced11e7e2cf67b76bd2e1ce84b3d33564925f"
+        },
+        {
+          "file": "图片_037_09.jpeg",
+          "sha256": "7272e4513407668bd51470d8a05938bf623be3ced112c1754fbd752140e9a223",
+          "importedSha256": "ad78e227b7d72c7d74dfab07f3a2680520b7f3ce9dddc73a1d300dda75027bd1"
+        }
+      ],
+      "sourceConfig": "元代青花双瓶.json",
+      "configSha256": "fd0fa12363bb3964c9de3d7b464aabd298c924d05fa9654ebe6b3073b5caec52",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 26,
+      "id": "qing-hua-ci/xiang-er-shuang-ping-qi-yun",
+      "name": "象耳双瓶启运",
+      "folder": "xiang-er-shuang-ping-qi-yun",
+      "sourceFolder": "26.象耳双瓶启运",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/xiang-er-shuang-ping-qi-yun/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/xiang-er-shuang-ping-qi-yun/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "26.元代象耳双瓶启运-2.png",
+          "sha256": "4dab64c4350fd41e879a8f5a829affbda5a046498d34f8f8f5aff69510e20a9f",
+          "importedSha256": "632aa542b0ae488c770858b28138f9790e4e023285a8be48c1c61ab2b62da432"
+        },
+        {
+          "file": "图片_038_09.jpeg",
+          "sha256": "382e27b4489702caaea9f95728e94ab4e47a2b42c1df863e0b1b44fce835f536",
+          "importedSha256": "171c80c62b467c73cd9747a69443db644f1005283cd41333801fd12a81bf3b57"
+        }
+      ],
+      "sourceConfig": "象耳双瓶启运.json",
+      "configSha256": "7151c4722767c3350d3240aa791dfee49cd1644509e81a2eb5c55f96fddec7fc",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 27,
+      "id": "qing-hua-ci/gong-zhuo-shang-de-xiang-er-shuang-ping",
+      "name": "供桌上的象耳双瓶",
+      "folder": "gong-zhuo-shang-de-xiang-er-shuang-ping",
+      "sourceFolder": "27.供桌上的象耳双瓶",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/gong-zhuo-shang-de-xiang-er-shuang-ping/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/gong-zhuo-shang-de-xiang-er-shuang-ping/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "27.供桌上的象耳双瓶-3.png",
+          "sha256": "f4eb5cc5859743454cbed4e16dafa81b3da69e2de11043a643c00f3a90782a39",
+          "importedSha256": "a3cec4d9b1c6e43d115b922e54e4f6ebd31a70ce54d144d2d49458452e2e7c6b"
+        },
+        {
+          "file": "图片_039_09.jpeg",
+          "sha256": "5742b1156d92cc092f8592d99d9ad0b77cfd8feef7e26f6cc09eb3527d1bdc80",
+          "importedSha256": "8afbd944592500b6c0f1077cda703e5b36f9c83c1386ab9d1e1620924dfb629a"
+        }
+      ],
+      "sourceConfig": "供桌上的象耳双瓶.json",
+      "configSha256": "cb07c74962326fdf35cc87c78872671290eb56da967fefae857a4be20a8eca1b",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-da-wei-de-xiang-er-shuang-ping"
+    },
+    {
+      "number": 28,
+      "id": "qing-hua-ci/wan-shou-da-zun",
+      "name": "万寿大尊",
+      "folder": "wan-shou-da-zun",
+      "sourceFolder": "28.万寿大尊",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/wan-shou-da-zun/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/wan-shou-da-zun/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "28.万寿大尊.png",
+          "sha256": "fe860fc2c3959073ec2f2009982af0f0f10f0d176ec9545d31d7b21e21333b97",
+          "importedSha256": "5cff36ad5a65bf3ef22bd9c4d88533d8c694edb12dcfccc5bfcd1b8e2fd2d5ba"
+        },
+        {
+          "file": "图片_040_09.jpeg",
+          "sha256": "c47ff1a3d1182a36e1968cf22127060be4c0b14ba9cc7eb3439607011ac23cc4",
+          "importedSha256": "007b1edcaca6071ad1c7e30a18a1c5ecd3cd8131be3f0dd7f96fd49099930ef5"
+        }
+      ],
+      "sourceConfig": "万寿大尊.json",
+      "configSha256": "88e1f5f9f368f704257f3728ea5c55a94baa1655c2f4cea7bd12ee745f8f5d5c",
+      "differenceCount": 11,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 29,
+      "id": "qing-hua-ci/shou-li-jin-cheng",
+      "name": "寿礼进呈",
+      "folder": "shou-li-jin-cheng",
+      "sourceFolder": "29.寿礼进呈",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/shou-li-jin-cheng/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/shou-li-jin-cheng/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "29.寿礼进呈.png",
+          "sha256": "0101b01d4db1fc0ed86fbebd09a517f366a17f264fa6c127f7652afd698022fe",
+          "importedSha256": "27dde8e8b818b5f3fcf48afb21df6919d3a3b410b158bfce2197b9c8c4a8443c"
+        },
+        {
+          "file": "图片_041_09.jpeg",
+          "sha256": "a05f00f72666617ce398004699c65cdbe0ea588825e15e882d412bb217cd2227",
+          "importedSha256": "ac61a662eb2da17bd564e84399d40841f36d77ffb1e11abc8cb4c042888ba091"
+        }
+      ],
+      "sourceConfig": "寿礼进呈.json",
+      "configSha256": "945d95fadc33eb4a1d42006b9eed1529f18e357068e2321279d4b0f98f0991a4",
+      "differenceCount": 14,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 30,
+      "id": "qing-hua-ci/shou-yan-kai-xi",
+      "name": "寿宴开席",
+      "folder": "shou-yan-kai-xi",
+      "sourceFolder": "30.寿宴开席",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/shou-yan-kai-xi/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/shou-yan-kai-xi/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "30.寿宴开席.png",
+          "sha256": "84b2325364a905490e9d70a043d3aa3d24f76b5cef189c8d4d9bff69269e4ff0",
+          "importedSha256": "1ca56f3ffed0f5d292beb70600e111aa7c2cb4fc414ae640ed4e7441436cffc3"
+        },
+        {
+          "file": "图片_042_09.jpeg",
+          "sha256": "e4fa94fe784cde63f1cb498bbb5dc8375863948cb38be802046eee33e1e85a2e",
+          "importedSha256": "12175879ce6b46829594b6757c8526d937916985e9b5ad38fc6a9f0815d76fd6"
+        }
+      ],
+      "sourceConfig": "寿宴开席.json",
+      "configSha256": "0b8e190e3432507c1dc1f102539fe51af7878214bf4ea80df39774b586d48f04",
+      "differenceCount": 14,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-wan-shou-da-zun"
+    },
+    {
+      "number": 31,
+      "id": "qing-hua-ci/hua-kou-pu-tao-pan",
+      "name": "花口葡萄盘",
+      "folder": "hua-kou-pu-tao-pan",
+      "sourceFolder": "31.花口葡萄盘",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/hua-kou-pu-tao-pan/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/hua-kou-pu-tao-pan/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "31.花口葡萄盘.png",
+          "sha256": "85df198076e8a7020fad5a068268bfd6db770ffec7914a65e8f6d8cae9fad28e",
+          "importedSha256": "9867e288997df8162c822821ec63b662377bfdbd90562363980ebe063ccdab20"
+        },
+        {
+          "file": "图片_043_09.jpeg",
+          "sha256": "00556b3d4c273306b6a7e57a86a54ff3aabe6690f20f497337def43207c6f7c0",
+          "importedSha256": "658d1fb5aa64244e6f52056737b501f52b61b4f0b2f40d09118620936f74edb6"
+        }
+      ],
+      "sourceConfig": "花口葡萄盘.json",
+      "configSha256": "f70fd285d473fa12a5110f17e060ba3f6cf2f1c3096eed91b575c5457da9a29f",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 32,
+      "id": "qing-hua-ci/xiu-chu-hua-ban-pan-yan",
+      "name": "修出花瓣盘沿",
+      "folder": "xiu-chu-hua-ban-pan-yan",
+      "sourceFolder": "32.修出花瓣盘沿",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/xiu-chu-hua-ban-pan-yan/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/xiu-chu-hua-ban-pan-yan/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "32.修出花瓣盘沿.png",
+          "sha256": "08cf8e6736e1665ca760ad6d786d8d5f02290f44b1bbc9623ef017d3450e9c97",
+          "importedSha256": "9c350b0a4872c751bbb2ec54015072ce000c88b1119cfb9f1a67f70ee59c26de"
+        },
+        {
+          "file": "图片_044_09.jpeg",
+          "sha256": "7d7d5bea7ef84e2be86e52d9f458f523c0261b2deca60527b2f47ac33ca7a900",
+          "importedSha256": "38969de7e461eef2791e5766dd01cf241a61433a677b3c19317cff34c6f5e4ec"
+        }
+      ],
+      "sourceConfig": "修出花瓣盘沿.json",
+      "configSha256": "597d4280da0e94c93b6cb355f3a670c0f5541e904cb76617d02b997f880ccfe4",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 33,
+      "id": "qing-hua-ci/yuan-fang-de-can-zhuo",
+      "name": "远方的餐桌",
+      "folder": "yuan-fang-de-can-zhuo",
+      "sourceFolder": "33.远方的餐桌",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/yuan-fang-de-can-zhuo/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/yuan-fang-de-can-zhuo/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "33.远方的餐桌.png",
+          "sha256": "712d54af103953ea260e9e68de1818f67680c35ef01e717e6adcbf72ded3c0e6",
+          "importedSha256": "81c5ba3f123e910c3121b37a419890203b583082dc5b88820dc32fcf477c1353"
+        },
+        {
+          "file": "图片_045_09.jpeg",
+          "sha256": "46e78ab098d0debed72daae2da881b3a3da5beb39a7fa17dd791746204407d92",
+          "importedSha256": "f2f8fd4385e7172228133cfbc066416a504f0b944527dc09a182edc0403d56fe"
+        }
+      ],
+      "sourceConfig": "远方的餐桌.json",
+      "configSha256": "13252645cf29b182f5c0eacc19737d0175de7488efd3e524c4254a9e6bc5479c",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-hua-kou-pu-tao-pan"
+    },
+    {
+      "number": 34,
+      "id": "qing-hua-ci/qing-hua-gao-zu-pan",
+      "name": "青花高足盘",
+      "folder": "qing-hua-gao-zu-pan",
+      "sourceFolder": "34.青花高足盘",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-gao-zu-pan/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-gao-zu-pan/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "34.展柜中的青花高足盘.png",
+          "sha256": "5701f912aa0b83ba69e3a8e4cf91e01f9e79b12f5c1cc4d52b8b56ffc30b92bc",
+          "importedSha256": "fbedf6bc4abacd4c910b04d80f5b38a2a575ba6f26dfae13640a08ea6bc3aa38"
+        },
+        {
+          "file": "图片_046_09.jpeg",
+          "sha256": "0cff6eaa6be66e2f8c2865ccb9866aa1eadac38448a68b322a4a6abb996fdc22",
+          "importedSha256": "0d238f342c93971ee86adfcd41c2014c7484ba7e168e46e8c6ec9568a8de1a80"
+        }
+      ],
+      "sourceConfig": "青花高足盘.json",
+      "configSha256": "b184c829c6ecd3a819efa2631075bfd86aee2eddc1862718468517d232b2fa5e",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 35,
+      "id": "qing-hua-ci/pan-yu-gao-zu-de-cheng-xing",
+      "name": "盘与高足的成型",
+      "folder": "pan-yu-gao-zu-de-cheng-xing",
+      "sourceFolder": "35.盘与高足的成型",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/pan-yu-gao-zu-de-cheng-xing/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/pan-yu-gao-zu-de-cheng-xing/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "35.盘与高足的成型.png",
+          "sha256": "eb33194f5849490b8c4c8b3bc7e45514be8868e1611025d12e9d33e7ba618046",
+          "importedSha256": "33acb62a1b9c4171ad9546410944a8ea542310f5ca82dadfd80f97d9fcff9d6b"
+        },
+        {
+          "file": "图片_047_09.jpeg",
+          "sha256": "cb301b7ff37140b74a6a479588749b8e4cfa6cc7f3d8f7eaa029fe6b31e12a81",
+          "importedSha256": "21baaa5800c09c23896566ccde28ddd62327401f3cf2dac1f1f71deaf631ac6a"
+        }
+      ],
+      "sourceConfig": "盘与高足的成型.json",
+      "configSha256": "48b62b1b683554ab51d320ae3a4fe6de46ab07449320412356a30696c15bf66a",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 36,
+      "id": "qing-hua-ci/jie-ri-gong-guo",
+      "name": "节日供果",
+      "folder": "jie-ri-gong-guo",
+      "sourceFolder": "36.节日供果",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/jie-ri-gong-guo/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/jie-ri-gong-guo/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "36.节日供果.png",
+          "sha256": "90ebf8a1d081e9010a6ea1c96379ab5ec8a5470601981efa8a24bf331a7e88ce",
+          "importedSha256": "8a80b919dbc20a6ad0100cfbdfcef02d34ca971662a05f8140835aa238fd4cef"
+        },
+        {
+          "file": "图片_048_09.jpeg",
+          "sha256": "5fb3f39d140fbd91c8a1b1025f63182dcb44c89e40fd7f0f6ac4bd4a7badcdbc",
+          "importedSha256": "c027da83b56a82d6fca8853226eaee566a9eaa2e13271e6ad95208c409e2dccb"
+        }
+      ],
+      "sourceConfig": "节日供果.json",
+      "configSha256": "9fe3ef42982e08880e7bdf652d7124d196b037c24031333086eaca54d3d00249",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-qing-hua-gao-zu-pan"
+    },
+    {
+      "number": 37,
+      "id": "qing-hua-ci/seng-mao-hu",
+      "name": "僧帽壶",
+      "folder": "seng-mao-hu",
+      "sourceFolder": "37.僧帽壶",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/seng-mao-hu/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/seng-mao-hu/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "37.僧帽壶.png",
+          "sha256": "b214b75c686152ba0e2748083fb86f17b7c4e4e9388212ac579cca417f25054b",
+          "importedSha256": "34e67b1fbeda594d25c630b7545c33d1b47cdea7c01ccf1104d32ffdd1083849"
+        },
+        {
+          "file": "图片_049_09.jpeg",
+          "sha256": "74cd525173ee5e929644ca245348682c84ef46fb4401f2cbba6c3b836dd408aa",
+          "importedSha256": "e183625b3999d7e589d79d4581833378812b4e54d179d3b221755d49a51f2ea2"
+        }
+      ],
+      "sourceConfig": "僧帽壶.json",
+      "configSha256": "5ebe9d4e7aecbb6f952edd53f1f0b6fc16cf2dd9e159aa64a9a2bb3d562741e2",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 38,
+      "id": "qing-hua-ci/yuan-xing-de-li-wu",
+      "name": "远行的礼物",
+      "folder": "yuan-xing-de-li-wu",
+      "sourceFolder": "38.远行的礼物",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/yuan-xing-de-li-wu/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/yuan-xing-de-li-wu/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "38.远行的瓷器礼物.png",
+          "sha256": "677797fd87cfc66154360bf1a8c49f9213bb498530be151ce1a09123e199b0cb",
+          "importedSha256": "e11db65ff48be6e90452ced54dbefd32e748f0a9523c778c5cba13fa3cee4548"
+        },
+        {
+          "file": "图片_050_09.jpeg",
+          "sha256": "39fc49ebdb7b6d5c49e7a1275db358d16da35d7ed8d74f892f1e572656faae5d",
+          "importedSha256": "4671ae144a2eb4d98b3678e895e6b1522b4a824979deb7644a3f2abdd1229b5a"
+        }
+      ],
+      "sourceConfig": "远行的礼物.json",
+      "configSha256": "17dbfeaa6056833048e28ba6f8ca4f35ad80acc70df07109fe37f436cc8d7e3b",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 39,
+      "id": "qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju",
+      "name": "寺院里的茶与供具",
+      "folder": "si-yuan-li-de-cha-yu-gong-ju",
+      "sourceFolder": "39.寺院里的茶与供具",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "39.寺院里的茶与供具.png",
+          "sha256": "ac7de2ce50bb923adc11c2d1d9d3a02d7261023628c1a527800af798caef2aab",
+          "importedSha256": "69cb582ee586560c1765310312f938623dd0f29598fb0fd8b673adc3605a8c54"
+        },
+        {
+          "file": "图片_051_09.jpeg",
+          "sha256": "7e2b5d9ae0247cd43ed67e4f2a46e5fb8eb06855f39a66f75dfc97b1655d3c74",
+          "importedSha256": "298f6b1693bdafd50d806732b260825dd6f225634a3e2afa15d762c09ee34832"
+        }
+      ],
+      "sourceConfig": "寺院里的茶与供具.json",
+      "configSha256": "7f90283e855116b8039dcab48b4696750aa727cea54c4da16c49bf2c8a9cd34a",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-seng-mao-hu"
+    },
+    {
+      "number": 40,
+      "id": "qing-hua-ci/a-la-bo-wen-zhu-tai",
+      "name": "阿拉伯文烛台",
+      "folder": "a-la-bo-wen-zhu-tai",
+      "sourceFolder": "40.阿拉伯文烛台",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/a-la-bo-wen-zhu-tai/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/a-la-bo-wen-zhu-tai/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "40.阿拉伯文烛台.png",
+          "sha256": "a1e491bf3b2cf56f29eeb2b1c6efb9949a8523e064a7be0bf87c3bc0fe826d0d",
+          "importedSha256": "fc2f8aeb51e4cd0a5c31ca598c806b96e57f6ba4a34ed00e04d7a7387ff1053a"
+        },
+        {
+          "file": "图片_052_09.jpeg",
+          "sha256": "bff5b249b40fb1024633755eba3cd270dcfa548bf48cd1f1b0e87dc9c8917e03",
+          "importedSha256": "c47f75f79f55974b5d257139d560a01337c6438ecb4e0a5f8e32b060b26ac327"
+        }
+      ],
+      "sourceConfig": "阿拉伯文烛台.json",
+      "configSha256": "e9ca2975c9a000feb9e0c35948f4d8df154196b4a6eaf42af9b443b01f7c554c",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 41,
+      "id": "qing-hua-ci/yang-qi-lai-dao-zuo-fang",
+      "name": "样器来到作坊",
+      "folder": "yang-qi-lai-dao-zuo-fang",
+      "sourceFolder": "41.样器来到作坊",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/yang-qi-lai-dao-zuo-fang/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/yang-qi-lai-dao-zuo-fang/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "41.样器来到作坊.png",
+          "sha256": "df387dbc1c8906f31168ddd04c42aaeaeaa18b77e61d711f8d9339de77da1a74",
+          "importedSha256": "b967f2ae856e99244263c2696a5de1490ca9102b9951bdeea31e4457f1e444f5"
+        },
+        {
+          "file": "图片_053_12 (1).jpeg",
+          "sha256": "b4edb0190d8a168d0745043c739f95aad869e187a2241e2964cc6b921a200813",
+          "importedSha256": "4ce45bbe517d4c6adc8de008e72f44b18656904a0c64807a1baedeb9df44c05a"
+        }
+      ],
+      "sourceConfig": "样器来到作坊.json",
+      "configSha256": "c4c38eb30cccb703cc45ec4a96f4fc106aef90c068e5ebc9bb78ce849f197a8a",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 42,
+      "id": "qing-hua-ci/gong-zhuo-tian-zhu",
+      "name": "供桌添烛",
+      "folder": "gong-zhuo-tian-zhu",
+      "sourceFolder": "42.供桌添烛",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/gong-zhuo-tian-zhu/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/gong-zhuo-tian-zhu/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "42.供桌添烛.png",
+          "sha256": "31fde7bf4b0fc091e3d1e9176180ae1bace80d5eb531ebf0f973a1e60e07485c",
+          "importedSha256": "01161ae3557b417a804d9072f7ddaf5ed3e2d2bbe7d2bfc25e6b683835482152"
+        },
+        {
+          "file": "图片_054_09.jpeg",
+          "sha256": "9bffb8936f85bf958f165041afadf50209362d7c94abd19d1523d1a3976cc9e3",
+          "importedSha256": "d07a5bedc079defdbb392d26c50cac17445a9fcd7778c64982ec194d6b96175b"
+        }
+      ],
+      "sourceConfig": "供桌添烛.json",
+      "configSha256": "de6e14e760ede48b635e497d5a4581d9d3e7a48ed66a766662e70175514307e6",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-a-la-bo-wen-zhu-tai"
+    },
+    {
+      "number": 43,
+      "id": "qing-hua-ci/ying-xi-tu-yuan-he",
+      "name": "婴戏图圆盒",
+      "folder": "ying-xi-tu-yuan-he",
+      "sourceFolder": "43.婴戏图圆盒",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/ying-xi-tu-yuan-he/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/ying-xi-tu-yuan-he/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "43.婴戏图圆盒.png",
+          "sha256": "438d09198ab95cd457401aed05a88489f1f2a6db506b54934b1b611c3fb2b77e",
+          "importedSha256": "0cf95c82691f0f5bab41fa95420d7a57a4a9bb705d9c42890a46b0ec46b38598"
+        },
+        {
+          "file": "图片_055_09.jpeg",
+          "sha256": "492bb84f4d77cd75d2241cc0e8465445a820a885ed3e4a0a914596d96e5a430d",
+          "importedSha256": "f126fd1210933a64da9050eb53502c6e11ec3737d6705cabead7bf2a90a21429"
+        }
+      ],
+      "sourceConfig": "婴戏图圆盒.json",
+      "configSha256": "d12ecd73351c0081a13010978c0bc5597198ab9282b1ca9b54ccec302263f8a8",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 44,
+      "id": "qing-hua-ci/ting-yuan-li-de-hai-zi-men",
+      "name": "庭院里的孩子们",
+      "folder": "ting-yuan-li-de-hai-zi-men",
+      "sourceFolder": "44.庭院里的孩子们",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/ting-yuan-li-de-hai-zi-men/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/ting-yuan-li-de-hai-zi-men/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "44.庭院里的孩子们.png",
+          "sha256": "3618a2932ecd61b45288dffcd64ba76104bb9c8d62a80427e5d0f44a427c5b80",
+          "importedSha256": "e56e7075f8992e864b93059c3bfd3cad531c81cbd07eb8d939fa547f1617dd3b"
+        },
+        {
+          "file": "图片_056_11.jpeg",
+          "sha256": "0a35af7bcaaf9fcc31e6acdee04af3125e264e4c62d5e169218a8b4ac00bc9ab",
+          "importedSha256": "fa28655438e9c488fc6649399b5060fad795fbda0b22792c2f20968ae2266266"
+        }
+      ],
+      "sourceConfig": "庭院里的孩子们.json",
+      "configSha256": "a572c9fe46daec2417720499a3b2e7a5181e4958746bbfb318d189e64d60d119",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 45,
+      "id": "qing-hua-ci/yuan-he-li-de-dian-xin",
+      "name": "圆盒里的点心",
+      "folder": "yuan-he-li-de-dian-xin",
+      "sourceFolder": "45.圆盒里的点心",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/yuan-he-li-de-dian-xin/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/yuan-he-li-de-dian-xin/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "45.圆盒里的节日点心.png",
+          "sha256": "38985cd4e75416cf00bfbc38537d7456937b68bb6543396f32b8dc6e1830dabb",
+          "importedSha256": "a0a256fe98fca7dfdba10f2353e459b38c1fa090145933c73dd4f41a39ba7112"
+        },
+        {
+          "file": "图片_057_11.jpeg",
+          "sha256": "0d268f279120154ed55cb0266325c2b8590df31597a779446619a97e7b03b327",
+          "importedSha256": "444e8f2ae9c8d69764fbd91ae33b64bd86b6891891383961bf4cc7d2bfcf0475"
+        }
+      ],
+      "sourceConfig": "圆盒里的点心.json",
+      "configSha256": "ce44f12cf8f674d2ec5f515b99ad060cdf928b26915dd2ecbb075cedc290df99",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-ying-xi-tu-yuan-he"
+    },
+    {
+      "number": 46,
+      "id": "qing-hua-ci/lan-ting-hui-bi-tong",
+      "name": "《兰亭会》笔筒",
+      "folder": "lan-ting-hui-bi-tong",
+      "sourceFolder": "46.《兰亭会》笔筒",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/lan-ting-hui-bi-tong/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/lan-ting-hui-bi-tong/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "46.《兰亭会》笔筒.png",
+          "sha256": "84a079b6f52d3e35508bf66b97c951298fcd150fe3d9dccb3371f39c78ad179e",
+          "importedSha256": "1a9aa5ed810c0f15f3bbddc55c9bfdfba58d20c33cc0b943dcf008cf7112ba75"
+        },
+        {
+          "file": "图片_058_11.png",
+          "sha256": "ffbffb2fd0633813c9f84ec57cc7506e1c4575f4518c5d772fbbf71620b06ab2",
+          "importedSha256": "9f5338877952e1821f5690928731e03d3d45a6ec903564f5f885a5e8904232d3"
+        }
+      ],
+      "sourceConfig": "《兰亭会》笔筒.json",
+      "configSha256": "35c9938cf8201b1ad8310073b500b70535d224a5f4b2ba6eefe24085b3b4c04f",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 47,
+      "id": "qing-hua-ci/qu-shui-liu-shang",
+      "name": "曲水流觞",
+      "folder": "qu-shui-liu-shang",
+      "sourceFolder": "47.曲水流觞",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/qu-shui-liu-shang/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/qu-shui-liu-shang/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "47.曲水流觞.png",
+          "sha256": "d175830a3388f13811df4dcac255b600f06948e70aaa846456e9e97112559fe3",
+          "importedSha256": "be81459bf7425a0c7b0f9f413f8d00a68061a44e64bec8c1042f438db7b03e45"
+        },
+        {
+          "file": "图片_059_11.png",
+          "sha256": "75a11133f6c77587b4d36445d98f356cfd24dbd1a9e1070efbc108cdb9d39f35",
+          "importedSha256": "b48d2b5acb22a24bc7cf8955c4379aa0736755e0bc570e0faba984a46f9738fa"
+        }
+      ],
+      "sourceConfig": "曲水流觞.json",
+      "configSha256": "6c47ae0fba1703eae2e8dca14aacda1aae73781491cec5edcc7979cd5f8fea3d",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 48,
+      "id": "qing-hua-ci/qing-dai-shu-fang-luo-bi",
+      "name": "清代书房落笔",
+      "folder": "qing-dai-shu-fang-luo-bi",
+      "sourceFolder": "48.清代书房落笔",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/qing-dai-shu-fang-luo-bi/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/qing-dai-shu-fang-luo-bi/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "48.清代书房落笔.png",
+          "sha256": "4608aa986c812173f43a6b628d60f1be083fb76a26b5edd0cd432b6d907d7541",
+          "importedSha256": "baeefa2295ab186ee288be2727b312891db10b990d59d160fdcfe8e3ab2cab79"
+        },
+        {
+          "file": "图片_060_09.jpeg",
+          "sha256": "4cabfcce335829cb44ff9e4c99f9a7f4b19b836149e43551d04f37888f6c744c",
+          "importedSha256": "97145150f823e3e1b9eccc2b549fb5c5af7b601308f51f3e99432c3f0449b1f5"
+        }
+      ],
+      "sourceConfig": "清代书房落笔.json",
+      "configSha256": "ee2a92e289e125331acac5231359727b1d929ea24fc137dc4fa0208e87dd9fb1",
+      "differenceCount": 16,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-lan-ting-hui-bi-tong"
+    },
+    {
+      "number": 49,
+      "id": "qing-hua-ci/qing-hua-hua-jiao",
+      "name": "青花花浇",
+      "folder": "qing-hua-hua-jiao",
+      "sourceFolder": "49.青花花浇",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-hua-jiao/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-hua-jiao/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "49.青花花浇.png",
+          "sha256": "f920449eaecd63b35ac117f966491431167232115407325d3d707105ed247cc6",
+          "importedSha256": "08e47caccfe6fd95d1478244044a1431526a34894c491b9b85b8663f65e766a5"
+        },
+        {
+          "file": "图片_061_09.jpeg",
+          "sha256": "fc315588aa1b28956e088bf6d56090426d082eaab2e42a73f302ba502041ada1",
+          "importedSha256": "24f33cd19797abbfcbe60e374fb62929ed2441c56296f4bd165dd867d585021b"
+        }
+      ],
+      "sourceConfig": "青花花浇.json",
+      "configSha256": "12d71dad27b5d79f056d6c4332cc750171a1506115705e619a83729de47f341f",
+      "differenceCount": 9,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 50,
+      "id": "qing-hua-ci/jiu-qi-pei-shang-xin-tong-dan",
+      "name": "旧器配上新铜胆",
+      "folder": "jiu-qi-pei-shang-xin-tong-dan",
+      "sourceFolder": "50.旧器配上新铜胆",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/jiu-qi-pei-shang-xin-tong-dan/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/jiu-qi-pei-shang-xin-tong-dan/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "50.旧器配上新铜胆.png",
+          "sha256": "de1c3cdc59eb53d5ae61eb12e660adc2fd9cc3e42d903fb9364302d52851d3bd",
+          "importedSha256": "f3789cdb28870803696b24334272392f07ec6ac8e210da7611efa4fdc97e127b"
+        },
+        {
+          "file": "图片_062_09.jpeg",
+          "sha256": "accc104cf321f79b698bdc9f38ee8dc852c44a9b5a41ac46a5c24339f5ccd164",
+          "importedSha256": "b08b206fd01abd3399718b89dcf7b140c072f5ec458289498180d68911ca20ff"
+        }
+      ],
+      "sourceConfig": "旧器配上新铜胆.json",
+      "configSha256": "a9788469251323d2b92bbe057c124f863fcfed80f2a58cd30d0c950b19884c11",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 51,
+      "id": "qing-hua-ci/chuang-qian-cha-hua",
+      "name": "窗前插花",
+      "folder": "chuang-qian-cha-hua",
+      "sourceFolder": "51.窗前插花",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/chuang-qian-cha-hua/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/chuang-qian-cha-hua/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "51.窗前插花.png",
+          "sha256": "dd57b8b95494466b9549264295e94992b2db897a90fc8b06a076be75764eda61",
+          "importedSha256": "f27dac0349d5339c00204873d0d249e9c7bee345d632fa11e32927672576783b"
+        },
+        {
+          "file": "图片_063_09.png",
+          "sha256": "a1f22f2693c99e498b9cfc4c76b7ca0c663c457745ab8bc19796ed8a3b58e0e4",
+          "importedSha256": "cd5e8d7f55a69333f9595f2d78c8c9bb4884c9cfe3999efeb8e1e1ae16f4a8f3"
+        }
+      ],
+      "sourceConfig": "窗前插花.json",
+      "configSha256": "21370adb44d35a595d09ad5cdbebc2a4b214b52938a698af91835524bb665c1e",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-qing-hua-hua-jiao"
+    },
+    {
+      "number": 52,
+      "id": "qing-hua-ci/xi-shuai-guan",
+      "name": "蟋蟀罐",
+      "folder": "xi-shuai-guan",
+      "sourceFolder": "52.蟋蟀罐",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/xi-shuai-guan/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/xi-shuai-guan/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "52.蟋蟀罐.png",
+          "sha256": "e790ca4dbacccf9b69e7ffc5f83549d287648cc165bfc676b45f8998290aedd7",
+          "importedSha256": "8bdb8c4454ba756a8dd191579b7d07157077b963f3114fe46c38355d7bbaf14c"
+        },
+        {
+          "file": "图片_064_09.png",
+          "sha256": "dd807d3a412124201aecadbbfc014d9d56fed2284940a9f97a3aa940a23f8363",
+          "importedSha256": "3ed5d94e61c8b5d094195e4fd9bfe0bfd82f27b203039c43b994283013718e83"
+        }
+      ],
+      "sourceConfig": "蟋蟀罐.json",
+      "configSha256": "f11dede0958a61b9c53eb157ec93e24ae3b9dcb2657e107b6113182a8aa2b3c3",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 53,
+      "id": "qing-hua-ci/zuo-zhi-hui-tou-qi-de-gai",
+      "name": "做只会透气的盖",
+      "folder": "zuo-zhi-hui-tou-qi-de-gai",
+      "sourceFolder": "53.做只会透气的盖",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/zuo-zhi-hui-tou-qi-de-gai/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/zuo-zhi-hui-tou-qi-de-gai/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "53.做一只会透气的盖.png",
+          "sha256": "5d45b0c855ec293024c0caa5a426d3cd6133669c39d59366285b6d1c3ba8085b",
+          "importedSha256": "5819a29a89b3ad7621351e2c77c45e0ae731440f227ede3341a6e39555ed9e0b"
+        },
+        {
+          "file": "图片_065_09.png",
+          "sha256": "b7ba2fbbedbba0d9db46ec753cce5aac5351e70878f5f16ea42e11daccee717f",
+          "importedSha256": "d6c1db5a525a9a63e7d47a6eabbf1a29b9d5baf6523dcc18d7d9f8ba54473877"
+        }
+      ],
+      "sourceConfig": "做只会透气的盖.json",
+      "configSha256": "a8befa65e5a2249e072a4b5a998425a0a1a96584dadb9bf130dd2ee642d742ab",
+      "differenceCount": 11,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 54,
+      "id": "qing-hua-ci/qiu-yuan-guan-xi-shuai",
+      "name": "秋院观蟋蟀",
+      "folder": "qiu-yuan-guan-xi-shuai",
+      "sourceFolder": "54.秋院观蟋蟀",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/qiu-yuan-guan-xi-shuai/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/qiu-yuan-guan-xi-shuai/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "54.秋院观蟋蟀.png",
+          "sha256": "e481587a0adfe44646f3d9ec8927c01f91b0a561d685e4318398ab8086d2f565",
+          "importedSha256": "38765d84c68a46e8b5c799ae16fdf8472ce13da966f5e2c6788b0860e1bed6f7"
+        },
+        {
+          "file": "图片_066_11.png",
+          "sha256": "1e3781cb170b709fcb4383c572a4701085a0160854db50346718cba29bd3475f",
+          "importedSha256": "c664fdf7de41edcd0e3afbe44e4d2f93dd33df69429e816a1675ac5ea9eca1a1"
+        }
+      ],
+      "sourceConfig": "秋院观蟋蟀.json",
+      "configSha256": "444f394867d1021d5937a51db012d002bcbd0fcea8221a6f941176ae8d991ecd",
+      "differenceCount": 12,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-xi-shuai-guan"
+    },
+    {
+      "number": 55,
+      "id": "qing-hua-ci/lian-chi-yu-zao-wen-guan",
+      "name": "莲池鱼藻纹罐",
+      "folder": "lian-chi-yu-zao-wen-guan",
+      "sourceFolder": "55.莲池鱼藻纹罐",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/lian-chi-yu-zao-wen-guan/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/lian-chi-yu-zao-wen-guan/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "55.莲池鱼藻纹罐.png",
+          "sha256": "f47f37559d193303f4b71acd85b6756da8d0540ec5df9ffb3ca261b835b363fb",
+          "importedSha256": "c5eaf94e8a1a01c63db704c6eea777e1c8f326fbc2258cd278220f3c35a21497"
+        },
+        {
+          "file": "图片_067_09.png",
+          "sha256": "59fb891989bfc37fe5fdec358e17a4c64c2e455249ced5b507db2a20558e2639",
+          "importedSha256": "7bc0fd9e5676211fe0773bb1b3924ab4a3bad1843e3516dd0164c551001005af"
+        }
+      ],
+      "sourceConfig": "莲池鱼藻纹罐.json",
+      "configSha256": "319343d10986ce739885d3a5f6feb2ca66311a799788690319c2623bec0f56bd",
+      "differenceCount": 15,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 56,
+      "id": "qing-hua-ci/shang-chuan-li-de-ci-qi-huo-cang",
+      "name": "商船里的瓷器货舱",
+      "folder": "shang-chuan-li-de-ci-qi-huo-cang",
+      "sourceFolder": "56.商船里的瓷器货舱",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/shang-chuan-li-de-ci-qi-huo-cang/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/shang-chuan-li-de-ci-qi-huo-cang/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "56.商船里的瓷器货舱.png",
+          "sha256": "f4757e84daa1576cf62ff89e856b5a9e4dbcd02879a5bfda025d9632c7be5a48",
+          "importedSha256": "c57ea7ac75521f59f8f7db512f0e8c0abe26fadf85e173a789b3d7cec0acbe70"
+        },
+        {
+          "file": "图片_068_09.png",
+          "sha256": "9cc773434e1f37a13239f874ca8d8199c90c84e05dfd5424a2c7e3a43c0284d7",
+          "importedSha256": "3716f0037a21f83d6bed37826db5e660d590b2a3e4e0a5db42087650d202c19b"
+        }
+      ],
+      "sourceConfig": "商船里的瓷器货舱.json",
+      "configSha256": "1cd9f06a8d69036093196d5ed1d0615bb27a233688a8a9c890e6e22cca902ea0",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 57,
+      "id": "qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she",
+      "name": "海外府邸的瓷器陈设",
+      "folder": "hai-wai-fu-di-de-ci-qi-chen-she",
+      "sourceFolder": "57.海外府邸的瓷器陈设",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "57.海外府邸的瓷器陈设.png",
+          "sha256": "d9af932337495dd94153f5dc737e6be6ab3a65b11a1c50cb6d852d7d981cd71c",
+          "importedSha256": "7b70cfeffa2eec72e7a6e70068ab360c96d724d7797d42390ad983b8ab69817d"
+        },
+        {
+          "file": "图片_069_09.png",
+          "sha256": "c19e01e6ecffa25e314e1a19f9d3a4bde810eb0f048e76bbebe68461a1e90438",
+          "importedSha256": "357ed0f6dbec50f2cffc0c490b3b3da81a74199a29abc3ff28ec4840896f85d9"
+        }
+      ],
+      "sourceConfig": "海外府邸的瓷器陈设.json",
+      "configSha256": "afeedc7cf2eb920c8979ee44e6e2ed76fd16a129e0ee98970e7e90bb190bc3dc",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-lian-chi-yu-zao-wen-guan"
+    },
+    {
+      "number": 58,
+      "id": "qing-hua-ci/jin-tian-de-qi-xing-she-ji-zhan",
+      "name": "今天的器型设计展",
+      "folder": "jin-tian-de-qi-xing-she-ji-zhan",
+      "sourceFolder": "58.今天的器型设计展",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/jin-tian-de-qi-xing-she-ji-zhan/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/jin-tian-de-qi-xing-she-ji-zhan/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "58.今天的器型设计展.png",
+          "sha256": "b19cb2609f6abbc864395f147cc8b00fe21c3ebd919505bceeb2c3efb91b551a",
+          "importedSha256": "061dc351406445699f0e8a3cf7adf688920d2f23c173ffbb1f0aa61a8dc0c77f"
+        },
+        {
+          "file": "图片_070_09.png",
+          "sha256": "8c1d79e26f5b9fefb01c3a0d769fa10696b8a173f0b8c18ede48c69586675499",
+          "importedSha256": "50fc3a2039f8935494397eec1154bc220003fabd09f52e362eba64b02ec4bd78"
+        }
+      ],
+      "sourceConfig": "今天的器型设计展.json",
+      "configSha256": "c25cca568cc63c4777cc596a498aba3e80512dc6cbe6ae7c321050e21ae20b05",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 59,
+      "id": "qing-hua-ci/dian-yao-qian-de-xin-zuo-pin",
+      "name": "电窑前的新作品",
+      "folder": "dian-yao-qian-de-xin-zuo-pin",
+      "sourceFolder": "59.电窑前的新作品",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/dian-yao-qian-de-xin-zuo-pin/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/dian-yao-qian-de-xin-zuo-pin/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "59.电窑前的新作品.png",
+          "sha256": "9cf3d318532d3c91e5b23720838445f8dafe5895239737231f5ef843b0dd66bc",
+          "importedSha256": "7dd4065d42427fc8a621c3b98d331e7f223c24af8473a404a0c99ee4d335fe74"
+        },
+        {
+          "file": "图片_071_09.png",
+          "sha256": "8539f5a2d1ca2651f5d8ebd8ae8c9537198939d82d63b1236c954bb8baf8d919",
+          "importedSha256": "3e0867c6e3b546e4194e5278e25cb13d86ff5048f0587787e4c6bb81a9029dcb"
+        }
+      ],
+      "sourceConfig": "电窑前的新作品.json",
+      "configSha256": "a6b79ab26d33f47fd44503c6af5ad7c32c7e7e704f2d936cbd32c0200ca3f17a",
+      "differenceCount": 10,
+      "status": "marked",
+      "collectibleId": null
+    },
+    {
+      "number": 60,
+      "id": "qing-hua-ci/qing-hua-hui-dao-can-zhuo",
+      "name": "青花回到餐桌",
+      "folder": "qing-hua-hui-dao-can-zhuo",
+      "sourceFolder": "60.青花回到餐桌",
+      "images": [
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-hui-dao-can-zhuo/scene-a.jpg",
+        "assets/Bundle/levels/qing-hua-ci/qing-hua-hui-dao-can-zhuo/scene-b.jpg"
+      ],
+      "sourceImages": [
+        {
+          "file": "60.青花回到餐桌.png",
+          "sha256": "8bac93b44f92a9a872d82cd42aac12d2fc6803757df77efd61b7e89d6b1da714",
+          "importedSha256": "f0209922c22ae5f46ce4e53f4d94b6a05710998f11176642b5c9fc97c18ebe84"
+        },
+        {
+          "file": "图片_072_09.png",
+          "sha256": "e0e33d1a3af6884f025a6a65fe2130e65d88fc7ab3973b269263a39cae983ee3",
+          "importedSha256": "c8477e5e90080a37065b4618ee659a853c4e6f29a30405ae6eef13d06f9dad3e"
+        }
+      ],
+      "sourceConfig": "青花回到餐桌.json",
+      "configSha256": "b70ba18e3e26eb83fc336d39eed477b5eaf52c0721f7f805fd6bcc4fa7c098ef",
+      "differenceCount": 8,
+      "status": "marked",
+      "collectibleId": "qing-hua-ci-dang-dai-qing-hua-ri-yong-qi"
+    }
+  ]
+}

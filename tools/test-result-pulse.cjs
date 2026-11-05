@@ -2,7 +2,7 @@ const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/st
 const ts=require(process.env.TYPESCRIPT_PATH||'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const source=fs.readFileSync('assets/scripts/ui/ResultModal.ts','utf8');
 const tree=ts.createSourceFile('result.ts',source,ts.ScriptTarget.Latest,true);
-const names=['_reviveTween','_reviveFade','_reviveNode','_reviveScale','_reviveOpacity','_startRevivePulse','_stopRevivePulse','onDisable','onDestroy','present'];
+const names=['_reviveTween','_reviveFade','_reviveNode','_reviveScale','_reviveOpacity','_shareWin','_shareVersion','_refreshShareVisibility','_startRevivePulse','_stopRevivePulse','onDisable','onDestroy','present'];
 const body=tree.statements.find(ts.isClassDeclaration).members.filter(m=>names.includes(m.name?.getText(tree))).map(m=>m.getText(tree)).join('\n');
 class Vec3 {constructor(x=1,y=1,z=1){Object.assign(this,{x,y,z});}clone(){return new Vec3(this.x,this.y,this.z);}}
 class UIOpacity{} class Label{}
