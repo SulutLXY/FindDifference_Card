@@ -49,6 +49,14 @@ save = new SaveService(); assert.equal(save.claimDailySignIn(day(), config, 2, 2
 assert.equal(save.dailyStatus(day(), config).canClaim, true, 'Full storage does not consume sign-in');
 save.consumeEnergy(); assert.equal(save.claimDailySignIn(day(), config, 2, 2), true); assert.equal(save.energy, 99);
 
+store.clear(); store.set('find-difference.save.v3',JSON.stringify({freeHints:98}));
+save=new SaveService();fail=true;
+assert.equal(save.claimDailySignIn(day(),config,2,1),false);assert.equal(save.freeHints,98);
+assert.equal(save.dailyStatus(day(),config).canClaim,true);
+fail=false;assert.equal(save.claimDailySignIn(day(),config,2,1),true);
+assert.equal(save.freeHints,99,'Double sign-in reward saturates at 99');
+save=new SaveService();assert.equal(save.freeHints,99);assert.equal(save.dailyStatus(day(),config).claimed,true);
+
 function methods(file, names, globals = {}) {
     const tree = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
     const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');

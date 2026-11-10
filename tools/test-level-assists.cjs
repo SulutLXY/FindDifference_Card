@@ -29,6 +29,21 @@ vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/services/S
  await a.requestAddTime();assert.equal(ads,beforeAds+2);assert.equal(a._remainingTime,360,'No per-level cap; each add-time ad grants 60 seconds');
  assert.equal(new saveExports.SaveService().freeHints,0);assert.equal(new saveExports.SaveService().freeAddTimes,0);
  a.requestReward=async(_,reward)=>{a._assistRoundVersion++;reward();};await a.requestHint();assert.equal(save.freeHints,1);
- const ui=fs.readFileSync('assets/scripts/ui/GameScreen.ts','utf8');assert.ok(ui.includes("times.string = !unlimited && count > 0 ? String(count) : ''"));
- console.log('Passed: initial 2+2, stock use, cancelled ads, uncapped per-level ads, no refill on reload, persistence rollback, stale round reward.');
+ raw=JSON.stringify({freeHints:150,freeAddTimes:1000});
+ const capped=new saveExports.SaveService();
+ assert.equal(capped.freeHints,99);assert.equal(capped.freeAddTimes,99);
+ assert.equal(capped.data.freeHints,99);assert.equal(capped.data.freeAddTimes,99);
+ assert.equal(new saveExports.SaveService().freeHints,99,'Legacy excess is normalized and persisted');
+ for(const kind of ['hint','add-time']) {
+  const consume=kind==='hint'?'consumeFreeHint':'consumeAddTime',field=kind==='hint'?'freeHints':'freeAddTimes';
+  assert.equal(capped[consume](),true);assert.equal(capped[field],98);
+  writeFails=true;assert.equal(capped.grantAssist(kind,5),false);assert.equal(capped[field],98);writeFails=false;
+  assert.equal(capped.grantAssist(kind,5),true);assert.equal(capped[field],99);assert.equal(capped.data[field],99);
+  assert.equal(capped.grantAssist(kind,1),true);assert.equal(capped[field],99);
+ }
+ capped.consumeFreeHint();assert.equal(capped.claimFavorite('2026-11-10',5),'claimed');assert.equal(capped.freeHints,99);
+ assert.equal(capped.claimFavorite('2026-11-10',5),'already-claimed');
+ capped.consumeFreeHint();assert.equal(capped.claimSidebar('2026-11-10',5),'claimed');assert.equal(capped.freeHints,99);
+ assert.equal(new saveExports.SaveService().freeHints,99);assert.equal(new saveExports.SaveService().freeAddTimes,99);
+ console.log('Passed: initial 2+2, stock use, ads, 99-item cap across grants/favorite/sidebar, legacy normalization, persistence rollback and stale round reward.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

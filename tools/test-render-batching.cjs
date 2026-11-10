@@ -15,7 +15,7 @@ function load(file, names, globals) {
 class Graphics {
     constructor() { this.clears = 0; this.circles = []; }
     clear() { this.clears++; this.circles = []; }
-    circle(x, y, radius) { this.circles.push({ x, y, radius, width: this.lineWidth }); }
+    circle(x, y, radius) { this.circles.push({ x, y, radius, width: this.lineWidth, color: this.strokeColor }); }
     stroke() {}
 }
 class Vec3 {
@@ -46,7 +46,7 @@ const Game = load('assets/scripts/ui/GameScreen.ts', [
     '_markers', '_markerRadii', '_markerGraphics', '_markersDirty', 'lateUpdate',
     'drawFoundMarker', '_redrawFoundMarkers', 'playVictoryWave', '_clearMarkers',
 ], { Node, Graphics, Vec3, tween, Tween: { stopAllByTarget(n) { stopped.push(n); } },
-    UIColors: { red: 'red' }, DifferenceController: {
+    UIColors: { red: 'red', white: 'white' }, DifferenceController: {
         normalizedToLocal: (d, w, h) => ({ x: (d.x - 0.5) * w, y: (0.5 - d.y) * h }),
         radiusToLocal: (d, w, h) => d.radius * Math.min(w, h),
     } });
@@ -60,9 +60,13 @@ for (const d of differences) game.drawFoundMarker(d);
 assert.equal(game._markers.length, 20);
 assert.equal(game._markerGraphics.size, 2, '20 markers share two renderers');
 for (const graphics of game._markerGraphics.values()) {
-    assert.equal(graphics.circles.length, 10);
+    assert.equal(graphics.circles.length, 20);
     assert.equal(graphics.circles[0].radius, 20);
     assert.equal(graphics.circles[0].width, 7);
+    assert.equal(graphics.circles[0].color, 'white');
+    assert.equal(graphics.circles[1].radius, 20);
+    assert.equal(graphics.circles[1].width, 5, 'red stroke is 2 pixels thinner, leaving a 1-pixel edge on each side');
+    assert.equal(graphics.circles[1].color, 'red');
     const clears = graphics.clears;
     game.lateUpdate();
     assert.equal(graphics.clears, clears, 'idle frames do not rebuild geometry');
@@ -80,6 +84,7 @@ game.lateUpdate();
 assert.equal(top.clears, before + 1);
 assert.equal(top.circles[0].radius, 25);
 assert.equal(top.circles[0].width, 8.75, 'pulse scales stroke and radius together');
+assert.equal(top.circles[1].width, 6.25, 'red stroke and outline share the victory pulse scale');
 animated.target.scale = Vec3.ONE;
 animated.steps[1].options.onUpdate();
 game.lateUpdate();

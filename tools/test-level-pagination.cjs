@@ -208,7 +208,7 @@ const tick = async () => { for (let i = 0; i < 10; i++) await Promise.resolve();
     const list = prefab[127]._contentSize, card = prefab[120]._contentSize, layout = prefab[129];
     assert.ok(card.width * 2 + layout._spacingX + layout._paddingLeft + layout._paddingRight <= list.width);
     assert.ok(card.height * 4 + layout._spacingY * 3 + layout._paddingTop + layout._paddingBottom <= list.height);
-    const clip = JSON.parse(fs.readFileSync('assets/resources/Animation/An_BtnClik_01.anim.meta', 'utf8')).uuid;
+    const clip = JSON.parse(fs.readFileSync('assets/PleyGame/Common/Animation/An_BtnClik_01.anim.meta', 'utf8')).uuid;
     for (const id of [150, 162]) assert.equal(prefab[id]._defaultClip.__uuid__, clip, 'Existing arrow animation retained');
     console.log('PASS level pagination: earliest locked / lowest-star entry, 8/page, chapter indices, progress, arrows, animations, late results and optional labels');
 })().catch(error => { console.error(error); process.exitCode = 1; });

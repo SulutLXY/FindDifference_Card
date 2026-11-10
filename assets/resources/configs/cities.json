@@ -1,6 +1,7 @@
 {
   "cities": [
     "wang-luo-re-dian",
+    "qing-hua-ci",
     "nian-du-re-geng",
     "chong-wu-gu-shi",
     "meng-chong-san-guo",
@@ -11,8 +12,7 @@
     "chang-sha",
     "guang-zhou",
     "cheng-du",
-    "xi-an",
-    "qing-hua-ci"
+    "xi-an"
   ],
   "chapters": {
     "wang-luo-re-dian": {
@@ -1785,11 +1785,11 @@
   },
   "navigation": [
     "wang-luo-re-dian",
+    "qing-hua-ci",
     "nian-du-re-geng",
     "chong-wu-gu-shi",
     "meng-chong-san-guo",
-    "lian-ai-mei-shi",
-    "qing-hua-ci"
+    "lian-ai-mei-shi"
   ],
   "topics": [
     {

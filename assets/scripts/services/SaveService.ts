@@ -26,6 +26,7 @@ const DEFAULT_SAVE: SaveData = {
 export class SaveService {
     public readonly energyLimit = 99;
     public readonly energyRecoveryLimit = 15;
+    public readonly assistLimit = 99;
     private readonly _energyInterval = 8 * 60 * 1000;
     private _data: SaveData;
     private _loadedExistingSave = false;
@@ -138,7 +139,7 @@ export class SaveService {
         const previous = this._data;
         const nextEnergy = status.reward.kind === 'energy' ? Math.min(this.energyLimit, energy + amount) : energy;
         this._data = { ...previous,
-            freeHints: this.freeHints + (status.reward.kind === 'hint' ? amount : 0),
+            freeHints: Math.min(this.assistLimit, this.freeHints + (status.reward.kind === 'hint' ? amount : 0)),
             energy: nextEnergy,
             energyUpdatedAt: status.reward.kind === 'energy' && nextEnergy >= this.energyRecoveryLimit ? Date.now() : previous.energyUpdatedAt,
             dailySignIn: { ...previous.dailySignIn, lastClaimDay: day, dayIndex: status.dayIndex },
@@ -330,21 +331,21 @@ export class SaveService {
 
     public get freeHints(): number {
         const value = this._data.freeHints;
-        return typeof value === 'number' && Number.isSafeInteger(value) && value > 0 ? value : 0;
+        return typeof value === 'number' && Number.isSafeInteger(value) && value > 0 ? Math.min(this.assistLimit, value) : 0;
     }
 
     public get freeAddTimes(): number {
         const value = this._data.freeAddTimes;
-        return typeof value === 'number' && Number.isSafeInteger(value) && value > 0 ? value : 0;
+        return typeof value === 'number' && Number.isSafeInteger(value) && value > 0 ? Math.min(this.assistLimit, value) : 0;
     }
 
-    /** 奖励、收集统一写入玩家库存，失败时回滚。 */
+    /** 奖励、收集统一写入玩家库存，最多99个，失败时回滚。 */
     public grantAssist(kind: 'hint' | 'add-time', amount = 1): boolean {
         const field = kind === 'hint' ? 'freeHints' : 'freeAddTimes';
         const count = kind === 'hint' ? this.freeHints : this.freeAddTimes;
         if (!Number.isSafeInteger(amount) || amount <= 0 || !Number.isSafeInteger(count + amount)) return false;
         const previous = this._data;
-        this._data = { ...previous, [field]: count + amount };
+        this._data = { ...previous, [field]: Math.min(this.assistLimit, count + amount) };
         if (this._persist()) return true;
         this._data = previous;
         return false;
@@ -404,7 +405,7 @@ export class SaveService {
         if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isSafeInteger(amount) || amount <= 0
             || !Number.isSafeInteger(this.freeHints + amount)) return 'storage-error';
         const previous = this._data;
-        this._data = { ...previous, freeHints: this.freeHints + amount, favoriteClaimDay: day };
+        this._data = { ...previous, freeHints: Math.min(this.assistLimit, this.freeHints + amount), favoriteClaimDay: day };
         if (this._persist()) return 'claimed';
         this._data = previous;
         return 'storage-error';
@@ -416,7 +417,7 @@ export class SaveService {
         if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isSafeInteger(amount) || amount <= 0
             || !Number.isSafeInteger(this.freeHints + amount)) return 'storage-error';
         const previous = this._data;
-        this._data = { ...previous, freeHints: this.freeHints + amount, sidebarClaimDay: day };
+        this._data = { ...previous, freeHints: Math.min(this.assistLimit, this.freeHints + amount), sidebarClaimDay: day };
         if (this._persist()) return 'claimed';
         this._data = previous;
         return 'storage-error';
@@ -509,6 +510,8 @@ export class SaveService {
 
     /** 启动校准：积分与实际通关集合对齐（防御冗余字段漂移）。 */
     private _normalize(): void {
+        this._data.freeHints = this.freeHints;
+        this._data.freeAddTimes = this.freeAddTimes;
         // 插入 2026 热梗后，原城市目录编号顺延；同时保留通关、解锁和评价。
         const oldCities = ['beijing', 'shanghai', 'nanjing', 'xiamen', 'changsha', 'guangzhou', 'chengdu', 'xian'];
         const rename = (key: string): string => {

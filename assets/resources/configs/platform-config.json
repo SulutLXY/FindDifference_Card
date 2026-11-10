@@ -37,5 +37,18 @@
         "subscriptionText": "体力已满，开启挑战"
       }
     ]
+  },
+  "playStats": {
+    "enabled": false,
+    "initialCounts": {
+      "wang-luo-re-dian": 219500,
+      "nian-du-re-geng": 58750,
+      "chong-wu-gu-shi": 103700,
+      "meng-chong-san-guo": 60880,
+      "lian-ai-mei-shi": 358400
+    },
+    "newChapters": [
+      "qing-hua-ci"
+    ]
   }
 }

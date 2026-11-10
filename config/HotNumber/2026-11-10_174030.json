@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "type": "hot-number-statistics",
+  "recordKind": "baseline",
+  "baselineKey": "prelaunch",
+  "status": "ready",
+  "generatedAt": "2026-11-10T17:40:30+08:00",
+  "timezone": "Asia/Shanghai",
+  "source": "manual-preset",
+  "statistics": {
+    "startAt": null,
+    "endAt": null,
+    "durationSeconds": null,
+    "playerCount": 2100,
+    "averagePlayTimeSeconds": 450
+  },
+  "estimate": {
+    "secondsPerLevel": 45,
+    "levelsPerPlayer": 10,
+    "totalLevelPlays": 21000
+  }
+}

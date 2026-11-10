@@ -1,0 +1,30 @@
+{
+  "build": "build/loading-only-2026-11-10/douyin",
+  "startupBundles": {
+    "internal": {
+      "deps": [],
+      "redirectedAssets": 0
+    },
+    "resources": {
+      "deps": [],
+      "redirectedAssets": 0
+    },
+    "main": {
+      "deps": [
+        "resources"
+      ],
+      "redirectedAssets": 6
+    }
+  },
+  "gameplay": {
+    "remote": true,
+    "deps": []
+  },
+  "iosHighPerformanceConfigured": true,
+  "deviceVerified": false,
+  "date": "2026-11-10",
+  "creator": "3.8.8",
+  "buildFinished": true,
+  "productionServerRestored": true,
+  "uploaded": false
+}

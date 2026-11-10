@@ -12,12 +12,14 @@ import {
     ScrollView,
     Size,
     Sprite,
+    SpriteFrame,
     UITransform,
     instantiate,
 } from 'cc';
 import { ChapterSelection } from '../core/GameTypes';
 import { EnergyDisplay } from './EnergyDisplay';
 import { UIColors, UIScreen } from './UIScreen';
+import { formatPlayCount } from '../core/PlayStats';
 
 const { ccclass, property } = _decorator;
 
@@ -58,9 +60,12 @@ export class CitySelectScreen extends UIScreen {
 
     @property({ type: Prefab, tooltip: '城市卡片预制体（可选）。绑定后优先使用，无需在场景 List 下摆放 CityCard1' })
     public cardPrefab: Prefab | null = null;
+    @property({ type: SpriteFrame, tooltip: '最新章节的叶子图标' }) public newChapterIcon: SpriteFrame | null = null;
+    @property({ type: SpriteFrame, tooltip: '最新章节的绿色文字背景' }) public newChapterBackground: SpriteFrame | null = null;
 
     private _cards: Node[] = [];
     private _content: Node | null = null;
+    private _heatVersion = 0;
 
     protected onLoad(): void {
         void EnergyDisplay.attach(this.node);
@@ -107,12 +112,14 @@ export class CitySelectScreen extends UIScreen {
             if (/^CityCard\d*$/.test(child.name)) child.active = false;
         }
         this._scrollToTop();
+        void this._refreshHeat();
     }
 
     private _fillCard(card: Node, city: ChapterSelection): void {
         const group = 'chapters' in city;
         const unlocked = group || this.flow.isCityUnlocked(this.flow.cities.indexOf(city));
         const progress = this.flow.selectionProgress(city);
+        this._setHeatBadge(card, city.key, this.flow.playStats?.initialCount(city.key) ?? null);
         const progressPoint = this.findChildDeep(card, 'ProgressPoint');
         const unlockButton = this.findChildDeep(card, 'BtnUnlock');
         if (progressPoint) progressPoint.active = unlocked;
@@ -139,13 +146,13 @@ export class CitySelectScreen extends UIScreen {
         const cityAim = this.findChildDeep(card, 'Cityaim')?.getComponent(Sprite);
         if (cityAim) cityAim.grayscale = !unlocked;
 
-        // 进度条：rank_row 底槽 + rank_row-001 填充（锚点已靠左，按完成比例改宽度）
+        // 进度条保留10%起始填充，实际完成比例映射到其余90%；数字仍显示真实进度。
         const barRoot = this.findChildDeep(card, 'rank_row');
         const barRootUi = barRoot?.getComponent(UITransform);
         const fillUi = barRoot?.getChildByName('rank_row-001')?.getComponent(UITransform);
         if (barRootUi && fillUi) {
             const ratio = progress.total > 0 ? Math.min(1, Math.max(0, progress.done / progress.total)) : 0;
-            fillUi.width = barRootUi.width * ratio;
+            fillUi.width = barRootUi.width * (0.1 + ratio * 0.9);
         }
 
         // 顶层专题不锁定，城市子章节显示真实资格。
@@ -181,6 +188,39 @@ export class CitySelectScreen extends UIScreen {
         } catch {
             // 横幅缺失时保持模板原样
         }
+    }
+
+    private _setHeatBadge(card: Node, key: string, count: number | null): void {
+        const badge = this.findChildDeep(card, 'HotNumber');
+        const label = badge && this.findChildDeep(badge, 'HotNumber_laber')?.getComponent(Label);
+        if (!badge || !label) return;
+        label.enableWrapText = false;
+        label.overflow = Label.Overflow.SHRINK;
+        if (this.flow.playStats?.isNewChapter(key)) {
+            label.string = '最新章节';
+            const icon = this.findChildDeep(badge, 'icon_fire')?.getComponent(Sprite);
+            const background = badge.getComponent(Sprite);
+            if (icon && this.newChapterIcon) { icon.sizeMode = Sprite.SizeMode.CUSTOM; icon.spriteFrame = this.newChapterIcon; }
+            if (background && this.newChapterBackground) { background.sizeMode = Sprite.SizeMode.CUSTOM; background.spriteFrame = this.newChapterBackground; }
+            badge.active = true;
+        } else {
+            label.string = count == null ? '' : formatPlayCount(count);
+            badge.active = label.string.length > 0;
+        }
+    }
+
+    private async _refreshHeat(): Promise<void> {
+        const version = ++this._heatVersion;
+        const selections = [...this.flow.chapterSelections], cards = [...this._cards];
+        const keys = selections.filter(city => !this.flow.playStats?.isNewChapter(city.key)).map(city => city.key);
+        if (!this.flow.playStats || !keys.length) return;
+        try {
+            const counts = await this.flow.playStats.getCounts(keys);
+            if (!this.isValid || !this.node.activeInHierarchy || version !== this._heatVersion) return;
+            selections.forEach((city, index) => {
+                if (cards[index]?.isValid) this._setHeatBadge(cards[index], city.key, counts[city.key] ?? null);
+            });
+        } catch (error) { console.warn('[CitySelect] 热度刷新失败', error); }
     }
 
     private _setCardLabel(card: Node, name: string, text: string): void {
@@ -228,6 +268,7 @@ export class CitySelectScreen extends UIScreen {
     }
 
     private _clearCards(): void {
+        this._heatVersion++;
         this.flow.releasePageSpriteFrames(this.node);
         for (const card of this._cards) card.destroy();
         this._cards = [];

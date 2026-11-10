@@ -303,8 +303,8 @@ const { GameFlow } = load('assets/scripts/GameFlow.ts', {
     close.events.click(); assert.equal(designed.active, false);
     customGift.onDestroy(); assert.equal(designed.isValid, true, 'scene modal is never destroyed');
     assert.equal(close.events.click, undefined, 'scene handlers removed');
-    // The actual scene must start with the non-sidebar action and expose a wired label.
-    const sceneData = JSON.parse(fs.readFileSync(path.join(root, 'assets/scene/game.scene'), 'utf8'));
+    // Shared dialogs now mount from the remote gameplay support prefab.
+    const sceneData = JSON.parse(fs.readFileSync(path.join(root, 'assets/PleyGame/prefabs/GameplaySupport.prefab'), 'utf8'));
     const modalNode = sceneData.find(node => node.__type__ === 'cc.Node' && node._name === 'ADDGameflow');
     const windowNode = modalNode._children.map(ref => sceneData[ref.__id__]).find(node => node._name === 'TipsWindow');
     const actionNode = windowNode._children.map(ref => sceneData[ref.__id__]).find(node => node._name === 'BtnReview');

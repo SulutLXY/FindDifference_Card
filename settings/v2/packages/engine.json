@@ -116,22 +116,22 @@
             "_value": false
           },
           "particle-2d": {
-            "_value": true
+            "_value": false
           },
           "audio": {
             "_value": true
           },
           "video": {
-            "_value": true
+            "_value": false
           },
           "webview": {
-            "_value": true
+            "_value": false
           },
           "tween": {
             "_value": true
           },
           "websocket": {
-            "_value": true
+            "_value": false
           },
           "websocket-server": {
             "_value": false
@@ -203,13 +203,9 @@
           "graphics",
           "intersection-2d",
           "mask",
-          "particle-2d",
           "profiler",
           "tween",
-          "ui",
-          "video",
-          "websocket",
-          "webview"
+          "ui"
         ],
         "noDeprecatedFeatures": {
           "value": false,

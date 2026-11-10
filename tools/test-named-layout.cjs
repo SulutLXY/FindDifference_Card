@@ -4,7 +4,7 @@ const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const audit = read('config/named-layout-migration-2026-11-02.json');
 const index = read('assets/resources/configs/cities.json');
 assert.equal(audit.chapters.length, 12);
-assert.deepEqual(index.cities.slice(0, audit.chapters.length), audit.chapters.map(c => c.target));
+assert.deepEqual(index.cities.filter(key => key !== 'qing-hua-ci'), audit.chapters.map(c => c.target), 'Original chapters retain relative order after Qinghua moves to second');
 for (const file of audit.preservedFiles) {
     assert.equal(crypto.createHash('sha256').update(fs.readFileSync(file.destination)).digest('hex'), file.sha256, file.destination);
 }

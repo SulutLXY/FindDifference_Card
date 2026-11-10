@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "type": "hot-number-statistics",
+  "status": "draft",
+  "generatedAt": "2026-11-10T17:37:47+08:00",
+  "timezone": "Asia/Shanghai",
+  "source": "douyin-developer-platform",
+  "statistics": {
+    "startAt": null,
+    "endAt": null,
+    "durationSeconds": null,
+    "playerCount": null,
+    "averagePlayTimeSeconds": null
+  },
+  "estimate": {
+    "secondsPerLevel": 45,
+    "levelsPerPlayer": null,
+    "totalLevelPlays": null
+  }
+}

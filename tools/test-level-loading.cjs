@@ -48,8 +48,9 @@ function methods(file,names,extra={}){
  const onLoad=tree.statements.find(ts.isClassDeclaration).members.find(m=>m.name?.getText(tree)==='onLoad');
  const guard=onLoad.body.statements.find(s=>s.getText(tree).startsWith('this.platform.canShowInterstitial ='));
  const installGuard=vm.runInNewContext(ts.transpileModule('(function(){'+guard.getText(tree)+'})', {compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{sidebarDay:()=>day});
- let homeWarmups=0;const f=new Flow();f._preloadLobby=async()=>{homeWarmups++;};f._contentBundles={retain:()=>()=>{}};f.isValid=true;f._levelLoadVersion=0;f._assistRoundVersion=0;f._foundIds=new Set();
+ const recordedPlays=[];let homeWarmups=0;const f=new Flow();f.playStats={recordEntry:key=>recordedPlays.push(key)};f._preloadLobby=async()=>{homeWarmups++;};f._contentBundles={retain:()=>()=>{}};f.isValid=true;f._levelLoadVersion=0;f._assistRoundVersion=0;f._foundIds=new Set();
  f._ensureLevel=async(city,index)=>city.levelConfigs[index];
+ f._resolveChapterMusic=async()=>null;
  f._updateGameMusic=()=>{};f._updateComboGroup=()=>{};f._ensureGameScreens=async()=>{};
  f._showFirstLevelTutorial=()=>{};f._drawLoadingFrame=async()=>{};f._setLoadingProgress=()=>{};f._switchTo=()=>{};f.toast=()=>{};f.preloadNextLevel=()=>{};
  const footer={active:true};f._loadingNode={active:false,parent:{children:[{}]},getChildByName:n=>n==='FooterEnv'?footer:null,setSiblingIndex(){}};f._ensureLoadingBack=()=>{};
@@ -127,6 +128,15 @@ function methods(file,names,extra={}){
  f.showLobby();const returnsBeforeFailure=returned;failLoad(Error('late failure'));await cancelled;
  assert.deepEqual(attempts,['a/02']);assert.equal(returned,returnsBeforeFailure);
  assert.equal(spent,spentBeforeCancel,'Cancelled loading does not consume energy');
+ // A late chapter index must not overwrite the music selected by the current page/round.
+ f.game.setupLevel=async()=>{};let resolveMusic;
+ const previousMusic={chapterBundle:'previous',path:'BGmusic/previous'};f._chapterMusic=previousMusic;
+ f._resolveChapterMusic=()=>new Promise(resolve=>{resolveMusic=resolve;});
+ const cancelledMusic=f.startLevel(city,0);await new Promise(setImmediate);
+ assert.equal(typeof resolveMusic,'function');f.showLobby();
+ resolveMusic({chapterBundle:city.key,path:'BGmusic/stale'});await cancelledMusic;
+ assert.equal(f._chapterMusic,previousMusic);assert.equal(spent,spentBeforeCancel);
+ f._resolveChapterMusic=async()=>null;
  const lazy=new Flow(),read=[];lazy._loadCityBundle=async()=>({});
  lazy._loadLevel=async(_,key,dir)=>{read.push(dir);if(dir==='02')throw Error('broken unrelated config');return {key:`${key}/${dir}`};};
  const partial={key:'a',levels:['01','02','03'],levelConfigs:[]};
@@ -154,6 +164,7 @@ function methods(file,names,extra={}){
  const metaFlow=new Flow();metaFlow._cityIndex={chapters:{'city-01':{levels:['level-00','level-01','level-02']}}};
  const meta=await metaFlow._loadCityMeta({},'city-01');
  assert.deepEqual(Array.from(meta.levels),['level-01','level-02'],'Old placeholder must not be loaded or selected');
+ assert.equal(recordedPlays.length,spent,'Only actual entries count: failed/cancelled loads and energy failures do not count; every replay does');
  console.log('PASS: loading/fallback, daily first-round ad protection, retries, day rollover, persistence, and level-00 exclusion.');
 })().catch(e=>{console.error(e);process.exitCode=1});
 

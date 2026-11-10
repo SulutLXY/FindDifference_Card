@@ -1,0 +1,7 @@
+{
+  "name": "find-difference-play-stats",
+  "private": true,
+  "version": "1.0.0",
+  "engines": { "node": ">=24" },
+  "scripts": { "start": "node server.cjs" }
+}

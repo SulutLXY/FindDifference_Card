@@ -1,0 +1,400 @@
+{
+  "date": "2026-11-10",
+  "localVisualAssets": [
+    "assets/resources/Animation/An_Loading_01.anim",
+    "assets/resources/Animation/An_Loading_02.anim",
+    "assets/resources/textures/UI_Sprite/V3/backgrounds/bg_loading.jpg",
+    "assets/resources/textures/UI_Sprite/V3/panels/Londing_ICON.png",
+    "assets/resources/textures/UI_Sprite/V3/panels/panel_slider02.png",
+    "assets/resources/textures/UI_Sprite/V3/panels/panel_slider02BG.png"
+  ],
+  "moved": [
+    {
+      "from": "assets/resources/Animation/An_AddDesktop_01.anim",
+      "to": "assets/PleyGame/Common/Animation/An_AddDesktop_01.anim",
+      "sha256": "a261364da45f158f5b2d9f2788facdbc32fde608a93cb027ee2ac7019facaef5"
+    },
+    {
+      "from": "assets/resources/Animation/An_BtnClik_01.anim",
+      "to": "assets/PleyGame/Common/Animation/An_BtnClik_01.anim",
+      "sha256": "b0f832f983b77c58ac43d054e1b45be3432f9bba9fd73cdc736d41d41d34444c"
+    },
+    {
+      "from": "assets/resources/Animation/An_ComboTips_01.anim",
+      "to": "assets/PleyGame/Common/Animation/An_ComboTips_01.anim",
+      "sha256": "bb7c32ef05b6a1076634a2d602c21e586ee2696ad34d8366ed34249ef7117c18"
+    },
+    {
+      "from": "assets/resources/Animation/An_ComboTips_02.anim",
+      "to": "assets/PleyGame/Common/Animation/An_ComboTips_02.anim",
+      "sha256": "ea83df16b7af67b300bca1bd7c14ff450e96ab61f7f2bb6004ee099a1d12a6ae"
+    },
+    {
+      "from": "assets/resources/Animation/An_Gameflow_01.anim",
+      "to": "assets/PleyGame/Common/Animation/An_Gameflow_01.anim",
+      "sha256": "78f0b6b72bc483a0f4e0144386f5d616da93e1beb02af8511f7bbf709920a87e"
+    },
+    {
+      "from": "assets/resources/Animation/An_Subscription_01.anim",
+      "to": "assets/PleyGame/Common/Animation/An_Subscription_01.anim",
+      "sha256": "08dce2d5804236111ca125dd53a5add841f50d01507be8d415dd842e55a5eee2"
+    },
+    {
+      "from": "assets/resources/Animation/An_TipsAim_01.anim",
+      "to": "assets/PleyGame/Common/Animation/An_TipsAim_01.anim",
+      "sha256": "7242dcaaff7bb53a715926045f148b17692e83a8153822b726ae6374fc6ff061"
+    },
+    {
+      "from": "assets/resources/Animation/An_WindowOpen_01.anim",
+      "to": "assets/PleyGame/Common/Animation/An_WindowOpen_01.anim",
+      "sha256": "b8d4e28323ac61c58ed65c158b53305a21f38bede78aeafb56efa1c300579d07"
+    },
+    {
+      "from": "assets/resources/Animation/TouchPoint_01.anim",
+      "to": "assets/PleyGame/Common/Animation/TouchPoint_01.anim",
+      "sha256": "f1c436b2e8f990db65750ef40993010687e46ce2421d288827e85d6a79e80822"
+    },
+    {
+      "from": "assets/resources/differences.json",
+      "to": "assets/PleyGame/Common/differences.json",
+      "sha256": "1c543e19ec21c29d418246f0eea066f64b0785a5f0b298adc40bfbb7c299b814"
+    },
+    {
+      "from": "assets/resources/prefabs/EnergyDisplay.prefab",
+      "to": "assets/PleyGame/Common/prefabs/EnergyDisplay.prefab",
+      "sha256": "c5094f922fddbb98f67c0f43c2284b790aff57142f9561c02e6ad9828af0ca64"
+    },
+    {
+      "from": "assets/resources/prefabs/TouchPoint.prefab",
+      "to": "assets/PleyGame/Common/prefabs/TouchPoint.prefab",
+      "sha256": "9e956abc9e56d2660c7b6f3fde97660228ace0b0b6282f0f528bde353ca14f33"
+    },
+    {
+      "from": "assets/resources/textures/SupportTexture/ADDCollectGame01.png",
+      "to": "assets/PleyGame/Common/textures/SupportTexture/ADDCollectGame01.png",
+      "sha256": "f3171d0d3bbe50993f0f8e796e2c7fecfeac3d4774151e2b77608f9ce59902bc"
+    },
+    {
+      "from": "assets/resources/textures/SupportTexture/ADDCollectGame02.png",
+      "to": "assets/PleyGame/Common/textures/SupportTexture/ADDCollectGame02.png",
+      "sha256": "9c4bc789884ac43b59486c748a53e49d226891f37b264e1831f55e35fba332a4"
+    },
+    {
+      "from": "assets/resources/textures/SupportTexture/ADDCollectGame03.png",
+      "to": "assets/PleyGame/Common/textures/SupportTexture/ADDCollectGame03.png",
+      "sha256": "bb47facd834e056b221b2dd44ca0a7edbd76b7883af314056e291ec94397bee4"
+    },
+    {
+      "from": "assets/resources/textures/SupportTexture/ADDSubscription_01.png",
+      "to": "assets/PleyGame/Common/textures/SupportTexture/ADDSubscription_01.png",
+      "sha256": "f0accf2ba034c7c3c49b976dce7ceec62fc8a36d936e9f411a84c5c7f2536208"
+    },
+    {
+      "from": "assets/resources/textures/SupportTexture/ADDSubscription_02.png",
+      "to": "assets/PleyGame/Common/textures/SupportTexture/ADDSubscription_02.png",
+      "sha256": "f3ba9dea46fac17a4befd94afb64528773c128b39a39027e40284be552b088e3"
+    },
+    {
+      "from": "assets/resources/textures/SupportTexture/guanggao_Tex.jpg",
+      "to": "assets/PleyGame/Common/textures/SupportTexture/guanggao_Tex.jpg",
+      "sha256": "a98923b794c1b20ba8ed7a261f5f8d00fe06243b03154dd0024e14296400a317"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_01.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_01.png",
+      "sha256": "31d20d8611dd49353687b33e1f89ca290c3b0f3255ce880e363ff1057e60761a"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_02.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_02.png",
+      "sha256": "fbf5a367fc5ad52ed8e2c3f0e4fdf1729fcf8a917dc52dd832da1eef2a018943"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_03.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_03.png",
+      "sha256": "e2e8dae97e0d3910935a8a0cda3db67f960b2a2ae99b49670ee809354fd7891a"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_04.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_04.png",
+      "sha256": "b904a17d9eaccf5e511a0f949584adfd8caf8d9898bda2dc173df69d9fc90b49"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/backgrounds/bg_TipsBG.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/backgrounds/bg_TipsBG.png",
+      "sha256": "2e078258893bc06e1108aca4a3bb58db4ca59327a835820e596dd5b9da2ccf8e"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/button_primary_disabled.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_primary_disabled.png",
+      "sha256": "f6f0be3e629a3e90a722e78b4e4b8b58a0f6bcee5bcdbddc8bd7308e677b5270"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/button_primary_normal.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_primary_normal.png",
+      "sha256": "785db8fac8b4f99eb5616865ff527257fb62c8342e5b1298dddd48c999c9a68b"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/button_secondary_blue.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_secondary_blue.png",
+      "sha256": "81f311a5d562cfa66de92b5797f7fdad2c2a40350ddcea5f0dc645766e691e1b"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/button_secondary_disabled.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_secondary_disabled.png",
+      "sha256": "f6f0be3e629a3e90a722e78b4e4b8b58a0f6bcee5bcdbddc8bd7308e677b5270"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/button_secondary_pressed.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_secondary_pressed.png",
+      "sha256": "933de98e08770e12ab92886ed92700e559ff4165ebb37a5b54ff8446323f72bf"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/button_secondary_warring.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_secondary_warring.png",
+      "sha256": "0f2b6524202e1ba8cd3c9325da208ff877a1c62dcfe0b1131f02e15caf14024d"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/button_square_normal.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_square_normal.png",
+      "sha256": "6b2fd2901a84073e947b1e7c2f753c0165c9d06101c5077819ed831b8198ce71"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/button_third.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_third.png",
+      "sha256": "4f064dca31300455c85d51eb9188aa44a594ec56a5ebd6bfa988fe4b5ed53394"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/buttons/UIButtons.pac",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/UIButtons.pac",
+      "sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/button_close.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/button_close.png",
+      "sha256": "6f706ca6f8400ae83cdccad925eb0593c0149f383d84ea6177145c50a9ddb97d"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_AddDesktop.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_AddDesktop.png",
+      "sha256": "66bd00a66d390c03a523655cecf30b443a223388283d9a33a283ecbe833ef1af"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_back.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_back.png",
+      "sha256": "8afbbaf818eb4440f078566da561e0316c3148d93d230b3a75677343d7d941cc"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_cat_02.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_cat_02.png",
+      "sha256": "858a59ef16c08e23c35908679ebf4a272b345da7b2331b7f1b53b376702c3971"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_energy.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_energy.png",
+      "sha256": "e05c60461982bae5f4ad8d5623b55271d45919249cdb4ea08b0f06e37094c8f6"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_Erro.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Erro.png",
+      "sha256": "3bda41999d798fe503693127d64484a9522225bd9f4c504be15bbd251a25bb2f"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_fangda.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_fangda.png",
+      "sha256": "f036e715cc9109b7d9a505376bdfc9ea926bdb6a9a02ce27b6cbf104d1e20b67"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_Gameflow.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Gameflow.png",
+      "sha256": "ffef63d34719239db53712202ec1d07b4c7506451ef7344d47b943043f741626"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_home.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_home.png",
+      "sha256": "6cc92ddac53f8930481656925a88c34598815e3d69a18b0b4a8741b7cf319743"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_Idea.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Idea.png",
+      "sha256": "f782a5669602189722e6469ceb75a8ddca4d6fc9c95ed42360e26c8ccff967a0"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_lock.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_lock.png",
+      "sha256": "6db32a370a99f4908207cac1b6816df0dca692ca90f84096688d450069acc096"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_mao.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_mao.png",
+      "sha256": "cee1e0db0d1b871ba10ded170c4c5e75388bcaab81522b8891e5b2dce3849379"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_Mark01.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Mark01.png",
+      "sha256": "2818ac6bf16631043697be73d59b3c4589307892e79f61fea075188da35d11d9"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_music.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_music.png",
+      "sha256": "714a7db5cc512517577e444d548140d1afb4dbc5d8a954701e7e5ba6a9e9b358"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_Open01.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Open01.png",
+      "sha256": "1c3ed55f4309d9fc134dfedd2a142ea8dba5a51ca9e8a3004f3ccc8d9ef63f5e"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_play.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_play.png",
+      "sha256": "816c93ea31bcf6c5966e194c0c34d5abb8710a0b0c34e170025ba7e55ce21250"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_settings.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_settings.png",
+      "sha256": "4c6429c0f3181f3a65b84796571bf2ccef9eb022ccfb853be5d21b26899ff6b1"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_signin.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_signin.png",
+      "sha256": "0ba6bebbc28ada9522d376f144053916399a171df3a4369cb816bd801d1c417a"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_sound.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_sound.png",
+      "sha256": "9619793d0ada10059debaccfe7a15ec01d938c73bd7806008865a3bb7fbd902f"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_starL.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starL.png",
+      "sha256": "bf9f5ddc2c3e93bb3e979e72180fa24ee2aaaa3400c5551a7f4127cff0ffb525"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_starW.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starW.png",
+      "sha256": "98418b33125bcf3782425aecf809933882c58256657556dd74bfb1fe8813eb81"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_Subscription.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Subscription.png",
+      "sha256": "634270199cc4d97dff9f6537d1e87aa9c40e1aaa01c78230cab33199147d4608"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_Time02.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Time02.png",
+      "sha256": "208891f7bb5500579f522d4e859f07b564398ed58244ac8b49cdd13d44228c55"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_Tips02.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Tips02.png",
+      "sha256": "d1a7513b24df78fcd09c0b461df5b681026f7bf837b2125411ba54ec51fb96e7"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_TipsAim_01.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_TipsAim_01.png",
+      "sha256": "152f4ecaffd3269e1641b45a414101e7de0a003491a5ac7edbde52589682382e"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/icon_videoplay.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_videoplay.png",
+      "sha256": "ad2253b85f0060a3e45591cf2b2d10ef1ef495304b6bf72d60441f830333875c"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/switch_off.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/switch_off.png",
+      "sha256": "1f34e9176d496f7dae2a5929522936ac38a4385d2853cb527c644b2cf39467d1"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/switch_on.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/switch_on.png",
+      "sha256": "a3f88a299fceab3987339643f8e6f565cddaec263ac3c9c3f910fafc4d02d7ba"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/icons/UIIcons.pac",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/UIIcons.pac",
+      "sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/BG_White.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/BG_White.png",
+      "sha256": "17cde9402bd0a5b45dff0e4b9219dca9e4f8f49c4fd0dd304bb05297cc459f2d"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/chip_light.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/chip_light.png",
+      "sha256": "1327b5cadde8dbcb8e19b630c4fe33c6ccd343948300924581496d668dd1c7e2"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/level_card.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/level_card.png",
+      "sha256": "d2ecae0d39842a0595e3540ee3ae61f8d114284b6510170264cbc995900eafd7"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/level_card_selected.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/level_card_selected.png",
+      "sha256": "65c4c50cfa3b3a5bf02942976e14f3c34ea229c8fe4d054d2c194b65e02b64b4"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/panel_cardmask.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/panel_cardmask.png",
+      "sha256": "f05971b3050ab461c9ee61b164e90ed321a7792a6fe2d2c2cdee6fde9eadaf23"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/panel_light.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/panel_light.png",
+      "sha256": "bd6548420051e96f1f4b742886967323ea18eaf7909f92d012f20975aaf8716b"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/panel_mark01.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/panel_mark01.png",
+      "sha256": "1140753e4623e842eadecfe2a67579f3ebf41dad7b384b887ef7e75c894cd205"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/rank_row.png",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/rank_row.png",
+      "sha256": "f58709a4bc57b3d6869c665255d1e7d7e84c27b016f0612bdda6b2f989b85f58"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/TipsBG_02.jpg",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/TipsBG_02.jpg",
+      "sha256": "6de27af2897b3019f71a539207755f36cb5df50c4b714bb09ab73e9ac3cbfba5"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/panels/UIPanels.pac",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/UIPanels.pac",
+      "sha256": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/README.md",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/README.md",
+      "sha256": "c4963eb376e22ec26ec9a27270aba1aa82b321c030d6930cf4d4b392a9e5b8d6"
+    },
+    {
+      "from": "assets/resources/textures/UI_Sprite/V3/ui_asset_manifest.json",
+      "to": "assets/PleyGame/Common/textures/UI_Sprite/V3/ui_asset_manifest.json",
+      "sha256": "40c595d5b7541a80b569858408ef0304e4c00685eecd23f35c9ccec293756046"
+    },
+    {
+      "from": "assets/resources/voice/ComboSound/Combo _F_type01_01/voice_Combo _F_type01_00.MP3",
+      "to": "assets/PleyGame/Common/voice/ComboSound/Combo _F_type01_01/voice_Combo _F_type01_00.MP3",
+      "sha256": "4e204f7b91e348b699980ef2c36a8dfe5d0707c7fd539033d8427d984246f8ad"
+    }
+  ],
+  "supportPrefab": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+  "rootNodes": [
+    "AdModal",
+    "Settings",
+    "FoodTips",
+    "TouchPoint",
+    "ADDSubscription",
+    "ADDGameflow",
+    "ADDCollectGame",
+    "EventTips",
+    "BG_White",
+    "BG_White-001",
+    "BG_White-002",
+    "BG_White-004",
+    "GameTips"
+  ],
+  "configPolicy": "Small startup index/configuration remains local; all non-loading visual/audio assets load remotely"
+}

@@ -131,13 +131,13 @@ export class CollectScreen extends UIScreen {
         // 模板：优先 Inspector 绑定，其次 List 下的 Item / Card1（关卡卡结构同套命名）
         const template = this.itemTemplate ?? root.getChildByName('Item') ?? root.getChildByName('Card1');
 
-        const pageCount = this._pageCount();
+        const pages = this._pages();
+        const pageCount = pages.length;
         this._page = Math.max(0, Math.min(this._page, pageCount - 1));
-        const start = this._page * PAGE_SIZE;
         for (const child of root.children) {
             if (/^(Item|Card\d*)$/.test(child.name)) child.active = false;
         }
-        this._filteredItems().slice(start, start + PAGE_SIZE).forEach((item, index) => {
+        (pages[this._page] ?? []).forEach((item, index) => {
             let card: Node;
             if (template) {
                 card = instantiate(template);
@@ -161,7 +161,15 @@ export class CollectScreen extends UIScreen {
     // ------------------------------------------------------------------
 
     private _pageCount(): number {
-        return Math.ceil(this._filteredItems().length / PAGE_SIZE);
+        return this._pages().length;
+    }
+
+    /** 先筛选再统一分页；保留收藏优先级与 ID 顺序，不按类别拆页。 */
+    private _pages(): CollectItem[][] {
+        const items = this._filteredItems();
+        const pages: CollectItem[][] = [];
+        for (let start = 0; start < items.length; start += PAGE_SIZE) pages.push(items.slice(start, start + PAGE_SIZE));
+        return pages;
     }
 
     private _filteredItems(): CollectItem[] {
@@ -424,13 +432,13 @@ export class CollectScreen extends UIScreen {
             return {
                 id: food.id, name: food.name, desc: food.desc, icon: food.icon,
                 category: food.category ?? 'food',
-                assetNumber: Number.isFinite(food.assetNumber) ? food.assetNumber! : index,
                 obtained, newlyObtained: obtained && !this.flow.save.hasViewedCollectible(food.id),
                 ext: { cityName: food.cityName, levelKey: food.levelKey },
                 catalogOrder: index,
             };
         }).sort((a, b) => Number(b.newlyObtained) - Number(a.newlyObtained)
-            || Number(b.obtained) - Number(a.obtained) || a.assetNumber - b.assetNumber || a.catalogOrder - b.catalogOrder);
+            || Number(b.obtained) - Number(a.obtained)
+            || a.id.localeCompare(b.id, 'en', { numeric: true }) || a.catalogOrder - b.catalogOrder);
         this.rebuild();
     }
     private _openModal(item: CollectItem): void {

@@ -22,9 +22,9 @@ function objects(value, predicate, result = []) {
 const files = [...filesIn(root), ...(remoteRoot ? filesIn(remoteRoot) : [])];
 const imports = files.filter(file => /[\\/]import[\\/].*\.json$/.test(file)).map(file => ({ file, data: JSON.parse(fs.readFileSync(file, 'utf8')) }));
 const sources = [
-    ['UIIcons', 'assets/resources/textures/UI_Sprite/V3/icons'],
-    ['UIPanels', 'assets/resources/textures/UI_Sprite/V3/panels'],
-    ['UIButtons', 'assets/resources/textures/UI_Sprite/V3/buttons'],
+    ['UIIcons', 'assets/PleyGame/Common/textures/UI_Sprite/V3/icons'],
+    ['UIPanels', 'assets/PleyGame/Common/textures/UI_Sprite/V3/panels'],
+    ['UIButtons', 'assets/PleyGame/Common/textures/UI_Sprite/V3/buttons'],
     ['GameIcons', 'assets/PleyGame/Texture/icons'],
     ['SecondaryIcons', 'assets/LobbySources/SecondaryUI/textures'],
 ];

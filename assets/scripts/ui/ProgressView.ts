@@ -8,7 +8,7 @@ export class ProgressView extends Component {
     @property({ type: Prefab, tooltip: 'Progress_BG 预设体（包含默认隐藏的 Progress_GET）' })
     public slotPrefab: Prefab | null = null;
 
-    @property({ tooltip: '每行最多图标数；0 表示根据容器宽度自动计算', min: 0, step: 1 })
+    @property({ tooltip: '普通数量的每行上限；0 按宽度计算。10～11个固定每行6个，19～24个固定每行8个', min: 0, step: 1 })
     public maxPerRow = 0;
 
     @property({ tooltip: '图标水平间距', min: 0 })
@@ -72,7 +72,10 @@ export class ProgressView extends Component {
         const gapX = Math.max(0, this.spacingX);
         const gapY = Math.max(0, this.spacingY);
         const capacity = Math.max(1, Math.floor((ui.width + gapX) / (this._slotWidth + gapX)));
-        const columns = Math.min(capacity, this.maxPerRow > 0 ? Math.max(1, Math.floor(this.maxPerRow)) : capacity);
+        const count = this._slots.length;
+        const fixedColumns = count > 9 && count < 12 ? 6 : count > 18 && count < 25 ? 8 : 0;
+        // 指定数量优先固定列数，再由下方等比缩放保证不超出容器。
+        const columns = fixedColumns || Math.min(capacity, this.maxPerRow > 0 ? Math.max(1, Math.floor(this.maxPerRow)) : capacity);
         const rows = Math.ceil(this._slots.length / columns);
         const width = Math.min(columns, this._slots.length) * (this._slotWidth + gapX) - gapX;
         const height = rows * (this._slotHeight + gapY) - gapY;

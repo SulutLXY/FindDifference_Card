@@ -25,6 +25,7 @@ import { DifferenceConfig, LevelConfig } from '../core/GameTypes';
 import { DifferenceController } from '../gameplay/DifferenceController';
 import { ProgressView } from './ProgressView';
 import { UIColors, UIScreen } from './UIScreen';
+import { SurpriseAssist } from './SurpriseAssist';
 
 const { ccclass, property } = _decorator;
 
@@ -97,9 +98,11 @@ export class GameScreen extends UIScreen {
     private _hudHints = -1;
     private _hudAddTimes = -1;
     private readonly _timerColor = new Color(65, 72, 95, 255);
+    private _surprise: SurpriseAssist | null = null;
 
-    protected update(): void {
+    protected update(dt: number): void {
         if (!this._level) return;
+        this._surprise?.update(dt);
         const flow = this.flow;
         const found = flow.foundIds.size;
         if (found !== this._reminderFound) {
@@ -170,6 +173,7 @@ export class GameScreen extends UIScreen {
         this._clearWrongMarkers();
     }
     protected onDestroy(): void {
+        this._surprise?.dispose();
         this.clearLevel();
         super.onDestroy();
     }
@@ -197,6 +201,7 @@ export class GameScreen extends UIScreen {
     private _levelFrames: SpriteFrame[] = [];
 
     public clearLevel(): void {
+        this._surprise?.clear();
         this._hudSeconds = this._hudLives = this._hudFound = this._hudTotal = -1;
         this._hudUnlimited = null;
         this._hudHints = this._hudAddTimes = -1;
@@ -232,6 +237,9 @@ export class GameScreen extends UIScreen {
     private static readonly TAP_SLOP = 12;
 
     protected onLoad(): void {
+        this._surprise = new SurpriseAssist(this.node, this.flow);
+        // 首次动态创建时可能先在未激活节点上完成setupLevel，随后才触发onLoad。
+        if (this._level) this._surprise.start(this._level);
         void EnergyDisplay.attach(this.node);
         this._comboBox = this.findChildDeep(this.node, 'ComboTipsBox');
         this._hideComboTips();
@@ -258,6 +266,7 @@ export class GameScreen extends UIScreen {
         this._resetLivesAnimation();
         this._lastLives = null;
         this._level = level;
+        this._surprise?.start(level);
         const token = ++this._setupToken;
         this._clearMarkers();
         this._clearWrongMarkers();
@@ -326,12 +335,12 @@ export class GameScreen extends UIScreen {
             if (!root) continue;
             const tipsIcon = this.findChildDeep(root, 'icon_Tips01');
             const videoIcon = this.findChildDeep(root, 'icon_videoplay');
-            if (tipsIcon) tipsIcon.active = unlimited || count > 0;
+            if (tipsIcon) tipsIcon.active = count > 0;
             if (videoIcon) videoIcon.active = !unlimited && count === 0;
             const timesNode = root ? this.findChildDeep(root, 'Times') : null;
-            if (timesNode) timesNode.active = !unlimited && count > 0;
+            if (timesNode) timesNode.active = count > 1;
             const times = timesNode?.getComponent(Label) ?? timesNode?.getComponentInChildren(Label);
-            if (times) times.string = !unlimited && count > 0 ? String(count) : '';
+            if (times) times.string = count > 1 ? String(Math.min(99, count)) : '';
         }
 
     }
@@ -430,8 +439,15 @@ export class GameScreen extends UIScreen {
             for (const marker of this._markers) {
                 if (!marker.isValid || marker.parent !== image) continue;
                 const scale = marker.scale.x;
+                const radius = this._markerRadii.get(marker)! * scale;
+                // 红线从7减至5；先画宽2像素的浅色底线，在内外边缘各留1像素描边。
+                graphics.strokeColor = UIColors.white;
                 graphics.lineWidth = 7 * scale;
-                graphics.circle(marker.position.x, marker.position.y, this._markerRadii.get(marker)! * scale);
+                graphics.circle(marker.position.x, marker.position.y, radius);
+                graphics.stroke();
+                graphics.strokeColor = UIColors.red;
+                graphics.lineWidth = 5 * scale;
+                graphics.circle(marker.position.x, marker.position.y, radius);
                 graphics.stroke();
             }
         }

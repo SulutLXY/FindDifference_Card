@@ -42,7 +42,7 @@ const settings = read('settings/v2/packages/builder.json').bundleConfig.custom;
 const gameMeta = read('assets/PleyGame.meta').userData;
 assert.equal(gameMeta.bundleName, 'MainGameSources');
 assert.equal(settings.default.configs.miniGame.overwriteSettings['bytedance-mini-game'].isRemote, false);
-assert.equal(gameMeta.bundleConfigID, 'default');
+assert.equal(settings[gameMeta.bundleConfigID].configs.miniGame.fallbackOptions.isRemote, true);
 assert.equal(settings[gameMeta.bundleConfigID].configs.miniGame.overwriteSettings['bytedance-mini-game'].compressionType, 'merge_dep');
 assert.equal(read('profiles/v2/packages/bytedance-mini-game.json').builder.common.mainBundleIsRemote ?? false, false);
 
@@ -91,7 +91,7 @@ const Flow = vm.runInNewContext(ts.transpileModule(`class GameFlow { ${body} }; 
 });
 function flow() {
     const f = new Flow();
-    f.isValid = true; f._comboClips = new Map(); f._tapClips = new Map(); f._resultClips = new Map(); f._musicClips = new Map();
+    f.isValid = true; f._sharedUIReady = true; f._comboClips = new Map(); f._tapClips = new Map(); f._resultClips = new Map(); f._musicClips = new Map();
     f._activeComboGroup = 'Combo _F_type01'; f._setLoadingProgress = () => {};
     return f;
 }
@@ -115,7 +115,7 @@ function flow() {
         assert.equal(f._loadingNode.active, true, 'Keep loading visible until gameplay is ready');
         continueCalls++;
     };
-    await f._bootstrap(); await f._loadComboClip(0);
+    await f._bootstrap();
     assert.equal(f._bootFailed, false);
     assert.equal(continueCalls, 1, 'Bootstrap must start the saved current level');
     assert.equal(bundleCalls, 0, 'Base configuration loading and click sound must not preload gameplay');
@@ -129,6 +129,7 @@ function flow() {
     assert.equal(created.length, 2); assert.equal(f.game.node.parent, screens); assert.equal(f.resultModal.node.parent, canvas);
     assert.equal(f.game.node.active, false); assert.equal(f.game.node.name, 'Game');
     await f._ensureGameScreens(); assert.equal(created.length, 2, 'Reuse the same UI on later rounds');
+    await f._loadComboClip(0);
     for (const group of ['Combo _F_type01', 'Combo _F_type02']) {
         f._activeComboGroup = group;
         for (let stage = 1; stage <= 5; stage++) await f._loadComboClip(stage);

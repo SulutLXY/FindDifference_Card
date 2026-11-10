@@ -183,6 +183,37 @@ function pressTab(f, key) {
     pressTab(f, 'tabFood'); assert.equal(f.screen._pageLabel.string, '1/3');
     f.screen._turnPage(2); assert.equal(f.screen._cards.length, 2); assert.equal(f.screen._btnNext.active, false);
 
+    // All categories share priority groups: new unlocked, viewed unlocked, locked; then natural ID order.
+    f = fixture({ count: 60, category: i => i >= 40 ? 'porcelain' : 'food',
+        setupSave(s) {
+            for (const id of [0,10,49,58]) s.completeLevel(`city-A/id-${id}`, 1, 10);
+            s.markCollectiblesViewed(['item-10','item-58']);
+        } });
+    assert.equal(f.screen._pageLabel.string, '1/7');
+    const lockedIds = Array.from({length:60}, (_,i)=>i).filter(i=>![0,10,49,58].includes(i));
+    assert.equal(f.screen.items.map(item=>item.id).join(','),
+        [0,49,10,58,...lockedIds].map(i=>`item-${i}`).join(','),
+        'Unlocked food/porcelain precede locked entries globally; each priority group uses ID order');
+    assert.equal(f.screen._statsLabel.string, '已收藏：4/60');
+    const pages = f.screen._pages();
+    assert.deepEqual(Array.from(pages, page => page.length), [9,9,9,9,9,9,6]);
+    assert.equal(pages.flat().map(item => item.id).join(','), f.screen.items.map(item => item.id).join(','),
+        'Unified pagination preserves order without omitting or duplicating collectibles');
+    assert.deepEqual(Array.from(pages[0].slice(0,4), item => item.category), ['food','porcelain','food','porcelain'],
+        'Category must not outrank new/obtained state or ID');
+    f.iconResults(); await tick(); f.screen.renderFrame();
+    assert.equal(f.save.hasViewedCollectible('item-49'), true);
+    assert.equal(f.save.hasViewedCollectible('item-0'), true, 'Visible new food is marked seen on the same page as porcelain');
+    assert.equal(f.save.hasViewedCollectible('item-20'), false, 'Unopened entries remain unseen');
+    f.screen._turnPage(2); assert.equal(f.screen._cards.length, 9); assert.equal(f.screen._pageLabel.string, '3/7');
+    assert.equal(f.screen._cards.map(card=>card.name).join(','), pages[2].map(item=>`CollectItem-${item.id}`).join(','));
+    f.screen._turnPage(4); assert.equal(f.screen._cards.length, 6); assert.equal(f.screen._pageLabel.string, '7/7');
+    assert.equal(f.screen._btnNext.active, false);
+    pressTab(f, 'tabFood'); assert.equal(f.screen._pageLabel.string, '1/5');
+    f.screen._turnPage(4); assert.equal(f.screen._cards.length, 4); assert.equal(f.screen._btnNext.active, false);
+    pressTab(f, 'tabPorcelain'); assert.equal(f.screen._pageLabel.string, '1/3');
+    pressTab(f, 'tabAll'); assert.equal(f.screen._pageLabel.string, '1/7');
+
     f = fixture({ count: 3 });
     assert.equal(f.flow.isCityUnlocked(0), false);
     let pending = f.screen._onItemClick(f.screen.items[0]);
@@ -213,9 +244,10 @@ function pressTab(f, key) {
     assert.equal(await f.flow.requestCollectibleUnlock('unknown-id'), false);
     f.foods[1].levelKey = ''; assert.equal(await f.flow.requestCollectibleUnlock('item-1'), false);
 
-    // Explicit asset numbers override catalog order within each priority group.
+    // ID order is authoritative even when input order and asset numbers disagree.
     f = fixture({ count: 3 }); f.foods[0].assetNumber = 5; f.foods[1].assetNumber = 1; f.foods[2].assetNumber = 3;
-    f.screen.close(); f.screen.open(); assert.equal(f.screen.items.map(item => item.id).join(','), 'item-1,item-2,item-0');
+    f.foods[0].id='collect-10';f.foods[1].id='collect-2';f.foods[2].id='collect-1';
+    f.screen.close(); f.screen.open(); assert.equal(f.screen.items.map(item => item.id).join(','), 'collect-1,collect-2,collect-10');
     f = fixture({ count: 1, setupSave: s => s.completeLevel('city-A/id-0', 1, 10) });
     f.iconResults(); await tick(); failWrite = true; f.screen.renderFrame(); failWrite = false;
     assert.equal(f.save.hasViewedCollectible('item-0'), false);
@@ -228,5 +260,5 @@ function pressTab(f, key) {
         ids.push(i); for (const c of graph[i]._components) assert.equal(graph[c.__id__].node.__id__, i);
     }
     for (const key of ['collectionBar', 'tabAll', 'tabFood', 'tabPorcelain']) assert.ok(ids.includes(binding[key].__id__));
-    console.log('PASS collection: global progress, categories/backgrounds/animations, 9/page, new/obtained/asset ordering, visible-only seen state, atomic collectible+level unlock, cancellation/failure and stale callbacks');
+    console.log('PASS collection: global progress, categories/backgrounds/animations, 9/page, cross-category new/obtained/ID ordering, visible-only seen state, atomic collectible+level unlock, cancellation/failure and stale callbacks');
 })().catch(error => { console.error(error); process.exitCode = 1; });

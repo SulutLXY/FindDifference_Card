@@ -1,3 +1,25 @@
+'use strict';
+
+// Local, one-shot checkpoints. These measure from script execution, not platform cold start.
+(function () {
+    const host = globalThis;
+    if (host.__findDifferencePerformance) return;
+    const state = host.__findDifferencePerformance = {
+        startedAt: Date.now(), stages: {}, isIOSHighPerformanceMode: false,
+        mark(stage) {
+            if (Object.prototype.hasOwnProperty.call(this.stages, stage)) return;
+            const elapsedMs = Math.max(0, Date.now() - this.startedAt);
+            this.stages[stage] = elapsedMs;
+            this.isIOSHighPerformanceMode = typeof GameGlobal !== 'undefined'
+                && GameGlobal.isIOSHighPerformanceMode === true;
+            const size = typeof canvas !== 'undefined' && canvas ? `${canvas.width}x${canvas.height}` : 'pending';
+            console.info('[Performance]', stage, elapsedMs, 'ms',
+                this.isIOSHighPerformanceMode ? 'iOS-high-performance' : 'normal', 'canvas', size);
+        },
+    };
+    state.mark('script-start');
+})();
+
 // Capture Feed entry before engine loading, so a quick click is never lost.
 (function () {
     if (typeof tt === 'undefined' || globalThis.__findDifferenceFeed) return;
@@ -105,8 +127,8 @@ function loadCC() {
         canvas.height = _h;
     }
 
-    // Adjust initial canvas size
-    if (canvas && window.devicePixelRatio >= 2) {canvas.width *= 2; canvas.height *= 2;}
+    // Cocos 3.8.8 screenAdapter applies the device DPR and owns the framebuffer size.
+    // Do not multiply the adapter canvas again or alter the UI design resolution here.
 
     const importMap = require("<%= importMapFile%>").default;
     System.warmup({
@@ -153,7 +175,11 @@ function loadCC() {
                 }
             });
             return application.init(cc);
-        }).then(() => application.start()).then(() => {
+        }).then(() => {
+            globalThis.__findDifferencePerformance.mark('engine-ready');
+            return application.start();
+        }).then(() => {
+            globalThis.__findDifferencePerformance.mark('scene-started');
             if (commitVersion) {
                 try { commitVersion(); }
                 catch (error) { console.warn('[ResourceVersion] 版本记录失败，下次启动将重试', error); }

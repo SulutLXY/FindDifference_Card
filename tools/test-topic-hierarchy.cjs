@@ -86,6 +86,7 @@ const Flow = methods('assets/scripts/GameFlow.ts', ['_loadCityMeta', 'chapterSel
     for (const name of ['ProgressPoint', 'BtnUnlock', 'LockIcon', 'CityLockTip', 'Cityaim', 'CityBanner']) nodes[name] = {
         active: false, off() {}, on(_, cb) { this.click = cb; }, getComponent: () => ({}), getComponentInChildren: () => ({}),
     };
+    screen._setHeatBadge = () => {};
     screen.findChildDeep = (_, name) => nodes[name]; screen._setCardLabel = (_, name, text) => labels[name] = text; screen._loadBanner = () => {};
     const card = { off() {}, on(_, callback) { this.click = callback; } };
     screen._fillCard(card, topic); assert.equal(labels.Levelnumber, '8个城市 · 120关'); assert.equal(nodes.BtnUnlock.active, false);

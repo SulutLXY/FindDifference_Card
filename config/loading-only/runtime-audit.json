@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-10",
+  "projectType": "microgame",
+  "projectPath": "D:\\CocosCreator\\Projects\\FindDifference\\build\\loading-only-2026-11-10\\douyin",
+  "windowId": 5,
+  "compileAction": "simulator-compile after temporary loopback-only asset-server override",
+  "viewport": {
+    "width": 393,
+    "height": 852,
+    "screenshotScale": {
+      "x": 1,
+      "y": 1
+    }
+  },
+  "beforeInteraction": [
+    {
+      "url": "LOCAL_PREVIEW/remote/wang-luo-re-dian/config.bbea3.json",
+      "status": 200,
+      "state": "finished"
+    },
+    {
+      "url": "LOCAL_PREVIEW/remote/MainGameSources/config.ca6b2.json",
+      "status": 200,
+      "state": "finished"
+    }
+  ],
+  "afterHome": [
+    {
+      "url": "LOCAL_PREVIEW/remote/wang-luo-re-dian/config.bbea3.json",
+      "status": 200,
+      "state": "finished"
+    },
+    {
+      "url": "LOCAL_PREVIEW/remote/MainGameSources/config.ca6b2.json",
+      "status": 200,
+      "state": "finished"
+    },
+    {
+      "url": "LOCAL_PREVIEW/remote/LobbySources/config.63e1d.json",
+      "status": 200,
+      "state": "finished"
+    },
+    {
+      "url": "LOCAL_PREVIEW/remote/MainGameAimation/config.511e9.json",
+      "status": 200,
+      "state": "finished"
+    }
+  ],
+  "errorCount": 0,
+  "performanceCheckpoints": [
+    "[Performance] script-start 0 ms normal canvas pending",
+    "[Performance] engine-ready 126 ms normal canvas 393x852",
+    "[Performance] scene-started 317 ms normal canvas 1179x2556",
+    "[Performance] level-prepared 2965 ms normal canvas 1179x2556",
+    "[Performance] playable 2972 ms normal canvas 1179x2556"
+  ],
+  "interactions": [
+    {
+      "action": "skip tutorial",
+      "image": "C:/Users/EDY/AppData/Local/Temp/1794290776069.png",
+      "imagePoint": {
+        "x": 330,
+        "y": 115
+      },
+      "cssPoint": {
+        "x": 330,
+        "y": 115
+      },
+      "afterImage": "C:/Users/EDY/AppData/Local/Temp/1794290920210.png"
+    },
+    {
+      "action": "open settings",
+      "beforeImage": "C:/Users/EDY/AppData/Local/Temp/1794290920210.png",
+      "cssPoint": {
+        "x": 33,
+        "y": 105
+      },
+      "afterImage": "C:/Users/EDY/AppData/Local/Temp/1794290934484.png"
+    },
+    {
+      "action": "return home",
+      "beforeImage": "C:/Users/EDY/AppData/Local/Temp/1794290934484.png",
+      "cssPoint": {
+        "x": 125,
+        "y": 450
+      },
+      "afterImage": "C:/Users/EDY/AppData/Local/Temp/1794290968802.png"
+    }
+  ],
+  "observed": "Gameplay images/tutorial/settings rendered; home and sign-in rendered after return; MainGameSources, LobbySources and MainGameAimation config requests succeeded from local preview resources",
+  "productionServerUploaded": false,
+  "iosDeviceVerified": false,
+  "fullRawEvidenceDirectory": "temp/startup-fix-2026-11-10"
+}

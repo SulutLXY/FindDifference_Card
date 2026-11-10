@@ -20,7 +20,7 @@ if (!fs.existsSync(hint)) {
     const old = read(source + '.meta'), next = uuid();
     write(hint + '.meta', JSON.parse(JSON.stringify(old).split(old.uuid).join(next)));
 }
-const template = read('assets/resources/prefabs/EnergyDisplay.prefab');
+const template = read('assets/PleyGame/Common/prefabs/EnergyDisplay.prefab');
 const nodeTemplate = template.find(item => item.__type__ === 'cc.Node');
 const componentTemplate = type => clone(template.find(item => item.__type__ === type));
 const color = (r, g, b, a = 255) => ({ __type__: 'cc.Color', r, g, b, a });

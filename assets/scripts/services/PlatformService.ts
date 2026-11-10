@@ -191,6 +191,17 @@ export class PlatformService {
         catch { return false; }
     }
 
+    /** IDE exposes native advertisement mocks even when canIUse reports false. */
+    private _supportsAdApi(sdk: any, api: 'createRewardedVideoAd' | 'createInterstitialAd'): boolean {
+        if (this._supportsApi(sdk, api)) return true;
+        if (this.kind !== 'douyin' || sdk !== this._host.tt || typeof sdk?.[api] !== 'function') return false;
+        try {
+            if (String(sdk.getSystemInfoSync?.().platform).toLowerCase() !== 'devtools') return false;
+            console.info('[PlatformService] 使用开发工具广告模拟', api);
+            return true;
+        } catch { return false; }
+    }
+
     private _supportsAllSceneFeed(): boolean {
         try {
             const sdk = this._host.tt;
@@ -213,7 +224,7 @@ export class PlatformService {
         if (this._rewardedBusy) { skipped('激励视频正在播放'); return; }
         if (!bypassRoundProtection && !this.canShowInterstitial()) { skipped('首局保护'); return; }
         if (!adUnitId) { skipped('插屏广告位未配置'); return; }
-        if (!this._supportsApi(tt, 'createInterstitialAd')) { skipped('当前 SDK 不支持 createInterstitialAd'); return; }
+        if (!this._supportsAdApi(tt, 'createInterstitialAd')) { skipped('当前 SDK 不支持 createInterstitialAd'); return; }
         if (this._finishInterstitial) { skipped('已有插屏正在加载或展示'); return; }
         if (!bypassCooldown && this._lastInterstitialAttempt > 0
             && Date.now() - this._lastInterstitialAttempt < 60000) { skipped('客户端 60 秒冷却'); return; }
@@ -402,7 +413,7 @@ export class PlatformService {
             };
         }
 
-        if (!this._supportsApi(sdk, 'createRewardedVideoAd')) {
+        if (!this._supportsAdApi(sdk, 'createRewardedVideoAd')) {
             return { success: false, completed: false, simulated: false, reason: '当前环境不支持激励视频广告，请使用真机预览' };
         }
 
@@ -417,6 +428,9 @@ export class PlatformService {
 
             try {
                 const ad = sdk.createRewardedVideoAd({ adUnitId });
+                if (!ad || typeof ad.onClose !== 'function' || typeof ad.onError !== 'function' || typeof ad.show !== 'function') {
+                    throw new Error('当前开发环境未提供可用的广告实例，请检查广告模拟设置或使用真机预览');
+                }
                 const onClose = (result?: { isEnded?: boolean }) => {
                     const completed = this._config.rewardOnAnyClose || result?.isEnded === true;
                     finish({ success: completed, completed, simulated: false });

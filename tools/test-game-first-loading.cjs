@@ -14,7 +14,7 @@ const settings=read('settings/v2/packages/builder.json').bundleConfig.custom;
 const bundles=walk('assets').filter(f=>f.endsWith('.meta')).map(f=>({root:f.slice(0,-5).replaceAll('\\','/'),meta:read(f).userData})).filter(b=>b.meta?.isBundle).sort((a,b)=>b.root.length-a.root.length);
 for(const f of seen){const owner=bundles.find(b=>f.startsWith(b.root+'/'));if(owner&&owner.root!=='assets/resources')assert.equal(owner.meta.bundleConfigID,'default','Startup dependency must be local: '+f);}
 const game=read('assets/PleyGame.meta').userData,lobby=read('assets/LobbySources.meta').userData;
-assert.equal(settings[game.bundleConfigID].configs.miniGame.overwriteSettings['bytedance-mini-game'].isRemote,false);
+assert.equal(settings[game.bundleConfigID].configs.miniGame.fallbackOptions.isRemote,true);
 assert.equal(settings[lobby.bundleConfigID].configs.miniGame.fallbackOptions.isRemote,true);
 assert.equal(lobby.bundleName,'LobbySources');
 // Art may change after migration; validate references without freezing editable coordinates.
@@ -35,7 +35,7 @@ const Flow=vm.runInNewContext(ts.transpileModule('class Flow{'+body+'};Flow;', {
 });
 const tick=()=>new Promise(setImmediate);
 (async()=>{
- const f=new Flow();f.isValid=true;f.node={parent:{getChildByName:()=>({})}};f._musicClips=new Map();f._secondaryNavigationVersion=0;
+ const f=new Flow();f._sharedUIReady=true;f.isValid=true;f.node={parent:{getChildByName:()=>({})}};f._musicClips=new Map();f._secondaryNavigationVersion=0;
  let opens=0;f._switchTo=()=>opens++;
  const a=f._ensureLobby(),b=f._ensureLobby();assert.equal(requests,1);finish(Error('offline'));await assert.rejects(a);await assert.rejects(b);assert.equal(created,0);
  const retry=f._ensureLobby();assert.equal(requests,2);finish(null,bundle);await retry;assert.equal(created,1);assert.equal(f.lobby.node.active,false);assert.equal(opens,0);
@@ -71,5 +71,5 @@ const tick=()=>new Promise(setImmediate);
  nav.loadLobbyPrefab=()=>{navLoads++;return new Promise(r=>finishNav=r);};
  const navA=nav._ensureNavigationPage('citySelect'),navB=nav._ensureNavigationPage('citySelect');assert.equal(navLoads,1);
  finishNav({});await Promise.all([navA,navB]);assert.equal(nav.citySelect.node.active,false,'Prepared navigation stays inactive');
- await tick();console.log('PASS: local gameplay / remote lobby, no startup lobby dependencies, preserved layout, download merge, retry, warm return, stale navigation protection, background isolation and lobby-only sign-in.');
+ await tick();console.log('PASS: local Loading / remote gameplay and lobby, no startup lobby dependencies, preserved layout, download merge, retry, warm return, stale navigation protection, background isolation and lobby-only sign-in.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

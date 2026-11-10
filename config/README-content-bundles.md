@@ -1,5 +1,7 @@
 # 内容包结构与释放（2026-10-21）
 
+> 2026-11-10现行启动方案：[Loading首包与远程玩法](README-loading-only-2026-11-10.md)。MainGameSources远程；本地仅Loading视觉资产及小型启动配置，其他通用UI归入远程玩法包Common目录。以下本地玩法包记录已被替代。
+
 > 2026-11-05首包审计：共用设置图标和说明图已迁回本地resources，取消首次玩法立即预下载所有主页附属资源；现行规则及验证见[首包检查与调整](README-startup-loading-2026-11-05.md)。
 
 > 2026-11-03：当前已改为玩法包本地、主页远程，在 GameScreen 下后台准备主页。启动和资源归属以 [README-game-first-loading.md](README-game-first-loading.md) 为准；下文旧的“主页留在启动场景、玩法包远程”说明为历史记录。

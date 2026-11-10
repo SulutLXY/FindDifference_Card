@@ -1,0 +1,374 @@
+{
+  "date": "2026-11-10",
+  "sourceOnly": true,
+  "rebuilt": false,
+  "deviceVerified": false,
+  "rootCount": 3,
+  "dependencyCount": 75,
+  "loadingDependencyCount": 7,
+  "localBundles": [
+    "main",
+    "resources"
+  ],
+  "remoteDependencies": [
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Animation/An_WinStarshow_01.anim",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/Animation/An_AddDesktop_01.anim",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/Animation/An_BtnClik_01.anim",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/Animation/An_ComboTips_01.anim",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/Animation/An_ComboTips_02.anim",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/Animation/An_Gameflow_01.anim",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/Animation/An_Subscription_01.anim",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/Animation/An_TipsAim_01.anim",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/Animation/An_WindowOpen_01.anim",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/Animation/TouchPoint_01.anim",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/prefabs/EnergyDisplay.prefab",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/Common/prefabs/EnergyDisplay.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_third.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/Common/prefabs/EnergyDisplay.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_videoplay.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/Common/prefabs/EnergyDisplay.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_energy.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/Common/prefabs/TouchPoint.prefab",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/Common/prefabs/TouchPoint.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_01.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/Common/prefabs/TouchPoint.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_02.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/Common/prefabs/TouchPoint.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_03.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/Common/prefabs/TouchPoint.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_04.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/TipsBG_02.jpg",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_cat_02.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_TipsAim_01.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/BG_White.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/SupportTexture/guanggao_Tex.jpg",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_secondary_warring.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_primary_normal.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/panel_light.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/button_close.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_settings.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_play.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_home.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_secondary_pressed.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/level_card_selected.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/switch_on.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/switch_off.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_music.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_sound.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Gameflow.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_AddDesktop.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Subscription.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/panel_cardmask.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_back.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Mark01.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/backgrounds/bg_TipsBG.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Idea.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/SupportTexture/ADDSubscription_01.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/SupportTexture/ADDSubscription_02.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/SupportTexture/ADDCollectGame01.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/SupportTexture/ADDCollectGame02.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameplaySupport.prefab",
+      "target": "assets/PleyGame/Common/textures/SupportTexture/ADDCollectGame03.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/prefabs/GameScreen.prefab",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameScreen.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/level_card.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameScreen.prefab",
+      "target": "assets/PleyGame/Texture/icons/line01.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameScreen.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_fangda.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameScreen.prefab",
+      "target": "assets/PleyGame/Texture/icons/icon_Tips01.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameScreen.prefab",
+      "target": "assets/PleyGame/Texture/icons/icon_Time.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameScreen.prefab",
+      "target": "assets/PleyGame/Texture/UI_Sprite/Game/icon_ComboTips03.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameScreen.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Time02.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameScreen.prefab",
+      "target": "assets/PleyGame/Texture/icons/icon_heart_filled.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/GameScreen.prefab",
+      "target": "assets/PleyGame/prefabs/Progress_BG.prefab",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/Progress_BG.prefab",
+      "target": "assets/PleyGame/Texture/icons/icon_progress_filled.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/Progress_BG.prefab",
+      "target": "assets/PleyGame/Texture/icons/icon_progress_empty.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "gameplay",
+      "target": "assets/PleyGame/prefabs/ResultModal.prefab",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/ResultModal.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starW.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/ResultModal.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starL.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/ResultModal.prefab",
+      "target": "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_secondary_blue.png",
+      "bundle": "MainGameSources"
+    },
+    {
+      "from": "assets/PleyGame/prefabs/ResultModal.prefab",
+      "target": "assets/PleyGame/Texture/icons/icon_shar02.png",
+      "bundle": "MainGameSources"
+    }
+  ],
+  "unresolvedReferences": [],
+  "startup": {
+    "local": [
+      "main",
+      "resources (Loading + small startup configs)"
+    ],
+    "remote": [
+      "MainGameSources",
+      "current chapter only"
+    ]
+  },
+  "deferred": {
+    "lobbyShell": "after 8 active gameplay seconds",
+    "chapterCovers": "chapter selection page",
+    "collectibles": "collection/detail/acquisition popup",
+    "heroAnimation": "home page opened",
+    "signIn": "home page sign-in opened",
+    "crossChapterPrefetch": false
+  }
+}

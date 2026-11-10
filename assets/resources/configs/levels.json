@@ -1,6 +1,7 @@
 {
   "maxLives": 3,
-  "baseTimeSeconds": 120,
-  "baseDifferenceCount": 4,
-  "secondsPerExtraDifference": 15
+  "baseTimeSeconds": 150,
+  "baseDifferenceCount": 10,
+  "secondsPerExtraDifference": 15,
+  "maxTimeSeconds": 300
 }

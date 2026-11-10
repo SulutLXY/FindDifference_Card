@@ -2,7 +2,9 @@ export type AppScreen = 'lobby' | 'cities' | 'levels' | 'game';
 
 export type CollectCategory = 'food' | 'porcelain';
 
-export type RewardPlacement = 'revive' | 'hint' | 'add-time' | 'unlock-level' | 'unlock-chapter' | 'unlock-city' | 'level-select' | 'energy' | 'daily-sign-in';
+export type RewardPlacement = 'revive' | 'hint' | 'add-time' | 'surprise' | 'unlock-level' | 'unlock-chapter' | 'unlock-city' | 'level-select' | 'energy' | 'daily-sign-in';
+
+export type SurpriseAssistKind = 'hint' | 'add-time' | 'life';
 
 export interface FoodCatalogEntry {
     id: string;
@@ -44,12 +46,14 @@ export interface DifferenceConfig {
     radius: number;
 }
 
-/** 等级设置：全局生命数、基础时长及每个额外差异增加的秒数。 */
+/** 等级设置：全局生命数、基础时长、额外差异增量及初始时长上限。 */
 export interface GradeConfig {
     maxLives: number;
     baseTimeSeconds: number;
     baseDifferenceCount: number;
     secondsPerExtraDifference: number;
+    /** 初始关卡时长上限，缺省300秒。 */
+    maxTimeSeconds?: number;
 }
 
 /** configs/城市/关卡/differences.json 的原始格式。大图在 levels，封面在 thumbnails。 */
@@ -152,6 +156,7 @@ export interface CollectItem {
 }
 
 export interface PlatformConfig {
+    playStats?: import('./PlayStats').PlayStatsConfig;
     feed?: import('./Feed').FeedConfig;
     cdnBaseUrl: string;
     apiBaseUrl: string;

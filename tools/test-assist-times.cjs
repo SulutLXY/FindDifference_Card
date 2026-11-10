@@ -34,17 +34,27 @@ for(const button of [hint,time]){assert.equal(find(button,'icon_Tips01').active,
 for(let i=0;i<10;i++)refresh.call(ctx);
 for(const button of [hint,time]){assert.equal(find(button,'icon_videoplay').active,true);assert.equal(button.getComponent(Sprite).grayscale,false);}
 ctx.flow.save.freeHints=1;refresh.call(ctx);assert.equal(hint.getComponent(Sprite).grayscale,false);assert.equal(find(hint,'icon_Tips01').active,true);
-ctx.flow.unlimitedAssists=true;
-for(const count of [0, 2]) {
- ctx.flow.save.freeHints=count;ctx.flow.save.freeAddTimes=count;refresh.call(ctx);
- for(const button of [hint,time]) {
-  assert.equal(button.getComponent(Sprite).grayscale,false);
-  assert.equal(find(button,'icon_Tips01').active,true);
-  assert.equal(find(button,'icon_videoplay').active,false);
-  assert.equal(find(button,'Times').active,false);
-  assert.equal(find(button,'Times').getComponent().string,'');
+assert.equal(find(hint,'Times').active,false);assert.equal(find(hint,'Times').getComponent().string,'');
+for(const unlimited of [false,true]) {
+ ctx.flow.unlimitedAssists=unlimited;
+ for(const count of [0,1,2,98,99,150]) {
+  ctx.flow.save.freeHints=count;ctx.flow.save.freeAddTimes=count;refresh.call(ctx);
+  for(const button of [hint,time]) {
+   assert.equal(button.getComponent(Sprite).grayscale,false);
+   assert.equal(find(button,'icon_Tips01').active,count>0);
+   assert.equal(find(button,'icon_videoplay').active,!unlimited&&count===0);
+   assert.equal(find(button,'Times').active,count>1);
+   assert.equal(find(button,'Times').getComponent().string,count>1?String(Math.min(99,count)):'');
+  }
  }
 }
+ctx.flow.save.freeHints=2;ctx.flow.save.freeAddTimes=2;
 ctx.flow.unlimitedAssists=false;refresh.call(ctx);
 assert.equal(find(hint,'Times').active,true);assert.equal(find(hint,'Times').getComponent().string,'2');
-console.log('Passed: actual prefab stock counts, unlimited ad availability, H5 icons and restored inventory.');
+for(const item of scene.filter(n=>n.__type__==='cc.Node'&&n._name==='Times')) {
+ const components=item._components.map(c=>scene[c.__id__]);
+ const ui=components.find(c=>c.__type__==='cc.UITransform'),label=components.find(c=>c.__type__==='cc.Label');
+ assert.ok(ui._contentSize.width>0&&ui._contentSize.height>0,'Count text has visible authored bounds');
+ assert.equal(label._overflow,2,'Two-digit counts shrink inside the badge');
+}
+console.log('Passed: actual prefab badges for 0/1/2/99, H5 stock counts, cap display, video icons and preserved add-time description.');

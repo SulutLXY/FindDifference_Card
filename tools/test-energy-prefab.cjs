@@ -10,7 +10,7 @@ class Host {
  getComponentInChildren(){return this.children.length?{}:null;}
 }
 const Display=vm.runInNewContext(ts.transpileModule(`class EnergyDisplay {${body}}; EnergyDisplay;`,{compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{
- console:{warn(){}},Prefab:class{},resources:{load(path,type,callback){assert.equal(path,'prefabs/EnergyDisplay');loads++;complete=callback;}},
+ console:{warn(){}},Prefab:class{},getGameFlow:()=>({loadCommonPrefab(name){assert.equal(name,'EnergyDisplay');loads++;return new Promise((resolve,reject)=>{complete=(error,prefab)=>error?reject(error):resolve(prefab);});}}),
  instantiate(prefab){instances++;return {position:{x:-190,y:610},set parent(host){host.children.push(this);}}},
 });
 (async()=>{
@@ -25,7 +25,7 @@ const Display=vm.runInNewContext(ts.transpileModule(`class EnergyDisplay {${body
  await Display.attach(new Host());assert.equal(loads,1);assert.equal(instances,3);
  Display._prefab=null;const retry=new Host();const failed=Display.attach(retry);complete(Error('failed'));await failed;
  assert.equal(retry.children.length,0);const retried=Display.attach(retry);complete(null,prefab);await retried;assert.equal(retry.children.length,1);
- const data=JSON.parse(fs.readFileSync('assets/resources/prefabs/EnergyDisplay.prefab','utf8'));
+ const data=JSON.parse(fs.readFileSync('assets/PleyGame/Common/prefabs/EnergyDisplay.prefab','utf8'));
  function references(value){if(!value||typeof value!=='object')return;if('__id__' in value)assert.ok(data[value.__id__],`Missing reference ${value.__id__}`);for(const item of Object.values(value))references(item);}
  references(data);assert.equal(data[0].__type__,'cc.Prefab');assert.equal(data[1]._name,'EnergyDisplay');assert.equal(data[1]._active,true);
  const component=data.find(o=>o.energyLabel&&o.rewardButton);assert.ok(component);

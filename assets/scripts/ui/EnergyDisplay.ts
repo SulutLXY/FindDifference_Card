@@ -1,5 +1,5 @@
-import { _decorator, instantiate, Label, Node, Prefab, resources } from 'cc';
-import { UIScreen } from './UIScreen';
+import { _decorator, instantiate, Label, Node, Prefab } from 'cc';
+import { getGameFlow, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
 
@@ -41,14 +41,11 @@ export class EnergyDisplay extends UIScreen {
     private static _loadPrefab(): Promise<Prefab> {
         if (this._prefab?.isValid) return Promise.resolve(this._prefab);
         if (this._loading) return this._loading;
-        this._loading = new Promise<Prefab>((resolve, reject) => {
-            resources.load('prefabs/EnergyDisplay', Prefab, (error, prefab) => {
-                if (error || !prefab) { reject(error ?? new Error('EnergyDisplay prefab missing')); return; }
-                // 常驻公共 UI，只持有一份模板，各页面复用，避免切页反复加载。
-                prefab.addRef();
-                this._prefab = prefab;
-                resolve(prefab);
-            });
+        this._loading = getGameFlow().loadCommonPrefab('EnergyDisplay').then(prefab => {
+            // 常驻公共 UI，只持有一份模板，各页面复用，避免切页反复加载。
+            prefab.addRef();
+            this._prefab = prefab;
+            return prefab;
         }).finally(() => { this._loading = null; });
         return this._loading;
     }

@@ -1,3 +1,5 @@
+'use strict';
+
 // Runs after assetManager initialization and before even the internal remote bundle.
 const STORAGE_KEY = 'find_difference_resource_version';
 

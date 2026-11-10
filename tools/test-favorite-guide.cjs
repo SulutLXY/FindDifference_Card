@@ -32,7 +32,7 @@ const screenModule = load('assets/scripts/ui/UIScreen.ts', {});
 const { FavoriteGift } = load('assets/scripts/ui/FavoriteGift.ts', {
     './UIScreen': screenModule, '../services/SidebarService': { sidebarDay: () => '2026-11-04' },
 });
-const scene = JSON.parse(fs.readFileSync('assets/scene/game.scene', 'utf8'));
+const scene = JSON.parse(fs.readFileSync('assets/PleyGame/prefabs/GameplaySupport.prefab', 'utf8'));
 const lobby = JSON.parse(fs.readFileSync('assets/LobbySources/prefabs/LobbyScreen.prefab', 'utf8'));
 function authored(graph, index) {
     const data = graph[index], node = new Node(data._name); node.active = data._active;

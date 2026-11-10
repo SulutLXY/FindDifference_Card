@@ -16,3 +16,12 @@ __pycache__/
 
 # 可重新生成的 H5 独立发布包（约 100 MB）
 output/web-mobile-release/
+
+# Server runtime statistics; retain through a persistent volume, never commit player events.
+server/play-stats/data/
+server/play-stats/*.sqlite*
+output/play-stats-service-*.zip
+
+# Font previews/subset exports and local Python dependencies are reproducible.
+output/font-matching/
+output/git-validation/

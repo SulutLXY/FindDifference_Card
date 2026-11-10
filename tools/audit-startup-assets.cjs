@@ -15,14 +15,14 @@ function audit() {
         }
         if (meta.userData?.isBundle) {
             const options = configs[meta.userData.bundleConfigID || 'default'].configs.miniGame;
-            bundles.push({ root: asset, name: meta.userData.bundleName || path.basename(asset),
+            bundles.push({ root: asset, name: meta.userData.bundleName || path.basename(asset), priority: meta.userData.priority || 0,
                 remote: options.overwriteSettings?.['bytedance-mini-game']?.isRemote ?? options.fallbackOptions?.isRemote ?? false });
         }
     }
     bundles.sort((a, b) => b.root.length - a.root.length);
     const owner = file => bundles.find(bundle => file.startsWith(bundle.root + '/')) || { name: 'main', remote: false };
     const roots = all.filter(file => file === 'assets/scene/game.scene' ||
-        (/\.(prefab|anim)$/.test(file) && (file.startsWith('assets/resources/') || file.startsWith('assets/PleyGame/'))));
+        (/\.(prefab|anim)$/.test(file) && file.startsWith('assets/resources/')));
     const seen = new Set(), references = [], unresolved = [];
     function visitAsset(file, from) {
         if (seen.has(file)) return;
@@ -44,16 +44,25 @@ function audit() {
             } else visit(item, from, metadata);
         }
     }
+    const common = bundles.find(bundle => bundle.name === 'resources');
+    assert.ok(common && bundles.every(bundle => bundle === common || bundle.priority < common.priority),
+        'Public resources must have highest bundle priority to prevent startup redirects');
     for (const file of roots) visitAsset(file, 'entry');
-    const result = { date: '2026-11-05', sourceOnly: true, rebuilt: false, deviceVerified: false,
+    assert.ok([...seen].every(file => !file.startsWith('assets/PleyGame/')),
+        'Before scene creation, startup assets must not depend on the unloaded gameplay bundle');
+    const startupDependencies = seen.size;
+    assert.deepEqual(references, [], 'Loading must not reference any remote bundle');
+    for (const file of all.filter(file => file.startsWith('assets/PleyGame/') && /\.(prefab|anim)$/.test(file))) visitAsset(file, 'gameplay');
+    const result = { date: '2026-11-10', sourceOnly: true, rebuilt: false, deviceVerified: false,
         rootCount: roots.length, dependencyCount: seen.size,
-        localBundles: [...new Set([...seen].map(file => owner(file).name))].sort(),
+        loadingDependencyCount: startupDependencies,
+        localBundles: [...new Set([...seen].filter(file => !owner(file).remote).map(file => owner(file).name))].sort(),
         remoteDependencies: references, unresolvedReferences: unresolved,
-        startup: { local: ['main', 'resources', 'MainGameSources'], remote: ['current chapter only'] },
+        startup: { local: ['main', 'resources (Loading + small startup configs)'], remote: ['MainGameSources', 'current chapter only'] },
         deferred: { lobbyShell: 'after 8 active gameplay seconds',
             chapterCovers: 'chapter selection page', collectibles: 'collection/detail/acquisition popup',
             heroAnimation: 'home page opened', signIn: 'home page sign-in opened', crossChapterPrefetch: false } };
-    assert.deepEqual(references, [], 'Startup/playing prefabs must not require remote menu/catalog bundles');
+    assert.ok(references.every(reference => reference.bundle === 'MainGameSources'), 'Gameplay must not require remote menu/catalog bundles');
     assert.deepEqual(unresolved, [], 'Startup asset references must resolve');
     assert.ok(!bundles.some(bundle => bundle.name === 'SupportTexture'), 'Shared guides should belong to local resources');
     return result;

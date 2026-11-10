@@ -25,6 +25,12 @@ export function registerGameFlow(flow: GameFlow): void {
     currentFlow = flow;
 }
 
+/** Shared loaders resolve through the registry without a runtime GameFlow import cycle. */
+export function getGameFlow(): GameFlow {
+    if (!currentFlow) throw new Error('[UIScreen] GameFlow 尚未注册');
+    return currentFlow;
+}
+
 /**
  * 界面基类：所有 Screen 组件继承此类。
  *

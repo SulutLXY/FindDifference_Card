@@ -7,7 +7,7 @@ import json
 import zipfile
 
 root = Path(__file__).resolve().parents[1]
-icons = root / 'assets/resources/textures/UI_Sprite/V3/icons'
+icons = root / 'assets/PleyGame/Common/textures/UI_Sprite/V3/icons'
 files = [root / 'assets/Bundle/Texture' / name for name in ['ADDSubscription_01.png', 'ADDSubscription_02.png']]
 files += [icons / name for name in ['icon_AddDesktop.png', 'icon_Gameflow.png', 'icon_Shar.png', 'icon_Subscription.png', '脑洞转的快icon_05.png']]
 backup = root / 'temp/png-compression' / datetime.now().strftime('lobby-%Y%m%d-%H%M%S-%f')
