@@ -13,4 +13,6 @@
 
 美食目录沿用 `assets/resources/configs/food-catalog.json` 的 `foods`，旧条目未填 `category` 时按美食。瓷器使用独立 `assets/resources/configs/porcelain-catalog.json` 的 `items`，条目为 `category: "porcelain"`，维护稳定 ID、名称、图片路径和对应关卡永久 ID。启动时仅合入已列入正式章节索引的瓷器关卡；美食 Excel 生成器不覆盖瓷器配置。资源和后续补标流程见 [README-qing-hua-ci.md](README-qing-hua-ci.md)。
 
+章节列表宝箱（2026-11-11）：`CitySelectScreen` 卡片下的可选节点 `icon_treasure_chest` 在本章节有藏品时显示，否则隐藏；父专题包含任一有藏品的子章节时也显示。通过当前章节关卡永久 ID 与收藏目录的 `levelKey` 匹配，不依赖可能保留旧名的 `cityKey`，支持章节改名、合并和关卡移动。与玩家是否解锁章节、是否已集齐无关，不额外加载收藏图片或章节资源包；节点位置、尺寸和图片按预制体保留。验证：`node tools/test-chapter-collectibles.cjs`。
+
 验证：`node tools/test-collection.cjs` 覆盖进度条、筛选背景与动画、分页、排序与已读、自然获得、完整视频领取、目标关卡和城市资格、重复点击、广告取消/失败、保存回滚、重启和迟到回调。另验证页面资源引用、页面图片生命周期、既有关卡解锁和 TypeScript。

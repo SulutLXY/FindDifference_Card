@@ -1,0 +1,65 @@
+{
+  "__type__": "cc.Material",
+  "_name": "",
+  "_objFlags": 0,
+  "__editorExtras__": {},
+  "_native": "",
+  "_effectAsset": {
+    "__uuid__": "9a243f5d-f896-4e9d-81eb-b02bfbe62b68",
+    "__expectedType__": "cc.EffectAsset"
+  },
+  "_techIdx": 0,
+  "_defines": [
+    {
+      "USE_TEXTURE": true
+    }
+  ],
+  "_states": [
+    {
+      "rasterizerState": {},
+      "depthStencilState": {},
+      "blendState": {
+        "targets": [
+          {}
+        ]
+      }
+    }
+  ],
+  "_props": [
+    {
+      "overlayTexture": {
+        "__uuid__": "8d0cd9c6-5b47-4caf-b63b-4c88a0844dd2@6c48a",
+        "__expectedType__": "cc.Texture2D"
+      },
+      "overlayColor": {
+        "__type__": "cc.Color",
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 57
+      },
+      "overlayEnabled": 1,
+      "scrollSpeed": {
+        "__type__": "cc.Vec4",
+        "x": 0.3,
+        "y": 0.15,
+        "z": 2,
+        "w": 2
+      },
+      "scrollOffset": {
+        "__type__": "cc.Vec4",
+        "x": 1,
+        "y": 1,
+        "z": 0,
+        "w": 1
+      },
+      "bLocalBounds": {
+        "__type__": "cc.Vec4",
+        "x": -0.5,
+        "y": -0.5,
+        "z": 300,
+        "w": 300
+      }
+    }
+  ]
+}

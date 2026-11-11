@@ -41,6 +41,7 @@ const { ccclass, property } = _decorator;
  * - rank_row      进度条底槽 + 子节点 rank_row-001 填充条（锚点靠左，代码按进度改宽度）
  * - CityBanner    Sprite，章节封面包中的 banner，由首包章节索引指定
  * - LockIcon      旧模板锁图标，运行时隐藏
+ * - icon_treasure_chest  宝箱图标（可选），当前章节或分组包含藏品时显示
  *
  * 顶层专题直接进入；分组内的城市按默认开放/永久视频解锁规则显示入口。
  */
@@ -119,6 +120,8 @@ export class CitySelectScreen extends UIScreen {
         const group = 'chapters' in city;
         const unlocked = group || this.flow.isCityUnlocked(this.flow.cities.indexOf(city));
         const progress = this.flow.selectionProgress(city);
+        const treasure = this.findChildDeep(card, 'icon_treasure_chest');
+        if (treasure) treasure.active = this.flow.selectionHasCollectibles(city);
         this._setHeatBadge(card, city.key, this.flow.playStats?.initialCount(city.key) ?? null);
         const progressPoint = this.findChildDeep(card, 'ProgressPoint');
         const unlockButton = this.findChildDeep(card, 'BtnUnlock');

@@ -11,7 +11,7 @@ function load(file, names) {
         compilerOptions: { target: ts.ScriptTarget.ES2018 },
     }).outputText, { console: { warn() {} } });
 }
-const Flow = load('assets/scripts/GameFlow.ts', ['requestReward', 'revive', '_rewardPending']);
+const Flow = load('assets/scripts/GameFlow.ts', ['requestReward', 'revive', 'reviveBonusSeconds', '_rewardPending']);
 const Modal = load('assets/scripts/ui/ResultModal.ts', ['onLoad']);
 (async () => {
     const flow = new Flow(), modal = new Modal();
@@ -35,6 +35,7 @@ const Modal = load('assets/scripts/ui/ResultModal.ts', ['onLoad']);
         flow._isGameOver = true; flow._isPaused = false; flow._reviveUsed = false;
         flow._lives = lives; flow._remainingTime = seconds;
         flow._combo = 4; flow._lastFoundAt = 123;
+        flow._foundIds = new Set(['a', 'b']); flow._elapsedTime = 90;
     }
     failed(0, 80);
     buttons.BtnRevive();
@@ -48,18 +49,22 @@ const Modal = load('assets/scripts/ui/ResultModal.ts', ['onLoad']);
     buttons.BtnRevive(); reject(Error('ad failed')); await pending;
     assert.equal(flow._lives, 0); assert.equal(flow._isGameOver, true);
     assert.equal(flow._reviveUsed, false); assert.equal(flow._rewardPending, false);
-    for (const [lives, seconds] of [[0, 80], [2, 0]]) {
+    for (const [lives, seconds] of [[0, 80], [2, 0], [0, 15]]) {
         failed(lives, seconds);
         buttons.BtnRevive();
         assert.equal(flow._lives, lives, 'Reward waits for complete video');
         complete({ success: true, completed: true }); await pending;
         assert.equal(flow._lives, 3, 'Both life exhaustion and timeout restore exactly three lives');
-        assert.equal(flow._remainingTime, Math.max(seconds, 30));
+        assert.equal(flow._remainingTime, seconds + 30, 'Revival adds 30 seconds to the remaining time');
         assert.equal(flow._isGameOver, false); assert.equal(flow._isPaused, false);
         assert.equal(flow._reviveUsed, true); assert.equal(flow._combo, 0); assert.equal(flow._lastFoundAt, 0);
-        assert.equal(messages.at(-1), '复活成功：生命恢复至3点');
+        assert.equal(messages.at(-1), '复活成功：生命恢复至3点，时间增加30秒');
+        assert.deepEqual([...flow._foundIds], ['a', 'b']); assert.equal(flow._elapsedTime, 90);
         flow._lives = 2; flow.revive(); assert.equal(flow._lives, 2, 'Active gameplay cannot be revived again');
+        flow._isGameOver = true; flow.revive();
+        assert.equal(flow._lives, 2, 'A second failure cannot reuse this round\'s revival');
+        assert.equal(flow._remainingTime, seconds + 30);
     }
-    assert.equal(closes, 2); assert.equal(redraws, 2);
-    console.log('PASS: actual revive button, ad completion/cancellation/error/duplicate guard, three lives, timeout, pause recovery and HUD refresh.');
+    assert.equal(closes, 3); assert.equal(redraws, 3);
+    console.log('PASS: actual revive button, ad completion/cancellation/error/duplicate guard, three lives, additive 30 seconds, retained progress, once-per-round, pause recovery and HUD refresh.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

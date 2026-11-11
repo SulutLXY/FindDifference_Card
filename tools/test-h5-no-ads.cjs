@@ -47,7 +47,7 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
     await h5.onRoundFinished(() => true);
     assert.equal(sdkCalls, 0);
 
-    // H5 assists stay free and unlimited without touching stock.
+    // Empty H5 inventory stays free and unlimited.
     flow._currentLevel = { differences: [{ id: 'a' }] }; flow._foundIds = new Set();
     flow._remainingTime = 100; let hints = 0;
     flow.useHint = () => hints++;
@@ -61,6 +61,40 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
     await flow.requestHint(); await flow.requestAddTime();
     assert.equal(hints, 20); assert.equal(flow._remainingTime, 1300, 'Game-over guard still applies');
     flow._isGameOver = false;
+
+    // H5 must consume existing inventory before the free fallback, refreshing and persisting each use.
+    const saveExports = {}; let stored = null, writeFails = false;
+    vm.runInNewContext(compile(fs.readFileSync('assets/scripts/services/SaveService.ts', 'utf8')), {
+        exports: saveExports, console: { warn() {} },
+        require: () => ({ sys: { localStorage: {
+            getItem: () => stored,
+            setItem(_, value) { if (writeFails) throw Error('disk'); stored = value; },
+        } } }),
+    });
+    flow.save = new saveExports.SaveService();
+    flow.save.grantAssist('hint', 6); // Match the reported 8 hints / 2 add-time items.
+    const hud = [];
+    flow.game.refreshHud = () => hud.push([flow.save.freeHints, flow.save.freeAddTimes]);
+    await flow.requestHint();
+    assert.equal(flow.save.freeHints, 7); assert.equal(hints, 21);
+    assert.deepEqual(hud.at(-1), [7, 2], 'Hint use immediately refreshes the decremented count');
+    await flow.requestAddTime();
+    assert.equal(flow.save.freeAddTimes, 1); assert.equal(flow._remainingTime, 1360);
+    assert.deepEqual(hud.at(-1), [7, 1], 'Add-time use immediately refreshes the decremented count');
+    const reloaded = new saveExports.SaveService();
+    assert.equal(reloaded.freeHints, 7); assert.equal(reloaded.freeAddTimes, 1);
+    writeFails = true; flow.toast = () => {};
+    await flow.requestHint(); await flow.requestAddTime();
+    assert.equal(flow.save.freeHints, 7); assert.equal(flow.save.freeAddTimes, 1);
+    assert.equal(hints, 21); assert.equal(flow._remainingTime, 1360, 'Failed saves must not use the free H5 fallback');
+    writeFails = false;
+    for (let i = 0; i < 7; i++) await flow.requestHint();
+    await flow.requestAddTime();
+    assert.equal(flow.save.freeHints, 0); assert.equal(flow.save.freeAddTimes, 0);
+    await flow.requestHint(); await flow.requestAddTime();
+    assert.equal(hints, 29); assert.equal(flow._remainingTime, 1480, 'Empty H5 inventory still permits free use');
+    assert.equal(sdkCalls, 0);
+    hints = 20; flow._remainingTime = 1300; // Reset the counters for the native SDK scenarios below.
 
     // Native builds keep native reward completion/cancellation behavior.
     for (const kind of ['douyin', 'wechat']) {
@@ -120,5 +154,5 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
         close({ isEnded: true }); await revive;
     }
     assert.ok(!flowSource.includes('_showSimulatedAd'), 'Remove obsolete simulation UI');
-    console.log('PASS: H5 ad bypass and unlimited assists without stock changes; native uncapped assists and complete/cancel behavior retained.');
+    console.log('PASS: H5 consumes and persists existing stock with immediate HUD refresh, rolls back failed saves, keeps free empty-inventory use; native uncapped ads and completion/cancel behavior retained.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

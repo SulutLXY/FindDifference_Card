@@ -2,7 +2,7 @@
 
 Run from any directory: python tools/subset-title-font.py
 Dependencies: fonttools brotli Pillow (local output/font-matching/python-deps supported).
-Produces standalone artifacts; does not replace any game UI fonts.
+Produces standalone artifacts; --install replaces the existing title font while preserving its UUID.
 """
 
 from pathlib import Path
@@ -23,6 +23,7 @@ from fontTools.pens.recordingPen import DecomposingRecordingPen
 from PIL import Image, ImageChops, ImageDraw, ImageFont
 
 PUNCTUATION = '，。！？：；、（）【】《》“”‘’—…·￥¥～〈〉「」『』〔〕［］｛｝＋－×÷＝％＃＠＆＊'
+UI_TITLE_TEXTS = ('就差处啦！',)
 
 
 def read(path):
@@ -67,6 +68,8 @@ def inventory():
     for path in sorted(ROOT.glob('config/topics/*.json')):
         data = read(path)
         add(path, 'source-topic', data['key'], data['name'], data['key'])
+    for text in UI_TITLE_TEXTS:
+        add(Path(__file__).resolve(), 'ui-title', 'result', text)
     return index, records, paths
 
 
@@ -200,7 +203,7 @@ def main():
     chapters = list(dict.fromkeys(r['name'] for r in records if r['kind'] in ('chapter', 'topic')))
     # Preview current chapter names plus a sample from each chapter.
     preview_texts = chapters + [chapter['levels'][0]['name'] for chapter in index['chapters'].values() if chapter['levels']]
-    preview_texts += ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz 0123456789', PUNCTUATION]
+    preview_texts += list(UI_TITLE_TEXTS) + ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz 0123456789', PUNCTUATION]
     im = Image.new('RGB', (1500, 90 + ((len(preview_texts)+2)//3)*90), '#faf8f1')
     draw = ImageDraw.Draw(im)
     label = ImageFont.truetype('C:/Windows/Fonts/msyh.ttc', 28)
@@ -215,7 +218,7 @@ def main():
     md = f'''# 荆南波波黑：章节与关卡名称子集
 
 由项目当前配置自动提取：{counts['chapters']} 个章节、{counts['topics']} 个上层专题、{counts['publishedLevels']} 个关卡。
-同时扫描章节源清单和 differences.json 的备用名称，详见 name-inventory.json（每个名称含来源）。
+同时扫描章节源清单、differences.json 的备用名称及 UI_TITLE_TEXTS 中的界面标题（包含“就差处啦！”），详见 name-inventory.json（每个名称含来源）。
 
 - 名称用字去重：{counts['titleCharacters']} 个；加上大小写英文字母、数字和标点后保留 {counts['retainedCharacters']} 个 Unicode 字符。
 - 原始 TTF：{report['originalBytes']:,} 字节。

@@ -26,6 +26,7 @@ import { DifferenceController } from '../gameplay/DifferenceController';
 import { ProgressView } from './ProgressView';
 import { UIColors, UIScreen } from './UIScreen';
 import { SurpriseAssist } from './SurpriseAssist';
+import { SpriteUVScroll } from './SpriteUVScroll';
 
 const { ccclass, property } = _decorator;
 
@@ -237,6 +238,9 @@ export class GameScreen extends UIScreen {
     private static readonly TAP_SLOP = 12;
 
     protected onLoad(): void {
+        const background = this.findChildDeep(this.node, 'GameScreenBG');
+        if (background?.getComponent(Sprite)?.customMaterial?.effectAsset?.name === 'SpriteUVScroll'
+            && !background.getComponent(SpriteUVScroll)) background.addComponent(SpriteUVScroll);
         this._surprise = new SurpriseAssist(this.node, this.flow);
         // 首次动态创建时可能先在未激活节点上完成setupLevel，随后才触发onLoad。
         if (this._level) this._surprise.start(this._level);

@@ -48,6 +48,7 @@ import {
 import { PlatformService } from './services/PlatformService';
 import { SaveService } from './services/SaveService';
 import { ContentBundlePool } from './services/ContentBundlePool';
+import { BackgroundMusicMixer } from './services/BackgroundMusicMixer';
 import { SidebarService, sidebarDay } from './services/SidebarService';
 import { createRankProvider } from './services/rank/RankProvider';
 import { registerGameFlow } from './ui/UIScreen';
@@ -164,7 +165,6 @@ export class GameFlow extends Component {
     private _resultSource: AudioSource | null = null;
     private readonly _resultClips = new Map<boolean, Promise<AudioClip>>();
     private _resultSoundRequest = 0;
-    private _musicVolumeBeforeResult: number | null = null;
     private readonly _comboClips = new Map<string, Promise<AudioClip>>();
     /** 连击组及 Common 下的基础点击声均位于远程 MainGameSources。 */
     private static readonly DEFAULT_COMBO_GROUP = 'Combo _F_type01';
@@ -194,13 +194,11 @@ export class GameFlow extends Component {
     private _secondaryNavigationVersion = 0;
     private _secondaryPageLoading = false;
     private _secondaryDisposed = false;
-    private _musicSource: AudioSource | null = null;
+    private _musicMixer: BackgroundMusicMixer | null = null;
     private _musicPath = '';
     private readonly _musicClips = new Map<string, AudioClip>();
     private _musicRequest = 0;
     private _chapterMusic: { path: string; chapterBundle: string } | null = null;
-    private _chapterMusicClip: AudioClip | null = null;
-    private _releaseMusicBundle: (() => void) | null = null;
     /** 第五关起随机游戏背景音乐的候选池（MainGameSources/voice/BGmusic） */
     private static readonly GAME_MUSIC_POOL = [
         'voice/BGmusic/Game_music02',
@@ -304,9 +302,9 @@ export class GameFlow extends Component {
         this.feed.start();
         void this.platform.sidebar.start();
         this._initLoading();
-        this._musicSource = this.node.addComponent(AudioSource);
-        this._musicSource.playOnAwake = false;
-        this._musicSource.loop = true;
+        this._musicMixer = new BackgroundMusicMixer([
+            this.node.addComponent(AudioSource), this.node.addComponent(AudioSource),
+        ]);
         this._comboSource = this.node.addComponent(AudioSource);
         this._comboSource.playOnAwake = false;
         this._comboSource.loop = false;
@@ -359,6 +357,8 @@ export class GameFlow extends Component {
 
     protected update(dt: number): void {
         if (this.feed?.isPreview) return;
+        // 大厅、Loading、暂停和结算期间也必须推进切歌包络。
+        this._musicMixer?.update(dt);
         this._tryFeedOffer();
         if (this.platform.interstitialBusy || this._levelLoading) return;
         if (this._isGameOver || this._isPaused || !this._currentLevel) return;
@@ -393,6 +393,15 @@ export class GameFlow extends Component {
             const progress = city ? this.cityProgress(city) : { done: 0, total: 0 };
             return { done: sum.done + progress.done, total: sum.total + progress.total };
         }, { done: 0, total: 0 });
+    }
+
+    /** 按当前章节的永久关卡 ID 匹配藏品；分组包含任一藏品即可显示宝箱。 */
+    public selectionHasCollectibles(item: ChapterSelection): boolean {
+        const chapters = 'chapters' in item
+            ? this._cities.filter(city => item.chapters.includes(city.key)) : [item];
+        const levelIds = new Set(chapters.flatMap(city => city.levels.map(folder =>
+            city.levelIds?.[folder] ?? `${city.key}/${folder}`)));
+        return this._foods.some(food => levelIds.has(food.levelKey));
     }
 
     public async enterChapterSelection(item: ChapterSelection): Promise<void> {
@@ -520,7 +529,7 @@ export class GameFlow extends Component {
             const bundle = await this._loadLobbyBundle();
             await new Promise<void>((resolve, reject) => bundle.load('voice/BGmusic/Main_music00', AudioClip, (error, clip) => {
                 if (error) reject(error);
-                else { if (this.isValid) this._musicClips.set('voice/BGmusic/Main_music00', clip); resolve(); }
+                else { if (this.isValid) this._cacheMusicClip('voice/BGmusic/Main_music00', clip); resolve(); }
             }));
         } catch (error) { if (this.isValid) console.warn('[GameFlow] 主页后台预加载失败，返回时可重试', error); }
     }
@@ -937,7 +946,7 @@ export class GameFlow extends Component {
             this._isPaused = true;
             this._musicRequest++;
             this._musicPath = '';
-            this._musicSource?.stop();
+            this._musicMixer?.stop();
             if (this.game?.node.activeInHierarchy && this._currentLevel && !this._levelLoading) {
                 void this._drawLoadingFrame().then(() => { if (this.isValid) void this.feed.reportReady(); });
             }
@@ -1224,33 +1233,26 @@ export class GameFlow extends Component {
     /** 同类页面延续播放；异步加载完成后只允许当前页面的音乐开始播放。 */
     private _playPageMusic(path: string, fromBundle = false, chapterBundle?: string): void {
         if (this.feed?.isPreview) return;
-        const source = this._musicSource;
-        if (!source) return;
+        const mixer = this._musicMixer;
+        if (!mixer) return;
         if (!this.save.data.musicEnabled) {
             this._musicRequest++;
             this._musicPath = '';
-            source.stop();
-            this._releaseChapterMusicAudio();
+            mixer.stop();
             return;
         }
         const musicKey = chapterBundle ? `${chapterBundle}:${path}` : path;
         if (this._musicPath === musicKey) return;
         this._musicPath = musicKey;
         const request = ++this._musicRequest;
-        source.stop();
-        this._releaseChapterMusicAudio();
-        const play = (clip: AudioClip) => {
-            if (!this.isValid || !source.isValid || request !== this._musicRequest) return;
-            source.clip = clip;
-            source.play();
-        };
+        if (mixer.resume(musicKey)) return;
         const cached = chapterBundle ? undefined : this._musicClips.get(path);
         if (cached) {
-            play(cached);
+            mixer.play(musicKey, cached);
             return;
         }
         const onLoaded = (error: Error | null, clip?: AudioClip) => {
-            if (!this.isValid || !source.isValid || request !== this._musicRequest) return;
+            if (!this.isValid || request !== this._musicRequest) return;
             if (error || !clip) {
                 this._musicPath = '';
                 console.warn(`[GameFlow] 背景音乐加载失败: ${path}`, error);
@@ -1260,12 +1262,8 @@ export class GameFlow extends Component {
                 }
                 return;
             }
-            if (chapterBundle) {
-                clip.addRef();
-                this._chapterMusicClip = clip;
-                this._releaseMusicBundle = this._contentBundles.retain(chapterBundle);
-            } else this._musicClips.set(path, clip);
-            play(clip);
+            if (!chapterBundle) this._cacheMusicClip(path, clip);
+            mixer.play(musicKey, clip, chapterBundle ? this._contentBundles.retain(chapterBundle) : undefined);
         };
         if (chapterBundle) {
             // 异步加载持有包；播放成功后转交给音乐持有者，切歌/离开时归还。
@@ -1286,14 +1284,12 @@ export class GameFlow extends Component {
         }
     }
 
-    private _releaseChapterMusicAudio(): void {
-        if (this._chapterMusicClip) {
-            if (this._musicSource?.clip === this._chapterMusicClip) this._musicSource.clip = null;
-            this._chapterMusicClip.decRef();
-            this._chapterMusicClip = null;
-        }
-        this._releaseMusicBundle?.();
-        this._releaseMusicBundle = null;
+    private _cacheMusicClip(path: string, clip: AudioClip): void {
+        const previous = this._musicClips.get(path);
+        if (previous === clip) return;
+        clip.addRef();
+        this._musicClips.set(path, clip);
+        previous?.decRef();
     }
 
     /** 只查包内音频索引，不预下载整个目录；空目录或无音频时沿用通用曲目。 */
@@ -1366,8 +1362,7 @@ export class GameFlow extends Component {
         this._pageSpritesDisposed = true;
         for (const owner of this._pageSpriteFrames.keys()) this.releasePageSpriteFrames(owner);
         this.game?.clearLevel();
-        this._musicSource?.stop();
-        this._releaseChapterMusicAudio();
+        this._musicMixer?.stop();
         this._contentBundles.dispose();
         ++this._levelLoadVersion;
         this._finishLoadingFrame?.();
@@ -1381,7 +1376,8 @@ export class GameFlow extends Component {
         this._comboSource?.stop();
         this._comboClips.clear();
         this._clickSource?.stop();
-        this._musicSource?.stop();
+        this._musicMixer = null;
+        for (const clip of this._musicClips.values()) clip.decRef();
         this._musicClips.clear();
         for (const frame of this._spriteFrameCache.values()) frame.decRef();
         this._spriteFrameCache.clear();
@@ -1667,7 +1663,7 @@ export class GameFlow extends Component {
 
     private _assistRoundVersion = 0;
 
-    /** 无广告网页版可直接使用辅助功能，不消耗库存。 */
+    /** 无广告网页版在库存耗尽后仍可直接使用辅助功能；有库存时照常扣除。 */
     public get unlimitedAssists(): boolean {
         return this.platform.kind === 'h5';
     }
@@ -1676,16 +1672,16 @@ export class GameFlow extends Component {
         if (this._isPaused || this._isGameOver || !this.game?.node.activeInHierarchy
             || !this._currentLevel?.differences.some(item => !this._foundIds.has(item.id))) return;
         this.playHintSound();
-        if (this.unlimitedAssists) {
-            this.useHint();
-            this.game.refreshHud();
-            return;
-        }
         if (this.save.freeHints > 0) {
             if (!this.save.consumeFreeHint()) {
                 this.toast('保存失败，请稍后再试');
                 return;
             }
+            this.useHint();
+            this.game.refreshHud();
+            return;
+        }
+        if (this.unlimitedAssists) {
             this.useHint();
             this.game.refreshHud();
             return;
@@ -1749,12 +1745,12 @@ export class GameFlow extends Component {
     public async requestAddTime(): Promise<void> {
         if (this._isPaused || this._isGameOver || !this.game?.node.activeInHierarchy) return;
         this.playAddTimeSound();
-        if (this.unlimitedAssists) {
+        if (this.save.freeAddTimes > 0) {
+            if (!this.save.consumeAddTime()) { this.toast('保存失败，请稍后再试'); return; }
             this.addTime(60);
             return;
         }
-        if (this.save.freeAddTimes > 0) {
-            if (!this.save.consumeAddTime()) { this.toast('保存失败，请稍后再试'); return; }
+        if (this.unlimitedAssists) {
             this.addTime(60);
             return;
         }
@@ -1784,11 +1780,7 @@ export class GameFlow extends Component {
     }
 
     private _onResultAudioStarted(source: AudioSource): void {
-        if (source !== this._resultSource || this._musicVolumeBeforeResult !== null) return;
-        const music = this._musicSource;
-        if (!music?.isValid) return;
-        this._musicVolumeBeforeResult = music.volume;
-        music.volume = this._musicVolumeBeforeResult * 0.5;
+        if (source === this._resultSource) this._musicMixer?.setDucked(true);
     }
 
     private _onResultAudioEnded(source: AudioSource): void {
@@ -1797,9 +1789,7 @@ export class GameFlow extends Component {
     }
 
     private _restoreResultMusicVolume(): void {
-        if (this._musicVolumeBeforeResult === null) return;
-        if (this._musicSource?.isValid) this._musicSource.volume = this._musicVolumeBeforeResult;
-        this._musicVolumeBeforeResult = null;
+        this._musicMixer?.setDucked(false);
     }
 
     private _stopResultTone(): void {
@@ -1847,6 +1837,8 @@ export class GameFlow extends Component {
                 win,
                 stars,
                 elapsedSeconds: Math.max(1, Math.round(this._elapsedTime)),
+                foundCount: this._foundIds.size,
+                failReason: win ? undefined : failReason,
                 level,
                 canRevive: !win && !this._reviveUsed,
                 hasNext: win && this.findNextLevel(level) !== null,
@@ -1864,12 +1856,14 @@ export class GameFlow extends Component {
     }
 
 
+    public get reviveBonusSeconds(): number { return 30; }
+
     public revive(): void {
-        if (!this._isGameOver) return;
+        if (!this._isGameOver || this._reviveUsed) return;
         this._stopResultTone();
         this._reviveUsed = true;
         this._lives = 3;
-        this._remainingTime = Math.max(this._remainingTime, 30);
+        this._remainingTime = Math.max(0, this._remainingTime) + this.reviveBonusSeconds;
         this._isGameOver = false;
         // 广告结束时失败状态仍为true；复活必须同时解除广告留下的暂停状态。
         this._isPaused = false;
@@ -1877,7 +1871,7 @@ export class GameFlow extends Component {
         this._lastFoundAt = 0;
         this.resultModal?.close();
         this.game?.refreshHud();
-        this.toast('复活成功：生命恢复至3点');
+        this.toast(`复活成功：生命恢复至3点，时间增加${this.reviveBonusSeconds}秒`);
     }
 
     /** 结算面板主按钮：胜利且有下一关则进下一关，否则重玩本关。 */

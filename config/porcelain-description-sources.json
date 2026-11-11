@@ -1,0 +1,145 @@
+{
+  "researchedAt": "2026-11-11",
+  "items": [
+    {
+      "id": "qing-hua-ci-shou-er-da-guan",
+      "name": "兽耳大罐",
+      "sourceTitle": "中国国家博物馆：青花缠枝牡丹天马纹罐",
+      "url": "https://www.chnmuseum.cn/zp/zpml/csp/202203/t20220316_254335.shtml",
+      "scope": "器型参照；以馆藏兽耳罐说明配合游戏图示概括，不认定具体年代或原型。"
+    },
+    {
+      "id": "qing-hua-ci-long-wen-da-pan",
+      "name": "龙纹大盘",
+      "sourceTitle": "故宫博物院：青花云龙纹盘",
+      "url": "https://www.dpm.org.cn/collection/ceramic/227744.html",
+      "scope": "纹饰参照；采用龙纹词条的一般知识及游戏图示，不将插画认定为该馆藏盘。"
+    },
+    {
+      "id": "qing-hua-ci-feng-shou-bian-hu",
+      "name": "凤首扁壶",
+      "sourceTitle": "河南博物院：唐三彩凤首壶（文中论及元青花凤首扁壶）",
+      "url": "https://www.chnmus.net/ch/collection/appraise/details.html?id=512159870656041390",
+      "scope": "器型与代表器资料；凤首流、卷尾柄及盛酒用途另参照《中国国家地理》一鸾一凤两扁壶。"
+    },
+    {
+      "id": "qing-hua-ci-hai-ao-shan-xing-bi-jia",
+      "name": "海鳌山形笔架",
+      "sourceTitle": "上海博物馆：青花山型笔架（杭州博物馆藏）",
+      "url": "https://www.shanghaimuseum.net/mu/frontend/pg/article/id/CI00160868",
+      "scope": "同题材代表器资料；不声称游戏插画具有馆藏实物的尺寸及出土经历。"
+    },
+    {
+      "id": "qing-hua-ci-ya-shou-bei",
+      "name": "压手杯",
+      "sourceTitle": "故宫博物院：青花缠枝莲纹压手杯",
+      "url": "https://www.dpm.org.cn/collection/ceramic/227624.html",
+      "scope": "器型知识；采用压手杯得名与胎体结构说明。"
+    },
+    {
+      "id": "qing-hua-ci-fan-wen-da-shao-yu-e-xing-zuo",
+      "name": "梵文大杓与鹅形座",
+      "sourceTitle": "国立故宫博物院：适于心——明代永乐皇帝的瓷器·对外交流",
+      "url": "https://theme.npm.edu.tw/exh106/yongleporcelain/ch/page-3.html",
+      "scope": "具名代表器资料；明确区分明代瓷杓与乾隆时期后配鹅形紫檀木座。"
+    },
+    {
+      "id": "qing-hua-ci-xiao-he-zhui-han-xin-mei-ping",
+      "name": "“萧何追韩信”梅瓶",
+      "sourceTitle": "故宫博物院：元青花人物故事器物的艺术渊源及相关问题",
+      "url": "https://www.dpm.org.cn/Uploads/File/2020/03/30/u5e8196cd5a0c8.pdf",
+      "scope": "具名题材资料及游戏图示；不采用检索资料中存在分歧的出土年份或收藏价值排名。"
+    },
+    {
+      "id": "qing-hua-ci-si-ai-tu-mei-ping",
+      "name": "四爱图梅瓶",
+      "sourceTitle": "湖北省博物馆：元青花四爱图梅瓶",
+      "url": "https://www.hbww.org.cn/zgzb/p/4696.html",
+      "scope": "具名题材资料；本件采用湖北省博物馆著录的爱兰版本，不混用其他四爱图版本。"
+    },
+    {
+      "id": "qing-hua-ci-da-wei-de-xiang-er-shuang-ping",
+      "name": "大维德象耳双瓶",
+      "sourceTitle": "大英博物馆：Room 95 Chinese Ceramics（The David Vases）",
+      "url": "https://www.britishmuseum.org/sites/default/files/2021-05/large_print_guide_room_95_chinese_ceramics.pdf",
+      "scope": "具名代表器资料；纪年与供器用途依据馆方说明，不使用市场估价或最早青花等绝对表述。"
+    },
+    {
+      "id": "qing-hua-ci-wan-shou-da-zun",
+      "name": "万寿大尊",
+      "sourceTitle": "故宫博物院：青花万“寿”字大尊",
+      "url": "https://www.dpm.org.cn/collection/ceramic/227307.html",
+      "scope": "具名代表器资料；一万个寿字指文献代表器，不声称游戏插画逐字复原。"
+    },
+    {
+      "id": "qing-hua-ci-hua-kou-pu-tao-pan",
+      "name": "花口葡萄盘",
+      "sourceTitle": "中国国家博物馆：青花葡萄纹花口盘",
+      "url": "https://www.chnmuseum.cn/zp/zpml/201812/t20181218_23779.shtml",
+      "scope": "同题材代表器资料；花口、葡萄纹与寓意有馆方说明支持。"
+    },
+    {
+      "id": "qing-hua-ci-qing-hua-gao-zu-pan",
+      "name": "青花高足盘",
+      "sourceTitle": "广东省博物馆：清嘉庆潮州青花高足瓷盘",
+      "url": "https://www.gdmuseum.org.cn/cn/col49/147887",
+      "scope": "器型参照与图示观察；不将青釉高足盘误作青花，也不照搬不同纹样器物的年代及用途。"
+    },
+    {
+      "id": "qing-hua-ci-seng-mao-hu",
+      "name": "僧帽壶",
+      "sourceTitle": "故宫博物院：青花梵文杯（僧帽壶词条）",
+      "url": "https://www.dpm.org.cn/collection/ceramic/226911.html",
+      "scope": "器型知识；得名和藏传佛教关联依据词条，未把藏文与阿拉伯文混称。"
+    },
+    {
+      "id": "qing-hua-ci-a-la-bo-wen-zhu-tai",
+      "name": "阿拉伯文烛台",
+      "sourceTitle": "故宫博物院：青花阿拉伯文烛台",
+      "url": "https://www.dpm.org.cn/collection/ceramic/226919.html",
+      "scope": "同题材代表器资料；不擅自翻译难以释读的文字。"
+    },
+    {
+      "id": "qing-hua-ci-ying-xi-tu-yuan-he",
+      "name": "婴戏图圆盒",
+      "sourceTitle": "故宫博物院：青花婴戏图圆盒",
+      "url": "https://www.dpm.org.cn/collection/ceramic/227383.html",
+      "scope": "同题材代表器资料；不宣称游戏图中人物数量等同于馆藏器的十六童子。"
+    },
+    {
+      "id": "qing-hua-ci-lan-ting-hui-bi-tong",
+      "name": "《兰亭会》笔筒",
+      "sourceTitle": "故宫博物院：青花《兰亭会》笔筒",
+      "url": "https://www.dpm.org.cn/collection/ceramic/227672.html",
+      "scope": "具名题材及图示观察；兰亭修禊背景补参照馆方《乔林款竹根雕兰亭修禊图笔筒》的词条。"
+    },
+    {
+      "id": "qing-hua-ci-qing-hua-hua-jiao",
+      "name": "青花花浇",
+      "sourceTitle": "故宫博物院：青花缠枝莲纹花浇",
+      "url": "https://www.dpm.org.cn/collection/ceramic/226935.html",
+      "scope": "器型知识与图示观察；不认定游戏中的花浇为特定永乐器。"
+    },
+    {
+      "id": "qing-hua-ci-xi-shuai-guan",
+      "name": "蟋蟀罐",
+      "sourceTitle": "故宫博物院：青花云龙纹蟋蟀罐",
+      "url": "https://www.dpm.org.cn/collection/ceramic/227379.html",
+      "scope": "同题材代表器资料与用途概括；不套用具体年款或尺寸。"
+    },
+    {
+      "id": "qing-hua-ci-lian-chi-yu-zao-wen-guan",
+      "name": "莲池鱼藻纹罐",
+      "sourceTitle": "故宫博物院：青花鱼莲纹罐",
+      "url": "https://www.dpm.org.cn/collection/ceramic/227866.html",
+      "scope": "同题材代表器资料；采用莲池鱼藻纹及富贵有余的解释，不认定图中鱼种。"
+    },
+    {
+      "id": "qing-hua-ci-dang-dai-qing-hua-ri-yong-qi",
+      "name": "当代青花日用器",
+      "sourceTitle": "故宫博物院：青花缠枝莲纹压手杯（青花词条）",
+      "url": "https://www.dpm.org.cn/collection/ceramic/227624.html",
+      "scope": "通用工艺知识与当代日用器图示观察；不是某件历史馆藏器的身份介绍。"
+    }
+  ]
+}
