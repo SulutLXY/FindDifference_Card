@@ -90,7 +90,11 @@ const Flow = methods('assets/scripts/GameFlow.ts', ['_loadCityMeta', 'chapterSel
     screen.findChildDeep = (_, name) => nodes[name]; screen._setCardLabel = (_, name, text) => labels[name] = text; screen._loadBanner = () => {};
     const card = { off() {}, on(_, callback) { this.click = callback; } };
     screen._fillCard(card, topic); assert.equal(labels.Levelnumber, '8个城市 · 120关'); assert.equal(nodes.BtnUnlock.active, false);
+    const topicArrow = {}; nodes.Cityaim.click(topicArrow);
+    assert.equal(topicArrow.propagationStopped, true); assert.equal(selected.at(-1), topic.key);
     screen._fillCard(card, cities[3]); assert.equal(nodes.BtnUnlock.active, true); assert.equal(nodes.ProgressPoint.active, false);
+    const cityArrow = {}; nodes.Cityaim.click(cityArrow);
+    assert.equal(cityArrow.propagationStopped, true); assert.equal(selected.at(-1), cities[3].key);
     const event = {}; nodes.BtnUnlock.click(event); assert.equal(event.propagationStopped, true); assert.equal(selected.at(-1), cities[3].key);
     console.log('PASS: six root topics/eight cities, porcelain first level free, Beijing free, seven city gates, permanent complete-only rewards, duplicate/error/cancel/write failure, stale navigation, back stack and legacy progress.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

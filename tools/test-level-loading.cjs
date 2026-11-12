@@ -51,6 +51,7 @@ function methods(file,names,extra={}){
  const recordedPlays=[];let homeWarmups=0;const f=new Flow();f.playStats={recordEntry:key=>recordedPlays.push(key)};f._preloadLobby=async()=>{homeWarmups++;};f._contentBundles={retain:()=>()=>{}};f.isValid=true;f._levelLoadVersion=0;f._assistRoundVersion=0;f._foundIds=new Set();
  f._ensureLevel=async(city,index)=>city.levelConfigs[index];
  f._resolveChapterMusic=async()=>null;
+ f._resolveChapterComboGroup=async()=>null;
  f._updateGameMusic=()=>{};f._updateComboGroup=()=>{};f._ensureGameScreens=async()=>{};
  f._showFirstLevelTutorial=()=>{};f._drawLoadingFrame=async()=>{};f._setLoadingProgress=()=>{};f._switchTo=()=>{};f.toast=()=>{};f.preloadNextLevel=()=>{};
  const footer={active:true};f._loadingNode={active:false,parent:{children:[{}]},getChildByName:n=>n==='FooterEnv'?footer:null,setSiblingIndex(){}};f._ensureLoadingBack=()=>{};

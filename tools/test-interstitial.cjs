@@ -14,17 +14,17 @@ vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleK
 (async()=>{
     const p=new output.PlatformService();p.configure({douyinInterstitialAdUnitId:'14eaqmfhd0gg22d184'});
     const tick=()=>new Promise(resolve=>setImmediate(resolve));
-    let resolved=false;const first=p.onRoundFinished(()=>true).then(()=>resolved=true);
-    await tick();assert.equal(shown,1,'first settlement attempts immediately');assert.equal(resolved,false,'wait for native close');
+    let resolved=false;const first=p.showInterstitial(()=>true,true).then(()=>resolved=true);
+    await tick();assert.equal(shown,1,'generic entry displays after load');assert.equal(resolved,false,'wait for native close');
     await p.showInterstitial(()=>true);assert.equal(created,1,'busy excludes overlap');
     close();await first;assert.equal(destroyed,1);
-    const repeated=p.onRoundFinished(()=>true);await tick();assert.equal(created,2,'every settlement bypasses cooldown');close();await repeated;
+    const repeated=p.showInterstitial(()=>true,true);await tick();assert.equal(created,2,'explicit generic entry can bypass cooldown');close();await repeated;
     created=0;shown=0;destroyed=0;
     await p.showInterstitial(()=>true);assert.equal(created,0,'other entries retain frequency guard');
     now+=59000;await p.showInterstitial(()=>true);assert.equal(created,0,'protected for the full minute');
     now+=1000;await p.showInterstitial(()=>false);assert.equal(created,0);
     const second=p.showInterstitial(()=>true);await tick();assert.equal(shown,1);fail({errCode:2002});await second;assert.equal(destroyed,1);
-    now+=60000;let checks=0;await p.onRoundFinished(()=>++checks===1);assert.equal(created,2);assert.equal(shown,1);assert.equal(destroyed,1,'Never destroy an unshown native instance');
+    now+=60000;let checks=0;await p.showInterstitial(()=>++checks===1,true);assert.equal(created,2);assert.equal(shown,1);assert.equal(destroyed,1,'Never destroy an unshown native instance');
     now+=60000;
     const missingClose=p.showInterstitial(()=>true);await tick();
     assert.equal(p.interstitialBusy,true);
@@ -60,5 +60,5 @@ vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleK
     finishReward({isEnded:true});await reward;
     p.canShowInterstitial=()=>true;
     now+=60000;host.tt.createInterstitialAd=()=>{throw Error('unavailable');};await p.showInterstitial(()=>true);assert.equal(p._interstitialBusy,false);
-    console.log('Passed: first settlement and shared entry trigger, configured ID, cooldown/busy guards, stale-page cancellation, close/error recovery.');
+    console.log('Passed: generic interstitial entry, configured ID, cooldown/busy guards, stale-page cancellation, close/error recovery.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

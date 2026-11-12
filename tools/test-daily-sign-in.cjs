@@ -72,7 +72,7 @@ function methods(file, names, globals = {}) {
         assert.equal(placement, 'daily-sign-in'); ads++;
         return new Promise((resolve, fail) => { finish = resolve; reject = fail; });
     } };
-    modal.flow = flow; modal._config = config; modal.node = { activeInHierarchy: true }; modal.isValid = true; modal._refresh = () => {};
+    modal.flow = flow; modal._config = config; modal.node = { activeInHierarchy: true }; modal.isValid = true; modal._refresh = () => {}; modal._playNormalClick = () => {};
     let pending = modal._claim(true); await modal._claim(false); await modal._claim(true); assert.equal(ads, 1);
     assert.equal(save.freeHints, 2); finish({ success: true, completed: false }); await pending;
     assert.equal(save.dailyStatus(day(), config).canClaim, true); assert.equal(flow._isPaused, true);

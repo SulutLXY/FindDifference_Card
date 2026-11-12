@@ -25,7 +25,8 @@ export class SettingsModal extends UIScreen {
         const entries = host?.getComponent(LobbyEntries) ?? host?.addComponent(LobbyEntries);
         entries?.bindRewardEntries(this.node);
         const moneyTool = this.findChildDeep(this.node, 'moneyTool');
-        if (moneyTool) moneyTool.active = inGame;
+        // 主页与玩法内打开设置均展示底部三个奖励入口。
+        if (moneyTool) moneyTool.active = true;
         this.open();
         this.node.setSiblingIndex(this.node.parent!.children.length - 1);
         for (const [name, active] of [['show', !inGame], ['BtnClose', true], ['BtnHome', inGame], ['BtnPrimary', inGame]] as const) {

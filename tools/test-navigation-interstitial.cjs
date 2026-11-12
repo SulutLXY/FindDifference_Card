@@ -27,7 +27,7 @@ vm.runInNewContext(compile(fs.readFileSync('assets/scripts/services/PlatformServ
 });
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
-const names = ['backFromCitySelection', 'showLobby', 'returnToLobby', 'showCitySelect', 'enterLevelSelection', 'requestLevelSelectAccess',
+const names = ['backFromCitySelection', 'showLobby', 'returnToLobby', 'showCitySelect', 'enterLevelSelection',
     'requestReward', '_switchTo', '_cancelSecondaryNavigation'];
 const methods = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree)))
     .map(m => m.getText(tree)).join('\n');
@@ -113,21 +113,18 @@ async function assertHomeClick(screenName, buttonName) {
     assert.equal(f._returnAdPending, false);
     assert.ok(logs.some(([message, context]) => message.includes('未展示') && context.placement === 'return-home'
         && context.errCode === 2002 && context.errMsg === 'frequency limit'));
-    // Reward close and first entry use the same real platform busy-state cleanup.
-    let finishReward;
-    host.tt.createRewardedVideoAd = () => ({ onClose(fn) { finishReward = fn; }, onError() {}, offClose() {}, offError() {}, show: async () => {} });
+    // First entry is now free even without the legacy 24-hour pass.
+    host.tt.createRewardedVideoAd = () => { throw Error('Selecting chapters must not request a rewarded video'); };
     const first = setup(false);
     first.showLobby();
     const count = ads.length;
-    const unlocking = first.enterLevelSelection();
+    const opening = first.enterLevelSelection();
     await first.enterLevelSelection();
-    assert.equal(ads.length, count);
-    finishReward({ isEnded: true });
     await tick();
     assert.equal(first.citySelect.node.activeInHierarchy, true);
-    assert.equal(ads.length, count + 1, 'Newly unlocked entry also reaches native SDK');
+    assert.equal(ads.length, count + 1, 'Free entry retains the existing post-navigation interstitial');
     ads.at(-1).close();
-    await unlocking;
+    await opening;
     // Cancel a pending load by leaving the page; its late completion cannot display.
     let loaded;
     const create = host.tt.createInterstitialAd;
@@ -143,12 +140,13 @@ async function assertHomeClick(screenName, buttonName) {
     assert.equal(ads.at(-1).destroyed, undefined, 'Cancelled unshown ads remain reusable on native SDK');
     assert.equal(f._levelSelectEntryPending, false);
     assert.ok(logs.some(([message, context]) => message.includes('跳过') && context.reason.includes('页面')));
-    // The icon remains authored under the button; its placement is editable in Creator.
+    // Legacy video/caption nodes stay disabled in the editable prefab.
     const scene = JSON.parse(fs.readFileSync('assets/LobbySources/prefabs/LobbyScreen.prefab', 'utf8'));
     const button = scene.find(item => item._name === 'BtnLevels');
     const child = name => button._children.map(ref => scene[ref.__id__]).find(item => item._name === name);
     const icon = child('icon_videoplay'), label = child('Label');
-    assert.equal(icon._active, true);
+    assert.equal(icon._active, false);
+    assert.equal(icon._children.map(ref => scene[ref.__id__]).find(node => node._name === 'LabelTips')._active, false);
     const sprite = icon._components.map(ref => scene[ref.__id__]).find(c => c.__type__ === 'cc.Sprite');
     assert.equal(sprite._spriteFrame.__uuid__, '645554eb-c26d-4151-bfb6-22acd54e7700@f9941');
     assert.equal(icon._parent.__id__, scene.indexOf(button));
@@ -159,5 +157,5 @@ async function assertHomeClick(screenName, buttonName) {
         Object.values(value).forEach(validate);
     }
     validate(scene);
-    console.log('PASS: actual home button bindings, native SDK on protected return/entry, first reward entry, frequency rejection diagnostics, stale load cancellation and editable video icon.');
+    console.log('PASS: actual home bindings, free first entry, native SDK on protected return/entry, frequency rejection diagnostics, stale load cancellation and disabled legacy video/caption.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

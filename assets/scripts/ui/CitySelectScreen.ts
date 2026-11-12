@@ -172,6 +172,15 @@ export class CitySelectScreen extends UIScreen {
         card.on(Input.EventType.TOUCH_END, () => {
             void this.flow.enterChapterSelection(city);
         }, this);
+        const arrow = this.findChildDeep(card, 'Cityaim');
+        if (arrow) {
+            arrow.off(Input.EventType.TOUCH_END, undefined, this);
+            arrow.on(Input.EventType.TOUCH_END, (event?: EventTouch) => {
+                // 箭头独立响应，不再依赖冒泡；阻止父卡片重复处理同一次点击。
+                if (event) event.propagationStopped = true;
+                void this.flow.enterChapterSelection(city);
+            }, this);
+        }
     }
 
     private async _loadBanner(card: Node, path: string, grayscale = false): Promise<void> {

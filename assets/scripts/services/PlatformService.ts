@@ -10,6 +10,7 @@ type InterstitialState = {
     adUnitId: string;
     ready: boolean;
     loading: boolean;
+    loadingSince: number;
     shown: boolean;
     onLoad: () => void;
     onError: (error: any) => void;
@@ -209,13 +210,64 @@ export class PlatformService {
         } catch { return false; }
     }
 
-    /** Each requested entry attempts an ad; native frequency limits still apply. Resolves on close/error. */
+    /** 只提前加载，不展示、不暂停玩法；未展示实例保留给下次入口复用。 */
+    public preloadInterstitial(): void {
+        if (!this.canUseInteractiveFeatures() || this.kind !== 'douyin' || this.isPcCompanion
+            || this._rewardedBusy || this._finishInterstitial || !this._config.douyinInterstitialAdUnitId) return;
+        const tt = this._host.tt;
+        if (!this._supportsAdApi(tt, 'createInterstitialAd')) return;
+        try {
+            const state = this._getInterstitialState(this._config.douyinInterstitialAdUnitId);
+            if (state.ready || (state.loading && Date.now() - state.loadingSince < 15000)) return;
+            state.loading = true;
+            state.loadingSince = Date.now();
+            const loading = state.ad.load();
+            if (loading && typeof loading.then === 'function') {
+                void Promise.resolve(loading).then(() => {
+                    state.ready = true; state.loading = false; state.loaded?.();
+                }, error => state.onError(error));
+            }
+        } catch (error) {
+            if (this._interstitialState) this._interstitialState.loading = false;
+            console.warn('[InterstitialAd] 预加载失败，下次入口重试', error);
+        }
+    }
+
+    private _getInterstitialState(adUnitId: string): InterstitialState {
+        if (this._interstitialState?.adUnitId === adUnitId) return this._interstitialState;
+        const ad = this._host.tt.createInterstitialAd({ adUnitId });
+        const created: InterstitialState = {
+            ad, adUnitId, ready: false, loading: typeof ad.onLoad === 'function', loadingSince: Date.now(), shown: false,
+            loaded: null, failed: null, closed: null,
+            onLoad: () => {
+                created.ready = true; created.loading = false;
+                created.loaded?.();
+            },
+            onError: (error: any) => {
+                if (created.loading) created.ready = false;
+                created.loading = false;
+                if (created.failed) created.failed(error);
+                else console.warn('[InterstitialAd] 后台预加载失败，下次入口重试', error);
+            },
+            onClose: () => {
+                created.shown = true;
+                created.closed?.();
+            },
+        };
+        this._interstitialState = created;
+        ad.onLoad?.(created.onLoad);
+        ad.onClose(created.onClose);
+        ad.onError(created.onError);
+        return created;
+    }
+
+    /** readyOnly 入口仅展示已就绪广告，未就绪不等加载、不延后补弹。 */
     public async showInterstitial(canShow: () => boolean, bypassCooldown = false, bypassRoundProtection = false,
-        placement = 'secondary-page'): Promise<void> {
+        placement = 'secondary-page', readyOnly = false): Promise<void> {
         if (!this.canUseInteractiveFeatures()) return;
         const tt = this._host.tt;
         const adUnitId = this._config.douyinInterstitialAdUnitId;
-        const context = { placement, platform: this.kind, adUnitId, bypassCooldown, bypassRoundProtection };
+        const context = { placement, platform: this.kind, adUnitId, bypassCooldown, bypassRoundProtection, readyOnly };
         console.info('[InterstitialAd] 请求插屏', context);
         // 所有未调用 SDK 的路径均留下原因，真机日志可区分入口未接线、运行环境和平台拒绝。
         const skipped = (reason: string) => { console.info('[InterstitialAd] 跳过插屏', { ...context, reason }); };
@@ -229,6 +281,11 @@ export class PlatformService {
         if (!bypassCooldown && this._lastInterstitialAttempt > 0
             && Date.now() - this._lastInterstitialAttempt < 60000) { skipped('客户端 60 秒冷却'); return; }
         if (!canShow()) { skipped('入口页面已失效'); return; }
+        if (readyOnly && (!this._interstitialState?.ready || this._interstitialState.adUnitId !== adUnitId)) {
+            this.preloadInterstitial();
+            skipped('广告未就绪，本次不延后弹出');
+            return;
+        }
         this._interstitialLoading = true;
         this._lastInterstitialAttempt = Date.now();
         let ad: any;
@@ -260,6 +317,7 @@ export class PlatformService {
                         if (state.shown) ad?.destroy?.();
                     } catch (error) { console.warn('[InterstitialAd] 清理失败', error); }
                 }
+                if (readyOnly && state.shown) this.preloadInterstitial();
             }
         };
         const onError = (error: any) => {
@@ -273,34 +331,8 @@ export class PlatformService {
         };
         this._finishInterstitial = cleanup;
         try {
-            state = this._interstitialState;
-            if (!state || state.adUnitId !== adUnitId) {
-                ad = tt.createInterstitialAd({ adUnitId });
-                const created: InterstitialState = {
-                    ad, adUnitId, ready: false, loading: typeof ad.onLoad === 'function', shown: false,
-                    loaded: null, failed: null, closed: null,
-                    onLoad: () => {
-                        created.ready = true; created.loading = false;
-                        created.loaded?.();
-                    },
-                    onError: (error: any) => {
-                        created.loading = false;
-                        created.failed?.(error);
-                    },
-                    onClose: () => {
-                        created.shown = true;
-                        created.closed?.();
-                    },
-                };
-                state = created;
-                this._interstitialState = state;
-                ad.onLoad?.(state.onLoad);
-                ad.onClose(state.onClose);
-                ad.onError(state.onError);
-            } else {
-                ad = state.ad;
-                console.info('[InterstitialAd] 复用尚未展示的原生实例', context);
-            }
+            state = this._getInterstitialState(adUnitId);
+            ad = state.ad;
             const current = state;
             let markLoaded!: () => void;
             const loaded = new Promise<void>(resolve => { markLoaded = resolve; });
@@ -313,6 +345,7 @@ export class PlatformService {
                 markLoaded();
             } else if (!current.loading) {
                 current.loading = true;
+                current.loadingSince = Date.now();
                 // 新建实例等待原生自动加载；仅失败后的旧实例或无 onLoad 的兼容 SDK 显式 load。
                 const loading = ad.load();
                 if (loading && typeof loading.then === 'function') {
@@ -343,8 +376,8 @@ export class PlatformService {
         } catch (error) { onError(error); }
     }
 
-    public onRoundFinished(canShow: () => boolean): Promise<void> {
-        return this.showInterstitial(canShow, true, false, 'round-finished');
+    public onRoundFinished(canShow: () => boolean, placement = 'round-finished'): Promise<void> {
+        return this.showInterstitial(canShow, true, true, placement, true);
     }
 
     public get isHarmony(): boolean { return this.kind === 'douyin' && this.playerInfo.isOpenHarmony; }

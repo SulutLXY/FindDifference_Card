@@ -5,21 +5,26 @@ function methods(file,names,extra={}) {
  const body=tree.statements.find(ts.isClassDeclaration).members.filter(m=>names.includes(m.name?.getText(tree))).map(m=>m.getText(tree)).join('\n');
  return vm.runInNewContext(ts.transpileModule(`class Test {${body}}; Test;`,{compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{console,...extra});
 }
-const Flow=methods('assets/scripts/GameFlow.ts',['enterLevelSelection','requestLevelSelectAccess','requestReward','requestEnergyReward','returnToLobby'],{sidebarDay:()=> '2026-10-26'});
+const Flow=methods('assets/scripts/GameFlow.ts',['enterLevelSelection','requestReward','requestEnergyReward','returnToLobby'],{sidebarDay:()=> '2026-10-26'});
 (async()=>{
  const f=new Flow();f.isValid=true;f.lobby={isValid:true,node:{activeInHierarchy:true}};f.citySelect={node:{activeInHierarchy:true}};f._secondaryNavigationVersion=0;f._isPaused=false;
- let access=false,ads=0,rewards=0,entered=0,claims=0,energy=0,finish;
- f.save={hasLevelSelectAccess:()=>access,grantLevelSelectAccess:()=>access=true,get energy(){return energy;},energyLimit:99,energyRecoveryLimit:15,
+ let ads=0,rewards=0,entered=0,claims=0,energy=0,finish;
+ f.save={hasLevelSelectAccess:()=>{throw Error('Free entry must not read legacy access');},grantLevelSelectAccess:()=>{throw Error('Free entry must not grant legacy access');},get energy(){return energy;},energyLimit:99,energyRecoveryLimit:15,
   claimEnergyAd:()=>{claims++;energy=Math.min(99,energy+5);return true;}};
  f.toast=()=>{};f.showCitySelect=()=>entered++;
  f.platform={showRewardedAd:()=>{rewards++;return new Promise(r=>finish=r);},showInterstitial:async(active,frequency,round)=>{assert.ok(active());assert.equal(frequency,true);assert.equal(round,true);ads++;}};
- const first=f.enterLevelSelection();await f.enterLevelSelection();assert.equal(rewards,1);assert.equal(ads,0);assert.equal(entered,0);
- finish({success:true,completed:false});await first;assert.equal(entered,0);assert.equal(access,false);
- const good=f.enterLevelSelection();finish({success:true,completed:true});await good;
- assert.equal(entered,1);assert.equal(access,true);assert.equal(ads,1,'First successful entry also requests an interstitial; native SDK controls reward frequency');
- await f.enterLevelSelection();assert.equal(entered,2);assert.equal(ads,2,'Valid pass requests an interstitial on every entry');
- access=false;const stale=f.enterLevelSelection();f._secondaryNavigationVersion++;finish({success:true,completed:true});await stale;
- assert.equal(access,true);assert.equal(entered,2,'Earned pass persists but stale result cannot navigate');
+ const first=f.enterLevelSelection();await f.enterLevelSelection();await first;
+ assert.equal(rewards,0);assert.equal(entered,1);assert.equal(ads,1,'Free entry opens before any interstitial and ignores old access');
+ await f.enterLevelSelection();assert.equal(entered,2);assert.equal(ads,2);assert.equal(rewards,0);
+ const open=f.showCitySelect;f.citySelect.node.activeInHierarchy=false;
+ f.showCitySelect=()=>new Promise(resolve=>finish=resolve);
+ const stale=f.enterLevelSelection();f._secondaryNavigationVersion++;finish();await stale;
+ assert.equal(entered,2);assert.equal(ads,2,'A cancelled page load cannot request an entry ad');
+ assert.equal(f._levelSelectEntryPending,false);f.showCitySelect=open;
+ const Lobby=methods('assets/scripts/ui/LobbyScreen.ts',['_refreshLevelSelectEntry']);
+ const lobby=new Lobby(),icon={active:true},tip={active:true};
+ lobby.resolveNode=()=>({getChildByName:()=>icon});lobby.findChildDeep=()=>tip;
+ lobby._refreshLevelSelectEntry();assert.equal(icon.active,false);assert.equal(tip.active,false);
  f._isPaused=false;const cancelled=f.requestEnergyReward();await f.requestEnergyReward();assert.equal(f._isPaused,true);
  finish({success:false,completed:false});await cancelled;assert.equal(claims,0);assert.equal(f._isPaused,false);
  const gain=f.requestEnergyReward();finish({success:true,completed:true});await gain;assert.equal(energy,5);
@@ -40,5 +45,5 @@ const Flow=methods('assets/scripts/GameFlow.ts',['enterLevelSelection','requestL
  for(const energy of [10,11,12,13,14]){d.flow.save.energy=energy;d._refresh();assert.equal(d.countdownLabel.string,'01:00');assert.equal(d.videoIcon.active,true);d._onRewardClick();}
  assert.equal(clicked,7,'Energy from 10 through 14 must retain countdown and video access');
  for(const screen of ['LobbyScreen','CitySelectScreen','LevelSelectScreen','GameScreen'])assert.match(fs.readFileSync(`assets/scripts/ui/${screen}.ts`,'utf8'),/EnergyDisplay\.attach\(this\.node/);
- console.log('PASS: entry reward vs interstitial, duplicate/stale/cancelled requests, uncapped energy ads and pause restoration, home ad, four-page energy and countdown visibility.');
+ console.log('PASS: free level-selection entry without legacy access/reward ads, hidden video/caption, duplicate/stale requests, uncapped energy ads, home ad and four-page energy/countdown visibility.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

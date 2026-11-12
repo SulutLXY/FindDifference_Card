@@ -58,11 +58,27 @@ for (let visit = 0; visit < 3; visit++) {
     assert.equal(tool.active, true);
     for (const button of buttons) { assert.equal(button.handlers.length, 1); button.handlers[0](); }
     settings.present(false);
-    assert.equal(tool.active, false);
+    assert.equal(tool.active, true, 'Home settings must also show the reward entries');
+    for (const button of buttons) { assert.equal(button.handlers.length, 1); button.handlers[0](); }
 }
-assert.equal(gifts, 5); assert.equal(subscriptions, 5); assert.equal(desktops, 5);
+assert.equal(gifts, 8); assert.equal(subscriptions, 8); assert.equal(desktops, 8);
 buttons.forEach(button => { button.handlers = []; });
 settings.present(true);
 for (const button of buttons) { assert.equal(button.handlers.length, 1, 'Presentation repairs removed listeners'); button.handlers[0](); }
-assert.equal(gifts, 6); assert.equal(subscriptions, 6); assert.equal(desktops, 6);
-console.log('PASS: win/lose and settings entries dispatch all three actions; hidden lobby, repeated presentations and removed listeners recover without duplicates.');
+assert.equal(gifts, 9); assert.equal(subscriptions, 9); assert.equal(desktops, 9);
+const prefab = JSON.parse(fs.readFileSync('assets/PleyGame/prefabs/GameplaySupport.prefab', 'utf8'));
+const settingsNode = prefab.find(n => n.__type__ === 'cc.Node' && n._name === 'Settings');
+function find(root, name) {
+    const children = (root._children || []).map(ref => prefab[ref.__id__]);
+    return children.find(node => node._name === name) || children.map(node => find(node, name)).find(Boolean);
+}
+const actualTool = find(settingsNode, 'moneyTool');
+const actualButtons = actualTool._children.map(ref => prefab[ref.__id__]).sort((a, b) => a._lpos.x - b._lpos.x);
+assert.deepEqual(actualButtons.map(node => node._name), ['Gameflow', 'AddDesktop', 'Subscription']);
+assert.ok(actualButtons.every(node => node._active), 'All three authored icons are enabled');
+const texts = actualButtons.map(node => {
+    const label = find(node, 'Label');
+    return label._components.map(ref => prefab[ref.__id__]).find(c => c.__type__ === 'cc.Label')._string;
+});
+assert.deepEqual(texts, ['入口有奖', '添加桌面', '订阅']);
+console.log('PASS: win/lose and home/in-game settings dispatch all three actions, authored left-to-right order and text, hidden lobby, repeated presentations and listener recovery without duplicates.');

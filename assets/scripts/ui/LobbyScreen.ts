@@ -80,7 +80,7 @@ export class LobbyScreen extends UIScreen {
         host?.getComponent(LobbyEntries)?.bindLobby();
         host?.getComponent(FavoriteGift)?.bindLobby();
         void this._attachDailyEntry();
-        this._refreshLevelSelectAccess();
+        this._refreshLevelSelectEntry();
         this._refreshDailyEntry();
         const rankButton = this.resolveNode(this.btnRank, 'BtnRank');
         if (rankButton) rankButton.active = this.flow.platform.supportsRanking !== false && !this.flow.platform.isHarmony;
@@ -91,13 +91,12 @@ export class LobbyScreen extends UIScreen {
         void this._showHero();
     }
 
-    private _accessElapsed = 0;
+    private _entryElapsed = 0;
 
     protected update(dt: number): void {
-        this._accessElapsed += dt;
-        if (this._accessElapsed < 1) return;
-        this._accessElapsed = 0;
-        this._refreshLevelSelectAccess();
+        this._entryElapsed += dt;
+        if (this._entryElapsed < 1) return;
+        this._entryElapsed = 0;
         this._refreshDailyEntry();
     }
 
@@ -123,12 +122,13 @@ export class LobbyScreen extends UIScreen {
         this._refreshDailyEntry();
     }
 
-    private _refreshLevelSelectAccess(): void {
+    private _refreshLevelSelectEntry(): void {
         const button = this.resolveNode(this.btnLevels, 'BtnLevels');
         if (!button) return;
-        const hasAccess = this.flow.save.hasLevelSelectAccess();
         const videoIcon = button.getChildByName('icon_videoplay');
-        if (videoIcon) videoIcon.active = !hasAccess;
+        if (videoIcon) videoIcon.active = false;
+        const unlockTip = this.findChildDeep(button, 'LabelTips');
+        if (unlockTip) unlockTip.active = false;
     }
 
     protected onDisable(): void {

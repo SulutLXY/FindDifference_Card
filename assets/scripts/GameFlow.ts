@@ -166,7 +166,9 @@ export class GameFlow extends Component {
     private readonly _resultClips = new Map<boolean, Promise<AudioClip>>();
     private _resultSoundRequest = 0;
     private readonly _comboClips = new Map<string, Promise<AudioClip>>();
-    /** 连击组及 Common 下的基础点击声均位于远程 MainGameSources。 */
+    private readonly _chapterComboClips = new Set<AudioClip>();
+    private _chapterComboGroup: { name: string; chapterBundle: string; stages: Map<number, string> } | null = null;
+    /** 无章节专属连击组时使用远程 MainGameSources 中的通用组。 */
     private static readonly DEFAULT_COMBO_GROUP = 'Combo _F_type01';
     /** 局内资源包里的连击音效目录。 */
     private static readonly BUNDLE_COMBO_ROOT = 'voice/Combo _F_type';
@@ -655,8 +657,9 @@ export class GameFlow extends Component {
             this._settingsOpenedAt = Date.now();
         }
         this._settings.present(inGame);
-        // Lobby entries attempt on every click; in-game settings retain the cooldown.
-        void this.platform.showInterstitial(() => this.isValid && !!this._settings?.node.activeInHierarchy, !inGame);
+        // 设置入口立即尝试已预加载的插屏，不受客户端首局/冷却限制，也不延后补弹。
+        void this.platform.showInterstitial(() => this.isValid && !!this._settings?.node.activeInHierarchy,
+            true, true, 'settings', true);
     }
 
     public closeSettings(): void {
@@ -712,7 +715,8 @@ export class GameFlow extends Component {
         try {
             if (await this.platform.detectHarmony() || this.platform.supportsRanking === false) return;
             const caller = this.lobby?.node;
-            await this.platform.showInterstitial(() => this.isValid && !!caller?.activeInHierarchy, true);
+            await this.platform.showInterstitial(() => this.isValid && !!caller?.activeInHierarchy,
+                true, true, 'rank', true);
             if (!this.isValid || !caller?.activeInHierarchy) return;
             const result = await this.rankProvider.openNative?.();
             if (!result?.success) this.toast(result?.message ?? '当前环境不支持抖音排行榜');
@@ -743,34 +747,18 @@ export class GameFlow extends Component {
         this._switchTo(this.citySelect);
     }
 
-    /** 选关入口授权独立于小关解锁；完整观看后从此刻起有效 24 小时。 */
-    public async requestLevelSelectAccess(): Promise<boolean> {
-        if (this.save.hasLevelSelectAccess()) return true;
-        let granted = false;
-        await this.requestReward('level-select', () => {
-            granted = this.save.grantLevelSelectAccess();
-            if (!granted) this.toast('选关资格保存失败，请重试');
-        });
-        return granted;
-    }
-
     private _levelSelectEntryPending = false;
 
+    /** 主页选关入口直接开放，不读取旧24小时资格，也不请求激励解锁。 */
     public async enterLevelSelection(): Promise<void> {
-        if (this._levelSelectEntryPending || this._returnAdPending || this._rewardPending || !this.lobby?.node.activeInHierarchy) return;
+        if (!this.isValid || this._levelSelectEntryPending || this._returnAdPending || this._rewardPending || !this.lobby?.node.activeInHierarchy) return;
         this._levelSelectEntryPending = true;
-        const navigation = this._secondaryNavigationVersion;
-        const active = () => this.isValid && navigation === this._secondaryNavigationVersion && !!this.lobby?.node.activeInHierarchy;
         try {
-            if (!this.save.hasLevelSelectAccess() && !await this.requestLevelSelectAccess()) {
-                return;
-            }
-            if (!active() || !this.save.hasLevelSelectAccess()) return;
             // 先进入详情页，再请求插屏，避免加载或缺失关闭回调让玩家一直停在主页。
             await this.showCitySelect();
             if (!this.isValid || !this.citySelect?.node.activeInHierarchy) return;
             const enteredNavigation = this._secondaryNavigationVersion;
-            // 每次成功进入均请求，包括刚看视频解锁的首次进入；平台仍可能按原生频控拒绝展示。
+            // 已进入页面后沿用该入口插屏规则，不将广告作为进入资格。
             await this.platform.showInterstitial(() => this.isValid && enteredNavigation === this._secondaryNavigationVersion
                 && !!this.citySelect?.node.activeInHierarchy, true, true, 'level-select-entry');
         } finally {
@@ -953,6 +941,7 @@ export class GameFlow extends Component {
             return;
         }
         this.platform.prepareFeedLogin();
+        this.platform.preloadInterstitial?.();
         const begin = this._feedStart;
         this._feedStart = null;
         if (begin) begin();
@@ -1009,6 +998,8 @@ export class GameFlow extends Component {
         const active = () => this.isValid && version === this._levelLoadVersion;
         this._levelLoading = true;
         this._isPaused = true;
+        ++this._comboSoundRequest;
+        this._comboSource?.stop();
         this.resultModal?.close();
         if (this._loadingNode) {
             this._loadingNode.active = true;
@@ -1031,7 +1022,10 @@ export class GameFlow extends Component {
             if (!level || !this.game) throw new Error('关卡或游戏页面不存在');
             const chapterMusic = await this._resolveChapterMusic(city, musicSource);
             if (!active()) return;
+            const chapterCombo = await this._resolveChapterComboGroup(city, musicSource);
+            if (!active()) return;
             this._chapterMusic = chapterMusic;
+            this._chapterComboGroup = chapterCombo;
             this._currentCity = city;
             this._currentLevel = level;
             this._remainingTime = level.timeLimit;
@@ -1375,6 +1369,8 @@ export class GameFlow extends Component {
         this._comboSoundRequest++;
         this._comboSource?.stop();
         this._comboClips.clear();
+        for (const clip of this._chapterComboClips) clip.decRef();
+        this._chapterComboClips.clear();
         this._clickSource?.stop();
         this._musicMixer = null;
         for (const clip of this._musicClips.values()) clip.decRef();
@@ -1492,35 +1488,77 @@ export class GameFlow extends Component {
 
     private _loadComboClip(stage: number): Promise<AudioClip> {
         const ref = this._comboClipRef(stage);
-        const cached = this._comboClips.get(ref.path);
+        const key = `${ref.chapterBundle ?? 'MainGameSources'}:${ref.path}`;
+        const cached = this._comboClips.get(key);
         if (cached) return cached;
         const pending = new Promise<AudioClip>((resolve, reject) => {
             const done = (error: Error | null, clip?: AudioClip) => {
                 if (error || !clip) {
-                    this._comboClips.delete(ref.path);
+                    this._comboClips.delete(key);
                     reject(error ?? new Error(`[GameFlow] 连击音效加载失败: ${ref.path}`));
                 } else {
+                    // 章节页面退出后也可能仍在播尾音；缓存显式持有引用，销毁时归还。
+                    if (ref.chapterBundle && this.isValid && !this._chapterComboClips.has(clip)) {
+                        clip.addRef();
+                        this._chapterComboClips.add(clip);
+                    }
                     resolve(clip);
                 }
             };
-            void this._loadGameBundle()
-                .then(bundle => bundle.load(ref.fromBundle ? ref.path : `Common/${ref.path}`, AudioClip, done))
+            const load = (bundle: AssetManager.Bundle) => new Promise<void>(finish => {
+                bundle.load(ref.fromBundle ? ref.path : `Common/${ref.path}`, AudioClip, (error, clip) => {
+                    done(error, clip);
+                    finish();
+                });
+            });
+            void (ref.chapterBundle
+                ? this._contentBundles.use(ref.chapterBundle, load)
+                : this._loadGameBundle().then(load))
                 .catch(error => done(error instanceof Error ? error : new Error(String(error))));
         });
-        this._comboClips.set(ref.path, pending);
+        this._comboClips.set(key, pending);
         return pending;
     }
 
-    /** 点击声使用 Common 命名空间，其余使用局内路径；均在远程玩法包加载后获取。 */
-    private _comboClipRef(stage: number): { path: string; fromBundle: boolean } {
+    /** 点击/错误声仍用通用包；连击优先使用当前章节包的独立音效。 */
+    private _comboClipRef(stage: number): { path: string; fromBundle: boolean; chapterBundle?: string } {
         if (stage === -1) return { path: 'voice/GamePlay/voice_wrong', fromBundle: true };
         if (stage === 0) return { path: 'voice/ComboSound/Combo _F_type01_01/voice_Combo _F_type01_00', fromBundle: false };
+        const chapter = this._chapterComboGroup;
+        const chapterPath = chapter?.stages.get(stage);
+        if (chapterPath) return { path: chapterPath, fromBundle: true, chapterBundle: chapter!.chapterBundle };
         const group = this._discoverComboGroups().get(this._activeComboGroup);
         const discovered = group?.stages.get(stage);
         if (discovered) return { path: discovered, fromBundle: group!.fromBundle };
         // 发现结果缺少该档位时按命名约定回退：文件名 = voice_ + 组目录名 + _0N
         const suffix = String(stage).padStart(2, '0');
         return { path: `${GameFlow.BUNDLE_COMBO_ROOT}/${this._activeComboGroup}/voice_${this._activeComboGroup}_${suffix}`, fromBundle: true };
+    }
+
+    /** 只读取当前章节的资源索引；完整的五档专属组优先，不下载其他章节的音频。 */
+    private async _resolveChapterComboGroup(city: CityConfig, source: 'select' | 'streak' | 'retry'):
+        Promise<{ name: string; chapterBundle: string; stages: Map<number, string> } | null> {
+        try {
+            return await this._contentBundles.use(city.key, async bundle => {
+                const groups = new Map<string, Map<number, string>>();
+                for (const info of bundle.getDirWithPath('Combo _F_type', AudioClip)) {
+                    const match = /^Combo _F_type\/([^/]+)\/[^/]+_0([1-5])(?:\.\w+)?$/.exec(info.path);
+                    if (!match) continue;
+                    let stages = groups.get(match[1]);
+                    if (!stages) groups.set(match[1], stages = new Map());
+                    stages.set(Number(match[2]), info.path);
+                }
+                const names = Array.from(groups.keys()).filter(name => groups.get(name)!.size === 5).sort();
+                if (!names.length) return null;
+                const previous = this._chapterComboGroup;
+                const name = source === 'retry' && previous?.chapterBundle === city.key && names.includes(previous.name)
+                    ? previous.name : names[Math.floor(Math.random() * names.length)];
+                return { name, chapterBundle: city.key, stages: groups.get(name)! };
+            });
+        } catch (error) {
+            console.warn(`[GameFlow] 章节连击音效索引读取失败，使用通用音效: ${city.key}`, error);
+            return null;
+        }
     }
 
     /** 枚举局内包的 1-5 号连击音效；枚举失败时至少保留默认组。 */
@@ -1845,7 +1883,8 @@ export class GameFlow extends Component {
             });
             if (win && !alreadyCollected && (level.type === 'food' || this._foods.some(food => food.levelKey === level.key))) this.showFoodTips(level, true);
             void this.platform.onRoundFinished(() => this.isValid && this._isGameOver && !this._isPaused
-                && this._currentLevel === level && !!this.resultModal?.node.activeInHierarchy);
+                && this._currentLevel === level && !!this.resultModal?.node.activeInHierarchy,
+                win ? 'round-success' : 'round-failure');
         };
         // 挑战成功先播差异圈从左到右的定格波浪动画（2秒内），结束后再弹结算窗；失败保持立即弹出
         if (win && this.game?.node.activeInHierarchy) {
@@ -2225,6 +2264,7 @@ export class GameFlow extends Component {
             this._grades = gradesAsset.json as GradeConfig;
             this._dailyConfig = dailyAsset.json as DailySignInConfig;
             this.platform.configure(platformAsset.json as PlatformConfig);
+            this.platform.preloadInterstitial?.();
             this.playStats?.configure((platformAsset.json as PlatformConfig).playStats, (platformAsset.json as PlatformConfig).apiBaseUrl);
             this.feed?.configure((platformAsset.json as PlatformConfig).feed);
 
@@ -2485,7 +2525,8 @@ export class GameFlow extends Component {
             this._secondaryPageLoading = false;
             this._setLoadingProgress(1);
             this._switchTo(page);
-            void this.platform.showInterstitial(() => this.isValid && page.node.activeInHierarchy, true);
+            void this.platform.showInterstitial(() => this.isValid && page.node.activeInHierarchy,
+                true, kind === 'rank', kind === 'rank' ? 'rank' : 'secondary-page', kind === 'rank');
         } catch (error) {
             if (!active()) return;
             this._secondaryPageLoading = false;
