@@ -51,6 +51,7 @@ class Node {
     getComponentInChildren(Type) { return this.getComponent(Type) || this.children.map(n => n.getComponentInChildren(Type)).find(Boolean); }
     addComponent(Type) { const c = new Type(); c.node = this; this.components.set(Type, c); return c; }
     on(type, action, ctx) { this.events.set(type, () => action.call(ctx)); }
+    hasEventListener(type) { return this.events.has(type); }
     off(type) { this.events.delete(type); }
     removeFromParent() { if (this.parent) this.parent.children = this.parent.children.filter(n => n !== this); this._parent = null; }
     destroy() { this.isValid = false; }

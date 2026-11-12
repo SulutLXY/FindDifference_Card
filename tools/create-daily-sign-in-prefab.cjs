@@ -88,7 +88,7 @@ if (!fs.existsSync(target)) {
         const check = label('Claimed', cell, '✓', 0, 12, 130, 110, 82, color(28, 170, 84)); array[check.__id__]._active = false;
     });
     const normal = button('BtnNormal', card, '普通领取', -154, -395, 282, 92, 'buttons/button_secondary_blue');
-    const doubled = button('BtnDouble', card, '视频双倍领取', 154, -395, 282, 92, 'buttons/button_primary_normal');
+    const doubled = button('BtnDouble', card, '双倍领取', 154, -395, 282, 92, 'buttons/button_primary_normal');
     label('Rules', card, '每日一次 · 北京时间零点刷新 · 七天领完开始下一轮', 0, -481, 610, 42, 21);
     const close = button('BtnClose', card, '×', 288, 490, 74, 74, 'buttons/button_square_normal');
     const scriptId = read('assets/scripts/ui/DailySignInModal.ts.meta').uuid.replace(/-/g, '');

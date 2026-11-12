@@ -96,7 +96,8 @@ export class PlayStatsService {
     }
 
     public getCounts(keys: string[]): Promise<Record<string, number>> {
-        const unique = [...new Set(keys)].sort(), key = unique.join(',');
+        // Creator loose 模式会将 [...Set] 编成 [].concat(Set)，需显式转数组。
+        const unique = Array.from(new Set(keys)).sort(), key = unique.join(',');
         const cached = this._queries.get(key);
         if (cached) return cached;
         const fallback = () => Object.fromEntries(unique.flatMap(id => {

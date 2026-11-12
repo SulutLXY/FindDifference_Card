@@ -36,6 +36,9 @@ export class UIAnimationBinding extends Component {
                 animation.play(CLICK);
                 return;
             }
+            // 独立交互子节点（如章节箭头）没有自己的点击动画时，不缩放祖先卡片。
+            // 否则按住箭头时它会随父卡片向内移动，松手命中失败，TOUCH_END 被取消。
+            if (node.hasEventListener(Node.EventType.TOUCH_END)) return;
             if (node === this.node) return;
             node = node.parent;
         }

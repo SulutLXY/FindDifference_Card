@@ -33,7 +33,7 @@ export class DailySignInModal extends UIScreen {
     protected onLoad(): void {
         if (!this.node.getComponent(BlockInputEvents)) this.node.addComponent(BlockInputEvents);
         this._prepareButtonAnimations();
-        // 抖音添加桌面必须同步处于原生触摸回调；已绑定原生监听时避免引擎回调重复领取。
+        // 普通领取保留原生点击上下文；视频领取在奖励保存成功后自动请求桌面授权。
         this.wireButton(this.btnNormal, 'ResultCard/BtnNormal', () => { if (!this._nativeTouchHost) void this._claim(false); });
         this.wireButton(this.btnDouble, 'ResultCard/BtnDouble', () => { if (!this._nativeTouchHost) void this._claim(true); });
         this.wireButton(this.btnClose, 'ResultCard/BtnClose', () => this.close());
@@ -41,6 +41,7 @@ export class DailySignInModal extends UIScreen {
             if (this._pending) return;
             this._desktopChecked = !this._desktopChecked;
             this._syncDesktopChoice();
+            this._refresh();
         });
         const tt = (globalThis as any).tt;
         if (this.flow.platform.kind === 'douyin' && typeof tt?.onTouchEnd === 'function' && typeof tt?.offTouchEnd === 'function') {
@@ -97,7 +98,7 @@ export class DailySignInModal extends UIScreen {
             if (sprite) sprite.grayscale = status.claimed;
         }
         this.setLabel(null, 'ResultCard/BtnNormal/Label', status.claimed ? '已领取' : this._pending ? '请稍候…' : '普通领取');
-        this.setLabel(null, 'ResultCard/BtnDouble/Label', status.claimed ? '今日已领取' : this._pending ? '请稍候…' : '视频双倍领取');
+        this.setLabel(null, 'ResultCard/BtnDouble/Label', status.claimed ? '今日已领取' : this._pending ? '请稍候…' : '双倍领取');
     }
 
     private _syncDesktopChoice(): void {
@@ -195,19 +196,13 @@ export class DailySignInModal extends UIScreen {
         if (!status.canClaim) return;
         if (!double) this._playNormalClick();
         this._pending = true; this._refresh();
-        let desktopRequest: Promise<unknown> | null = null;
-        if (nativeGesture && this._desktopChecked && this.flow.platform.kind === 'douyin') {
-            try {
-                // 必须在首次 await 前调用，不能等视频结束或异步状态查询后再请求。
-                desktopRequest = this.flow.platform.addDesktop().catch(error => {
-                    console.warn('[DailySignIn] 添加桌面未完成，签到不受影响', error);
-                });
-            } catch (error) { console.warn('[DailySignIn] 添加桌面未完成，签到不受影响', error); }
-        }
+        const wantsDesktop = nativeGesture && this._desktopChecked && this.flow.platform.kind === 'douyin';
+        let claimed = false;
         const claim = () => {
             if (sidebarDay() !== day) { this.flow.toast('日期已更新，请领取今天的签到奖励'); return; }
             const before = status.reward.kind === 'hint' ? this.flow.save.freeHints : this.flow.save.energy;
             if (this.flow.save.claimDailySignIn(day, config, double ? 2 : 1, status.dayIndex)) {
+                claimed = true;
                 const after = status.reward.kind === 'hint' ? this.flow.save.freeHints : this.flow.save.energy;
                 this.flow.toast(`签到成功：${status.reward.kind === 'hint' ? '提示' : '体力'} +${after - before}`);
             } else this.flow.toast(status.reward.kind === 'energy' && this.flow.save.energy >= this.flow.save.energyLimit
@@ -215,12 +210,17 @@ export class DailySignInModal extends UIScreen {
         };
         try {
             if (double) {
-                // 不让系统添加桌面弹窗与激励视频同时打开。
-                if (desktopRequest) await desktopRequest;
                 if (!this.isValid || !this.node.activeInHierarchy) return;
                 await this.flow.requestReward('daily-sign-in', claim);
             }
             else claim();
+            if (claimed && wantsDesktop && this.isValid && this.node.activeInHierarchy && !this.flow.feed?.isPreview) {
+                try {
+                    // 领取与保存完成后只自动请求一次，不让玩家再次点击领取按钮。
+                    // 视频后的调用可能被宿主以21500（缺少原生手势）拒绝，不能影响已保存奖励。
+                    await this.flow.platform.addDesktop();
+                } catch (error) { console.warn('[DailySignIn] 领取后自动添加桌面未完成，签到奖励已保留', error); }
+            }
         } finally { this._pending = false; if (this.isValid) this._refresh(); }
     }
 }

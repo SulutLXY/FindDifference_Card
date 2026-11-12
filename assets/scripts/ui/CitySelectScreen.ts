@@ -230,7 +230,8 @@ export class CitySelectScreen extends UIScreen {
             const counts = await this.flow.playStats.getCounts(keys);
             if (!this.isValid || !this.node.activeInHierarchy || version !== this._heatVersion) return;
             selections.forEach((city, index) => {
-                if (cards[index]?.isValid) this._setHeatBadge(cards[index], city.key, counts[city.key] ?? null);
+                if (cards[index]?.isValid) this._setHeatBadge(cards[index], city.key,
+                    counts[city.key] ?? this.flow.playStats?.initialCount(city.key) ?? null);
             });
         } catch (error) { console.warn('[CitySelect] 热度刷新失败', error); }
     }

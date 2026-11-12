@@ -1667,11 +1667,11 @@ export class GameFlow extends Component {
         }).catch(error => console.warn('[GameFlow] 点击/错误音效播放失败', error));
     }
 
-    /** 连击音效逐级递增，超过现有五档后保持最高档。 */
+    /** 首次找对使用普通提示声；二至六连击对应音效1至5档，此后保持最高档。 */
     public playSuccessTone(combo: number): void {
         const request = ++this._comboSoundRequest;
         if (!this.save.data.soundEnabled) return;
-        const stage = Math.max(1, Math.min(5, Math.floor(combo)));
+        const stage = Math.max(1, Math.min(5, Math.floor(combo) - 1));
         void this._loadComboClip(stage).then(clip => {
             const source = this._comboSource;
             if (!this.isValid || !source?.isValid || !this.save.data.soundEnabled || request !== this._comboSoundRequest) return;

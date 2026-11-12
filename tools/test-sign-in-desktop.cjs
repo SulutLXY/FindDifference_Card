@@ -16,13 +16,18 @@ assert.ok(choice._lpos.y - height(choice) / 2 >= -height(findAsset('ResultCard')
 assert.ok(findAsset('Rules')._lpos.y - height(findAsset('Rules')) / 2 >= -height(findAsset('ResultCard')) / 2, 'Footer stays inside the fixed panel');
 class UITransform {} class Button {} class Vec2 { constructor(x, y) { Object.assign(this, { x, y }); } }
 const tick = () => new Promise(setImmediate);
-function setup(dpr, kind = 'douyin') {
+function setup(dpr, kind = 'douyin', allowAsyncShortcut = false) {
     let gesture = false, claimed = false, claims = 0, desktopCalls = 0, videos = 0, shortcut, finishVideo;
+    const events = [];
     const nativeHandlers = new Set(), handlers = new Map(), check = { active: true };
     const tt = {
         getSystemInfoSync: () => ({ platform: 'android', pixelRatio: dpr }),
         onTouchEnd(fn) { nativeHandlers.add(fn); }, offTouchEnd(fn) { nativeHandlers.delete(fn); },
-        addShortcut(options) { assert.equal(gesture, true, 'addShortcut must execute synchronously inside native touch'); desktopCalls++; shortcut = options; },
+        addShortcut(options) {
+            assert.equal(claimed, true, 'Save sign-in rewards before asking for desktop authorization');
+            events.push('desktop'); desktopCalls++; shortcut = options;
+            if (!gesture && !allowAsyncShortcut) options.fail({ errNo: 21500, errMsg: 'must be invoked by user gesture' });
+        },
     };
     const platformExports = {};
     vm.runInNewContext(compile(fs.readFileSync('assets/scripts/services/PlatformService.ts', 'utf8')), {
@@ -54,13 +59,14 @@ function setup(dpr, kind = 'douyin') {
     modal._refresh = () => modal._syncDesktopChoice();
     const save = { freeHints: 2, energy: 15, energyLimit: 99,
         dailyStatus: () => ({ canClaim: !claimed, dayIndex: 1, reward: config.days[0] }),
-        claimDailySignIn(_day, _config, multiplier) { if (claimed) return false; claimed = true; claims++; this.freeHints += multiplier; return true; },
+        claimDailySignIn(_day, _config, multiplier) { if (claimed) return false; claimed = true; claims++; events.push('claim'); this.freeHints += multiplier; return true; },
     };
     modal.flow = { platform, save, toast() {}, requestReward: async (_, grant) => {
-        videos++; if (await new Promise(resolve => { finishVideo = resolve; })) grant();
+        videos++; events.push('video');
+        if (await new Promise(resolve => { finishVideo = resolve; })) { events.push('video-complete'); grant(); }
     } };
     modal.onLoad(); modal._syncDesktopChoice();
-    return { modal, check, handlers, save, nativeHandlers,
+    return { modal, check, handlers, save, nativeHandlers, events,
         get desktopCalls() { return desktopCalls; }, get claims() { return claims; }, get videos() { return videos; },
         tap(x) { gesture = true; for (const fn of nativeHandlers) fn({ changedTouches: [{ clientX: x, clientY: 700 }] }); gesture = false; },
         finishDesktop(success) { if (success) shortcut.success({}); else shortcut.fail({ errNo: 21305, errMsg: 'user cancel' }); },
@@ -74,6 +80,7 @@ function setup(dpr, kind = 'douyin') {
         normal.handlers.get('BtnNormal')(); assert.equal(normal.claims, 0, 'Engine callback defers to native synchronous handler');
         normal.tap(500); assert.equal(normal.desktopCalls, 0, 'Outside taps do nothing');
         normal.tap(100); assert.equal(normal.desktopCalls, 1); assert.equal(normal.claims, 1); assert.equal(normal.save.freeHints, 3);
+        assert.deepEqual(normal.events, ['claim', 'desktop']);
         normal.tap(100); assert.equal(normal.desktopCalls, 1, 'Already claimed cannot repeat desktop requests');
         normal.finishDesktop(false); await tick(); assert.equal(normal.claims, 1, 'Desktop cancellation never rolls back sign-in');
         normal.modal.onDestroy(); assert.equal(normal.nativeHandlers.size, 0);
@@ -83,18 +90,44 @@ function setup(dpr, kind = 'douyin') {
         unchecked.tap(100); assert.equal(unchecked.desktopCalls, 0); assert.equal(unchecked.claims, 1);
         unchecked.modal.onDestroy();
 
-        const double = setup(dpr); double.tap(300);
-        assert.equal(double.desktopCalls, 1); assert.equal(double.videos, 0);
-        double.tap(300); assert.equal(double.desktopCalls, 1, 'Pending click cannot duplicate requests');
-        double.finishDesktop(false); await tick(); assert.equal(double.videos, 1, 'Video follows desktop completion/cancel, never overlaps it');
-        double.finishVideo(true); await tick(); assert.equal(double.save.freeHints, 4); double.modal.onDestroy();
+        // A permissive host verifies the requested auto-flow; strict gesture rejection is covered below.
+        const double = setup(dpr, 'douyin', true); double.tap(300);
+        assert.equal(double.desktopCalls, 0); assert.equal(double.videos, 1); assert.equal(double.claims, 0);
+        double.tap(300); assert.equal(double.videos, 1, 'Pending click cannot duplicate videos');
+        double.finishVideo(true); await tick(); assert.equal(double.save.freeHints, 4);
+        assert.equal(double.desktopCalls, 1, 'Automatically request desktop authorization after video and saved rewards, without another click');
+        double.tap(300); assert.equal(double.desktopCalls, 1);
+        assert.deepEqual(double.events, ['video', 'video-complete', 'claim', 'desktop']);
+        double.finishDesktop(false); await tick(); assert.equal(double.claims, 1); assert.equal(double.save.freeHints, 4);
+        double.tap(300); assert.equal(double.desktopCalls, 1, 'Completed/cancelled desktop request cannot repeat rewards or video');
+        double.modal.onDestroy();
+
+        const cancelled = setup(dpr); cancelled.tap(300); cancelled.finishVideo(false); await tick();
+        assert.equal(cancelled.claims, 0); assert.equal(cancelled.desktopCalls, 0);
+        cancelled.tap(300); assert.equal(cancelled.videos, 2, 'Cancelled video can be retried');
+        cancelled.finishVideo(true); await tick(); assert.equal(cancelled.claims, 1);
+        assert.equal(cancelled.desktopCalls, 1, 'Attempt automatic desktop request even if the host rejects its async gesture');
+        assert.equal(cancelled.save.freeHints, 4); assert.equal(cancelled.modal._pending, false);
+        cancelled.tap(300); assert.equal(cancelled.desktopCalls, 1); assert.equal(cancelled.videos, 2);
+        cancelled.modal.onDestroy();
+
+        const uncheckedDouble = setup(dpr); uncheckedDouble.handlers.get('AddDesktopChoice')();
+        uncheckedDouble.tap(300); uncheckedDouble.finishVideo(true); await tick();
+        assert.equal(uncheckedDouble.claims, 1); assert.equal(uncheckedDouble.desktopCalls, 0);
+        uncheckedDouble.modal.onDestroy();
+
+        const unsaved = setup(dpr); unsaved.save.claimDailySignIn = () => false;
+        unsaved.tap(300); unsaved.finishVideo(true); await tick();
+        assert.equal(unsaved.claims, 0); assert.equal(unsaved.desktopCalls, 0);
+        unsaved.modal.onDestroy();
 
         const closed = setup(dpr); closed.tap(300); closed.modal.node.activeInHierarchy = false;
-        closed.finishDesktop(true); await tick(); assert.equal(closed.videos, 0, 'Closing while desktop prompt is open cannot start a late video');
+        closed.finishVideo(true); await tick();
+        assert.equal(closed.desktopCalls, 0, 'Closing while video plays cannot open a late desktop prompt');
         closed.modal.onDestroy();
     }
     const web = setup(1, 'h5');
     assert.equal(web.nativeHandlers.size, 0); web.handlers.get('BtnNormal')();
     assert.equal(web.desktopCalls, 0); assert.equal(web.claims, 1); web.modal.onDestroy();
-    console.log('PASS sign-in desktop: visible authored checked/cancellable option, fixed-panel spacing, real addShortcut in native gesture at DPR1/2/3, normal/double flow, cancellation, duplicates, stale close, H5 and listener disposal.');
+    console.log('PASS sign-in desktop: automatic video/reward-save/desktop order with one click at DPR1/2/3, ordinary native claim, strict SDK gesture rejection preserves rewards, cancellation, unchecked, duplicates, stale close, H5 and disposal.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

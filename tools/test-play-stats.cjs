@@ -1,7 +1,12 @@
 'use strict';
 const fs = require('node:fs'), path = require('node:path'), os = require('node:os'), vm = require('node:vm'), assert = require('node:assert/strict');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
-const compile = source => ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.CommonJS } }).outputText;
+const babel = require('D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/@babel/core');
+const spread = require('D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/@babel/plugin-transform-spread');
+// Match Creator's loose spread transform; TypeScript-only execution misses the packaged Set bug.
+const compile = source => babel.transformSync(ts.transpileModule(source, { compilerOptions: {
+    target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.CommonJS,
+} }).outputText, { configFile: false, babelrc: false, plugins: [[spread, { loose: true }]] }).code;
 const { openStore, createPlayStatsServer } = require('../server/play-stats/server.cjs');
 const root = fs.mkdtempSync(path.join(os.tmpdir(), 'play-stats-test-'));
 const catalog = { schemaVersion: 1, knownLevels: ['a/first', 'a/second', 'b/first'], chapters: {
@@ -79,6 +84,15 @@ let server;
     assert.equal(Object.keys(await disabled.getCounts(['unknown'])).length, 0, 'No fabricated count for unspecified chapters');
     disabled.dispose();
 
+    const releaseConfig = JSON.parse(fs.readFileSync('assets/resources/configs/platform-config.json', 'utf8')).playStats;
+    const release = new PlayStatsService({ fetch() { throw Error('Disabled release statistics cannot request'); } }, clientStorage);
+    release.configure(releaseConfig);
+    const releaseKeys = Object.keys(releaseConfig.initialCounts);
+    const releaseCounts = await release.getCounts([...releaseKeys, releaseKeys[0], 'unknown']);
+    assert.deepEqual(JSON.parse(JSON.stringify(releaseCounts)), releaseConfig.initialCounts,
+        'After Creator loose compilation, all five release heat baselines survive deduplication and offline refresh');
+    release.dispose();
+
     // Native request transport uses the same contract, without blocking on a login or API capability probe.
     let nativeCalls = 0;
     const native = new PlayStatsService({ tt: { request(options) { nativeCalls++; options.success({ statusCode: 200, data: { counts: { a: 219550 } } }); return { abort() {} }; } } }, clientStorage);
@@ -99,7 +113,7 @@ let server;
     assert.equal(core.formatPlayCount(0), '0'); assert.equal(core.formatPlayCount(-1), '');
     const production = JSON.parse(fs.readFileSync('server/play-stats/catalog.json'));
     assert.equal(production.knownLevels.length, 325); assert.equal(production.chapters['lian-ai-mei-shi'].levels.length, 120);
-    console.log('PASS play statistics: server persistence/baselines, concurrency, idempotency and rollback; client offline/restart/replay/native/cache/disabled paths; release counts and 325-level catalog');
+    console.log('PASS play statistics with Creator loose spread: server persistence/baselines, concurrency, idempotency and rollback; client offline/restart/replay/native/cache/disabled paths; all five release counts and 325-level catalog');
 })().catch(error => { console.error(error); process.exitCode = 1; }).finally(async () => {
     for (const t of timers) clearTimeout(t);
     if (server?.listening) await new Promise(resolve => { server.close(resolve); server.closeIdleConnections(); });

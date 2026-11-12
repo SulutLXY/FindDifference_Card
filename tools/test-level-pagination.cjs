@@ -28,6 +28,7 @@ class Node {
     addComponent(Type) { const component = new Type(); component.node = this; this.components.set(Type, component); return component; }
     getComponent(Type) { return this.components.get(Type) || null; }
     on(type, fn, ctx) { this.events.set(type, () => fn.call(ctx)); }
+    hasEventListener(type) { return this.events.has(type); }
     off(type) { this.events.delete(type); }
     destroy() { this.destroyPending = true; } // Cocos destroys at frame end, so old cards must already be inactive.
 }

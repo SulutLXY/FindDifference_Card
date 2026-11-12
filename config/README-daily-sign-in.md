@@ -14,7 +14,7 @@
 - `ResultCard`：整个弹窗主体，可以编辑其尺寸、位置和美术。
 - `ResultCard/Title`、`Subtitle`、`Rules`：标题、动态签到状态和规则说明。
 - `ResultCard/Days/Day1` 至 `Day7`：七个独立奖励格；每格的 `DayTitle`、`Icon`、`Reward`、`State`、`Current`、`Claimed` 分别对应日期、图标、奖励文案、领取状态、当前格高亮、领取勾选。
-- `ResultCard/BtnNormal`、`BtnDouble`、`BtnClose`：普通领取、视频双倍领取、关闭，组件已绑定。改名或替换时同步调整绑定和命名查找。
+- `ResultCard/BtnNormal`、`BtnDouble`、`BtnClose`：普通领取、双倍领取、关闭，组件已绑定。双倍领取仍需完整观看激励视频。改名或替换时同步调整绑定和命名查找。
 - `ResultCard/AddDesktopChoice`：2026-11-12新增的“同时添加桌面”，位于领取按钮下方，每次打开默认勾选，可点击取消；Box、Checkmark、Label均为可编辑节点。为容纳该行，底部Rules下移并缩小文字，固定弹窗尺寸不变。
 
 逻辑只更新领取状态、文字、勾选/高亮和按钮可用状态，不覆盖格子位置、图片、字体或色彩。弹窗不参与自动适配，根节点与 `ResultCard` 均按预制体设置的尺寸、位置、缩放和 Widget 显示。
@@ -39,9 +39,9 @@
 
 双倍使用 `daily-sign-in` 激励位，复用已配置的平台激励广告单元。取消或播放失败不发奖励；看视频跨过零点不会用旧奖励领取新一天。重复点击受弹窗和全局广告并发保护。H5 继续沿用现有免广告调试行为。
 
-勾选“同时添加桌面”后，抖音原生领取触摸回调在首次await前同步请求现有 `PlatformService.addDesktop()`，不等待视频结束才调用。普通领取直接发放签到奖励，桌面请求并行处理；双倍领取等待桌面系统流程结束后再发起激励视频，避免两个原生界面重叠。取消、失败或不支持添加桌面不影响签到资格，视频仍需完整观看才能获得双倍奖励。H5仅展示可编辑勾选项并正常签到，不调用抖音桌面API。已领取时再次点击不会重复发起桌面请求。原生监听销毁时解绑，关闭签到页后迟到的桌面回调不会拉起视频。
+勾选“同时添加桌面”后，一次点击完成领取并自动请求桌面授权。普通领取先同步保存奖励，成功后在同一次原生点击内调用 `PlatformService.addDesktop()`。视频双倍领取先完整观看激励视频并成功保存双倍奖励，再自动调用添加桌面，不要求玩家二次点击，不把领取按钮改成“添加桌面”。视频取消/失败、奖励保存失败或跨日未领取成功时不发起桌面授权。取消或被平台拒绝桌面授权不回滚已领取的奖励、不重播视频，也不自动重试。处理中禁止重复点击；领取后按钮显示已领取并禁用。未勾选或视频期间关闭弹窗时不调用桌面API。H5正常签到，不调用抖音桌面API。原生监听销毁时解绑。
 
-原生手势约束依据：[tt.addShortcut官方说明](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/javascript-api/open-capacity/shortcut/add-shortcut)。系统确认、拒绝和实际创建结果由平台处理，勾选不代表已成功添加。验证：`node tools/test-sign-in-desktop.cjs`，覆盖实际预制体、默认勾选与取消、固定布局、原生同步调用、DPR1/2/3、普通/双倍、取消及关闭、去重、H5和监听清理。尚未真机验证。
+原生手势约束依据：[tt.addShortcut官方说明](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/javascript-api/open-capacity/shortcut/add-shortcut)：官方要求在 `tt.onTouchEnd` 回调内同步调用。按产品明确要求，视频后仍自动尝试调用一次，宿主可能以21500（缺少原生手势）拒绝；代码仅记录该失败，确保已领取奖励不受影响，不伪造点击或绕过平台限制。自动发起请求不等于保证系统授权页弹出或已成功添加，需真机确认宿主实际表现。验证：`node tools/test-sign-in-desktop.cjs`，覆盖实际预制体、默认勾选与取消、固定布局、DPR1/2/3、视频→奖励保存→自动桌面请求的严格顺序、平台拒绝异步请求时保留奖励、普通领取原生同步调用、视频取消及关闭、保存失败、去重、H5和监听清理。
 
 2026-11-12签到按钮动画：`BtnDouble`根节点使用已绑定的 `An_Gameflow_01`，可领取且未处理中时循环播放1.5秒缩放呼吸，并让根节点UIOpacity在原透明度的75%–100%之间柔和闪动，整个按钮（背景与文字）一起变化。周期刷新不重启动画；视频/桌面流程处理中、已领取或关闭弹窗时停止并恢复原尺寸和透明度，取消或失败后可恢复循环。`BtnNormal`复用 `An_BtnClik_01`；全局按下动画已播放时不重复启动，原生领取回调补播点击反馈。关闭/销毁同时还原普通按钮尺寸。验证：`node tools/test-sign-in-button-animation.cjs`。
 

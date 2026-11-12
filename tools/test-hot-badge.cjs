@@ -23,6 +23,7 @@ s.newChapterIcon = 'leaf'; s.newChapterBackground = 'green';
 s.findChildDeep = function find(node, name) { return node.children.find(n => n.name === name) || node.children.map(n => find(n, name)).find(Boolean); };
 const pending = [];
 s.flow = { chapterSelections: [{ key: 'wang-luo-re-dian' }, { key: 'qing-hua-ci' }], playStats: {
+    initialCount: key => key === 'wang-luo-re-dian' ? 219500 : null,
     isNewChapter: key => key === 'qing-hua-ci', getCounts: keys => new Promise(resolve => pending.push({ keys, resolve })),
 } };
 (async () => {
@@ -39,6 +40,9 @@ s.flow = { chapterSelections: [{ key: 'wang-luo-re-dian' }, { key: 'qing-hua-ci'
     assert.equal(hot.label.string, '219.5K', 'Stale page result must not replace the current badge');
     const update = s._refreshHeat(); pending[1].resolve({ 'wang-luo-re-dian': 219510 }); await update;
     assert.equal(hot.label.string, '219.51K'); assert.equal(leaf.label.string, '最新章节');
+    const missing = s._refreshHeat(); pending[2].resolve({}); await missing;
+    assert.equal(hot.label.string, '219.5K'); assert.equal(hot.badge.active, true,
+        'A missing asynchronous count must not erase a configured release baseline');
     const index = JSON.parse(fs.readFileSync('assets/resources/configs/cities.json'));
     assert.deepEqual(index.navigation, ['wang-luo-re-dian','qing-hua-ci','nian-du-re-geng','chong-wu-gu-shi','meng-chong-san-guo','lian-ai-mei-shi']);
     assert.equal(index.cities[1], 'qing-hua-ci');
