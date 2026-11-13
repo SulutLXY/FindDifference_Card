@@ -61,7 +61,7 @@ const Flow = vm.runInNewContext(compile(`class Flow {${body}}; Flow;`), { consol
 
     const level = { key: 'round', timeLimit: 150, differences: [{ id: 'a' }, { id: 'b' }] };
     Object.assign(f, { _currentLevel: level, _foundIds: new Set(['a', 'b']), _remainingTime: 100, _elapsedTime: 50,
-        _reviveUsed: false, _foods: [], _isPaused: false, save: { isCompleted: () => false, completeLevel() {} },
+        _reviveUsed: false, _foods: [], _isPaused: false, save: { isCompleted: () => false, completeLevel() { return true; } },
         game: { node: { activeInHierarchy: true }, playVictoryWave(callback) { wave = callback; } },
         resultModal: { node: { activeInHierarchy: false }, present() { this.node.activeInHierarchy = true; } },
         _playResultTone() {}, findNextLevel: () => null,

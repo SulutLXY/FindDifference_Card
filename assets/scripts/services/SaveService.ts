@@ -432,17 +432,27 @@ export class SaveService {
         return false;
     }
 
-    /** 通关一关：+1 积分（重复通关不重复加分），星级与最佳时间取最优。 */
-    public completeLevel(key: string, stars: number, elapsedSeconds: number): void {
-        const previous = this._data.completed[key];
-        this._data.completed[key] = {
-            stars: Math.max(previous?.stars ?? 0, stars),
-            bestTime: previous && previous.bestTime > 0
-                ? Math.min(previous.bestTime, elapsedSeconds)
-                : elapsedSeconds,
+    /** 通关记录和可选的本局+1体力奖励原子保存；历史补记默认不发体力。 */
+    public completeLevel(key: string, stars: number, elapsedSeconds: number, rewardEnergy = false): boolean {
+        const energy = rewardEnergy ? this.energy : 0;
+        const previous = this._data;
+        const progress = previous.completed[key];
+        const nextEnergy = Math.min(this.energyLimit, energy + 1);
+        this._data = {
+            ...previous,
+            completed: { ...previous.completed, [key]: {
+                stars: Math.max(progress?.stars ?? 0, stars),
+                bestTime: progress && progress.bestTime > 0
+                    ? Math.min(progress.bestTime, elapsedSeconds)
+                    : elapsedSeconds,
+            } },
+            ...(rewardEnergy ? { energy: nextEnergy,
+                energyUpdatedAt: nextEnergy >= this.energyRecoveryLimit ? Date.now() : previous.energyUpdatedAt } : {}),
         };
         this._recountScore();
-        this._persist();
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
     }
 
     public recordAchievement(id: string): void {

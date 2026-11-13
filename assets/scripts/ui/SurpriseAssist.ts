@@ -18,6 +18,7 @@ export class SurpriseAssist {
     private _lastAppearance = -Infinity;
     private _appearances = 0;
     private _claiming = false;
+    private _pressedTouch: { flight: Flight; id: number | null } | null = null;
     private _version = 0;
     private _disposed = false;
 
@@ -48,7 +49,7 @@ export class SurpriseAssist {
         if (!this._level || this._disposed || !Number.isFinite(dt) || dt <= 0) return;
         if (this.flow.isGameOver) { this._removeFlight(); return; }
         if (this._flight?.gift.kind === 'life' && !this._canDropLife()) this._removeFlight();
-        if (this.flow.isPaused || this.flow.platform.interstitialBusy || this._claiming) return;
+        if (this.flow.isPaused || this.flow.platform.interstitialBusy || this._claiming || this._pressedTouch) return;
         this._clock += dt;
         if (this._flight) {
             this._flight.elapsed += dt;
@@ -108,9 +109,36 @@ export class SurpriseAssist {
         this._lastAppearance = this._clock;
         this._rollElapsed = 0;
         this._position(flight);
+        this._bindTouch(flight);
+    }
+
+    private _bindTouch(flight: Flight): void {
+        const node = flight.node;
+        const clickBox = node.getChildByName('ClikBox');
+        // 透明 UITransform 只有绑定触摸监听后才成为独立命中目标。
+        if (clickBox) clickBox.setSiblingIndex(node.children.length - 1);
         const stop = (event: EventTouch) => { event.propagationStopped = true; };
-        for (const type of [Input.EventType.TOUCH_START, Input.EventType.TOUCH_MOVE, Input.EventType.TOUCH_CANCEL]) node.on(type, stop);
-        node.on(Input.EventType.TOUCH_END, (event: EventTouch) => { stop(event); void this._claim(flight); });
+        const ownsTouch = (event: EventTouch) => this._pressedTouch?.flight === flight && this._pressedTouch.id === event.getID();
+        for (const target of clickBox ? [node, clickBox] : [node]) {
+            target.on(Input.EventType.TOUCH_START, (event: EventTouch) => {
+                stop(event);
+                if (this._flight !== flight || this._pressedTouch || this._claiming || this.flow.isPaused
+                    || this.flow.isGameOver || this.flow.platform.interstitialBusy) return;
+                // 保持命中框在手指下，避免松手时移动出框被引擎转换成 TOUCH_CANCEL。
+                this._pressedTouch = { flight, id: event.getID() };
+            });
+            target.on(Input.EventType.TOUCH_MOVE, stop);
+            target.on(Input.EventType.TOUCH_CANCEL, (event: EventTouch) => {
+                stop(event);
+                if (ownsTouch(event)) this._pressedTouch = null;
+            });
+            target.on(Input.EventType.TOUCH_END, (event: EventTouch) => {
+                stop(event);
+                if (!ownsTouch(event)) return;
+                this._pressedTouch = null;
+                void this._claim(flight);
+            });
+        }
     }
 
     private _position(flight: Flight): void {
@@ -148,6 +176,7 @@ export class SurpriseAssist {
     }
 
     private _removeFlight(): void {
+        this._pressedTouch = null;
         if (this._flight?.node.isValid) this._flight.node.destroy();
         this._flight = null;
     }

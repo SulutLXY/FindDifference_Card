@@ -5,6 +5,11 @@ const read = file => JSON.parse(fs.readFileSync(file, 'utf8').replace(/^\uFEFF/,
 const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 const index = read('assets/resources/configs/cities.json');
 const map = read('config/hot-gameplay-import-2026-11-05.json');
+// Historical imports remain immutable; later hand annotations carry their own source/image hashes.
+const revisionsRoot = 'config/level-config-updates';
+const revisions = new Map(fs.existsSync(revisionsRoot) ? fs.readdirSync(revisionsRoot)
+    .filter(file => file.endsWith('.json') && !file.endsWith('.before.json')).sort()
+    .flatMap(file => read(`${revisionsRoot}/${file}`).updatedLevels ?? []).map(row => [row.target, row]) : []);
 const chapter = index.chapters[map.chapter], root = `assets/Bundle/levels/${map.chapter}`;
 assert.equal(chapter.levels.length, 40);
 assert.deepEqual(chapter.levels.slice(0, 2), map.preservedLevels.slice(0, 2));
@@ -19,15 +24,17 @@ let differences = 0;
 for (const row of map.levels) {
     const source = path.join(map.source, row.sourceFolder, row.sourceConfig);
     assert.equal(hash(source), row.configSha256);
-    const config = read(`${root}/configs/${row.folder}/differences.json`);
-    assert.deepEqual(config.differences, read(source).differences);
+    const target = `${root}/configs/${row.folder}/differences.json`;
+    const config = read(target), revision = revisions.get(target);
+    if (revision) assert.equal(hash(revision.source), revision.sourceSha256, 'Updated authoring source changed without resync');
+    assert.deepEqual(config.differences, read(revision?.source ?? source).differences);
     assert.equal(config.name, row.name); assert.equal(config.type, 'normal');
     assert.equal(config.icon, `thumbnails/${map.chapter}/${row.folder}/icon/spriteFrame`);
     assert.match(row.folder, /^[a-z]+(?:-[a-z]+)*$/); assert.ok(!row.id.includes('level-'));
     differences += config.differences.length;
     for (const image of row.images) {
         assert.equal(hash(path.join(map.source, row.sourceFolder, image.sourceFile)), image.sourceSha256);
-        assert.equal(hash(image.assetPath), image.importedSha256);
+        assert.equal(hash(image.assetPath), revision?.images.find(current => current.path === image.assetPath)?.sha256 ?? image.importedSha256);
         assert.ok(['scene-a.jpg', 'scene-b.jpg'].includes(path.basename(image.assetPath)));
         const meta = read(image.assetPath + '.meta'); assert.equal(meta.uuid, image.uuid);
         const frame = meta.subMetas.f9941.userData;
@@ -68,5 +75,5 @@ vm.runInNewContext(compile(fs.readFileSync('assets/scripts/services/SaveService.
     assert.equal(flow._nextLevelTarget(city, 11).levelIndex, 12);
     assert.ok(flow.save.migrateContentLayout([city], {}));
     assert.equal((await flow.findContinueTarget()).level.key, 'city-00-HotTips/level-03');
-    console.log('PASS hot gameplay: ten levels in positions 3–12, 133 unchanged differences, original 30 identities/order, Photoshop JPEG assets, old progress/video access and continuation');
+    console.log('PASS hot gameplay: ten levels in positions 3–12, 133 current differences, latest authoring/image hashes, original 30 identities/order, old progress/video access and continuation');
 })().catch(error => { console.error(error); process.exitCode = 1; });

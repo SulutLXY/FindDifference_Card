@@ -1854,7 +1854,7 @@ export class GameFlow extends Component {
     }
 
     public finishLevel(win: boolean, failReason: 'time' | 'lives' = 'lives'): void {
-        if (this._isGameOver || !this._currentLevel) return;
+        if (this.feed?.isPreview || this._isGameOver || !this._currentLevel) return;
         this._isGameOver = true;
         this._playResultTone(win, !win && failReason === 'time');
 
@@ -1864,9 +1864,11 @@ export class GameFlow extends Component {
         if (win) {
             const ratio = this._remainingTime / level.timeLimit;
             stars = ratio >= 0.6 ? 3 : ratio >= 0.3 ? 2 : 1;
-            this.save.completeLevel(level.key, stars, Math.max(1, Math.round(this._elapsedTime)));
-            // 上报平台排行榜（抖音 setImRankData 等；非平台环境为空实现）
-            this.rankProvider.submitScore(this.save.totalScore, stars, Math.max(1, Math.round(this._elapsedTime)));
+            // 每个真实成功对局返还1点体力；由_isGameOver防止重复结算，重玩成功也可获得。
+            if (this.save.completeLevel(level.key, stars, Math.max(1, Math.round(this._elapsedTime)), true)) {
+                // 上报平台排行榜（抖音 setImRankData 等；非平台环境为空实现）
+                this.rankProvider.submitScore(this.save.totalScore, stars, Math.max(1, Math.round(this._elapsedTime)));
+            } else this.toast('通关记录与体力奖励保存失败，请检查存储空间');
         }
 
         const presentResult = () => {

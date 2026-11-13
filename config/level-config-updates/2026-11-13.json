@@ -1,0 +1,2572 @@
+{
+  "date": "2026-11-13",
+  "backup": "config/level-config-updates/2026-11-13.before.json",
+  "sourcePolicy": "JSON beside current project level images; external art source JSON remains historical",
+  "replacedFields": [
+    "differences"
+  ],
+  "discovered": {
+    "qing-hua-ci": 45,
+    "wang-luo-re-dian": 10
+  },
+  "updatedLevels": [
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/a-la-bo-wen-zhu-tai",
+      "folder": "a-la-bo-wen-zhu-tai",
+      "name": "阿拉伯文烛台",
+      "sourceName": "阿拉伯文烛台",
+      "source": "assets/Bundle/levels/qing-hua-ci/a-la-bo-wen-zhu-tai/阿拉伯文烛台.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/a-la-bo-wen-zhu-tai/differences.json",
+      "sourceSha256": "d30f0c371e115dccd6a46683b5ee793196f180f4310fb3d45d5946f21be5e709",
+      "previousConfigSha256": "e444c7d5b7e1bfd0d2e4a1e6b025b46faaf82cb324fde1cc0fb9d56453bc2e51",
+      "configSha256": "69095249d7b20a531c72e9256269ffff92fcb40286202f824fa5e7b8dd4d21fa",
+      "oldDifferenceCount": 12,
+      "differenceCount": 11,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-12"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/a-la-bo-wen-zhu-tai/scene-a.jpg",
+          "sha256": "fc2f8aeb51e4cd0a5c31ca598c806b96e57f6ba4a34ed00e04d7a7387ff1053a",
+          "uuid": "ca3753a7-1460-5fa0-a700-485ef2ea8453",
+          "metaSha256": "ea5cc469c716d8068ff8532f93c1bff8bd8ae91bded82adbcb450aaf4420076d"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/a-la-bo-wen-zhu-tai/scene-b.jpg",
+          "sha256": "298710d4b9e8a6e015692b8da6d700bdfe4b17be97c28ee99e5758b036f62697",
+          "uuid": "f165e9fb-e851-570c-b59e-b4558203c962",
+          "metaSha256": "8e7a1d76dcbd0dd059ba1ca9bc743ebc0d3d5e719763fec352b139a97f99d9d3"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/cha-fang-bei-cha",
+      "folder": "cha-fang-bei-cha",
+      "name": "茶房备茶",
+      "sourceName": "茶房备茶",
+      "source": "assets/Bundle/levels/qing-hua-ci/cha-fang-bei-cha/茶房备茶.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/cha-fang-bei-cha/differences.json",
+      "sourceSha256": "9b49518a13385be26377dc6be5838b0c29263cbdd3788b193d168d8df0810f78",
+      "previousConfigSha256": "b030fc519c063ad3a26b594e53667c6eb64313c3a8e235ea5173fa3a3d0e1745",
+      "configSha256": "4da70c77ff5e82d69dd520d7f5c77c5e00ae39e04f93105d4f19837e7070b428",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/cha-fang-bei-cha/scene-a.jpg",
+          "sha256": "276b8bfc59f2a07c90c8b3224530f76754416a6e56be0811eb3d99310d5474e6",
+          "uuid": "b688ee74-67d5-57fc-9cfd-f8ebd5063d18",
+          "metaSha256": "26a2db21eefc63d23ba355ef33803ea1923846b7de83e5bd565d589e88e8fb3f"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/cha-fang-bei-cha/scene-b.jpg",
+          "sha256": "707c81d9bc51fe37ca3934c7cb43d210209f70a2f965e77b7350f1f93fa929da",
+          "uuid": "ca5b82df-e6b1-5bd6-9b52-e8e04debe72b",
+          "metaSha256": "8f7f0b1f69981076a3f62fec00a6a9ae1928ee5ec27ff6c0ba1a1b7b62d2064a"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/da-pan-zhuang-xia",
+      "folder": "da-pan-zhuang-xia",
+      "name": "大盘装匣",
+      "sourceName": "大盘装匣",
+      "source": "assets/Bundle/levels/qing-hua-ci/da-pan-zhuang-xia/大盘装匣.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/da-pan-zhuang-xia/differences.json",
+      "sourceSha256": "276cab833c14fdaa94c09b88c0f6ce2cc127d5a466eb5df5f317fede4ca748a6",
+      "previousConfigSha256": "f9e1f810bc721729b8cee2961a22905e9922680c698a20189d57ceff56a75026",
+      "configSha256": "25df97a27738e5433676a6f4bb101d3c5898f8a245a6764169aaf427b08284df",
+      "oldDifferenceCount": 15,
+      "differenceCount": 14,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-15"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/da-pan-zhuang-xia/scene-a.jpg",
+          "sha256": "254724fc25bdf615d5e38b559bd5fbe97f48a5bb1b0c9eb1470bc29bdb678b09",
+          "uuid": "cd8bc874-20dc-5f4e-b709-45fd58460208",
+          "metaSha256": "f8647bfcf71bb41513671be5716607b04defbbaf278fa9a12cd39d9cc833bcb2"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/da-pan-zhuang-xia/scene-b.jpg",
+          "sha256": "2a50b58c6940b1c8d1ebcf0a0b07797e4eff994ca563fa07adb8ff216cc973db",
+          "uuid": "b61fac06-4594-50ea-88cc-66805d1155f4",
+          "metaSha256": "e785bd8bc5cd8b425d6ec2ee8c377b582188e8a606a2a4ae14e3896e813b0be4"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/da-shao-yu-xiao-e-zuo",
+      "folder": "da-shao-yu-xiao-e-zuo",
+      "name": "大勺与小鹅座",
+      "sourceName": "大勺与小鹅座",
+      "source": "assets/Bundle/levels/qing-hua-ci/da-shao-yu-xiao-e-zuo/大勺与小鹅座.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/da-shao-yu-xiao-e-zuo/differences.json",
+      "sourceSha256": "3d29c9ddf5e865b4c712218bbd8ccfa6725d936cd0423821d8f1e869a36a6d24",
+      "previousConfigSha256": "c918703704c6f19830a11a75a76f3f9b7ded4067e478ebc167700a2f2f6ad4fa",
+      "configSha256": "e59cdbeb05b99db1d5f60c7a54769ff79587adb48bab42159ab0c3787fa20b14",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/da-shao-yu-xiao-e-zuo/scene-a.jpg",
+          "sha256": "5425bb71a3a2aec003bbbb2ee5f329f0890975e652cc320efdf01cd00a801a41",
+          "uuid": "29e4ed26-eceb-512a-b42f-38d1231e4755",
+          "metaSha256": "1e5164ad2f1665d1c3b9a7d16264aff53e5d58f900e913bacc525595fd7a2e6f"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/da-shao-yu-xiao-e-zuo/scene-b.jpg",
+          "sha256": "70da9b1a820b3fc7228356c4ba60742121611747c3d805a30340313ed436694d",
+          "uuid": "3fe55a15-a8d0-59bd-96f8-255db9a0d584",
+          "metaSha256": "487220ac237723a98d8b8afde16d12fe3314d00a1174faccdccacf55ad1c85ca"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/feng-shou-yu-juan-wei",
+      "folder": "feng-shou-yu-juan-wei",
+      "name": "凤首与卷尾",
+      "sourceName": "凤首与卷尾",
+      "source": "assets/Bundle/levels/qing-hua-ci/feng-shou-yu-juan-wei/凤首与卷尾.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/feng-shou-yu-juan-wei/differences.json",
+      "sourceSha256": "63eb4fa3f5cb7a08d469915a37c49dbd2c402a0ad99cffd44ea5a49f9b3c6c68",
+      "previousConfigSha256": "65b2e4c9d084700f155a286666bbf9b139629fa02f50f900e4d04051ab9072ea",
+      "configSha256": "45cdf0f4fd7617d79b7ad35d494ab404bfecdd48f96341b767c3271fc28033d8",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/feng-shou-yu-juan-wei/scene-a.jpg",
+          "sha256": "ae2335d57ba335b3ffa25361e7ac785d24b7a8584703f4ef4b7eadceba743875",
+          "uuid": "4576d9d1-61c8-5571-96c6-177b15a3705b",
+          "metaSha256": "b426f7e5ae81965519b18387ad075a5cc89b83342e7363eab0c6a796a2ee4912"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/feng-shou-yu-juan-wei/scene-b.jpg",
+          "sha256": "6cd28c472173d9b03c8d450b8b26bee68e097651bcb676463d975581950a9acf",
+          "uuid": "f13d5738-73ff-5b46-a742-aefb57835b59",
+          "metaSha256": "8bca5a6559af02c3e1820d3269d7049c386ec39d396587762c7bcd48625b8869"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/fu-di-li-de-cang-ci",
+      "folder": "fu-di-li-de-cang-ci",
+      "name": "府邸里的藏瓷",
+      "sourceName": "府邸里的藏瓷",
+      "source": "assets/Bundle/levels/qing-hua-ci/fu-di-li-de-cang-ci/府邸里的藏瓷.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/fu-di-li-de-cang-ci/differences.json",
+      "sourceSha256": "bc4732cc9fdc59c6ae6e672358ef603063742b4bc247664c6a9b70f3431f53f9",
+      "previousConfigSha256": "6ae1f1c27c4190c87142cb69e7a221ecfb6fed158423b269698ac24d0d7411a5",
+      "configSha256": "76121f99df61c8e34626eaaa51f9ed3a55ee13de8182213c1a7e06278d7e8b94",
+      "oldDifferenceCount": 15,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/fu-di-li-de-cang-ci/scene-a.jpg",
+          "sha256": "d0b88f05ce8568892854838b46dea0a9af49d03a30ca3d2c94b428221a7af188",
+          "uuid": "874f48b8-0b5d-5610-8440-aa89c992c60b",
+          "metaSha256": "8fb5a1a6741c6d5f84ae2f1712cff30c456ca5fce16da465a706ee1bbbff1204"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/fu-di-li-de-cang-ci/scene-b.jpg",
+          "sha256": "d60d724e91467144bdae9961c9ac227a0121e143d5ce1fa9d29a5586f9dbff16",
+          "uuid": "5e3f41a7-588e-5513-acde-4f9beab2863a",
+          "metaSha256": "df0c49250a5388098edd713a54ad4318699cf37cd6e191d3eef41be8a66abc30"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/gei-gu-shao-pei-yi-zhi-e",
+      "folder": "gei-gu-shao-pei-yi-zhi-e",
+      "name": "给古勺配一只鹅",
+      "sourceName": "给古勺配一只鹅",
+      "source": "assets/Bundle/levels/qing-hua-ci/gei-gu-shao-pei-yi-zhi-e/给古勺配一只鹅.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/gei-gu-shao-pei-yi-zhi-e/differences.json",
+      "sourceSha256": "46906b78d8f099121c2d4eb836c75d24be1ef866d5b0b7f3b03d6181ef74446b",
+      "previousConfigSha256": "408d7a412b6fdfaf4f58624dd8816162018f2a2185a3b99164bcdddc02515989",
+      "configSha256": "0e45cb5bf4e16e22ce8d93dec3cd6823117da5dcc68948dda22d6a7487b56331",
+      "oldDifferenceCount": 16,
+      "differenceCount": 16,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15",
+        "diff-16"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/gei-gu-shao-pei-yi-zhi-e/scene-a.jpg",
+          "sha256": "24d1bd1f3292f0c1a8dc531d1adb9cc43ccdf861f881c3145ecb965bd12219df",
+          "uuid": "7c329a45-6e6d-5ad8-b76c-f43d2bb41f39",
+          "metaSha256": "ef197f9ae6c049b07483e1ee16f419234e81b788bc8ff254f0449ca7bf972c4d"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/gei-gu-shao-pei-yi-zhi-e/scene-b.jpg",
+          "sha256": "4fc729470a26b7bb141221c3696fd0c59f6f28d53fea69620acdd7f2d8bff51f",
+          "uuid": "85ab64cf-daec-55c1-a39b-b4a50e239553",
+          "metaSha256": "ae9af0bf3569fa43554c14444aa13540d6793544a235baf875ba6a4961fb731c"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/hai-ao-shan-xing-bi-jia",
+      "folder": "hai-ao-shan-xing-bi-jia",
+      "name": "海鳌山形笔架",
+      "sourceName": "海鳌山形笔架",
+      "source": "assets/Bundle/levels/qing-hua-ci/hai-ao-shan-xing-bi-jia/海鳌山形笔架.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/hai-ao-shan-xing-bi-jia/differences.json",
+      "sourceSha256": "bdce618f355355dca4a904517d0532bac1ba3cac1f520b60340deb1f14cc01fb",
+      "previousConfigSha256": "01c5acea849854d3164d08785015d31f39de5ca77f9caa88c7df629038f25fb7",
+      "configSha256": "51863e1d99f77a9f178b58af34895e16094d3a51e0279582e2a1910fdadee703",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/hai-ao-shan-xing-bi-jia/scene-a.jpg",
+          "sha256": "fdef55eadf37b744df55fc63afb586dcfaa21d9a96a124a70ebfedc6323f44cd",
+          "uuid": "8fb1e8d0-9a1c-54e9-8320-22ba5d54df74",
+          "metaSha256": "091ec8bee2f60c12e44b34be58fac2099343d23107688cd67a7f5766c0041caa"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/hai-ao-shan-xing-bi-jia/scene-b.jpg",
+          "sha256": "56b83c36106d0287092a275d5739289d5d6a987532844999d65c0c2b6f4ff099",
+          "uuid": "e67e2e28-f656-521e-9583-7c8d2b66c32b",
+          "metaSha256": "ecb1ed11ac8e894783657c30efeb56742558e1e6e6867d91547ff7052b36e53f"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she",
+      "folder": "hai-wai-fu-di-de-ci-qi-chen-she",
+      "name": "海外府邸的瓷器陈设",
+      "sourceName": "海外府邸陈设",
+      "source": "assets/Bundle/levels/qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she/海外府邸陈设.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/hai-wai-fu-di-de-ci-qi-chen-she/differences.json",
+      "sourceSha256": "2c75dd17d4f916cb8c6b87b5981b0ee76429b8d479be975d3ffeba50911b3461",
+      "previousConfigSha256": "4ec2d96f3333816985a4cd5f8300e5e21117b0521f2ba87f005e63f3afd28907",
+      "configSha256": "df79c497dde903a1c3f456b73326eba898ca6776ff6cbf807b0d3157c509294a",
+      "oldDifferenceCount": 10,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [
+        "diff-11",
+        "diff-12"
+      ],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she/scene-a.jpg",
+          "sha256": "7b70cfeffa2eec72e7a6e70068ab360c96d724d7797d42390ad983b8ab69817d",
+          "uuid": "624c071b-1341-566c-998c-5bfb623ccaf7",
+          "metaSha256": "ace83402c3c9fc8b65a7b7d9aca60a6ccbbb12844a078bad430ba2c44b6d033a"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she/scene-b.jpg",
+          "sha256": "540e9851a6d27e92e2d527fe56045c485cf99e2d2ccede0f58b7a2fffa19af58",
+          "uuid": "1841f950-f39d-501c-9886-c640f9d3b4d9",
+          "metaSha256": "3f2c598dfe7e85c8d582187bcb03c0fd62480b587401081a7c3a6aef79506f08"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/hua-kou-pu-tao-pan",
+      "folder": "hua-kou-pu-tao-pan",
+      "name": "花口葡萄盘",
+      "sourceName": "花口葡萄盘",
+      "source": "assets/Bundle/levels/qing-hua-ci/hua-kou-pu-tao-pan/花口葡萄盘.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/hua-kou-pu-tao-pan/differences.json",
+      "sourceSha256": "1c250d5b52d4a55b46759d93cd73e7a088d6ffa0709fde12aa7adf61e9a2f09a",
+      "previousConfigSha256": "02495272f98d8366f02ab4babab667bbd35b2fb0a711d8c04dfdd15a6e85eca0",
+      "configSha256": "83367c981a546367f0189241bd72c5572dcd1df020ccdc57afed405a8851ffd3",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/hua-kou-pu-tao-pan/scene-a.jpg",
+          "sha256": "9867e288997df8162c822821ec63b662377bfdbd90562363980ebe063ccdab20",
+          "uuid": "167380e0-7402-57b6-9796-4fdce62f27e5",
+          "metaSha256": "e3e4a38b69cb83515c89b85adc13e69e094ce524f0aac9ebb06d2ad4f79768af"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/hua-kou-pu-tao-pan/scene-b.jpg",
+          "sha256": "0cafe3bff5e6e838074153a94584a53d87b4f8094172fd3ee688ed7f199518f6",
+          "uuid": "0b0cb1a7-cf77-519d-a6c4-1f321171c7ff",
+          "metaSha256": "c95a262388e0577c5cd6cece245893dad455e73710742ad07623affb0c8ba421"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/jie-ri-gong-guo",
+      "folder": "jie-ri-gong-guo",
+      "name": "节日供果",
+      "sourceName": "节日供果",
+      "source": "assets/Bundle/levels/qing-hua-ci/jie-ri-gong-guo/节日供果.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/jie-ri-gong-guo/differences.json",
+      "sourceSha256": "c142968f26f01e78e83ec02d3847b0ac19f3477d9651fb1a39b4d6cfc6587627",
+      "previousConfigSha256": "de4695d20bafd44b58e60a314a1e58bbc2161e5be1b18b15ed438ac2bc62f628",
+      "configSha256": "576ae9172fdf9aefb2b5b0b73410667df899fdfd49a0f44efc3811c7916e1a91",
+      "oldDifferenceCount": 15,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/jie-ri-gong-guo/scene-a.jpg",
+          "sha256": "8a80b919dbc20a6ad0100cfbdfcef02d34ca971662a05f8140835aa238fd4cef",
+          "uuid": "9c99f7e5-3a23-5869-a3c5-e3ccc16c75b5",
+          "metaSha256": "ab5530f4a6e1f9b081047a84a11f2b2c849b03e883cbe0a95c0343163ec82572"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/jie-ri-gong-guo/scene-b.jpg",
+          "sha256": "c027da83b56a82d6fca8853226eaee566a9eaa2e13271e6ad95208c409e2dccb",
+          "uuid": "49227162-2975-5517-8641-1c53698ba5d5",
+          "metaSha256": "2800559990f0876d818b3f0d0bd113883300bc4bdb65c60318b18bd5352dada4"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/jin-tian-ye-yong-ya-shou-bei",
+      "folder": "jin-tian-ye-yong-ya-shou-bei",
+      "name": "今天也用压手杯",
+      "sourceName": "今天也用压手杯",
+      "source": "assets/Bundle/levels/qing-hua-ci/jin-tian-ye-yong-ya-shou-bei/今天也用压手杯.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/jin-tian-ye-yong-ya-shou-bei/differences.json",
+      "sourceSha256": "32ffbd9c3d33ad0364320806b08530cdc305df79101c664b0caf69c15ab3fb2b",
+      "previousConfigSha256": "f826044b3bb7e4cfce0a2717b30b28ed463dd592b1465b075186bb24dece7180",
+      "configSha256": "a1e3ccf1bd2ed3ac974f0449d47d84a04e361c897177cff6e7ccf4488b2295da",
+      "oldDifferenceCount": 10,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [
+        "diff-11",
+        "diff-12"
+      ],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/jin-tian-ye-yong-ya-shou-bei/scene-a.jpg",
+          "sha256": "0c2e548541ba3bdb01b4c887831f98a5ebfa66efa86aa4590576f037d8c30339",
+          "uuid": "d1c069f9-d1dc-530a-927f-ace2bfc5eafb",
+          "metaSha256": "32ea5f8873df98680b03e50d27cc2a4cf821d5bb37a0f6dcdb41adb2e504a38c"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/jin-tian-ye-yong-ya-shou-bei/scene-b.jpg",
+          "sha256": "3fb91e9bc7097e426c480104b9dbcdab2665ec8f0cde380ed9db2ff58e3b2a9a",
+          "uuid": "e1cafb52-f2d3-5be3-9ec1-3dce5bab673b",
+          "metaSha256": "9a479b727c25d46a4ff3dee88754217d17b99ccac74e1e5a8176dcaacb73c1d1"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/jiu-si-kai-tan",
+      "folder": "jiu-si-kai-tan",
+      "name": "酒肆开坛",
+      "sourceName": "酒肆开坛",
+      "source": "assets/Bundle/levels/qing-hua-ci/jiu-si-kai-tan/酒肆开坛.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/jiu-si-kai-tan/differences.json",
+      "sourceSha256": "08daaaeefd56506f1d3cf6cf004cbba3b3012cc947365ab7a2c766389d34e445",
+      "previousConfigSha256": "7f81e85056f839c864ecfc981edadc21ea2d92eaccce57622ff508e70b7f75cc",
+      "configSha256": "a5aee38f7707021878d263e1dca9b2e618b7238d15002d10c212fec04ca55170",
+      "oldDifferenceCount": 13,
+      "differenceCount": 13,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/jiu-si-kai-tan/scene-a.jpg",
+          "sha256": "a762953f216a934619d6ee4b70da2c864fa1725f3ef0abe04b0e9f996b45e076",
+          "uuid": "e5b4c320-9a6e-5fd8-ac37-74ff1b5ff04d",
+          "metaSha256": "4a0fa334719622b562d3b2397a6b25783c3cd00fd1397adfd616544cebf66ce7"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/jiu-si-kai-tan/scene-b.jpg",
+          "sha256": "336607f09b2fc41d3071c4c20c0bb8db51a191f0291d6986792e501614c15ba0",
+          "uuid": "0db0dccd-bcf8-57a1-9368-1e57cf5aef61",
+          "metaSha256": "c93dc6fe67f8b66823e645abc8fe87983cd1c30e6656e3884fb4660c6663771b"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/lan-ting-hui-bi-tong",
+      "folder": "lan-ting-hui-bi-tong",
+      "name": "《兰亭会》笔筒",
+      "sourceName": "《兰亭会》笔筒",
+      "source": "assets/Bundle/levels/qing-hua-ci/lan-ting-hui-bi-tong/《兰亭会》笔筒.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/lan-ting-hui-bi-tong/differences.json",
+      "sourceSha256": "a3fda4bc4f64800ae30f5325662a69162ec112b6b5e8eda14f1a333c97dd8ff7",
+      "previousConfigSha256": "f5e57158a7bc605af4eaa23e5bc1ff86ab79316c63f5641477497f3db10378d2",
+      "configSha256": "9c3a1f01c0a70d79398c5385de1f4e096bce0fb1a1b54e57916fcce90e22a835",
+      "oldDifferenceCount": 15,
+      "differenceCount": 14,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-15"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/lan-ting-hui-bi-tong/scene-a.jpg",
+          "sha256": "1a9aa5ed810c0f15f3bbddc55c9bfdfba58d20c33cc0b943dcf008cf7112ba75",
+          "uuid": "13774c5b-29f4-5425-98a2-f435e829c163",
+          "metaSha256": "0630f3bd23e8b670644717e74cb50eeaa48b734de02d75ba2ae131443783b84c"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/lan-ting-hui-bi-tong/scene-b.jpg",
+          "sha256": "9f5338877952e1821f5690928731e03d3d45a6ec903564f5f885a5e8904232d3",
+          "uuid": "52319a5e-e9dc-5295-a868-38c1aa1bbe2f",
+          "metaSha256": "24619f2760a6c1f7e0311150b312dd51a1d00622edacf50a1b152013eb8c2bc4"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/long-wen-da-pan",
+      "folder": "long-wen-da-pan",
+      "name": "龙纹大盘",
+      "sourceName": "龙纹大盘",
+      "source": "assets/Bundle/levels/qing-hua-ci/long-wen-da-pan/龙纹大盘.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/long-wen-da-pan/differences.json",
+      "sourceSha256": "5d882ea00dd116db27f40530c7a09a2b0dbf241889af7ec42d160775ada3379a",
+      "previousConfigSha256": "a775cc47786f1738eee28500d4178f0699d5380085f768b47573e27db3ef2cd4",
+      "configSha256": "d783218579ad91e7bbdd3f90a129a413197eea63ed502a25cddd9c60dd1a39bf",
+      "oldDifferenceCount": 12,
+      "differenceCount": 11,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-12"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/long-wen-da-pan/scene-a.jpg",
+          "sha256": "729b57b87c321b0ae7220669027700b31d2bebbc16c256da5ee96bbead8f56f4",
+          "uuid": "bdf3b3ef-8446-5324-b4d2-66af9242bb13",
+          "metaSha256": "89a82352f0d38d8a9ea2b71313dc0a39cb9d4a4bd74127c3528b3d9b474cc469"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/long-wen-da-pan/scene-b.jpg",
+          "sha256": "cf9a26e313da3c5655e11c274349a125306aa7a1db79c3fc0bc49407000b4626",
+          "uuid": "bbfca662-8a37-5b49-bf63-85fc30403964",
+          "metaSha256": "7f4b7f3b14fb8edfb06eadfddd63efb63461778fb0549e8be431c8529357decf"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/pan-yu-gao-zu-de-cheng-xing",
+      "folder": "pan-yu-gao-zu-de-cheng-xing",
+      "name": "盘与高足的成型",
+      "sourceName": "盘与高足的成型",
+      "source": "assets/Bundle/levels/qing-hua-ci/pan-yu-gao-zu-de-cheng-xing/盘与高足的成型.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/pan-yu-gao-zu-de-cheng-xing/differences.json",
+      "sourceSha256": "6b3d35c1183fda4613db1185b1842f828d96e11cd69a99cbc5c6a8ae2813aef3",
+      "previousConfigSha256": "816e4fe274b4d0fda6a3afdfca6b8e53abf673bffa1b39ced888a51871168b34",
+      "configSha256": "c942f5109743cc1e8186014dc1cd50e54951e1d1e836be00bdb98363c283625b",
+      "oldDifferenceCount": 15,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/pan-yu-gao-zu-de-cheng-xing/scene-a.jpg",
+          "sha256": "33acb62a1b9c4171ad9546410944a8ea542310f5ca82dadfd80f97d9fcff9d6b",
+          "uuid": "77a63092-bf18-5e8a-aa3d-f3f52f045fe5",
+          "metaSha256": "bcbaa2e9bca9aefd10c22ce8137a95c411ea239d2c84430a15d72d485253bd39"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/pan-yu-gao-zu-de-cheng-xing/scene-b.jpg",
+          "sha256": "56aa2408b28dcf66bf4c14f34946835a845308b72e01496810fc45bdf3d66ce1",
+          "uuid": "c0bb0f8e-066c-55b7-afa7-38455a554299",
+          "metaSha256": "02435629f60355bca0ec93ff7bbcc15b3d9f092a2b38d98a85093571d012e024"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/ping-shang-zhui-gan",
+      "folder": "ping-shang-zhui-gan",
+      "name": "瓶上追赶",
+      "sourceName": "瓶上追赶",
+      "source": "assets/Bundle/levels/qing-hua-ci/ping-shang-zhui-gan/瓶上追赶.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/ping-shang-zhui-gan/differences.json",
+      "sourceSha256": "287595d12c1859d1f540b9253880e9a515b6ffc2b4756d9cf20d462a2cb12f71",
+      "previousConfigSha256": "bae1681da1f172ca41efc6e6a008a89931d2f70b46e5f12e997bf9baaf5d375e",
+      "configSha256": "98812730fdbb4a03c5ad406c1affab64f7bba809f51b38f17674465cda8562c2",
+      "oldDifferenceCount": 10,
+      "differenceCount": 10,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/ping-shang-zhui-gan/scene-a.jpg",
+          "sha256": "3e0fdab43e3c06befdada80036a81ccc78439f81b7c33842748c3d4ae6155d98",
+          "uuid": "fb413e7c-a615-55ad-853f-25a3b8abd8ee",
+          "metaSha256": "4de4a9690f643f37d8f912bf190a9d0a00caf6120cb9433c2fc2538c0535b256"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/ping-shang-zhui-gan/scene-b.jpg",
+          "sha256": "8261d4f80455d002222dba6f7edd8d24fb15cef16a7204fb5e9533d69b950d2e",
+          "uuid": "40aba817-f7fa-5abe-b5b9-8381dc272de0",
+          "metaSha256": "3179fe5c1c488867ae39d1b7ac026f4d2304d234aa2f0155bd5d62bc6c8ff6ba"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/qing-dai-shu-fang-luo-bi",
+      "folder": "qing-dai-shu-fang-luo-bi",
+      "name": "清代书房落笔",
+      "sourceName": "清代书房落笔",
+      "source": "assets/Bundle/levels/qing-hua-ci/qing-dai-shu-fang-luo-bi/清代书房落笔.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/qing-dai-shu-fang-luo-bi/differences.json",
+      "sourceSha256": "fd5cc0272d999d7993ac5f2fb66e1f726e8d2b6e1ee88af9ec8bee33b2cba389",
+      "previousConfigSha256": "953cacaf092e76aa157ffa4dc327bf08193c1e27db9d8a43ab561185d4f053a9",
+      "configSha256": "2dd9b407c1600a249949c65b7b441a1a73f50ef377c36f538ca2f1ce63fc9001",
+      "oldDifferenceCount": 16,
+      "differenceCount": 16,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15",
+        "diff-16"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-dai-shu-fang-luo-bi/scene-a.jpg",
+          "sha256": "baeefa2295ab186ee288be2727b312891db10b990d59d160fdcfe8e3ab2cab79",
+          "uuid": "44bb201f-1775-5935-b335-6f6860b18b5f",
+          "metaSha256": "6cec50e86ce89d06ca7b7fe7a6849e2802c6c9f39ab64e2e253cbaff19550a9e"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-dai-shu-fang-luo-bi/scene-b.jpg",
+          "sha256": "97145150f823e3e1b9eccc2b549fb5c5af7b601308f51f3e99432c3f0449b1f5",
+          "uuid": "ba8ca0b6-955a-50bd-a557-15e0cf20246b",
+          "metaSha256": "05bd096094283ee38ff4806925d5afdba6bf80ce89613071205c3e99e1cd3a97"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/qing-hua-dai-jin-shu-fang",
+      "folder": "qing-hua-dai-jin-shu-fang",
+      "name": "青花带进书房",
+      "sourceName": "青花带进书房",
+      "source": "assets/Bundle/levels/qing-hua-ci/qing-hua-dai-jin-shu-fang/青花带进书房.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/qing-hua-dai-jin-shu-fang/differences.json",
+      "sourceSha256": "be4e57ed15c20bf43f7a74602d592b1f34dd4e2fed0ace52029959ef723501ce",
+      "previousConfigSha256": "e6c7374dc42dcb9445cf707e728008130c338f5acdec6faad7cefd2ec54fece4",
+      "configSha256": "47a9f156e302ada8a6b7400016028e372703e807d937062526a6512bd64dacb1",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-dai-jin-shu-fang/scene-a.jpg",
+          "sha256": "7655fdf178d2b8c654573f102e56bf1738b856fe1490e134cee8a671607106a6",
+          "uuid": "ec4eac6d-f41c-5e0d-aefb-3c2c1d03255e",
+          "metaSha256": "1956202f42dc2649eabba3f090ed1d94fa0e864c19a4266dea22908c9f0f0373"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-dai-jin-shu-fang/scene-b.jpg",
+          "sha256": "c29bbdf106c2362c243fe59f93c17fcd4c43506bccfd77e4a7ce8904b9e32a30",
+          "uuid": "53816142-95d2-5cb1-ab37-da296f4fee8b",
+          "metaSha256": "b848178cb75b98d70c7364ca9a4952936d72aed576eb5f744631e7cb2b5756f1"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/qing-hua-gao-zu-pan",
+      "folder": "qing-hua-gao-zu-pan",
+      "name": "青花高足盘",
+      "sourceName": "青花高足盘",
+      "source": "assets/Bundle/levels/qing-hua-ci/qing-hua-gao-zu-pan/青花高足盘.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/qing-hua-gao-zu-pan/differences.json",
+      "sourceSha256": "1924034cc8f75e336ea4d8ab2c14446ee0ebf9c57d9f6e0cc657fc9c9777eec5",
+      "previousConfigSha256": "d4bd58ca039772421e74706f428204b153742f0a749073344fc985ee5a816868",
+      "configSha256": "7b19511ec81b9e4e6326a77e80ffbd21953c570e00fab3e8a50917028044b2f0",
+      "oldDifferenceCount": 12,
+      "differenceCount": 10,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-11",
+        "diff-12"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-gao-zu-pan/scene-a.jpg",
+          "sha256": "fbedf6bc4abacd4c910b04d80f5b38a2a575ba6f26dfae13640a08ea6bc3aa38",
+          "uuid": "be1c82e3-ec82-55e2-af07-a20974204b59",
+          "metaSha256": "4a69e2724eee85ae046a5679dc07910796cacab003125d30004b32a5cb793159"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-gao-zu-pan/scene-b.jpg",
+          "sha256": "6afa6b36df01c58c2e6d5323f4fdd11c8575d8dc0a52db28e3a9c22bbb3c8392",
+          "uuid": "c7b0c9aa-bb75-5003-8af2-c9cbf7a791eb",
+          "metaSha256": "be5cc052f1f523a18402cc9d6ad7a67ae51ca9dc8c7e8c5222043b46ab11f371"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/qing-hua-hua-jiao",
+      "folder": "qing-hua-hua-jiao",
+      "name": "青花花浇",
+      "sourceName": "青花花浇",
+      "source": "assets/Bundle/levels/qing-hua-ci/qing-hua-hua-jiao/青花花浇.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/qing-hua-hua-jiao/differences.json",
+      "sourceSha256": "133ff6f4205a85930a8df9429243311648f26c212b9de07ea51df9499258fad3",
+      "previousConfigSha256": "18cf38c8629f55be8fff85df1bbbe365a90a0f4224d901c684e240ca0ecfa96c",
+      "configSha256": "c7b66b8dfe233632ef8fa0111934a0edce55919ba0d3b6e8eb13fd95f392e90a",
+      "oldDifferenceCount": 9,
+      "differenceCount": 9,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-hua-jiao/scene-a.jpg",
+          "sha256": "08e47caccfe6fd95d1478244044a1431526a34894c491b9b85b8663f65e766a5",
+          "uuid": "ca1bc1e2-a313-5544-86ed-eeca56698f36",
+          "metaSha256": "39ec37c08f20251075c66a5e44bae196fd56729235a531e0d2a7250fdb43e0d5"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-hua-jiao/scene-b.jpg",
+          "sha256": "24f33cd19797abbfcbe60e374fb62929ed2441c56296f4bd165dd867d585021b",
+          "uuid": "0b088b4f-0833-5f11-9dc5-550c2ddd3725",
+          "metaSha256": "64794c197d3c116e197bcbb50abae80313a22338332f1eeb1db9b16923acfb89"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/qing-hua-hui-dao-can-zhuo",
+      "folder": "qing-hua-hui-dao-can-zhuo",
+      "name": "青花回到餐桌",
+      "sourceName": "青花回到餐桌",
+      "source": "assets/Bundle/levels/qing-hua-ci/qing-hua-hui-dao-can-zhuo/青花回到餐桌.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/qing-hua-hui-dao-can-zhuo/differences.json",
+      "sourceSha256": "888201380308fd445675d586331d5ba110c3055f9bae875401d931bbbc3b4023",
+      "previousConfigSha256": "94d317a1d91eda0e0c7703c95713e483cbb26a7c3460058846b4bc621c6a94bf",
+      "configSha256": "a104048d00f1779f6a7e05c0ea94048f9ea63d58d19832f11ee16f210c582626",
+      "oldDifferenceCount": 8,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8"
+      ],
+      "addedPointIds": [
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15"
+      ],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-hui-dao-can-zhuo/scene-a.jpg",
+          "sha256": "f0209922c22ae5f46ce4e53f4d94b6a05710998f11176642b5c9fc97c18ebe84",
+          "uuid": "3ae8e14c-65d5-5fb1-b645-02355e278c4b",
+          "metaSha256": "565405f6648ccddb9fb1111bce3885870ac8e1a9197043750b1a93a318915b62"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-hui-dao-can-zhuo/scene-b.jpg",
+          "sha256": "78f215f14d56e58ee554bd6bd2771ddb9023e556dcc34f49a4cff6672f64825f",
+          "uuid": "225dc019-9f2c-5746-b2cb-bf5092c8a1fb",
+          "metaSha256": "2060a9d38409ba01d785d528066e466ec8634b68680441dbb909731e43892e86"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/qing-hua-san-qi-tong-gui",
+      "folder": "qing-hua-san-qi-tong-gui",
+      "name": "青花三器同柜",
+      "sourceName": "青花三器同柜",
+      "source": "assets/Bundle/levels/qing-hua-ci/qing-hua-san-qi-tong-gui/青花三器同柜.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/qing-hua-san-qi-tong-gui/differences.json",
+      "sourceSha256": "a4967fb2e6f0bbd757fee897a1ad7e7566aa5bde226f74604319cfd461d8c45a",
+      "previousConfigSha256": "ad4b0a06a0a80eb36cc4e93fb0b008f53a84406138fb1028ba5a49432cc39e59",
+      "configSha256": "5c90d2b5d08a3ca9b628f1f66dcc16aa4ee33e5b65a232d5239abd0784769a70",
+      "oldDifferenceCount": 8,
+      "differenceCount": 8,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-san-qi-tong-gui/scene-a.jpg",
+          "sha256": "b2d743db6216fefa915a816147c59d7aa32b431beeab9aa053f7f8aaee2fac56",
+          "uuid": "e3ebb389-6fda-5cc2-8374-2b89a422246f",
+          "metaSha256": "f568d74c4134ade07b9daf6debdedc0798aff677b9c1bc82de9ea3100ff69e80"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-san-qi-tong-gui/scene-b.jpg",
+          "sha256": "ffa8f319e6758e98a248f5c39f77ac043fc457dd8dc10f687676f09a37f90a0a",
+          "uuid": "e047d268-25ab-5dab-897f-65455f534631",
+          "metaSha256": "fba3227e65dcc8eb24ca403882d121476deea0536462c76d846bcab73702d22f"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/qu-shui-liu-shang",
+      "folder": "qu-shui-liu-shang",
+      "name": "曲水流觞",
+      "sourceName": "曲水流觞",
+      "source": "assets/Bundle/levels/qing-hua-ci/qu-shui-liu-shang/曲水流觞.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/qu-shui-liu-shang/differences.json",
+      "sourceSha256": "b9f3c3a08dfb5cf09d619dd4cc4929d5c2acafbe86fbf4e2903d1ed2fa2808d4",
+      "previousConfigSha256": "287ed4633f091657bf398d9cd4461806c94a9c536e62902eb1c359d685680efb",
+      "configSha256": "34b5ffe3465b980d0e38dd54b91c5beb25c2d6523dbdd1c26f40095daf051dbb",
+      "oldDifferenceCount": 15,
+      "differenceCount": 16,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15"
+      ],
+      "addedPointIds": [
+        "diff-16"
+      ],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qu-shui-liu-shang/scene-a.jpg",
+          "sha256": "be81459bf7425a0c7b0f9f413f8d00a68061a44e64bec8c1042f438db7b03e45",
+          "uuid": "33d0537d-b9fd-5085-9868-a5ea90c2f8b3",
+          "metaSha256": "3c3bc4c48b6347f6b8bf3fccdd71be46478c199532fd4b3f0934faf702baf7ae"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/qu-shui-liu-shang/scene-b.jpg",
+          "sha256": "7ae4dccf81c05b24cf6c5ede810e2040ca65c366c06aa611646ff05b053456f9",
+          "uuid": "2f68e8bf-1813-5ba4-a4a4-cfe42773eedb",
+          "metaSha256": "5b197ffac56edaaf8e3f93f83e46f416ba059596309f6b9288be9f277d7424ec"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/seng-mao-hu",
+      "folder": "seng-mao-hu",
+      "name": "僧帽壶",
+      "sourceName": "僧帽壶",
+      "source": "assets/Bundle/levels/qing-hua-ci/seng-mao-hu/僧帽壶.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/seng-mao-hu/differences.json",
+      "sourceSha256": "c09258e4c36fcb9a2d21a5850224a95ef99da2557e293ef2ce26b9acf8454986",
+      "previousConfigSha256": "486aa5dd2d77bd9ef7252ba0cbda777102a035b73cfbe3d255614bbbe5145c7b",
+      "configSha256": "873b05fdecab5f400525613667e3cb3da0affc513119784d9852509f0e76d92c",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/seng-mao-hu/scene-a.jpg",
+          "sha256": "34e67b1fbeda594d25c630b7545c33d1b47cdea7c01ccf1104d32ffdd1083849",
+          "uuid": "219a68e6-9cfa-5b20-94d5-64bd94cc3879",
+          "metaSha256": "67631efb59c4311eba6e74e7a6eead08944cbb1b0f9e6158e1cc44b5578eddce"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/seng-mao-hu/scene-b.jpg",
+          "sha256": "e183625b3999d7e589d79d4581833378812b4e54d179d3b221755d49a51f2ea2",
+          "uuid": "910e1312-ea1b-587d-93b2-356d6578be94",
+          "metaSha256": "088b8e7e768f8a91623eb6ef23780b8292cd1d0b55057e006d82f0f850dd16b8"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/shou-li-jin-cheng",
+      "folder": "shou-li-jin-cheng",
+      "name": "寿礼进呈",
+      "sourceName": "寿礼进呈",
+      "source": "assets/Bundle/levels/qing-hua-ci/shou-li-jin-cheng/寿礼进呈.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/shou-li-jin-cheng/differences.json",
+      "sourceSha256": "f4c778bc1d1ea562fad3cdba218f0ab124d3aeefd8a26c86c48c775dc65bc346",
+      "previousConfigSha256": "ba6b991d0af9dde9b3c12c2793eab122df15197efa61a57073171fac41206962",
+      "configSha256": "31bde78c61abe73ff0b61e166092721b4347c88f88fb3172a7cd3834ede453eb",
+      "oldDifferenceCount": 14,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14"
+      ],
+      "addedPointIds": [
+        "diff-15"
+      ],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/shou-li-jin-cheng/scene-a.jpg",
+          "sha256": "27dde8e8b818b5f3fcf48afb21df6919d3a3b410b158bfce2197b9c8c4a8443c",
+          "uuid": "6af489f8-d482-5946-b164-ff392a14d883",
+          "metaSha256": "b3ef8c155df3bc90a250ffadb89a237d7c6ad5f9058c7569ef73d449627b9c15"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/shou-li-jin-cheng/scene-b.jpg",
+          "sha256": "0c8426ce7d1f2adf3547317efdd2e246c595f4d1a0f86bbeb77763fe1fc27433",
+          "uuid": "9cd2b758-c0a5-5244-9e9c-229741db9c5d",
+          "metaSha256": "f2860f681d5718f977586d996930db75b7d78105d10fc4b39b1692d82b6b2c9a"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia",
+      "folder": "shou-nie-hai-ao-shan-xing-bi-jia",
+      "name": "手捏海鳌山形笔架",
+      "sourceName": "手捏海鳌山形笔架",
+      "source": "assets/Bundle/levels/qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia/手捏海鳌山形笔架.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/shou-nie-hai-ao-shan-xing-bi-jia/differences.json",
+      "sourceSha256": "6bd9cc06568522a38d405d96efa750374f0e3eec662394c2e56eb057b0b716cf",
+      "previousConfigSha256": "df586d48e5701ed3efdf3c0ad20e6f3b96de3daa7519921bf065f5a19884e8c4",
+      "configSha256": "3944c784fb3aa9d041f01169c69da8b0f1cc138afc72c6b465964dd5f7dec847",
+      "oldDifferenceCount": 13,
+      "differenceCount": 11,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-12",
+        "diff-13"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia/scene-a.jpg",
+          "sha256": "ae213b0c3a0017d6aa2c7fb195b704d29cd88a05f61216229fa9bfc20bca17be",
+          "uuid": "e8411f97-748e-59a5-aacf-2933a3751927",
+          "metaSha256": "d2c6fd37f5f2e72740f44d8f50528f9879450353f3706269046c871f1bc28394"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia/scene-b.jpg",
+          "sha256": "36420b9de3062e2dbe8ff2f990e988c7ea9cd7a08fc45f0b449c3e7243d3d1c7",
+          "uuid": "786ca09a-4e7a-51ea-af46-4d08bd7c96be",
+          "metaSha256": "8c6bade5a5c97a7cc3138fe9237a6db91b6be89a6a6110da2636438042e4230a"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/shou-yan-kai-xi",
+      "folder": "shou-yan-kai-xi",
+      "name": "寿宴开席",
+      "sourceName": "寿宴开席",
+      "source": "assets/Bundle/levels/qing-hua-ci/shou-yan-kai-xi/寿宴开席.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/shou-yan-kai-xi/differences.json",
+      "sourceSha256": "d07f50b35ee0aec39d6f11badf741b5c26fb1275c6545dd8125a5085b934a5a9",
+      "previousConfigSha256": "d442f3bb726df1775c838cff38ce7b009826db68b46cadda2c1e07880a025c5e",
+      "configSha256": "e22598e167ad98c080ceef085d52c88c41de3f7e4a3784bb45cbf8bc91315153",
+      "oldDifferenceCount": 14,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14"
+      ],
+      "addedPointIds": [
+        "diff-15"
+      ],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/shou-yan-kai-xi/scene-a.jpg",
+          "sha256": "1ca56f3ffed0f5d292beb70600e111aa7c2cb4fc414ae640ed4e7441436cffc3",
+          "uuid": "66e93ecf-1c57-5650-b3f1-45a475bfa3c5",
+          "metaSha256": "ac5ac1cb473dbf28bed815f21f13aee3aba004c20aa9a5758cfda2ca74b299eb"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/shou-yan-kai-xi/scene-b.jpg",
+          "sha256": "12175879ce6b46829594b6757c8526d937916985e9b5ad38fc6a9f0815d76fd6",
+          "uuid": "97de6aeb-6c9b-5a27-b7b3-8c1c95997b53",
+          "metaSha256": "a247b09d7165924eb6078e5c9e9607b6183dc2d9a9e252c6cde500d7f24eeaa5"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju",
+      "folder": "si-yuan-li-de-cha-yu-gong-ju",
+      "name": "寺院里的茶与供具",
+      "sourceName": "寺院的茶与供具",
+      "source": "assets/Bundle/levels/qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju/寺院的茶与供具.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/si-yuan-li-de-cha-yu-gong-ju/differences.json",
+      "sourceSha256": "9110cdf633c9c9e51f5b326cdf8551a6e559ec815567e57623ffefcdd4e1e792",
+      "previousConfigSha256": "ddf8285a9cafc6d9a7fde48279be7f95b461f6e89c6ec80eff5dc073f075acef",
+      "configSha256": "9a1ffad9735f7179851cfc68d091fa44dead689ba1f02fd2f4908069cff71605",
+      "oldDifferenceCount": 10,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [
+        "diff-11",
+        "diff-12"
+      ],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju/scene-a.jpg",
+          "sha256": "69cb582ee586560c1765310312f938623dd0f29598fb0fd8b673adc3605a8c54",
+          "uuid": "36936776-4ab2-5954-bdec-910d8234b2b6",
+          "metaSha256": "1e328013405c367eeb5ac95b1f60aadab867407123cc49e40ad5b2ce9c1108cc"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju/scene-b.jpg",
+          "sha256": "67f21fce91a60e1b22e9ff0b765e7994e53f7122da84baa9e60c001abe600921",
+          "uuid": "9d0b518a-c824-51a1-9a2b-e491cfd402fb",
+          "metaSha256": "9744fc324d004900bd14a61fb6d0512963a8b4f1b2eadef7e19d697e30dab61b"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/ting-yuan-li-de-hai-zi-men",
+      "folder": "ting-yuan-li-de-hai-zi-men",
+      "name": "庭院里的孩子们",
+      "sourceName": "庭院里的孩子们",
+      "source": "assets/Bundle/levels/qing-hua-ci/ting-yuan-li-de-hai-zi-men/庭院里的孩子们.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/ting-yuan-li-de-hai-zi-men/differences.json",
+      "sourceSha256": "273421badf8c451203984adfbadab246a363e134dd4964ee61b20ca49b725acd",
+      "previousConfigSha256": "29c160e47be412eec8ec09baccdf5c74827d572c061067a93ffaf7960c2680ac",
+      "configSha256": "006edaff6c121b0a33e1f3f8d4cd5566a7160d00245fc916600b6aef19abd66a",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/ting-yuan-li-de-hai-zi-men/scene-a.jpg",
+          "sha256": "e56e7075f8992e864b93059c3bfd3cad531c81cbd07eb8d939fa547f1617dd3b",
+          "uuid": "87210b91-2dd6-5448-b180-97df4db04e0a",
+          "metaSha256": "60630fae93828ab23a4b154d308388ea4ef7ddc54ba3715763f99e25a6c5a0a8"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/ting-yuan-li-de-hai-zi-men/scene-b.jpg",
+          "sha256": "fa28655438e9c488fc6649399b5060fad795fbda0b22792c2f20968ae2266266",
+          "uuid": "84781aa4-d4dc-5d74-8eab-7a38fc707f99",
+          "metaSha256": "4ec9eadca54653ad07ff4163d1133c0f6b828ca074eb87be747664ce7809d05a"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia",
+      "folder": "tong-zi-zhu-shui-ao-xing-bi-jia",
+      "name": "童子注水鳌形笔架",
+      "sourceName": "童子注水",
+      "source": "assets/Bundle/levels/qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia/童子注水.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/tong-zi-zhu-shui-ao-xing-bi-jia/differences.json",
+      "sourceSha256": "63ea25deb69813c05e2ed69d650565acec2b7d3cb6993191179e2b79c816891a",
+      "previousConfigSha256": "f19e16e0b5fe67094f388e75977a56e79f301eaf742421f9c4152fd5c4fa43b6",
+      "configSha256": "9fc2b34bcb433b51b0380c4fe30a87ebb59a2b5dc9c352602d742b9b0d51d6b6",
+      "oldDifferenceCount": 11,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11"
+      ],
+      "addedPointIds": [
+        "diff-12"
+      ],
+      "removedPointIds": [],
+      "largeRadiusPoints": [
+        {
+          "id": "diff-12",
+          "x": 0.686509,
+          "y": 0.923631,
+          "radius": 0.219801
+        }
+      ],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia/scene-a.jpg",
+          "sha256": "d297875571fe30e065d80f96b3aeacc9fdbb33a1059097b76dd7dc2ddfce716b",
+          "uuid": "407aac7a-2207-5074-a557-344431b28ba5",
+          "metaSha256": "0d599b51b056cbebbd3f2425939971801b9e87dd88d112fceb4894e5569e0468"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia/scene-b.jpg",
+          "sha256": "046e465df08543776bfeff7e36ea9c8cfe8faae7558219d1080543027f344ef7",
+          "uuid": "40174d51-cc75-5a15-b663-b785f0074ec4",
+          "metaSha256": "efb3734b4a06311df4024e9db7ad1a6d940ccbe397ba9e8131232ed8cb81d3bd"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/wan-shou-da-zun",
+      "folder": "wan-shou-da-zun",
+      "name": "万寿大尊",
+      "sourceName": "万寿大尊",
+      "source": "assets/Bundle/levels/qing-hua-ci/wan-shou-da-zun/万寿大尊.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/wan-shou-da-zun/differences.json",
+      "sourceSha256": "7b417a28aaa5ae543097e7fec1c471e23ea3ee3fba6ed73772cef2a341c5d0e9",
+      "previousConfigSha256": "5b508708245b2b59f76b5fbbab3a977e052e7aa820562f7eae1f9e2a74546d96",
+      "configSha256": "00e1ade6da0bfc896c7885f484026a03815ee4705ed6577d3e46ba247f396bff",
+      "oldDifferenceCount": 11,
+      "differenceCount": 10,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-11"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/wan-shou-da-zun/scene-a.jpg",
+          "sha256": "5cff36ad5a65bf3ef22bd9c4d88533d8c694edb12dcfccc5bfcd1b8e2fd2d5ba",
+          "uuid": "d55877c8-02eb-5a5a-808a-8e2327adcb21",
+          "metaSha256": "543d9ce2ce5e51a442d48d14d1ea6c615a2417f9304f2f093d10b3545268b9c2"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/wan-shou-da-zun/scene-b.jpg",
+          "sha256": "b23ba7484a1084b71e101c4743b911a285c4105b4b96d187d79fdda6897e7902",
+          "uuid": "ed4fe9ca-941c-5500-aec9-7de4793be958",
+          "metaSha256": "96e060f754df992e24eeaa1c2b71c1394ea3a38ef1247abf752a2edcf3dd50e3"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/wen-ren-si-ai-hao",
+      "folder": "wen-ren-si-ai-hao",
+      "name": "文人四爱好",
+      "sourceName": "文人四爱好",
+      "source": "assets/Bundle/levels/qing-hua-ci/wen-ren-si-ai-hao/文人四爱好.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/wen-ren-si-ai-hao/differences.json",
+      "sourceSha256": "b13d9aa70252d642e3c511e42ab0a9d2ec69d292143ab8bc01b6150629723b38",
+      "previousConfigSha256": "f411d0a7e5d7e9699736f272b42e00a966ab54fd887af841de21431bf64b0025",
+      "configSha256": "623045ec1a32c227385b41ecf12a64a49c77eb9657f6b27324d516a211b1f7d8",
+      "oldDifferenceCount": 12,
+      "differenceCount": 11,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-12"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/wen-ren-si-ai-hao/scene-a.jpg",
+          "sha256": "2ddd8d7e6c9120476ed6189aaedeb1f9fba73dee778ca359b01da83697b93791",
+          "uuid": "9ea5dbae-9a76-5d44-a58e-bf40400bb460",
+          "metaSha256": "5f7e157ed6ae0f4d9d50eb5b6d03b534c6354994c1d3b6d175fa4f4d787d3e3b"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/wen-ren-si-ai-hao/scene-b.jpg",
+          "sha256": "1311ce74511cdee8791c08d128751e0af1c288e4472cc1b82c5a33f35bd81d6c",
+          "uuid": "5511ef42-e729-5752-8d10-d2daed6958ca",
+          "metaSha256": "1cf35ba71cd5d38bea1bff6dcb4b7d8554e66c2d40c132e6ffba9bd6ce3aafdf"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/xiang-er-shuang-ping-qi-yun",
+      "folder": "xiang-er-shuang-ping-qi-yun",
+      "name": "象耳双瓶启运",
+      "sourceName": "象耳双瓶启运",
+      "source": "assets/Bundle/levels/qing-hua-ci/xiang-er-shuang-ping-qi-yun/象耳双瓶启运.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/xiang-er-shuang-ping-qi-yun/differences.json",
+      "sourceSha256": "f4c268a374a88c8830394686cdf402d4958d80d8d08e18c5a2f7fc7f03bc46ee",
+      "previousConfigSha256": "b8aa65bc382f31faeb3ec9e026e1dc7c1d7f9a7aa68cace22d02520b4fb902bc",
+      "configSha256": "40ceddb604364cb4735896a3d356036def982bfa53abf4122afc437465ee1678",
+      "oldDifferenceCount": 12,
+      "differenceCount": 11,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-12"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/xiang-er-shuang-ping-qi-yun/scene-a.jpg",
+          "sha256": "632aa542b0ae488c770858b28138f9790e4e023285a8be48c1c61ab2b62da432",
+          "uuid": "231a683f-7675-5c97-9766-bfef76d7536d",
+          "metaSha256": "880ee0a163d7f8dd1938bbe7893c3f77cd522000da7b33b001c37a0e7a1f4ec6"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/xiang-er-shuang-ping-qi-yun/scene-b.jpg",
+          "sha256": "703aac84997597ab00b5ce636db56d3b93074673531bc65ac9105370f7015aaa",
+          "uuid": "fcc34274-38f1-5929-bc57-28ffa30ec60a",
+          "metaSha256": "b6d92fa63dfecc48562997b1e196b166c781b3ab47fe4d17b828cc28dff2e6cc"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/xiao-he-yue-xia-zhui-han-xin",
+      "folder": "xiao-he-yue-xia-zhui-han-xin",
+      "name": "萧何月下追韩信",
+      "sourceName": "萧何月下追韩信",
+      "source": "assets/Bundle/levels/qing-hua-ci/xiao-he-yue-xia-zhui-han-xin/萧何月下追韩信.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/xiao-he-yue-xia-zhui-han-xin/differences.json",
+      "sourceSha256": "122d964ddc4144824d5cc166867aa346d507f939eb1fea063d09c9c183ebe20d",
+      "previousConfigSha256": "1718591f1c921f07f7db6af40e216fd29c8fc22f5b762b73b96f9eccae539301",
+      "configSha256": "b49da1f79a4540a6e1b0514e1005af9bb7d11896c76134bd3241521d95ec903d",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/xiao-he-yue-xia-zhui-han-xin/scene-a.jpg",
+          "sha256": "ceb3e0c5e99659aee83eecd354390946e3eb60be55c739adf3ae4376f0185e03",
+          "uuid": "b34db3da-8aa0-50ef-8364-2dc24e124f15",
+          "metaSha256": "78b5b19df0802ce5525fb4078f2413cff2908d4d188558311e711edcd9e6c53f"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/xiao-he-yue-xia-zhui-han-xin/scene-b.jpg",
+          "sha256": "51c93dba91737d7c8749426ac41b48fb44cc138f0165342bb6fbe1e411647686",
+          "uuid": "8b7a49af-2213-5be1-86f9-e46c57da291f",
+          "metaSha256": "40f03d8f9a9d0cad579c8c3e34c16a4d230e3594d97d23f3ad31ce9f50a9d3a5"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/yan-xi-jiang-kai",
+      "folder": "yan-xi-jiang-kai",
+      "name": "宴席将开",
+      "sourceName": "宴席将开",
+      "source": "assets/Bundle/levels/qing-hua-ci/yan-xi-jiang-kai/宴席将开.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/yan-xi-jiang-kai/differences.json",
+      "sourceSha256": "940d8c33325f519e39bc027e530e359f8132bc1668a647190d05a9f49118fc64",
+      "previousConfigSha256": "6b0ff39121291adacab29542c7a537d3dd2b169fe211bf785ae04c3f2d99b1f7",
+      "configSha256": "054d35d3dd871f1f59040847c3c8c797257555958bd0ae969935ddb69e21b6bb",
+      "oldDifferenceCount": 16,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-13",
+        "diff-14",
+        "diff-15",
+        "diff-16"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yan-xi-jiang-kai/scene-a.jpg",
+          "sha256": "5ac1d5c3c979e426c85ef2e0ee60098fa216eb6dc642c359a3882e29c4a4c932",
+          "uuid": "6c692d0d-76f3-578c-aae7-7f6ac1a7841d",
+          "metaSha256": "aada285ea15eaf061a07c0cb3ab8124d5801b61731aa89a1e776cff45dd65cf4"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yan-xi-jiang-kai/scene-b.jpg",
+          "sha256": "8e7ee5b0d7182f1f1b4be7979a29f4dc8c2a4b3394a1ee19092524278ab8334b",
+          "uuid": "200e56d1-6fc5-5cdc-a356-eb45c2edbfab",
+          "metaSha256": "8930166307934fe56d04d45b2946cc8b707b792790d0a5056bed07c64cd27a2c"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/yang-qi-lai-dao-zuo-fang",
+      "folder": "yang-qi-lai-dao-zuo-fang",
+      "name": "样器来到作坊",
+      "sourceName": "样器来到作坊",
+      "source": "assets/Bundle/levels/qing-hua-ci/yang-qi-lai-dao-zuo-fang/样器来到作坊.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/yang-qi-lai-dao-zuo-fang/differences.json",
+      "sourceSha256": "000e9c4a95b1f4be819cff68c5ff81c7e40759ea4f824705be2ab974b1bcfe31",
+      "previousConfigSha256": "aea204be45152ab940c5f127f1492106d9d62f794d25e5f5831e20d82fd46979",
+      "configSha256": "89ab2794bc2ba92d0def86407a32e8725e47c3d5d9f4247feaa24483623498de",
+      "oldDifferenceCount": 15,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yang-qi-lai-dao-zuo-fang/scene-a.jpg",
+          "sha256": "b967f2ae856e99244263c2696a5de1490ca9102b9951bdeea31e4457f1e444f5",
+          "uuid": "722a4a86-f832-5814-a04e-d93d6be5916f",
+          "metaSha256": "34b68fe82a141369d5d00e2f23b3c28d4565bf721ae16806d370fae9a1409f20"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yang-qi-lai-dao-zuo-fang/scene-b.jpg",
+          "sha256": "4d73e5c0751eba3ec770d180386baa4f06d7f4149263d0ea53151e03fadca62a",
+          "uuid": "18fbdb87-0ddf-59e0-81c2-462e434e21f4",
+          "metaSha256": "6f5e5d44d89f62dbc6e446fa369cf185b965142b1ebd1e35402c3992412bfa7f"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/yao-kou-jiao-huo",
+      "folder": "yao-kou-jiao-huo",
+      "name": "窑口交货",
+      "sourceName": "窑口交货",
+      "source": "assets/Bundle/levels/qing-hua-ci/yao-kou-jiao-huo/窑口交货.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/yao-kou-jiao-huo/differences.json",
+      "sourceSha256": "d2bd7ec56310e27599de70555ccdbc44f59f43af9d6b23ded90f01ca61d26cda",
+      "previousConfigSha256": "2cf9def2248005093bb2cf6fd7768b8873374aa38f5afaf1916ba98fa820dac2",
+      "configSha256": "90adefd4effbe837b33146d56c0dfeafe82db8f9ffb402330da344799b36e031",
+      "oldDifferenceCount": 9,
+      "differenceCount": 9,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yao-kou-jiao-huo/scene-a.jpg",
+          "sha256": "a81acc5b4e08ce65b67acfe5e60b80c237a40f8632da807f67049e22f1eebd7b",
+          "uuid": "daca6754-5396-52b8-bac8-cfdc4334ec05",
+          "metaSha256": "fd8f01104b508906899dce22244d59942883e0fc872098d62244bf531ccf65ae"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yao-kou-jiao-huo/scene-b.jpg",
+          "sha256": "843dd4b5ad20bb0fa6b6026dacf4eba64d464064e65de8f2ad5f5363e5502869",
+          "uuid": "16463f0e-0b3c-5991-87e4-9cbae6c59919",
+          "metaSha256": "9ea6fa1537fa2fc0be760ce1390acc739c196ae0df00eb78bee679218c5d7aab"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/yi-shao-yi-zuo",
+      "folder": "yi-shao-yi-zuo",
+      "name": "一勺一座",
+      "sourceName": "一勺一座",
+      "source": "assets/Bundle/levels/qing-hua-ci/yi-shao-yi-zuo/一勺一座.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/yi-shao-yi-zuo/differences.json",
+      "sourceSha256": "d446de84077b5314b5af0ede129c511ff2bf7447e16c07079639a12a45bc3984",
+      "previousConfigSha256": "283ac752a34cb1f6297458549100a163dc628603c24eecf0733c4d929eec9db6",
+      "configSha256": "6edb10081015a1f99632685d378ceab1abe3f9b8d8ce372b7931d0f04ee7b10b",
+      "oldDifferenceCount": 15,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yi-shao-yi-zuo/scene-a.jpg",
+          "sha256": "1c8ff5ea86f843540d77287e5999daeebb9173098daa08f91ff2003adae3c89f",
+          "uuid": "97e40df3-3c0c-58b9-b91f-326d51f7c65d",
+          "metaSha256": "a01e194f3fd0720a28053079dd92f99eab753e32dfceb861500aa478bd5ddf32"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yi-shao-yi-zuo/scene-b.jpg",
+          "sha256": "859185a015950ddc1dcf3555889ac0304740a980aac0f0345d1f0ddb95ea8ea9",
+          "uuid": "46aec3d9-5436-54d1-be93-9e81f766f61a",
+          "metaSha256": "47c76e433e89f1aded4b3d0f6f44e44b6b434a6ddbdbca85f07be169e2900e9a"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/ying-xi-tu-yuan-he",
+      "folder": "ying-xi-tu-yuan-he",
+      "name": "婴戏图圆盒",
+      "sourceName": "婴戏图圆盒",
+      "source": "assets/Bundle/levels/qing-hua-ci/ying-xi-tu-yuan-he/婴戏图圆盒.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/ying-xi-tu-yuan-he/differences.json",
+      "sourceSha256": "c15aef2fb1f122c3954be31dbdd3f59e5b2b3d54d000d8344bf71f66ecb3c750",
+      "previousConfigSha256": "9927cc0d3108eaf6116520f542880057b768b9945d7ab168485cf745d552a8f7",
+      "configSha256": "4935c20ddddd3840ffef6521e9007fe2c22e077d0a02c8b8ebfd8ad404538819",
+      "oldDifferenceCount": 10,
+      "differenceCount": 10,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/ying-xi-tu-yuan-he/scene-a.jpg",
+          "sha256": "0cf95c82691f0f5bab41fa95420d7a57a4a9bb705d9c42890a46b0ec46b38598",
+          "uuid": "0a658088-fd10-5342-b4a2-d7319097775c",
+          "metaSha256": "a04173bfb70b814c1d24cb6b81bfa438387c9d057cbc98c1cb6b50989a97a9c0"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/ying-xi-tu-yuan-he/scene-b.jpg",
+          "sha256": "750cad75dc8f1418721253dba9c3c6422d65485079cc55bf9f10e02a05e63830",
+          "uuid": "2dd153c6-d7aa-5287-ad0a-ba0de85ac0c0",
+          "metaSha256": "9e4c5bb4a840a65e99d8c627abcc88983a8452eeacbd573d55e069571661169e"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/yuan-dai-qing-hua-shuang-ping",
+      "folder": "yuan-dai-qing-hua-shuang-ping",
+      "name": "元代青花双瓶",
+      "sourceName": "元代青花双瓶",
+      "source": "assets/Bundle/levels/qing-hua-ci/yuan-dai-qing-hua-shuang-ping/元代青花双瓶.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/yuan-dai-qing-hua-shuang-ping/differences.json",
+      "sourceSha256": "ec81a10b7c4350e33b637b50801cf4832c0b4958dcb26693be26ef14e8bb98ca",
+      "previousConfigSha256": "88a488ca272476fdcb65535d9958baa2bd7b1df9222348e711dc672edf36403a",
+      "configSha256": "454882c115a1a33dce6c9387c02f9b5c967761ad4032bab482010678814f6dc1",
+      "oldDifferenceCount": 15,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yuan-dai-qing-hua-shuang-ping/scene-a.jpg",
+          "sha256": "76689207b6e1304e582a494f144ced11e7e2cf67b76bd2e1ce84b3d33564925f",
+          "uuid": "5e82b26d-6e62-56de-afc4-afcac80f0ebb",
+          "metaSha256": "9a8bea1f8693dc3d9cfd9de513fff6a5843ec28d91f5aaddb403fb9ee9d933cd"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yuan-dai-qing-hua-shuang-ping/scene-b.jpg",
+          "sha256": "1a671ff2859a0ef6098ee5292ad1ff222c64decaa56864edde0ee1d12079547c",
+          "uuid": "3302d3e5-8575-5320-b865-4cc2296db3b9",
+          "metaSha256": "caa6bd1bed0306ca17fb2dc8672fb11adc0a28349ee1e248bc7e2292ae15582b"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/yuan-fang-de-can-zhuo",
+      "folder": "yuan-fang-de-can-zhuo",
+      "name": "远方的餐桌",
+      "sourceName": "远方的餐桌",
+      "source": "assets/Bundle/levels/qing-hua-ci/yuan-fang-de-can-zhuo/远方的餐桌.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/yuan-fang-de-can-zhuo/differences.json",
+      "sourceSha256": "69e77debebbc5028820f82bd44cc84bb246977d6b517211e23433b88b4ba4944",
+      "previousConfigSha256": "527e1eb1b1d845406dadc0381bdf5a06f396077b8a223ef5e80877006cae3281",
+      "configSha256": "e4f5188c0eed0cb02ab78b365b3de369cffe4fafdc1dadfd8322e0a79de21aef",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yuan-fang-de-can-zhuo/scene-a.jpg",
+          "sha256": "81c5ba3f123e910c3121b37a419890203b583082dc5b88820dc32fcf477c1353",
+          "uuid": "ece592e1-2423-5c6b-9aa4-8aa1d9bd697d",
+          "metaSha256": "4aa4b54f6ca6c9f75bb17f79954e9a7bb68771698dab7ad1546c54de646bbb64"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yuan-fang-de-can-zhuo/scene-b.jpg",
+          "sha256": "f2f8fd4385e7172228133cfbc066416a504f0b944527dc09a182edc0403d56fe",
+          "uuid": "857a34b7-bb4b-543c-8559-b5397da4b767",
+          "metaSha256": "0b9819a4dc164855c8942e30e1dc752875fe99268577746f98f2ce827086c4b5"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/yuan-he-li-de-dian-xin",
+      "folder": "yuan-he-li-de-dian-xin",
+      "name": "圆盒里的点心",
+      "sourceName": "圆盒里的点心",
+      "source": "assets/Bundle/levels/qing-hua-ci/yuan-he-li-de-dian-xin/圆盒里的点心.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/yuan-he-li-de-dian-xin/differences.json",
+      "sourceSha256": "39869ac1a0fbf80aaa2182d460cae1f04ef5aad2ed5385b8713e51778242c47a",
+      "previousConfigSha256": "21a0638953fe9792f1d9f5a9bfae4eba74c7094244b6a4b6bddb472fcbcf3c6b",
+      "configSha256": "54a6611c536ad2dd80d9ac0c69e04448fa4644eb08cafcfcebbfb2e9a2cc08ff",
+      "oldDifferenceCount": 10,
+      "differenceCount": 10,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yuan-he-li-de-dian-xin/scene-a.jpg",
+          "sha256": "a0a256fe98fca7dfdba10f2353e459b38c1fa090145933c73dd4f41a39ba7112",
+          "uuid": "53e590d5-7ddd-56af-a8eb-8ffe3db5e365",
+          "metaSha256": "7f6f9b6ffd364fe70c4cd923fbb5084e595276e8380c90889792713577574873"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yuan-he-li-de-dian-xin/scene-b.jpg",
+          "sha256": "0aef99293f08cfd1ed506abe641279d83427ae14f36051caf37997090cfe2114",
+          "uuid": "e14649d9-edd8-542b-ab0d-6787e694cab2",
+          "metaSha256": "ce67fbde464d1217f67220912f92e3c2f9222d01419124878732f1134b08a5bd"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/yuan-xing-de-li-wu",
+      "folder": "yuan-xing-de-li-wu",
+      "name": "远行的礼物",
+      "sourceName": "远行的礼物",
+      "source": "assets/Bundle/levels/qing-hua-ci/yuan-xing-de-li-wu/远行的礼物.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/yuan-xing-de-li-wu/differences.json",
+      "sourceSha256": "f4c933715fe8a0ccfefb4517eb08e00ce98b5750e9982f3963aa327301b3eff2",
+      "previousConfigSha256": "26cecb944c08a591fcd9c038f1e76a99633f1ca60c203f74a0de310c249eb475",
+      "configSha256": "5720b21023c3d4aadfc7c479d54271347e4f63202a52a6424f7cfbb3a96da1a3",
+      "oldDifferenceCount": 15,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yuan-xing-de-li-wu/scene-a.jpg",
+          "sha256": "e11db65ff48be6e90452ced54dbefd32e748f0a9523c778c5cba13fa3cee4548",
+          "uuid": "10f95271-3598-59ae-a7a0-7901ebe0c93b",
+          "metaSha256": "345b464830393bc8edd3716e9eeaa75945be1cba75246af680f451587a0064c4"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/yuan-xing-de-li-wu/scene-b.jpg",
+          "sha256": "4671ae144a2eb4d98b3678e895e6b1522b4a824979deb7644a3f2abdd1229b5a",
+          "uuid": "d16afa7d-7725-5fd0-b355-bfa94c311b1a",
+          "metaSha256": "1e16d4cdbc5ea3590e3cabcdb95122e2cf2b013b44cc49bfdb545bea382d7aa2"
+        }
+      ]
+    },
+    {
+      "chapter": "qing-hua-ci",
+      "id": "qing-hua-ci/zhang-xin-da-xiao-de-ming-pin",
+      "folder": "zhang-xin-da-xiao-de-ming-pin",
+      "name": "掌心大小的名品",
+      "sourceName": "掌心大小的名品",
+      "source": "assets/Bundle/levels/qing-hua-ci/zhang-xin-da-xiao-de-ming-pin/掌心大小的名品.json",
+      "target": "assets/Bundle/levels/qing-hua-ci/configs/zhang-xin-da-xiao-de-ming-pin/differences.json",
+      "sourceSha256": "0b4e17a43b84d869e9381d8a84a8e3835bd6cf18c51f46a5f8a0628a241e4e9f",
+      "previousConfigSha256": "397b8d0164eb9fa489b24319195acbda0b158981aa68cbdf14bb1878a8c43ca4",
+      "configSha256": "0f88d928d65886117b43536e6368759ba78fd5d3edeb15a978536648b5999641",
+      "oldDifferenceCount": 12,
+      "differenceCount": 10,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [
+        "diff-11",
+        "diff-12"
+      ],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/zhang-xin-da-xiao-de-ming-pin/scene-a.jpg",
+          "sha256": "9a7ff2734737e4237671303aea9c736f82b75568422f9deb146c02ab879ce1ed",
+          "uuid": "e882c801-5522-565e-b17e-1095a33a7bf1",
+          "metaSha256": "6e59bb46e1f9214376af5b307675794c045366cdace44556de147816f0e56313"
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/zhang-xin-da-xiao-de-ming-pin/scene-b.jpg",
+          "sha256": "f68ef3c425f3117480de12bd4861bab8f284995d2950741563005c7a067cfadd",
+          "uuid": "45d0d032-e0d0-5b2b-b432-fb7973818bdb",
+          "metaSha256": "e26cadf35390831b95b59f6279611fa7aae897fb86c1f56dc30d86e121c11be6"
+        }
+      ]
+    },
+    {
+      "chapter": "wang-luo-re-dian",
+      "id": "wang-luo-re-dian/chou-zhi-tiao-zhan",
+      "folder": "chou-zhi-tiao-zhan",
+      "name": "抽纸挑战",
+      "sourceName": "抽纸挑战",
+      "source": "assets/Bundle/levels/wang-luo-re-dian/chou-zhi-tiao-zhan/抽纸挑战.json",
+      "target": "assets/Bundle/levels/wang-luo-re-dian/configs/chou-zhi-tiao-zhan/differences.json",
+      "sourceSha256": "43d74e0bee228a3ae86adc8499334b033b4375b52092267e119ae8c001216cc1",
+      "previousConfigSha256": "b3b915aef03987a8c248e1a3ffd011f685cd15e528df83987fbc9f98ed74737f",
+      "configSha256": "774d3400066060bab90e06ad792c8163b033dfaddb5374306bb95738ad460362",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/chou-zhi-tiao-zhan/scene-a.jpg",
+          "sha256": "1365d5a7af5db00163e32328bdbc5d8de2ca5251fc3950f8173a56f8a6c97134",
+          "uuid": "dc280493-22ac-5876-bfab-789a11bf58a6",
+          "metaSha256": "0b708156c9493c0d8c1d158ffe9cf49de3ac363a5237a0142973ace95baf4bc2"
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/chou-zhi-tiao-zhan/scene-b.jpg",
+          "sha256": "ed805859f2697b62b0c6c0615dcbd70e055a3a98efaed049b3c8b0428c0b0ade",
+          "uuid": "9a82ce65-fc64-59b0-8480-fea40527a11d",
+          "metaSha256": "1bd634b1c68210dbe03fd9c17eb95f82ed91900907c405ee345d3d95828237bc"
+        }
+      ]
+    },
+    {
+      "chapter": "wang-luo-re-dian",
+      "id": "wang-luo-re-dian/ci-bu-yi-yang-jiu-pao-bu",
+      "folder": "ci-bu-yi-yang-jiu-pao-bu",
+      "name": "词不一样就跑步",
+      "sourceName": "词不一样就跑步挑战",
+      "source": "assets/Bundle/levels/wang-luo-re-dian/ci-bu-yi-yang-jiu-pao-bu/词不一样就跑步挑战.json",
+      "target": "assets/Bundle/levels/wang-luo-re-dian/configs/ci-bu-yi-yang-jiu-pao-bu/differences.json",
+      "sourceSha256": "b38cce40d6d3a4239b995163d42dc64db9c379c9a19c6e12607fc1f8fdbf4410",
+      "previousConfigSha256": "824bf0b23d5416bc3855cf5e93073033bee7f258f1292a76d838ea540bb71763",
+      "configSha256": "ef1f468a3b24e838438806307f8b2a4f4c5e1bf9ef7810f5b713622fb9799c35",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/ci-bu-yi-yang-jiu-pao-bu/scene-a.jpg",
+          "sha256": "c8696bb15158a435a29d7c1d273939e64888e874b1d7f71dcfda804f7402cd09",
+          "uuid": "aa150e92-3a16-5444-a296-5cf36476db57",
+          "metaSha256": "db31e5c44229fb7b3bd2a320f91cc6ae83f057baf8d3f4abae2303059b2a20ef"
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/ci-bu-yi-yang-jiu-pao-bu/scene-b.jpg",
+          "sha256": "940142a0380aa008a2d83d8d5d9bb65e532c3e5ca33e588f927a230e4028d9ec",
+          "uuid": "68db0fd7-cf85-5471-9a12-f26975810118",
+          "metaSha256": "9045711cda6f03586a9637a6a8222e5ee738bc544424b91d12de24dc476eb295"
+        }
+      ]
+    },
+    {
+      "chapter": "wang-luo-re-dian",
+      "id": "wang-luo-re-dian/gong-fu-xiao-mi",
+      "folder": "gong-fu-xiao-mi",
+      "name": "功夫小咪",
+      "sourceName": "功夫小咪重出江湖",
+      "source": "assets/Bundle/levels/wang-luo-re-dian/gong-fu-xiao-mi/功夫小咪重出江湖.json",
+      "target": "assets/Bundle/levels/wang-luo-re-dian/configs/gong-fu-xiao-mi/differences.json",
+      "sourceSha256": "d1a468ada9ee0c2e6bacd65ba42141ae21cbb1fea14d1aab6a8356a97365b3be",
+      "previousConfigSha256": "5b1a0d1ed8231830f60564f755dee88473aa17dd2ca9259634fbfcca29829581",
+      "configSha256": "f2b2170ad7f7e12835004f529feb07d7b00b81b05e73d94394d1aceb5e540006",
+      "oldDifferenceCount": 13,
+      "differenceCount": 13,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/gong-fu-xiao-mi/scene-a.jpg",
+          "sha256": "66f035cda89b2469135bcb6dc49502c5364ef8de645aeebbc7aa03de7b62fbed",
+          "uuid": "17906d85-6a6d-5287-853f-6f2a9f5a2779",
+          "metaSha256": "209b773803ad77f37a390ed75cbfbe210bec7d22a4f2c5860df7285d1d0c9ddd"
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/gong-fu-xiao-mi/scene-b.jpg",
+          "sha256": "3ad444d11a09934e6e3480efb7f1bd2a458b72aea929faecf1c92d68ce5d64d0",
+          "uuid": "57ea469e-5446-50f6-b65f-c60dd08e822f",
+          "metaSha256": "ed9db47bfb485a437f5eb270064c6fec9f4d3278bb1deeadf16e9d0aa1ce7803"
+        }
+      ]
+    },
+    {
+      "chapter": "wang-luo-re-dian",
+      "id": "wang-luo-re-dian/mo-fang-xiao-hou-zi-shi",
+      "folder": "mo-fang-xiao-hou-zi-shi",
+      "name": "模仿小猴姿勢",
+      "sourceName": "模仿小猴姿势",
+      "source": "assets/Bundle/levels/wang-luo-re-dian/mo-fang-xiao-hou-zi-shi/模仿小猴姿势.json",
+      "target": "assets/Bundle/levels/wang-luo-re-dian/configs/mo-fang-xiao-hou-zi-shi/differences.json",
+      "sourceSha256": "aa66dea4e8e42c5ac930e389c3d12434f168cfb6131f073ddd3da1047f640b9d",
+      "previousConfigSha256": "82877012da2d9aca7967cee09221828fe1b0c67defbfbb3a9af1f883b1b01fe5",
+      "configSha256": "8dc77f1e4a889dbc3e7646cf8d905477bf11e6274fa8fd05beb31558c809e16d",
+      "oldDifferenceCount": 10,
+      "differenceCount": 10,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/mo-fang-xiao-hou-zi-shi/scene-a.jpg",
+          "sha256": "3634cad9cb40bd07deef2d7b19dd9dc4dc690c2096091eaff11d0d1a9e3842c3",
+          "uuid": "b74a9bb3-7eaf-5b60-a8c6-b4a9bd5aef3a",
+          "metaSha256": "f28e70ff457c672ff6e882bd8d67612e7db749124fb4122b6c0e76b878684e54"
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/mo-fang-xiao-hou-zi-shi/scene-b.jpg",
+          "sha256": "34dfbf37f8336e817bd8d4ab38c708f022974def0099798df680e33c6b63b35d",
+          "uuid": "7948a28f-7e77-582e-8618-73a7fac57126",
+          "metaSha256": "7c3c3a6650ba1c13e2bd1e804624bfdc9cf24225da88a78663f17fdb85f6f5f7"
+        }
+      ]
+    },
+    {
+      "chapter": "wang-luo-re-dian",
+      "id": "wang-luo-re-dian/qiu-ri-shou-cang",
+      "folder": "qiu-ri-shou-cang",
+      "name": "秋日收藏",
+      "sourceName": "秋日收藏",
+      "source": "assets/Bundle/levels/wang-luo-re-dian/qiu-ri-shou-cang/秋日收藏.json",
+      "target": "assets/Bundle/levels/wang-luo-re-dian/configs/qiu-ri-shou-cang/differences.json",
+      "sourceSha256": "79d35b7e9e53dc225bf5d7e330a77e4a8b24f1afc3065dc97cae13b84807fbb8",
+      "previousConfigSha256": "ca3392fc4596651fe79b5cb0cb4411e0428c84f2bd43ebcf7e01e86d62d3c688",
+      "configSha256": "71ebad84abc40da00b6ef97077a943aa089a112912acf955db0a037e7b59e2a3",
+      "oldDifferenceCount": 10,
+      "differenceCount": 10,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [
+        {
+          "id": "diff-3",
+          "x": 0.260383,
+          "y": 0.919355,
+          "radius": 0.203021
+        }
+      ],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/qiu-ri-shou-cang/scene-a.jpg",
+          "sha256": "a9e7a0ac69d6e305ea5c7b0d4447c8490f54818b7a0a3e87865270527a7e5625",
+          "uuid": "616604a7-5447-5c9e-ac12-b09fb9fa9a38",
+          "metaSha256": "6b499b1b5c691532d3f0439cbddb750e63a27eeabfd94f965189896a1262812c"
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/qiu-ri-shou-cang/scene-b.jpg",
+          "sha256": "ed17a636f5b2ed8cdae769670df35ca9573221d3dcfb4da1a866cf1e142f19ac",
+          "uuid": "3dddad48-8f72-578a-b8d2-c57ff2e34867",
+          "metaSha256": "25776a3f9afafd5c798c3d5495f162c6943dd7ec5c5ccb38566447b1be056f2a"
+        }
+      ]
+    },
+    {
+      "chapter": "wang-luo-re-dian",
+      "id": "wang-luo-re-dian/sha-xian-ai-qing-gu-shi",
+      "folder": "sha-xian-ai-qing-gu-shi",
+      "name": "沙县爱情故事",
+      "sourceName": "沙县爱情故事",
+      "source": "assets/Bundle/levels/wang-luo-re-dian/sha-xian-ai-qing-gu-shi/沙县爱情故事.json",
+      "target": "assets/Bundle/levels/wang-luo-re-dian/configs/sha-xian-ai-qing-gu-shi/differences.json",
+      "sourceSha256": "b9efa4f9c871996903cb9fa58ee11ff54d7931786dc1ba22f618c7df59c2d253",
+      "previousConfigSha256": "4a1ad2be506d25b04394a7b9fe18d747aea19bcdf21e24e8ae7796eb336a29c1",
+      "configSha256": "63716d2425cb7253987efafed31561294c72d40430d88d9e7d9c6f943c3159c5",
+      "oldDifferenceCount": 17,
+      "differenceCount": 17,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15",
+        "diff-16",
+        "diff-17"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/sha-xian-ai-qing-gu-shi/scene-a.jpg",
+          "sha256": "00047119880e0cbc6a26773ef52599660190784c2b09bf8c2502121fe2443adb",
+          "uuid": "60501777-3694-58d3-9588-170aa0f89008",
+          "metaSha256": "fe81a9e4e4cef2ae76f1c9b34db389901189b8aed6293fe60b08d4e620f4c9d3"
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/sha-xian-ai-qing-gu-shi/scene-b.jpg",
+          "sha256": "2660515579cec1e3c1aa72096ffb87f4e81d2ce00c3b53ae6badea36ec340cd3",
+          "uuid": "243c4e61-0a43-5db4-ac03-3053db49c9d0",
+          "metaSha256": "336cce9d52f110aa9a332a28a499be671dcad8804a970ba3eeac88b47663a806"
+        }
+      ]
+    },
+    {
+      "chapter": "wang-luo-re-dian",
+      "id": "wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan",
+      "folder": "shang-ke-tou-chi-tiao-zhan",
+      "name": "上课偷吃挑战",
+      "sourceName": "上课偷吃挑战",
+      "source": "assets/Bundle/levels/wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan/上课偷吃挑战.json",
+      "target": "assets/Bundle/levels/wang-luo-re-dian/configs/shang-ke-tou-chi-tiao-zhan/differences.json",
+      "sourceSha256": "f7337dfd586c82b2ed271012a7c343d8f39b4e62b021b880692c75e63246fb02",
+      "previousConfigSha256": "a4bf9fab343f59ebd17b442e9fe3780ce8eab388b294cc139277486442077716",
+      "configSha256": "37d30b4a9482cf2d9c1ec6d07957fa66d873522434e8e3ead2a0fcd0d2aa3f4e",
+      "oldDifferenceCount": 15,
+      "differenceCount": 15,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan/scene-a.jpg",
+          "sha256": "8a14389f188ee7851955b3ffd1fd501ec6783fbebc3c33ed88a91e506332b60c",
+          "uuid": "ba6b9ec2-5fd7-5c73-ac3a-52bcc35f3283",
+          "metaSha256": "ec9bf6f6bdf373a1772ccaa8b54ff578969add2dc6232cd8e2d0d15a8e182e4f"
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan/scene-b.jpg",
+          "sha256": "34ec5c3311159c487d0cc26f51cd4d0d2e67605dbcc63ac786e0bbdbb9bc26a4",
+          "uuid": "d3a927cc-571f-5993-9254-0493658cc3f9",
+          "metaSha256": "1f96c2938d9ea2b8a3f9aaf61984b758f102c1b2b3e821d08986e50c44e58745"
+        }
+      ]
+    },
+    {
+      "chapter": "wang-luo-re-dian",
+      "id": "wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta",
+      "folder": "tiao-zhan-qie-chao-chang-dan-ta",
+      "name": "挑战切超长蛋挞",
+      "sourceName": "挑战切超长蛋挞",
+      "source": "assets/Bundle/levels/wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta/挑战切超长蛋挞.json",
+      "target": "assets/Bundle/levels/wang-luo-re-dian/configs/tiao-zhan-qie-chao-chang-dan-ta/differences.json",
+      "sourceSha256": "ed289164b2a140ba74afd6b5748bd490fb8bcdbf1b805a6082d908531a03a7a9",
+      "previousConfigSha256": "897ec1592f3f0d6e31a758056a5f61b3b29501efed3eaaeeb5d3fa6c1e65afa5",
+      "configSha256": "0cec3e5f16d77080369cc624d7c520787079da6b810880aaeba38ac052f2b1f6",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta/scene-a.jpg",
+          "sha256": "3e693bd0ee0d1e428c9656406f096093495eb5a7eb2fef7cf8fc1c7c5551c669",
+          "uuid": "ff3cf682-4728-583a-a645-0319ddcec69a",
+          "metaSha256": "850c68fc3ed441beb4842c8e09fa5d5d8e12aa2f722afb261e700c4c28f45d14"
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta/scene-b.jpg",
+          "sha256": "8b04888a73caa49a49af0371913811b742f3e4e5c6d131bb9eb5119da25eb8ec",
+          "uuid": "0406f2b9-1a21-51d4-b00f-3ffafbf0f14b",
+          "metaSha256": "608924117958c78b53c31a392c82bed13519704208bdc30c56763f2eb304e640"
+        }
+      ]
+    },
+    {
+      "chapter": "wang-luo-re-dian",
+      "id": "wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai",
+      "folder": "xuan-dao-yi-yang-jiu-mai",
+      "name": "选到一样就买",
+      "sourceName": "选到一样就买",
+      "source": "assets/Bundle/levels/wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai/选到一样就买.json",
+      "target": "assets/Bundle/levels/wang-luo-re-dian/configs/xuan-dao-yi-yang-jiu-mai/differences.json",
+      "sourceSha256": "845fdaf4f148a7cf9a077fd5070a63c3470d2a25fd3aec450bc33e93e7289156",
+      "previousConfigSha256": "c53985de0fb796a0062ad94e7b3d904beeaa55e84226151029ea482031910211",
+      "configSha256": "36836e993dc28aefa6422c0230331ce825615e8621b5bb9b76ba13371b3f54fc",
+      "oldDifferenceCount": 12,
+      "differenceCount": 12,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai/scene-a.jpg",
+          "sha256": "9bd3c0c06869a8dcc8c0672b31224e5ca07c34d64de01db6795b26c8bdb43002",
+          "uuid": "349de01d-9f4c-5766-9973-a91f33bfc1f5",
+          "metaSha256": "2401a7c78028d67272e843069b2bc74ac2a638af274c104bdbbfae428bd3086b"
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai/scene-b.jpg",
+          "sha256": "679a61a8d373ac67d79248d4f738f21c1cdb6d8a23712e6c40d0184affe208fb",
+          "uuid": "40670f5f-0b62-5f4d-b25d-347ccf1c3ebd",
+          "metaSha256": "b5335afde93f5babb78c4221097db33092c72bd7773e7233db06177105bcf0ec"
+        }
+      ]
+    },
+    {
+      "chapter": "wang-luo-re-dian",
+      "id": "wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren",
+      "folder": "yi-shi-jie-lai-le-ge-nian-qing-ren",
+      "name": "异世界来了个年轻人",
+      "sourceName": "异世界来的年轻人",
+      "source": "assets/Bundle/levels/wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren/异世界来的年轻人.json",
+      "target": "assets/Bundle/levels/wang-luo-re-dian/configs/yi-shi-jie-lai-le-ge-nian-qing-ren/differences.json",
+      "sourceSha256": "7271fb783c868508236f4b8267b468cde488a5079e25cf88ca3e4955f8c41181",
+      "previousConfigSha256": "d22324dea629114aad9959597b16588f0daff25857d9cefba9044fa52657fdd2",
+      "configSha256": "4d2ea2a41ced66c136b7b7f96e8123046cd217308405908ed3b5ef6f33eb9a4d",
+      "oldDifferenceCount": 20,
+      "differenceCount": 20,
+      "changedPointIds": [
+        "diff-1",
+        "diff-2",
+        "diff-3",
+        "diff-4",
+        "diff-5",
+        "diff-6",
+        "diff-7",
+        "diff-8",
+        "diff-9",
+        "diff-10",
+        "diff-11",
+        "diff-12",
+        "diff-13",
+        "diff-14",
+        "diff-15",
+        "diff-16",
+        "diff-17",
+        "diff-18",
+        "diff-19",
+        "diff-20"
+      ],
+      "addedPointIds": [],
+      "removedPointIds": [],
+      "largeRadiusPoints": [],
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren/scene-a.jpg",
+          "sha256": "8b195ee0f6169e139ebfdfe30a1dcd69bfb6b0a28dfddb9a10b9990e4e2dc661",
+          "uuid": "4f2ed803-5fa4-5ea3-b068-55c502742afb",
+          "metaSha256": "a67ee6479dbddca97d1c2e6ec22d72598af8b5563c3b036f693b5f98f44e4a46"
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren/scene-b.jpg",
+          "sha256": "1292e662b0dc796007426da60be10b3f6fbaaa8524a9ef6c96785a28b57b806e",
+          "uuid": "8a1d9037-303b-56bf-8507-fcb68be0f4d7",
+          "metaSha256": "898a17ca95447869dab3af49fc69b51b807b373e0432735c9e84d111be6c301e"
+        }
+      ]
+    }
+  ]
+}

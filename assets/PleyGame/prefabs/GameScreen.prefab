@@ -600,7 +600,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 147.50699999999983,
+      "y": 150,
       "z": 0
     },
     "_lrot": {
@@ -613,7 +613,7 @@
     "_lscale": {
       "__type__": "cc.Vec3",
       "x": 1.075,
-      "y": 0.92,
+      "y": 0.95,
       "z": 1
     },
     "_mobility": 0,
@@ -899,7 +899,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -289.493,
+      "y": -301.3,
       "z": 0
     },
     "_lrot": {
@@ -912,7 +912,7 @@
     "_lscale": {
       "__type__": "cc.Vec3",
       "x": 1.075,
-      "y": 0.92,
+      "y": 0.95,
       "z": 1
     },
     "_mobility": 0,
@@ -1163,8 +1163,6 @@
       "__id__": 0
     },
     "fileId": "ABAv3YTgwk6io6IJHssQig",
-    "instance": null,
-    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -1191,7 +1189,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -509.359,
+      "y": -529.029,
       "z": 0
     },
     "_lrot": {
@@ -1203,8 +1201,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1.075,
-      "y": 0.92,
+      "x": 1,
+      "y": 1,
       "z": 1
     },
     "_mobility": 0,
@@ -1231,8 +1229,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 700,
-      "height": 2
+      "width": 750,
+      "height": 4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1262,9 +1260,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 133,
+      "g": 90,
+      "b": 66,
       "a": 255
     },
     "_spriteFrame": {
@@ -1327,7 +1325,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 366.379,
+      "y": 378,
       "z": 0
     },
     "_lrot": {
@@ -1339,8 +1337,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1.075,
-      "y": 0.92,
+      "x": 1,
+      "y": 1,
       "z": 1
     },
     "_mobility": 0,
@@ -1367,8 +1365,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 700,
-      "height": 2
+      "width": 750,
+      "height": 4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1398,9 +1396,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 133,
+      "g": 90,
+      "b": 66,
       "a": 255
     },
     "_spriteFrame": {

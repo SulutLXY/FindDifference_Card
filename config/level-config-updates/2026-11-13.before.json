@@ -1,0 +1,4615 @@
+{
+  "assets/Bundle/levels/qing-hua-ci/configs/a-la-bo-wen-zhu-tai/differences.json": {
+    "name": "阿拉伯文烛台",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.101613,
+        "y": 0.180645,
+        "radius": 0.058711
+      },
+      {
+        "id": "diff-2",
+        "x": 0.136542,
+        "y": 0.266129,
+        "radius": 0.030132
+      },
+      {
+        "id": "diff-3",
+        "x": 0.044456,
+        "y": 0.151613,
+        "radius": 0.036245
+      },
+      {
+        "id": "diff-4",
+        "x": 0.749395,
+        "y": 0.287097,
+        "radius": 0.069654
+      },
+      {
+        "id": "diff-5",
+        "x": 0.525,
+        "y": 0.6,
+        "radius": 0.072023
+      },
+      {
+        "id": "diff-6",
+        "x": 0.351411,
+        "y": 0.666129,
+        "radius": 0.060025
+      },
+      {
+        "id": "diff-7",
+        "x": 0.525,
+        "y": 0.712903,
+        "radius": 0.049818
+      },
+      {
+        "id": "diff-8",
+        "x": 0.730343,
+        "y": 0.737097,
+        "radius": 0.044024
+      },
+      {
+        "id": "diff-9",
+        "x": 0.86371,
+        "y": 0.1,
+        "radius": 0.075186
+      },
+      {
+        "id": "diff-10",
+        "x": 0.203226,
+        "y": 0.609677,
+        "radius": 0.136135
+      },
+      {
+        "id": "diff-11",
+        "x": 0.059274,
+        "y": 0.76129,
+        "radius": 0.041935
+      },
+      {
+        "id": "diff-12",
+        "x": 0.87006,
+        "y": 0.396774,
+        "radius": 0.06282
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/a-la-bo-wen-zhu-tai/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/cha-fang-bei-cha/differences.json": {
+    "name": "茶房备茶",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.313306,
+        "y": 0.448387,
+        "radius": 0.048387
+      },
+      {
+        "id": "diff-2",
+        "x": 0.810786,
+        "y": 0.646774,
+        "radius": 0.027372
+      },
+      {
+        "id": "diff-3",
+        "x": 0.945212,
+        "y": 0.530645,
+        "radius": 0.061629
+      },
+      {
+        "id": "diff-4",
+        "x": 0.650958,
+        "y": 0.293548,
+        "radius": 0.044727
+      },
+      {
+        "id": "diff-5",
+        "x": 0.087853,
+        "y": 0.65,
+        "radius": 0.10183
+      },
+      {
+        "id": "diff-6",
+        "x": 0.173589,
+        "y": 0.772581,
+        "radius": 0.082242
+      },
+      {
+        "id": "diff-7",
+        "x": 0.46996,
+        "y": 0.466129,
+        "radius": 0.02974
+      },
+      {
+        "id": "diff-8",
+        "x": 0.636139,
+        "y": 0.517742,
+        "radius": 0.024567
+      },
+      {
+        "id": "diff-9",
+        "x": 0.619204,
+        "y": 0.701613,
+        "radius": 0.059699
+      },
+      {
+        "id": "diff-10",
+        "x": 0.966381,
+        "y": 0.817742,
+        "radius": 0.05325
+      },
+      {
+        "id": "diff-11",
+        "x": 0.875353,
+        "y": 0.785484,
+        "radius": 0.059699
+      },
+      {
+        "id": "diff-12",
+        "x": 0.286845,
+        "y": 0.158065,
+        "radius": 0.062634
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/cha-fang-bei-cha/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/da-pan-zhuang-xia/differences.json": {
+    "name": "大盘装匣",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.428679,
+        "y": 0.156452,
+        "radius": 0.029077
+      },
+      {
+        "id": "diff-2",
+        "x": 0.492187,
+        "y": 0.616129,
+        "radius": 0.096909
+      },
+      {
+        "id": "diff-3",
+        "x": 0.581099,
+        "y": 0.7,
+        "radius": 0.038777
+      },
+      {
+        "id": "diff-4",
+        "x": 0.501714,
+        "y": 0.830645,
+        "radius": 0.06348
+      },
+      {
+        "id": "diff-5",
+        "x": 0.96744,
+        "y": 0.583871,
+        "radius": 0.04519
+      },
+      {
+        "id": "diff-6",
+        "x": 0.948387,
+        "y": 0.890323,
+        "radius": 0.035521
+      },
+      {
+        "id": "diff-7",
+        "x": 0.210635,
+        "y": 0.035484,
+        "radius": 0.056819
+      },
+      {
+        "id": "diff-8",
+        "x": 0.689062,
+        "y": 0.146774,
+        "radius": 0.035374
+      },
+      {
+        "id": "diff-9",
+        "x": 0.910282,
+        "y": 0.303226,
+        "radius": 0.04131
+      },
+      {
+        "id": "diff-10",
+        "x": 0.383165,
+        "y": 0.396774,
+        "radius": 0.043429
+      },
+      {
+        "id": "diff-11",
+        "x": 0.315423,
+        "y": 0.480645,
+        "radius": 0.034291
+      },
+      {
+        "id": "diff-12",
+        "x": 0.11749,
+        "y": 0.275806,
+        "radius": 0.029653
+      },
+      {
+        "id": "diff-13",
+        "x": 0.238155,
+        "y": 0.909677,
+        "radius": 0.028214
+      },
+      {
+        "id": "diff-14",
+        "x": 0.171472,
+        "y": 0.708065,
+        "radius": 0.075824
+      },
+      {
+        "id": "diff-15",
+        "x": 0.17994,
+        "y": 0.816129,
+        "radius": 0.038066
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/da-pan-zhuang-xia/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/da-shao-yu-xiao-e-zuo/differences.json": {
+    "name": "大勺与小鹅座",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.931452,
+        "y": 0.196774,
+        "radius": 0.069374
+      },
+      {
+        "id": "diff-2",
+        "x": 0.477369,
+        "y": 0.601613,
+        "radius": 0.066208
+      },
+      {
+        "id": "diff-3",
+        "x": 0.334476,
+        "y": 0.63871,
+        "radius": 0.073877
+      },
+      {
+        "id": "diff-4",
+        "x": 0.649899,
+        "y": 0.333871,
+        "radius": 0.052907
+      },
+      {
+        "id": "diff-5",
+        "x": 0.195817,
+        "y": 0.175806,
+        "radius": 0.046885
+      },
+      {
+        "id": "diff-6",
+        "x": 0.129133,
+        "y": 0.077419,
+        "radius": 0.034291
+      },
+      {
+        "id": "diff-7",
+        "x": 0.295312,
+        "y": 0.137097,
+        "radius": 0.042582
+      },
+      {
+        "id": "diff-8",
+        "x": 0.332359,
+        "y": 0.816129,
+        "radius": 0.043399
+      },
+      {
+        "id": "diff-9",
+        "x": 0.358821,
+        "y": 0.959677,
+        "radius": 0.034215
+      },
+      {
+        "id": "diff-10",
+        "x": 0.806552,
+        "y": 0.725806,
+        "radius": 0.060392
+      },
+      {
+        "id": "diff-11",
+        "x": 0.90499,
+        "y": 0.754839,
+        "radius": 0.065018
+      },
+      {
+        "id": "diff-12",
+        "x": 0.7875,
+        "y": 0.154839,
+        "radius": 0.038777
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/da-shao-yu-xiao-e-zuo/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/feng-shou-yu-juan-wei/differences.json": {
+    "name": "凤首与卷尾",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.509123,
+        "y": 0.522581,
+        "radius": 0.119006
+      },
+      {
+        "id": "diff-2",
+        "x": 0.776915,
+        "y": 0.737097,
+        "radius": 0.083654
+      },
+      {
+        "id": "diff-3",
+        "x": 0.390575,
+        "y": 0.65,
+        "radius": 0.085606
+      },
+      {
+        "id": "diff-4",
+        "x": 0.492187,
+        "y": 0.245161,
+        "radius": 0.071041
+      },
+      {
+        "id": "diff-5",
+        "x": 0.584274,
+        "y": 0.108065,
+        "radius": 0.061205
+      },
+      {
+        "id": "diff-6",
+        "x": 0.976966,
+        "y": 0.385484,
+        "radius": 0.04916
+      },
+      {
+        "id": "diff-7",
+        "x": 0.067742,
+        "y": 0.209677,
+        "radius": 0.055919
+      },
+      {
+        "id": "diff-8",
+        "x": 0.578982,
+        "y": 0.670968,
+        "radius": 0.059852
+      },
+      {
+        "id": "diff-9",
+        "x": 0.710232,
+        "y": 0.377419,
+        "radius": 0.068354
+      },
+      {
+        "id": "diff-10",
+        "x": 0.771623,
+        "y": 0.251613,
+        "radius": 0.059481
+      },
+      {
+        "id": "diff-11",
+        "x": 0.297429,
+        "y": 0.26129,
+        "radius": 0.044289
+      },
+      {
+        "id": "diff-12",
+        "x": 0.404335,
+        "y": 0.367742,
+        "radius": 0.041121
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/feng-shou-yu-juan-wei/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/fu-di-li-de-cang-ci/differences.json": {
+    "name": "府邸里的藏瓷",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.861593,
+        "y": 0.124194,
+        "radius": 0.052339
+      },
+      {
+        "id": "diff-2",
+        "x": 0.461492,
+        "y": 0.219355,
+        "radius": 0.050026
+      },
+      {
+        "id": "diff-3",
+        "x": 0.541935,
+        "y": 0.008065,
+        "radius": 0.07356
+      },
+      {
+        "id": "diff-4",
+        "x": 0.24874,
+        "y": 0.059677,
+        "radius": 0.059481
+      },
+      {
+        "id": "diff-5",
+        "x": 0.097379,
+        "y": 0.096774,
+        "radius": 0.079098
+      },
+      {
+        "id": "diff-6",
+        "x": 0.064567,
+        "y": 0.291935,
+        "radius": 0.107425
+      },
+      {
+        "id": "diff-7",
+        "x": 0.105847,
+        "y": 0.540323,
+        "radius": 0.036389
+      },
+      {
+        "id": "diff-8",
+        "x": 0.284728,
+        "y": 0.530645,
+        "radius": 0.123637
+      },
+      {
+        "id": "diff-9",
+        "x": 0.437147,
+        "y": 0.670968,
+        "radius": 0.074299
+      },
+      {
+        "id": "diff-10",
+        "x": 0.831956,
+        "y": 0.503226,
+        "radius": 0.034291
+      },
+      {
+        "id": "diff-11",
+        "x": 0.897581,
+        "y": 0.714516,
+        "radius": 0.044843
+      },
+      {
+        "id": "diff-12",
+        "x": 0.165121,
+        "y": 0.81129,
+        "radius": 0.124361
+      },
+      {
+        "id": "diff-13",
+        "x": 0.004234,
+        "y": 0.869355,
+        "radius": 0.124987
+      },
+      {
+        "id": "diff-14",
+        "x": 0.592742,
+        "y": 0.725806,
+        "radius": 0.045904
+      },
+      {
+        "id": "diff-15",
+        "x": 0.617087,
+        "y": 0.540323,
+        "radius": 0.095489
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/fu-di-li-de-cang-ci/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-xiao-he-zhui-han-xin-mei-ping"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/gei-gu-shao-pei-yi-zhi-e/differences.json": {
+    "name": "给古勺配一只鹅",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.322833,
+        "y": 0.419355,
+        "radius": 0.059481
+      },
+      {
+        "id": "diff-2",
+        "x": 0.299546,
+        "y": 0.959677,
+        "radius": 0.06958
+      },
+      {
+        "id": "diff-3",
+        "x": 0.196875,
+        "y": 0.306452,
+        "radius": 0.037654
+      },
+      {
+        "id": "diff-4",
+        "x": 0.46996,
+        "y": 0.298387,
+        "radius": 0.090811
+      },
+      {
+        "id": "diff-5",
+        "x": 0.432913,
+        "y": 0.548387,
+        "radius": 0.038844
+      },
+      {
+        "id": "diff-6",
+        "x": 0.695413,
+        "y": 0.664516,
+        "radius": 0.082763
+      },
+      {
+        "id": "diff-7",
+        "x": 0.971673,
+        "y": 0.38871,
+        "radius": 0.067838
+      },
+      {
+        "id": "diff-8",
+        "x": 0.96744,
+        "y": 0.972581,
+        "radius": 0.054195
+      },
+      {
+        "id": "diff-9",
+        "x": 0.351411,
+        "y": 0.667742,
+        "radius": 0.033251
+      },
+      {
+        "id": "diff-10",
+        "x": 0.881704,
+        "y": 0.403226,
+        "radius": 0.033562
+      },
+      {
+        "id": "diff-11",
+        "x": 0.794909,
+        "y": 0.75,
+        "radius": 0.056636
+      },
+      {
+        "id": "diff-12",
+        "x": 0.60121,
+        "y": 0.791935,
+        "radius": 0.045534
+      },
+      {
+        "id": "diff-13",
+        "x": 0.263558,
+        "y": 0.285484,
+        "radius": 0.053397
+      },
+      {
+        "id": "diff-14",
+        "x": 0.250857,
+        "y": 0.737097,
+        "radius": 0.08871
+      },
+      {
+        "id": "diff-15",
+        "x": 0.07621,
+        "y": 0.824194,
+        "radius": 0.086452
+      },
+      {
+        "id": "diff-16",
+        "x": 0.604385,
+        "y": 0.28871,
+        "radius": 0.061755
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/gei-gu-shao-pei-yi-zhi-e/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/hai-ao-shan-xing-bi-jia/differences.json": {
+    "name": "海鳌山形笔架",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.047631,
+        "y": 0.070968,
+        "radius": 0.053906
+      },
+      {
+        "id": "diff-2",
+        "x": 0.174647,
+        "y": 0.240323,
+        "radius": 0.046439
+      },
+      {
+        "id": "diff-3",
+        "x": 0.136542,
+        "y": 0.396774,
+        "radius": 0.036851
+      },
+      {
+        "id": "diff-4",
+        "x": 0.529234,
+        "y": 0.337097,
+        "radius": 0.027749
+      },
+      {
+        "id": "diff-5",
+        "x": 0.378931,
+        "y": 0.759677,
+        "radius": 0.068582
+      },
+      {
+        "id": "diff-6",
+        "x": 0.451966,
+        "y": 0.63871,
+        "radius": 0.039672
+      },
+      {
+        "id": "diff-7",
+        "x": 0.616028,
+        "y": 0.729032,
+        "radius": 0.050646
+      },
+      {
+        "id": "diff-8",
+        "x": 0.854183,
+        "y": 0.91129,
+        "radius": 0.06943
+      },
+      {
+        "id": "diff-9",
+        "x": 0.945212,
+        "y": 0.656452,
+        "radius": 0.091311
+      },
+      {
+        "id": "diff-10",
+        "x": 0.775857,
+        "y": 0.343548,
+        "radius": 0.06862
+      },
+      {
+        "id": "diff-11",
+        "x": 0.988609,
+        "y": 0.377419,
+        "radius": 0.036245
+      },
+      {
+        "id": "diff-12",
+        "x": 0.480544,
+        "y": 0.441935,
+        "radius": 0.040064
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/hai-ao-shan-xing-bi-jia/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/hai-wai-fu-di-de-ci-qi-chen-she/differences.json": {
+    "name": "海外府邸的瓷器陈设",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.567339,
+        "y": 0.93871,
+        "radius": 0.125454
+      },
+      {
+        "id": "diff-2",
+        "x": 0.230746,
+        "y": 0.698387,
+        "radius": 0.072077
+      },
+      {
+        "id": "diff-3",
+        "x": 0.29002,
+        "y": 0.430645,
+        "radius": 0.02021
+      },
+      {
+        "id": "diff-4",
+        "x": 0.18629,
+        "y": 0.083871,
+        "radius": 0.056429
+      },
+      {
+        "id": "diff-5",
+        "x": 0.040222,
+        "y": 0.156452,
+        "radius": 0.085742
+      },
+      {
+        "id": "diff-6",
+        "x": 0.653075,
+        "y": 0.103226,
+        "radius": 0.077587
+      },
+      {
+        "id": "diff-7",
+        "x": 0.916633,
+        "y": 0.35,
+        "radius": 0.040064
+      },
+      {
+        "id": "diff-8",
+        "x": 0.451966,
+        "y": 0.495161,
+        "radius": 0.107824
+      },
+      {
+        "id": "diff-9",
+        "x": 0.964264,
+        "y": 0.162903,
+        "radius": 0.111477
+      },
+      {
+        "id": "diff-10",
+        "x": 0.679536,
+        "y": 0.427419,
+        "radius": 0.174052
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-lian-chi-yu-zao-wen-guan"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/hua-kou-pu-tao-pan/differences.json": {
+    "name": "花口葡萄盘",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.070917,
+        "y": 0.209677,
+        "radius": 0.032258
+      },
+      {
+        "id": "diff-2",
+        "x": 0.109022,
+        "y": 0.283871,
+        "radius": 0.023262
+      },
+      {
+        "id": "diff-3",
+        "x": 0.097379,
+        "y": 0.429032,
+        "radius": 0.036851
+      },
+      {
+        "id": "diff-4",
+        "x": 0.15877,
+        "y": 0.606452,
+        "radius": 0.035374
+      },
+      {
+        "id": "diff-5",
+        "x": 0.061391,
+        "y": 0.740323,
+        "radius": 0.034631
+      },
+      {
+        "id": "diff-6",
+        "x": 0.351411,
+        "y": 0.553226,
+        "radius": 0.070323
+      },
+      {
+        "id": "diff-7",
+        "x": 0.575806,
+        "y": 0.529032,
+        "radius": 0.089075
+      },
+      {
+        "id": "diff-8",
+        "x": 0.84254,
+        "y": 0.574194,
+        "radius": 0.079098
+      },
+      {
+        "id": "diff-9",
+        "x": 0.86371,
+        "y": 0.733871,
+        "radius": 0.025039
+      },
+      {
+        "id": "diff-10",
+        "x": 0.590625,
+        "y": 0.167742,
+        "radius": 0.075411
+      },
+      {
+        "id": "diff-11",
+        "x": 0.817137,
+        "y": 0.141935,
+        "radius": 0.075307
+      },
+      {
+        "id": "diff-12",
+        "x": 0.358821,
+        "y": 0.182258,
+        "radius": 0.065258
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/hua-kou-pu-tao-pan/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/jie-ri-gong-guo/differences.json": {
+    "name": "节日供果",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.212752,
+        "y": 0.196774,
+        "radius": 0.034291
+      },
+      {
+        "id": "diff-2",
+        "x": 0.605444,
+        "y": 0.06129,
+        "radius": 0.059677
+      },
+      {
+        "id": "diff-3",
+        "x": 0.44244,
+        "y": 0.456452,
+        "radius": 0.155057
+      },
+      {
+        "id": "diff-4",
+        "x": 0.320716,
+        "y": 0.519355,
+        "radius": 0.047024
+      },
+      {
+        "id": "diff-5",
+        "x": 0.176764,
+        "y": 0.559677,
+        "radius": 0.032258
+      },
+      {
+        "id": "diff-6",
+        "x": 0.129133,
+        "y": 0.624194,
+        "radius": 0.051939
+      },
+      {
+        "id": "diff-7",
+        "x": 0.214869,
+        "y": 0.787097,
+        "radius": 0.090164
+      },
+      {
+        "id": "diff-8",
+        "x": 0.596976,
+        "y": 0.55,
+        "radius": 0.056105
+      },
+      {
+        "id": "diff-9",
+        "x": 0.556754,
+        "y": 0.782258,
+        "radius": 0.053712
+      },
+      {
+        "id": "diff-10",
+        "x": 0.72505,
+        "y": 0.879032,
+        "radius": 0.058444
+      },
+      {
+        "id": "diff-11",
+        "x": 0.956855,
+        "y": 0.412903,
+        "radius": 0.067125
+      },
+      {
+        "id": "diff-12",
+        "x": 0.916633,
+        "y": 0.053226,
+        "radius": 0.048333
+      },
+      {
+        "id": "diff-13",
+        "x": 0.861593,
+        "y": 0.169355,
+        "radius": 0.027608
+      },
+      {
+        "id": "diff-14",
+        "x": 0.652016,
+        "y": 0.243548,
+        "radius": 0.068354
+      },
+      {
+        "id": "diff-15",
+        "x": 0.0688,
+        "y": 0.275806,
+        "radius": 0.034631
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/jie-ri-gong-guo/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-qing-hua-gao-zu-pan"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/jin-tian-ye-yong-ya-shou-bei/differences.json": {
+    "name": "今天也用压手杯",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.914516,
+        "y": 0.064516,
+        "radius": 0.083326
+      },
+      {
+        "id": "diff-2",
+        "x": 0.915575,
+        "y": 0.495161,
+        "radius": 0.047874
+      },
+      {
+        "id": "diff-3",
+        "x": 0.504889,
+        "y": 0.837097,
+        "radius": 0.04542
+      },
+      {
+        "id": "diff-4",
+        "x": 0.522883,
+        "y": 0.690323,
+        "radius": 0.090164
+      },
+      {
+        "id": "diff-5",
+        "x": 0.370464,
+        "y": 0.446774,
+        "radius": 0.043578
+      },
+      {
+        "id": "diff-6",
+        "x": 0.264617,
+        "y": 0.401613,
+        "radius": 0.032659
+      },
+      {
+        "id": "diff-7",
+        "x": 0.185232,
+        "y": 0.846774,
+        "radius": 0.090811
+      },
+      {
+        "id": "diff-8",
+        "x": 0.110081,
+        "y": 0.741935,
+        "radius": 0.057818
+      },
+      {
+        "id": "diff-9",
+        "x": 0.897581,
+        "y": 0.822581,
+        "radius": 0.03541
+      },
+      {
+        "id": "diff-10",
+        "x": 0.87006,
+        "y": 0.314516,
+        "radius": 0.059938
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/jin-tian-ye-yong-ya-shou-bei/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-ya-shou-bei"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/jiu-si-kai-tan/differences.json": {
+    "name": "酒肆开坛",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.415978,
+        "y": 0.241935,
+        "radius": 0.050234
+      },
+      {
+        "id": "diff-2",
+        "x": 0.397984,
+        "y": 0.066129,
+        "radius": 0.024194
+      },
+      {
+        "id": "diff-3",
+        "x": 0.953679,
+        "y": 0.101613,
+        "radius": 0.048387
+      },
+      {
+        "id": "diff-4",
+        "x": 0.75998,
+        "y": 0.164516,
+        "radius": 0.032659
+      },
+      {
+        "id": "diff-5",
+        "x": 0.391633,
+        "y": 0.482258,
+        "radius": 0.062738
+      },
+      {
+        "id": "diff-6",
+        "x": 0.631905,
+        "y": 0.772581,
+        "radius": 0.117919
+      },
+      {
+        "id": "diff-7",
+        "x": 0.827722,
+        "y": 0.959677,
+        "radius": 0.042214
+      },
+      {
+        "id": "diff-8",
+        "x": 0.270968,
+        "y": 0.725806,
+        "radius": 0.108736
+      },
+      {
+        "id": "diff-9",
+        "x": 0.052923,
+        "y": 0.870968,
+        "radius": 0.05517
+      },
+      {
+        "id": "diff-10",
+        "x": 0.44244,
+        "y": 0.766129,
+        "radius": 0.068525
+      },
+      {
+        "id": "diff-11",
+        "x": 0.437147,
+        "y": 0.93871,
+        "radius": 0.06843
+      },
+      {
+        "id": "diff-12",
+        "x": 0.982258,
+        "y": 0.840323,
+        "radius": 0.054791
+      },
+      {
+        "id": "diff-13",
+        "x": 0.90499,
+        "y": 0.754839,
+        "radius": 0.052907
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/jiu-si-kai-tan/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-shou-er-da-guan"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/lan-ting-hui-bi-tong/differences.json": {
+    "name": "《兰亭会》笔筒",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.354587,
+        "y": 0.487097,
+        "radius": 0.06282
+      },
+      {
+        "id": "diff-2",
+        "x": 0.479486,
+        "y": 0.632258,
+        "radius": 0.041121
+      },
+      {
+        "id": "diff-3",
+        "x": 0.318599,
+        "y": 0.803226,
+        "radius": 0.037619
+      },
+      {
+        "id": "diff-4",
+        "x": 0.500655,
+        "y": 0.783871,
+        "radius": 0.043399
+      },
+      {
+        "id": "diff-5",
+        "x": 0.112198,
+        "y": 0.640323,
+        "radius": 0.044053
+      },
+      {
+        "id": "diff-6",
+        "x": 0.218044,
+        "y": 0.63871,
+        "radius": 0.034518
+      },
+      {
+        "id": "diff-7",
+        "x": 0.943095,
+        "y": 0.76129,
+        "radius": 0.04519
+      },
+      {
+        "id": "diff-8",
+        "x": 0.844657,
+        "y": 0.556452,
+        "radius": 0.074561
+      },
+      {
+        "id": "diff-9",
+        "x": 0.908165,
+        "y": 0.159677,
+        "radius": 0.028214
+      },
+      {
+        "id": "diff-10",
+        "x": 0.906048,
+        "y": 0.23871,
+        "radius": 0.028535
+      },
+      {
+        "id": "diff-11",
+        "x": 0.58745,
+        "y": 0.1,
+        "radius": 0.060392
+      },
+      {
+        "id": "diff-12",
+        "x": 0.743044,
+        "y": 0.235484,
+        "radius": 0.026454
+      },
+      {
+        "id": "diff-13",
+        "x": 0.663659,
+        "y": 0.429032,
+        "radius": 0.094503
+      },
+      {
+        "id": "diff-14",
+        "x": 0.486895,
+        "y": 0.375806,
+        "radius": 0.069374
+      },
+      {
+        "id": "diff-15",
+        "x": 0.70494,
+        "y": 0.156452,
+        "radius": 0.044289
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/lan-ting-hui-bi-tong/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/long-wen-da-pan/differences.json": {
+    "name": "龙纹大盘",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.5938,
+        "y": 0.280645,
+        "radius": 0.068068
+      },
+      {
+        "id": "diff-2",
+        "x": 0.240272,
+        "y": 0.76129,
+        "radius": 0.066502
+      },
+      {
+        "id": "diff-3",
+        "x": 0.756804,
+        "y": 0.740323,
+        "radius": 0.09668
+      },
+      {
+        "id": "diff-4",
+        "x": 0.864768,
+        "y": 0.408065,
+        "radius": 0.033094
+      },
+      {
+        "id": "diff-5",
+        "x": 0.775857,
+        "y": 0.320968,
+        "radius": 0.039934
+      },
+      {
+        "id": "diff-6",
+        "x": 0.347177,
+        "y": 0.214516,
+        "radius": 0.034215
+      },
+      {
+        "id": "diff-7",
+        "x": 0.160887,
+        "y": 0.358065,
+        "radius": 0.03678
+      },
+      {
+        "id": "diff-8",
+        "x": 0.227571,
+        "y": 0.025806,
+        "radius": 0.026454
+      },
+      {
+        "id": "diff-9",
+        "x": 0.990726,
+        "y": 0.314516,
+        "radius": 0.030983
+      },
+      {
+        "id": "diff-10",
+        "x": 0.752571,
+        "y": 0.224194,
+        "radius": 0.044494
+      },
+      {
+        "id": "diff-11",
+        "x": 0.499597,
+        "y": 0.748387,
+        "radius": 0.032258
+      },
+      {
+        "id": "diff-12",
+        "x": 0.400101,
+        "y": 0.532258,
+        "radius": 0.051939
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/long-wen-da-pan/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/pan-yu-gao-zu-de-cheng-xing/differences.json": {
+    "name": "盘与高足的成型",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.368347,
+        "y": 0.290323,
+        "radius": 0.074718
+      },
+      {
+        "id": "diff-2",
+        "x": 0.143952,
+        "y": 0.054839,
+        "radius": 0.052661
+      },
+      {
+        "id": "diff-3",
+        "x": 0.202167,
+        "y": 0.156452,
+        "radius": 0.033251
+      },
+      {
+        "id": "diff-4",
+        "x": 0.284728,
+        "y": 0.412903,
+        "radius": 0.035226
+      },
+      {
+        "id": "diff-5",
+        "x": 0.342944,
+        "y": 0.401613,
+        "radius": 0.032659
+      },
+      {
+        "id": "diff-6",
+        "x": 0.439264,
+        "y": 0.454839,
+        "radius": 0.098069
+      },
+      {
+        "id": "diff-7",
+        "x": 0.720817,
+        "y": 0.229032,
+        "radius": 0.048521
+      },
+      {
+        "id": "diff-8",
+        "x": 0.766331,
+        "y": 0.574194,
+        "radius": 0.069804
+      },
+      {
+        "id": "diff-9",
+        "x": 0.107964,
+        "y": 0.846774,
+        "radius": 0.099753
+      },
+      {
+        "id": "diff-10",
+        "x": 0.296371,
+        "y": 0.716129,
+        "radius": 0.063807
+      },
+      {
+        "id": "diff-11",
+        "x": 0.927218,
+        "y": 0.670968,
+        "radius": 0.038066
+      },
+      {
+        "id": "diff-12",
+        "x": 0.970615,
+        "y": 0.346774,
+        "radius": 0.070027
+      },
+      {
+        "id": "diff-13",
+        "x": 0.430796,
+        "y": 0.625806,
+        "radius": 0.075926
+      },
+      {
+        "id": "diff-14",
+        "x": 0.556754,
+        "y": 0.748387,
+        "radius": 0.079426
+      },
+      {
+        "id": "diff-15",
+        "x": 0.767389,
+        "y": 0.724194,
+        "radius": 0.047656
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/pan-yu-gao-zu-de-cheng-xing/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/ping-shang-zhui-gan/differences.json": {
+    "name": "瓶上追赶",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.361996,
+        "y": 0.175806,
+        "radius": 0.048762
+      },
+      {
+        "id": "diff-2",
+        "x": 0.318599,
+        "y": 0.359677,
+        "radius": 0.029077
+      },
+      {
+        "id": "diff-3",
+        "x": 0.813962,
+        "y": 0.366129,
+        "radius": 0.02974
+      },
+      {
+        "id": "diff-4",
+        "x": 0.927218,
+        "y": 0.356452,
+        "radius": 0.063969
+      },
+      {
+        "id": "diff-5",
+        "x": 0.328125,
+        "y": 0.790323,
+        "radius": 0.071424
+      },
+      {
+        "id": "diff-6",
+        "x": 0.356704,
+        "y": 0.074194,
+        "radius": 0.059064
+      },
+      {
+        "id": "diff-7",
+        "x": 0.043397,
+        "y": 0.337097,
+        "radius": 0.057705
+      },
+      {
+        "id": "diff-8",
+        "x": 0.453024,
+        "y": 0.485484,
+        "radius": 0.025194
+      },
+      {
+        "id": "diff-9",
+        "x": 0.341885,
+        "y": 0.604839,
+        "radius": 0.105581
+      },
+      {
+        "id": "diff-10",
+        "x": 0.583216,
+        "y": 0.333871,
+        "radius": 0.037963
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/ping-shang-zhui-gan/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/qing-dai-shu-fang-luo-bi/differences.json": {
+    "name": "清代书房落笔",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.528175,
+        "y": 0.153226,
+        "radius": 0.030814
+      },
+      {
+        "id": "diff-2",
+        "x": 0.403276,
+        "y": 0.127419,
+        "radius": 0.056105
+      },
+      {
+        "id": "diff-3",
+        "x": 0.238155,
+        "y": 0.072581,
+        "radius": 0.033251
+      },
+      {
+        "id": "diff-4",
+        "x": 0.15877,
+        "y": 0.106452,
+        "radius": 0.02462
+      },
+      {
+        "id": "diff-5",
+        "x": 0.071976,
+        "y": 0.396774,
+        "radius": 0.074421
+      },
+      {
+        "id": "diff-6",
+        "x": 0.183115,
+        "y": 0.840323,
+        "radius": 0.036496
+      },
+      {
+        "id": "diff-7",
+        "x": 0.512298,
+        "y": 0.870968,
+        "radius": 0.037654
+      },
+      {
+        "id": "diff-8",
+        "x": 0.286845,
+        "y": 0.467742,
+        "radius": 0.061418
+      },
+      {
+        "id": "diff-9",
+        "x": 0.611794,
+        "y": 0.419355,
+        "radius": 0.109262
+      },
+      {
+        "id": "diff-10",
+        "x": 0.837248,
+        "y": 0.693548,
+        "radius": 0.06282
+      },
+      {
+        "id": "diff-11",
+        "x": 0.886996,
+        "y": 0.387097,
+        "radius": 0.028535
+      },
+      {
+        "id": "diff-12",
+        "x": 0.964264,
+        "y": 0.370968,
+        "radius": 0.059152
+      },
+      {
+        "id": "diff-13",
+        "x": 0.945212,
+        "y": 0.779032,
+        "radius": 0.065018
+      },
+      {
+        "id": "diff-14",
+        "x": 0.97379,
+        "y": 0.583871,
+        "radius": 0.063908
+      },
+      {
+        "id": "diff-15",
+        "x": 0.350353,
+        "y": 0.420968,
+        "radius": 0.039244
+      },
+      {
+        "id": "diff-16",
+        "x": 0.198992,
+        "y": 0.293548,
+        "radius": 0.058466
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/qing-dai-shu-fang-luo-bi/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-lan-ting-hui-bi-tong"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/qing-hua-dai-jin-shu-fang/differences.json": {
+    "name": "青花带进书房",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.460433,
+        "y": 0.646774,
+        "radius": 0.062301
+      },
+      {
+        "id": "diff-2",
+        "x": 0.675302,
+        "y": 0.4,
+        "radius": 0.041842
+      },
+      {
+        "id": "diff-3",
+        "x": 0.640373,
+        "y": 0.15,
+        "radius": 0.031025
+      },
+      {
+        "id": "diff-4",
+        "x": 0.695413,
+        "y": 0.074194,
+        "radius": 0.063807
+      },
+      {
+        "id": "diff-5",
+        "x": 0.284728,
+        "y": 0.085484,
+        "radius": 0.033094
+      },
+      {
+        "id": "diff-6",
+        "x": 0.143952,
+        "y": 0.114516,
+        "radius": 0.031811
+      },
+      {
+        "id": "diff-7",
+        "x": 0.042339,
+        "y": 0.322581,
+        "radius": 0.069878
+      },
+      {
+        "id": "diff-8",
+        "x": 0.029637,
+        "y": 0.724194,
+        "radius": 0.054577
+      },
+      {
+        "id": "diff-9",
+        "x": 0.707056,
+        "y": 0.882258,
+        "radius": 0.098122
+      },
+      {
+        "id": "diff-10",
+        "x": 0.906048,
+        "y": 0.527419,
+        "radius": 0.080838
+      },
+      {
+        "id": "diff-11",
+        "x": 0.24874,
+        "y": 0.553226,
+        "radius": 0.060392
+      },
+      {
+        "id": "diff-12",
+        "x": 0.151361,
+        "y": 0.653226,
+        "radius": 0.095312
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/qing-hua-dai-jin-shu-fang/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-si-ai-tu-mei-ping"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/qing-hua-gao-zu-pan/differences.json": {
+    "name": "青花高足盘",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.940978,
+        "y": 0.072581,
+        "radius": 0.054934
+      },
+      {
+        "id": "diff-2",
+        "x": 0.450907,
+        "y": 0.527419,
+        "radius": 0.074351
+      },
+      {
+        "id": "diff-3",
+        "x": 0.492187,
+        "y": 0.666129,
+        "radius": 0.050389
+      },
+      {
+        "id": "diff-4",
+        "x": 0.486895,
+        "y": 0.848387,
+        "radius": 0.06403
+      },
+      {
+        "id": "diff-5",
+        "x": 0.030696,
+        "y": 0.496774,
+        "radius": 0.050026
+      },
+      {
+        "id": "diff-6",
+        "x": 0.121724,
+        "y": 0.082258,
+        "radius": 0.040708
+      },
+      {
+        "id": "diff-7",
+        "x": 0.114315,
+        "y": 0.537097,
+        "radius": 0.064516
+      },
+      {
+        "id": "diff-8",
+        "x": 0.975907,
+        "y": 0.208065,
+        "radius": 0.031689
+      },
+      {
+        "id": "diff-9",
+        "x": 0.643548,
+        "y": 0.204839,
+        "radius": 0.024194
+      },
+      {
+        "id": "diff-10",
+        "x": 0.474194,
+        "y": 0.185484,
+        "radius": 0.142676
+      },
+      {
+        "id": "diff-11",
+        "x": 0.056099,
+        "y": 0.229032,
+        "radius": 0.028852
+      },
+      {
+        "id": "diff-12",
+        "x": 0.242389,
+        "y": 0.25,
+        "radius": 0.030432
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/qing-hua-gao-zu-pan/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/qing-hua-hua-jiao/differences.json": {
+    "name": "青花花浇",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.658367,
+        "y": 0.519355,
+        "radius": 0.061966
+      },
+      {
+        "id": "diff-2",
+        "x": 0.65625,
+        "y": 0.664516,
+        "radius": 0.060025
+      },
+      {
+        "id": "diff-3",
+        "x": 0.822429,
+        "y": 0.633871,
+        "radius": 0.066502
+      },
+      {
+        "id": "diff-4",
+        "x": 0.658367,
+        "y": 0.943548,
+        "radius": 0.075824
+      },
+      {
+        "id": "diff-5",
+        "x": 0.196875,
+        "y": 0.437097,
+        "radius": 0.045876
+      },
+      {
+        "id": "diff-6",
+        "x": 0.27626,
+        "y": 0.066129,
+        "radius": 0.046774
+      },
+      {
+        "id": "diff-7",
+        "x": 0.004234,
+        "y": 0.201613,
+        "radius": 0.04519
+      },
+      {
+        "id": "diff-8",
+        "x": 0.142893,
+        "y": 0.920968,
+        "radius": 0.068525
+      },
+      {
+        "id": "diff-9",
+        "x": 0.824546,
+        "y": 0.35,
+        "radius": 0.125641
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/qing-hua-hua-jiao/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/qing-hua-hui-dao-can-zhuo/differences.json": {
+    "name": "青花回到餐桌",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.313306,
+        "y": 0.240323,
+        "radius": 0.031317
+      },
+      {
+        "id": "diff-2",
+        "x": 0.4562,
+        "y": 0.364516,
+        "radius": 0.089221
+      },
+      {
+        "id": "diff-3",
+        "x": 0.958972,
+        "y": 0.208065,
+        "radius": 0.051939
+      },
+      {
+        "id": "diff-4",
+        "x": 0.70494,
+        "y": 0.159677,
+        "radius": 0.069035
+      },
+      {
+        "id": "diff-5",
+        "x": 0.682712,
+        "y": 0.770968,
+        "radius": 0.100208
+      },
+      {
+        "id": "diff-6",
+        "x": 0.135484,
+        "y": 0.779032,
+        "radius": 0.083654
+      },
+      {
+        "id": "diff-7",
+        "x": 0.147127,
+        "y": 0.546774,
+        "radius": 0.100984
+      },
+      {
+        "id": "diff-8",
+        "x": 0.419153,
+        "y": 0.76129,
+        "radius": 0.118403
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/qing-hua-hui-dao-can-zhuo/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-dang-dai-qing-hua-ri-yong-qi"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/qing-hua-san-qi-tong-gui/differences.json": {
+    "name": "青花三器同柜",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.529234,
+        "y": 0.453226,
+        "radius": 0.086452
+      },
+      {
+        "id": "diff-2",
+        "x": 0.196875,
+        "y": 0.854839,
+        "radius": 0.064878
+      },
+      {
+        "id": "diff-3",
+        "x": 0.851008,
+        "y": 0.7,
+        "radius": 0.040419
+      },
+      {
+        "id": "diff-4",
+        "x": 0.810786,
+        "y": 0.319355,
+        "radius": 0.062903
+      },
+      {
+        "id": "diff-5",
+        "x": 0.936744,
+        "y": 0.429032,
+        "radius": 0.028852
+      },
+      {
+        "id": "diff-6",
+        "x": 0.758921,
+        "y": 0.543548,
+        "radius": 0.10459
+      },
+      {
+        "id": "diff-7",
+        "x": 0.321774,
+        "y": 0.564516,
+        "radius": 0.090279
+      },
+      {
+        "id": "diff-8",
+        "x": 0.528175,
+        "y": 0.154839,
+        "radius": 0.082258
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/qing-hua-san-qi-tong-gui/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/qu-shui-liu-shang/differences.json": {
+    "name": "曲水流觞",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.617087,
+        "y": 0.316129,
+        "radius": 0.040804
+      },
+      {
+        "id": "diff-2",
+        "x": 0.450907,
+        "y": 0.317742,
+        "radius": 0.030814
+      },
+      {
+        "id": "diff-3",
+        "x": 0.412802,
+        "y": 0.495161,
+        "radius": 0.044494
+      },
+      {
+        "id": "diff-4",
+        "x": 0.485837,
+        "y": 0.733871,
+        "radius": 0.066833
+      },
+      {
+        "id": "diff-5",
+        "x": 0.279435,
+        "y": 0.319355,
+        "radius": 0.040323
+      },
+      {
+        "id": "diff-6",
+        "x": 0.957913,
+        "y": 0.333871,
+        "radius": 0.048333
+      },
+      {
+        "id": "diff-7",
+        "x": 0.94627,
+        "y": 0.135484,
+        "radius": 0.031317
+      },
+      {
+        "id": "diff-8",
+        "x": 0.767389,
+        "y": 0.130645,
+        "radius": 0.032897
+      },
+      {
+        "id": "diff-9",
+        "x": 0.647782,
+        "y": 0.856452,
+        "radius": 0.039044
+      },
+      {
+        "id": "diff-10",
+        "x": 0.404335,
+        "y": 0.077419,
+        "radius": 0.01881
+      },
+      {
+        "id": "diff-11",
+        "x": 0.266734,
+        "y": 0.16129,
+        "radius": 0.061819
+      },
+      {
+        "id": "diff-12",
+        "x": 0.187349,
+        "y": 0.716129,
+        "radius": 0.04131
+      },
+      {
+        "id": "diff-13",
+        "x": 0.69753,
+        "y": 0.435484,
+        "radius": 0.030432
+      },
+      {
+        "id": "diff-14",
+        "x": 0.854183,
+        "y": 0.475806,
+        "radius": 0.02462
+      },
+      {
+        "id": "diff-15",
+        "x": 0.619204,
+        "y": 0.240323,
+        "radius": 0.030983
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/qu-shui-liu-shang/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/seng-mao-hu/differences.json": {
+    "name": "僧帽壶",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.720817,
+        "y": 0.495161,
+        "radius": 0.034177
+      },
+      {
+        "id": "diff-2",
+        "x": 0.795968,
+        "y": 0.627419,
+        "radius": 0.030983
+      },
+      {
+        "id": "diff-3",
+        "x": 0.73881,
+        "y": 0.282258,
+        "radius": 0.067299
+      },
+      {
+        "id": "diff-4",
+        "x": 0.721875,
+        "y": 0.885484,
+        "radius": 0.030814
+      },
+      {
+        "id": "diff-5",
+        "x": 0.310131,
+        "y": 0.451613,
+        "radius": 0.034291
+      },
+      {
+        "id": "diff-6",
+        "x": 0.128075,
+        "y": 0.137097,
+        "radius": 0.056819
+      },
+      {
+        "id": "diff-7",
+        "x": 0.264617,
+        "y": 0.8,
+        "radius": 0.079802
+      },
+      {
+        "id": "diff-8",
+        "x": 0.168296,
+        "y": 0.843548,
+        "radius": 0.085863
+      },
+      {
+        "id": "diff-9",
+        "x": 0.712349,
+        "y": 0.708065,
+        "radius": 0.082652
+      },
+      {
+        "id": "diff-10",
+        "x": 0.019052,
+        "y": 0.279032,
+        "radius": 0.069654
+      },
+      {
+        "id": "diff-11",
+        "x": 0.189466,
+        "y": 0.256452,
+        "radius": 0.035812
+      },
+      {
+        "id": "diff-12",
+        "x": 0.872177,
+        "y": 0.148387,
+        "radius": 0.047437
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/seng-mao-hu/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/shou-li-jin-cheng/differences.json": {
+    "name": "寿礼进呈",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.837248,
+        "y": 0.404839,
+        "radius": 0.030002
+      },
+      {
+        "id": "diff-2",
+        "x": 0.438206,
+        "y": 0.422581,
+        "radius": 0.104291
+      },
+      {
+        "id": "diff-3",
+        "x": 0.635081,
+        "y": 0.459677,
+        "radius": 0.045677
+      },
+      {
+        "id": "diff-4",
+        "x": 0.774798,
+        "y": 0.464516,
+        "radius": 0.051259
+      },
+      {
+        "id": "diff-5",
+        "x": 0.265675,
+        "y": 0.556452,
+        "radius": 0.06943
+      },
+      {
+        "id": "diff-6",
+        "x": 0.060333,
+        "y": 0.577419,
+        "radius": 0.069804
+      },
+      {
+        "id": "diff-7",
+        "x": 0.157712,
+        "y": 0.564516,
+        "radius": 0.041624
+      },
+      {
+        "id": "diff-8",
+        "x": 0.093145,
+        "y": 0.787097,
+        "radius": 0.044843
+      },
+      {
+        "id": "diff-9",
+        "x": 0.804435,
+        "y": 0.864516,
+        "radius": 0.036567
+      },
+      {
+        "id": "diff-10",
+        "x": 0.093145,
+        "y": 0.162903,
+        "radius": 0.07918
+      },
+      {
+        "id": "diff-11",
+        "x": 0.665776,
+        "y": 0.204839,
+        "radius": 0.037132
+      },
+      {
+        "id": "diff-12",
+        "x": 0.900756,
+        "y": 0.032258,
+        "radius": 0.032258
+      },
+      {
+        "id": "diff-13",
+        "x": 0.673185,
+        "y": 0.925806,
+        "radius": 0.031317
+      },
+      {
+        "id": "diff-14",
+        "x": 0.433972,
+        "y": 0.175806,
+        "radius": 0.105074
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/shou-li-jin-cheng/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/shou-nie-hai-ao-shan-xing-bi-jia/differences.json": {
+    "name": "手捏海鳌山形笔架",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.360937,
+        "y": 0.595161,
+        "radius": 0.15738
+      },
+      {
+        "id": "diff-2",
+        "x": 0.101613,
+        "y": 0.330645,
+        "radius": 0.129375
+      },
+      {
+        "id": "diff-3",
+        "x": 0.539819,
+        "y": 0.05,
+        "radius": 0.049687
+      },
+      {
+        "id": "diff-4",
+        "x": 0.77374,
+        "y": 0.877419,
+        "radius": 0.062758
+      },
+      {
+        "id": "diff-5",
+        "x": 0.936744,
+        "y": 0.941935,
+        "radius": 0.122081
+      },
+      {
+        "id": "diff-6",
+        "x": 0.874294,
+        "y": 0.795161,
+        "radius": 0.033251
+      },
+      {
+        "id": "diff-7",
+        "x": 0.045514,
+        "y": 0.779032,
+        "radius": 0.1585
+      },
+      {
+        "id": "diff-8",
+        "x": 0.192641,
+        "y": 0.920968,
+        "radius": 0.074839
+      },
+      {
+        "id": "diff-9",
+        "x": 0.901815,
+        "y": 0.38871,
+        "radius": 0.039672
+      },
+      {
+        "id": "diff-10",
+        "x": 0.259325,
+        "y": 0.282258,
+        "radius": 0.043578
+      },
+      {
+        "id": "diff-11",
+        "x": 0.541935,
+        "y": 0.775806,
+        "radius": 0.038066
+      },
+      {
+        "id": "diff-12",
+        "x": 0.972732,
+        "y": 0.590323,
+        "radius": 0.041121
+      },
+      {
+        "id": "diff-13",
+        "x": 0.965323,
+        "y": 0.454839,
+        "radius": 0.075411
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/shou-yan-kai-xi/differences.json": {
+    "name": "寿宴开席",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.676361,
+        "y": 0.433871,
+        "radius": 0.052339
+      },
+      {
+        "id": "diff-2",
+        "x": 0.853125,
+        "y": 0.279032,
+        "radius": 0.048387
+      },
+      {
+        "id": "diff-3",
+        "x": 0.976966,
+        "y": 0.343548,
+        "radius": 0.051436
+      },
+      {
+        "id": "diff-4",
+        "x": 0.808669,
+        "y": 0.614516,
+        "radius": 0.06205
+      },
+      {
+        "id": "diff-5",
+        "x": 0.567339,
+        "y": 0.706452,
+        "radius": 0.093186
+      },
+      {
+        "id": "diff-6",
+        "x": 0.65625,
+        "y": 0.782258,
+        "radius": 0.055052
+      },
+      {
+        "id": "diff-7",
+        "x": 0.37999,
+        "y": 0.11129,
+        "radius": 0.047107
+      },
+      {
+        "id": "diff-8",
+        "x": 0.688004,
+        "y": 0.659677,
+        "radius": 0.066775
+      },
+      {
+        "id": "diff-9",
+        "x": 0.700706,
+        "y": 0.55,
+        "radius": 0.057025
+      },
+      {
+        "id": "diff-10",
+        "x": 0.410685,
+        "y": 0.356452,
+        "radius": 0.045648
+      },
+      {
+        "id": "diff-11",
+        "x": 0.263558,
+        "y": 0.764516,
+        "radius": 0.124706
+      },
+      {
+        "id": "diff-12",
+        "x": 0.08997,
+        "y": 0.9,
+        "radius": 0.059218
+      },
+      {
+        "id": "diff-13",
+        "x": 0.942036,
+        "y": 0.637097,
+        "radius": 0.034024
+      },
+      {
+        "id": "diff-14",
+        "x": 0.143952,
+        "y": 0.374194,
+        "radius": 0.222586
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/shou-yan-kai-xi/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-wan-shou-da-zun"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/si-yuan-li-de-cha-yu-gong-ju/differences.json": {
+    "name": "寺院里的茶与供具",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.942036,
+        "y": 0.395161,
+        "radius": 0.096046
+      },
+      {
+        "id": "diff-2",
+        "x": 0.667893,
+        "y": 0.490323,
+        "radius": 0.057434
+      },
+      {
+        "id": "diff-3",
+        "x": 0.431855,
+        "y": 0.180645,
+        "radius": 0.026007
+      },
+      {
+        "id": "diff-4",
+        "x": 0.111139,
+        "y": 0.096774,
+        "radius": 0.034291
+      },
+      {
+        "id": "diff-5",
+        "x": 0.374698,
+        "y": 0.45,
+        "radius": 0.076626
+      },
+      {
+        "id": "diff-6",
+        "x": 0.204284,
+        "y": 0.641935,
+        "radius": 0.048387
+      },
+      {
+        "id": "diff-7",
+        "x": 0.216986,
+        "y": 0.709677,
+        "radius": 0.035521
+      },
+      {
+        "id": "diff-8",
+        "x": 0.537702,
+        "y": 0.783871,
+        "radius": 0.06403
+      },
+      {
+        "id": "diff-9",
+        "x": 0.698589,
+        "y": 0.658065,
+        "radius": 0.078089
+      },
+      {
+        "id": "diff-10",
+        "x": 0.928276,
+        "y": 0.879032,
+        "radius": 0.118546
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-seng-mao-hu"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/ting-yuan-li-de-hai-zi-men/differences.json": {
+    "name": "庭院里的孩子们",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.316482,
+        "y": 0.251613,
+        "radius": 0.067376
+      },
+      {
+        "id": "diff-2",
+        "x": 0.268851,
+        "y": 0.124194,
+        "radius": 0.048521
+      },
+      {
+        "id": "diff-3",
+        "x": 0.161946,
+        "y": 0.343548,
+        "radius": 0.042856
+      },
+      {
+        "id": "diff-4",
+        "x": 0.168296,
+        "y": 0.672581,
+        "radius": 0.028852
+      },
+      {
+        "id": "diff-5",
+        "x": 0.513357,
+        "y": 0.746774,
+        "radius": 0.035812
+      },
+      {
+        "id": "diff-6",
+        "x": 0.951562,
+        "y": 0.753226,
+        "radius": 0.055123
+      },
+      {
+        "id": "diff-7",
+        "x": 0.888054,
+        "y": 0.414516,
+        "radius": 0.028168
+      },
+      {
+        "id": "diff-8",
+        "x": 0.924042,
+        "y": 0.267742,
+        "radius": 0.06205
+      },
+      {
+        "id": "diff-9",
+        "x": 0.639315,
+        "y": 0.545161,
+        "radius": 0.039836
+      },
+      {
+        "id": "diff-10",
+        "x": 0.528175,
+        "y": 0.598387,
+        "radius": 0.026454
+      },
+      {
+        "id": "diff-11",
+        "x": 0.598034,
+        "y": 0.670968,
+        "radius": 0.067086
+      },
+      {
+        "id": "diff-12",
+        "x": 0.405393,
+        "y": 0.482258,
+        "radius": 0.07608
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/ting-yuan-li-de-hai-zi-men/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/tong-zi-zhu-shui-ao-xing-bi-jia/differences.json": {
+    "name": "童子注水鳌形笔架",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.202167,
+        "y": 0.593548,
+        "radius": 0.056636
+      },
+      {
+        "id": "diff-2",
+        "x": 0.335534,
+        "y": 0.637097,
+        "radius": 0.036245
+      },
+      {
+        "id": "diff-3",
+        "x": 0.119607,
+        "y": 0.672581,
+        "radius": 0.041216
+      },
+      {
+        "id": "diff-4",
+        "x": 0.106905,
+        "y": 0.808065,
+        "radius": 0.092387
+      },
+      {
+        "id": "diff-5",
+        "x": 0.174647,
+        "y": 0.140323,
+        "radius": 0.039934
+      },
+      {
+        "id": "diff-6",
+        "x": 0.04869,
+        "y": 0.351613,
+        "radius": 0.049055
+      },
+      {
+        "id": "diff-7",
+        "x": 0.9812,
+        "y": 0.585484,
+        "radius": 0.077587
+      },
+      {
+        "id": "diff-8",
+        "x": 0.69753,
+        "y": 0.922581,
+        "radius": 0.065018
+      },
+      {
+        "id": "diff-9",
+        "x": 0.617087,
+        "y": 0.682258,
+        "radius": 0.089075
+      },
+      {
+        "id": "diff-10",
+        "x": 0.723992,
+        "y": 0.243548,
+        "radius": 0.047464
+      },
+      {
+        "id": "diff-11",
+        "x": 0.23498,
+        "y": 0.456452,
+        "radius": 0.037757
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-hai-ao-shan-xing-bi-jia"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/wan-shou-da-zun/differences.json": {
+    "name": "万寿大尊",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.650958,
+        "y": 0.490323,
+        "radius": 0.120785
+      },
+      {
+        "id": "diff-2",
+        "x": 0.650958,
+        "y": 0.195161,
+        "radius": 0.113833
+      },
+      {
+        "id": "diff-3",
+        "x": 0.953679,
+        "y": 0.230645,
+        "radius": 0.092879
+      },
+      {
+        "id": "diff-4",
+        "x": 0.428679,
+        "y": 0.877419,
+        "radius": 0.054098
+      },
+      {
+        "id": "diff-5",
+        "x": 0.404335,
+        "y": 0.108065,
+        "radius": 0.044024
+      },
+      {
+        "id": "diff-6",
+        "x": 0.046573,
+        "y": 0.364516,
+        "radius": 0.050518
+      },
+      {
+        "id": "diff-7",
+        "x": 0.030696,
+        "y": 0.719355,
+        "radius": 0.038474
+      },
+      {
+        "id": "diff-8",
+        "x": 0.220161,
+        "y": 0.616129,
+        "radius": 0.061629
+      },
+      {
+        "id": "diff-9",
+        "x": 0.305897,
+        "y": 0.259677,
+        "radius": 0.027037
+      },
+      {
+        "id": "diff-10",
+        "x": 0.400101,
+        "y": 0.229032,
+        "radius": 0.024673
+      },
+      {
+        "id": "diff-11",
+        "x": 0.251915,
+        "y": 0.3,
+        "radius": 0.048118
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/wan-shou-da-zun/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/wen-ren-si-ai-hao/differences.json": {
+    "name": "文人四爱好",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.355645,
+        "y": 0.241935,
+        "radius": 0.069035
+      },
+      {
+        "id": "diff-2",
+        "x": 0.358821,
+        "y": 0.114516,
+        "radius": 0.059218
+      },
+      {
+        "id": "diff-3",
+        "x": 0.652016,
+        "y": 0.112903,
+        "radius": 0.026844
+      },
+      {
+        "id": "diff-4",
+        "x": 0.548286,
+        "y": 0.124194,
+        "radius": 0.034024
+      },
+      {
+        "id": "diff-5",
+        "x": 0.391633,
+        "y": 0.470968,
+        "radius": 0.063541
+      },
+      {
+        "id": "diff-6",
+        "x": 0.35247,
+        "y": 0.679032,
+        "radius": 0.055546
+      },
+      {
+        "id": "diff-7",
+        "x": 0.314365,
+        "y": 0.872581,
+        "radius": 0.04519
+      },
+      {
+        "id": "diff-8",
+        "x": 0.032813,
+        "y": 0.504839,
+        "radius": 0.05325
+      },
+      {
+        "id": "diff-9",
+        "x": 0.632964,
+        "y": 0.446774,
+        "radius": 0.040451
+      },
+      {
+        "id": "diff-10",
+        "x": 0.809728,
+        "y": 0.427419,
+        "radius": 0.035812
+      },
+      {
+        "id": "diff-11",
+        "x": 0.653075,
+        "y": 0.872581,
+        "radius": 0.044377
+      },
+      {
+        "id": "diff-12",
+        "x": 0.821371,
+        "y": 0.15,
+        "radius": 0.038777
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/wen-ren-si-ai-hao/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/xiang-er-shuang-ping-qi-yun/differences.json": {
+    "name": "象耳双瓶启运",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.528175,
+        "y": 0.087097,
+        "radius": 0.026844
+      },
+      {
+        "id": "diff-2",
+        "x": 0.245565,
+        "y": 0.169355,
+        "radius": 0.059218
+      },
+      {
+        "id": "diff-3",
+        "x": 0.350353,
+        "y": 0.269355,
+        "radius": 0.060457
+      },
+      {
+        "id": "diff-4",
+        "x": 0.129133,
+        "y": 0.372581,
+        "radius": 0.066502
+      },
+      {
+        "id": "diff-5",
+        "x": 0.074093,
+        "y": 0.517742,
+        "radius": 0.059677
+      },
+      {
+        "id": "diff-6",
+        "x": 0.629788,
+        "y": 0.332258,
+        "radius": 0.024673
+      },
+      {
+        "id": "diff-7",
+        "x": 0.937802,
+        "y": 0.633871,
+        "radius": 0.091311
+      },
+      {
+        "id": "diff-8",
+        "x": 0.912399,
+        "y": 0.437097,
+        "radius": 0.026844
+      },
+      {
+        "id": "diff-9",
+        "x": 0.764214,
+        "y": 0.930645,
+        "radius": 0.051461
+      },
+      {
+        "id": "diff-10",
+        "x": 0.527117,
+        "y": 0.912903,
+        "radius": 0.056429
+      },
+      {
+        "id": "diff-11",
+        "x": 0.333417,
+        "y": 0.616129,
+        "radius": 0.054839
+      },
+      {
+        "id": "diff-12",
+        "x": 0.70494,
+        "y": 0.582258,
+        "radius": 0.070027
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/xiang-er-shuang-ping-qi-yun/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/xiao-he-yue-xia-zhui-han-xin/differences.json": {
+    "name": "萧何月下追韩信",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.689062,
+        "y": 0.079032,
+        "radius": 0.043429
+      },
+      {
+        "id": "diff-2",
+        "x": 0.532409,
+        "y": 0.440323,
+        "radius": 0.059152
+      },
+      {
+        "id": "diff-3",
+        "x": 0.618145,
+        "y": 0.530645,
+        "radius": 0.040804
+      },
+      {
+        "id": "diff-4",
+        "x": 0.616028,
+        "y": 0.727419,
+        "radius": 0.061819
+      },
+      {
+        "id": "diff-5",
+        "x": 0.789617,
+        "y": 0.548387,
+        "radius": 0.046187
+      },
+      {
+        "id": "diff-6",
+        "x": 0.150302,
+        "y": 0.379032,
+        "radius": 0.067395
+      },
+      {
+        "id": "diff-7",
+        "x": 0.266734,
+        "y": 0.543548,
+        "radius": 0.028168
+      },
+      {
+        "id": "diff-8",
+        "x": 0.327067,
+        "y": 0.064516,
+        "radius": 0.018033
+      },
+      {
+        "id": "diff-9",
+        "x": 0.908165,
+        "y": 0.351613,
+        "radius": 0.057207
+      },
+      {
+        "id": "diff-10",
+        "x": 0.952621,
+        "y": 0.682258,
+        "radius": 0.042947
+      },
+      {
+        "id": "diff-11",
+        "x": 0.361996,
+        "y": 0.320968,
+        "radius": 0.050492
+      },
+      {
+        "id": "diff-12",
+        "x": 0.708115,
+        "y": 0.732258,
+        "radius": 0.040451
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/xiao-he-yue-xia-zhui-han-xin/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/yan-xi-jiang-kai/differences.json": {
+    "name": "宴席将开",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.592742,
+        "y": 0.133871,
+        "radius": 0.063807
+      },
+      {
+        "id": "diff-2",
+        "x": 0.763155,
+        "y": 0.262903,
+        "radius": 0.035374
+      },
+      {
+        "id": "diff-3",
+        "x": 0.929335,
+        "y": 0.25,
+        "radius": 0.059218
+      },
+      {
+        "id": "diff-4",
+        "x": 0.734577,
+        "y": 0.606452,
+        "radius": 0.098862
+      },
+      {
+        "id": "diff-5",
+        "x": 0.822429,
+        "y": 0.698387,
+        "radius": 0.056452
+      },
+      {
+        "id": "diff-6",
+        "x": 0.84254,
+        "y": 0.791935,
+        "radius": 0.037792
+      },
+      {
+        "id": "diff-7",
+        "x": 0.610736,
+        "y": 0.825806,
+        "radius": 0.065497
+      },
+      {
+        "id": "diff-8",
+        "x": 0.215927,
+        "y": 0.864516,
+        "radius": 0.135522
+      },
+      {
+        "id": "diff-9",
+        "x": 0.085736,
+        "y": 0.725806,
+        "radius": 0.110775
+      },
+      {
+        "id": "diff-10",
+        "x": 0.232863,
+        "y": 0.443548,
+        "radius": 0.066502
+      },
+      {
+        "id": "diff-11",
+        "x": 0.20005,
+        "y": 0.291935,
+        "radius": 0.037132
+      },
+      {
+        "id": "diff-12",
+        "x": 0.337651,
+        "y": 0.056452,
+        "radius": 0.085179
+      },
+      {
+        "id": "diff-13",
+        "x": 0.975907,
+        "y": 0.058065,
+        "radius": 0.051939
+      },
+      {
+        "id": "diff-14",
+        "x": 0.440323,
+        "y": 0.767742,
+        "radius": 0.039376
+      },
+      {
+        "id": "diff-15",
+        "x": 0.96744,
+        "y": 0.569355,
+        "radius": 0.06928
+      },
+      {
+        "id": "diff-16",
+        "x": 0.91875,
+        "y": 0.695161,
+        "radius": 0.083638
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/yan-xi-jiang-kai/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-long-wen-da-pan"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/yang-qi-lai-dao-zuo-fang/differences.json": {
+    "name": "样器来到作坊",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.279435,
+        "y": 0.098387,
+        "radius": 0.103879
+      },
+      {
+        "id": "diff-2",
+        "x": 0.074093,
+        "y": 0.13871,
+        "radius": 0.046215
+      },
+      {
+        "id": "diff-3",
+        "x": 0.315423,
+        "y": 0.701613,
+        "radius": 0.068582
+      },
+      {
+        "id": "diff-4",
+        "x": 0.265675,
+        "y": 0.475806,
+        "radius": 0.052065
+      },
+      {
+        "id": "diff-5",
+        "x": 0.454083,
+        "y": 0.717742,
+        "radius": 0.040708
+      },
+      {
+        "id": "diff-6",
+        "x": 0.404335,
+        "y": 0.614516,
+        "radius": 0.087751
+      },
+      {
+        "id": "diff-7",
+        "x": 0.77374,
+        "y": 0.775806,
+        "radius": 0.047901
+      },
+      {
+        "id": "diff-8",
+        "x": 0.803377,
+        "y": 0.580645,
+        "radius": 0.090797
+      },
+      {
+        "id": "diff-9",
+        "x": 0.556754,
+        "y": 0.235484,
+        "radius": 0.047107
+      },
+      {
+        "id": "diff-10",
+        "x": 0.432913,
+        "y": 0.917742,
+        "radius": 0.101318
+      },
+      {
+        "id": "diff-11",
+        "x": 0.937802,
+        "y": 0.877419,
+        "radius": 0.079802
+      },
+      {
+        "id": "diff-12",
+        "x": 0.970615,
+        "y": 0.743548,
+        "radius": 0.064878
+      },
+      {
+        "id": "diff-13",
+        "x": 0.672127,
+        "y": 0.625806,
+        "radius": 0.095937
+      },
+      {
+        "id": "diff-14",
+        "x": 0.767389,
+        "y": 0.146774,
+        "radius": 0.123195
+      },
+      {
+        "id": "diff-15",
+        "x": 0.590625,
+        "y": 0.395161,
+        "radius": 0.032258
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/yang-qi-lai-dao-zuo-fang/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/yao-kou-jiao-huo/differences.json": {
+    "name": "窑口交货",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.397984,
+        "y": 0.558065,
+        "radius": 0.054744
+      },
+      {
+        "id": "diff-2",
+        "x": 0.664718,
+        "y": 0.745161,
+        "radius": 0.144262
+      },
+      {
+        "id": "diff-3",
+        "x": 0.829839,
+        "y": 0.491935,
+        "radius": 0.030002
+      },
+      {
+        "id": "diff-4",
+        "x": 0.748337,
+        "y": 0.248387,
+        "radius": 0.030814
+      },
+      {
+        "id": "diff-5",
+        "x": 0.135484,
+        "y": 0.670968,
+        "radius": 0.084504
+      },
+      {
+        "id": "diff-6",
+        "x": 0.051865,
+        "y": 0.937097,
+        "radius": 0.060003
+      },
+      {
+        "id": "diff-7",
+        "x": 0.501714,
+        "y": 0.130645,
+        "radius": 0.02281
+      },
+      {
+        "id": "diff-8",
+        "x": 0.570514,
+        "y": 0.469355,
+        "radius": 0.033212
+      },
+      {
+        "id": "diff-9",
+        "x": 0.196875,
+        "y": 0.13871,
+        "radius": 0.027372
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/yao-kou-jiao-huo/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/yi-shao-yi-zuo/differences.json": {
+    "name": "一勺一座",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.201109,
+        "y": 0.029032,
+        "radius": 0.038066
+      },
+      {
+        "id": "diff-2",
+        "x": 0.283669,
+        "y": 0.353226,
+        "radius": 0.035374
+      },
+      {
+        "id": "diff-3",
+        "x": 0.023286,
+        "y": 0.241935,
+        "radius": 0.053688
+      },
+      {
+        "id": "diff-4",
+        "x": 0.84995,
+        "y": 0.462903,
+        "radius": 0.038474
+      },
+      {
+        "id": "diff-5",
+        "x": 0.937802,
+        "y": 0.879032,
+        "radius": 0.036815
+      },
+      {
+        "id": "diff-6",
+        "x": 0.293196,
+        "y": 0.627419,
+        "radius": 0.071041
+      },
+      {
+        "id": "diff-7",
+        "x": 0.831956,
+        "y": 0.08871,
+        "radius": 0.094627
+      },
+      {
+        "id": "diff-8",
+        "x": 0.851008,
+        "y": 0.269355,
+        "radius": 0.051233
+      },
+      {
+        "id": "diff-9",
+        "x": 0.957913,
+        "y": 0.291935,
+        "radius": 0.035374
+      },
+      {
+        "id": "diff-10",
+        "x": 0.639315,
+        "y": 0.762903,
+        "radius": 0.059152
+      },
+      {
+        "id": "diff-11",
+        "x": 0.10373,
+        "y": 0.879032,
+        "radius": 0.033094
+      },
+      {
+        "id": "diff-12",
+        "x": 0.038105,
+        "y": 0.704839,
+        "radius": 0.066502
+      },
+      {
+        "id": "diff-13",
+        "x": 0.445615,
+        "y": 0.414516,
+        "radius": 0.055989
+      },
+      {
+        "id": "diff-14",
+        "x": 0.567339,
+        "y": 0.46129,
+        "radius": 0.061755
+      },
+      {
+        "id": "diff-15",
+        "x": 0.529234,
+        "y": 0.170968,
+        "radius": 0.066365
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/yi-shao-yi-zuo/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-fan-wen-da-shao-yu-e-xing-zuo"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/ying-xi-tu-yuan-he/differences.json": {
+    "name": "婴戏图圆盒",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.665776,
+        "y": 0.333871,
+        "radius": 0.083871
+      },
+      {
+        "id": "diff-2",
+        "x": 0.734577,
+        "y": 0.685484,
+        "radius": 0.133443
+      },
+      {
+        "id": "diff-3",
+        "x": 0.487954,
+        "y": 0.695161,
+        "radius": 0.140841
+      },
+      {
+        "id": "diff-4",
+        "x": 0.170413,
+        "y": 0.385484,
+        "radius": 0.038474
+      },
+      {
+        "id": "diff-5",
+        "x": 0.164062,
+        "y": 0.453226,
+        "radius": 0.031811
+      },
+      {
+        "id": "diff-6",
+        "x": 0.04128,
+        "y": 0.093548,
+        "radius": 0.053615
+      },
+      {
+        "id": "diff-7",
+        "x": 0.088911,
+        "y": 0.212903,
+        "radius": 0.037237
+      },
+      {
+        "id": "diff-8",
+        "x": 0.267792,
+        "y": 0.316129,
+        "radius": 0.034631
+      },
+      {
+        "id": "diff-9",
+        "x": 0.662601,
+        "y": 0.145161,
+        "radius": 0.03448
+      },
+      {
+        "id": "diff-10",
+        "x": 0.278377,
+        "y": 0.764516,
+        "radius": 0.057434
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/ying-xi-tu-yuan-he/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/yuan-dai-qing-hua-shuang-ping/differences.json": {
+    "name": "元代青花双瓶",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.154536,
+        "y": 0.108065,
+        "radius": 0.043429
+      },
+      {
+        "id": "diff-2",
+        "x": 0.259325,
+        "y": 0.335484,
+        "radius": 0.023262
+      },
+      {
+        "id": "diff-3",
+        "x": 0.034929,
+        "y": 0.572581,
+        "radius": 0.091709
+      },
+      {
+        "id": "diff-4",
+        "x": 0.169355,
+        "y": 0.441935,
+        "radius": 0.043876
+      },
+      {
+        "id": "diff-5",
+        "x": 0.100554,
+        "y": 0.28871,
+        "radius": 0.044843
+      },
+      {
+        "id": "diff-6",
+        "x": 0.440323,
+        "y": 0.285484,
+        "radius": 0.051537
+      },
+      {
+        "id": "diff-7",
+        "x": 0.750454,
+        "y": 0.285484,
+        "radius": 0.052015
+      },
+      {
+        "id": "diff-8",
+        "x": 0.927218,
+        "y": 0.503226,
+        "radius": 0.032659
+      },
+      {
+        "id": "diff-9",
+        "x": 0.91875,
+        "y": 0.73871,
+        "radius": 0.035374
+      },
+      {
+        "id": "diff-10",
+        "x": 0.700706,
+        "y": 0.893548,
+        "radius": 0.027372
+      },
+      {
+        "id": "diff-11",
+        "x": 0.440323,
+        "y": 0.541935,
+        "radius": 0.057025
+      },
+      {
+        "id": "diff-12",
+        "x": 0.737752,
+        "y": 0.512903,
+        "radius": 0.04519
+      },
+      {
+        "id": "diff-13",
+        "x": 0.482661,
+        "y": 0.790323,
+        "radius": 0.050104
+      },
+      {
+        "id": "diff-14",
+        "x": 0.692238,
+        "y": 0.798387,
+        "radius": 0.051335
+      },
+      {
+        "id": "diff-15",
+        "x": 0.702823,
+        "y": 0.222581,
+        "radius": 0.042337
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/yuan-dai-qing-hua-shuang-ping/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/yuan-fang-de-can-zhuo/differences.json": {
+    "name": "远方的餐桌",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.363054,
+        "y": 0.153226,
+        "radius": 0.030983
+      },
+      {
+        "id": "diff-2",
+        "x": 0.104788,
+        "y": 0.233871,
+        "radius": 0.042947
+      },
+      {
+        "id": "diff-3",
+        "x": 0.323891,
+        "y": 0.424194,
+        "radius": 0.041121
+      },
+      {
+        "id": "diff-4",
+        "x": 0.249798,
+        "y": 0.248387,
+        "radius": 0.080273
+      },
+      {
+        "id": "diff-5",
+        "x": 0.113256,
+        "y": 0.712903,
+        "radius": 0.097976
+      },
+      {
+        "id": "diff-6",
+        "x": 0.196875,
+        "y": 0.840323,
+        "radius": 0.093228
+      },
+      {
+        "id": "diff-7",
+        "x": 0.480544,
+        "y": 0.66129,
+        "radius": 0.087885
+      },
+      {
+        "id": "diff-8",
+        "x": 0.829839,
+        "y": 0.583871,
+        "radius": 0.085484
+      },
+      {
+        "id": "diff-9",
+        "x": 0.924042,
+        "y": 0.841935,
+        "radius": 0.086271
+      },
+      {
+        "id": "diff-10",
+        "x": 0.884879,
+        "y": 0.043548,
+        "radius": 0.039376
+      },
+      {
+        "id": "diff-11",
+        "x": 0.954738,
+        "y": 0.425806,
+        "radius": 0.03541
+      },
+      {
+        "id": "diff-12",
+        "x": 0.611794,
+        "y": 0.190323,
+        "radius": 0.04924
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/yuan-fang-de-can-zhuo/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-hua-kou-pu-tao-pan"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/yuan-he-li-de-dian-xin/differences.json": {
+    "name": "圆盒里的点心",
+    "type": "porcelain",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.148185,
+        "y": 0.095161,
+        "radius": 0.056819
+      },
+      {
+        "id": "diff-2",
+        "x": 0.482661,
+        "y": 0.551613,
+        "radius": 0.045847
+      },
+      {
+        "id": "diff-3",
+        "x": 0.652016,
+        "y": 0.459677,
+        "radius": 0.069971
+      },
+      {
+        "id": "diff-4",
+        "x": 0.827722,
+        "y": 0.132258,
+        "radius": 0.103276
+      },
+      {
+        "id": "diff-5",
+        "x": 0.734577,
+        "y": 0.685484,
+        "radius": 0.105025
+      },
+      {
+        "id": "diff-6",
+        "x": 0.114315,
+        "y": 0.814516,
+        "radius": 0.092331
+      },
+      {
+        "id": "diff-7",
+        "x": 0.088911,
+        "y": 0.664516,
+        "radius": 0.061587
+      },
+      {
+        "id": "diff-8",
+        "x": 0.191583,
+        "y": 0.225806,
+        "radius": 0.029077
+      },
+      {
+        "id": "diff-9",
+        "x": 0.529234,
+        "y": 0.467742,
+        "radius": 0.045677
+      },
+      {
+        "id": "diff-10",
+        "x": 0.494304,
+        "y": 0.716129,
+        "radius": 0.123637
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/yuan-he-li-de-dian-xin/icon/spriteFrame",
+    "collectibleId": "qing-hua-ci-ying-xi-tu-yuan-he"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/yuan-xing-de-li-wu/differences.json": {
+    "name": "远行的礼物",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.797026,
+        "y": 0.096774,
+        "radius": 0.032258
+      },
+      {
+        "id": "diff-2",
+        "x": 0.180998,
+        "y": 0.306452,
+        "radius": 0.06403
+      },
+      {
+        "id": "diff-3",
+        "x": 0.286845,
+        "y": 0.062903,
+        "radius": 0.059852
+      },
+      {
+        "id": "diff-4",
+        "x": 0.160887,
+        "y": 0.054839,
+        "radius": 0.074978
+      },
+      {
+        "id": "diff-5",
+        "x": 0.086794,
+        "y": 0.643548,
+        "radius": 0.037411
+      },
+      {
+        "id": "diff-6",
+        "x": 0.11749,
+        "y": 0.820968,
+        "radius": 0.06205
+      },
+      {
+        "id": "diff-7",
+        "x": 0.490071,
+        "y": 0.493548,
+        "radius": 0.031771
+      },
+      {
+        "id": "diff-8",
+        "x": 0.485837,
+        "y": 0.727419,
+        "radius": 0.093228
+      },
+      {
+        "id": "diff-9",
+        "x": 0.768448,
+        "y": 0.827419,
+        "radius": 0.080354
+      },
+      {
+        "id": "diff-10",
+        "x": 0.889113,
+        "y": 0.925806,
+        "radius": 0.062986
+      },
+      {
+        "id": "diff-11",
+        "x": 0.823488,
+        "y": 0.662903,
+        "radius": 0.034291
+      },
+      {
+        "id": "diff-12",
+        "x": 0.8563,
+        "y": 0.46129,
+        "radius": 0.036851
+      },
+      {
+        "id": "diff-13",
+        "x": 0.951562,
+        "y": 0.320968,
+        "radius": 0.08452
+      },
+      {
+        "id": "diff-14",
+        "x": 0.53876,
+        "y": 0.898387,
+        "radius": 0.048521
+      },
+      {
+        "id": "diff-15",
+        "x": 0.319657,
+        "y": 0.254839,
+        "radius": 0.110646
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/yuan-xing-de-li-wu/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/qing-hua-ci/configs/zhang-xin-da-xiao-de-ming-pin/differences.json": {
+    "name": "掌心大小的名品",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.599093,
+        "y": 0.085484,
+        "radius": 0.062738
+      },
+      {
+        "id": "diff-2",
+        "x": 0.945212,
+        "y": 0.941935,
+        "radius": 0.057818
+      },
+      {
+        "id": "diff-3",
+        "x": 0.846774,
+        "y": 0.764516,
+        "radius": 0.031771
+      },
+      {
+        "id": "diff-4",
+        "x": 0.560988,
+        "y": 0.558065,
+        "radius": 0.054934
+      },
+      {
+        "id": "diff-5",
+        "x": 0.508065,
+        "y": 0.206452,
+        "radius": 0.048521
+      },
+      {
+        "id": "diff-6",
+        "x": 0.458317,
+        "y": 0.603226,
+        "radius": 0.036815
+      },
+      {
+        "id": "diff-7",
+        "x": 0.098437,
+        "y": 0.698387,
+        "radius": 0.038474
+      },
+      {
+        "id": "diff-8",
+        "x": 0.08256,
+        "y": 0.430645,
+        "radius": 0.039541
+      },
+      {
+        "id": "diff-9",
+        "x": 0.030696,
+        "y": 0.596774,
+        "radius": 0.032659
+      },
+      {
+        "id": "diff-10",
+        "x": 0.177823,
+        "y": 0.033871,
+        "radius": 0.03678
+      },
+      {
+        "id": "diff-11",
+        "x": 0.866885,
+        "y": 0.672581,
+        "radius": 0.048414
+      },
+      {
+        "id": "diff-12",
+        "x": 0.384224,
+        "y": 0.856452,
+        "radius": 0.025502
+      }
+    ],
+    "icon": "thumbnails/qing-hua-ci/zhang-xin-da-xiao-de-ming-pin/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/wang-luo-re-dian/configs/chou-zhi-tiao-zhan/differences.json": {
+    "name": "抽纸挑战",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.940978,
+        "y": 0.058065,
+        "radius": 0.027467
+      },
+      {
+        "id": "diff-2",
+        "x": 0.478427,
+        "y": 0.101613,
+        "radius": 0.037619
+      },
+      {
+        "id": "diff-3",
+        "x": 0.419153,
+        "y": 0.237097,
+        "radius": 0.102073
+      },
+      {
+        "id": "diff-4",
+        "x": 0.295312,
+        "y": 0.633871,
+        "radius": 0.122262
+      },
+      {
+        "id": "diff-5",
+        "x": 0.537702,
+        "y": 0.769355,
+        "radius": 0.035812
+      },
+      {
+        "id": "diff-6",
+        "x": 0.537702,
+        "y": 0.240323,
+        "radius": 0.039836
+      },
+      {
+        "id": "diff-7",
+        "x": 0.765272,
+        "y": 0.525806,
+        "radius": 0.086708
+      },
+      {
+        "id": "diff-8",
+        "x": 0.969556,
+        "y": 0.85,
+        "radius": 0.130036
+      },
+      {
+        "id": "diff-9",
+        "x": 0.858417,
+        "y": 0.730645,
+        "radius": 0.11497
+      },
+      {
+        "id": "diff-10",
+        "x": 0.064567,
+        "y": 0.785484,
+        "radius": 0.059677
+      },
+      {
+        "id": "diff-11",
+        "x": 0.191583,
+        "y": 0.85,
+        "radius": 0.05325
+      },
+      {
+        "id": "diff-12",
+        "x": 0.106905,
+        "y": 0.941935,
+        "radius": 0.064233
+      }
+    ],
+    "icon": "thumbnails/wang-luo-re-dian/chou-zhi-tiao-zhan/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/wang-luo-re-dian/configs/ci-bu-yi-yang-jiu-pao-bu/differences.json": {
+    "name": "词不一样就跑步",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.321774,
+        "y": 0.133871,
+        "radius": 0.084996
+      },
+      {
+        "id": "diff-2",
+        "x": 0.390575,
+        "y": 0.472581,
+        "radius": 0.039836
+      },
+      {
+        "id": "diff-3",
+        "x": 0.31119,
+        "y": 0.522581,
+        "radius": 0.023484
+      },
+      {
+        "id": "diff-4",
+        "x": 0.125958,
+        "y": 0.398387,
+        "radius": 0.04519
+      },
+      {
+        "id": "diff-5",
+        "x": 0.050806,
+        "y": 0.619355,
+        "radius": 0.048414
+      },
+      {
+        "id": "diff-6",
+        "x": 0.87006,
+        "y": 0.124194,
+        "radius": 0.053688
+      },
+      {
+        "id": "diff-7",
+        "x": 0.627671,
+        "y": 0.427419,
+        "radius": 0.049791
+      },
+      {
+        "id": "diff-8",
+        "x": 0.64249,
+        "y": 0.333871,
+        "radius": 0.028581
+      },
+      {
+        "id": "diff-9",
+        "x": 0.972732,
+        "y": 0.058065,
+        "radius": 0.037654
+      },
+      {
+        "id": "diff-10",
+        "x": 0.876411,
+        "y": 0.61129,
+        "radius": 0.039934
+      },
+      {
+        "id": "diff-11",
+        "x": 0.925101,
+        "y": 0.727419,
+        "radius": 0.035521
+      },
+      {
+        "id": "diff-12",
+        "x": 0.970615,
+        "y": 0.591935,
+        "radius": 0.062634
+      }
+    ],
+    "icon": "thumbnails/wang-luo-re-dian/ci-bu-yi-yang-jiu-pao-bu/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/wang-luo-re-dian/configs/gong-fu-xiao-mi/differences.json": {
+    "name": "功夫小咪",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.346119,
+        "y": 0.122581,
+        "radius": 0.099753
+      },
+      {
+        "id": "diff-2",
+        "x": 0.437147,
+        "y": 0.180645,
+        "radius": 0.035812
+      },
+      {
+        "id": "diff-3",
+        "x": 0.674244,
+        "y": 0.348387,
+        "radius": 0.103841
+      },
+      {
+        "id": "diff-4",
+        "x": 0.694355,
+        "y": 0.040323,
+        "radius": 0.092668
+      },
+      {
+        "id": "diff-5",
+        "x": 0.96744,
+        "y": 0.306452,
+        "radius": 0.061418
+      },
+      {
+        "id": "diff-6",
+        "x": 0.845716,
+        "y": 0.790323,
+        "radius": 0.029653
+      },
+      {
+        "id": "diff-7",
+        "x": 0.730343,
+        "y": 0.880645,
+        "radius": 0.060543
+      },
+      {
+        "id": "diff-8",
+        "x": 0.635081,
+        "y": 0.967742,
+        "radius": 0.055989
+      },
+      {
+        "id": "diff-9",
+        "x": 0.898639,
+        "y": 0.906452,
+        "radius": 0.076422
+      },
+      {
+        "id": "diff-10",
+        "x": 0.360937,
+        "y": 0.487097,
+        "radius": 0.11171
+      },
+      {
+        "id": "diff-11",
+        "x": 0.123841,
+        "y": 0.970968,
+        "radius": 0.091609
+      },
+      {
+        "id": "diff-12",
+        "x": 0.043397,
+        "y": 0.396774,
+        "radius": 0.164144
+      },
+      {
+        "id": "diff-13",
+        "x": 0.136542,
+        "y": 0.704839,
+        "radius": 0.046523
+      }
+    ],
+    "icon": "thumbnails/wang-luo-re-dian/gong-fu-xiao-mi/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/wang-luo-re-dian/configs/mo-fang-xiao-hou-zi-shi/differences.json": {
+    "name": "模仿小猴姿勢",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.432913,
+        "y": 0.7,
+        "radius": 0.163763
+      },
+      {
+        "id": "diff-2",
+        "x": 0.486895,
+        "y": 0.437097,
+        "radius": 0.089061
+      },
+      {
+        "id": "diff-3",
+        "x": 0.261442,
+        "y": 0.169355,
+        "radius": 0.037132
+      },
+      {
+        "id": "diff-4",
+        "x": 0.147127,
+        "y": 0.369355,
+        "radius": 0.072938
+      },
+      {
+        "id": "diff-5",
+        "x": 0.190524,
+        "y": 0.951613,
+        "radius": 0.036066
+      },
+      {
+        "id": "diff-6",
+        "x": 0.939919,
+        "y": 0.766129,
+        "radius": 0.060971
+      },
+      {
+        "id": "diff-7",
+        "x": 0.278377,
+        "y": 0.520968,
+        "radius": 0.028535
+      },
+      {
+        "id": "diff-8",
+        "x": 0.747278,
+        "y": 0.054839,
+        "radius": 0.118128
+      },
+      {
+        "id": "diff-9",
+        "x": 0.827722,
+        "y": 0.309677,
+        "radius": 0.037237
+      },
+      {
+        "id": "diff-10",
+        "x": 0.101613,
+        "y": 0.06129,
+        "radius": 0.047107
+      }
+    ],
+    "icon": "thumbnails/wang-luo-re-dian/mo-fang-xiao-hou-zi-shi/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/wang-luo-re-dian/configs/qiu-ri-shou-cang/differences.json": {
+    "name": "秋日收藏",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.422329,
+        "y": 0.506452,
+        "radius": 0.11633
+      },
+      {
+        "id": "diff-2",
+        "x": 0.328125,
+        "y": 0.256452,
+        "radius": 0.027419
+      },
+      {
+        "id": "diff-3",
+        "x": 0.077268,
+        "y": 0.501613,
+        "radius": 0.030132
+      },
+      {
+        "id": "diff-4",
+        "x": 0.252974,
+        "y": 0.954839,
+        "radius": 0.191039
+      },
+      {
+        "id": "diff-5",
+        "x": 0.314365,
+        "y": 0.654839,
+        "radius": 0.047107
+      },
+      {
+        "id": "diff-6",
+        "x": 0.624496,
+        "y": 0.545161,
+        "radius": 0.024567
+      },
+      {
+        "id": "diff-7",
+        "x": 0.788558,
+        "y": 0.646774,
+        "radius": 0.072992
+      },
+      {
+        "id": "diff-8",
+        "x": 0.940978,
+        "y": 0.880645,
+        "radius": 0.067086
+      },
+      {
+        "id": "diff-9",
+        "x": 0.655192,
+        "y": 0.81129,
+        "radius": 0.164247
+      },
+      {
+        "id": "diff-10",
+        "x": 0.570514,
+        "y": 0.091935,
+        "radius": 0.047437
+      }
+    ],
+    "icon": "thumbnails/wang-luo-re-dian/qiu-ri-shou-cang/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/wang-luo-re-dian/configs/sha-xian-ai-qing-gu-shi/differences.json": {
+    "name": "沙县爱情故事",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.557812,
+        "y": 0.087097,
+        "radius": 0.067222
+      },
+      {
+        "id": "diff-2",
+        "x": 0.556754,
+        "y": 0.212903,
+        "radius": 0.028852
+      },
+      {
+        "id": "diff-3",
+        "x": 0.568397,
+        "y": 0.416129,
+        "radius": 0.068771
+      },
+      {
+        "id": "diff-4",
+        "x": 0.96744,
+        "y": 0.290323,
+        "radius": 0.056429
+      },
+      {
+        "id": "diff-5",
+        "x": 0.93251,
+        "y": 0.112903,
+        "radius": 0.047955
+      },
+      {
+        "id": "diff-6",
+        "x": 0.140776,
+        "y": 0.03871,
+        "radius": 0.051233
+      },
+      {
+        "id": "diff-7",
+        "x": 0.061391,
+        "y": 0.364516,
+        "radius": 0.044289
+      },
+      {
+        "id": "diff-8",
+        "x": 0.097379,
+        "y": 0.287097,
+        "radius": 0.050646
+      },
+      {
+        "id": "diff-9",
+        "x": 0.29002,
+        "y": 0.241935,
+        "radius": 0.05775
+      },
+      {
+        "id": "diff-10",
+        "x": 0.270968,
+        "y": 0.477419,
+        "radius": 0.060003
+      },
+      {
+        "id": "diff-11",
+        "x": 0.096321,
+        "y": 0.503226,
+        "radius": 0.06928
+      },
+      {
+        "id": "diff-12",
+        "x": 0.332359,
+        "y": 0.669355,
+        "radius": 0.094888
+      },
+      {
+        "id": "diff-13",
+        "x": 0.339768,
+        "y": 0.093548,
+        "radius": 0.076507
+      },
+      {
+        "id": "diff-14",
+        "x": 0.468901,
+        "y": 0.959677,
+        "radius": 0.090005
+      },
+      {
+        "id": "diff-15",
+        "x": 0.748337,
+        "y": 0.496774,
+        "radius": 0.094517
+      },
+      {
+        "id": "diff-16",
+        "x": 0.980141,
+        "y": 0.446774,
+        "radius": 0.065018
+      },
+      {
+        "id": "diff-17",
+        "x": 0.936744,
+        "y": 0.819355,
+        "radius": 0.102936
+      }
+    ],
+    "icon": "thumbnails/wang-luo-re-dian/sha-xian-ai-qing-gu-shi/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/wang-luo-re-dian/configs/shang-ke-tou-chi-tiao-zhan/differences.json": {
+    "name": "上课偷吃挑战",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.456256,
+        "y": 0.093548,
+        "radius": 0.047107
+      },
+      {
+        "id": "diff-2",
+        "x": 0.547295,
+        "y": 0.21129,
+        "radius": 0.037132
+      },
+      {
+        "id": "diff-3",
+        "x": 0.721964,
+        "y": 0.15,
+        "radius": 0.066149
+      },
+      {
+        "id": "diff-4",
+        "x": 0.916746,
+        "y": 0.140323,
+        "radius": 0.078752
+      },
+      {
+        "id": "diff-5",
+        "x": 0.230774,
+        "y": 0.135484,
+        "radius": 0.040323
+      },
+      {
+        "id": "diff-6",
+        "x": 0.550471,
+        "y": 0.380645,
+        "radius": 0.039672
+      },
+      {
+        "id": "diff-7",
+        "x": 0.412853,
+        "y": 0.466129,
+        "radius": 0.040323
+      },
+      {
+        "id": "diff-8",
+        "x": 0.519772,
+        "y": 0.61129,
+        "radius": 0.050492
+      },
+      {
+        "id": "diff-9",
+        "x": 0.471076,
+        "y": 0.737097,
+        "radius": 0.039044
+      },
+      {
+        "id": "diff-10",
+        "x": 0.071985,
+        "y": 0.767742,
+        "radius": 0.103238
+      },
+      {
+        "id": "diff-11",
+        "x": 0.208544,
+        "y": 0.412903,
+        "radius": 0.039011
+      },
+      {
+        "id": "diff-12",
+        "x": 0.869109,
+        "y": 0.627419,
+        "radius": 0.114152
+      },
+      {
+        "id": "diff-13",
+        "x": 0.950621,
+        "y": 0.904839,
+        "radius": 0.093951
+      },
+      {
+        "id": "diff-14",
+        "x": 0.646803,
+        "y": 0.883871,
+        "radius": 0.083248
+      },
+      {
+        "id": "diff-15",
+        "x": 0.341927,
+        "y": 0.877419,
+        "radius": 0.087707
+      }
+    ],
+    "icon": "thumbnails/wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/wang-luo-re-dian/configs/tiao-zhan-qie-chao-chang-dan-ta/differences.json": {
+    "name": "挑战切超长蛋挞",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.702823,
+        "y": 0.130645,
+        "radius": 0.052907
+      },
+      {
+        "id": "diff-2",
+        "x": 0.944153,
+        "y": 0.179032,
+        "radius": 0.044289
+      },
+      {
+        "id": "diff-3",
+        "x": 0.831956,
+        "y": 0.453226,
+        "radius": 0.106842
+      },
+      {
+        "id": "diff-4",
+        "x": 0.956855,
+        "y": 0.467742,
+        "radius": 0.089629
+      },
+      {
+        "id": "diff-5",
+        "x": 0.837248,
+        "y": 0.88871,
+        "radius": 0.064233
+      },
+      {
+        "id": "diff-6",
+        "x": 0.67001,
+        "y": 0.546774,
+        "radius": 0.052833
+      },
+      {
+        "id": "diff-7",
+        "x": 0.15877,
+        "y": 0.490323,
+        "radius": 0.094393
+      },
+      {
+        "id": "diff-8",
+        "x": 0.028579,
+        "y": 0.293548,
+        "radius": 0.066365
+      },
+      {
+        "id": "diff-9",
+        "x": 0.20746,
+        "y": 0.841935,
+        "radius": 0.034291
+      },
+      {
+        "id": "diff-10",
+        "x": 0.592742,
+        "y": 0.927419,
+        "radius": 0.040419
+      },
+      {
+        "id": "diff-11",
+        "x": 0.413861,
+        "y": 0.712903,
+        "radius": 0.100597
+      },
+      {
+        "id": "diff-12",
+        "x": 0.51124,
+        "y": 0.774194,
+        "radius": 0.057002
+      }
+    ],
+    "icon": "thumbnails/wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/wang-luo-re-dian/configs/xuan-dao-yi-yang-jiu-mai/differences.json": {
+    "name": "选到一样就买",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.700706,
+        "y": 0.340323,
+        "radius": 0.034518
+      },
+      {
+        "id": "diff-2",
+        "x": 0.703881,
+        "y": 0.824194,
+        "radius": 0.144046
+      },
+      {
+        "id": "diff-3",
+        "x": 0.558871,
+        "y": 0.925806,
+        "radius": 0.117576
+      },
+      {
+        "id": "diff-4",
+        "x": 0.984375,
+        "y": 0.179032,
+        "radius": 0.038844
+      },
+      {
+        "id": "diff-5",
+        "x": 0.553579,
+        "y": 0.501613,
+        "radius": 0.038474
+      },
+      {
+        "id": "diff-6",
+        "x": 0.196875,
+        "y": 0.351613,
+        "radius": 0.039376
+      },
+      {
+        "id": "diff-7",
+        "x": 0.374698,
+        "y": 0.701613,
+        "radius": 0.080225
+      },
+      {
+        "id": "diff-8",
+        "x": 0.032813,
+        "y": 0.412903,
+        "radius": 0.053906
+      },
+      {
+        "id": "diff-9",
+        "x": 0.031754,
+        "y": 0.867742,
+        "radius": 0.082384
+      },
+      {
+        "id": "diff-10",
+        "x": 0.135484,
+        "y": 0.803226,
+        "radius": 0.057025
+      },
+      {
+        "id": "diff-11",
+        "x": 0.9812,
+        "y": 0.53871,
+        "radius": 0.051259
+      },
+      {
+        "id": "diff-12",
+        "x": 0.96744,
+        "y": 0.864516,
+        "radius": 0.080613
+      }
+    ],
+    "icon": "thumbnails/wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai/icon/spriteFrame"
+  },
+  "assets/Bundle/levels/wang-luo-re-dian/configs/yi-shi-jie-lai-le-ge-nian-qing-ren/differences.json": {
+    "name": "异世界来了个年轻人",
+    "type": "normal",
+    "food": "",
+    "differences": [
+      {
+        "id": "diff-1",
+        "x": 0.44567,
+        "y": 0.254839,
+        "radius": 0.044289
+      },
+      {
+        "id": "diff-2",
+        "x": 0.565291,
+        "y": 0.593548,
+        "radius": 0.084566
+      },
+      {
+        "id": "diff-3",
+        "x": 0.781245,
+        "y": 0.246774,
+        "radius": 0.052015
+      },
+      {
+        "id": "diff-4",
+        "x": 0.893457,
+        "y": 0.362903,
+        "radius": 0.076626
+      },
+      {
+        "id": "diff-5",
+        "x": 0.132325,
+        "y": 0.324194,
+        "radius": 0.101856
+      },
+      {
+        "id": "diff-6",
+        "x": 0.23395,
+        "y": 0.4,
+        "radius": 0.029609
+      },
+      {
+        "id": "diff-7",
+        "x": 0.308052,
+        "y": 0.475806,
+        "radius": 0.022465
+      },
+      {
+        "id": "diff-8",
+        "x": 0.381095,
+        "y": 0.451613,
+        "radius": 0.069374
+      },
+      {
+        "id": "diff-9",
+        "x": 0.338751,
+        "y": 0.690323,
+        "radius": 0.07503
+      },
+      {
+        "id": "diff-10",
+        "x": 0.202192,
+        "y": 0.754839,
+        "radius": 0.062634
+      },
+      {
+        "id": "diff-11",
+        "x": 0.092098,
+        "y": 0.720968,
+        "radius": 0.074
+      },
+      {
+        "id": "diff-12",
+        "x": 0.190548,
+        "y": 0.054839,
+        "radius": 0.048521
+      },
+      {
+        "id": "diff-13",
+        "x": 0.615045,
+        "y": 0.16129,
+        "radius": 0.059765
+      },
+      {
+        "id": "diff-14",
+        "x": 0.047637,
+        "y": 0.462903,
+        "radius": 0.045448
+      },
+      {
+        "id": "diff-15",
+        "x": 0.901925,
+        "y": 0.204839,
+        "radius": 0.073134
+      },
+      {
+        "id": "diff-16",
+        "x": 0.084688,
+        "y": 0.854839,
+        "radius": 0.040064
+      },
+      {
+        "id": "diff-17",
+        "x": 0.905101,
+        "y": 0.801613,
+        "radius": 0.071625
+      },
+      {
+        "id": "diff-18",
+        "x": 0.726198,
+        "y": 0.464516,
+        "radius": 0.047955
+      },
+      {
+        "id": "diff-19",
+        "x": 0.426615,
+        "y": 0.119355,
+        "radius": 0.06822
+      },
+      {
+        "id": "diff-20",
+        "x": 0.950621,
+        "y": 0.587097,
+        "radius": 0.050389
+      }
+    ],
+    "icon": "thumbnails/wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren/icon/spriteFrame"
+  }
+}

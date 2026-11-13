@@ -109,7 +109,9 @@ def check_level(city_dir, level_dir):
                 problems.append(f'{label}: 差异点 #{index + 1} x 越界: {x!r}')
             if not isinstance(y, (int, float)) or not (0 <= y <= 1):
                 problems.append(f'{label}: 差异点 #{index + 1} y 越界: {y!r}')
-            if not isinstance(radius, (int, float)) or not (0 < radius <= 0.2):
+            # Exported radius is normalized to the short image side, as at runtime.
+            # Large re-drawn differences can legitimately exceed the former 0.2 heuristic.
+            if isinstance(radius, bool) or not isinstance(radius, (int, float)) or not (0 < radius <= 1):
                 problems.append(f'{label}: 差异点 #{index + 1} radius 非法: {radius!r}')
 
     # 图片资源：优先显式配置，其次目录推导

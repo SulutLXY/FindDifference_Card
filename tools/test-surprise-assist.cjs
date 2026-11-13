@@ -13,11 +13,15 @@ class Node {
     set parent(parent) { this._parent = parent; parent.children.push(this); }
     getComponent(type) { return this.components.get(type); }
     getChildByName(name) { return this.children.find(node => node.name === name); }
-    setSiblingIndex() {}
+    setSiblingIndex(index) {
+        if (!this._parent) return;
+        const children=this._parent.children;children.splice(children.indexOf(this),1);children.splice(index,0,this);
+    }
     setPosition(x, y, z) { this.position = { x, y, z }; }
     on(event, callback) { this.handlers[event] = callback; }
     destroy() { this.isValid = false; }
 }
+let includeClickBox = true;
 const cc = { Node, UITransform, Sprite, Label, Animation, Input: { EventType: { TOUCH_START: 'start', TOUCH_MOVE: 'move', TOUCH_END: 'end', TOUCH_CANCEL: 'cancel' } },
     instantiate() {
         const node = new Node('Item_Tips_surprise');
@@ -25,6 +29,7 @@ const cc = { Node, UITransform, Sprite, Label, Animation, Input: { EventType: { 
             const child = new Node(name); child.parent = node;
             child.components.set(name === 'Number' ? Label : Sprite, name === 'Number' ? { string: 'x2' } : { spriteFrame: 'time' });
         }
+        if (includeClickBox) new Node('ClikBox',130,130).parent=node;
         return node;
     } };
 const output = {};
@@ -157,7 +162,8 @@ function method(file, name, extra = {}) {
     let finish, claims = 0;
     ({ state, flow } = await setup([], { claimSurpriseAssist(kind, amount) { claims++; return new Promise(resolve => { finish = resolve; }); } }));
     state.update(5); flight = state._flight;
-    const touch = {}; flight.node.handlers.start(touch); assert.equal(touch.propagationStopped, true);
+    const touch = {getID:()=>0}; flight.node.handlers.start(touch); assert.equal(touch.propagationStopped, true);
+    flight.node.handlers.cancel(touch);
     let pending = state._claim(flight); await state._claim(flight); assert.equal(claims, 1);
     state.update(30); assert.equal(flight.elapsed, 0);
     finish(false); await pending; assert.equal(state._flight, flight); assert.equal(state._appearances, 1);
@@ -166,6 +172,44 @@ function method(file, name, extra = {}) {
     state.update(5); state.update(5); flight = state._flight;
     pending = state._claim(flight); state.clear(); state.start(level); await state._prepare(); state.update(5);
     const next = state._flight; finish(true); await pending; assert.equal(state._flight, next, 'Stale ad callback cannot remove a new-round gift'); state.dispose();
+
+    // Use the same touch routes as the live prefab, including its transparent expanded ClikBox.
+    const event = (id=1) => ({getID:()=>id,propagationStopped:false});
+    let touchClaims=0, resolveTouch;
+    ({state,flow,root}=await setup([], {claimSurpriseAssist(){touchClaims++;return new Promise(resolve=>{resolveTouch=resolve;});}}));
+    state.update(5);flight=state._flight;
+    let clickBox=flight.node.getChildByName('ClikBox');
+    assert.equal(clickBox.getComponent(UITransform).width,130);
+    assert.equal(flight.node.children.at(-1),clickBox,'Hit area stays above visual children');
+    let down=event();clickBox.handlers.start(down);assert.equal(down.propagationStopped,true);
+    const heldPosition={...flight.node.position},heldElapsed=flight.elapsed,heldClock=state._clock;
+    state.update(1);assert.deepEqual(flight.node.position,heldPosition);
+    assert.equal(flight.elapsed,heldElapsed);assert.equal(state._clock,heldClock,'Press cannot move/expire the target before release');
+    for(const type of ['move','cancel']){
+        const e=event();clickBox.handlers[type](e);assert.equal(e.propagationStopped,true);
+    }
+    assert.equal(touchClaims,0,'A canceled touch must not award or request an ad');
+    state.update(.1);assert.ok(flight.elapsed>heldElapsed,'Cancel resumes flight');
+    clickBox.handlers.start(event(1));clickBox.handlers.start(event(2));
+    clickBox.handlers.end(event(2));clickBox.handlers.cancel(event(2));
+    assert.equal(touchClaims,0);assert.ok(state._pressedTouch,'A second finger cannot release the original press');
+    const up=event(1);clickBox.handlers.end(up);assert.equal(up.propagationStopped,true);
+    assert.equal(touchClaims,1,'ClikBox release triggers the real claim route');
+    flight.node.handlers.end(event(1));clickBox.handlers.end(event(1));assert.equal(touchClaims,1,'Parent/child or duplicate end cannot double claim');
+    resolveTouch(false);await new Promise(setImmediate);
+    flight.node.handlers.start(event(3));flight.node.handlers.end(event(3));assert.equal(touchClaims,2,'Root fallback also claims');
+    resolveTouch(true);await new Promise(setImmediate);assert.equal(state._flight,null);
+    state.update(5);state.update(5);flight=state._flight;clickBox=flight.node.getChildByName('ClikBox');
+    clickBox.handlers.start(event(4));state.clear();clickBox.handlers.end(event(4));assert.equal(touchClaims,2,'Late release after clear cannot grant');
+    state.start(level);await state._prepare();state.update(5);clickBox=state._flight.node.getChildByName('ClikBox');
+    flow.isPaused=true;clickBox.handlers.start(event());clickBox.handlers.end(event());assert.equal(touchClaims,2);
+    flow.isPaused=false;flow.platform.interstitialBusy=true;clickBox.handlers.start(event());assert.equal(state._pressedTouch,null);
+    flow.platform.interstitialBusy=false;clickBox.handlers.start(event());flow.isGameOver=true;state.update(.1);
+    assert.equal(state._flight,null);assert.equal(state._pressedTouch,null,'Ending the round clears held touches');state.dispose();
+    includeClickBox=false;
+    ({state}=await setup());state.update(5);flight=state._flight;
+    flight.node.handlers.start(event());flight.node.handlers.end(event());await new Promise(setImmediate);
+    assert.equal(state._flight,null,'Older prefabs without ClikBox retain root click behavior');state.dispose();includeClickBox=true;
 
     let assetLoads = 0;
     ({ state, flow } = await setup([], { async loadGamePrefab() { if (++assetLoads === 1) throw Error('offline'); return {}; } }));
@@ -214,6 +258,12 @@ function method(file, name, extra = {}) {
     game.onLoad();
     assert.deepEqual(started, [level], 'First activation starts the round already prepared on an inactive GameScreen');
     const prefab = JSON.parse(fs.readFileSync('assets/PleyGame/prefabs/Item_Tips_surprise.prefab'));
-    for (const name of ['icon_Time', 'Number', 'icon_videoplay']) assert.ok(prefab.some(node => node.__type__ === 'cc.Node' && node._name === name));
-    console.log('PASS surprise assists: injured-only one-point healing, full-health/failed/paused guards, 2.5/3.5/5s flights, doubled amplitude with quantity-independent frequency, probability/quotas, immediate use, ads and stale callbacks');
+    for (const name of ['icon_Time', 'Number', 'icon_videoplay','ClikBox']) assert.ok(prefab.some(node => node.__type__ === 'cc.Node' && node._name === name));
+    const authoredHit=prefab.find(node=>node.__type__==='cc.Node'&&node._name==='ClikBox');
+    const hitTransform=authoredHit._components.map(ref=>prefab[ref.__id__]).find(c=>c.__type__==='cc.UITransform');
+    const rootTransform=prefab[1]._components.map(ref=>prefab[ref.__id__]).find(c=>c.__type__==='cc.UITransform');
+    assert.ok(authoredHit._active&&hitTransform._enabled);
+    assert.ok(hitTransform._contentSize.width>=rootTransform._contentSize.width&&hitTransform._contentSize.height>=rootTransform._contentSize.height,
+        'Authored hit area covers the bubble; its size remains editable in Creator');
+    console.log('PASS surprise assists: ClikBox/root touch routes, held-target freeze, cancel/multitouch/stale-touch guards, no propagation, injured-only healing, 2.5/3.5/5s flights, probability/quotas, rewards and stale callbacks');
 })().catch(error => { console.error(error); process.exitCode = 1; });

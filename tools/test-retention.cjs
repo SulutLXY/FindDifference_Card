@@ -13,8 +13,8 @@ function methods(file,names,extra={}){
  assert.equal(reload.beginDailyFirstRound('2026-10-09'),false);assert.equal(reload.beginDailyFirstRound('2026-10-10'),true);
  const Flow=methods('assets/scripts/GameFlow.ts',['finishLevel','update','_tickLobbyWarmup','_tryFeedOffer']);
  for(const win of [true,false]) for(const collected of [true,false]){
-  const f=new Flow();f.isValid=true;f._foods=[];let popups=0;f._currentLevel={key:'food',type:'food',timeLimit:100};f._remainingTime=90;f._elapsedTime=10;
-  f._playResultTone=()=>{};f.save={isCompleted:()=>collected,completeLevel(){},totalScore:2};f.rankProvider={submitScore(){}};
+  const f=new Flow();f.isValid=true;f._foods=[];f._foundIds=new Set();let popups=0;f._currentLevel={key:'food',type:'food',timeLimit:100};f._remainingTime=90;f._elapsedTime=10;
+  f._playResultTone=()=>{};f.save={isCompleted:()=>collected,completeLevel(){return true;},totalScore:2};f.rankProvider={submitScore(){}};
   f.resultModal={present(){}};f.findNextLevel=()=>null;f.showFoodTips=()=>popups++;f.platform={onRoundFinished(){}};
   f.finishLevel(win);assert.equal(popups,win&&!collected?1:0);
  }
