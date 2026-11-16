@@ -18,7 +18,8 @@ function strict(file, source) {
 }
 for (const isUsePhysX of [false, true]) for (const polyfillsBundleFile of ['', './polyfills.js'])
     strict('game.js', render({ isUsePhysX, polyfillsBundleFile }));
-for (const file of ['resource-version.js', 'app-version.js', 'openDataContext/index.js', 'openDataContext/rank-core.js'])
+assert.equal(fs.existsSync(root + 'openDataContext/rank-core.js'), false, 'Retired rank API must stay outside the build template');
+for (const file of ['resource-version.js', 'app-version.js'])
     strict(file, read(root + file));
 assert.ok(read('tools/sync-app-version.cjs').includes("`'use strict';\\n"), 'Regeneration must retain strict mode');
 

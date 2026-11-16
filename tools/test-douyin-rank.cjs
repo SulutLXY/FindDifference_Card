@@ -12,7 +12,7 @@ function loadTs(file, host = {}) {
     return output;
 }
 const { createNpcRankPool, sortRankPool } = loadTs(path.resolve(__dirname, '../assets/scripts/services/rank/NpcRankPool.ts'));
-const { fetchRank, mergeRank } = require('../build-templates/bytedance-mini-game/openDataContext/rank-core');
+const { fetchRank, mergeRank } = require('./fixtures/legacy-douyin-rank/rank-core');
 (async () => {
     const npcs = createNpcRankPool();
     assert.equal(npcs.length, 50);

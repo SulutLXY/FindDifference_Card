@@ -18,16 +18,15 @@
   ],
   "douyinFavoriteEntryRules": [],
   "feed": {
-    "enabled": false,
-    "serverlessEnabled": false,
+    "enabled": true,
+    "serverlessEnabled": true,
     "revisitEnabled": true,
-    "acquisitionEnabled": false,
-    "acquisitionContentID": "",
+    "acquisitionEnabled": true,
     "contents": [
       {
         "contentID": "CONTENT13630007554",
         "scene": 2,
-        "recommendationText": "拖图脑洞，益智轻松闯关！",
+        "recommendationText": "您的体力已满快来继续挑战吧！",
         "subscriptionText": "免费领取道具"
       },
       {
@@ -35,6 +34,187 @@
         "scene": 2,
         "recommendationText": "您的体力已满快来继续挑战吧！",
         "subscriptionText": "体力已满，开启挑战"
+      },
+      {
+        "contentID": "CONTENT16146483970",
+        "scene": 2,
+        "recommendationText": "找不同找物，解压不费脑！",
+        "subscriptionText": "免费领取道具"
+      },
+      {
+        "contentID": "CONTENT15926032130",
+        "scene": 2,
+        "recommendationText": "碎片时间，秒变眼力王者！",
+        "subscriptionText": "免费领取道具"
+      },
+      {
+        "contentID": "CONTENT16072622338",
+        "scene": 2,
+        "recommendationText": "找不同天花板，你能过第几关！",
+        "subscriptionText": "免费领取道具"
+      },
+      {
+        "contentID": "CONTENT16146484226",
+        "scene": 2,
+        "recommendationText": "眼力测试，找到算你赢！",
+        "subscriptionText": "免费领取道具"
+      },
+      {
+        "contentID": "CONTENT16147699970",
+        "scene": 2,
+        "recommendationText": "火眼金睛？来这关试试"
+      },
+      {
+        "contentID": "CONTENT13714485506",
+        "scene": 1,
+        "recommendationText": "脑洞拉满，找不同解谜超解压！"
+      },
+      {
+        "contentID": "CONTENT15981346306",
+        "scene": 1,
+        "recommendationText": "一眼看穿的，都是高手！"
+      },
+      {
+        "contentID": "CONTENT16249106690",
+        "scene": 1,
+        "recommendationText": "解压到停不下来的一款找不同小游戏！"
+      },
+      {
+        "contentID": "CONTENT15898027778",
+        "scene": 1,
+        "recommendationText": "越找越爽，比刷短视频上头！"
+      },
+      {
+        "contentID": "CONTENT16234293250",
+        "scene": 1,
+        "recommendationText": "解压神器，点开就松一口气！"
+      },
+      {
+        "contentID": "CONTENT16248482050",
+        "scene": 1,
+        "recommendationText": "找不同真的能治愈精神内耗！"
+      },
+      {
+        "contentID": "CONTENT15927378178",
+        "scene": 1,
+        "recommendationText": "脑洞转快点，不然真找不到！"
+      },
+      {
+        "contentID": "CONTENT13714485762",
+        "scene": 3,
+        "recommendationText": "转转脑洞开始我们的找茬之旅吧！"
+      },
+      {
+        "contentID": "CONTENT15981346562",
+        "scene": 3,
+        "recommendationText": "30秒一关，碎片时间神器！"
+      },
+      {
+        "contentID": "CONTENT15927378434",
+        "scene": 3,
+        "recommendationText": "随手一玩找不同，根本放不下！"
+      },
+      {
+        "contentID": "CONTENT15865072642",
+        "scene": 3,
+        "recommendationText": "寻物控狂喜，藏得太刁钻！"
+      },
+      {
+        "contentID": "CONTENT16234293506",
+        "scene": 3,
+        "recommendationText": "隐藏款物品，肉眼难辨！"
+      },
+      {
+        "contentID": "CONTENT16249106946",
+        "scene": 3,
+        "recommendationText": "大场景寻物，细节控天堂！"
+      },
+      {
+        "contentID": "CONTENT16248482306",
+        "scene": 3,
+        "recommendationText": "寻物解压，越找越上头！"
+      }
+    ],
+    "acquisitionContents": [
+      {
+        "contentID": "CONTENT13706653954",
+        "recommendationText": "零提示通关，我是眼神！"
+      },
+      {
+        "contentID": "CONTENT13714486018",
+        "recommendationText": "全图鉴收集，强迫症圆满！"
+      },
+      {
+        "contentID": "CONTENT13706654210",
+        "recommendationText": "找不同界的脑筋急转弯！"
+      },
+      {
+        "contentID": "CONTENT13714794754",
+        "recommendationText": "这游戏治好了我的粗心！"
+      },
+      {
+        "contentID": "CONTENT13714486274",
+        "recommendationText": "脑洞比谜题更难猜！"
+      },
+      {
+        "contentID": "CONTENT13630007810",
+        "recommendationText": "反常识寻物，别按套路！"
+      },
+      {
+        "contentID": "CONTENT13714795010",
+        "recommendationText": "找不同也能玩出竞技感！"
+      },
+      {
+        "contentID": "CONTENT13706654466",
+        "recommendationText": "每天一关，脑子不锈！"
+      },
+      {
+        "contentID": "CONTENT13714486530",
+        "recommendationText": "找完这波眼睛会发光！"
+      },
+      {
+        "contentID": "CONTENT13714795266",
+        "recommendationText": "眼力+脑洞，双buff叠满！"
+      },
+      {
+        "contentID": "CONTENT13714795522",
+        "recommendationText": "找差异找物件，眼力闯关欢乐不停歇！"
+      },
+      {
+        "contentID": "CONTENT13714486786",
+        "recommendationText": "放大画面找不同，找茬通关小妙招！"
+      },
+      {
+        "contentID": "CONTENT15898028034",
+        "recommendationText": "脑洞解谜寻物，趣味闯关乐在其中！"
+      },
+      {
+        "contentID": "CONTENT16010983170",
+        "recommendationText": "闲暇放空自己，玩找不同找茬小游戏！"
+      },
+      {
+        "contentID": "CONTENT15865072898",
+        "recommendationText": "海量关卡来袭，找不同寻物等你来闯关！"
+      },
+      {
+        "contentID": "CONTENT16146484482",
+        "recommendationText": "玩完浑身舒畅，找茬找不同解压神器！"
+      },
+      {
+        "contentID": "CONTENT16277341186",
+        "recommendationText": "考验专注力，寻物找不同益智休闲小游戏！"
+      },
+      {
+        "contentID": "CONTENT15981346818",
+        "recommendationText": "找出所有不同，解锁全新图画世界！"
+      },
+      {
+        "contentID": "CONTENT15927378690",
+        "recommendationText": "眼力突围挑战，找不同寻物你能闯几关？"
+      },
+      {
+        "contentID": "CONTENT15898028290",
+        "recommendationText": "卡通画风超治愈，找不同寻物欢乐闯关！"
       }
     ]
   },

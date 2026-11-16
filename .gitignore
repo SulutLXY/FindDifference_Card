@@ -3,7 +3,17 @@ library/
 temp/
 build/
 local/
+
+# 共享主工程的抖音与 Web 手机端构建配置，其余 Creator 本机设置继续忽略
 profiles/
+!/profiles/
+/profiles/*
+!/profiles/v2/
+/profiles/v2/*
+!/profiles/v2/packages/
+/profiles/v2/packages/*
+!/profiles/v2/packages/bytedance-mini-game.json
+!/profiles/v2/packages/web-mobile.json
 
 # 系统与编辑器杂项
 .DS_Store

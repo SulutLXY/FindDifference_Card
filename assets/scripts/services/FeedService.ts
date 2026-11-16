@@ -1,4 +1,5 @@
-import { FeedConfig, FeedProgress, FEED_DAY_MS, feedCanOffer, feedPlanKey, feedReadyAt } from '../core/Feed';
+import { FeedConfig, FeedProgress, FEED_DAY_MS, feedCanOffer, feedPlanKey } from '../core/Feed';
+import type { DailySignInConfig } from '../core/DailySignIn';
 import { SaveService } from './SaveService';
 import { PlatformService } from './PlatformService';
 import { sidebarDay } from './SidebarService';
@@ -12,6 +13,7 @@ export class FeedService {
     private _reported = false;
     private _reporting = false;
     private _uploading = false;
+    private _reschedule = false;
     private _lastUploadAttempt = 0;
     private _retryTimer: ReturnType<typeof setTimeout> | null = null;
     private _config: FeedConfig | null = null;
@@ -30,7 +32,26 @@ export class FeedService {
 
     public get isPreview(): boolean { return this._preview; }
 
-    public configure(config?: FeedConfig): void { this._config = config ?? null; }
+    private _dailyConfig?: DailySignInConfig;
+    public configure(config?: FeedConfig, dailyConfig?: DailySignInConfig): void {
+        this._config = config ?? null;
+        this._dailyConfig = dailyConfig;
+    }
+
+    private _signInReadyAt(now: number): number | null {
+        if (!this._dailyConfig) return null;
+        const today = sidebarDay(now);
+        const lastClaim = this.save.data.dailySignIn?.lastClaimDay;
+        const nextDay = lastClaim && lastClaim >= today
+            ? sidebarDay(Date.parse(lastClaim + 'T00:00:00+08:00') + FEED_DAY_MS) : today;
+        const midnight = Date.parse(nextDay + 'T00:00:00+08:00');
+        // A missed day resets the reward sequence. A full energy inventory can still accept a hint tomorrow.
+        for (const timestamp of [midnight, midnight + FEED_DAY_MS]) {
+            const status = this.save.dailyStatus(sidebarDay(timestamp), this._dailyConfig);
+            if (status.canClaim && (status.reward.kind !== 'energy' || this.save.energy < this.save.energyLimit)) return timestamp;
+        }
+        return null;
+    }
 
     public start(): void {
         if (this._started || this.platform.kind !== 'douyin') return;
@@ -102,8 +123,9 @@ export class FeedService {
                 && String(item.scene) === String(query.feed_game_scene));
             return content?.levelKey ?? null;
         }
-        if (channel === '2' && this._config.acquisitionEnabled
-            && this._config.acquisitionContentID === query.feed_game_content_id) {
+        const id = query.feed_game_content_id;
+        if (channel === '2' && this._config.acquisitionEnabled && typeof id === 'string' && id
+            && (this._config.acquisitionContents?.some(item => item.contentID === id) || this._config.acquisitionContentID === id)) {
             return this._config.acquisitionLevelKey ?? null;
         }
         // Acquisition defaults to the regular continue level, without granting locked-level access.
@@ -166,7 +188,7 @@ export class FeedService {
             || !state.cycleStart || state.planKey !== feedPlanKey(config)) return;
         const content = config.contents.find(item => item.contentID === query.feed_game_content_id
             && String(item.scene) === String(query.feed_game_scene));
-        if (!content || state.consumed?.includes(content.contentID)) return;
+        if (content?.scene !== 2 || state.consumed?.includes(content.contentID)) return;
         // A previous cycle's cached Feed card cannot consume the next cycle's content.
         let extra: any;
         try { extra = JSON.parse(query.feed_game_extra || '{}'); } catch { return; }
@@ -176,11 +198,20 @@ export class FeedService {
 
     public async scheduleRevisit(): Promise<void> {
         const config = this._config, key = config && feedPlanKey(config);
-        if (!config || !key || this._uploading || this._preview || this._disposed
+        if (!config || !key || this._preview || this._disposed
             || this.platform.feedSubscribed !== true || this.platform.kind !== 'douyin'
             || !this.platform.supportsFeedSubscription || !this._supports('storeFeedData')) return;
+        if (this._uploading) { this._reschedule = true; return; }
+        let state = this._state();
+        const now = this.now();
+        const newCycle = !state.cycleStart || now >= state.cycleStart + 19 * FEED_DAY_MS || state.planKey !== key;
+        const energyReadyAt = this.save.energy >= this.save.energyRecoveryLimit
+            ? Math.min(newCycle ? now : state.energyReadyAt ?? now, now) : this.save.energyFullRecoveryAt;
+        const energyChanged = energyReadyAt !== state.energyReadyAt || !state.energyUsesRecoveryTime;
+        const signInReadyAt = this._signInReadyAt(now);
+        const signInChanged = signInReadyAt !== state.signInReadyAt;
         // A rate-limit/network failure must not cause repeated bursts on every click.
-        if (this._lastUploadAttempt && this.now() - this._lastUploadAttempt < 60000) {
+        if (!energyChanged && !signInChanged && this._lastUploadAttempt && this.now() - this._lastUploadAttempt < 60000) {
             if (!this._retryTimer) this._retryTimer = setTimeout(() => {
                 this._retryTimer = null; void this.scheduleRevisit();
             }, 60000 - (this.now() - this._lastUploadAttempt));
@@ -189,23 +220,20 @@ export class FeedService {
         this._lastUploadAttempt = this.now();
         this._uploading = true;
         try {
-            let state = this._state();
-            if (!state.cycleStart || this.now() >= state.cycleStart + 19 * FEED_DAY_MS || state.planKey !== key) {
+            if (newCycle) {
                 state = { ...state, cycleStart: this.now(), planKey: key, uploaded: [], consumed: [], cleared: [],
-                    energyReadyAt: this.save.energyFullRecoveryAt };
+                    energyReadyAt, energyUsesRecoveryTime: true, signInReadyAt };
                 if (!this.save.updateFeedState(state)) return;
-            }
-            const energyReadyAt = this.save.energy < this.save.energyRecoveryLimit
-                ? this.save.energyFullRecoveryAt : state.energyReadyAt ?? this.now();
-            if (energyReadyAt > (state.energyReadyAt ?? 0)) {
-                const energyContents = new Set(config.contents.filter(content => content.scene === 2).map(content => content.contentID));
-                state = { ...state, energyReadyAt, uploaded: state.uploaded.filter(id => !energyContents.has(id)) };
+            } else if (energyChanged || signInChanged) {
+                const changed = new Set(config.contents.filter(c => c.scene === 2 ? energyChanged : signInChanged).map(c => c.contentID));
+                state = { ...state, energyReadyAt, energyUsesRecoveryTime: true, signInReadyAt,
+                    uploaded: state.uploaded.filter(id => !changed.has(id)) };
                 if (!this.save.updateFeedState(state)) return;
             }
             for (let i = 0; i < config.contents.length; i++) {
                 if (this._disposed || this._preview || this.platform.feedSubscribed !== true) return;
                 const content = config.contents[i];
-                if (state.consumed?.includes(content.contentID)) {
+                if (content.scene === 2 && state.consumed?.includes(content.contentID)) {
                     if (state.cleared?.includes(content.contentID)) continue;
                     const cleared = await this._call('storeFeedData', { scene: content.scene, contentID: content.contentID,
                         leftValue: 'timeStampMs', operator: '>=', rightValue: String(this.now()), status: 0 });
@@ -216,16 +244,23 @@ export class FeedService {
                     continue;
                 }
                 if (state.uploaded.includes(content.contentID)) continue;
+                const readyAt = content.scene === 2 ? energyReadyAt : signInReadyAt;
                 const success = await this._call('storeFeedData', { scene: content.scene, contentID: content.contentID,
                     leftValue: 'timeStampMs', operator: '>=',
-                    rightValue: String(Math.max(feedReadyAt(state.cycleStart, i), content.scene === 2 ? state.energyReadyAt ?? 0 : 0)), status: 1,
+                    rightValue: String(readyAt ?? now), status: readyAt === null ? 0 : 1,
                     extra: JSON.stringify({ cycleStart: state.cycleStart, levelKey: content.levelKey ?? '' }) });
                 if (!success || this._disposed) return;
                 state = { ...this._state(), uploaded: [...state.uploaded, content.contentID] };
                 if (!this.save.updateFeedState(state)) return;
                 if (i < config.contents.length - 1) await this.wait(500);
             }
-        } finally { this._uploading = false; }
+        } finally {
+            this._uploading = false;
+            if (this._reschedule) {
+                this._reschedule = false;
+                void this.scheduleRevisit();
+            }
+        }
     }
 
     /** Invoked after a prepared game frame has actually drawn, including Feed preview. */

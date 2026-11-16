@@ -300,6 +300,7 @@ export class GameFlow extends Component {
         this.platform.canUseInteractiveFeatures = () => !this.feed.isPreview;
         this.platform.beforeFeedSubscribe = () => this.feed.reserveSubscriptionAttempt();
         this.platform.onFeedSubscribeSuccess = () => { void this.feed.scheduleRevisit(); };
+        this.save.onRewardClaimed = () => { void this.feed.scheduleRevisit(); };
         this.feed.onPreviewChanged = () => this._onFeedPreviewChanged();
         this.feed.start();
         void this.platform.sidebar.start();
@@ -2268,7 +2269,7 @@ export class GameFlow extends Component {
             this.platform.configure(platformAsset.json as PlatformConfig);
             this.platform.preloadInterstitial?.();
             this.playStats?.configure((platformAsset.json as PlatformConfig).playStats, (platformAsset.json as PlatformConfig).apiBaseUrl);
-            this.feed?.configure((platformAsset.json as PlatformConfig).feed);
+            this.feed?.configure((platformAsset.json as PlatformConfig).feed, this._dailyConfig);
 
             const index = cityIndexAsset.json as CityIndex;
             // Draft chapters retain their collection mapping without exposing unplayable video rewards.

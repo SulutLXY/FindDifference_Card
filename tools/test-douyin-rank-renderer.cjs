@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
-const core = require('../build-templates/bytedance-mini-game/openDataContext/rank-core');
+const core = require('./fixtures/legacy-douyin-rank/rank-core');
 const pending = [];
 let receive;
 let labels = [];
@@ -13,7 +13,7 @@ const ctx = new Proxy({}, { get: (_target, name) => {
 const tt = {getSharedCanvas:()=>({width:750,height:1334,getContext:()=>ctx}),
     createImage:()=>({}), onMessage:handler=>{receive=handler;}, getImRankData:options=>pending.push(options)};
 vm.runInNewContext(fs.readFileSync(require('node:path').join(__dirname,
-    '../build-templates/bytedance-mini-game/openDataContext/index.js'),'utf8'),
+    'fixtures/legacy-douyin-rank/index.js'),'utf8'),
     {tt,require:()=>core,console:{warn(){}},setTimeout,clearTimeout});
 const npcs = Array.from({length:50},(_,i)=>({name:'NPC'+i,passed:45-Math.floor(i*44/49),isNpc:true,avatarUrl:''}));
 const box={x:50,y:1100,width:100,height:70};

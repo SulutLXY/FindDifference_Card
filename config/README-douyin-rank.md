@@ -8,7 +8,7 @@
 
 关卡胜利后的成绩上报保留。抖音端不再创建 SubContextView、不调用 getOpenDataContext/getImRankData、不混入 NPC。排名、玩家资料和条数由原生面板管理。浏览器预览仍使用本地排行榜。
 
-旧开放域文件保留但入口不再使用，game.json 已移除开放域配置。node tools/sync-douyin-rank-build.cjs 可移除旧构建包的开放域配置，保留其他字段；它不会更新主域脚本。
+旧开放域脚本保存在 `tools/fixtures/legacy-douyin-rank`，供历史排行榜测试使用。抖音构建模板和 game.json 均已移除旧开放域。复用旧构建目录时请核对产物中是否残留开放域脚本。
 
 必须重新用 Cocos 构建字节跳动小游戏。本项目主包为远程资源，需将新构建的远程资源同步到当前 CDN，再打开新开发者工具包。仅替换 game.json 不会更新排行榜入口。
 

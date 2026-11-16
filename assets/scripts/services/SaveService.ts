@@ -26,6 +26,7 @@ const DEFAULT_SAVE: SaveData = {
 export class SaveService {
     public readonly energyLimit = 99;
     public readonly energyRecoveryLimit = 15;
+    public onRewardClaimed?: () => void;
     public readonly assistLimit = 99;
     private readonly _energyInterval = 8 * 60 * 1000;
     private _data: SaveData;
@@ -93,7 +94,7 @@ export class SaveService {
         const next = Math.min(this.energyLimit, energy + 5);
         this._data = { ...previous, energy: next, energyAdDay: day, energyAdsUsed: used + 1,
             energyUpdatedAt: next >= this.energyRecoveryLimit ? Date.now() : previous.energyUpdatedAt };
-        if (this._persist()) return true;
+        if (this._persist()) { this.onRewardClaimed?.(); return true; }
         this._data = previous;
         return false;
     }
@@ -144,7 +145,10 @@ export class SaveService {
             energyUpdatedAt: status.reward.kind === 'energy' && nextEnergy >= this.energyRecoveryLimit ? Date.now() : previous.energyUpdatedAt,
             dailySignIn: { ...previous.dailySignIn, lastClaimDay: day, dayIndex: status.dayIndex },
         };
-        if (this._persist()) return true;
+        if (this._persist()) {
+            this.onRewardClaimed?.();
+            return true;
+        }
         this._data = previous;
         return false;
     }
@@ -450,7 +454,10 @@ export class SaveService {
                 energyUpdatedAt: nextEnergy >= this.energyRecoveryLimit ? Date.now() : previous.energyUpdatedAt } : {}),
         };
         this._recountScore();
-        if (this._persist()) return true;
+        if (this._persist()) {
+            if (rewardEnergy && nextEnergy !== energy) this.onRewardClaimed?.();
+            return true;
+        }
         this._data = previous;
         return false;
     }

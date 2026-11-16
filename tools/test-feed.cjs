@@ -11,6 +11,8 @@ function load(file, deps = {}, globals = {}) {
 }
 const core = load('assets/scripts/core/Feed.ts');
 const sidebar = load('assets/scripts/services/SidebarService.ts');
+const { dailySignInStatus } = load('assets/scripts/core/DailySignIn.ts');
+const dailyConfig = JSON.parse(fs.readFileSync('assets/resources/configs/daily-sign-in.json'));
 const { FeedService } = load('assets/scripts/services/FeedService.ts', { '../core/Feed': core, './SidebarService': sidebar });
 const plan = () => ({ enabled: true, serverlessEnabled: true, revisitEnabled: true, acquisitionEnabled: true,
     acquisitionContentID: 'CONTENT999', contents: Array.from({ length: 21 }, (_, i) => ({
@@ -21,7 +23,8 @@ function setup({ legacy = false, subscribed = false, preview = false, native = t
     let time = START, failID = '', failWrite = false;
     const calls = [], events = new Set(), shows = new Set(), touches = new Set();
     const save = { data: { completed: {}, ...(legacy ? { lastPlayedLevelKey: 'old' } : {}) }, energy: 10,
-        energyRecoveryLimit: 15, energyFullRecoveryAt: START + 40 * 60000,
+        energyRecoveryLimit: 15, energyLimit: 99, energyFullRecoveryAt: START + 40 * 60000,
+        dailyStatus(day, config) { return dailySignInStatus(this.data.dailySignIn, day, config); },
         updateFeedState(value) { if (failWrite) return false; this.data.feed = JSON.parse(JSON.stringify(value)); return true; } };
     const platform = { kind: 'douyin', isPcCompanion: false, supportsFeedSubscription: true,
         feedSubscribed: subscribed, checks: 0, async checkFeedStatus() { this.checks++; return null; } };
@@ -46,14 +49,78 @@ function methods(file, names, globals = {}) {
 }
 (async () => {
     const config = JSON.parse(fs.readFileSync('assets/resources/configs/platform-config.json')).feed;
-    assert.equal(config.enabled, false); assert.equal(config.serverlessEnabled, false);
-    assert.deepEqual(config.contents.map(c => [c.contentID, c.scene]), [['CONTENT13630007554', 2], ['CONTENT16082553858', 2]]);
-    assert.equal(core.feedPlanKey(config), null, 'incomplete production config cannot upload');
+    assert.equal(config.enabled, true); assert.equal(config.serverlessEnabled, true);
+    const energyIds = ['CONTENT13630007554', 'CONTENT16082553858', 'CONTENT16146483970',
+        'CONTENT15926032130', 'CONTENT16072622338', 'CONTENT16146484226', 'CONTENT16147699970'];
+    assert.deepEqual(config.contents.filter(c => c.scene === 2).map(c => c.contentID), energyIds);
+    assert.equal(config.contents.filter(c => c.scene === 1).length, 7);
+    assert.equal(config.contents.filter(c => c.scene === 3).length, 7);
+    assert.equal(config.acquisitionEnabled, true);
+    assert.equal(config.acquisitionContents.length, 20);
+    const allIds = [...config.contents, ...config.acquisitionContents].map(c => c.contentID);
+    assert.equal(new Set(allIds).size, 41);
+    const energyPlan = setup({ subscribed: true });
+    energyPlan.service.configure(config, dailyConfig);
+    await energyPlan.service.onLevelEntered('first');
+    await new Promise(setImmediate);
+    assert.deepEqual(energyPlan.calls.map(({ scene, contentID, rightValue, status }) => [scene, contentID, rightValue, status]),
+        config.contents.map(c => [c.scene, c.contentID, String(c.scene === 2 ? START + 40 * 60000 : Date.parse('2026-11-04T00:00:00+08:00')), 1]));
+    energyPlan.advance(1000); energyPlan.save.energy = 15;
+    await energyPlan.service.scheduleRevisit();
+    assert.deepEqual(energyPlan.calls.slice(21).map(c => c.rightValue), energyIds.map(() => String(START + 1000)));
+    energyPlan.save.energy = 14; energyPlan.save.energyFullRecoveryAt = START + 481000;
+    await energyPlan.service.scheduleRevisit();
+    assert.deepEqual(energyPlan.calls.slice(21 + energyIds.length).map(c => c.rightValue), energyIds.map(() => String(START + 481000)));
+    energyPlan.service.dispose();
+    const claims = setup({ subscribed: true });
+    claims.service.configure(config, dailyConfig);
+    await claims.service.scheduleRevisit();
+    const signInIds = config.contents.filter(c => c.scene !== 2).map(c => c.contentID);
+    // Existing users may already have 14 delayed registrations and an old consumed card.
+    delete claims.save.data.feed.signInReadyAt;
+    claims.save.data.feed.consumed = [signInIds[0]];
+    claims.calls.length = 0;
+    await claims.service.scheduleRevisit();
+    assert.deepEqual(claims.calls.map(c => c.contentID), signInIds);
+    claims.save.data.dailySignIn = { lastClaimDay: '2026-11-04', dayIndex: 1 };
+    claims.calls.length = 0;
+    await claims.service.scheduleRevisit();
+    const midnight = Date.parse('2026-11-05T00:00:00+08:00');
+    assert.deepEqual(claims.calls.map(c => [c.contentID, c.status, Number(c.rightValue)]), signInIds.map(id => [id, 1, midnight]));
+    claims.advance(midnight - START);
+    claims.calls.length = 0;
+    await claims.service.scheduleRevisit();
+    assert.equal(claims.calls.length, 0, 'existing condition becomes ready at Beijing midnight without another call');
+    claims.save.energy = 99;
+    await claims.service.scheduleRevisit();
+    assert.deepEqual(claims.calls.filter(c => c.scene !== 2).map(c => Number(c.rightValue)), signInIds.map(() => midnight + core.FEED_DAY_MS));
+    claims.service.dispose();
+    const full = setup({ subscribed: true });
+    full.service.configure(config); full.save.energy = 16;
+    await full.service.scheduleRevisit();
+    assert.deepEqual(full.calls.filter(c => c.scene === 2).map(c => c.rightValue), energyIds.map(() => String(START)));
+    delete full.save.data.feed.energyUsesRecoveryTime;
+    full.save.data.feed.consumed = [config.contents[0].contentID];
+    full.save.data.feed.cleared = [config.contents[0].contentID];
+    await full.service.scheduleRevisit();
+    assert.deepEqual(full.calls.slice(21).map(c => c.contentID), energyIds.slice(1));
+    full.service.dispose();
+    const acquisition = setup({ preview: true });
+    acquisition.service.configure({ ...config, acquisitionLevelKey: 'test-level' });
+    for (const item of config.acquisitionContents) {
+        acquisition.show({ scene: '023041', query: { feed_game_channel: 2, feed_game_content_id: item.contentID } });
+        assert.equal(acquisition.service.launchLevelKey, 'test-level');
+    }
+    acquisition.show({ scene: '023041', query: { feed_game_channel: 2, feed_game_content_id: energyIds[0] } });
+    assert.equal(acquisition.service.launchLevelKey, null);
+    acquisition.service.dispose();
+    for (const flag of ['enabled', 'revisitEnabled', 'serverlessEnabled'])
+        assert.equal(core.feedPlanKey({ ...config, [flag]: false }), null);
+    assert.equal(core.feedPlanKey({ ...config, contents: [] }), null);
+    assert.equal(core.feedPlanKey({ ...config, contents: [...plan().contents, config.contents[0]] }), null);
     assert.equal(core.feedPlanKey(plan()).split('|').length, 21);
     const duplicate = plan(); duplicate.contents[20].contentID = duplicate.contents[0].contentID;
     assert.equal(core.feedPlanKey(duplicate), null);
-    for (const [index, hours] of [[0, 2], [1, 4], [2, 6], [3, 24], [20, 432]])
-        assert.equal(core.feedReadyAt(START, index), START + hours * 3600000);
 
     const first = setup();
     for (let i = 1; i <= 15; i++) {
@@ -119,7 +186,7 @@ function methods(file, names, globals = {}) {
     const fallback = setup({ preview: true, native: false });
     [...fallback.touches][0](); assert.equal(fallback.service.isPreview, false); fallback.service.dispose();
     assert.equal(fallback.touches.size, 0);
-    const disabled = setup(); disabled.service.configure(config);
+    const disabled = setup({ subscribed: true }); disabled.service.configure({ ...config, enabled: false });
     assert.equal(await disabled.service.onLevelEntered('first'), null); await disabled.service.scheduleRevisit();
     assert.equal(disabled.calls.length, 0); disabled.service.dispose();
     const failure = setup(); failure.failWrite(true);
@@ -214,5 +281,5 @@ function methods(file, names, globals = {}) {
     flow._isPaused = true; flow.feed.isPreview = true; flow._onFeedPreviewChanged();
     flow.feed.isPreview = false; flow._onFeedPreviewChanged(); assert.equal(flow._isPaused, true, 'preserve settings/tutorial pause');
 
-    console.log('PASS Feed: real IDs remain disabled until configured; milestones, daily limits, legacy players, 19-day schedule, recovery timing, retries, return clearing, preview lifecycle, early entry and atomic storage');
+    console.log('PASS Feed: configured energy IDs, milestones, daily limits, legacy players, 19-day schedule, recovery timing, retries, return clearing, preview lifecycle, early entry and atomic storage');
 })().catch(error => { console.error(error); process.exitCode = 1; });

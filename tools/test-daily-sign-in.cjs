@@ -23,11 +23,17 @@ for (let i = 0; i < 7; i++) {
     if (i) now += 86400000;
     const multiplier = [1,2,2,1,1,2,2][i];
     const state = save.dailyStatus(day(), config); assert.equal(state.dayIndex, i + 1);
+    let notifications = 0;
+    save.onRewardClaimed = () => {
+        assert.equal(save.data.dailySignIn.lastClaimDay, day());
+        notifications++;
+    };
     assert.equal(save.claimDailySignIn(day(), config, multiplier, i + 1), true);
     if (config.days[i].kind === 'hint') expectedHints += config.days[i].amount * multiplier;
     else expectedEnergy += config.days[i].amount * multiplier;
     assert.equal(save.freeHints, expectedHints); assert.equal(save.energy, expectedEnergy);
     assert.equal(save.claimDailySignIn(day(), config, 2, i + 1), false, 'No normal/double double-dip');
+    assert.equal(notifications, 1, 'Notify Feed once for either reward kind');
     save = new SaveService(); assert.equal(save.dailyStatus(day(), config).claimed, true);
 }
 now += 86400000; assert.equal(save.dailyStatus(day(), config).dayIndex, 1, 'New seven-day cycle');
@@ -38,6 +44,7 @@ assert.equal(save.claimDailySignIn(day(), config, 1, 1), true);
 now -= 86400000; assert.equal(save.dailyStatus(day(), config).canClaim, false, 'Clock rollback cannot claim again');
 now += 2 * 86400000;
 const before = JSON.stringify(save.data); fail = true;
+save.onRewardClaimed = () => assert.fail('Failed save cannot reschedule Feed');
 assert.equal(save.markDailyPrompt(day(), config), false); assert.equal(JSON.stringify(save.data), before);
 assert.equal(save.claimDailySignIn(day(), config, 2, 2), false); assert.equal(JSON.stringify(save.data), before);
 fail = false;
