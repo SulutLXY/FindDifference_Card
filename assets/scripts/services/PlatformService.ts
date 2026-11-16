@@ -55,6 +55,7 @@ export class PlatformService {
     private _feedLoginPending = false;
     private _entryBusy = false;
     public feedSubscribed: boolean | null = null;
+    private _feedStatusVersion = 0;
     public canUseInteractiveFeatures: () => boolean = () => true;
     public beforeFeedSubscribe: (() => string | null) | null = null;
     public onFeedSubscribeSuccess: (() => void) | null = null;
@@ -65,6 +66,7 @@ export class PlatformService {
     }
 
     public async checkFeedStatus(): Promise<string | null> {
+        const version = ++this._feedStatusVersion;
         if (!this.canUseInteractiveFeatures()) return '请进入游戏后再订阅';
         if (this.kind !== 'douyin' || this.isPcCompanion) return '请在手机抖音中使用订阅功能';
         await this.detectHarmony();
@@ -87,7 +89,10 @@ export class PlatformService {
                 tt.checkFeedSubscribeStatus({ type: 'play', allScene: true,
                     success: (res: any) => {
                         if (typeof res?.status !== 'boolean') { finish('订阅状态暂不可用'); return; }
-                        this.feedSubscribed = res.status; finish(null);
+                        if (version !== this._feedStatusVersion) { finish('订阅状态已更新，请重试查询'); return; }
+                        this.feedSubscribed = res.status;
+                        console.info?.('[Feed] subscription-status', { subscribed: res.status });
+                        finish(null);
                     }, fail: (res: any) => finish(res?.errMsg || '订阅状态查询失败') });
             } catch { finish('订阅状态查询失败'); }
         });
@@ -149,7 +154,13 @@ export class PlatformService {
             return Promise.resolve('正在准备登录，请稍后再点击订阅');
         }
         return this._entryCall('requestFeedSubscribe', { type: 'play', allScene: true }, res => {
-            if (res?.success === true) { this.feedSubscribed = true; this.onFeedSubscribeSuccess?.(); return '订阅成功'; }
+            console.info?.('[Feed] subscription-result', { accepted: res?.success === true });
+            if (res?.success === true) {
+                ++this._feedStatusVersion;
+                this.feedSubscribed = true;
+                this.onFeedSubscribeSuccess?.();
+                return '订阅成功';
+            }
             return '暂未订阅';
         });
     }
@@ -169,6 +180,8 @@ export class PlatformService {
             if (this.feedSubscribed === true) return Promise.resolve('已完成订阅');
             const blocked = this.beforeFeedSubscribe?.();
             if (blocked) return Promise.resolve(blocked);
+            // 查询可能先于本次授权开始、晚于授权结束返回，不能覆盖新结果。
+            ++this._feedStatusVersion;
         }
         this._entryBusy = true;
         return new Promise(resolve => {

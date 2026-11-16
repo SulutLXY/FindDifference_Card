@@ -194,6 +194,12 @@ export class DailySignInModal extends UIScreen {
         const day = sidebarDay();
         const status = this.flow.save.dailyStatus(day, config);
         if (!status.canClaim) return;
+        const count = status.reward.kind === 'hint' ? this.flow.save.freeHints : this.flow.save.energy;
+        const limit = status.reward.kind === 'hint' ? this.flow.save.assistLimit : this.flow.save.energyLimit;
+        if (count + status.reward.amount * (double ? 2 : 1) > limit) {
+            this.flow.toast(`${status.reward.kind === 'hint' ? '提示' : '体力'}库存空间不足，请使用后再领取`);
+            return;
+        }
         if (!double) this._playNormalClick();
         this._pending = true; this._refresh();
         const wantsDesktop = nativeGesture && this._desktopChecked && this.flow.platform.kind === 'douyin';
@@ -205,8 +211,9 @@ export class DailySignInModal extends UIScreen {
                 claimed = true;
                 const after = status.reward.kind === 'hint' ? this.flow.save.freeHints : this.flow.save.energy;
                 this.flow.toast(`签到成功：${status.reward.kind === 'hint' ? '提示' : '体力'} +${after - before}`);
-            } else this.flow.toast(status.reward.kind === 'energy' && this.flow.save.energy >= this.flow.save.energyLimit
-                ? '体力储存已满，消耗后可再领取' : '奖励保存失败或今日已领取，请重试');
+            } else this.flow.toast((status.reward.kind === 'hint' ? this.flow.save.freeHints : this.flow.save.energy)
+                + status.reward.amount * (double ? 2 : 1) > limit
+                ? '库存空间不足，请使用后再领取' : '奖励保存失败或今日已领取，请重试');
         };
         try {
             if (double) {

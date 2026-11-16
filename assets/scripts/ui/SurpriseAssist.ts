@@ -9,6 +9,8 @@ type Flight = { node: Node; gift: Gift; elapsed: number; duration: number; leftT
 export class SurpriseAssist {
     private _level: LevelConfig | null = null;
     private _prefab: Prefab | null = null;
+    private _chapterKey: string | null = null;
+    private _skinVersion = 0;
     private _hintFrame: SpriteFrame | null = null;
     private _lifeFrame: SpriteFrame | null = null;
     private _loading: Promise<void> | null = null;
@@ -28,21 +30,37 @@ export class SurpriseAssist {
     public start(level: LevelConfig): void {
         this.clear();
         this._level = level;
+        const chapterKey = this.flow.currentCity?.key ?? '';
+        if (this._chapterKey !== chapterKey) {
+            this._chapterKey = chapterKey;
+            this._skinVersion++;
+            this._prefab?.decRef();
+            this._prefab = null;
+            this._loading = null;
+        }
         void this._prepare();
     }
 
     private _prepare(): Promise<void> {
         if (this._loading) return this._loading;
         if (this._prefab && this._hintFrame && this._lifeFrame) return Promise.resolve();
-        this._loading = Promise.all([
-            this.flow.loadGamePrefab('Item_Tips_surprise'),
-            this.flow.loadGameSpriteFrame('Common/textures/UI_Sprite/V3/icons/icon_Idea/spriteFrame'),
-            this.flow.loadGameSpriteFrame('Texture/icons/icon_heart_filled/spriteFrame'),
-        ]).then(([prefab, frame, lifeFrame]) => {
-            if (!this._disposed) { this._prefab = prefab; this._hintFrame = frame; this._lifeFrame = lifeFrame; }
+        const chapterKey = this._chapterKey ?? '', version = this._skinVersion;
+        const loading = Promise.all([
+            this._hintFrame ? Promise.resolve(this._hintFrame)
+                : this.flow.loadGameSpriteFrame('Common/textures/UI_Sprite/V3/icons/icon_Idea/spriteFrame'),
+            this._lifeFrame ? Promise.resolve(this._lifeFrame)
+                : this.flow.loadGameSpriteFrame('Texture/icons/icon_heart_filled/spriteFrame'),
+        ]).then(async ([frame, lifeFrame]) => {
+            if (this._disposed || version !== this._skinVersion) return;
+            const prefab = await this.flow.acquireSurpriseAssistPrefab(chapterKey);
+            if (this._disposed || version !== this._skinVersion) { prefab.decRef(); return; }
+            this._prefab = prefab;
+            this._hintFrame = frame;
+            this._lifeFrame = lifeFrame;
         }).catch(error => console.warn('[SurpriseAssist] 惊喜道具素材暂未就绪', error))
-            .finally(() => { this._loading = null; });
-        return this._loading;
+            .finally(() => { if (this._loading === loading) this._loading = null; });
+        this._loading = loading;
+        return loading;
     }
 
     public update(dt: number): void {
@@ -190,5 +208,14 @@ export class SurpriseAssist {
         this._claiming = false;
     }
 
-    public dispose(): void { this.clear(); this._disposed = true; this._prefab = null; this._hintFrame = null; this._lifeFrame = null; }
+    public dispose(): void {
+        this.clear();
+        this._disposed = true;
+        this._skinVersion++;
+        this._prefab?.decRef();
+        this._prefab = null;
+        this._hintFrame = null;
+        this._lifeFrame = null;
+        this._loading = null;
+    }
 }

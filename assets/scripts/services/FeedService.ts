@@ -48,7 +48,9 @@ export class FeedService {
         // A missed day resets the reward sequence. A full energy inventory can still accept a hint tomorrow.
         for (const timestamp of [midnight, midnight + FEED_DAY_MS]) {
             const status = this.save.dailyStatus(sidebarDay(timestamp), this._dailyConfig);
-            if (status.canClaim && (status.reward.kind !== 'energy' || this.save.energy < this.save.energyLimit)) return timestamp;
+            const room = status.reward.kind === 'energy'
+                ? this.save.energyLimit - this.save.energy : this.save.assistLimit - this.save.freeHints;
+            if (status.canClaim && room >= status.reward.amount) return timestamp;
         }
         return null;
     }
@@ -73,6 +75,7 @@ export class FeedService {
             if (!this._isFeedLaunch()) return;
             if (event?.type !== 'feedEnter' && event?.type !== 'feedExit') return;
             this._lastStatus = event.type;
+            console.info?.('[Feed] lifecycle', event.type);
             if (event?.type === 'feedEnter') this._setPreview(false);
             else if (event?.type === 'feedExit') this._setPreview(true);
         };
@@ -105,6 +108,8 @@ export class FeedService {
         if (!this._isFeedLaunch()) this._lastStatus = null;
         const latest = this.host.__findDifferenceFeed?.latest?.type ?? this._lastStatus;
         const preview = this._isFeedLaunch() && latest !== 'feedEnter';
+        if (this._isFeedLaunch()) console.info?.('[Feed] launch', { scene: this._launch.scene,
+            channel: this._launch.query?.feed_game_channel, contentID: this._launch.query?.feed_game_content_id, preview });
         this._setPreview(preview);
     }
     private _setPreview(value: boolean): void {
@@ -280,7 +285,13 @@ export class FeedService {
     private _call(api: string, args: any): Promise<boolean> {
         return new Promise(resolve => {
             let settled = false;
-            const finish = (ok: boolean) => { if (!settled) { settled = true; clearTimeout(timer); resolve(ok); } };
+            const finish = (ok: boolean) => {
+                if (settled) return;
+                settled = true; clearTimeout(timer);
+                console.info?.(`[Feed] ${api}`, { ok, scene: args.scene ?? args.sceneId,
+                    contentID: args.contentID, status: args.status, readyAt: args.rightValue });
+                resolve(ok);
+            };
             const timer = setTimeout(() => finish(false), 10000);
             try { this.host.tt[api]({ ...args, success: () => finish(true),
                 fail: (error: any) => { console.warn(`[Feed] ${api} failed`, error); finish(false); } }); }

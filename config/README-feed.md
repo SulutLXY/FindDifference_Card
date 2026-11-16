@@ -6,7 +6,7 @@
 
 完整的 ID 和推荐流文案位于 `assets/resources/configs/platform-config.json`。复访 `contents` 中前 7 条为体力恢复（scene=2），接着 7 条为离线收益（scene=1），最后 7 条为重要事件（scene=3）。获客 `acquisitionContents` 包含 20 条，均进入玩家当前可玩的关卡。后台负责展示方案文案和图片。
 
-客户端已开启复访、托管上报和获客。体力方案按实际回满时刻登记。离线收益和重要事件均使用七日签到的实际领取条件，14 条文案共用同一就绪时刻。
+客户端已开启复访、托管上报和获客。体力方案按实际回满时刻登记。离线收益和重要事件均使用七日签到的实际领取条件，14 条文案共用同一就绪时刻。提示和体力库存均须能容纳当日完整的普通签到奖励，否则相应签到场景暂不登记为就绪。
 
 ## 客户端行为
 
@@ -46,3 +46,5 @@
 另有既存资源检查未通过：`tools/test-game-bundle-loading.cjs` 检出启动场景/本地模板仍引用远程 `assets/LobbySources/textures/UI_Sprite/icons/icon_settings.png`。本次未改动该图片或用户编辑的场景；它可能让启动阶段提前依赖主页包，应在后续整理公共图标时处理。实际构建已完成，此资源归属检查不等同于脚本构建失败。
 
 官方资料：[复访接入](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/guide/open-ability/feed/minigame-feedpush-setting-guide)、[获客接入](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/guide/open-ability/feed/customer-access-guide)、[就绪托管 API](https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/javascript-api/open-capacity/feed-subscribe/tt-store-feed-data)。
+
+最新实际构建与 CDN 检查、用户确认的线上版本及尚未验证的事项见 [Feed 投递及奖励检查记录](README-feed-delivery-and-rewards.md)。手机控制台筛选 `[Feed]` 可核对 `subscription-status` / `subscription-result`、每条 `storeFeedData` 的结果、`reportScene` 结果、`launch` 与 `lifecycle`。就绪接口成功仅表示登记成功，不能据此宣称平台已实际曝光。

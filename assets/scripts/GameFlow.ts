@@ -1748,15 +1748,28 @@ export class GameFlow extends Component {
         }
         const round = this._assistRoundVersion;
         let granted = false;
+        const hasRoom = (count: number) => (kind === 'hint' ? this.save.freeHints : this.save.freeAddTimes)
+            + count <= this.save.assistLimit;
+        if (amount > 1 && !hasRoom(amount - 1)) {
+            this.toast('道具库存空间不足，请使用后再领取');
+            return false;
+        }
         const grant = () => {
-            if (round !== this._assistRoundVersion || this._isGameOver || !this.game?.node.activeInHierarchy) return;
+            const useNow = round === this._assistRoundVersion && !this._isGameOver && !!this.game?.node.activeInHierarchy;
+            const stored = useNow ? amount - 1 : amount;
+            if (stored > 0 && (!hasRoom(stored) || !this.save.grantAssist(kind, stored))) {
+                this.toast('道具库存不足或保存失败，请稍后再试');
+                return;
+            }
             // 仅保存净增加的库存，避免先发再扣的两次写入导致失败时重复领取。
-            if (amount > 1 && !this.save.grantAssist(kind, amount - 1)) { this.toast('保存失败，请稍后再试'); return; }
             granted = true;
-            if (kind === 'hint') { this.playHintSound(); this.useHint(); }
-            else { this.playAddTimeSound(); this.addTime(60); }
-            this.game.refreshHud();
-            this.toast(`已使用${kind === 'hint' ? '提示' : '加时'}道具${amount > 1 ? `，另${amount - 1}个已存入库存` : ''}`);
+            if (useNow) {
+                if (kind === 'hint') { this.playHintSound(); this.useHint(); }
+                else { this.playAddTimeSound(); this.addTime(60); }
+            }
+            this.game?.refreshHud();
+            this.toast(useNow ? `已使用${kind === 'hint' ? '提示' : '加时'}道具${amount > 1 ? `，另${amount - 1}个已存入库存` : ''}`
+                : `已获得${kind === 'hint' ? '提示' : '加时'}道具 ×${amount}，已存入库存`);
         };
         if (amount >= 2) await this.requestReward('surprise', grant);
         else grant();
@@ -1770,8 +1783,10 @@ export class GameFlow extends Component {
             return false;
         }
         const result = this.save.claimSidebar(sidebarDay(), SidebarService.HINT_REWARD);
+        if (result === 'claimed') this.game?.refreshHud();
         this.toast(result === 'claimed' ? `已领取免费提示 ×${SidebarService.HINT_REWARD}`
-            : result === 'already-claimed' ? '今日已领取，明日再来' : '保存失败，请稍后再试');
+            : result === 'already-claimed' ? '今日已领取，明日再来'
+                : result === 'inventory-full' ? '提示库存空间不足，请使用后再领取' : '保存失败，请稍后再试');
         return result === 'claimed';
     }
 
@@ -2433,6 +2448,28 @@ export class GameFlow extends Component {
         const bundle = await this._loadGameBundle();
         return new Promise((resolve, reject) => bundle.load(`prefabs/${name}`, Prefab,
             (error, prefab) => error ? reject(error) : resolve(prefab)));
+    }
+
+    /** 章节惊喜气泡优先；返回持有一份引用的预设，由使用者 decRef。 */
+    public async acquireSurpriseAssistPrefab(chapterKey: string): Promise<Prefab> {
+        const path = 'prefabs/Item_Tips_surprise';
+        if (chapterKey) {
+            try {
+                const themed = await this._contentBundles.use(chapterKey, async bundle => {
+                    if (!bundle.getInfoWithPath(path, Prefab)) return null;
+                    return new Promise<Prefab>((resolve, reject) => bundle.load(path, Prefab, (error, prefab) => {
+                        if (error || !prefab) reject(error ?? new Error('章节惊喜气泡预设为空'));
+                        else { prefab.addRef(); resolve(prefab); }
+                    }));
+                });
+                if (themed) return themed;
+            } catch (error) {
+                console.warn(`[SurpriseAssist] 章节预设加载失败，使用通用预设: ${chapterKey}`, error);
+            }
+        }
+        const prefab = await this.loadGamePrefab('Item_Tips_surprise');
+        prefab.addRef();
+        return prefab;
     }
 
     public async loadCommonPrefab(name: string): Promise<Prefab> {

@@ -137,6 +137,7 @@ export class SaveService {
         if (status.reward.kind === 'energy' && energy >= this.energyLimit) return false;
         const amount = status.reward.amount * multiplier;
         if (!Number.isSafeInteger(amount) || !Number.isSafeInteger(this.freeHints + (status.reward.kind === 'hint' ? amount : 0))) return false;
+        if (status.reward.kind === 'hint' ? this.freeHints + amount > this.assistLimit : energy + amount > this.energyLimit) return false;
         const previous = this._data;
         const nextEnergy = status.reward.kind === 'energy' ? Math.min(this.energyLimit, energy + amount) : energy;
         this._data = { ...previous,
@@ -400,14 +401,26 @@ export class SaveService {
         return true;
     }
 
+    /** 订阅奖励每份存档仅领取一次；库存不足时保留完整的两次提示。 */
+    public claimFeedSubscriptionReward(): 'claimed' | 'already-claimed' | 'inventory-full' | 'storage-error' {
+        if (this._data.feedSubscriptionRewardClaimed === true) return 'already-claimed';
+        if (this.freeHints + 2 > this.assistLimit) return 'inventory-full';
+        const previous = this._data;
+        this._data = { ...previous, freeHints: this.freeHints + 2, feedSubscriptionRewardClaimed: true };
+        if (this._persist()) return 'claimed';
+        this._data = previous;
+        return 'storage-error';
+    }
+
     public hasClaimedFavorite(day: string): boolean {
         return typeof this._data.favoriteClaimDay === 'string' && this._data.favoriteClaimDay >= day;
     }
 
-    public claimFavorite(day: string, amount = 2): 'claimed' | 'already-claimed' | 'storage-error' {
+    public claimFavorite(day: string, amount = 2): 'claimed' | 'already-claimed' | 'inventory-full' | 'storage-error' {
         if (this.hasClaimedFavorite(day)) return 'already-claimed';
         if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isSafeInteger(amount) || amount <= 0
             || !Number.isSafeInteger(this.freeHints + amount)) return 'storage-error';
+        if (this.freeHints + amount > this.assistLimit) return 'inventory-full';
         const previous = this._data;
         this._data = { ...previous, freeHints: Math.min(this.assistLimit, this.freeHints + amount), favoriteClaimDay: day };
         if (this._persist()) return 'claimed';
@@ -416,10 +429,11 @@ export class SaveService {
     }
 
     /** Save the reward and claim marker together; don't grant on a failed write. */
-    public claimSidebar(day: string, amount: number): 'claimed' | 'already-claimed' | 'storage-error' {
+    public claimSidebar(day: string, amount: number): 'claimed' | 'already-claimed' | 'inventory-full' | 'storage-error' {
         if (this.hasClaimedSidebar(day)) return 'already-claimed';
         if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !Number.isSafeInteger(amount) || amount <= 0
             || !Number.isSafeInteger(this.freeHints + amount)) return 'storage-error';
+        if (this.freeHints + amount > this.assistLimit) return 'inventory-full';
         const previous = this._data;
         this._data = { ...previous, freeHints: Math.min(this.assistLimit, this.freeHints + amount), sidebarClaimDay: day };
         if (this._persist()) return 'claimed';

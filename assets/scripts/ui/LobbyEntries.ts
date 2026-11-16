@@ -15,6 +15,7 @@ export class LobbyEntries extends UIScreen {
     private _subscriptionStatus: Label | null = null;
     private _subscriptionBusy = false;
     private _subscriptionChecking = false;
+    private _subscriptionVerified = false;
     private _subscriptionVersion = 0;
     private _caller: Node | null = null;
     private _feedGuideClosed: (() => void) | null = null;
@@ -178,30 +179,55 @@ export class LobbyEntries extends UIScreen {
         this._subscriptionModal.setSiblingIndex(this._subscriptionModal.parent!.children.length - 1);
         const version = ++this._subscriptionVersion;
         this._subscriptionChecking = true;
+        this._subscriptionVerified = false;
         this._refreshSubscription('正在查询订阅状态…');
         const message = await this.flow.platform.checkFeedStatus();
         if (!this.isValid || version !== this._subscriptionVersion || !this._subscriptionModal?.active) return;
         this._subscriptionChecking = false;
-        this._refreshSubscription(message ?? undefined);
-        if (message) this.flow.toast(message);
+        this._subscriptionVerified = !message;
+        const notice = message ?? this._claimSubscriptionReward();
+        this._refreshSubscription(notice ?? undefined);
+        if (notice) this.flow.toast(notice);
     }
 
     private _refreshSubscription(message?: string): void {
         const subscribed = this.flow.platform.feedSubscribed === true;
+        const claimed = this.flow.save.data.feedSubscriptionRewardClaimed === true;
         if (this._subscriptionStatus) {
-            this._subscriptionStatus.node.active = subscribed;
-            this._subscriptionStatus.string = '已完成订阅';
+            this._subscriptionStatus.node.active = subscribed || this._subscriptionChecking || !!message;
+            this._subscriptionStatus.string = subscribed
+                ? claimed ? '已完成订阅，奖励已领取' : message || '已完成订阅，奖励待领取'
+                : message || (this._subscriptionChecking ? '正在查询订阅状态…' : '');
         }
-        if (this._subscribeButton) this._subscribeButton.active = !subscribed;
+        if (this._subscribeButton) this._subscribeButton.active = !subscribed || !claimed;
         const label = this._subscribeButton?.getComponentInChildren(Label);
-        if (label) label.string = this._subscriptionBusy ? '订阅中…' : '去订阅';
+        if (label) label.string = this._subscriptionBusy ? '订阅中…'
+            : subscribed ? this._subscriptionVerified ? '领取奖励' : '重试查询' : '去订阅';
+    }
+
+    private _claimSubscriptionReward(): string | null {
+        if (!this._subscriptionVerified || this.flow.platform.feedSubscribed !== true) return null;
+        const result = this.flow.save.claimFeedSubscriptionReward();
+        if (result === 'claimed') {
+            this.flow.game?.refreshHud();
+            return '订阅奖励：免费提示 ×2';
+        }
+        if (result === 'inventory-full') return '提示库存不足2个空位，请使用后再领取';
+        if (result === 'storage-error') return '奖励保存失败，请点击领取奖励重试';
+        return null;
     }
 
     private _requestSubscription(): void {
         if (this.flow.feed?.isPreview) return;
         if (this.flow.platform.supportsFeedSubscription === false) return;
         if (this._subscriptionBusy) return;
-        if (this.flow.platform.feedSubscribed === true) { this.flow.toast('已完成订阅'); return; }
+        if (this.flow.platform.feedSubscribed === true) {
+            if (!this._subscriptionVerified) { void this._openSubscription(); return; }
+            const message = this._claimSubscriptionReward() ?? '已完成订阅，奖励已领取';
+            this._refreshSubscription(message);
+            this.flow.toast(message);
+            return;
+        }
         // A slow status query must neither swallow the click nor overwrite its result.
         ++this._subscriptionVersion;
         this._subscriptionChecking = false;
@@ -210,10 +236,13 @@ export class LobbyEntries extends UIScreen {
         const result = this.flow.platform.subscribeFeed();
         this._refreshSubscription();
         void result.then(message => {
+            if (this.flow.platform.feedSubscribed === true) this._subscriptionVerified = true;
+            // 关闭弹窗或切换页面不应丢失已确认的奖励。
+            const notice = this._claimSubscriptionReward() ?? message;
             if (!this.isValid) return;
             this._subscriptionBusy = false;
-            this._refreshSubscription(message);
-            this.flow.toast(message);
+            this._refreshSubscription(notice);
+            this.flow.toast(notice);
         });
     }
 

@@ -4,11 +4,11 @@
 
 接口缺失、调用失败或超时时使用原有 `ADDCollectGame` 作为补充教学，保留设计字号和布局，两个 `BtnClose` 均关闭页面。正常返回未收藏不会再追加教学弹窗。重复点击只发起一次请求；离开主页、组件销毁后迟到的回调不打开旧弹窗。
 
-收藏引导回调不直接发放“从收藏进入”奖励。成功识别收藏进入后仍自动发免费提示×2，每个北京时间自然日一次。favoriteClaimDay 与 sidebarClaimDay 独立；奖励和领取日期一次写入，保存失败会回滚。
+收藏引导回调不直接发放“从收藏进入”奖励。成功识别收藏进入后仍自动发免费提示×2，每个北京时间自然日一次。favoriteClaimDay 与 sidebarClaimDay 独立；奖励和领取日期一次写入，保存失败会回滚。库存不足两个空位时不截断奖励、不记录已领取，使用后可重试。
 
 当前官方场景表未提供唯一的“我的收藏”场景标识；1036 包含个人页和首页侧边栏，因此不能直接按该后缀发奖。仅“已收藏”或显示收藏引导成功也不能证明从收藏进入。
 
-platform-config.json 的 douyinFavoriteEntryRules 默认为空，发奖尚未启用。真机分别从收藏、侧边栏和普通入口启动，读取控制台 [FavoriteEntry] 的 scene、launch_from、location，验证唯一组合后配置规则。规则必须包含精确 scene，可同时要求 launch_from 和 location；不会读取分享 query 作为收藏证明。
+platform-config.json 的 douyinFavoriteEntryRules 默认为空，发奖尚未启用，面板会明确显示“收藏回访奖励暂未开放”。真机分别从收藏、侧边栏和普通入口启动，读取控制台 [FavoriteEntry] 的 scene、launch_from、location，验证唯一组合后配置规则。规则必须包含精确 scene，可同时要求 launch_from 和 location；不会读取分享 query 作为收藏证明。
 
 冷启动和热启动共用已有 game.ejs 的启动事件桥，避免错过场景加载前的进入事件。当天判断依据收到该来源的日期，前后台普通唤醒会更新来源。原图、按钮字体和页面布局未修改。
 

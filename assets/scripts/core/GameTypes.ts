@@ -216,6 +216,8 @@ export interface SaveData {
     /** YYYY-MM-DD, Beijing time. */
     sidebarClaimDay?: string;
     favoriteClaimDay?: string;
+    /** 首次完成全场景订阅后领取提示 ×2，与订阅状态查询分开保存。 */
+    feedSubscriptionRewardClaimed?: boolean;
     firstFailureInterstitialDay?: string;
     firstPlayedDay?: string;
     tutorialCompleted?: boolean;

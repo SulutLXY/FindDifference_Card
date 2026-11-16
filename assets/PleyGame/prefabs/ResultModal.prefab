@@ -672,7 +672,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -120,
+      "x": -160.005,
       "y": 0,
       "z": 0
     },
@@ -713,7 +713,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
+      "width": 200.01,
       "height": 88.2
     },
     "_anchorPoint": {
@@ -750,7 +750,7 @@
       "a": 255
     },
     "_string": "就差",
-    "_horizontalAlign": 1,
+    "_horizontalAlign": 2,
     "_verticalAlign": 1,
     "_actualFontSize": 60,
     "_fontSize": 60,
@@ -834,7 +834,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 135,
+      "x": 168.97650000000002,
       "y": 0,
       "z": 0
     },
@@ -875,7 +875,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 182.86599999999999,
+      "width": 211.36299999999997,
       "height": 88.2
     },
     "_anchorPoint": {
@@ -912,7 +912,7 @@
       "a": 255
     },
     "_string": "处啦！",
-    "_horizontalAlign": 1,
+    "_horizontalAlign": 0,
     "_verticalAlign": 1,
     "_actualFontSize": 60,
     "_fontSize": 60,

@@ -40,6 +40,15 @@ vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/services/P
     host.tt.requestFeedSubscribe = args => args.success({ success: true });
     assert.equal(await service.subscribeFeed(), '订阅成功');
     assert.equal(service.feedSubscribed, true);
+    let staleQuery;
+    service.feedSubscribed = false;
+    host.tt.checkFeedSubscribeStatus = args => { staleQuery = args; };
+    const pendingQuery = service.checkFeedStatus();
+    while (!staleQuery) await new Promise(setImmediate);
+    assert.equal(await service.subscribeFeed(), '订阅成功');
+    staleQuery.success({ status: false });
+    assert.equal(await pendingQuery, '订阅状态已更新，请重试查询');
+    assert.equal(service.feedSubscribed, true, 'A pre-authorization query must not undo accepted subscription');
     host.tt.checkFeedSubscribeStatus = args => args.success({ status: false });
     await service.checkFeedStatus();
     assert.equal(service.feedSubscribed, false, 'platform status overrides cached subscription');

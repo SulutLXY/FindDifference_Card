@@ -13,9 +13,9 @@ for(const dpr of [1,2,3]){
  e._nativeTouchEnd({changedTouches:[{x:100,y:700}]});assert.equal(calls,2);
  e._nativeTouchEnd({changedTouches:[{clientX:250,clientY:700}]});assert.equal(calls,2,'outside must not authorize');
  button.activeInHierarchy=false;e._nativeTouchEnd({changedTouches:[{clientX:100,clientY:700}]});assert.equal(calls,2,'hidden panel must not authorize');
- e.flow={platform:{feedSubscribed:false}};e._subscriptionStatus={node:{active:true},string:''};
+ e.flow={platform:{feedSubscribed:false},save:{data:{feedSubscriptionRewardClaimed:true}}};e._subscriptionStatus={node:{active:true},string:''};
  e._refreshSubscription();assert.equal(button.active,true);assert.equal(e._subscriptionStatus.node.active,false);
  e.flow.platform.feedSubscribed=true;e._refreshSubscription('订阅成功');
- assert.equal(button.active,false);assert.equal(e._subscriptionStatus.node.active,true);assert.equal(e._subscriptionStatus.string,'已完成订阅');
+ assert.equal(button.active,false);assert.equal(e._subscriptionStatus.node.active,true);assert.equal(e._subscriptionStatus.string,'已完成订阅，奖励已领取');
 }
 console.log('PASS: native subscription hit tests at DPR 1/2/3, both touch field formats, outside/hidden exclusion.');

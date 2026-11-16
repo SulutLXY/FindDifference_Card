@@ -41,9 +41,15 @@ vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/services/S
   assert.equal(capped.grantAssist(kind,5),true);assert.equal(capped[field],99);assert.equal(capped.data[field],99);
   assert.equal(capped.grantAssist(kind,1),true);assert.equal(capped[field],99);
  }
- capped.consumeFreeHint();assert.equal(capped.claimFavorite('2026-11-10',5),'claimed');assert.equal(capped.freeHints,99);
+ capped.consumeFreeHint();assert.equal(capped.claimFavorite('2026-11-10',5),'inventory-full');
+ assert.equal(capped.hasClaimedFavorite('2026-11-10'),false);
+ while(capped.freeHints>94)capped.consumeFreeHint();
+ assert.equal(capped.claimFavorite('2026-11-10',5),'claimed');assert.equal(capped.freeHints,99);
  assert.equal(capped.claimFavorite('2026-11-10',5),'already-claimed');
- capped.consumeFreeHint();assert.equal(capped.claimSidebar('2026-11-10',5),'claimed');assert.equal(capped.freeHints,99);
+ capped.consumeFreeHint();assert.equal(capped.claimSidebar('2026-11-10',5),'inventory-full');
+ assert.equal(capped.hasClaimedSidebar('2026-11-10'),false);
+ while(capped.freeHints>94)capped.consumeFreeHint();
+ assert.equal(capped.claimSidebar('2026-11-10',5),'claimed');assert.equal(capped.freeHints,99);
  assert.equal(new saveExports.SaveService().freeHints,99);assert.equal(new saveExports.SaveService().freeAddTimes,99);
  console.log('Passed: initial 2+2, stock use, ads, 99-item cap across grants/favorite/sidebar, legacy normalization, persistence rollback and stale round reward.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

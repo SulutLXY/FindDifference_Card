@@ -39,6 +39,9 @@ const level = { timeLimit: 100, maxLives: 3, differences: Array.from({ length: 1
 async function setup(sequence = [], overrides = {}) {
     const flow = { remainingTime: 49, lives: 3, foundIds: new Set(), platform: { interstitialBusy: false }, isPaused: false, isGameOver: false,
         async loadGamePrefab(name) { assert.equal(name, 'Item_Tips_surprise'); return {}; },
+        async acquireSurpriseAssistPrefab() {
+            return Object.assign(await this.loadGamePrefab('Item_Tips_surprise'), { decRef() {} });
+        },
         async loadGameSpriteFrame(path) { if(path.includes('icon_Idea')) return 'hint'; assert.ok(path.includes('icon_heart_filled')); return 'life'; },
         async claimSurpriseAssist() { return true; }, ...overrides };
     const root = new Node('Game', 750, 1334); let rolls = 0;
@@ -221,7 +224,8 @@ function method(file, name, extra = {}) {
     const f = new Flow();
     Object.assign(f, { _assistRoundVersion: 1, _isGameOver: false, isPaused: false, platform: { interstitialBusy: false }, game: { node: { activeInHierarchy: true }, refreshHud() {} }, toast() {} });
     const inventory = { hint: 4, 'add-time': 5 }; let videos = 0, completed = false, disk = true, hintsUsed = 0, timeAdded = 0;
-    f.save = { grantAssist(kind, amount) { if (!disk) return false; inventory[kind] += amount; return true; } };
+    f.save = { assistLimit: 99, get freeHints() { return inventory.hint; }, get freeAddTimes() { return inventory['add-time']; },
+        grantAssist(kind, amount) { if (!disk) return false; inventory[kind] += amount; return true; } };
     f.playHintSound = f.playAddTimeSound = () => {};
     f.useHint = () => hintsUsed++;
     f.addTime = seconds => timeAdded += seconds;
@@ -247,7 +251,9 @@ function method(file, name, extra = {}) {
     for (const [kind, amount] of [['unknown', 1], ['hint', 0], ['hint', 4], ['hint', 1.5], ['hint', NaN]]) assert.equal(await f.claimSurpriseAssist(kind, amount), false);
     for (const flag of ['isPaused', '_isGameOver', '_rewardPending']) { f[flag] = true; assert.equal(await f.claimSurpriseAssist('hint', 1), false); f[flag] = false; }
     f.requestReward = async (_, callback) => { f._assistRoundVersion++; callback(); };
-    assert.equal(await f.claimSurpriseAssist('hint', 2), false); assert.equal(inventory.hint, 5, 'Old-round video cannot award a new round'); assert.equal(hintsUsed, 2);
+    assert.equal(await f.claimSurpriseAssist('hint', 2), true); assert.equal(inventory.hint, 7, 'Completed old-round video stores the full reward'); assert.equal(hintsUsed, 2, 'Do not automatically use the old reward in a new round');
+    inventory.hint=99;const beforeFullVideos=videos;
+    assert.equal(await f.claimSurpriseAssist('hint',2),false);assert.equal(videos,beforeFullVideos,'Full stock must not start another ad');
 
     const started = [];
     const Game = method('assets/scripts/ui/GameScreen.ts', 'onLoad', { SurpriseAssist: class { start(value) { started.push(value); } }, EnergyDisplay: { attach() {} } });

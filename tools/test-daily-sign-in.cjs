@@ -54,14 +54,18 @@ store.clear(); now = Date.parse('2026-11-03T12:00:00+08:00');
 store.set('find-difference.save.v3', JSON.stringify({ energy: 99, dailySignIn: { lastClaimDay: '2026-11-02', dayIndex: 1 } }));
 save = new SaveService(); assert.equal(save.claimDailySignIn(day(), config, 2, 2), false);
 assert.equal(save.dailyStatus(day(), config).canClaim, true, 'Full storage does not consume sign-in');
+save.consumeEnergy(); assert.equal(save.claimDailySignIn(day(), config, 2, 2), false);
+assert.equal(save.dailyStatus(day(), config).canClaim, true, 'One free slot cannot consume a double energy reward');
 save.consumeEnergy(); assert.equal(save.claimDailySignIn(day(), config, 2, 2), true); assert.equal(save.energy, 99);
 
 store.clear(); store.set('find-difference.save.v3',JSON.stringify({freeHints:98}));
 save=new SaveService();fail=true;
 assert.equal(save.claimDailySignIn(day(),config,2,1),false);assert.equal(save.freeHints,98);
 assert.equal(save.dailyStatus(day(),config).canClaim,true);
-fail=false;assert.equal(save.claimDailySignIn(day(),config,2,1),true);
-assert.equal(save.freeHints,99,'Double sign-in reward saturates at 99');
+fail=false;assert.equal(save.claimDailySignIn(day(),config,2,1),false);
+assert.equal(save.dailyStatus(day(),config).canClaim,true,'Do not clip a two-item sign-in reward to one');
+save.consumeFreeHint();assert.equal(save.claimDailySignIn(day(),config,2,1),true);
+assert.equal(save.freeHints,99,'Full double reward fits after freeing two slots');
 save=new SaveService();assert.equal(save.freeHints,99);assert.equal(save.dailyStatus(day(),config).claimed,true);
 
 function methods(file, names, globals = {}) {

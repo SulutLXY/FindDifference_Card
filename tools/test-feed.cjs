@@ -23,7 +23,7 @@ function setup({ legacy = false, subscribed = false, preview = false, native = t
     let time = START, failID = '', failWrite = false;
     const calls = [], events = new Set(), shows = new Set(), touches = new Set();
     const save = { data: { completed: {}, ...(legacy ? { lastPlayedLevelKey: 'old' } : {}) }, energy: 10,
-        energyRecoveryLimit: 15, energyLimit: 99, energyFullRecoveryAt: START + 40 * 60000,
+        energyRecoveryLimit: 15, energyLimit: 99, freeHints: 2, assistLimit: 99, energyFullRecoveryAt: START + 40 * 60000,
         dailyStatus(day, config) { return dailySignInStatus(this.data.dailySignIn, day, config); },
         updateFeedState(value) { if (failWrite) return false; this.data.feed = JSON.parse(JSON.stringify(value)); return true; } };
     const platform = { kind: 'douyin', isPcCompanion: false, supportsFeedSubscription: true,
@@ -95,6 +95,17 @@ function methods(file, names, globals = {}) {
     await claims.service.scheduleRevisit();
     assert.deepEqual(claims.calls.filter(c => c.scene !== 2).map(c => Number(c.rightValue)), signInIds.map(() => midnight + core.FEED_DAY_MS));
     claims.service.dispose();
+    const fullRewards = setup({ subscribed: true });
+    fullRewards.service.configure(config, dailyConfig);
+    fullRewards.save.freeHints = 99; fullRewards.save.energy = 99;
+    await fullRewards.service.scheduleRevisit();
+    assert.ok(fullRewards.calls.filter(c => c.scene !== 2).every(c => c.status === 0),
+        'Do not advertise sign-in rewards when both inventories are full');
+    fullRewards.save.freeHints = 98;
+    await fullRewards.service.scheduleRevisit();
+    assert.ok(fullRewards.calls.slice(21).every(c => c.scene !== 2 && c.status === 1),
+        'Freeing space restores the actual claimable sign-in scene');
+    fullRewards.service.dispose();
     const full = setup({ subscribed: true });
     full.service.configure(config); full.save.energy = 16;
     await full.service.scheduleRevisit();

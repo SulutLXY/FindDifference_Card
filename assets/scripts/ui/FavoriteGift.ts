@@ -58,15 +58,19 @@ export class FavoriteGift extends UIScreen {
     public refresh(): void {
         const day = sidebarDay();
         let storageError = false;
+        let inventoryFull = false;
         if (this.flow.platform.fromFavoriteToday && !this.flow.save.hasClaimedFavorite(day)) {
             const result = this.flow.save.claimFavorite(day, 2);
             storageError = result === 'storage-error';
+            inventoryFull = result === 'inventory-full';
             if (result === 'claimed') {
                 this.flow.toast('收藏进入奖励：免费提示 ×2');
                 this.flow.game?.refreshHud();
             }
         }
         if (this._status) this._status.string = storageError ? '保存失败，请重新打开面板重试'
+            : inventoryFull ? '提示库存空间不足，使用后可再领取'
+                : this.flow.platform.favoriteEntryConfigured === false ? '收藏回访奖励暂未开放，可先收藏游戏'
             : this.flow.save.hasClaimedFavorite(day) ? '今日已获得提示 ×2，明日再来'
                 : '每日从我的收藏进入游戏，可获得提示 ×2';
     }
