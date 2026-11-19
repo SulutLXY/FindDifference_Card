@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-19",
+  "chapter": "qu-wei-duan-ju",
+  "source": "D:\\CocosCreator\\关卡\\趣味短剧",
+  "differenceCountBefore": 421,
+  "differenceCountAfter": 426,
+  "updatedLevels": [
+    {
+      "number": 5,
+      "id": "qu-wei-duan-ju/hao-wu-bei-jing",
+      "name": "毫无背景",
+      "differenceCountBefore": 12,
+      "differenceCountAfter": 13,
+      "sourceConfigSha256Before": "2e051a0e9d229495d8bf3460226e4f60ff727adc60f079b7751200332bf01293",
+      "sourceConfigSha256After": "40869ecdbc2b45e26e34a90337070852e57d22eea9982cf0d21e3f2b89adcfba",
+      "images": []
+    },
+    {
+      "number": 7,
+      "id": "qu-wei-duan-ju/wo-shi-shui",
+      "name": "我是谁？",
+      "differenceCountBefore": 11,
+      "differenceCountAfter": 12,
+      "sourceConfigSha256Before": "431d3e8000153ab1b40d5fa3fdd3e5deefd3985ed9d6e9b28fc6d81c152f2cb9",
+      "sourceConfigSha256After": "8858c8a7605c88555046b69b2d82704a48388b5825933cc97dd5cd18e0c98aee",
+      "images": []
+    },
+    {
+      "number": 23,
+      "id": "qu-wei-duan-ju/shi-li-tao-hua",
+      "name": "十里桃花",
+      "differenceCountBefore": 11,
+      "differenceCountAfter": 14,
+      "sourceConfigSha256Before": "656b592fb3937191e188998b2000c2fda4436970815008ef141eed75446d6164",
+      "sourceConfigSha256After": "6f216d1e71996da433bf31720e8c8e661c90ce74f5741202312eacd05f54449b",
+      "images": []
+    },
+    {
+      "number": 35,
+      "id": "qu-wei-duan-ju/meng-jiang-ge-ge",
+      "name": "猛将哥哥",
+      "differenceCountBefore": 12,
+      "differenceCountAfter": 12,
+      "sourceConfigSha256Before": "b511e543fe6c8a0864f6e0cb5dab6f2e5eaf40d373ce2f48e55e7d4028ec9b7b",
+      "sourceConfigSha256After": "b511e543fe6c8a0864f6e0cb5dab6f2e5eaf40d373ce2f48e55e7d4028ec9b7b",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/meng-jiang-ge-ge/scene-b.jpg",
+          "uuid": "e6bfc629-f9c8-5cf9-96fe-3799c33522f0",
+          "beforeSha256": "9c48d6fd11e2593a59ff23f2daf25a3efaf6cc57a8c075ee22ccbd3d2d743c9a",
+          "afterSha256": "e5056d7ee2eba524735710fd387cd16cad9b83dd5f1edb78dd7bdfcf607f44c9",
+          "beforeSourceSha256": "a08bcc44073439a7ba3c1ffccaa9bf427888fbc4e3bedb256ea7e82c3cb94c19",
+          "afterSourceSha256": "74df0bff7dd9447959258c9689df7006c25b41b2ef0dba76c25751d39994c8e5"
+        }
+      ]
+    }
+  ],
+  "changedProjectFiles": [
+    "assets/Bundle/levels/qu-wei-duan-ju/meng-jiang-ge-ge/scene-b.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/configs/hao-wu-bei-jing/differences.json",
+    "assets/Bundle/levels/qu-wei-duan-ju/configs/shi-li-tao-hua/differences.json",
+    "assets/Bundle/levels/qu-wei-duan-ju/configs/wo-shi-shui/differences.json",
+    "config/qu-wei-duan-ju-import.json"
+  ],
+  "imageExport": {
+    "encoder": "Photoshop 13.0.0",
+    "quality": 8,
+    "qualityScale": 12,
+    "format": "JPEG",
+    "size": [
+      1024,
+      672
+    ],
+    "resize": "full-image-bicubic-no-crop"
+  },
+  "unchangedChecks": [
+    "All 35 level IDs, names and order",
+    "All asset UUIDs",
+    "69 full-size images",
+    "All thumbnails and chapter cover",
+    "Chapter ordering and startup index",
+    "Title font and all name characters",
+    "Existing level-27 annotation warning"
+  ]
+}

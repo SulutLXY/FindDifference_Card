@@ -86,6 +86,10 @@ export interface LevelConfig {
     differences: DifferenceConfig[];
 }
 
+export type ChapterBadgeKind = 'new' | 'hot' | 'hard' | 'collect';
+export type MenuTutorialKind = 'chapters' | 'collection';
+export type MenuTutorialStep = 'entry' | 'target' | 'done';
+
 /** 首包城市索引（resources/configs/cities.json，由 tools/build-manifest.py 生成）。 */
 export interface CityIndex {
     cities: string[];
@@ -93,6 +97,8 @@ export interface CityIndex {
     chapters: Record<string, CityMeta>;
     navigation?: string[];
     topics?: TopicConfig[];
+    /** 人工提示标签；与热度统计、人数和估算游玩数无关。 */
+    badges?: Record<string, ChapterBadgeKind | null>;
 }
 
 /** 只组织叶子章节，不对应新资源包。 */
@@ -221,6 +227,8 @@ export interface SaveData {
     firstFailureInterstitialDay?: string;
     firstPlayedDay?: string;
     tutorialCompleted?: boolean;
+    /** 首次回主页后的专题/收藏引导，独立于局内新手引导；中断后从入口继续。 */
+    menuTutorials?: Partial<Record<MenuTutorialKind, MenuTutorialStep>>;
     /** 分时引导：卡关时介绍提示/放大、时间不足时介绍加时，各只展示一次 */
     tutorialHintShown?: boolean;
     tutorialZoomShown?: boolean;

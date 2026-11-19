@@ -1,4 +1,4 @@
-import { _decorator, instantiate, Label, Node, Prefab } from 'cc';
+import { _decorator, instantiate, Label, Node, Prefab, UITransform } from 'cc';
 import { getGameFlow, UIScreen } from './UIScreen';
 
 const { ccclass, property } = _decorator;
@@ -22,14 +22,14 @@ export class EnergyDisplay extends UIScreen {
     private static readonly _attaching = new WeakMap<Node, Promise<void>>();
 
     public static attach(host: Node): Promise<void> {
-        // 已由编辑器摆放的实例直接复用，不覆盖其位置或样式。
+        // 已由编辑器摆放的实例直接复用，不重复创建。
         if (!host.isValid || host.getComponentInChildren(EnergyDisplay)) return Promise.resolve();
         const pending = this._attaching.get(host);
         if (pending) return pending;
         const task = this._loadPrefab().then(prefab => {
             if (!host.isValid || host.getComponentInChildren(EnergyDisplay)) return;
             const node = instantiate(prefab);
-            // 沿用预制体根节点的位置，各页面不再覆盖设计坐标。
+            // 保留预制体的横向位置和样式，纵向位置在 lateUpdate 中跟随顶部按钮。
             node.parent = host;
         }).catch(error => {
             console.warn('[EnergyDisplay] 体力预制体加载失败', error);
@@ -67,6 +67,19 @@ export class EnergyDisplay extends UIScreen {
     }
 
     protected onEnable(): void { this._refresh(); }
+
+    protected lateUpdate(): void {
+        const host = this.node.parent;
+        const ui = host?.getComponent(UITransform);
+        if (!host || !ui) return;
+        // Widget 已在本帧完成对齐后，跟随返回/设置按钮，避免长屏仍停在旧 Y=610。
+        const header = this.findChildDeep(host, 'BtnBack') ?? this.findChildDeep(host, 'Setting');
+        const y = header?.activeInHierarchy
+            ? ui.convertToNodeSpaceAR(header.worldPosition).y : ui.height * (1 - ui.anchorY) - 57;
+        if (Math.abs(this.node.position.y - y) > 0.01) {
+            this.node.setPosition(this.node.position.x, y, this.node.position.z);
+        }
+    }
 
     protected update(dt: number): void {
         this._elapsed += dt;

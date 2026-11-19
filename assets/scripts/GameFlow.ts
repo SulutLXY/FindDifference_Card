@@ -27,11 +27,16 @@ import {
     UIOpacity,
     Vec3,
     resources,
+    ResolutionPolicy,
+    screen,
+    view,
     tween,
 } from 'cc';
 import {
     CityConfig,
     ChapterSelection,
+    ChapterBadgeKind,
+    MenuTutorialKind,
     TopicConfig,
     ChapterRulesConfig,
     FoodCatalogEntry,
@@ -47,6 +52,7 @@ import {
 } from './core/GameTypes';
 import { PlatformService } from './services/PlatformService';
 import { SaveService } from './services/SaveService';
+import { MenuTutorialService, MenuTutorialTarget } from './services/MenuTutorialService';
 import { ContentBundlePool } from './services/ContentBundlePool';
 import { BackgroundMusicMixer } from './services/BackgroundMusicMixer';
 import { SidebarService, sidebarDay } from './services/SidebarService';
@@ -67,7 +73,7 @@ import { DailySignInConfig } from './core/DailySignIn';
 import { FavoriteGift } from './ui/FavoriteGift';
 import { LobbyEntries } from './ui/LobbyEntries';
 import { FeedService } from './services/FeedService';
-import { PlayStatsService } from './services/PlayStatsService';
+import { fitDesignFrame, gameViewport } from './core/ViewportLayout';
 
 const { ccclass, property } = _decorator;
 
@@ -75,6 +81,12 @@ interface PageSpriteEntry {
     frame: SpriteFrame | null;
     pending: Promise<SpriteFrame | null>;
     releaseBundle?: () => void;
+}
+
+interface ComboClipRef {
+    path: string;
+    fromBundle: boolean;
+    chapterBundle?: string;
 }
 
 /**
@@ -132,7 +144,6 @@ export class GameFlow extends Component {
     public readonly save = new SaveService();
     public readonly platform = new PlatformService();
     public readonly feed = new FeedService(this.save, this.platform);
-    public readonly playStats = new PlayStatsService();
     private _feedStart: (() => void) | null = null;
     private _feedPauseBeforePreview: boolean | null = null;
     private _feedOffer: { token: string; version: number } | null = null;
@@ -167,12 +178,15 @@ export class GameFlow extends Component {
     private _resultSoundRequest = 0;
     private readonly _comboClips = new Map<string, Promise<AudioClip>>();
     private readonly _chapterComboClips = new Set<AudioClip>();
-    private _chapterComboGroup: { name: string; chapterBundle: string; stages: Map<number, string> } | null = null;
+    private _chapterComboGroup: { name: string; chapterBundle: string; stages: Map<number, string>;
+        variants?: Map<number, string[]> } | null = null;
+    private readonly _successSoundBags = new Map<number, { signature: string; remaining: ComboClipRef[] }>();
+    private _lastSuccessClipKey: string | null = null;
     /** 无章节专属连击组时使用远程 MainGameSources 中的通用组。 */
     private static readonly DEFAULT_COMBO_GROUP = 'Combo _F_type01';
     /** 局内资源包里的连击音效目录。 */
     private static readonly BUNDLE_COMBO_ROOT = 'voice/Combo _F_type';
-    /** 本关使用的连击音效组（仅影响 1-5 号），第四关起进入关卡时随机 */
+    /** 轮换池不可用时的回退组，不再限制同一关只播放此组。 */
     private _activeComboGroup = GameFlow.DEFAULT_COMBO_GROUP;
     /** 已发现的音效组：组目录名 → 各档位路径与加载渠道。 */
     private _comboGroups: Map<string, { stages: Map<number, string>; fromBundle: boolean }> | null = null;
@@ -292,11 +306,14 @@ export class GameFlow extends Component {
     }
 
     protected onLoad(): void {
+        this._refreshViewport();
+        view.on('canvas-resize', this._refreshViewport, this);
         game.on(Game.EVENT_SHOW, this.promptDailySignIn, this);
         this.platform.canShowInterstitial = () => this.save.data.firstPlayedDay === sidebarDay()
             && !this._roundInterstitialProtected && !this._dailySignIn?.node.activeInHierarchy;
         GameFlow._instance = this;
         registerGameFlow(this);
+        this._initMenuTutorial();
         this.platform.canUseInteractiveFeatures = () => !this.feed.isPreview;
         this.platform.beforeFeedSubscribe = () => this.feed.reserveSubscriptionAttempt();
         this.platform.onFeedSubscribeSuccess = () => { void this.feed.scheduleRevisit(); };
@@ -362,6 +379,7 @@ export class GameFlow extends Component {
         if (this.feed?.isPreview) return;
         // 大厅、Loading、暂停和结算期间也必须推进切歌包络。
         this._musicMixer?.update(dt);
+        this._menuTutorial?.update(dt);
         this._tryFeedOffer();
         if (this.platform.interstitialBusy || this._levelLoading) return;
         if (this._isGameOver || this._isPaused || !this._currentLevel) return;
@@ -389,6 +407,11 @@ export class GameFlow extends Component {
 
     public get chapterSelectionTitle(): string { return this._selectedTopic?.name ?? '关卡选择'; }
 
+    public chapterBadgeKind(key: string): ChapterBadgeKind | null {
+        const kind = this._cityIndex?.badges?.[key];
+        return kind === 'new' || kind === 'hot' || kind === 'hard' || kind === 'collect' ? kind : null;
+    }
+
     public selectionProgress(item: ChapterSelection): { done: number; total: number } {
         if (!('chapters' in item)) return this.cityProgress(item);
         return item.chapters.reduce((sum, key) => {
@@ -408,7 +431,7 @@ export class GameFlow extends Component {
     }
 
     public async enterChapterSelection(item: ChapterSelection): Promise<void> {
-        if ('chapters' in item) this.showCitySelect(item.key);
+        if ('chapters' in item) await this.showCitySelect(item.key);
         else await this.enterCity(item);
     }
 
@@ -591,6 +614,7 @@ export class GameFlow extends Component {
     /** 签到属于远程主页包，仅在主页显示；可直接编辑独立预制体。 */
     public async openDailySignIn(automatic = false): Promise<boolean> {
         if (this._dailyOpening || !this._dailyConfig || !this.lobby?.node.activeInHierarchy) return false;
+        if (automatic && this._menuTutorial?.hasPending) return false;
         const day = sidebarDay();
         if (automatic && (!this.save.dailyStatus(day, this._dailyConfig).canClaim
             || (this.save.data.dailySignIn?.promptDay ?? '') >= day || this._dailyAttemptDay === day)) return false;
@@ -599,8 +623,13 @@ export class GameFlow extends Component {
         try {
             const modal = await this._ensureDailySignIn();
             if (!this.isValid || !this.lobby?.node.activeInHierarchy) return false;
+            if (automatic && this._menuTutorial?.hasPending) { this._dailyAttemptDay = ''; return false; }
             if (automatic && !this.save.markDailyPrompt(day, this._dailyConfig)) return false;
-            await modal.present(this._dailyConfig);
+            const presented = modal.present(this._dailyConfig);
+            if (!automatic) void this.platform.showInterstitial(() => this.isValid
+                && !!this.lobby?.node.activeInHierarchy && modal.node.activeInHierarchy,
+                true, true, 'sign-in', true);
+            await presented;
             return true;
         } catch (error) {
             console.warn('[DailySignIn] 弹窗加载失败', error);
@@ -639,10 +668,12 @@ export class GameFlow extends Component {
     /** 玩家主动返回主页时请求插屏；加载失败等内部跳转仍使用 showLobby。 */
     public returnToLobby(): void {
         if (this._returnAdPending) return;
-        const opening = this.lobby?.isValid ? (this.showLobby(), Promise.resolve()) : this._openLobby();
+        this._menuTutorial?.armHomeReturn();
         this._returnAdPending = true;
+        const opening = this.lobby?.isValid ? (this.showLobby(), Promise.resolve()) : this._openLobby();
         void opening.then(() => {
             if (!this.isValid || !this.lobby?.node.activeInHierarchy) return;
+            this._menuTutorial?.onReturnedHome();
             const navigation = this._secondaryNavigationVersion;
             return this.platform.showInterstitial(() => this.isValid && navigation === this._secondaryNavigationVersion
                 && !!this.lobby?.node.activeInHierarchy, true, true, 'return-home');
@@ -658,7 +689,7 @@ export class GameFlow extends Component {
             this._settingsOpenedAt = Date.now();
         }
         this._settings.present(inGame);
-        // 设置入口立即尝试已预加载的插屏，不受客户端首局/冷却限制，也不延后补弹。
+        // 设置入口立即请求 SDK 展示，不受客户端首局/冷却限制，也不延后补弹。
         void this.platform.showInterstitial(() => this.isValid && !!this._settings?.node.activeInHierarchy,
             true, true, 'settings', true);
     }
@@ -737,8 +768,8 @@ export class GameFlow extends Component {
         this.showCatalogFood(food, unlocked);
     }
 
-    public showCollect(): void {
-        void this._openSecondaryPage('collect');
+    public showCollect(): Promise<void> {
+        return this._openSecondaryPage('collect');
     }
 
     /** 城市列表页。 */
@@ -908,6 +939,63 @@ export class GameFlow extends Component {
 
     private _levelLoading = false;
     private _tutorial: GameTips | null = null;
+    private _menuTutorial: MenuTutorialService | null = null;
+
+    private _menuTutorialPage(): 'lobby' | 'chapters' | 'collection' | 'other' {
+        if (this.lobby?.node.activeInHierarchy) return 'lobby';
+        if (this.citySelect?.node.activeInHierarchy && !this._selectedTopic) return 'chapters';
+        if (this.collect?.node.activeInHierarchy) return 'collection';
+        return 'other';
+    }
+
+    private _initMenuTutorial(): void {
+        this._menuTutorial = new MenuTutorialService({
+            page: () => this._menuTutorialPage(),
+            blocked: () => !this.isValid || this._booting || this._bootFailed || this._levelLoading
+                || this._secondaryPageLoading || this._returnAdPending || this._levelSelectEntryPending
+                || this._rewardPending || this.platform.interstitialBusy || this.platform.interstitialPending
+                || this._dailyOpening || !![this._dailySignIn, this._foodTips, this._settings, this._eventTips,
+                    this.resultModal].some(modal => modal?.node.activeInHierarchy),
+            state: kind => this.save.data.menuTutorials?.[kind],
+            save: (kind, step) => this.save.setMenuTutorialStep(kind, step),
+            hasCollectible: () => this._foods.some(food => this.save.isCollectibleObtained(food.id, food.levelKey)),
+            target: (kind, step) => this._menuTutorialTarget(kind, step),
+            show: (target, message, done) => {
+                const node = this.node.parent?.getChildByPath('Screens/GameTips');
+                const ui = target.getComponent(UITransform);
+                if (!node?.isValid || !ui || ui.width <= 0 || ui.height <= 0) return false;
+                this._tutorial = node.getComponent(GameTips) ?? node.addComponent(GameTips);
+                this._tutorial.present(target, new Vec3(ui.width * (0.5 - ui.anchorX), ui.height * (0.5 - ui.anchorY)),
+                    Math.max(ui.width, ui.height) / 2 + 8, done, message);
+                return true;
+            },
+            dismiss: () => this._tutorial?.dismiss(),
+            notify: message => this.toast(message),
+        });
+    }
+
+    private _menuTutorialTarget(kind: MenuTutorialKind, step: 'entry' | 'target'): MenuTutorialTarget | null {
+        if (step === 'entry') {
+            const node = this.lobby?.tutorialEntry(kind);
+            return node ? { node, activate: async () => {
+                if (kind === 'chapters') await this.enterLevelSelection();
+                else await this.showCollect();
+                return this.isValid && this._menuTutorialPage() === (kind === 'chapters' ? 'chapters' : 'collection');
+            } } : null;
+        }
+        if (kind === 'chapters') {
+            const target = this.citySelect?.tutorialChapter(1);
+            return target ? { node: target.node, activate: async () => {
+                await this.enterChapterSelection(target.selection);
+                return this.isValid && ('chapters' in target.selection
+                    ? !!this.citySelect?.node.activeInHierarchy && this._selectedTopic?.key === target.selection.key
+                    : !!this.levelSelect?.node.activeInHierarchy && this._currentCity?.key === target.selection.key);
+            } } : null;
+        }
+        const target = this.collect?.tutorialFirstCollectible();
+        return target ? { node: target.node, activate: async () =>
+            !!(await this.collect?.openTutorialCollectible(target.item.id)) && !!this._foodTips?.node.activeInHierarchy } : null;
+    }
     @property({ tooltip: '仅编辑器预览：首关强制展示引导，不清除存档，不影响发布版本' })
     public previewTutorial = false;
     private _finishLoadingFrame: (() => void) | null = null;
@@ -1027,6 +1115,8 @@ export class GameFlow extends Component {
             if (!active()) return;
             this._chapterMusic = chapterMusic;
             this._chapterComboGroup = chapterCombo;
+            this._successSoundBags?.clear();
+            this._lastSuccessClipKey = null;
             this._currentCity = city;
             this._currentLevel = level;
             this._remainingTime = level.timeLimit;
@@ -1061,7 +1151,6 @@ export class GameFlow extends Component {
                 }
                 const dailyFirst = this.save.beginDailyFirstRound(sidebarDay());
                 this.save.setLastPlayedLevel(city.key, level.key);
-                this.playStats?.recordEntry(level.key);
                 this._roundInterstitialProtected = dailyFirst;
                 if (this._loadingNode) this._loadingNode.active = false;
                 // Queue only the lobby shell after active play; menu catalogs/hero stay on demand.
@@ -1190,6 +1279,7 @@ export class GameFlow extends Component {
     }
 
     private _switchTo(screen: LobbyScreen | CitySelectScreen | LevelSelectScreen | GameScreen | RankScreen | CollectScreen | null): void {
+        this._menuTutorial?.onPageChanged();
         this._cancelSecondaryNavigation();
         this._tutorial?.dismiss();
         if (screen !== this.game) {
@@ -1344,10 +1434,11 @@ export class GameFlow extends Component {
     }
 
     protected onDestroy(): void {
+        view.off('canvas-resize', this._refreshViewport, this);
+        this._menuTutorial?.dispose();
         this._lobbyWarmupRemaining = null;
         this._lobbyWarmupStarted = true;
         this.feed?.dispose();
-        this.playStats?.dispose();
         this._feedStart = null;
         this._feedOffer = null;
         game.off(Game.EVENT_SHOW, this.promptDailySignIn, this);
@@ -1487,8 +1578,7 @@ export class GameFlow extends Component {
         if (this._lives <= 0) this.finishLevel(false);
     }
 
-    private _loadComboClip(stage: number): Promise<AudioClip> {
-        const ref = this._comboClipRef(stage);
+    private _loadComboClip(stage: number, ref: ComboClipRef = this._comboClipRef(stage)): Promise<AudioClip> {
         const key = `${ref.chapterBundle ?? 'MainGameSources'}:${ref.path}`;
         const cached = this._comboClips.get(key);
         if (cached) return cached;
@@ -1521,8 +1611,8 @@ export class GameFlow extends Component {
         return pending;
     }
 
-    /** 点击/错误声仍用通用包；连击优先使用当前章节包的独立音效。 */
-    private _comboClipRef(stage: number): { path: string; fromBundle: boolean; chapterBundle?: string } {
+    /** 点击/错误声及缺少轮换素材时的回退路径。 */
+    private _comboClipRef(stage: number): ComboClipRef {
         if (stage === -1) return { path: 'voice/GamePlay/voice_wrong', fromBundle: true };
         if (stage === 0) return { path: 'voice/ComboSound/Combo _F_type01_01/voice_Combo _F_type01_00', fromBundle: false };
         const chapter = this._chapterComboGroup;
@@ -1536,25 +1626,38 @@ export class GameFlow extends Component {
         return { path: `${GameFlow.BUNDLE_COMBO_ROOT}/${this._activeComboGroup}/voice_${this._activeComboGroup}_${suffix}`, fromBundle: true };
     }
 
-    /** 只读取当前章节的资源索引；完整的五档专属组优先，不下载其他章节的音频。 */
+    /** 按文件末尾等级汇总当前章节全部素材，同目录多段及不完整组均可参与对应档位。 */
     private async _resolveChapterComboGroup(city: CityConfig, source: 'select' | 'streak' | 'retry'):
-        Promise<{ name: string; chapterBundle: string; stages: Map<number, string> } | null> {
+        Promise<{ name: string; chapterBundle: string; stages: Map<number, string>;
+            variants: Map<number, string[]> } | null> {
         try {
             return await this._contentBundles.use(city.key, async bundle => {
                 const groups = new Map<string, Map<number, string>>();
+                const candidates = new Map<number, Set<string>>();
                 for (const info of bundle.getDirWithPath('Combo _F_type', AudioClip)) {
                     const match = /^Combo _F_type\/([^/]+)\/[^/]+_0([1-5])(?:\.\w+)?$/.exec(info.path);
                     if (!match) continue;
                     let stages = groups.get(match[1]);
                     if (!stages) groups.set(match[1], stages = new Map());
-                    stages.set(Number(match[2]), info.path);
+                    const stage = Number(match[2]);
+                    // 组内第一段仅作旧接口回退，实际播放使用下方全部候选。
+                    if (!stages.has(stage)) stages.set(stage, info.path);
+                    if (!candidates.has(stage)) candidates.set(stage, new Set());
+                    candidates.get(stage)!.add(info.path);
                 }
-                const names = Array.from(groups.keys()).filter(name => groups.get(name)!.size === 5).sort();
+                const allNames = Array.from(groups.keys()).sort();
+                const completeNames = allNames.filter(name => groups.get(name)!.size === 5);
+                const names = completeNames.length ? completeNames : allNames;
                 if (!names.length) return null;
                 const previous = this._chapterComboGroup;
                 const name = source === 'retry' && previous?.chapterBundle === city.key && names.includes(previous.name)
                     ? previous.name : names[Math.floor(Math.random() * names.length)];
-                return { name, chapterBundle: city.key, stages: groups.get(name)! };
+                const variants = new Map<number, string[]>();
+                for (let stage = 1; stage <= 5; stage++) {
+                    const paths = Array.from(candidates.get(stage) ?? []).sort();
+                    if (paths.length) variants.set(stage, paths);
+                }
+                return { name, chapterBundle: city.key, stages: groups.get(name)!, variants };
             });
         } catch (error) {
             console.warn(`[GameFlow] 章节连击音效索引读取失败，使用通用音效: ${city.key}`, error);
@@ -1589,7 +1692,7 @@ export class GameFlow extends Component {
         return groups;
     }
 
-    /** 第四关起每次进入关卡随机一组连击音效（可重复），前三关固定默认组。 */
+    /** 选择素材索引不可用时的回退组；实际答对由同档位轮换池决定。 */
     private _updateComboGroup(city: CityConfig, levelIndex: number): void {
         const random = city !== this._cities[0] || levelIndex >= 3;
         if (!random) {
@@ -1600,6 +1703,60 @@ export class GameFlow extends Component {
         this._activeComboGroup = names.length > 0
             ? names[Math.floor(Math.random() * names.length)]
             : GameFlow.DEFAULT_COMBO_GROUP;
+    }
+
+    /** 同一档位轮换通用组与当前章节专属组；普通答对使用基础提示声及最低档正反馈。 */
+    private _successClipCandidates(stage: number): ComboClipRef[] {
+        const tier = Math.max(1, stage);
+        const refs: ComboClipRef[] = stage === 0
+            ? [{ path: 'voice/GamePlay/voice_Right', fromBundle: true }] : [];
+        for (const group of this._discoverComboGroups().values()) {
+            const path = group.stages.get(tier);
+            if (path) refs.push({ path, fromBundle: group.fromBundle });
+        }
+        const chapter = this._chapterComboGroup;
+        if (chapter) {
+            const paths = chapter.variants?.get(tier) ?? [chapter.stages.get(tier)].filter((path): path is string => !!path);
+            for (const path of paths) refs.push({ path, fromBundle: true, chapterBundle: chapter.chapterBundle });
+        }
+        if (!refs.length) refs.push(this._comboClipRef(tier));
+        const unique = new Map<string, ComboClipRef>();
+        for (const ref of refs) unique.set(`${ref.chapterBundle ?? 'MainGameSources'}:${ref.path}`, ref);
+        return Array.from(unique.values());
+    }
+
+    private _nextSuccessClipRef(stage: number): ComboClipRef {
+        const candidates = this._successClipCandidates(stage);
+        const key = (ref: ComboClipRef) => `${ref.chapterBundle ?? 'MainGameSources'}:${ref.path}`;
+        const signature = candidates.map(key).sort().join('|');
+        let bag = this._successSoundBags.get(stage);
+        if (!bag || bag.signature !== signature || !bag.remaining.length
+            || (candidates.length > 1 && bag.remaining.every(ref => key(ref) === this._lastSuccessClipKey))) {
+            const remaining = candidates.slice();
+            for (let i = remaining.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+            }
+            bag = { signature, remaining };
+            this._successSoundBags.set(stage, bag);
+        }
+        // 跨普通答对/第一档共用素材时，也优先避免相邻两次播放同一段。
+        const different = bag.remaining.findIndex(ref => key(ref) !== this._lastSuccessClipKey);
+        return bag.remaining.splice(different >= 0 ? different : 0, 1)[0];
+    }
+
+    private _playSuccessSound(stage: number): void {
+        const request = ++this._comboSoundRequest;
+        if (!this.save.data.soundEnabled) return;
+        const ref = this._nextSuccessClipRef(stage);
+        void this._loadComboClip(stage, ref).then(clip => {
+            const source = this._comboSource;
+            if (!this.isValid || !source?.isValid || !this.save.data.soundEnabled || request !== this._comboSoundRequest) return;
+            source.stop();
+            source.clip = clip;
+            this._lastSuccessClipKey = `${ref.chapterBundle ?? 'MainGameSources'}:${ref.path}`;
+            source.play();
+        }).catch(error => console.warn('[GameFlow] 答对音效播放失败', error));
     }
 
     /** 每次按下独立播放，连续点击不会截断上一声或影响连击音效。 */
@@ -1652,11 +1809,10 @@ export class GameFlow extends Component {
     public playAddTimeSound(): void { this.playNamedTapSound('voice_AddTime'); }
     public playZoomSound(): void { this.playNamedTapSound('voice_MakeCkear'); }
 
-    /** 找对但未连击时播放；连击由 playSuccessTone 接管，先停掉连击通道避免叠加。 */
+    /** 未连击的答对也参与最低档轮换，与连击共用取消机制，避免迟到音频叠加。 */
     public playRightSound(): void {
-        ++this._comboSoundRequest;
         this._comboSource?.stop();
-        this.playNamedTapSound('voice_Right');
+        this._playSuccessSound(0);
     }
 
     private _playTapSound(stage: number): void {
@@ -1668,18 +1824,10 @@ export class GameFlow extends Component {
         }).catch(error => console.warn('[GameFlow] 点击/错误音效播放失败', error));
     }
 
-    /** 首次找对使用普通提示声；二至六连击对应音效1至5档，此后保持最高档。 */
+    /** 二至六连击仍对应音效1至5档，最高档持续轮换，不再重复固定一段。 */
     public playSuccessTone(combo: number): void {
-        const request = ++this._comboSoundRequest;
-        if (!this.save.data.soundEnabled) return;
         const stage = Math.max(1, Math.min(5, Math.floor(combo) - 1));
-        void this._loadComboClip(stage).then(clip => {
-            const source = this._comboSource;
-            if (!this.isValid || !source?.isValid || !this.save.data.soundEnabled || request !== this._comboSoundRequest) return;
-            source.stop();
-            source.clip = clip;
-            source.play();
-        }).catch(error => console.warn('[GameFlow] 连击音效播放失败', error));
+        this._playSuccessSound(stage);
     }
 
     public useHint(onDismiss?: () => void): void {
@@ -2283,7 +2431,6 @@ export class GameFlow extends Component {
             this._dailyConfig = dailyAsset.json as DailySignInConfig;
             this.platform.configure(platformAsset.json as PlatformConfig);
             this.platform.preloadInterstitial?.();
-            this.playStats?.configure((platformAsset.json as PlatformConfig).playStats, (platformAsset.json as PlatformConfig).apiBaseUrl);
             this.feed?.configure((platformAsset.json as PlatformConfig).feed, this._dailyConfig);
 
             const index = cityIndexAsset.json as CityIndex;
@@ -2565,8 +2712,8 @@ export class GameFlow extends Component {
             this._secondaryPageLoading = false;
             this._setLoadingProgress(1);
             this._switchTo(page);
-            void this.platform.showInterstitial(() => this.isValid && page.node.activeInHierarchy,
-                true, kind === 'rank', kind === 'rank' ? 'rank' : 'secondary-page', kind === 'rank');
+            await this.platform.showInterstitial(() => this.isValid && page.node.activeInHierarchy,
+                true, true, kind, true);
         } catch (error) {
             if (!active()) return;
             this._secondaryPageLoading = false;
@@ -2576,9 +2723,33 @@ export class GameFlow extends Component {
         }
     }
 
-    /** 首页不持有局内预制体引用；第一次进关在加载遮罩下创建，后续复用。 */
+    private _gamePrefabPath = '';
+
+    /** screen.windowSize 是游戏窗口/网页预览容器尺寸，不使用手机物理屏幕尺寸。 */
+    private _refreshViewport(): void {
+        const size = screen.windowSize;
+        const target = gameViewport(size.width, size.height);
+        view.setDesignResolutionSize(target.width, target.height, ResolutionPolicy.SHOW_ALL);
+        this._fitGameScreen();
+    }
+
+    private _fitGameScreen(): void {
+        const node = this.game?.node;
+        const ui = node?.getComponent(UITransform);
+        if (!node?.isValid || !ui) return;
+        const visible = view.getVisibleSize();
+        const frame = fitDesignFrame(visible.width, visible.height, ui.width, ui.height);
+        node.setScale(frame.scale, frame.scale, 1);
+    }
+
+    /** 按实际窗口选择玩法布局；窗口改变时当前对局只等比缩放，下一局再切换模板。 */
     private async _ensureGameScreens(): Promise<void> {
-        if (this.game?.isValid && this.resultModal?.isValid) return;
+        const size = screen.windowSize;
+        const path = gameViewport(size.width, size.height).prefab;
+        if (this.game?.isValid && this.resultModal?.isValid && this._gamePrefabPath === path) {
+            this._fitGameScreen();
+            return;
+        }
         if (this._gameScreensPending) return this._gameScreensPending;
         this._gameScreensPending = (async () => {
             if (!this._sharedUIReady) await this._ensureSharedUI();
@@ -2587,7 +2758,7 @@ export class GameFlow extends Component {
                 bundle.load(path, Prefab, (error, prefab) => error ? reject(error) : resolve(prefab));
             });
             const [gamePrefab, resultPrefab] = await Promise.all([
-                load('prefabs/GameScreen'), load('prefabs/ResultModal'),
+                load(path), load('prefabs/ResultModal'),
             ]);
             if (!this.isValid) throw new Error('游戏流程已销毁');
             const canvas = this.node.parent;
@@ -2606,8 +2777,12 @@ export class GameFlow extends Component {
             resultNode.name = 'ResultModal';
             gameNode.parent = screens;
             resultNode.parent = canvas;
+            this.game?.node.destroy();
+            this.resultModal?.node.destroy();
             this.game = game;
             this.resultModal = result;
+            this._gamePrefabPath = path;
+            this._fitGameScreen();
         })().finally(() => { this._gameScreensPending = null; });
         return this._gameScreensPending;
     }

@@ -75,6 +75,11 @@ export class LobbyScreen extends UIScreen {
         void this._attachDailyEntry();
     }
 
+    public tutorialEntry(kind: 'chapters' | 'collection'): Node | null {
+        return kind === 'chapters' ? this.resolveNode(this.btnLevels, 'BtnLevels')
+            : this.resolveNode(this.btnCollect, 'Btncollect');
+    }
+
     protected onOpen(): void {
         const host = this.flow.node.parent;
         host?.getComponent(LobbyEntries)?.bindLobby();

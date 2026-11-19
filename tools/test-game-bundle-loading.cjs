@@ -5,6 +5,11 @@ const assert = require('node:assert/strict');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]);
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
+const viewport = {};
+vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/core/ViewportLayout.ts', 'utf8'), {
+    compilerOptions: { target: ts.ScriptTarget.ES2018, module: ts.ModuleKind.CommonJS },
+}).outputText, { exports: viewport });
+const screen = { windowSize: { width: 750, height: 1620 } };
 const assets = new Map();
 for (const file of walk('assets').filter(f => f.endsWith('.meta'))) {
     const meta = read(file);
@@ -70,7 +75,7 @@ const bundle = {
 let bundleCalls = 0, finishBundle;
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
-const names = ['_bootstrap', '_loadGameBundle', '_ensureGameScreens', '_comboClipRef', '_loadComboClip', '_discoverComboGroups',
+const names = ['_bootstrap', '_loadGameBundle', '_ensureGameScreens', '_fitGameScreen', '_comboClipRef', '_loadComboClip', '_discoverComboGroups',
     '_loadTapClip', '_loadResultClip', '_currentGameMusic', 'DEFAULT_COMBO_GROUP', 'BUNDLE_COMBO_ROOT',
     'startContinue', 'findContinueTarget', 'isCityUnlocked', 'isLevelUnlocked'];
 const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
@@ -78,6 +83,7 @@ const created = [];
 const Flow = vm.runInNewContext(ts.transpileModule(`class GameFlow { ${body} }; GameFlow;`, {
     compilerOptions: { target: ts.ScriptTarget.ES2018 },
 }).outputText, {
+    ...viewport, screen, view: { getVisibleSize: () => viewport.gameViewport(screen.windowSize.width, screen.windowSize.height) }, UITransform: class {},
     AudioClip, Prefab, GameScreen, ResultModal, console,
     assetManager: { loadBundle(name, done) { assert.equal(name, 'MainGameSources'); bundleCalls++; finishBundle = done; } },
     resources: { load(request, type, done) {
@@ -85,7 +91,7 @@ const Flow = vm.runInNewContext(ts.transpileModule(`class GameFlow { ${body} }; 
         done(null, { name: request });
     } },
     instantiate(prefab) {
-        const node = { name: '', active: true, getComponent: Type => Type === (prefab.request.endsWith('GameScreen') ? GameScreen : ResultModal) ? { isValid: true, node } : null, destroy() {} };
+        const node = { name: '', active: true, getComponent: Type => Type === (/GameScreen(?:_9x16)?$/.test(prefab.request) ? GameScreen : ResultModal) ? { isValid: true, node } : null, destroy() { this.destroyed = true; } };
         created.push(node); return node;
     },
 });
@@ -129,6 +135,15 @@ function flow() {
     assert.equal(created.length, 2); assert.equal(f.game.node.parent, screens); assert.equal(f.resultModal.node.parent, canvas);
     assert.equal(f.game.node.active, false); assert.equal(f.game.node.name, 'Game');
     await f._ensureGameScreens(); assert.equal(created.length, 2, 'Reuse the same UI on later rounds');
+    assert.equal(f._gamePrefabPath, 'prefabs/GameScreen');
+    const longGame = f.game.node;
+    screen.windowSize = { width: 750, height: 1334 };
+    await f._ensureGameScreens();
+    assert.equal(f._gamePrefabPath, 'prefabs/GameScreen_9x16');
+    assert.equal(longGame.destroyed, true, 'Replace the old layout on the next level entry');
+    assert.equal(created.length, 4);
+    await f._ensureGameScreens(); assert.equal(created.length, 4);
+    screen.windowSize = { width: 750, height: 1620 };
     await f._loadComboClip(0);
     for (const group of ['Combo _F_type01', 'Combo _F_type02']) {
         f._activeComboGroup = group;

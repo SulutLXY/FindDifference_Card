@@ -1,0 +1,109 @@
+{
+  "mode": "lossless",
+  "count": 11,
+  "compressed": 11,
+  "backup": "temp\\png-compression\\20261119-193225-593790\\originals.zip",
+  "before": 351414,
+  "after": 351117,
+  "files": [
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (1).png",
+      "before": 17601,
+      "after": 17587,
+      "beforeSha256": "6e7d0b6d15b454c0ce5df68f15af456ecb3e4f16dbedf0b80cc4195f643dae0b",
+      "metaSha256": "ba63e2bca5ec4aa64b2f907bbe0fe040d5da6e5eb0dc8f12c00a157ebea7c6da",
+      "status": "compressed",
+      "sha256": "c9396d2c899aba48c61d85dfdbb6209a4b4a96eadd80b4df18da2794dfbe5366"
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (2).png",
+      "before": 18706,
+      "after": 18679,
+      "beforeSha256": "26a6584789046f9b86f047046dd6a4d8040e87b370011ca16ad0937fa9d2b17f",
+      "metaSha256": "b3cfde6ac5ff8e7be99e09c6a4bc85a14cc5b04cd35be53773692dcba4e221a3",
+      "status": "compressed",
+      "sha256": "52700cc72d699766331726272484f39bc1026d52f9f8700f231a045da1af8cd0"
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (3).png",
+      "before": 17718,
+      "after": 17709,
+      "beforeSha256": "a154bbf955beffe4102ba844b94ad83352ef5b25515d9bcd839424b302297712",
+      "metaSha256": "1669473154a3c2bea64016851663fec39502a653f0eaba2f2878b9b3f07cef72",
+      "status": "compressed",
+      "sha256": "325525cf9cfc459f641cc05d62351cea794860a4f089283b664ac9ba5740873f"
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (4).png",
+      "before": 18565,
+      "after": 18533,
+      "beforeSha256": "dd79ca380c6d3a70c423acdc61d441a8e633b2131be267faf194399aa82c208d",
+      "metaSha256": "72568c0b5afde851ca6fb512d3a128ffbfa00c9ad760b5f9fbd5c45fd08ce600",
+      "status": "compressed",
+      "sha256": "ea632ce394fc6c440b8d01a170c18df464b896678f3ef8acc9b0298b8503cf00"
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_BG.png",
+      "before": 20786,
+      "after": 20777,
+      "beforeSha256": "d2f557da239745404893ec4a2d4de66550ab6aba8450257bdf1f3f3b9fed94d9",
+      "metaSha256": "cc1c40a88c99074abdc2d495902d39157b3027f5e9603359a7dd0d4857f12844",
+      "status": "compressed",
+      "sha256": "01246da5571bba70f50e6ef05d6e91ff569013f46bc56b0d3d1799e0fb28599a"
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (1).png",
+      "before": 43213,
+      "after": 43183,
+      "beforeSha256": "91d9ac7a33411fd664b44af5df03affb0ca114867c23067568841c561daffabc",
+      "metaSha256": "2cbe31ca8a1e325375a870d0c69d4a69bc7a34cecd9e6857f85265b8cd7eecc8",
+      "status": "compressed",
+      "sha256": "cc4c2110cd4c4cab9319df074b5fc573dee0c8c459c1bb1a53cb456aa8a987b7"
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (2).png",
+      "before": 43367,
+      "after": 43335,
+      "beforeSha256": "f0ed36b8824c4169816714ca7597a3c3d3dc722743a9b5d1be70fe31f2c20f9e",
+      "metaSha256": "535ce6c867079f1eed98d81857f113cf3f22e3ab8d7d20dca81119b23448a2fe",
+      "status": "compressed",
+      "sha256": "f825a43c415db3cbc1ff24093d250c4f5bd777e0888e383dc7fd7caea2790dd0"
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (3).png",
+      "before": 42539,
+      "after": 42498,
+      "beforeSha256": "3ac1feaa77dd06d67a8eec20c4a0f44078b01a072d58b6d76a2e727252a8de3e",
+      "metaSha256": "a2ffe5ff00784dde3833870123b45e04c3968d23aedae585188126216cce9245",
+      "status": "compressed",
+      "sha256": "b68e6f5005e25efaa3db08caec1fe4a4c5942bd1a1d75d260f1b06670b7764f8"
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (4).png",
+      "before": 42951,
+      "after": 42914,
+      "beforeSha256": "42b4c205527440c66ab66f490b369073e6e1a8f24f7d330696fefddb23b85189",
+      "metaSha256": "078ce9c65d7ca2c8c6ae3f9297b78849d6308b174da689fcefc702c272f0a496",
+      "status": "compressed",
+      "sha256": "19c68d8e92c03760089ce5b7faaa9cc1c7b668e8e4cff7790f22091294fe620b"
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (5).png",
+      "before": 43212,
+      "after": 43178,
+      "beforeSha256": "1bd5566c8a45faf1c3b5b122666f3ba45d5c399662ae00f2131332168ed1c1fa",
+      "metaSha256": "7cf8ebec4518a85f3ed2b11f0e3987c69e46c7073799022a8734e7e82c1f2f0d",
+      "status": "compressed",
+      "sha256": "1921ebeed85368ba76d19316930565df54b1bc6b59d8c1eb65cb30c06db9b280"
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (6).png",
+      "before": 42756,
+      "after": 42724,
+      "beforeSha256": "903ed27d9134454f7ae707409bee95786546f170229c222cc802342f87c3d046",
+      "metaSha256": "3b2b2fd08c22479347df1b1fc6662e35a923234df1c33e7466bdd7fc23a2453c",
+      "status": "compressed",
+      "sha256": "b495e6b6941fd53640487e2bdf40bda37763028ae15be6d083f037e5af38cfe0"
+    }
+  ]
+}

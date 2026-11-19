@@ -18,9 +18,9 @@ const legacy=new Widget();legacy._setAlign(1,false);legacy._setAlign(8,false);as
 const out={};vm.runInNewContext(compile(fs.readFileSync('assets/scripts/ui/ResponsiveLayout.ts','utf8')),{exports:out,require:name=>({_decorator:{ccclass:()=>Type=>Type},Component:class{}})});
 const untouched=new Widget(),layout=new out.ResponsiveLayout();layout.node={getComponent:()=>untouched,children:[],scale:{x:1,y:1,z:1}};
 const before=JSON.stringify(untouched);for(let i=0;i<10;i++)layout.refresh();assert.equal(JSON.stringify(untouched),before);
-const flow=fs.readFileSync('assets/scripts/GameFlow.ts','utf8');assert.ok(!flow.includes('addComponent(ResponsiveLayout)'));assert.ok(!flow.includes('setDesignResolutionSize'));
+const flow=fs.readFileSync('assets/scripts/GameFlow.ts','utf8');assert.ok(!flow.includes('addComponent(ResponsiveLayout)'));
 // Current art is editable; test current snapshots, not frozen migration coordinates.
 for(const file of ['assets/LobbySources/prefabs/CitySelectScreen.prefab','assets/LobbySources/prefabs/LevelSelectScreen.prefab','assets/LobbySources/prefabs/LobbyScreen.prefab','assets/LobbySources/prefabs/DailySignInModal.prefab']){
  const graph=JSON.parse(fs.readFileSync(file));layout.node=graph;const snapshot=JSON.stringify(graph);layout.refresh();assert.equal(JSON.stringify(graph),snapshot);
 }
-console.log('PASS: real Cocos stretch-cancel regression reproduced; custom runtime layout is inert, Creator framing preserved, editable pages and popup transforms untouched.');
+console.log('PASS: real Cocos stretch-cancel regression reproduced; legacy component stays inert, editable pages and popup transforms untouched.');

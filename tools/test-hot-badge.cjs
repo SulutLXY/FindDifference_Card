@@ -1,55 +1,83 @@
 'use strict';
 const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:assert/strict');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
-const compile = source => ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.CommonJS } }).outputText;
-const core = {}; vm.runInNewContext(compile(fs.readFileSync('assets/scripts/core/PlayStats.ts', 'utf8')), { exports: core });
-const source = fs.readFileSync('assets/scripts/ui/CitySelectScreen.ts', 'utf8'), tree = ts.createSourceFile('Screen.ts', source, ts.ScriptTarget.Latest, true);
-const names = ['_setHeatBadge', '_refreshHeat'];
-const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
-class Label { static Overflow = { SHRINK: 1 }; } class Sprite { static SizeMode = { CUSTOM: 0 }; }
+const compile = source => ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2018 } }).outputText;
+function methods(file, names, globals = {}) {
+    const source = fs.readFileSync(file, 'utf8'), tree = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true);
+    const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree)))
+        .map(m => m.getText(tree)).join('\n');
+    return vm.runInNewContext(compile(`class Test {${body}}; Test;`), globals);
+}
+const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
+class Label { static Overflow = { SHRINK: 1 }; }
+class Sprite { static SizeMode = { CUSTOM: 0 }; }
 class Node {
-    constructor(name, children = []) { this.name = name; this.children = children; this.parts = new Map(); this.active = this.isValid = true; }
-    getComponent(type) { return this.parts.get(type); }
+    constructor(name, children = []) {
+        this.name = name; this.children = children; this.parts = new Map(); this.active = this.isValid = true;
+        this.position = {x: 12, y: 34}; this.size = {width: 31, height: 39};
+    }
+    getComponent(Type) { return this.parts.get(Type); }
 }
 function card() {
-    const label = new Node('HotNumber_laber'); label.parts.set(Label, { string: '9999K' });
-    const icon = new Node('icon_fire'); icon.parts.set(Sprite, { spriteFrame: 'fire' });
-    const badge = new Node('HotNumber', [label, icon]); badge.parts.set(Sprite, { spriteFrame: 'red' });
-    return { node: new Node('card', [badge]), badge, label: label.parts.get(Label), icon: icon.parts.get(Sprite), background: badge.parts.get(Sprite) };
+    const label = new Node('HotNumber_laber'); label.parts.set(Label, {string: '9999K'});
+    const icon = new Node('icon_fire'); icon.parts.set(Sprite, {spriteFrame: 'fire'});
+    const badge = new Node('HotNumber', [label, icon]); badge.parts.set(Sprite, {spriteFrame: 'red'});
+    return {node: new Node('card', [badge]), badge, iconNode: icon, label: label.parts.get(Label),
+        icon: icon.parts.get(Sprite), background: badge.parts.get(Sprite)};
 }
-const Screen = vm.runInNewContext(compile('class Screen {' + body + '}; Screen;'), { Label, Sprite, formatPlayCount: core.formatPlayCount, console });
-const s = new Screen(); s.isValid = true; s.node = { activeInHierarchy: true }; s._heatVersion = 0;
-s.newChapterIcon = 'leaf'; s.newChapterBackground = 'green';
-s.findChildDeep = function find(node, name) { return node.children.find(n => n.name === name) || node.children.map(n => find(n, name)).find(Boolean); };
-const pending = [];
-s.flow = { chapterSelections: [{ key: 'wang-luo-re-dian' }, { key: 'qing-hua-ci' }], playStats: {
-    initialCount: key => key === 'wang-luo-re-dian' ? 219500 : null,
-    isNewChapter: key => key === 'qing-hua-ci', getCounts: keys => new Promise(resolve => pending.push({ keys, resolve })),
-} };
-(async () => {
-    const hot = card(), leaf = card(), unknown = card();
-    s._setHeatBadge(hot.node, 'wang-luo-re-dian', 219500); assert.equal(hot.label.string, '219.5K'); assert.equal(hot.badge.active, true);
-    s._setHeatBadge(leaf.node, 'qing-hua-ci', 999); assert.equal(leaf.label.string, '最新章节');
-    assert.equal(leaf.icon.spriteFrame, 'leaf'); assert.equal(leaf.background.spriteFrame, 'green');
-    assert.equal(leaf.label.enableWrapText, false); assert.equal(leaf.label.overflow, Label.Overflow.SHRINK);
-    s._setHeatBadge(unknown.node, 'unknown', null); assert.equal(unknown.badge.active, false); assert.equal(unknown.label.string, '');
-    s._setHeatBadge(new Node('missing'), 'unknown', null);
-    s._cards = [hot.node, leaf.node]; const stale = s._refreshHeat();
-    assert.deepEqual(Array.from(pending[0].keys), ['wang-luo-re-dian'], 'New chapter uses its presentation instead of a count request');
-    s._heatVersion++; pending[0].resolve({ 'wang-luo-re-dian': 999 }); await stale;
-    assert.equal(hot.label.string, '219.5K', 'Stale page result must not replace the current badge');
-    const update = s._refreshHeat(); pending[1].resolve({ 'wang-luo-re-dian': 219510 }); await update;
-    assert.equal(hot.label.string, '219.51K'); assert.equal(leaf.label.string, '最新章节');
-    const missing = s._refreshHeat(); pending[2].resolve({}); await missing;
-    assert.equal(hot.label.string, '219.5K'); assert.equal(hot.badge.active, true,
-        'A missing asynchronous count must not erase a configured release baseline');
-    const index = JSON.parse(fs.readFileSync('assets/resources/configs/cities.json'));
-    assert.deepEqual(index.navigation, ['wang-luo-re-dian','qing-hua-ci','nian-du-re-geng','chong-wu-gu-shi','meng-chong-san-guo','lian-ai-mei-shi']);
-    assert.equal(index.cities[1], 'qing-hua-ci');
-    const prefab = JSON.parse(fs.readFileSync('assets/LobbySources/prefabs/CitySelectScreen.prefab'));
-    const component = prefab.find(item => 'cardTemplate' in item);
-    assert.equal(component.newChapterIcon.__uuid__, '6ea44f0e-cd19-4051-a3ea-1661be24129b@f9941');
-    assert.equal(component.newChapterBackground.__uuid__, 'a7afceef-e0c5-43b0-b6d8-1612e6d19dcf@f9941');
-    assert.ok(!prefab.some(item => item._string === '9999K'));
-    console.log('PASS HotNumber: release baselines/formatting, new leaf/green badge, optional nodes, stale responses and new chapter ordering');
-})().catch(error => { console.error(error); process.exitCode = 1; });
+const Screen = methods('assets/scripts/ui/CitySelectScreen.ts', ['_setChapterBadge'], {Label, Sprite});
+const Flow = methods('assets/scripts/GameFlow.ts', ['chapterBadgeKind']);
+const flow = new Flow();
+flow._cityIndex = read('assets/resources/configs/cities.json');
+flow._cityIndex.badges.testHard = 'hard';
+flow._cityIndex.badges.testNone = null;
+flow._cityIndex.badges.testInvalid = 'unknown-kind';
+Object.defineProperty(flow, 'playStats', {get() { throw Error('Chapter tags must never access statistics'); }});
+const screen = new Screen();
+screen.flow = flow;
+screen.findChildDeep = function find(node, name) {
+    return node.children.find(child => child.name === name) || node.children.map(child => find(child, name)).find(Boolean);
+};
+Object.assign(screen, {newChapterIcon: 'leaf', newChapterBackground: 'green', hotChapterIcon: 'fire',
+    hardChapterIcon: 'skull', hotChapterBackground: 'red', collectionChapterIcon: 'chest', collectionChapterBackground: 'blue'});
+const shared = card();
+for (const [key, text, icon, background] of [
+    ['qing-hua-ci', '新章节', 'leaf', 'green'], ['wang-luo-re-dian', '热门', 'fire', 'red'],
+    ['meng-chong-san-guo', '困难', 'skull', 'red'], ['testHard', '困难', 'skull', 'red'],
+    ['lian-ai-mei-shi', '收藏', 'chest', 'blue'],
+]) {
+    screen._setChapterBadge(shared.node, key);
+    assert.equal(shared.badge.active, true);
+    assert.equal(shared.label.string, text);
+    assert.equal(shared.icon.spriteFrame, icon);
+    assert.equal(shared.background.spriteFrame, background);
+    assert.equal(shared.label.enableWrapText, false);
+    assert.deepEqual(shared.iconNode.position, {x: 12, y: 34});
+    assert.deepEqual(shared.iconNode.size, {width: 31, height: 39}, 'Preserve editor-authored geometry');
+}
+for (const key of ['missing', 'testNone', 'testInvalid', 'chong-wu-gu-shi', 'nian-du-re-geng',
+    'bei-jing', 'shang-hai', 'nan-jing', 'xia-men', 'chang-sha', 'guang-zhou', 'cheng-du', 'xi-an']) {
+    screen._setChapterBadge(shared.node, key);
+    assert.equal(shared.badge.active, false);
+    assert.equal(shared.label.string, '');
+}
+assert.doesNotThrow(() => screen._setChapterBadge(new Node('no badge'), 'qing-hua-ci'));
+screen.hardChapterIcon = null;
+screen._setChapterBadge(shared.node, 'testHard');
+assert.equal(shared.badge.active, false, 'Missing required art cannot leave a stale mismatched icon');
+const prefab = read('assets/LobbySources/prefabs/CitySelectScreen.prefab');
+const component = prefab.find(item => 'newChapterIcon' in item);
+for (const [field, name] of Object.entries({newChapterIcon: 'leaf', newChapterBackground: 'Mark_green',
+    hotChapterIcon: 'fire', hardChapterIcon: 'skull', hotChapterBackground: 'Mark_red',
+    collectionChapterIcon: 'chest', collectionChapterBackground: 'Mark_blue'})) {
+    const meta = read(`assets/LobbySources/textures/UI_Sprite/icons/icon_${name}.png.meta`);
+    assert.equal(component[field].__uuid__, meta.subMetas.f9941.uuid, field);
+}
+const source = fs.readFileSync('assets/scripts/ui/CitySelectScreen.ts', 'utf8');
+assert.doesNotMatch(source, /playStats|formatPlayCount|_refreshHeat|initialCount|getCounts/);
+const flowSource = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
+assert.doesNotMatch(flowSource, /PlayStatsService|playStats\??\./, 'Retain algorithms but disconnect gameplay uploads/configuration');
+assert.ok(fs.existsSync('assets/scripts/core/PlayStats.ts'));
+assert.ok(fs.existsSync('assets/scripts/services/PlayStatsService.ts'));
+assert.equal(read('assets/resources/configs/platform-config.json').playStats.enabled, false);
+console.log('PASS chapter tags: all four icon/background pairs, manual configuration, type transitions, optional nodes, geometry, serialized art, no heat requests or gameplay uploads; algorithms retained.');

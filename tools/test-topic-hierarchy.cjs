@@ -27,11 +27,20 @@ const Flow = methods('assets/scripts/GameFlow.ts', ['_loadCityMeta', 'chapterSel
     f.citySelect = { isValid: true, node: { activeInHierarchy: true }, rebuild() { rebuilds++; } };
     f._switchTo = () => { f._secondaryNavigationVersion++; }; f.returnToLobby = () => home++;
     f.showLevelSelect = async city => entered.push(city.key); f.toast = () => {};
-    assert.equal(f.chapterSelections.length, 6);
+    assert.equal(f.chapterSelections.length, 8);
+    assert.deepEqual(Array.from(f.chapterSelections, item => item.name), ['网络热点', '青花瓷', '寻宋记', '萌宠故事', '趣味短剧', '萌宠三国', '年度热梗', '恋爱美食']);
     const porcelain = f._cities.find(city => city.key === 'qing-hua-ci');
     assert.equal(f.isCityUnlocked(f._cities.indexOf(porcelain)), true);
     assert.equal(f.isLevelUnlocked(f._cities.indexOf(porcelain), 0), true);
     assert.equal(f.isLevelUnlocked(f._cities.indexOf(porcelain), 1), false);
+    const song = f._cities.find(city => city.key === 'xun-song-ji');
+    assert.equal(f.isCityUnlocked(f._cities.indexOf(song)), true);
+    assert.equal(f.isLevelUnlocked(f._cities.indexOf(song), 0), true);
+    assert.equal(f.isLevelUnlocked(f._cities.indexOf(song), 1), false);
+    const drama = f._cities.find(city => city.key === 'qu-wei-duan-ju');
+    assert.equal(f.isCityUnlocked(f._cities.indexOf(drama)), true);
+    assert.equal(f.isLevelUnlocked(f._cities.indexOf(drama), 0), true);
+    assert.equal(f.isLevelUnlocked(f._cities.indexOf(drama), 1), false);
     const topic = f.chapterSelections.find(item => item.key === 'lian-ai-mei-shi');
     assert.deepEqual(JSON.parse(JSON.stringify(f.selectionProgress(topic))), { done: 0, total: 120 });
     await f.enterChapterSelection(topic); assert.equal(f.chapterSelectionTitle, '恋爱美食');
@@ -86,7 +95,7 @@ const Flow = methods('assets/scripts/GameFlow.ts', ['_loadCityMeta', 'chapterSel
     for (const name of ['ProgressPoint', 'BtnUnlock', 'LockIcon', 'CityLockTip', 'Cityaim', 'CityBanner']) nodes[name] = {
         active: false, off() {}, on(_, cb) { this.click = cb; }, getComponent: () => ({}), getComponentInChildren: () => ({}),
     };
-    screen._setHeatBadge = () => {};
+    screen._setChapterBadge = () => {};
     screen.findChildDeep = (_, name) => nodes[name]; screen._setCardLabel = (_, name, text) => labels[name] = text; screen._loadBanner = () => {};
     const card = { off() {}, on(_, callback) { this.click = callback; } };
     screen._fillCard(card, topic); assert.equal(labels.Levelnumber, '8个城市 · 120关'); assert.equal(nodes.BtnUnlock.active, false);
@@ -96,5 +105,5 @@ const Flow = methods('assets/scripts/GameFlow.ts', ['_loadCityMeta', 'chapterSel
     const cityArrow = {}; nodes.Cityaim.click(cityArrow);
     assert.equal(cityArrow.propagationStopped, true); assert.equal(selected.at(-1), cities[3].key);
     const event = {}; nodes.BtnUnlock.click(event); assert.equal(event.propagationStopped, true); assert.equal(selected.at(-1), cities[3].key);
-    console.log('PASS: six root topics/eight cities, porcelain first level free, Beijing free, seven city gates, permanent complete-only rewards, duplicate/error/cancel/write failure, stale navigation, back stack and legacy progress.');
+    console.log('PASS: eight ordered root topics/eight cities, porcelain/song/drama first levels free, Beijing free, seven city gates, permanent complete-only rewards, duplicate/error/cancel/write failure, stale navigation, back stack and legacy progress.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

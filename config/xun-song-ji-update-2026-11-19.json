@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-19",
+  "chapter": "xun-song-ji",
+  "source": "D:\\CocosCreator\\关卡\\寻宋记",
+  "differenceCountBefore": 424,
+  "differenceCountAfter": 421,
+  "updatedLevels": [
+    {
+      "number": 1,
+      "id": "xun-song-ji/xi-gu-hu-zhu-tuo-xian",
+      "name": "溪谷互助脱险",
+      "differenceCountBefore": 13,
+      "differenceCountAfter": 10,
+      "sourceConfigSha256Before": "e9a6f76f0d55c6adfbd8e8a58eaf250360d10ef85b10f16e3b7bc021de2a44fe",
+      "sourceConfigSha256After": "00b921030265b24ebb6ea88834c2a74b67af79f35bd139b5578e39da3fb15dc6",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-b.jpg",
+          "uuid": "5f77575b-80c3-5ba8-acf0-ea3b710bd605",
+          "beforeSha256": "8ea23b4f37122427b1af1ecbf0c493052c541ce0a076124dacd58dd62ad596ae",
+          "afterSha256": "d7eec5285cae0b5c40d9b0be3a29450e631f2b8ffd2429f3311aa85fc2bc3125",
+          "beforeSourceSha256": "c83dfa2cda0c9b716161063a366eac7ec58672ba535459f3681cee1b99e3c847",
+          "afterSourceSha256": "161f9892e320a189eda5130418291c590136bf7a597a716dc9c3dd8e33eb9f1a"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "xun-song-ji/xi-gu-dian-tai-shi-lian",
+      "name": "溪谷电台失联",
+      "differenceCountBefore": 13,
+      "differenceCountAfter": 12,
+      "sourceConfigSha256Before": "39c8f3a793d6806dc1ccbf5f660e16e1eb6de2b07272e366db96ae2e7516fb7a",
+      "sourceConfigSha256After": "50ca587be610bdc08111db3f55afa67ebed1a6747a20d2aa07518fdbea7bf2bf",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/xi-gu-dian-tai-shi-lian/scene-b.jpg",
+          "uuid": "00f8b896-d74e-59aa-bea2-3a9281c9dcb1",
+          "beforeSha256": "3d5758393951be8ba8607e4d83edd0a92e75b24cc107b46ec4c7caf2d7dcfa3f",
+          "afterSha256": "eb6143f0de16b136612a1fa62315e9e77711d9019fafe077dfbd2c0b9fe3837b",
+          "beforeSourceSha256": "7908bc30fa50e9e67b0cbfcb2e5bdbb844e315aa4debf200111995266ad18673",
+          "afterSourceSha256": "16125099fec4cdc7c0897588a3bc0cc8f564769cab2f69a7b1561d0ae6a286ea"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "xun-song-ji/yin-ma-ru-ying",
+      "name": "引马入营",
+      "differenceCountBefore": 13,
+      "differenceCountAfter": 14,
+      "sourceConfigSha256Before": "41c33c9a226f752e4ee75a6d4ba3c6054f134b5141e1f538adaec6ab8d193478",
+      "sourceConfigSha256After": "a6038931100f6b1de613b32b4a3d55ea4d864da948a6f626ec1ece7a200eec63",
+      "images": []
+    }
+  ],
+  "changedProjectFiles": [
+    "assets/Bundle/levels/xun-song-ji/xi-gu-dian-tai-shi-lian/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/configs/xi-gu-dian-tai-shi-lian/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/xi-gu-hu-zhu-tuo-xian/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/yin-ma-ru-ying/differences.json",
+    "config/xun-song-ji-import.json"
+  ],
+  "unchangedChecks": [
+    "All 30 level IDs, names and order",
+    "Every existing asset UUID",
+    "All thumbnails and chapter cover",
+    "Chapter ordering and startup index"
+  ],
+  "imageExport": {
+    "encoder": "Photoshop 13.0.0",
+    "quality": 8,
+    "qualityScale": 12,
+    "format": "JPEG",
+    "size": [
+      1024,
+      672
+    ],
+    "resize": "full-image-bicubic-no-crop"
+  }
+}

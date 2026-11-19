@@ -1,0 +1,365 @@
+{
+  "date": "2026-11-19",
+  "revision": 2,
+  "chapter": "xun-song-ji",
+  "source": "D:\\CocosCreator\\关卡\\寻宋记",
+  "differenceCountBefore": 421,
+  "differenceCountAfter": 414,
+  "updatedLevels": [
+    {
+      "number": 1,
+      "id": "xun-song-ji/xi-gu-hu-zhu-tuo-xian",
+      "name": "溪谷互助脱险",
+      "differenceCountBefore": 10,
+      "differenceCountAfter": 10,
+      "sourceConfigSha256Before": "00b921030265b24ebb6ea88834c2a74b67af79f35bd139b5578e39da3fb15dc6",
+      "sourceConfigSha256After": "00b921030265b24ebb6ea88834c2a74b67af79f35bd139b5578e39da3fb15dc6",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-a.jpg",
+          "uuid": "1de96388-903d-5997-969a-c495240be008",
+          "beforeSha256": "9f98dcfbc74c0ef585561b9c0c4588ef028ab9f4d35fba0d74d9fd3986757959",
+          "afterSha256": "7161b9c04def1f5459ceb7ba3d6e8544ab3e69594b7eb4657e5a41b3189f68e8",
+          "beforeSourceSha256": "c984ac6d40813f3c708ae7e1a13e47732aadd1867afda510912cc73c57f9c25f",
+          "afterSourceSha256": "fbc9838f823b540dd88195b46eb244362c02f2277d64df7cafd31edc99400019"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-b.jpg",
+          "uuid": "5f77575b-80c3-5ba8-acf0-ea3b710bd605",
+          "beforeSha256": "d7eec5285cae0b5c40d9b0be3a29450e631f2b8ffd2429f3311aa85fc2bc3125",
+          "afterSha256": "904e3b11371caae5b3934a893d0d7c76492036e9786e3ffb85506196a79987a4",
+          "beforeSourceSha256": "161f9892e320a189eda5130418291c590136bf7a597a716dc9c3dd8e33eb9f1a",
+          "afterSourceSha256": "ecce5507c3dee93e391497328c5cf5941ebe624ab4d5ae5c0198d93ddbf23438"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "xun-song-ji/mi-lin-gong-ying-dui-zhi",
+      "name": "密林弓影对峙",
+      "differenceCountBefore": 15,
+      "differenceCountAfter": 12,
+      "sourceConfigSha256Before": "b09f49eba89dc3cabf36d7d2df5d1c785e1d9daa2cc2d833c81b8968cc481b30",
+      "sourceConfigSha256After": "ec5221dd7ba5cd6e9be5559ec48382fc5b7468f1cbd46489e4ac32b5948f94b4",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/mi-lin-gong-ying-dui-zhi/scene-a.jpg",
+          "uuid": "0d4a9ec5-22be-5577-9e36-1f66d1647c71",
+          "beforeSha256": "32ef4db343bf0f3e4d17cf1595653f3412772bff563febc7d2ed8a18cb95bf22",
+          "afterSha256": "9d67c97e8ea9f1251d0a28a9c45a046a783e7bcc29aae15b5ba7ebd566a5b801",
+          "beforeSourceSha256": "af1cd3506ba7979766a453974df9a1d2f84f8d3480207dddd2b5fd9c4f12af7d",
+          "afterSourceSha256": "cca6038945d03766369ddd26ebd88d58c7b3ea9060ef09e1bdea745c795afafd"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/mi-lin-gong-ying-dui-zhi/scene-b.jpg",
+          "uuid": "4c344e65-e975-50ed-adf7-651c467cd59b",
+          "beforeSha256": "97b83b20924615eb6f14a392ea41ea0a6b9ba09967b3280267c8e7203e748600",
+          "afterSha256": "58db5ca4d1a78adffaf76f24b65364c800f4b765861a90e5d76da0204c3fb675",
+          "beforeSourceSha256": "192a539fd99e4827927f213fedaadcd664d11eb96c2a736a0033c9affc54c90c",
+          "afterSourceSha256": "ce091f3235543d8063af34d4f3f9ef494b4bc5766f199fc5683a951b11844215"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "xun-song-ji/di-shui-shi-yi",
+      "name": "递水释疑",
+      "differenceCountBefore": 14,
+      "differenceCountAfter": 14,
+      "sourceConfigSha256Before": "92c48732c16518815568c2fd866e45a7e1d31b68f72469a6fecaff06fcb1b7b9",
+      "sourceConfigSha256After": "92c48732c16518815568c2fd866e45a7e1d31b68f72469a6fecaff06fcb1b7b9",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/di-shui-shi-yi/scene-a.jpg",
+          "uuid": "a0b88d6c-3591-5463-a516-280fc100e5cc",
+          "beforeSha256": "1e548b081eef09189bc04f795e314e4896af1b6002b4da81e2f9672ecd8956eb",
+          "afterSha256": "1c47e1017156ad8207120022bcdadf0e164c5a0b6e1813994786709595376689",
+          "beforeSourceSha256": "80d188ee0fa65bc04da00cfb1dc13619d201812d14b2c5a6c758d98ca40164d7",
+          "afterSourceSha256": "1e92421ddfa3c4e2390fc04a700cae39a41de872196bb63918c0cece67afa0b5"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/di-shui-shi-yi/scene-b.jpg",
+          "uuid": "3a4a525e-b75d-5617-ba45-398bb4d58724",
+          "beforeSha256": "c50273684b6e1ebbb0e705ca17f378a9078bdfa002306e1648b9071eb95aca99",
+          "afterSha256": "9ae30461bbc1059d259b30855abd4480fa9a33ada7b2a1dc0e44b9e8c12a9696",
+          "beforeSourceSha256": "52a5d88ea97528a258d96d2325cd2d753f6567e6050422d37cf4e34fcf87a357",
+          "afterSourceSha256": "ec10f97a81cac088c6600449f3599a4df1a3da81cd0e70946999ba42bce0026b"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "xun-song-ji/chi-yuan-qing-he-cun",
+      "name": "驰援清河村",
+      "differenceCountBefore": 14,
+      "differenceCountAfter": 14,
+      "sourceConfigSha256Before": "0a4e808fb71c646e840630d92bcf1c60fcf97f02727613e4bda9d79bf5d1a57e",
+      "sourceConfigSha256After": "0a4e808fb71c646e840630d92bcf1c60fcf97f02727613e4bda9d79bf5d1a57e",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/chi-yuan-qing-he-cun/scene-a.jpg",
+          "uuid": "378cde95-b2ca-5145-af44-876b2cde8a83",
+          "beforeSha256": "40f6538c672ed923e280c9ac89660d74d519fc56329b3942bb012857997ed11b",
+          "afterSha256": "6b8b5124850bccbef991b0c42e12a20f5f417eb5594f18f3abd37fe5556a22cd",
+          "beforeSourceSha256": "50dbdb564c3d572b7a6754b1d3f65ca31833da169065885e35d1b0de66339b88",
+          "afterSourceSha256": "fbc22b7bca3556a788559e15cdbe4e99ca2c811c62ad1bd0a8b5b2f405067102"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/chi-yuan-qing-he-cun/scene-b.jpg",
+          "uuid": "da05c895-2da1-5b85-80fc-57706c57b518",
+          "beforeSha256": "04dc4e0bb7d08ae8802d5f9220e2bf079e6f33d8d65ffa6a1223b374456675c1",
+          "afterSha256": "e3e2cd7839645aeb8abadea26fb1ac884f3ddb07c266859aca4285a4d429c0de",
+          "beforeSourceSha256": "6407614c1495bb35479d14ff29c5e3ac30121b4c6c7a74efbda8beab4870cd21",
+          "afterSourceSha256": "f4c095e53d1103c2efc634c30fc98a2837587b8f9be302856c35f0b4210655c9"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "xun-song-ji/shan-kou-lan-ma-dui-zhi",
+      "name": "山口拦马对峙",
+      "differenceCountBefore": 12,
+      "differenceCountAfter": 12,
+      "sourceConfigSha256Before": "0af47f36bced254a1b5e4e6cf8b55d588a41b8bf5eb622555fda7cc6d77e7829",
+      "sourceConfigSha256After": "e2fe34dc67bc9679a46846f49a535f8a074f2f341286585598c07ea2a4262769",
+      "images": []
+    },
+    {
+      "number": 11,
+      "id": "xun-song-ji/cao-po-kui-tan-di-ying",
+      "name": "草坡窥探敌营",
+      "differenceCountBefore": 15,
+      "differenceCountAfter": 15,
+      "sourceConfigSha256Before": "9fdaf6aa8bea76417bc51b8991063be61afef37da323ff2818877a396ab7a5c8",
+      "sourceConfigSha256After": "d73232c37c2ab2c1328fa3034f0866df995c00a2887fb3f7389eb7ec6c3936b2",
+      "images": []
+    },
+    {
+      "number": 12,
+      "id": "xun-song-ji/zha-men-an-tan-di-zhai",
+      "name": "栅门暗探敌寨",
+      "differenceCountBefore": 13,
+      "differenceCountAfter": 13,
+      "sourceConfigSha256Before": "7e99e7a50f8446a3c620f3034114578224853c6ee8549cfcb70a55943d18e4aa",
+      "sourceConfigSha256After": "483cb9c35622e570fd9223bc354fadf481c9fa35702f3d246894eb213d2a567a",
+      "images": []
+    },
+    {
+      "number": 14,
+      "id": "xun-song-ji/niu-yang-chuan-yue-shan-ai",
+      "name": "牛羊穿越山隘",
+      "differenceCountBefore": 13,
+      "differenceCountAfter": 13,
+      "sourceConfigSha256Before": "edd1523e211c1a37035ec41d535b7cd261e1a1e522752d238575c1219093d6c3",
+      "sourceConfigSha256After": "edd1523e211c1a37035ec41d535b7cd261e1a1e522752d238575c1219093d6c3",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/niu-yang-chuan-yue-shan-ai/scene-a.jpg",
+          "uuid": "263915bd-7d20-5c47-b520-adc001f6d196",
+          "beforeSha256": "7532d6180e39ce0c4b5e6a4e7701298fd51e04fd276453964a87cabb39c37701",
+          "afterSha256": "6113a31f61518aef685ebdd68a7b88bf06f29ef2b0e98d6c89e2c727d9fbe36e",
+          "beforeSourceSha256": "5b800c416a5365542a831c2202b2349aae4de773984b5a636c2c6e148bf2fab1",
+          "afterSourceSha256": "262b23b5838d5f8251bfbbd168f5b34bf53a93ad6d0cc6e9a0fb9f3a3407aeb9"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/niu-yang-chuan-yue-shan-ai/scene-b.jpg",
+          "uuid": "bf778db4-0972-5e99-aba5-ff0e0a704542",
+          "beforeSha256": "237422c1046241d6f3161f3b8ac88867fb21c657b2cd8185dc827182e44144dd",
+          "afterSha256": "75c6398a9c5a2849eceeb32d8a83cc5c69b6546d5b41e2567faf738fb609e10d",
+          "beforeSourceSha256": "71225a54fe5c2e8e25df6e344fcde3f911ccdcd6b0112b9ac13746f36afd9047",
+          "afterSourceSha256": "405ff133b38fe5f21f44c1b4472b11a7bd8227a1f905040915906464c438a30b"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "xun-song-ji/chang-jie-yuan-shou",
+      "name": "长街援手",
+      "differenceCountBefore": 15,
+      "differenceCountAfter": 15,
+      "sourceConfigSha256Before": "4148f99f1427ff4b8ae64de56b97427df9b47769722b94daf07b11d69f272680",
+      "sourceConfigSha256After": "0e585b9110794adc57524869cc954d1f4ffa68c65e4f3761d34a17558181561d",
+      "images": []
+    },
+    {
+      "number": 16,
+      "id": "xun-song-ji/jiu-lou-er-ceng-feng-bo",
+      "name": "酒楼二层风波",
+      "differenceCountBefore": 18,
+      "differenceCountAfter": 17,
+      "sourceConfigSha256Before": "850c84eaa4c7a96b9e0058e0f73e3e25a23f424bf160812d129e416c79156d72",
+      "sourceConfigSha256After": "7570cc771d3d8951e9db5e3d5618241835e7b4a78242c5c7dcec3d4d196b0775",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/jiu-lou-er-ceng-feng-bo/scene-b.jpg",
+          "uuid": "96ee9b92-08f6-5b93-a2d8-c442617869e4",
+          "beforeSha256": "287431d2527c007dd443a795d842c85b2020e0896ecdd3902e0d5c7c4e8f6cf3",
+          "afterSha256": "f49e61eaa0540cba1ca1d36e2884ab8e0a1eb8b8c032238a50b449cadde9210e",
+          "beforeSourceSha256": "7ad69a1778e53855640918abc751b6662ff6aac2090bf10abebdfd613b5aea39",
+          "afterSourceSha256": "51db2c3bc6120c03d7febbd8cde967812eec1121753e1c77c95ea3668507d056"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "xun-song-ji/qin-niang-zi-jia-dao",
+      "name": "秦娘子驾到",
+      "differenceCountBefore": 16,
+      "differenceCountAfter": 15,
+      "sourceConfigSha256Before": "fb807039817178e8456ee2dfcc321be0de37d11b39be589e0b2ba9ca5205c6e2",
+      "sourceConfigSha256After": "0f533eee0cc3c958452fcd206997ee79d8c1b45bcdbddd3e087e3537e27940d7",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qin-niang-zi-jia-dao/scene-b.jpg",
+          "uuid": "1603356b-b8a7-5c73-94fc-b04bbd371119",
+          "beforeSha256": "149cd97d51f4c718fb8c0f8ad411e938b5c4b893a4342cb2cacf66e4bf84346d",
+          "afterSha256": "96e624bd13ab692b3977d35b4e5669169e7be9cb690e8a0f0d44693e162dc95b",
+          "beforeSourceSha256": "ac36240651e9afb671f2471a152c97fdb88979b58fe0ff0198dac1da544f315a",
+          "afterSourceSha256": "a656e6362b0e74aa84b1c8543b483b73c1951aecb6f60410ecc261d43f78da3c"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "xun-song-ji/qian-xian-ji-bao-di-da",
+      "name": "前线急报抵达",
+      "differenceCountBefore": 16,
+      "differenceCountAfter": 15,
+      "sourceConfigSha256Before": "afbc319286c8d2aafcfef1abe0fbda8c8b6f30878934b4732ef1eee3c68094b2",
+      "sourceConfigSha256After": "fe420cbadbd1ffbe8621c22d3d30fd4ee02979a947d41501ef4a89d3b917bf3e",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qian-xian-ji-bao-di-da/scene-b.jpg",
+          "uuid": "850ae67d-1565-5b7c-afa6-73f7f154a51c",
+          "beforeSha256": "8043c3aac94f60524097f0aeb16488a4123bb710735e31b21a73e048b8369de7",
+          "afterSha256": "e6a1d70bc2d7a18dbc562e5988454a2ba9af3098cf67a5fc0eda44767c3f76b3",
+          "beforeSourceSha256": "b462e0fb7fb1cb102e4d867dc8274a64f69fe1d88ead909adebf27bc006d839e",
+          "afterSourceSha256": "c15d88e0cb0439b8efd7bf1fd5c825c1a15045ac261e1dc3f2360351250bc80f"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "id": "xun-song-ji/long-cheng-jiao-chang-zheng-jun",
+      "name": "陇城校场整军",
+      "differenceCountBefore": 15,
+      "differenceCountAfter": 14,
+      "sourceConfigSha256Before": "1fef91df9d4548f004da26418d6a9ce3fb763ba50d69cf8c492653f671515beb",
+      "sourceConfigSha256After": "46b0d168447f466b0c923d5055fbff9d7682c75b47388577fe6b9875409bb9ab",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/long-cheng-jiao-chang-zheng-jun/scene-b.jpg",
+          "uuid": "69f845eb-7d6e-552d-8464-be9e3562d2d6",
+          "beforeSha256": "17dc8ccfa377bde9177ceed27c2bd7f17125d5e19b301071ba35742e6f8c6423",
+          "afterSha256": "72eedab8342d7c1c1194e442dd23b1ca620fe3ebf51da1a85c7e09e9f71f9180",
+          "beforeSourceSha256": "296a5d07faa9fb2b869c2ce87702d60bac3e995874d5783e89eb12deae54d629",
+          "afterSourceSha256": "d935f77c79eeedaa96949d21d297c530d11b6b23a40d5749864d3581a135b5af"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "xun-song-ji/qing-he-sha-pan-yi-shi",
+      "name": "清河沙盘议事",
+      "differenceCountBefore": 15,
+      "differenceCountAfter": 14,
+      "sourceConfigSha256Before": "31ffd0a54a0339a841ac882213dccf1872701325e6294052fbe39eba23fb7a86",
+      "sourceConfigSha256After": "521d229661ecc409427a3c22cbda853e703c953b834d1e582002b06c63bd0f8a",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-b.jpg",
+          "uuid": "c91e2c85-2203-549e-8bcb-4a1a3b5573c8",
+          "beforeSha256": "1e072646ebeb65e4532964569912a5866c7f244c8106e2b5a503fdf6c486c61f",
+          "afterSha256": "7ead09e73fac2f3ddce9392855b25747f9784c436ce61fffa31f374762bc51c5",
+          "beforeSourceSha256": "d19290819b6f96aa99185216ebba738cab53bee3ece3a08deaaaaf63dda6c114",
+          "afterSourceSha256": "0bf355b03b913926f8eef5e3117c70a2ae9c0f8dc98dc4183ae14780efecb4dd"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "xun-song-ji/ji-yuan-jun-xie-che",
+      "name": "急援军械车",
+      "differenceCountBefore": 15,
+      "differenceCountAfter": 15,
+      "sourceConfigSha256Before": "58c8acabfcbea77e5f8bf51cf53ec796179e60299960f647c32eee4828e83c38",
+      "sourceConfigSha256After": "e484b33e23552b366b2b917476a04984db70f3b101815607225ef31161104e50",
+      "images": []
+    },
+    {
+      "number": 24,
+      "id": "xun-song-ji/tu-qiang-xiang-kou-mai-fu",
+      "name": "土墙巷口埋伏",
+      "differenceCountBefore": 13,
+      "differenceCountAfter": 14,
+      "sourceConfigSha256Before": "68ff598665a4cc66b069fa836f0e588e24d8fbd5b4e3d021e7bf55b5a1eeb2ca",
+      "sourceConfigSha256After": "a03e2a7776f60be1b74d4d29d0380888bfa20430b499506418937273058cb40e",
+      "images": []
+    },
+    {
+      "number": 27,
+      "id": "xun-song-ji/yin-lang-jian-shou-zhen-di",
+      "name": "银狼坚守阵地",
+      "differenceCountBefore": 15,
+      "differenceCountAfter": 15,
+      "sourceConfigSha256Before": "ffa2387b9475221615b6ddeb1f38af6c8fdbe03e47257dface03eff8baa45767",
+      "sourceConfigSha256After": "7bc8029d9527ff5719e3663a1df0e66cbdf1da5fb384665142c110ca9168df2d",
+      "images": []
+    }
+  ],
+  "changedProjectFiles": [
+    "assets/Bundle/levels/xun-song-ji/chi-yuan-qing-he-cun/scene-a.jpg",
+    "assets/Bundle/levels/xun-song-ji/chi-yuan-qing-he-cun/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/di-shui-shi-yi/scene-a.jpg",
+    "assets/Bundle/levels/xun-song-ji/di-shui-shi-yi/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/jiu-lou-er-ceng-feng-bo/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/long-cheng-jiao-chang-zheng-jun/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/mi-lin-gong-ying-dui-zhi/scene-a.jpg",
+    "assets/Bundle/levels/xun-song-ji/mi-lin-gong-ying-dui-zhi/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/niu-yang-chuan-yue-shan-ai/scene-a.jpg",
+    "assets/Bundle/levels/xun-song-ji/niu-yang-chuan-yue-shan-ai/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/qian-xian-ji-bao-di-da/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/qin-niang-zi-jia-dao/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-a.jpg",
+    "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-b.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/chi-yuan-qing-he-cun/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/di-shui-shi-yi/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/mi-lin-gong-ying-dui-zhi/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/niu-yang-chuan-yue-shan-ai/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/xi-gu-hu-zhu-tuo-xian/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/configs/cao-po-kui-tan-di-ying/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/chang-jie-yuan-shou/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/ji-yuan-jun-xie-che/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/jiu-lou-er-ceng-feng-bo/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/long-cheng-jiao-chang-zheng-jun/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/mi-lin-gong-ying-dui-zhi/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/qian-xian-ji-bao-di-da/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/qin-niang-zi-jia-dao/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/qing-he-sha-pan-yi-shi/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/shan-kou-lan-ma-dui-zhi/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/tu-qiang-xiang-kou-mai-fu/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/yin-lang-jian-shou-zhen-di/differences.json",
+    "assets/Bundle/levels/xun-song-ji/configs/zha-men-an-tan-di-zhai/differences.json",
+    "assets/Bundle/chapter-covers/xun-song-ji-icon.jpg",
+    "config/xun-song-ji-import.json"
+  ],
+  "unchangedChecks": [
+    "All 30 level IDs, names and order",
+    "All asset UUIDs",
+    "45 unchanged full-size images",
+    "Chapter ordering and startup index",
+    "Custom title font; all chapter/level characters covered"
+  ],
+  "imageExport": {
+    "encoder": "Photoshop 13.0.0",
+    "quality": 8,
+    "qualityScale": 12,
+    "format": "JPEG",
+    "size": [
+      1024,
+      672
+    ],
+    "resize": "full-image-bicubic-no-crop"
+  }
+}

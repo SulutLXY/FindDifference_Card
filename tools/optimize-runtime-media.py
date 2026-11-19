@@ -28,7 +28,8 @@ def sha(data):
 
 
 def run(args):
-    return subprocess.run(args, check=True, capture_output=True).stdout
+    return subprocess.run(args, check=True, capture_output=True,
+                          creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0).stdout
 
 
 def probe(path):
@@ -60,7 +61,20 @@ def image_meta(meta, width, height):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--apply', action='store_true')
+    parser.add_argument('--paths', type=Path, help='JSON array of project-relative assets to optimize; other assets stay unchanged')
+    parser.add_argument('--report', type=Path, help='Write applied report to this new config JSON instead of the historical report')
     args = parser.parse_args()
+    selected = None
+    if args.paths:
+        paths = json.loads(args.paths.read_text(encoding='utf-8-sig'))
+        if not isinstance(paths, list) or not all(isinstance(p, str) for p in paths):
+            raise ValueError('Expected a JSON array of asset paths')
+        selected = {(ROOT / p).resolve() for p in paths}
+        if any(not p.is_relative_to((ROOT / 'assets').resolve()) or not p.is_file() for p in selected):
+            raise ValueError('Selected path is missing or outside assets')
+    report_path = args.report.resolve() if args.report else ROOT / 'config/media-optimization-2026-11-12.json'
+    if args.report and (not report_path.is_relative_to((ROOT / 'config').resolve()) or report_path.exists()):
+        raise ValueError('Use a new report filename inside config; existing audit reports are retained')
     stamp = datetime.now(timezone(timedelta(hours=8))).strftime('%Y%m%d-%H%M%S-%f')
     work = ROOT / 'temp/media-optimization' / stamp
     work.mkdir(parents=True)
@@ -80,6 +94,8 @@ def main():
 
     for source in sorted((ROOT / 'assets').rglob('*')):
         if not source.is_file() or source.suffix.lower() != '.mp3':
+            continue
+        if selected is not None and source.resolve() not in selected:
             continue
         before_info = probe(source)
         bitrate = int(before_info['streams'][0].get('bit_rate', 0))
@@ -136,6 +152,8 @@ def main():
             continue
         if source.name != 'icon.jpg' or 'thumbnails' not in source.parts:
             continue
+        if selected is not None and source.resolve() not in selected:
+            continue
         with Image.open(source) as im:
             if im.size == (306, 200):
                 continue
@@ -180,7 +198,8 @@ def main():
         for path, digest in scene_hashes.items():
             assert sha(path.read_bytes()) == digest, 'Full-size scene JPEG changed'
     media = [r for r in records if r['kind'] in ('audio', 'thumbnail')]
-    report = dict(date='2026-11-12', applied=args.apply, backup=archive.relative_to(ROOT).as_posix(),
+    report = dict(date=datetime.now(timezone(timedelta(hours=8))).date().isoformat(), applied=args.apply, backup=archive.relative_to(ROOT).as_posix(),
+        selectedPaths=sorted(p.relative_to(ROOT).as_posix() for p in selected) if selected is not None else None,
         audioFiles=sum(r['kind'] == 'audio' for r in records), skippedLowBitrateAudio=skipped,
         retainedForQuality=retained_for_quality,
         thumbnailFiles=sum(r['kind'] == 'thumbnail' for r in records),
@@ -192,8 +211,8 @@ def main():
         records=records, sceneJpegInspection=scene_report)
     (work / 'report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     if args.apply:
-        (ROOT / 'config/media-optimization-2026-11-12.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(json.dumps({k:v for k,v in report.items() if k not in ('records','sceneJpegInspection')}, ensure_ascii=True))
+        report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print(json.dumps({k:v for k,v in report.items() if k not in ('records','sceneJpegInspection','selectedPaths')}, ensure_ascii=True))
     print('Report: ' + str(work / 'report.json'))
 
 

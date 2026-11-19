@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 2,
+  "name": "寻宋记",
+  "banner": "chapter-covers/xun-song-ji-icon/spriteFrame",
+  "levels": [
+    {
+      "id": "xun-song-ji/xi-gu-hu-zhu-tuo-xian",
+      "name": "溪谷互助脱险",
+      "folder": "xi-gu-hu-zhu-tuo-xian"
+    },
+    {
+      "id": "xun-song-ji/xi-gu-dian-tai-shi-lian",
+      "name": "溪谷电台失联",
+      "folder": "xi-gu-dian-tai-shi-lian"
+    },
+    {
+      "id": "xun-song-ji/mi-lin-gong-ying-dui-zhi",
+      "name": "密林弓影对峙",
+      "folder": "mi-lin-gong-ying-dui-zhi"
+    },
+    {
+      "id": "xun-song-ji/di-shui-shi-yi",
+      "name": "递水释疑",
+      "folder": "di-shui-shi-yi"
+    },
+    {
+      "id": "xun-song-ji/chi-yuan-qing-he-cun",
+      "name": "驰援清河村",
+      "folder": "chi-yuan-qing-he-cun"
+    },
+    {
+      "id": "xun-song-ji/gong-fang-ran-lu",
+      "name": "工坊燃炉",
+      "folder": "gong-fang-ran-lu"
+    },
+    {
+      "id": "xun-song-ji/mu-fang-shi-zhi-shou-nu",
+      "name": "木坊试制手弩",
+      "folder": "mu-fang-shi-zhi-shou-nu"
+    },
+    {
+      "id": "xun-song-ji/yin-ma-ru-ying",
+      "name": "引马入营",
+      "folder": "yin-ma-ru-ying"
+    },
+    {
+      "id": "xun-song-ji/shan-kou-lan-ma-dui-zhi",
+      "name": "山口拦马对峙",
+      "folder": "shan-kou-lan-ma-dui-zhi"
+    },
+    {
+      "id": "xun-song-ji/shan-dao-ma-dui-jing-ti",
+      "name": "山道马队惊蹄",
+      "folder": "shan-dao-ma-dui-jing-ti"
+    },
+    {
+      "id": "xun-song-ji/cao-po-kui-tan-di-ying",
+      "name": "草坡窥探敌营",
+      "folder": "cao-po-kui-tan-di-ying"
+    },
+    {
+      "id": "xun-song-ji/zha-men-an-tan-di-zhai",
+      "name": "栅门暗探敌寨",
+      "folder": "zha-men-an-tan-di-zhai"
+    },
+    {
+      "id": "xun-song-ji/qiu-zhang-zhui-ji-ling",
+      "name": "酋长追击令",
+      "folder": "qiu-zhang-zhui-ji-ling"
+    },
+    {
+      "id": "xun-song-ji/niu-yang-chuan-yue-shan-ai",
+      "name": "牛羊穿越山隘",
+      "folder": "niu-yang-chuan-yue-shan-ai"
+    },
+    {
+      "id": "xun-song-ji/chang-jie-yuan-shou",
+      "name": "长街援手",
+      "folder": "chang-jie-yuan-shou"
+    },
+    {
+      "id": "xun-song-ji/jiu-lou-er-ceng-feng-bo",
+      "name": "酒楼二层风波",
+      "folder": "jiu-lou-er-ceng-feng-bo"
+    },
+    {
+      "id": "xun-song-ji/qin-niang-zi-jia-dao",
+      "name": "秦娘子驾到",
+      "folder": "qin-niang-zi-jia-dao"
+    },
+    {
+      "id": "xun-song-ji/qian-xian-ji-bao-di-da",
+      "name": "前线急报抵达",
+      "folder": "qian-xian-ji-bao-di-da"
+    },
+    {
+      "id": "xun-song-ji/long-cheng-jiao-chang-zheng-jun",
+      "name": "陇城校场整军",
+      "folder": "long-cheng-jiao-chang-zheng-jun"
+    },
+    {
+      "id": "xun-song-ji/qing-he-sha-pan-yi-shi",
+      "name": "清河沙盘议事",
+      "folder": "qing-he-sha-pan-yi-shi"
+    },
+    {
+      "id": "xun-song-ji/bian-cheng-jing-zhong",
+      "name": "边城警钟",
+      "folder": "bian-cheng-jing-zhong"
+    },
+    {
+      "id": "xun-song-ji/ji-yuan-jun-xie-che",
+      "name": "急援军械车",
+      "folder": "ji-yuan-jun-xie-che"
+    },
+    {
+      "id": "xun-song-ji/qiang-liang-che-cun",
+      "name": "抢粮撤村",
+      "folder": "qiang-liang-che-cun"
+    },
+    {
+      "id": "xun-song-ji/tu-qiang-xiang-kou-mai-fu",
+      "name": "土墙巷口埋伏",
+      "folder": "tu-qiang-xiang-kou-mai-fu"
+    },
+    {
+      "id": "xun-song-ji/wu-ding-nu-shou-jie-bei",
+      "name": "屋顶弩手戒备",
+      "folder": "wu-ding-nu-shou-jie-bei"
+    },
+    {
+      "id": "xun-song-ji/qing-he-cun-kou-ju-qi",
+      "name": "清河村口拒骑",
+      "folder": "qing-he-cun-kou-ju-qi"
+    },
+    {
+      "id": "xun-song-ji/yin-lang-jian-shou-zhen-di",
+      "name": "银狼坚守阵地",
+      "folder": "yin-lang-jian-shou-zhen-di"
+    },
+    {
+      "id": "xun-song-ji/yin-lang-ju-ji-di-zhen",
+      "name": "银狼狙击敌阵",
+      "folder": "yin-lang-ju-ji-di-zhen"
+    },
+    {
+      "id": "xun-song-ji/shu-sheng-ke-ju-zhong-bang",
+      "name": "书生科举中榜",
+      "folder": "shu-sheng-ke-ju-zhong-bang"
+    },
+    {
+      "id": "xun-song-ji/shu-sheng-deng-zhou-fu-jing",
+      "name": "书生登舟赴京",
+      "folder": "shu-sheng-deng-zhou-fu-jing"
+    }
+  ]
+}

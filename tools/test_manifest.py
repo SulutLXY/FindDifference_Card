@@ -73,7 +73,8 @@ class ManifestTests(unittest.TestCase):
             topics.mkdir()
             order = Path(directory) / 'order.json'
             index = Path(directory) / 'cities.json'
-            config = {'chapters': ['city-A', 'city-B'], 'navigation': ['romance-food']}
+            config = {'chapters': ['city-A', 'city-B'], 'navigation': ['romance-food'],
+                      'badges': {'romance-food': 'collect', 'city-A': 'hard', 'city-B': None}}
             order.write_text(json.dumps(config), encoding='utf-8')
             group = {'key': 'romance-food', 'name': '恋爱美食', 'chapters': ['city-A', 'city-B'], 'defaultChapter': 'city-A'}
             topic_file = topics / 'romance-food.json'
@@ -95,8 +96,15 @@ class ManifestTests(unittest.TestCase):
                 built = json.loads(index.read_text(encoding='utf-8'))
                 self.assertEqual(built['navigation'], ['romance-food'])
                 self.assertEqual(built['topics'], [group])
+                self.assertEqual(built['badges'], config['badges'])
                 self.assertEqual(sorted(p.name for p in root.iterdir()), ['city-A', 'city-B'])
                 baseline = index.read_bytes()
+                for invalid_badges in [{'missing-chapter': 'new'}, {'city-A': 'invalid'}, ['new']]:
+                    invalid = {**config, 'badges': invalid_badges}
+                    order.write_text(json.dumps(invalid), encoding='utf-8')
+                    self.assertEqual(manifest.main(), 1)
+                    self.assertEqual(index.read_bytes(), baseline, 'Invalid badges cannot overwrite the published index')
+                order.write_text(json.dumps(config), encoding='utf-8')
                 config['navigation'] = ['city-A', 'romance-food']
                 order.write_text(json.dumps(config), encoding='utf-8')
                 self.assertEqual(manifest.main(), 1)

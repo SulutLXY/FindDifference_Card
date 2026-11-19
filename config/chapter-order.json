@@ -2,17 +2,29 @@
   "navigation": [
     "wang-luo-re-dian",
     "qing-hua-ci",
-    "nian-du-re-geng",
+    "xun-song-ji",
     "chong-wu-gu-shi",
+    "qu-wei-duan-ju",
     "meng-chong-san-guo",
+    "nian-du-re-geng",
     "lian-ai-mei-shi"
   ],
+  "badges": {
+    "wang-luo-re-dian": "hot",
+    "qing-hua-ci": "new",
+    "meng-chong-san-guo": "hard",
+    "lian-ai-mei-shi": "collect",
+    "xun-song-ji": "new",
+    "qu-wei-duan-ju": "new"
+  },
   "chapters": [
     "wang-luo-re-dian",
     "qing-hua-ci",
-    "nian-du-re-geng",
+    "xun-song-ji",
     "chong-wu-gu-shi",
+    "qu-wei-duan-ju",
     "meng-chong-san-guo",
+    "nian-du-re-geng",
     "bei-jing",
     "shang-hai",
     "nan-jing",

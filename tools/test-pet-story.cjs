@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const cities = read('assets/resources/configs/cities.json').cities;
-assert.equal(cities.indexOf('chong-wu-gu-shi'), cities.indexOf('nian-du-re-geng') + 1);
+assert.equal(cities.indexOf('chong-wu-gu-shi'), cities.indexOf('qing-hua-ci') + 1);
 assert.equal(cities[cities.indexOf('chong-wu-gu-shi') + 1], 'meng-chong-san-guo');
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
@@ -24,7 +24,7 @@ const imageFile = request => {
 };
 (async () => {
     const city = await flow._loadCityMeta({}, 'chong-wu-gu-shi');
-    assert.equal(city.name, '宠物故事');
+    assert.equal(city.name, '萌宠故事');
     assert.equal(city.banner, 'chapter-covers/city-PetStory-icon/spriteFrame');
     assert.equal(city.levels.length,20); assert.ok(city.levels.every(dir=>!/^level-/.test(dir)));
 assert.deepEqual(Object.values(city.levelIds),Array.from({length:20},(_,i)=>`city-PetStory/level-${String(i+1).padStart(2,'0')}`));
@@ -52,5 +52,5 @@ assert.deepEqual(Object.values(city.levelIds),Array.from({length:20},(_,i)=>`cit
         }
     }
     assert.equal(total, 242);
-    console.log('PASS: PetStory chapter after 2026Hotmeme, 20 names/configs, 40 image paths, 20 dedicated thumbnails and remote Bundle routing.');
+    console.log('PASS: PetStory chapter after porcelain, 20 stable IDs/configs, 40 image paths, 20 dedicated thumbnails and remote Bundle routing.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

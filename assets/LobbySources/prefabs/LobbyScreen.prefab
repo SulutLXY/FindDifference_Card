@@ -167,7 +167,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 750,
-      "height": 1625
+      "height": 1670
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -206,9 +206,9 @@
       "__uuid__": "024884d8-7de7-4467-a719-26801efdaf8d@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
-    "_type": 0,
+    "_type": 1,
     "_fillType": 0,
-    "_sizeMode": 2,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,

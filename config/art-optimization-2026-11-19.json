@@ -1,0 +1,3873 @@
+{
+  "date": "2026-11-19",
+  "applied": true,
+  "pngThreshold": {
+    "minQuality": 65,
+    "animationMinPSNR": 34,
+    "staticMinPSNR": 35,
+    "alphaMaxDelta": 32,
+    "sharedPalettePerAnimation": true
+  },
+  "jpegTool": "libjpeg-turbo 3.2.1 jpegtran -copy all -optimize",
+  "records": [
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (1).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 17587,
+      "afterBytes": 5990,
+      "beforeSha256": "c9396d2c899aba48c61d85dfdbb6209a4b4a96eadd80b4df18da2794dfbe5366",
+      "afterSha256": "fe3fa4b7bcf552c5b47e6cff0469e561a50d8591169649672b7d7381489ed290",
+      "metaSha256": "ba63e2bca5ec4aa64b2f907bbe0fe040d5da6e5eb0dc8f12c00a157ebea7c6da",
+      "beforePixelsSha256": "7191ef92aeb26588abe31c351d7a6a3ec430546190e9062ea3f48d427dd8c7f5",
+      "afterPixelsSha256": "0fac9972457bda0620c61d10d2a94a1c1bb3116910b5e151564e00b125df2f02",
+      "size": [
+        90,
+        90
+      ],
+      "group": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG",
+      "transparentMaskSha256": "f348018f2ec431bdb222a0f16e0737ac1ef056f5533dc094b970feea07c5b999",
+      "visiblePSNR": 34.4017,
+      "alphaMaxDelta": 26,
+      "alphaMeanDelta": 1.194198
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (2).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 18679,
+      "afterBytes": 6223,
+      "beforeSha256": "52700cc72d699766331726272484f39bc1026d52f9f8700f231a045da1af8cd0",
+      "afterSha256": "0366571f03be5df53dfb4a0e9b4512ab2b91ac326a9986de7fc71197c4193dd3",
+      "metaSha256": "b3cfde6ac5ff8e7be99e09c6a4bc85a14cc5b04cd35be53773692dcba4e221a3",
+      "beforePixelsSha256": "8f1dc66bab26e8188b33fe9d9a3cb80e7f49284049794ccc99bdf31677190cc4",
+      "afterPixelsSha256": "30b93c4285e5bf817a5a0b571e7b04593ba6915f86a8e4f080a63956ae11e0a7",
+      "size": [
+        90,
+        90
+      ],
+      "group": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG",
+      "transparentMaskSha256": "12cbc9b39a054159863623f61cae94d5fe7c31c62cddc5b04dedfb577636c5ea",
+      "visiblePSNR": 34.409,
+      "alphaMaxDelta": 28,
+      "alphaMeanDelta": 1.248025
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (3).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 17709,
+      "afterBytes": 5989,
+      "beforeSha256": "325525cf9cfc459f641cc05d62351cea794860a4f089283b664ac9ba5740873f",
+      "afterSha256": "affc847f5310427ceb8e1b8357618947cca601cb961d118f5081e9f73721c0bb",
+      "metaSha256": "1669473154a3c2bea64016851663fec39502a653f0eaba2f2878b9b3f07cef72",
+      "beforePixelsSha256": "81f99f5e9dcf48dc77dd43dd536ad9605108dd2ca3b4ab2ae3984800fa90e901",
+      "afterPixelsSha256": "0d6475de1000f2cac7dd96dd1f7ba0eba3457863df14f4bca24e7355851c7262",
+      "size": [
+        90,
+        90
+      ],
+      "group": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG",
+      "transparentMaskSha256": "75b1dd27262fc9adc3c0c98205cd421d8e9f0d13811397392968316e7e40fff0",
+      "visiblePSNR": 34.3495,
+      "alphaMaxDelta": 22,
+      "alphaMeanDelta": 1.164074
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (4).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 18533,
+      "afterBytes": 6221,
+      "beforeSha256": "ea632ce394fc6c440b8d01a170c18df464b896678f3ef8acc9b0298b8503cf00",
+      "afterSha256": "7bcddbc00b322c394c488351d3dcb110f06b6e2a56890fc2a134e656c83c1395",
+      "metaSha256": "72568c0b5afde851ca6fb512d3a128ffbfa00c9ad760b5f9fbd5c45fd08ce600",
+      "beforePixelsSha256": "308c8d4318a77c8a66bf4c1fe31e71699b0bd5027a8fd80e01e09f6e504bf5fe",
+      "afterPixelsSha256": "56a5f2a59dfabc2ed3cd43682b7a64588bc0c5a159ba0869b89a9d0a30a323b2",
+      "size": [
+        90,
+        90
+      ],
+      "group": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG",
+      "transparentMaskSha256": "8245243dd4d0917834eb3966d67e36fa69dfc943de3d5beb2c8e3ea0bc1913ec",
+      "visiblePSNR": 34.2833,
+      "alphaMaxDelta": 30,
+      "alphaMeanDelta": 1.238272
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_BG.png",
+      "kind": "png-palette",
+      "beforeBytes": 20777,
+      "afterBytes": 7673,
+      "beforeSha256": "01246da5571bba70f50e6ef05d6e91ff569013f46bc56b0d3d1799e0fb28599a",
+      "afterSha256": "07f69c24b4070dc4278b6fd58e5832202b4051017b312b57a66cd1344d165964",
+      "metaSha256": "cc1c40a88c99074abdc2d495902d39157b3027f5e9603359a7dd0d4857f12844",
+      "beforePixelsSha256": "300b5b7c0bef210487f322a80a1b46f34b3c6fe2b9e4c74cf4b8f4a79932405f",
+      "afterPixelsSha256": "49c0773c52a6fc07bf28fbe92a842429a254b6e9ef59437e3490dba2e07bbeca",
+      "size": [
+        105,
+        110
+      ],
+      "group": "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_BG.png",
+      "transparentMaskSha256": "fff81f453f8ecc2331631d9def308813f69016e6a54f369e6b9ec78a3b953ab7",
+      "visiblePSNR": 40.1919,
+      "alphaMaxDelta": 22,
+      "alphaMeanDelta": 0.161039
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/Animation/Item_Tips_surprise_NDRD/Item_Tips_surprise_NDRD_ (1).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 29328,
+      "afterBytes": 8514,
+      "beforeSha256": "a73cbce9f694825760721bf74fddcf9c8288a664dab0f7a3a340f129cfe70e9d",
+      "afterSha256": "6b3e530fba840e7b8856d22b3e0757772fa70cd6c9e36fc14c0e1ddf2e7baef0",
+      "metaSha256": "26f0f3e427e7bf1011296e0bc49edc1353150944629a16c715894f379dad2097",
+      "beforePixelsSha256": "1395d67fdd51a9bf1a0bcc33ed6d50c779ee9deed0f7407c398cdbb161b2a9b0",
+      "afterPixelsSha256": "8df108a63f09619638de431286072be9453385a57bf9542470c41312ee2ced1b",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/Bundle/levels/nian-du-re-geng/Animation/Item_Tips_surprise_NDRD",
+      "transparentMaskSha256": "3fa99c24590871dfade0ae0f0dc367cde8bc68efb3aa2b75baf5f911d866d27f",
+      "visiblePSNR": 36.3121,
+      "alphaMaxDelta": 31,
+      "alphaMeanDelta": 0.09466
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/Animation/Item_Tips_surprise_NDRD/Item_Tips_surprise_NDRD_ (2).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 29513,
+      "afterBytes": 8657,
+      "beforeSha256": "8fdace8da4585366b1342ef9775f09b66ac17ae4b1f079b9453caa4f7ba6acda",
+      "afterSha256": "9b564a2bb1bda90fa5125dce1debdcf3684b253f98cac93d50bcbcb40a73e96a",
+      "metaSha256": "20c5884e3a0f11aa58cc03c9b3d8307df2b1875600768e93eb146b449878b908",
+      "beforePixelsSha256": "8d9e3efd5fad20a7e22e939b92215bfaea821a5f36ac5e61c0dadd52fd9c1700",
+      "afterPixelsSha256": "5d005a15f289499ab2ac16e0501c4cc3b3906384b0e6b8a0e6f5326a5eab3c13",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/Bundle/levels/nian-du-re-geng/Animation/Item_Tips_surprise_NDRD",
+      "transparentMaskSha256": "7306faa65a7c7d48dd1dc5f8f8a7eca38c06e7653384922125ca3fc67857e860",
+      "visiblePSNR": 36.3492,
+      "alphaMaxDelta": 23,
+      "alphaMeanDelta": 0.090463
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/Animation/Item_Tips_surprise_NDRD/Item_Tips_surprise_NDRD_ (3).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 29175,
+      "afterBytes": 8424,
+      "beforeSha256": "0281bad197bdc4ff41259064e55e5bb40691a2666fb8e181bd6e650d45e8f3d4",
+      "afterSha256": "bd77f99691cef4b275040c2ce350a8fad02b0c4238cd3a0a056185282cc5baaf",
+      "metaSha256": "4f5d33110920986b722c3f8697a092d57b1f607527770a805d9a971ac84ddc06",
+      "beforePixelsSha256": "2b859768dc1e37151c69dade5d7be1f9e6c4f5affc49e3d7b77320d0e700702e",
+      "afterPixelsSha256": "7b87080996829c310b460022a3832cef2a4f265d8d424e13170c5dc0fa9cbca7",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/Bundle/levels/nian-du-re-geng/Animation/Item_Tips_surprise_NDRD",
+      "transparentMaskSha256": "2d57a33c783b7319b89f705d3e38a5890f3843f95427bc90e5fc0dc6f1bd5db9",
+      "visiblePSNR": 35.918,
+      "alphaMaxDelta": 27,
+      "alphaMeanDelta": 0.094383
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/Animation/Item_Tips_surprise_NDRD/Item_Tips_surprise_NDRD_ (4).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 29815,
+      "afterBytes": 8617,
+      "beforeSha256": "8996ab6d9f71710049bfd69268d1c6979058f172e366b26509bad47a58d29d49",
+      "afterSha256": "8a677e0e51404a904bdb9fe9178bb674d547dcf26643cf99f34b7507705c9649",
+      "metaSha256": "e51816406283fd6abca2af0ccb1f8969d9cee9404c3bbd8b50e9865de98a70a4",
+      "beforePixelsSha256": "062b03cc3668cb4bf61b740d34919a4abb3263a11c90e41370148ed09b9bbefe",
+      "afterPixelsSha256": "b3361e03ff4f8b17f8e0f1d343e8427797c5b28c615ba42135dd3f89d24c6c21",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/Bundle/levels/nian-du-re-geng/Animation/Item_Tips_surprise_NDRD",
+      "transparentMaskSha256": "c242b7048f1c122f70fed8a71ce552fba2251d802aa4931f5e28371972ee2398",
+      "visiblePSNR": 36.2278,
+      "alphaMaxDelta": 27,
+      "alphaMeanDelta": 0.09608
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/Animation/Item_Tips_surprise_NDRD/Item_Tips_surprise_NDRD_ (5).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 30034,
+      "afterBytes": 8838,
+      "beforeSha256": "3d7293e7ad11b3fc58915aefa2115f18ea75c57f8d75212e680abeac44149eab",
+      "afterSha256": "82f9baa542508794e1e8ac7512eca125778a347eb6954b24666820dc8de248a7",
+      "metaSha256": "a486b61f19d5a6914aaee985dafaae21e1ddea88122e35f15de2c24f74451cfc",
+      "beforePixelsSha256": "5ee107e05171828bff66a5365d1c02722e271e9e4f67bc59ced7a4c46c2e32b1",
+      "afterPixelsSha256": "26a4e8b49210f5693f82f8baca51a6012fb68f949af7d4cbc445d13098e9fcc9",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/Bundle/levels/nian-du-re-geng/Animation/Item_Tips_surprise_NDRD",
+      "transparentMaskSha256": "350f19675a40357383e6536c2b56ef866cb3cc681086e83bd0bd263191ecee13",
+      "visiblePSNR": 36.1463,
+      "alphaMaxDelta": 24,
+      "alphaMeanDelta": 0.095895
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Animation/Item_Tips_surprise_QHC/Item_Tips_surprise_QHC_ (1).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 42166,
+      "afterBytes": 12716,
+      "beforeSha256": "80fcf2aac4ac28b620747cfb44478ec83284d1da0d7fc8b8961afaa01732e7af",
+      "afterSha256": "ed79375c3f5327efd2c22e7e4e371865f22075727277a557cf04cf6a4b94a2ef",
+      "metaSha256": "fd53eef3ed9ba4b468d998881fbfa792eac0377ee34169e7addd069873c8ae14",
+      "beforePixelsSha256": "d2adb91bf7464e4b5e3a536e7ae64aeebe4626a7d16700b59f87e6f210057823",
+      "afterPixelsSha256": "69356084abc0c7e00005b75c0f9f0005191a40ab5ea567a5e45df666e16e037c",
+      "size": [
+        150,
+        150
+      ],
+      "group": "assets/Bundle/levels/qing-hua-ci/Animation/Item_Tips_surprise_QHC",
+      "transparentMaskSha256": "182e282a3fdc9e0fe1889dbdd0780c1552c33d4ced1a1836895ec9db411bfc44",
+      "visiblePSNR": 37.5192,
+      "alphaMaxDelta": 24,
+      "alphaMeanDelta": 0.141111
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Animation/Item_Tips_surprise_QHC/Item_Tips_surprise_QHC_ (2).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 40742,
+      "afterBytes": 12320,
+      "beforeSha256": "aaea4fe0b69259b298816ca810b1b23036143912dd257047cffa64face26f943",
+      "afterSha256": "035f7a5815064b19971f61128bfda6b5149d0249571ae1a223c43a72eea65d91",
+      "metaSha256": "6e59c199c1e02819abb7fe13d8baef2df07cb1adc517e7d14faeb60e4758b0d4",
+      "beforePixelsSha256": "c5cfd93250fac4977b4b437db01e3ad6e12bb6da5379379d1ceca3180f807ded",
+      "afterPixelsSha256": "69a015f6cd849ae896cce79c49a650f7a5e3bbdf1e2d6e8100208df659074b7b",
+      "size": [
+        150,
+        150
+      ],
+      "group": "assets/Bundle/levels/qing-hua-ci/Animation/Item_Tips_surprise_QHC",
+      "transparentMaskSha256": "3c1090397d37869cc8074c8a854dc52e300c2898589a7c50c553b950d9509d7c",
+      "visiblePSNR": 37.7744,
+      "alphaMaxDelta": 26,
+      "alphaMeanDelta": 0.148267
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Animation/Item_Tips_surprise_QHC/Item_Tips_surprise_QHC_ (3).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 43416,
+      "afterBytes": 14927,
+      "beforeSha256": "b797c362b0db23ae56bb26ae3a6403afa8e4dc125910143edb1a170b7366aa8d",
+      "afterSha256": "9d1953e9de1f9c5c887d0df95f4548fdef0051c43c7a6ae00f49d7d38ccd4f00",
+      "metaSha256": "aca581c17fd804f59fcead049ee1a66bf39cd32db9a320677c3fd4eac61eb68d",
+      "beforePixelsSha256": "42eb32fda947d15fe383619689020d1aec77b633fd723fc1041e3d601c7b0496",
+      "afterPixelsSha256": "6a4ce314a66977b3a9400641d4fb11355e2ac1538ad51ba1e2ac172509c50562",
+      "size": [
+        150,
+        150
+      ],
+      "group": "assets/Bundle/levels/qing-hua-ci/Animation/Item_Tips_surprise_QHC",
+      "transparentMaskSha256": "a322045d121ef02891ace0a06d50a4700fec9aec094afb2645ae6efd883169d5",
+      "visiblePSNR": 37.8269,
+      "alphaMaxDelta": 22,
+      "alphaMeanDelta": 0.1556
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Animation/Item_Tips_surprise_QHC/Item_Tips_surprise_QHC_ (4).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 43741,
+      "afterBytes": 14963,
+      "beforeSha256": "7618d94270b3882e701d611f2f6295177a62083ec6ffebd36eebc64a03619247",
+      "afterSha256": "d38f9ec612368c8d8bc2bf00f72dc50d8ea7116f517a3ffecb73e25fb0d66656",
+      "metaSha256": "1308bfed505fdfe1aa7a6ca04f6a568ecf4cb68f4c7dfa773ddab1e581d9c2af",
+      "beforePixelsSha256": "f841c5f8b244a97546489ac758a59c0fc05464d4a69a1d59a9eb24bfdba6e3b1",
+      "afterPixelsSha256": "4979bd7c0763082a25e13b24514f6fb184a7bd7c8e1425451a3cc0942ec7f547",
+      "size": [
+        150,
+        150
+      ],
+      "group": "assets/Bundle/levels/qing-hua-ci/Animation/Item_Tips_surprise_QHC",
+      "transparentMaskSha256": "4c74973d097530a634d06adbecbdf97b4e6b46ff9f80b963f8249ac348dd1cf5",
+      "visiblePSNR": 37.9322,
+      "alphaMaxDelta": 19,
+      "alphaMeanDelta": 0.1464
+    },
+    {
+      "path": "assets/LobbySources/textures/UI_Sprite/icons/icon_Mark_blue.png",
+      "kind": "png-lossless",
+      "beforeBytes": 1134,
+      "afterBytes": 1131,
+      "beforeSha256": "e9f7ea9ad70d9957f6e59a33bc37e0c709d5e76388bd1d0a1c94474c4571edf1",
+      "afterSha256": "5099d4a5c95896760affa446e5899fb6996458a25426bae8f6bd258eb5ab58da",
+      "metaSha256": "2865ee208acdf34e082115e537a997ce921493c51a4afa58a1711239f392783f",
+      "beforePixelsSha256": "ba984cc8d63512ca5a722997e8d178f827c00e13031b07dc078d019dce6d79fe",
+      "afterPixelsSha256": "ba984cc8d63512ca5a722997e8d178f827c00e13031b07dc078d019dce6d79fe",
+      "size": [
+        114,
+        50
+      ],
+      "group": "assets/LobbySources/textures/UI_Sprite/icons/icon_Mark_blue.png",
+      "transparentMaskSha256": "24226dff93349903f8e8f59b45db31c41e4826ef2d8c58d45ec16941744be57c",
+      "visiblePSNR": 99.0,
+      "alphaMaxDelta": 0,
+      "alphaMeanDelta": 0.0
+    },
+    {
+      "path": "assets/LobbySources/textures/UI_Sprite/icons/icon_Mark_green.png",
+      "kind": "png-lossless",
+      "beforeBytes": 1160,
+      "afterBytes": 1159,
+      "beforeSha256": "f63038128515f21aaccbf41c01e984b257e2b40bb0d599dd0dc97c533bb57a60",
+      "afterSha256": "11681510f919613453fbb1455b28cdef51a412c3746f4c7ee3664f278a7f2278",
+      "metaSha256": "41093fdbad721644549fc6f07813b0b38a3531e4f7f9b49874179f40c3b417f8",
+      "beforePixelsSha256": "7298ceba342a89523d995e0f2996b72983320cfedccd9c80fa551bd8d91cabfa",
+      "afterPixelsSha256": "7298ceba342a89523d995e0f2996b72983320cfedccd9c80fa551bd8d91cabfa",
+      "size": [
+        114,
+        50
+      ],
+      "group": "assets/LobbySources/textures/UI_Sprite/icons/icon_Mark_green.png",
+      "transparentMaskSha256": "24226dff93349903f8e8f59b45db31c41e4826ef2d8c58d45ec16941744be57c",
+      "visiblePSNR": 99.0,
+      "alphaMaxDelta": 0,
+      "alphaMeanDelta": 0.0
+    },
+    {
+      "path": "assets/LobbySources/textures/UI_Sprite/icons/icon_Mark_red.png",
+      "kind": "png-lossless",
+      "beforeBytes": 1155,
+      "afterBytes": 1152,
+      "beforeSha256": "bf58963730f2b823b61c06b225ea4d0caad06af420ae54947b2857b1a68e23c7",
+      "afterSha256": "9cb949bde4da74bb908bebcd472ff57ef97294a5b7330f0e8b192c62cf0382c4",
+      "metaSha256": "a04bc22152fbb31faac5cbe9699e46b54d23c0b76c83c86341a72a56a1c52a25",
+      "beforePixelsSha256": "311f76afb249143dc7789e3c8d0e2a8af8af5ab4ee5cddf558b77be1be90d7c3",
+      "afterPixelsSha256": "311f76afb249143dc7789e3c8d0e2a8af8af5ab4ee5cddf558b77be1be90d7c3",
+      "size": [
+        114,
+        50
+      ],
+      "group": "assets/LobbySources/textures/UI_Sprite/icons/icon_Mark_red.png",
+      "transparentMaskSha256": "24226dff93349903f8e8f59b45db31c41e4826ef2d8c58d45ec16941744be57c",
+      "visiblePSNR": 99.0,
+      "alphaMaxDelta": 0,
+      "alphaMeanDelta": 0.0
+    },
+    {
+      "path": "assets/LobbySources/textures/UI_Sprite/icons/icon_chest.png",
+      "kind": "png-palette",
+      "beforeBytes": 3377,
+      "afterBytes": 2219,
+      "beforeSha256": "f1fb418b61ae45a66a850271376d6e0df621277ff1b4a93cb19cecc05651e9eb",
+      "afterSha256": "af5d6558338cb48f695f83327dc6f410d00a6d1a3a15c2931384d5bff9a36d2d",
+      "metaSha256": "5029cad70a5c9aca77a3613caedd889e92f8eb0f85ef03b04f7fef799869e2fd",
+      "beforePixelsSha256": "6c7249ec00c56cd03dbbbd2c6312014e9e025f23b9aa8b94d47ad81fceefe32d",
+      "afterPixelsSha256": "6ec7d4adbccc5d0a61f15c32e6838be7511711523bcde2634e396eac2d269813",
+      "size": [
+        42,
+        42
+      ],
+      "group": "assets/LobbySources/textures/UI_Sprite/icons/icon_chest.png",
+      "transparentMaskSha256": "151ab5a45904baca87564fd0b02914627c2195a117b9b645f69fb22bfe6857c7",
+      "visiblePSNR": 40.2195,
+      "alphaMaxDelta": 10,
+      "alphaMeanDelta": 0.129252
+    },
+    {
+      "path": "assets/LobbySources/textures/UI_Sprite/icons/icon_fire.png",
+      "kind": "png-palette",
+      "beforeBytes": 3168,
+      "afterBytes": 2095,
+      "beforeSha256": "2f094c2c8a84144a7f605a43289484c705798787c47de0e9ccb24a40a91e0e31",
+      "afterSha256": "d25f705e223f1b577a6896a46a4d6a01028729e3c201daa6166a24014999502e",
+      "metaSha256": "cb84a59d7fc69c53e5a393acec26ac68d1285014e91e8b8bc7e5b36c3bf123ea",
+      "beforePixelsSha256": "247008d998305363cc99a9da134a92fdeabf6afd88ddb6f625067972bb51bbc2",
+      "afterPixelsSha256": "e99850324658a3c7ee2ade114a4f9954dfd9c1a0579bab99892385a02ffbc7fb",
+      "size": [
+        40,
+        40
+      ],
+      "group": "assets/LobbySources/textures/UI_Sprite/icons/icon_fire.png",
+      "transparentMaskSha256": "a105d6ba2d60d70a935d0c4d9a2a6594e472b7ec4d4f40c1f1ec38b6e360b5cb",
+      "visiblePSNR": 41.9425,
+      "alphaMaxDelta": 5,
+      "alphaMeanDelta": 0.93375
+    },
+    {
+      "path": "assets/LobbySources/textures/UI_Sprite/icons/icon_leaf.png",
+      "kind": "png-palette",
+      "beforeBytes": 3142,
+      "afterBytes": 2148,
+      "beforeSha256": "8e527224d34842bc5ad5240993c324da5abc8db886de81b81080ac33cbfff76b",
+      "afterSha256": "fad8a6fc1191d6d3f7a0d4d2063c9e45e24c9421c725924c36f11ecc080d01d4",
+      "metaSha256": "7e1f4356282d035b5ca7f6b8e1b84c1084a3e37d9b9348ad732e2fd050160dc1",
+      "beforePixelsSha256": "3f68d20421167258da9626faf7528c224fe68bba7a5733e47023cd807f69ae97",
+      "afterPixelsSha256": "07e460f041ff0d8476d65de0a84a92762952556f77111d1ef48acb97231a046e",
+      "size": [
+        40,
+        40
+      ],
+      "group": "assets/LobbySources/textures/UI_Sprite/icons/icon_leaf.png",
+      "transparentMaskSha256": "76dfac62f6024da86e0784a7e837e182ab8473f138780dd95356e414b19bb3b1",
+      "visiblePSNR": 40.9993,
+      "alphaMaxDelta": 8,
+      "alphaMeanDelta": 1.0125
+    },
+    {
+      "path": "assets/LobbySources/textures/UI_Sprite/icons/icon_skull.png",
+      "kind": "png-palette",
+      "beforeBytes": 3566,
+      "afterBytes": 2164,
+      "beforeSha256": "a70527ada40f3a32f3a132150f700e23750c127e03f53c07c872153c17b9af96",
+      "afterSha256": "ed1d3e6308243f52fa7ba28aca76b8055b7c933499e995dc15a920f4813e6472",
+      "metaSha256": "d8a368a9c21d847dadcee3037c410a8e90bd70b67725b6c20541896dfeb8c8a8",
+      "beforePixelsSha256": "b6d4d3346e1caab5e8f809a8a6d514565793e0f3a648cc0bf44d3c49ce1ff671",
+      "afterPixelsSha256": "595f464cbfabc2e9e231b24dced582153b11ace97e16503bda9098bf6c696c1e",
+      "size": [
+        40,
+        40
+      ],
+      "group": "assets/LobbySources/textures/UI_Sprite/icons/icon_skull.png",
+      "transparentMaskSha256": "a05e823aaa8b14e20d4d7708d8438a31a7d086cc080edcb7ba0d40a2dce04000",
+      "visiblePSNR": 43.1631,
+      "alphaMaxDelta": 7,
+      "alphaMeanDelta": 1.0025
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (1).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 42228,
+      "afterBytes": 13996,
+      "beforeSha256": "e30d04b5ee2f514e64b1de21e5e367a32d55d3edbe0d9a5ccc3cf5b785c05084",
+      "afterSha256": "47c952bcafa2fd7e5f673932910d4cbbc9fde1c06c51482dd8964d46d94fe72a",
+      "metaSha256": "2cbe31ca8a1e325375a870d0c69d4a69bc7a34cecd9e6857f85265b8cd7eecc8",
+      "beforePixelsSha256": "3ffdbcb5d730548f7e1dffdde70327bda0b0d006dcbd38d664b8eaf38fb4f1a9",
+      "afterPixelsSha256": "fdfb85f7783292295d621ccca58b16e603feaa6bfc01989089dab1d10d124d4d",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/PleyGame/Animation/Item_Tips_surprise_Normal",
+      "transparentMaskSha256": "f470c76eef045a22a0c242943a271b1bc39956e1fa4a602ff35b95ab6bf85531",
+      "visiblePSNR": 37.1367,
+      "alphaMaxDelta": 30,
+      "alphaMeanDelta": 0.343796
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (2).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 42532,
+      "afterBytes": 14183,
+      "beforeSha256": "3eed9334d7711d46d435d6d3c174fb70168b0fa756094584757b78a467960fff",
+      "afterSha256": "5eca4df5a95039ca82ba385ef0219eb69d0d36afc2e2ffe11c5cbf1ee4aaa03d",
+      "metaSha256": "535ce6c867079f1eed98d81857f113cf3f22e3ab8d7d20dca81119b23448a2fe",
+      "beforePixelsSha256": "1c4ccfd7074de248be02582c239a4c4df206a82daad48ce8ee6177f12de4ab01",
+      "afterPixelsSha256": "c8f11f9e5972785afb64b5c8c59693d08c5d545f1554ff8219cba5a9bf018d41",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/PleyGame/Animation/Item_Tips_surprise_Normal",
+      "transparentMaskSha256": "dfc1a2ad660c86be84d3691cc73183efff93edaa79d992012fb05dd0b60ee1ee",
+      "visiblePSNR": 36.4935,
+      "alphaMaxDelta": 28,
+      "alphaMeanDelta": 0.344599
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (3).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 40904,
+      "afterBytes": 13996,
+      "beforeSha256": "948b38be898a471479a126848fb376217cca45c90eadff962fbd6a2be1a9f851",
+      "afterSha256": "c99abbdb78b20db0759a3c65b4835b257090b52069d968424a014d3b8ea17705",
+      "metaSha256": "a2ffe5ff00784dde3833870123b45e04c3968d23aedae585188126216cce9245",
+      "beforePixelsSha256": "c36773341cc95706a69d4b7118af967b582175ef5d61793fe8b8f4169f009c29",
+      "afterPixelsSha256": "f601cda3de72c0266f900c1b9d6407001d40fce572b5484e848a5846d7edbd8f",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/PleyGame/Animation/Item_Tips_surprise_Normal",
+      "transparentMaskSha256": "e484c81a5d7849d0e7db64082d3d7bd08b154ff273fe060f28bbc3097b9355a1",
+      "visiblePSNR": 36.9166,
+      "alphaMaxDelta": 32,
+      "alphaMeanDelta": 0.331389
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (4).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 41550,
+      "afterBytes": 13952,
+      "beforeSha256": "99baa9cc1fb1c090be63c49cb9ad4391fc3fa0c5bcb69fcec4e6db295f686f13",
+      "afterSha256": "9db390441d7d1c4d866da6e307b8133c39768f4dae408f21e091cae239a265ca",
+      "metaSha256": "078ce9c65d7ca2c8c6ae3f9297b78849d6308b174da689fcefc702c272f0a496",
+      "beforePixelsSha256": "66906b4bb3a15d310dbfbb6cfa7f65fb01158ac0488f474bf60b3d6efd560446",
+      "afterPixelsSha256": "afa3435e3a270c5aca43ab90e74bf8749376288f1575017619cc83e4f9a786de",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/PleyGame/Animation/Item_Tips_surprise_Normal",
+      "transparentMaskSha256": "a3beefd7344f85b5502fd353ddf88aa8c4b8cbaf71c4508729999df089752fe9",
+      "visiblePSNR": 37.1254,
+      "alphaMaxDelta": 28,
+      "alphaMeanDelta": 0.340895
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (5).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 43553,
+      "afterBytes": 14298,
+      "beforeSha256": "78de31926f25fe8c92a0c3cdb6ae5b5adc7f2fdf02b102d96e69a4b608434670",
+      "afterSha256": "336a6b89f6fecf1b6f6a56a248deb0736bf571de729c61ae5d33f6f97249dde1",
+      "metaSha256": "7cf8ebec4518a85f3ed2b11f0e3987c69e46c7073799022a8734e7e82c1f2f0d",
+      "beforePixelsSha256": "0cae78ffcdebbbb8b65ff0bed784a091f4fbbaf1a07be96b344623f8d1fec80b",
+      "afterPixelsSha256": "3ce55c18e5ca62aa5cc95222af47ffa78cf02dda4f697a34519dcf624efabf08",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/PleyGame/Animation/Item_Tips_surprise_Normal",
+      "transparentMaskSha256": "a591ab312598b50c3e8fd19eba4a119fd81617e9b7cede31c53de9fbee80016b",
+      "visiblePSNR": 37.035,
+      "alphaMaxDelta": 27,
+      "alphaMeanDelta": 0.370648
+    },
+    {
+      "path": "assets/PleyGame/Animation/Item_Tips_surprise_Normal/Item_Tips_surprise_Normal_ (6).png",
+      "kind": "png-shared-palette",
+      "beforeBytes": 41688,
+      "afterBytes": 14061,
+      "beforeSha256": "626864873071f13ec54f63ecd0220ce4554f12e6a8f502e32cce8736beea11cb",
+      "afterSha256": "412c07f5b7e43c933dcbcbff5e533adf045f9e976edd7edf16d89aea3829e011",
+      "metaSha256": "635a34b1c6d80e73b0f4c2d6f0f8e9a356c94bb0b04d24dc5b02221a1fd07d87",
+      "beforePixelsSha256": "79d618e885d33d9d8d7e464ebdf08ec2f206b83ebbe0643e8a2a4e7b1ce3a78c",
+      "afterPixelsSha256": "d335931c75195631e31878edb7da6dbe6b695b8601944565501e173941ff116f",
+      "size": [
+        180,
+        180
+      ],
+      "group": "assets/PleyGame/Animation/Item_Tips_surprise_Normal",
+      "transparentMaskSha256": "3d291b3161d9dbd41385d936c5eb9ee714602d17ca776755b1cdad4eb101bcc9",
+      "visiblePSNR": 36.9965,
+      "alphaMaxDelta": 21,
+      "alphaMeanDelta": 0.342253
+    },
+    {
+      "path": "assets/PleyGame/Common/textures/UI_Sprite/V3/backgrounds/BG_Fly01.png",
+      "kind": "png-palette",
+      "beforeBytes": 6796,
+      "afterBytes": 4509,
+      "beforeSha256": "b0e21a10282fc983353c2b71aa90f89a1eac3f20ddbcc5f16670e89270588bf9",
+      "afterSha256": "c1de3c45c4d41f6188b090c543e932aa8b818bf1fc095ed9eb208041a54fe2e1",
+      "metaSha256": "7c739e649a95cd2949394aa30d3269d588ded20698bc105a2ebf525588426ceb",
+      "beforePixelsSha256": "364fdf09219f40757dc95d90f125bc765b2ee8a54b1324cd684eb6f27fb9b20b",
+      "afterPixelsSha256": "2212fb6c9a45760895362b027884646a8f664cb5f5ccf8c7a0784b713b744987",
+      "size": [
+        300,
+        300
+      ],
+      "group": "assets/PleyGame/Common/textures/UI_Sprite/V3/backgrounds/BG_Fly01.png",
+      "transparentMaskSha256": "0f0052fa649da8658cfed162da66b3e2e578c6dd0e396a8b33675543c5c68278",
+      "visiblePSNR": 99.0,
+      "alphaMaxDelta": 0,
+      "alphaMeanDelta": 0.0
+    },
+    {
+      "path": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_lock.png",
+      "kind": "png-palette",
+      "beforeBytes": 2669,
+      "afterBytes": 2164,
+      "beforeSha256": "1625ae7ccbbaf9fb81622db20ac64677915120061bb667da1e512ff5e2ecf53e",
+      "afterSha256": "8fd3bb31db77a3ccca282deb059e70618615afb475736cd62da05e4a3ecc7a18",
+      "metaSha256": "05de0221be12115974891c246552669ea4575e9e10bd79bba4a3061a014605d0",
+      "beforePixelsSha256": "38c30c9cde1201c466fe2fc52ef0fb979574214a94ff65d74f9200747e9a7b77",
+      "afterPixelsSha256": "913b446af94599102cad93f4f5441970af08aa688152a902e2e71fd3dc3f1caf",
+      "size": [
+        32,
+        38
+      ],
+      "group": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_lock.png",
+      "transparentMaskSha256": "6301105265624adbc8ce50409695d2dd9b3baa2fd38fb5e88714b9d04d0ec04e",
+      "visiblePSNR": 51.9634,
+      "alphaMaxDelta": 6,
+      "alphaMeanDelta": 0.066612
+    },
+    {
+      "path": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_settings.png",
+      "kind": "png-palette",
+      "beforeBytes": 14390,
+      "afterBytes": 5888,
+      "beforeSha256": "882d7dc38c1b9d65b73db8a0407a421338ac886583cae6d4e4fcb7ffd4fef857",
+      "afterSha256": "7520a3e01398e714c7d0f0fc891a2f093c80de17bec6abe3da54b4f10dfd7a5f",
+      "metaSha256": "179c60d9341a96d70c2586a3cc3c7579ce2b94f3e32c0da9de8d0535a0ff1764",
+      "beforePixelsSha256": "723f9096f557ee047a020ca169502638bae49d821023d0411c6e9648cefaa8ec",
+      "afterPixelsSha256": "ee15eec6c690896ed0604996797d852ba6bec84e947139b43ced2083d900efc2",
+      "size": [
+        87,
+        87
+      ],
+      "group": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_settings.png",
+      "transparentMaskSha256": "8a4aa40a5de73666086a43d18787c8429c932166876742fb9a5dc3febf392686",
+      "visiblePSNR": 40.5875,
+      "alphaMaxDelta": 19,
+      "alphaMeanDelta": 0.088387
+    },
+    {
+      "path": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starL.png",
+      "kind": "png-palette",
+      "beforeBytes": 6415,
+      "afterBytes": 3796,
+      "beforeSha256": "26ca8af40bf7a369a340b61300f1948888c7b9500a08040ae187a26f5fd0b4f4",
+      "afterSha256": "22c5b0512b4b9a33611fd468f14c362d9e8991da9af67da28a46596d225a9d6a",
+      "metaSha256": "f9023e2d59758dbef63609365e0cf374f4bf5546ee7db1b887209c92c38a3861",
+      "beforePixelsSha256": "0a26b4a3e1ad53c0a7d7c3a2e308d001ace1de3951a0291dbe5b38c08a9fe149",
+      "afterPixelsSha256": "c42c2207c0b17b6fef280a5cbbbad438ebb4ebe4ef4665600134410361cf479b",
+      "size": [
+        80,
+        80
+      ],
+      "group": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starL.png",
+      "transparentMaskSha256": "766670672c281cd7699c355422507191b73e170742d07c9fa5002b3998845646",
+      "visiblePSNR": 45.6787,
+      "alphaMaxDelta": 8,
+      "alphaMeanDelta": 0.847969
+    },
+    {
+      "path": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starW.png",
+      "kind": "png-palette",
+      "beforeBytes": 7819,
+      "afterBytes": 3580,
+      "beforeSha256": "917d946afb624a32993142818fa9faa9028127e28cb21e2c4e8962f26fe5be8a",
+      "afterSha256": "2ad73075d78824d6b672b5457679728bc30847ff31f5875f464fd72ef3ce054a",
+      "metaSha256": "be5f04662b202de792338410afab5e8e767af350001b4d3f7ae1d64bb27ec55e",
+      "beforePixelsSha256": "5084aa656a7471ef3670ec34da2f2793f9ea2e092f92e03ec1a686f9d682cb11",
+      "afterPixelsSha256": "2c241cad461619a5bdbe4c2733fd5b5f6eff5f6360052a35245625b913d05455",
+      "size": [
+        80,
+        80
+      ],
+      "group": "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starW.png",
+      "transparentMaskSha256": "766670672c281cd7699c355422507191b73e170742d07c9fa5002b3998845646",
+      "visiblePSNR": 41.728,
+      "alphaMaxDelta": 11,
+      "alphaMeanDelta": 0.902344
+    },
+    {
+      "path": "assets/PleyGame/Texture/UI_Sprite/Game/icon_Win_01.png",
+      "kind": "png-palette",
+      "beforeBytes": 50482,
+      "afterBytes": 16882,
+      "beforeSha256": "6d351f7c7f679c484905c6a397fe7e3127e916f212a8c26c21c29ee9d8e2dc44",
+      "afterSha256": "054049fae00595d2977129746b06281eda5acef3438af4f167b85d5bc98a92ee",
+      "metaSha256": "54e7113fb812373571f7bdc49c04e98258b8c1acf2663386254c3907fd247ee7",
+      "beforePixelsSha256": "835c2e97fef91f7376b45839c71ff58f450a350c66f1d107dd16156ad393057c",
+      "afterPixelsSha256": "2fe131e1d9f04344298ccf34c4b41c58c90ba2de9df39eb79271fd1aad6fdb80",
+      "size": [
+        300,
+        100
+      ],
+      "group": "assets/PleyGame/Texture/UI_Sprite/Game/icon_Win_01.png",
+      "transparentMaskSha256": "49d941a3cd60c4c68b53b68eba2dc41850f0a07a75dbc3fc302ad4b364423f51",
+      "visiblePSNR": 40.3664,
+      "alphaMaxDelta": 9,
+      "alphaMeanDelta": 0.077667
+    },
+    {
+      "path": "assets/PleyGame/Texture/icons/icon_paopao.png",
+      "kind": "png-palette",
+      "beforeBytes": 28204,
+      "afterBytes": 7980,
+      "beforeSha256": "9ab8df317d55e3e0e73d696cea2704fbe3af8f44c03cbbef9530d2bfac168f04",
+      "afterSha256": "7cfb314dfb698d2637a116a03f12515391df3b32c3d9e3269dc09d4b0e9c6e2b",
+      "metaSha256": "79e52487646d9252aa96f156d7e504c191ed8412c240e775952f9c7c4299e87c",
+      "beforePixelsSha256": "91f6aa9460cd228d39d336a5ba9d57ac61f28ce1fa607041c4a0e27978c206a3",
+      "afterPixelsSha256": "2d67fb071f48068c8bdb19f0855a2ebdd3b9eac2ed0dee059302d24af2b248ed",
+      "size": [
+        120,
+        120
+      ],
+      "group": "assets/PleyGame/Texture/icons/icon_paopao.png",
+      "transparentMaskSha256": "9ebf62f337dfc52a6ef4fe72f215a8b225140f1f06a3cce31d4f87f60d031dac",
+      "visiblePSNR": 37.7223,
+      "alphaMaxDelta": 29,
+      "alphaMeanDelta": 1.170556
+    },
+    {
+      "path": "assets/Bundle/chapter-covers/qu-wei-duan-ju-icon.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 79989,
+      "afterBytes": 77604,
+      "beforeSha256": "0b86a323e44b5ea0d7a4dbd67e8b559232da7634ac98b91517daad65f5a33431",
+      "afterSha256": "a7c54e769bb9905c72020d850e7029a5f7a924c49d2f9088bc1ffeaf8592b75b",
+      "metaSha256": "8df8a701fa9d0b4addd88430e37627b7817553c03de832b4b1c060c8af3b3cdb",
+      "beforePixelsSha256": "6a7391d659f8c717e506f6876d550a762d87dca6e7c6f30da5f6ee9b2cedfe7f",
+      "afterPixelsSha256": "6a7391d659f8c717e506f6876d550a762d87dca6e7c6f30da5f6ee9b2cedfe7f",
+      "size": [
+        360,
+        188
+      ],
+      "pixelsIdentical": true,
+      "metaSha256Before": "134e865244c6804794e7fde9e79b09c9b2b72ce00b027ba7da067f7332b6f369",
+      "metadataAdjustment": {
+        "beforeSize": [
+          612,
+          400
+        ],
+        "afterSize": [
+          360,
+          188
+        ],
+        "uuidPreserved": true
+      }
+    },
+    {
+      "path": "assets/Bundle/chapter-covers/xun-song-ji-icon.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 84942,
+      "afterBytes": 82042,
+      "beforeSha256": "bd127914feee3dbfdeebf6121efa1bb89c979b368742d8a2aa933831ebec4efd",
+      "afterSha256": "6117f49a6c98c80c70aefe5033fd9f79c21299fbf2486bb5f761b39e59a3b7f4",
+      "metaSha256": "de2565a08591347258f429956eae56833aabb02157d8c181634b4470c3563315",
+      "beforePixelsSha256": "04340fd503991cceba6a98218402a701cb4ac5b3cac61e7cc6f79de1ddb60e94",
+      "afterPixelsSha256": "04340fd503991cceba6a98218402a701cb4ac5b3cac61e7cc6f79de1ddb60e94",
+      "size": [
+        360,
+        188
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/an-ye-yi-yang/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 270037,
+      "afterBytes": 265517,
+      "beforeSha256": "438713691ce0e02143ff0e7defe2387aec475d8b6fe030de842666fe6687e562",
+      "afterSha256": "19787004f53ba51e57c99213c49e7588d7769d4d8535a72a09b88ea9772f7606",
+      "metaSha256": "2743e0c384db5db731cfea71610458c7e309e7bd31c1ff6be7fc9bc6ac91e688",
+      "beforePixelsSha256": "2bb1c6ba7176e028ca578750619d104689bbf3d2d8f50bb0634987cb87cb7f42",
+      "afterPixelsSha256": "2bb1c6ba7176e028ca578750619d104689bbf3d2d8f50bb0634987cb87cb7f42",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/an-ye-yi-yang/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 277332,
+      "afterBytes": 272902,
+      "beforeSha256": "5b0bc639db0df74feb69792c0ecbef4a04521274ddb2803184b321657933ce74",
+      "afterSha256": "a40294bdd414d0d51b1dbf5ecef2e2b1ee3cf5974331ddde98c88f0a2a975ff2",
+      "metaSha256": "d395b3ff33ad0dd204560fbc69b09dca63e07b6a87b9cb001ccc50bc73f08aea",
+      "beforePixelsSha256": "86673adfa9b97a636367de9ab8b269d02cbac3aae7d672e801cc7186a73b717c",
+      "afterPixelsSha256": "86673adfa9b97a636367de9ab8b269d02cbac3aae7d672e801cc7186a73b717c",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/bie-shuo-hua-dai-ni-fei/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 251954,
+      "afterBytes": 247514,
+      "beforeSha256": "ba8683f270c6ca3a52e7385c8cd7588e60dfbc03e5a952e841872ff5babf0111",
+      "afterSha256": "b3cd35876f97bfedb1b8ec3175bb7175079da8e4d1e12f3fcb6508beca3409a6",
+      "metaSha256": "1241a2bc2f22ae6804ff1fb0bfd8a48c26f2377a572c08549331b112234185da",
+      "beforePixelsSha256": "5fe172f30a1840d37ec4dea45efa25d1c547c8cf9772fb18d1a509ca4cb52d7d",
+      "afterPixelsSha256": "5fe172f30a1840d37ec4dea45efa25d1c547c8cf9772fb18d1a509ca4cb52d7d",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/bie-shuo-hua-dai-ni-fei/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 256246,
+      "afterBytes": 252051,
+      "beforeSha256": "778b8d1cdbdb44e730d0cf69e736646e0ec869235904a352e48f1c12ac645fcb",
+      "afterSha256": "c81ddc5524347f9128d007aa1528e9f8b8637894bcef54f781f7e02751f69d08",
+      "metaSha256": "b24092f76e0a2b02fbba73e13ee964728f4def57aeebd19bd477491bac21b991",
+      "beforePixelsSha256": "264c537607d5f6596c9465ce1da0e4d0308b7a0eef997a07c2d1b467eb56eebc",
+      "afterPixelsSha256": "264c537607d5f6596c9465ce1da0e4d0308b7a0eef997a07c2d1b467eb56eebc",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/bu-qu-gou-lan/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 284842,
+      "afterBytes": 280217,
+      "beforeSha256": "6ec5377970cce9ac260a8bc531e94efa41141c3fa603afc9c1f30609cd366598",
+      "afterSha256": "60c4e1f5c6f9d4301132df1e175fb02c7834846d66d8b15c1a8f9f45eb9fa0ab",
+      "metaSha256": "9db76f1e10400db59615435bdcdbe0237b9852e5ab43006a4c4391c5f993a6d4",
+      "beforePixelsSha256": "e35fddfccd71dc8c3c27df72d37a032ac8b1ba0893ea71aaf0fb4dcc5aadd86f",
+      "afterPixelsSha256": "e35fddfccd71dc8c3c27df72d37a032ac8b1ba0893ea71aaf0fb4dcc5aadd86f",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/bu-qu-gou-lan/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 282738,
+      "afterBytes": 278171,
+      "beforeSha256": "7a30bb2e2fcf9b208850c19c70ae9d92f085d8f0f495ddfa980d5e21cc658563",
+      "afterSha256": "0092f569b2bfdff618562c969b6db7ee5f6aab6d5a1f99bf8848e8f82113ee30",
+      "metaSha256": "253e17348e9c03e4c3225af61a0c26c2beb43fdf2e54180ee82058db2a5da625",
+      "beforePixelsSha256": "64dc2211550fb99b8d1ac666ed89ef0538f5ca605dd0f615cae76b5b5252f9a8",
+      "afterPixelsSha256": "64dc2211550fb99b8d1ac666ed89ef0538f5ca605dd0f615cae76b5b5252f9a8",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/cai-yi-shuang-quan/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 281777,
+      "afterBytes": 276892,
+      "beforeSha256": "d5335fdf3e7d2231f54975d619a5e409d5be2e27ea0f22e02be50d687fbf0b48",
+      "afterSha256": "bd35e9030b21bc4b434b9bd9fb08a932c2a9147652eb15eda5134b0cea8bf005",
+      "metaSha256": "fc72f4b398d7bd85a69e45e2b50db8965695dbe4b31f3b4f62293ae37689c548",
+      "beforePixelsSha256": "2266949b20cf212c5bd74d296f92142b2b5fc05e70c1180f8fdd0ca7926e2f95",
+      "afterPixelsSha256": "2266949b20cf212c5bd74d296f92142b2b5fc05e70c1180f8fdd0ca7926e2f95",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/cai-yi-shuang-quan/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 290106,
+      "afterBytes": 284270,
+      "beforeSha256": "4e8086c2ee517c3d6616cf1c12989f4909bc93485d108d205e220e2536ab4f2b",
+      "afterSha256": "239cc4260c0b3c601968e5975538eedceb4751f0588f5406d5d141562be5a305",
+      "metaSha256": "656ab99b822a4f1e1a293ddc4f98a13881f1b96391c2e5985f6eb7aa0177fe91",
+      "beforePixelsSha256": "38ccdf1205de633b79b6778da846d537c8ea9a1a823675257ea3a36ab81ec3fe",
+      "afterPixelsSha256": "38ccdf1205de633b79b6778da846d537c8ea9a1a823675257ea3a36ab81ec3fe",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/chen-zhe-nian-shao-bie-shui-jiao/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 266501,
+      "afterBytes": 263342,
+      "beforeSha256": "0e119da5835264c5cf0daae56d25e0ecb7dc93e9fb001d67c9994c884e45c892",
+      "afterSha256": "402a4aa75534d91d033eb64d1b1e3ae223513a085ea8c7d8b78fb12a298b4ae7",
+      "metaSha256": "16768cae24a8e7a78c677bd06b73f64801b46e3f759b4107b632101ed6651481",
+      "beforePixelsSha256": "7dd0f19961d4ab3dcc8a5237454fef22b2bc15deac410f717e13648f96285def",
+      "afterPixelsSha256": "7dd0f19961d4ab3dcc8a5237454fef22b2bc15deac410f717e13648f96285def",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/chen-zhe-nian-shao-bie-shui-jiao/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 268903,
+      "afterBytes": 265729,
+      "beforeSha256": "c41ac02374d5439c131287d704aa5cdd842e8f2a1a4465bfb21e77772f13fd62",
+      "afterSha256": "51e7fa63296930f3cd01397d1961f29cacefd1fa35cd07d9afbb89130071ca95",
+      "metaSha256": "f2d2237ff3d23118240fe02f3aa411ca882172027aef3f1d43a3d55a4a172ffc",
+      "beforePixelsSha256": "bd5d6dd12fa53b742b0fe9f14916c9fb2e2c9c042b291c2a2307ea46fc88374c",
+      "afterPixelsSha256": "bd5d6dd12fa53b742b0fe9f14916c9fb2e2c9c042b291c2a2307ea46fc88374c",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/da-di-zhi-zi/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 311070,
+      "afterBytes": 305646,
+      "beforeSha256": "b4ddd9ac0422959cc6882700321880ca5a7a5956e02e699ed20be076a5a4ce34",
+      "afterSha256": "75d65815d9ef6c3a1e2692909bedecbdfc51118aeaecf3f1318981f23db8132b",
+      "metaSha256": "61a8441c851096e9ad328aae98f65588fb59020ad36f755d6583d30e2c7f9cc6",
+      "beforePixelsSha256": "2664539e7ebf77dda44ab535408fc84ea5a67aea74f7728fe896cc3c9174c002",
+      "afterPixelsSha256": "2664539e7ebf77dda44ab535408fc84ea5a67aea74f7728fe896cc3c9174c002",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/da-di-zhi-zi/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 315248,
+      "afterBytes": 309500,
+      "beforeSha256": "c574ee141bdacee99e9f2ed980aa2f167ce9ba1c3fac3003733897e7b2d1684d",
+      "afterSha256": "b46a8be38156fe37fc272fbd8082562ca33923201e1d531ca28792b33dfb1cc5",
+      "metaSha256": "6b3ed67ac06b781b761854281956aff95841bd818d46f188790509629ad81c4f",
+      "beforePixelsSha256": "8655471ba5bf78a71f095b7adf102a941ab2b4e6c6f98fa0c1423ee4514a1b99",
+      "afterPixelsSha256": "8655471ba5bf78a71f095b7adf102a941ab2b4e6c6f98fa0c1423ee4514a1b99",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/da-wang-jiao-wo-lai-xun-shan/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 298506,
+      "afterBytes": 294406,
+      "beforeSha256": "362c26497e1a8e5eb075079615c221f5aa4f2b024d2f002b79217750813cab6e",
+      "afterSha256": "890e1091eea9f44925279d5f13c401c12d281265f986e4e08e646ba5489a0642",
+      "metaSha256": "5e82af31a50da252a5bddceef6f3b9939128b19cad7c013f417d3b5c4835d1e3",
+      "beforePixelsSha256": "8376a2bec015b0d2fbab82d8ab6689ece15b91f2ae769e125c28e8d55135b3f2",
+      "afterPixelsSha256": "8376a2bec015b0d2fbab82d8ab6689ece15b91f2ae769e125c28e8d55135b3f2",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/da-wang-jiao-wo-lai-xun-shan/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 304688,
+      "afterBytes": 300104,
+      "beforeSha256": "8d73d0da6fb8eec9e6e14ada52e2b3632d7b92bc3493e1d391dc34ac676823f7",
+      "afterSha256": "43d2b1126e72836ea63b3106b239f13d720a02233b51126fc8b0a8e0510f9364",
+      "metaSha256": "a8450f9a343396a8f155e81e2ee0c1752b5152f7e05dbc148f014b7b8a49b949",
+      "beforePixelsSha256": "8a563b5bce60c33869801383e296dbda20acb3b6d98cb587d9ed569b2427a7ac",
+      "afterPixelsSha256": "8a563b5bce60c33869801383e296dbda20acb3b6d98cb587d9ed569b2427a7ac",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/dai-ni-qu-pa-shan/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 353717,
+      "afterBytes": 346545,
+      "beforeSha256": "de47b2a4a483b1b22cd1ffb9eb8c30d930d79ac01aafc6c34eb3e61677e8454a",
+      "afterSha256": "0306a0ccb18f16b67e60c5b0100598d8be9b1f308ca1dcdf34cbb3b42d16740b",
+      "metaSha256": "894bfd3793b2028b431c937948d897d062bb4022f8fe695f0a5a726c06d88d16",
+      "beforePixelsSha256": "934fa174b84d12bd1df8af5a80dde0c1e78926ec0f87237977027524c401a90c",
+      "afterPixelsSha256": "934fa174b84d12bd1df8af5a80dde0c1e78926ec0f87237977027524c401a90c",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/dai-ni-qu-pa-shan/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 353250,
+      "afterBytes": 345598,
+      "beforeSha256": "8ce1cc1d113a808833e4b9f900bfa3915cd45cd64e330ccded539ba51e946168",
+      "afterSha256": "a4518df597db51dde88a577716b61d92ac44e0c9ff80d9798e35b1badf78a5b8",
+      "metaSha256": "c1898401201c50510536942d5262a75a8565f832b574211c58c34e930616a2e7",
+      "beforePixelsSha256": "1d20cc166ff560e3918ab90ef1f89e0b70c3d4a434f30497704844e611f8d964",
+      "afterPixelsSha256": "1d20cc166ff560e3918ab90ef1f89e0b70c3d4a434f30497704844e611f8d964",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/fu-huo-ba-wo-de-ai-ren/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 287737,
+      "afterBytes": 282831,
+      "beforeSha256": "43e17bbe5e81f1fea7cedb27413d463f6d4265f924b83b329a83bea473037ce9",
+      "afterSha256": "92aad89717196bd9b8de546c64c9a723bedc54c43e34d897ae6f71cde07484a7",
+      "metaSha256": "6dca6dde97426441ddc01d87e486bd0598f948ace7ad09809401ce2bc8c8e8fb",
+      "beforePixelsSha256": "a0709396f64d34bc34649b6ac86d6cd76cc4ed00e037dec3338ca73fb5ac60f8",
+      "afterPixelsSha256": "a0709396f64d34bc34649b6ac86d6cd76cc4ed00e037dec3338ca73fb5ac60f8",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/fu-huo-ba-wo-de-ai-ren/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 290094,
+      "afterBytes": 284708,
+      "beforeSha256": "22b481e5d4d7fbd8fab17d51a063ff78c32e58645f770d7a77809a8185b1c102",
+      "afterSha256": "a5484d6771955b77e05cfe1155b3b44912026debf1616bd7f7918c1713800b2a",
+      "metaSha256": "21693aa0bbb9feeb7b83ec5d582028332714a268173fc50a5391a73d49634f8b",
+      "beforePixelsSha256": "e1f51f577ef0302a8afac354060249f212d376a1467e6ecd2952fc0d0322c6c1",
+      "afterPixelsSha256": "e1f51f577ef0302a8afac354060249f212d376a1467e6ecd2952fc0d0322c6c1",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/gao-leng-nv-zhu/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 235950,
+      "afterBytes": 231008,
+      "beforeSha256": "425582bbbd64fbfc695a30a74a5e2db3d459a7730419fabd0241ecf5eb8bad40",
+      "afterSha256": "ba192fc94cadee364119b5fc855bef76c9f39e0c1cddb10ace09242581f4e0fc",
+      "metaSha256": "618f7213fba7faed7bd6b91a4f6620e3b11353b8a56b152e529f382dafac77cb",
+      "beforePixelsSha256": "23e178b6c180b2d45db635df12f064eec6010f39ec0da6378bf2db28a8f52c41",
+      "afterPixelsSha256": "23e178b6c180b2d45db635df12f064eec6010f39ec0da6378bf2db28a8f52c41",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/gao-leng-nv-zhu/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 237422,
+      "afterBytes": 232617,
+      "beforeSha256": "a7677f2fb04cf41ccff3ee1cce3f3cfaf05031c2dfb1562bc460f073dc42a0e0",
+      "afterSha256": "7e654c3adc08376f440ff69eb5556960890880387cd6816c40545166f0902fe6",
+      "metaSha256": "61950aebdca93fb35673b0599e0c0c9764461c32eeec06304ce76d168beb367e",
+      "beforePixelsSha256": "7b215f48ff1835aabbbf901ee76510dfb58507122799cea7849d494dde8497ab",
+      "afterPixelsSha256": "7b215f48ff1835aabbbf901ee76510dfb58507122799cea7849d494dde8497ab",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-wu-bei-jing/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 297609,
+      "afterBytes": 292468,
+      "beforeSha256": "9c59aed1f3c107e29eaa9c139f530b92af3bd989349e3c46733da8327c1917f0",
+      "afterSha256": "2eaf8d7939d36d45977238cd6988fcff4ccf8b7281102517f89f6fcb767c42de",
+      "metaSha256": "25adb5486ab8454c3bca01ab4b9c44719e58904ada4b93d93b01df7495204aaa",
+      "beforePixelsSha256": "48e3a8674c6353513c6edf4995408e326c8a2b7a681ef075a06f86e9150fd255",
+      "afterPixelsSha256": "48e3a8674c6353513c6edf4995408e326c8a2b7a681ef075a06f86e9150fd255",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-wu-bei-jing/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 298389,
+      "afterBytes": 292741,
+      "beforeSha256": "8c6e76925bf0a111860f4ff3740179729486516b130d30276d0c26fa94abffbd",
+      "afterSha256": "e826f91732cd371fe90f81b45a0b400d4649944b995d99d6228c744dee55e150",
+      "metaSha256": "61fddfb352bbd544753b399af17bc2bcce33fbda4666d2444eac5afb5d485665",
+      "beforePixelsSha256": "fee40a91c1301fe55529be57221f15b668d423d69e808c37db49b1002aa8ec07",
+      "afterPixelsSha256": "fee40a91c1301fe55529be57221f15b668d423d69e808c37db49b1002aa8ec07",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-zi-wei-zhi/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 241331,
+      "afterBytes": 236205,
+      "beforeSha256": "6995c902afc9534c405593dcd6e7b984cc0025e5958f695b0da3c5290576c781",
+      "afterSha256": "1bbc35c9e9ad0d2bc987cf1b0645addb6752c6aa40a96c72531245c771349e62",
+      "metaSha256": "7d74e8e2eb025bb34f982d329f6c97952d8f493492bdd049fbed64eb2fbb8d57",
+      "beforePixelsSha256": "303f0c42698d993c512dc0fb72f4414d330aa1e8e0f44e3a7c006a0c5ab4abe5",
+      "afterPixelsSha256": "303f0c42698d993c512dc0fb72f4414d330aa1e8e0f44e3a7c006a0c5ab4abe5",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-zi-wei-zhi/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 251895,
+      "afterBytes": 246224,
+      "beforeSha256": "b69e4770b2bdef377c0905cc7404ba7340d2552b42dbe3e14566a3d3ed6a9b4c",
+      "afterSha256": "a6cbbec1c6e444623997056dc7dac00256bc5a53c48012ac6da07a66c119207a",
+      "metaSha256": "fa553523a5c5adec656f6c87735f427c33e51c76abee286d8755477023fff1ab",
+      "beforePixelsSha256": "4a730929cc163c3b8dc25195242e7a26c056ceb1aa877c0b7a3607233ebc9049",
+      "afterPixelsSha256": "4a730929cc163c3b8dc25195242e7a26c056ceb1aa877c0b7a3607233ebc9049",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hou-yan-wu-chi/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 306497,
+      "afterBytes": 301543,
+      "beforeSha256": "98720517709d2e2e3e4a623d1cbf5a2a81a486ce0e7e93d3350a75d0b0f0470f",
+      "afterSha256": "13b1e57fc32e948d7cc38d33d979b841fa08846090820ea77f5b171b791ce15e",
+      "metaSha256": "d84bcb529c24ad0d0709d1630c4d9ecf70969a657b7e1715811dd90815bce52a",
+      "beforePixelsSha256": "07266b4af1dedfe93121345cd7b10abbd29b11184002fbc1fb0aa4bfbc420a8a",
+      "afterPixelsSha256": "07266b4af1dedfe93121345cd7b10abbd29b11184002fbc1fb0aa4bfbc420a8a",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hou-yan-wu-chi/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 299597,
+      "afterBytes": 294355,
+      "beforeSha256": "3aa27592581c52217a2175b2a15d3af4292a5efd3902d4228ac3e84ada94665c",
+      "afterSha256": "12ee1331e37a7b94642c9f0370a27cc5168a393facbcd0bd44d91631a32edfaf",
+      "metaSha256": "59896af81094bb5ed7286d915dfa1df19942e0bf73ff9c0b7ba749a931f84da8",
+      "beforePixelsSha256": "f447e3fe8e65bd66102c0ea62ac24a47847462a119bd285d5122d4943e5d82e0",
+      "afterPixelsSha256": "f447e3fe8e65bd66102c0ea62ac24a47847462a119bd285d5122d4943e5d82e0",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/jian-dao-wan-gu-ru-chang-ye/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 270625,
+      "afterBytes": 266341,
+      "beforeSha256": "94b5554b5c8a6a1013b5e353f8cb88d69508742dfe25e714a52c58991e5a873c",
+      "afterSha256": "7a214a5fe94a3e318d052625fb792ad2093d5cef463449d00efdd88aec6816f9",
+      "metaSha256": "7ed4e308f85fe18161b2dd0c11123d881bb6362e0b1f7015d79165ce1aa5d7d3",
+      "beforePixelsSha256": "5745bc73f166de4ac534027d944b33c2c5b63ccf07d933e751f5ca53298dd5ed",
+      "afterPixelsSha256": "5745bc73f166de4ac534027d944b33c2c5b63ccf07d933e751f5ca53298dd5ed",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/jian-dao-wan-gu-ru-chang-ye/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 271717,
+      "afterBytes": 267638,
+      "beforeSha256": "34f31eed0b056c212a5de90cf77407948139ab63b32dc981178e88ad65713692",
+      "afterSha256": "862f2d0ffbb7976956363f98ceddcb2d83137c9e9c3011723dc118410d2df67a",
+      "metaSha256": "73d7deabd877a2bfe5e976b72052968ba874d977f2c694d465405542dc95d083",
+      "beforePixelsSha256": "fa2b043daef4facc1f3b81576376e5ac92567e6b01e5f71f93b054d1b24b8117",
+      "afterPixelsSha256": "fa2b043daef4facc1f3b81576376e5ac92567e6b01e5f71f93b054d1b24b8117",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/jie-jie-ni-ting-wo-jie-shi/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 244988,
+      "afterBytes": 237656,
+      "beforeSha256": "0e3313a4bfee679bb7167474b18e72085708e7cb44e779fa098b58e87768ccc0",
+      "afterSha256": "4cd78e292e03d423343286769caa6438d63fd843fbc8f219e669337e4eb6e848",
+      "metaSha256": "5bd65061ad407988c72d270fe6a5f4f2cd8d796e96662d267f4bcec05581c218",
+      "beforePixelsSha256": "7374b00dfb337718070ec2b31f1be8133698cd4935be920ce49ebaa3363e9ac5",
+      "afterPixelsSha256": "7374b00dfb337718070ec2b31f1be8133698cd4935be920ce49ebaa3363e9ac5",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/jie-jie-ni-ting-wo-jie-shi/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 252049,
+      "afterBytes": 244692,
+      "beforeSha256": "5734a9ced92bac12b5a8443236fb4ad9f9f30520ced8a4149818b5ce9086ad53",
+      "afterSha256": "6103c13373cc3727268c6e814df071af6cc972cada77e8bf07442d024ea29b77",
+      "metaSha256": "79ab52ccced33198822c09c0eeef3ae67a23ed918c8ad38e06b6ee67cded5056",
+      "beforePixelsSha256": "53bd7f8b0380f0d7397b4eab65b2eaafdc4993dbd6d6b5b5c49272ac0c79636b",
+      "afterPixelsSha256": "53bd7f8b0380f0d7397b4eab65b2eaafdc4993dbd6d6b5b5c49272ac0c79636b",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/lao-mo-wo-xiang-chi-yu-le/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 250219,
+      "afterBytes": 245706,
+      "beforeSha256": "0d769ed24db5d7740463b4192b1d2d431a1305341c331ff0117e1b4a4b8e5f37",
+      "afterSha256": "b05046864d1ff9116f940d538987b0c67ddf75dcc6fb5f08a6f9d4337f535b7b",
+      "metaSha256": "83115118aa58a4682ee7500fa133f13859fffc92737962347c9da8b7051d52b4",
+      "beforePixelsSha256": "52e05607d653f75d00c6686d18ce4a257a2a726f0c54c8cd7dca114117b43b2d",
+      "afterPixelsSha256": "52e05607d653f75d00c6686d18ce4a257a2a726f0c54c8cd7dca114117b43b2d",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/lao-mo-wo-xiang-chi-yu-le/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 247912,
+      "afterBytes": 243186,
+      "beforeSha256": "db89cc31311f12ba7e25303300297973de8b29f0db19039e22d858549642f093",
+      "afterSha256": "7d6c91cd4ef3385609d711ec1f3d35a45bfb7f0c874c8a0f55a41ee05d110d5e",
+      "metaSha256": "c85e598e7426fab8f93125d876aef4b35a4e31f288a1aa25cca1356cc3cf7c66",
+      "beforePixelsSha256": "e56c378f5e219f07fb5b404cbda645d19ebf261be0141186714e26a57cf27e22",
+      "afterPixelsSha256": "e56c378f5e219f07fb5b404cbda645d19ebf261be0141186714e26a57cf27e22",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/lian-dan/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 261350,
+      "afterBytes": 256614,
+      "beforeSha256": "0380f296ff4abb7cb72396837237c816fff6690d06e7b35338c7904143be0226",
+      "afterSha256": "23d08b99ef1f1ef3121a9f81ffcef18f33f551257496c3cb2594e6ce8a4e5bc6",
+      "metaSha256": "4149c75d88717c3c4bf1250f1afb761ce8be08937a04831bac7b6509a2c6d02a",
+      "beforePixelsSha256": "382099808ffa96813fdfdf21d491b2923f35f75dc2e36f7299511d8bd7521dcc",
+      "afterPixelsSha256": "382099808ffa96813fdfdf21d491b2923f35f75dc2e36f7299511d8bd7521dcc",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/lian-dan/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 279290,
+      "afterBytes": 274324,
+      "beforeSha256": "f21c91c83e2531b36a91fd91e709de9ab8f79ba64b0f4ad6dbb73d6776917930",
+      "afterSha256": "7ba3b29feb79465b76197ef261d6388913c9b4ff0abd02758cb52d283f78b7fc",
+      "metaSha256": "08e0e5d1dad41a1831986998803f713a2e633220af787a778478f6db7217e260",
+      "beforePixelsSha256": "758da8361c6c7fafd3820a51372b88cdd8f7cb38dedf4d02b60c032ed6426280",
+      "afterPixelsSha256": "758da8361c6c7fafd3820a51372b88cdd8f7cb38dedf4d02b60c032ed6426280",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/mai-le/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 255631,
+      "afterBytes": 252930,
+      "beforeSha256": "a11cecee906dc29d203f16aba510a23f5fc94c463db88d9798eb34968d69fdd4",
+      "afterSha256": "917b074b336f74e9e084982091a5da06e9df7308710c65a00d90642f2c851ac6",
+      "metaSha256": "47694c64e919fe2ca9581a6ce2e0c097658291d5c9c05a9bd9cfaca5d3afe6b2",
+      "beforePixelsSha256": "f669885576939b0b41a56b8af87e90a1142601f079b67228bb7af61a6d373739",
+      "afterPixelsSha256": "f669885576939b0b41a56b8af87e90a1142601f079b67228bb7af61a6d373739",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/mai-le/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 268041,
+      "afterBytes": 265109,
+      "beforeSha256": "1d46fcc4b82b6940c2b5e537c9e87cfa084dece0b1feae61a802899890d21128",
+      "afterSha256": "790f21d0663c012901f3a9dbe3261e7747e1ab6d5619907b1885b453cb7fec77",
+      "metaSha256": "8513bb682148f788f35989090af9a91bdd3e2f33f9ae3e9b6db6ca6210a2f428",
+      "beforePixelsSha256": "6d38c9e2688b22215f477ae856910b73f84d3e04b5b4e1c652061dd8c4e0f42e",
+      "afterPixelsSha256": "6d38c9e2688b22215f477ae856910b73f84d3e04b5b4e1c652061dd8c4e0f42e",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/meng-jiang-ge-ge/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 240760,
+      "afterBytes": 237361,
+      "beforeSha256": "5cbf696c7fbea5d2dd4f440811028d38dec917e85d328e181a871923a63944e7",
+      "afterSha256": "a266cda369e1c9f4dbe0e59af0f5aafaed611c74486812cf1d4b8c5f767c494a",
+      "metaSha256": "2dc8f8508eed8cacfbb33bdd29e1413224f0e2cee1af7600b2ea63d581bd5fca",
+      "beforePixelsSha256": "b263837fadd840d579985d1e69f58ac36ecfc166f8d6ddccb66be4b7937667c4",
+      "afterPixelsSha256": "b263837fadd840d579985d1e69f58ac36ecfc166f8d6ddccb66be4b7937667c4",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/meng-jiang-ge-ge/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 262756,
+      "afterBytes": 258816,
+      "beforeSha256": "e5056d7ee2eba524735710fd387cd16cad9b83dd5f1edb78dd7bdfcf607f44c9",
+      "afterSha256": "479931e944e515f26f429a5040c31851f9db164e38b77d1500a43ee90959c9d4",
+      "metaSha256": "5ecf27b8ca0b771aa1139b87f9d75b69791a9d6111c3faa29e33a8562b9655a5",
+      "beforePixelsSha256": "bd691b2fafd7ffb7ec13a98f1204e6831b72751886dd5a160806feeac9963288",
+      "afterPixelsSha256": "bd691b2fafd7ffb7ec13a98f1204e6831b72751886dd5a160806feeac9963288",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/mo-shi-qiu-sheng/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 311427,
+      "afterBytes": 306639,
+      "beforeSha256": "ab7f88e58418e73a932a1bb1bb871a94694cef763466669a4b1d30cc9a921fe5",
+      "afterSha256": "bdf0fff8cd1f94f6103e118fde8b44b0010bc35a895c67f7ff9722a699eecca4",
+      "metaSha256": "25449b585d61d792f1db079599383763305137f917bc2ca4b12187db12c77061",
+      "beforePixelsSha256": "a208b66beb89b45d05faba6706faabcbac663fa11639efdbf07d84ffc3b81a00",
+      "afterPixelsSha256": "a208b66beb89b45d05faba6706faabcbac663fa11639efdbf07d84ffc3b81a00",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/mo-shi-qiu-sheng/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 303215,
+      "afterBytes": 298697,
+      "beforeSha256": "b3affe6a0b8bae9fe1f69ecbb7e2f5b225e7b1ad0a1752ae969134fbf88fd581",
+      "afterSha256": "b8616124c808d55e598d47afedb382fd3192f0296678dfe5dc0c4cc1a7ef8a14",
+      "metaSha256": "35e2310dd4b03b882751aeac972f79f107c10091429506e8d4414fbcceac4d4b",
+      "beforePixelsSha256": "bbad16d448c345f3563cc70fa56197cca4029f356e1ab3bb0e6e6c9ec0c3ed65",
+      "afterPixelsSha256": "bbad16d448c345f3563cc70fa56197cca4029f356e1ab3bb0e6e6c9ec0c3ed65",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/nan-nian-de-jing/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 342818,
+      "afterBytes": 331469,
+      "beforeSha256": "034f4ff4be414bb929251e462d6ea76f02883b2ec151a3661cf4f69e02b5c4fa",
+      "afterSha256": "4a0a972f6826245bee53e811cd6c334f62218c7d655a13fdbb15bb450dc80973",
+      "metaSha256": "cee114a275d93813df120d5f8b1d5fb06d74a6dafde80b4302073fc9fcc549f0",
+      "beforePixelsSha256": "37f37c1fa6b2abd37c636fbc797ec6336fe963e17a3c4f0bcc7d80928df5eda4",
+      "afterPixelsSha256": "37f37c1fa6b2abd37c636fbc797ec6336fe963e17a3c4f0bcc7d80928df5eda4",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/nan-nian-de-jing/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 344983,
+      "afterBytes": 333339,
+      "beforeSha256": "810d02a580185523f07a14c07d496ae75ebae64ab4bd9ac69ec4ad48e1b51629",
+      "afterSha256": "072b0c8080d2ce9778559929dca9b43de43c651e814d4595730a485b173e0ff5",
+      "metaSha256": "2ee924794475967ac27e1a21dc3eb14d70f680ac628534769a0392983867ce8b",
+      "beforePixelsSha256": "a462d7579dd19f276caaa7ea0ec1b6212c697f6728976458ac7399133bfdd251",
+      "afterPixelsSha256": "a462d7579dd19f276caaa7ea0ec1b6212c697f6728976458ac7399133bfdd251",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-hao-sao-a/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 273904,
+      "afterBytes": 267238,
+      "beforeSha256": "3585a1cd91e013202db98a9f44ddd1e960a9244ecde1639ed42dda992e4de604",
+      "afterSha256": "db7c9cc8f2c8a2ca1ca9bd55ca07280a4a1d7a7a00633c6c0c14b508bcd17ce4",
+      "metaSha256": "27a3dec88be7b2068b3fff45d9a3509d208a6d46d1b4615a44e167f8313d7e81",
+      "beforePixelsSha256": "1b8f1eb3f0d6fdbbfec8bca7ac5366b19ff6e4578a2794694a1b5c2b0a850601",
+      "afterPixelsSha256": "1b8f1eb3f0d6fdbbfec8bca7ac5366b19ff6e4578a2794694a1b5c2b0a850601",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-hao-sao-a/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 270197,
+      "afterBytes": 263419,
+      "beforeSha256": "20bbbdf572725b820545705990c3abbd378968112f7fc1257e86261d8503f2c0",
+      "afterSha256": "c8110a3d04383d3b18ba9da8ba85e5e8405f56c09e5e652c1ea9ffe469c98016",
+      "metaSha256": "2747e87a3905591d56d2c9e45676d4c11b79440b60a6c2e914be8208a349e5f4",
+      "beforePixelsSha256": "768e815d4c923545e5b03b33e1b9ed72119f29911657723ad2b297c04db3dcf0",
+      "afterPixelsSha256": "768e815d4c923545e5b03b33e1b9ed72119f29911657723ad2b297c04db3dcf0",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-you-ben-shi-ni-kai-men/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 253115,
+      "afterBytes": 249975,
+      "beforeSha256": "ae29e0b64f07a306c649ba82ddad08f17da35d90c4774dbbeeb483fc4f9236f0",
+      "afterSha256": "ac42d1d39131a41a3443d26364102abaa6fd51a17e0c2799b4447ebe4c734bf7",
+      "metaSha256": "25b1442f94a6b7b50d3a8398e3008633e7567e500496efc7c069bf7369b17b02",
+      "beforePixelsSha256": "2d0e7930e705a2a75838c8a078a2a0c468321bdc31341b676836d2d7498eda64",
+      "afterPixelsSha256": "2d0e7930e705a2a75838c8a078a2a0c468321bdc31341b676836d2d7498eda64",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-you-ben-shi-ni-kai-men/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 256365,
+      "afterBytes": 253181,
+      "beforeSha256": "c203a651a8a115e9fe97d74b3934e99d910e89d0c9dfa637173648f8ae2962e1",
+      "afterSha256": "04a3c0647ede3913105dc2261a7363154e50d067ffc8f60af5e4a64b8cf1144e",
+      "metaSha256": "0191b3537351d150a02397992618a312d85b7d1370d7c5f026b4ed4907b6d8a0",
+      "beforePixelsSha256": "acc2f2d635687f336888e0cc33671ea255de5e0ed346d95f0ff4c6d242177263",
+      "afterPixelsSha256": "acc2f2d635687f336888e0cc33671ea255de5e0ed346d95f0ff4c6d242177263",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ru-yan-da-di/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 284163,
+      "afterBytes": 279481,
+      "beforeSha256": "dfaeb9312738754e0a652c7188655647d1513f55150c4ef8fd43210ae66f2ba6",
+      "afterSha256": "cdecfa000c87b5ec72a0d9598f56b3920f1197f2a979fca7b138343299c55d4b",
+      "metaSha256": "dfea31f706bf0c5057d27cfc93fc155857305282c8c08638ed749f8cfc599631",
+      "beforePixelsSha256": "f012f75a719fc7ea84d3642b470c1f2dbf29cc632370ad6bec9e42206f68430d",
+      "afterPixelsSha256": "f012f75a719fc7ea84d3642b470c1f2dbf29cc632370ad6bec9e42206f68430d",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ru-yan-da-di/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 293613,
+      "afterBytes": 288667,
+      "beforeSha256": "1f8a4c5605d6b97eafbbdefd16e0b2b39f21340e4cfceaae41e1968a39e5b910",
+      "afterSha256": "3e83af3ad18947ff768ca9ddfbd8c9749fab08656b5869b99535145312c1137d",
+      "metaSha256": "51e14c730a417247cdfaa35d780753cc22600492904a9e58ba4b78ef258d9dd0",
+      "beforePixelsSha256": "7c21a6247066fb3cbd91e37433592b5c89956497b561bfab401b71b2a85d3235",
+      "afterPixelsSha256": "7c21a6247066fb3cbd91e37433592b5c89956497b561bfab401b71b2a85d3235",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/san-shi-nian-he-dong/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 289523,
+      "afterBytes": 283131,
+      "beforeSha256": "4ad85f0a7aa37f133eee9f4f8d9d8731b2fd99a7d81846b247b689f4309f7169",
+      "afterSha256": "6c7246c1bc653fd2e7ec382edca62ddbf9e36bc942b32b516d2b74a845e43d16",
+      "metaSha256": "14efbb240fe67208468ea5818771866c5b889fa54da33cc63980ac37dc37e600",
+      "beforePixelsSha256": "df14fdefda514679874e256f83a90b3dbc1888b7cae61e6dbca52f30a930e3ed",
+      "afterPixelsSha256": "df14fdefda514679874e256f83a90b3dbc1888b7cae61e6dbca52f30a930e3ed",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/san-shi-nian-he-dong/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 295802,
+      "afterBytes": 288725,
+      "beforeSha256": "87ff5f4305476fbe5bc4504c37c4557ed57ec742cd09f3f4cc1e26332163c1f4",
+      "afterSha256": "65d03b96284c9c7273fe98bbc43ad0a7a9478da3369f7da12e8e8dad08ef0015",
+      "metaSha256": "21c4e457afbd37997a4571a213f4f02ec0e9ddb782094aaa4fd6846823b8f35d",
+      "beforePixelsSha256": "80ace718484ba25d5e1ef328f10d284f9a0efa268035f04de3a98eef54a622ab",
+      "afterPixelsSha256": "80ace718484ba25d5e1ef328f10d284f9a0efa268035f04de3a98eef54a622ab",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shen-bing-tian-jiang/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 326223,
+      "afterBytes": 320646,
+      "beforeSha256": "ae83b281919c646155085c79aa6158752a199926a96dd908ed5f51e143261d98",
+      "afterSha256": "662f56334d235b3ecce9f49ab72f6814b05b418cdef3dae4ed490a1b5f31ac03",
+      "metaSha256": "9f2325f69d81bb01fe4b99ab2bd84e4de43e80d67de4663f577481795e339735",
+      "beforePixelsSha256": "77ed4164005b689105f3bb02c316b41e7263d2d676c4376b5f72377591759faf",
+      "afterPixelsSha256": "77ed4164005b689105f3bb02c316b41e7263d2d676c4376b5f72377591759faf",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shen-bing-tian-jiang/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 332180,
+      "afterBytes": 326062,
+      "beforeSha256": "3e7e88a74bfc9379b2f00714f8a706ece1378091611e4248a2f3c4e00f09348e",
+      "afterSha256": "217d669a99d10b0b862fa99d18eeea485944b38468701170a43c7cf8562e878c",
+      "metaSha256": "7c51cb7ce42faeff91b551df7107d01ecc3b57984d39de2cd6d0cb4728975884",
+      "beforePixelsSha256": "6e82c218e35dab464feddf167f47bd6dcddba524d3f5f22fca0d874df662078a",
+      "afterPixelsSha256": "6e82c218e35dab464feddf167f47bd6dcddba524d3f5f22fca0d874df662078a",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-li-tao-hua/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 275769,
+      "afterBytes": 272137,
+      "beforeSha256": "4c137cf1f28c7bd9e4b48c3d265b3934ae67b21db759e791142a882d17e16ddf",
+      "afterSha256": "ef2512f0850cb7a6622f088178ab3c1a37b65e77ae8f9987f5a99da7314d2ba5",
+      "metaSha256": "17d953828393cb7c4f5f5f866838c952e52092c7a8b860bf2b8983447c6e0875",
+      "beforePixelsSha256": "b3f31548206ab032c8c0ee2beb53a6d69799413064f39bde86b4aaa1fa7891d6",
+      "afterPixelsSha256": "b3f31548206ab032c8c0ee2beb53a6d69799413064f39bde86b4aaa1fa7891d6",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-li-tao-hua/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 270842,
+      "afterBytes": 267198,
+      "beforeSha256": "deac177ce7c18c2dce5cf1c9f46870cc8bf6fd6e88ba2ee313e4e48af5d3e930",
+      "afterSha256": "755ee7064a507b12219a0c0695b2e6c32d8f7930de9c86276789da9ee864d5cb",
+      "metaSha256": "0a4f8935610fbf18f568d380d133631100b2e8b979db88b11e298ef403ae1f04",
+      "beforePixelsSha256": "79f5850415784bff89025185e63fed5999af423a540d07a164838af708d6c7aa",
+      "afterPixelsSha256": "79f5850415784bff89025185e63fed5999af423a540d07a164838af708d6c7aa",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-si-bao-wei-liu-bo/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 282903,
+      "afterBytes": 268406,
+      "beforeSha256": "17b8cdf75beed3accb4ab8c776ee89330d0c395f41744321d47c028746e76c33",
+      "afterSha256": "28bf1a168e269227966d030e47c07aad174f003ba08e903836bab880a7692746",
+      "metaSha256": "0d2e9c2b48bd34beb9da8f97d619430f4d2b2557df0c4dee65c85712fc8fbc85",
+      "beforePixelsSha256": "9b66be3f925f36decbb9400f280404acf01d3f797011db8233d46ca9a6d26400",
+      "afterPixelsSha256": "9b66be3f925f36decbb9400f280404acf01d3f797011db8233d46ca9a6d26400",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-si-bao-wei-liu-bo/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 295600,
+      "afterBytes": 289353,
+      "beforeSha256": "aaafc432f5ece86f6cfb117f0898076b384b12725850bae7e5a3844808769e08",
+      "afterSha256": "c2600d8e3a4dc908d77f20e59cc1b34686221c1d9295fdc51dbdd4d28267a0f0",
+      "metaSha256": "4fb22da76e213fab997eab854a12d6d15edbeae6e373d95c240e23b467e2dae3",
+      "beforePixelsSha256": "9dd6033cdca6700cc5c93d2789e6f337000ed966f8cfb00469325345a3aeb9f9",
+      "afterPixelsSha256": "9dd6033cdca6700cc5c93d2789e6f337000ed966f8cfb00469325345a3aeb9f9",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/an-ye-yi-yang/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 44067,
+      "afterBytes": 44067,
+      "beforeSha256": "4460758f2034fbe695791e7a02a901724bf5e3969401f030557bf6eb0a71536c",
+      "afterSha256": "4460758f2034fbe695791e7a02a901724bf5e3969401f030557bf6eb0a71536c",
+      "metaSha256": "9ee4488b6601447cbd801bcc83d1f2045b4841f48be14477cf77d04e8ab1505b",
+      "beforePixelsSha256": "c39afe151f5e3add6a02a971132a6d654aab19bb56e7b12aa7f71f2ee17d5ffc",
+      "afterPixelsSha256": "c39afe151f5e3add6a02a971132a6d654aab19bb56e7b12aa7f71f2ee17d5ffc",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/bie-shuo-hua-dai-ni-fei/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 41949,
+      "afterBytes": 41949,
+      "beforeSha256": "7d43ab4d6995f23becb54b9c0fdeb8984feb94bdf2dce766014e33d7bb94b449",
+      "afterSha256": "7d43ab4d6995f23becb54b9c0fdeb8984feb94bdf2dce766014e33d7bb94b449",
+      "metaSha256": "85faf2acbb2f41fb2a7e06c2d805f5cf8da4dfa667dd79ba24b3cd93fba99fe9",
+      "beforePixelsSha256": "221d5ca3d572922e98fa959f98d6300a31ac3ee16cef0f11a163016fcd01c492",
+      "afterPixelsSha256": "221d5ca3d572922e98fa959f98d6300a31ac3ee16cef0f11a163016fcd01c492",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/bu-qu-gou-lan/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 46271,
+      "afterBytes": 46271,
+      "beforeSha256": "32a7271c071b8f035ebeaf4201e1337dd17ffb17d8e7bd0672075a3fb18cb6d7",
+      "afterSha256": "32a7271c071b8f035ebeaf4201e1337dd17ffb17d8e7bd0672075a3fb18cb6d7",
+      "metaSha256": "2ce45eb6f9226e3301160fb05ae8d4ae4f96f874e68ec4c915687e81405e1dbd",
+      "beforePixelsSha256": "a95bad3668bc3a74e38bed0e4f8234c568c86d9b10acc5208a4128a40c448ea2",
+      "afterPixelsSha256": "a95bad3668bc3a74e38bed0e4f8234c568c86d9b10acc5208a4128a40c448ea2",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/cai-yi-shuang-quan/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 44225,
+      "afterBytes": 44225,
+      "beforeSha256": "37c329d367eaa6577aae54a9b41359eb35f77135ccc4cf2d7652a5fdc4443d9c",
+      "afterSha256": "37c329d367eaa6577aae54a9b41359eb35f77135ccc4cf2d7652a5fdc4443d9c",
+      "metaSha256": "299bb8cfca1079dde197bc71b97866f8aaf5aa84a2074109bcb83a9533dd7a66",
+      "beforePixelsSha256": "2355ece69d172c838eb8a97cd30686f683221cdaafae00a25b583568192a1d24",
+      "afterPixelsSha256": "2355ece69d172c838eb8a97cd30686f683221cdaafae00a25b583568192a1d24",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/chen-zhe-nian-shao-bie-shui-jiao/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 44363,
+      "afterBytes": 44363,
+      "beforeSha256": "58151498304dddd4e6d9e59a8d1851a7485d8d9f8823a06863dbb15f46143706",
+      "afterSha256": "58151498304dddd4e6d9e59a8d1851a7485d8d9f8823a06863dbb15f46143706",
+      "metaSha256": "77791f307baec1ac408819d3c7c92897b9f21a5f7ba2ceb1f55923451ac0a565",
+      "beforePixelsSha256": "63133d7097c9853b9c4d1174e382febd97390660bf684221822660ef83a9b1d2",
+      "afterPixelsSha256": "63133d7097c9853b9c4d1174e382febd97390660bf684221822660ef83a9b1d2",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/da-di-zhi-zi/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 49595,
+      "afterBytes": 49595,
+      "beforeSha256": "919452c5ebdc63f9f96c6400e5ec132399b9ef7aa4d8521d40ffbb03f542eab9",
+      "afterSha256": "919452c5ebdc63f9f96c6400e5ec132399b9ef7aa4d8521d40ffbb03f542eab9",
+      "metaSha256": "94826ee3548f6569b3694f534ebf623cff838164c3c2f4f3da373c2cf471dca6",
+      "beforePixelsSha256": "9e299a7b01a4b89ad8c54778a23dcd7e95d6ec404a337121a8e38be7318064c7",
+      "afterPixelsSha256": "9e299a7b01a4b89ad8c54778a23dcd7e95d6ec404a337121a8e38be7318064c7",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/da-wang-jiao-wo-lai-xun-shan/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 49872,
+      "afterBytes": 49872,
+      "beforeSha256": "d0a3c3692aac2e5d1283fa5542ca2efab639b7dcf6080ab36db4e7658234b6b0",
+      "afterSha256": "d0a3c3692aac2e5d1283fa5542ca2efab639b7dcf6080ab36db4e7658234b6b0",
+      "metaSha256": "3b8b533fa99242064273f781117728f3b0aa6b93d6ffe460440b036e9f234396",
+      "beforePixelsSha256": "ba062bfd19c498542694d22332e5d0b7e04240788c7f1ebc2d72ad4beb1bd301",
+      "afterPixelsSha256": "ba062bfd19c498542694d22332e5d0b7e04240788c7f1ebc2d72ad4beb1bd301",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/dai-ni-qu-pa-shan/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 52929,
+      "afterBytes": 52929,
+      "beforeSha256": "f8f9d262d5a3506665fd09b675491ee35fa9917a1ccf215e01a13ff6d19d0a9b",
+      "afterSha256": "f8f9d262d5a3506665fd09b675491ee35fa9917a1ccf215e01a13ff6d19d0a9b",
+      "metaSha256": "1c265343ccad8b1d3c8dbf1e07ba901935ec4dc4fdcd58c5adbd300a69b838be",
+      "beforePixelsSha256": "ceb07a5020058f323f39302b304e583111bb3da70ca19d8a8bc04e5c1cc8dbcd",
+      "afterPixelsSha256": "ceb07a5020058f323f39302b304e583111bb3da70ca19d8a8bc04e5c1cc8dbcd",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/fu-huo-ba-wo-de-ai-ren/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 49560,
+      "afterBytes": 49560,
+      "beforeSha256": "330cfb057d4e6613fd8f89b64125bd2febd9d503157be38474eeb80711ae7b0c",
+      "afterSha256": "330cfb057d4e6613fd8f89b64125bd2febd9d503157be38474eeb80711ae7b0c",
+      "metaSha256": "07d739a7108d8716ef028fe2e3a21491df372a34ba0842860e80612ec87955ed",
+      "beforePixelsSha256": "26f9792ff147c4e8aee6da8f6d87c30fcaaf3b7251327e51ebd7b9e08feeaafd",
+      "afterPixelsSha256": "26f9792ff147c4e8aee6da8f6d87c30fcaaf3b7251327e51ebd7b9e08feeaafd",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/gao-leng-nv-zhu/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 38215,
+      "afterBytes": 38215,
+      "beforeSha256": "e865fcb23b9be94f90e6cacd876ca78edca9746403a46e0393bf49fbc358804a",
+      "afterSha256": "e865fcb23b9be94f90e6cacd876ca78edca9746403a46e0393bf49fbc358804a",
+      "metaSha256": "a6bc45572c9b651c0095e8eab98a67555414f283f7c67000f0d788ffea52f1e0",
+      "beforePixelsSha256": "358b07fe81899219c5c622a88a29e8ea0d939c593ec3825a168d7c59f9520156",
+      "afterPixelsSha256": "358b07fe81899219c5c622a88a29e8ea0d939c593ec3825a168d7c59f9520156",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/hao-wu-bei-jing/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 46402,
+      "afterBytes": 46402,
+      "beforeSha256": "e88b3918f63aa9bf2909ce8b480e9e01059fb6d3f8588efb6a579f2e8ecbb10c",
+      "afterSha256": "e88b3918f63aa9bf2909ce8b480e9e01059fb6d3f8588efb6a579f2e8ecbb10c",
+      "metaSha256": "3c741ac024282502290d9ca1de21c91f69d51475e89cef990165d474cc884812",
+      "beforePixelsSha256": "d4f1a435e5c6181516394d1a514e98c1e92ce02107e3b146e244be67f7de3b9a",
+      "afterPixelsSha256": "d4f1a435e5c6181516394d1a514e98c1e92ce02107e3b146e244be67f7de3b9a",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/hao-zi-wei-zhi/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 41501,
+      "afterBytes": 41501,
+      "beforeSha256": "856993ce498de783edf1e21475e4e7313f5ed7a6dc7d0bdf7ac9b45238683618",
+      "afterSha256": "856993ce498de783edf1e21475e4e7313f5ed7a6dc7d0bdf7ac9b45238683618",
+      "metaSha256": "b00934a18eca73fe541bfea40ccedcee06fc25afa7766c7e0b32fb82ff50617c",
+      "beforePixelsSha256": "b3ca356874b71a5c5eb24041551038d0d78ed0fdff60aa6c5445cb00339168b6",
+      "afterPixelsSha256": "b3ca356874b71a5c5eb24041551038d0d78ed0fdff60aa6c5445cb00339168b6",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/hou-yan-wu-chi/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 49022,
+      "afterBytes": 49022,
+      "beforeSha256": "2552c673914dd5892c0b93e8050f4365bbfbde38555d49bb4e981cd6c5745b32",
+      "afterSha256": "2552c673914dd5892c0b93e8050f4365bbfbde38555d49bb4e981cd6c5745b32",
+      "metaSha256": "ff5d21e543ccc11b5ddbf71514285e6912d7e21ce5caf6397385afc7de8449dd",
+      "beforePixelsSha256": "db766c2bfba8e34139a358051b1f64dd698d40693e38dc9633ec310d0c3a6ef1",
+      "afterPixelsSha256": "db766c2bfba8e34139a358051b1f64dd698d40693e38dc9633ec310d0c3a6ef1",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/jian-dao-wan-gu-ru-chang-ye/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 46414,
+      "afterBytes": 46414,
+      "beforeSha256": "d0187a2e79771f6cf06f98694edb700f9429acd2373e1cd9fd7c2c3a18cef715",
+      "afterSha256": "d0187a2e79771f6cf06f98694edb700f9429acd2373e1cd9fd7c2c3a18cef715",
+      "metaSha256": "717e3eaed7535e548bc73b342075840ac55731a878faf1261b6eec9d6009032d",
+      "beforePixelsSha256": "f40e3113c195302988de3c840173faea940a526e8b4fc27093ef933db9e96f14",
+      "afterPixelsSha256": "f40e3113c195302988de3c840173faea940a526e8b4fc27093ef933db9e96f14",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/jie-jie-ni-ting-wo-jie-shi/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 40066,
+      "afterBytes": 40066,
+      "beforeSha256": "365078d0d64e6cd282c9dfec958a6afdbf1876a5d6378ccc39a2fa505aea8961",
+      "afterSha256": "365078d0d64e6cd282c9dfec958a6afdbf1876a5d6378ccc39a2fa505aea8961",
+      "metaSha256": "4ba3a8c80d3b0fddf5c6156b825c6fefc505a50770dcfa7e8177677c7f99f74d",
+      "beforePixelsSha256": "9424ae108f8e45fbcdb5d68e13722f5976a4eaa69fc354c7f56e3fa362fa4d79",
+      "afterPixelsSha256": "9424ae108f8e45fbcdb5d68e13722f5976a4eaa69fc354c7f56e3fa362fa4d79",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/lao-mo-wo-xiang-chi-yu-le/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 40319,
+      "afterBytes": 40319,
+      "beforeSha256": "c610a495bba939fb71eb3e43de2ca1f3c35220d0c1a797a4d4a1b5cbc23cb3e0",
+      "afterSha256": "c610a495bba939fb71eb3e43de2ca1f3c35220d0c1a797a4d4a1b5cbc23cb3e0",
+      "metaSha256": "77c14dd516a18dd23ee358fc4506ee99cd153f2b5124c2f9bbee4c12ed0780de",
+      "beforePixelsSha256": "6eb07edc0c920694aeea575c8c5e4c8e2fe433ae90936434c4b244e7ebae539f",
+      "afterPixelsSha256": "6eb07edc0c920694aeea575c8c5e4c8e2fe433ae90936434c4b244e7ebae539f",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/lian-dan/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 42724,
+      "afterBytes": 42724,
+      "beforeSha256": "e72ecf420cde9efcba577fa8131c3c905bae4758c90a7f7818e53ab52057c24d",
+      "afterSha256": "e72ecf420cde9efcba577fa8131c3c905bae4758c90a7f7818e53ab52057c24d",
+      "metaSha256": "48f87eae354160efd5ac6d59561bbd126071b34277dafb14a8d8f2d8c9f9b727",
+      "beforePixelsSha256": "e16077d96be819694f763cdf7eae9d7cf070bab396c1c1be7eb4a39130d6010d",
+      "afterPixelsSha256": "e16077d96be819694f763cdf7eae9d7cf070bab396c1c1be7eb4a39130d6010d",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/mai-le/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 43205,
+      "afterBytes": 43205,
+      "beforeSha256": "76fea592e3811fb71b355203c0e3de8b3dded5cb60d39b50ab67e0705c4b6458",
+      "afterSha256": "76fea592e3811fb71b355203c0e3de8b3dded5cb60d39b50ab67e0705c4b6458",
+      "metaSha256": "5b1a9bf9f4024e1cb1a4b6f8c511d9a48805f64f2e711cc832ecca10acbee1a4",
+      "beforePixelsSha256": "0ee0c563d42693f47fdd35ce2e996f3a16c5f57b21ab696fb59dfe5be44320ce",
+      "afterPixelsSha256": "0ee0c563d42693f47fdd35ce2e996f3a16c5f57b21ab696fb59dfe5be44320ce",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/meng-jiang-ge-ge/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 41284,
+      "afterBytes": 41284,
+      "beforeSha256": "19b91d739ef27d8a40e95fc8c63abb187a368ebae6a22e6a41bd690c72006ef2",
+      "afterSha256": "19b91d739ef27d8a40e95fc8c63abb187a368ebae6a22e6a41bd690c72006ef2",
+      "metaSha256": "a993823b92f1215a0171009f54b42393e8bab374551980d5244cc80fd17e0534",
+      "beforePixelsSha256": "b3d5a0efce3866eb7a633c33768ec732e865a85b880bd3d53d5e225c36aa5b4e",
+      "afterPixelsSha256": "b3d5a0efce3866eb7a633c33768ec732e865a85b880bd3d53d5e225c36aa5b4e",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/mo-shi-qiu-sheng/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 47626,
+      "afterBytes": 47626,
+      "beforeSha256": "94e0325b65eec7df2aa1ac0667bcb96366fa90a4c06ae8110b5d2dadfa7685a4",
+      "afterSha256": "94e0325b65eec7df2aa1ac0667bcb96366fa90a4c06ae8110b5d2dadfa7685a4",
+      "metaSha256": "3bed6e0b796cbfb0baa5cdde83da1fd467fd82269e3f8bf441032d4f2e1edc48",
+      "beforePixelsSha256": "c86a56aa8b44e130d6ae0d54808306966657e99b387396ffc8e640be4a689f2b",
+      "afterPixelsSha256": "c86a56aa8b44e130d6ae0d54808306966657e99b387396ffc8e640be4a689f2b",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/nan-nian-de-jing/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 52293,
+      "afterBytes": 52293,
+      "beforeSha256": "08d149fe6587719bb9a79bede441a5448cdd0ac8a30fd5e6581a04de60b0e1c3",
+      "afterSha256": "08d149fe6587719bb9a79bede441a5448cdd0ac8a30fd5e6581a04de60b0e1c3",
+      "metaSha256": "dd30e26b2d0bbbb1cf68194f9ee2ef663377def10d1d439abc50504720730fcb",
+      "beforePixelsSha256": "c2ef47845a4135b55debcdb2c23571b81da684ae3e97e0292910b068909f61fd",
+      "afterPixelsSha256": "c2ef47845a4135b55debcdb2c23571b81da684ae3e97e0292910b068909f61fd",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/ni-hao-sao-a/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 40998,
+      "afterBytes": 40998,
+      "beforeSha256": "d323697b208ad5081f9be6a5a0e9a367a1177069e845a4f03ef43633d6966609",
+      "afterSha256": "d323697b208ad5081f9be6a5a0e9a367a1177069e845a4f03ef43633d6966609",
+      "metaSha256": "08076e8f6af66bd756fb8460e63373dc44dbbe181e17c50b4996ee4e1434c8ed",
+      "beforePixelsSha256": "61cda5a8461418236df70c25faa7e2a9fb939c7188e7c1769105634c4681a8cd",
+      "afterPixelsSha256": "61cda5a8461418236df70c25faa7e2a9fb939c7188e7c1769105634c4681a8cd",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/ni-you-ben-shi-ni-kai-men/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 42230,
+      "afterBytes": 42230,
+      "beforeSha256": "f9a5fd4429299e94fb744160b69d774e0a37a58a3cf341df4e3c4e053bdd6066",
+      "afterSha256": "f9a5fd4429299e94fb744160b69d774e0a37a58a3cf341df4e3c4e053bdd6066",
+      "metaSha256": "d6701590cd6d27b20ecf24327795c6365a47996e58400752a72c1d9e2f33f486",
+      "beforePixelsSha256": "a55334f1cc76919742f3e19f24b1bcde27bc5fc8023d43b8ac0d807f9d47b7c1",
+      "afterPixelsSha256": "a55334f1cc76919742f3e19f24b1bcde27bc5fc8023d43b8ac0d807f9d47b7c1",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/ru-yan-da-di/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 45272,
+      "afterBytes": 45272,
+      "beforeSha256": "ef74e6ee69a34af2454079463d349570bc4b2157ae3b38213a0dc48ab0102453",
+      "afterSha256": "ef74e6ee69a34af2454079463d349570bc4b2157ae3b38213a0dc48ab0102453",
+      "metaSha256": "3c8721c11da5d4d2b9195f0fd3796ef104b291c5afef465ed27c947bcbb7a871",
+      "beforePixelsSha256": "7835c7884526f75b8886a8c45e1578517671c0da41eb01ffccd6974253e0a5c1",
+      "afterPixelsSha256": "7835c7884526f75b8886a8c45e1578517671c0da41eb01ffccd6974253e0a5c1",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/san-shi-nian-he-dong/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 47994,
+      "afterBytes": 47994,
+      "beforeSha256": "b9b3a81151009be943933bd8c96e66ebb2ba1e51fef565ec127d4890f36ebf67",
+      "afterSha256": "b9b3a81151009be943933bd8c96e66ebb2ba1e51fef565ec127d4890f36ebf67",
+      "metaSha256": "6a1d4322393288ff45345e89018d6f7f711fb8efa6f89873ebb311485c51b8ad",
+      "beforePixelsSha256": "c97ff43ce015bda6d59f2532d85746de896b7e100290342f98a1084e06cc3894",
+      "afterPixelsSha256": "c97ff43ce015bda6d59f2532d85746de896b7e100290342f98a1084e06cc3894",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/shen-bing-tian-jiang/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 47612,
+      "afterBytes": 47612,
+      "beforeSha256": "ebdd426986cc859eb17a3f53ba7cd47424a41954719aeffd0209de404340aca3",
+      "afterSha256": "ebdd426986cc859eb17a3f53ba7cd47424a41954719aeffd0209de404340aca3",
+      "metaSha256": "c45b2c35a70db334c39d525df96afe032a7f6ee808bc95817a585a453fb42011",
+      "beforePixelsSha256": "05e5b8c4b7e5d6575729b93451b108b627addce8c7265b18f4611fe3ee19732e",
+      "afterPixelsSha256": "05e5b8c4b7e5d6575729b93451b108b627addce8c7265b18f4611fe3ee19732e",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/shi-li-tao-hua/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 44805,
+      "afterBytes": 44805,
+      "beforeSha256": "d253cc5c3aff486773a6e92cb0faf671f1040f467de641eb65a8cca64a73b319",
+      "afterSha256": "d253cc5c3aff486773a6e92cb0faf671f1040f467de641eb65a8cca64a73b319",
+      "metaSha256": "92d3da7db1aaa298f652e7ea0f1ee80ed7ccc542f770c414d7330c1a96b7ab96",
+      "beforePixelsSha256": "0bdffe097ef1d13afc091f53f363e048c4f3a12266f3a32b815b730be2ea86c7",
+      "afterPixelsSha256": "0bdffe097ef1d13afc091f53f363e048c4f3a12266f3a32b815b730be2ea86c7",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/shi-si-bao-wei-liu-bo/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 44944,
+      "afterBytes": 44944,
+      "beforeSha256": "0cc0d9abc362faa4527e962e5154072f8232071a4eb66c9de60c3a7474dce477",
+      "afterSha256": "0cc0d9abc362faa4527e962e5154072f8232071a4eb66c9de60c3a7474dce477",
+      "metaSha256": "e0e2c0b0e83f3b73234b8db1c067a784bf068ee73e55c476919a0fe3c67f1495",
+      "beforePixelsSha256": "248ef692a41a0c8a470fcfee1fe2e88af91ae4767be588122a5c1dce7298e89a",
+      "afterPixelsSha256": "248ef692a41a0c8a470fcfee1fe2e88af91ae4767be588122a5c1dce7298e89a",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/wai-zui-long-wang/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 42660,
+      "afterBytes": 42660,
+      "beforeSha256": "f9a40c8df832e1063aeab6f68f644e0089ef77e730396b92c00a71f116e18df9",
+      "afterSha256": "f9a40c8df832e1063aeab6f68f644e0089ef77e730396b92c00a71f116e18df9",
+      "metaSha256": "84c9d744104ee5f8c898d21e028acf95d23bf054d0bc76f059a682d28ce7dd58",
+      "beforePixelsSha256": "ee8a685f84aaddd4d3ee85559667810077d61f37d6c484366e964b337f5778d3",
+      "afterPixelsSha256": "ee8a685f84aaddd4d3ee85559667810077d61f37d6c484366e964b337f5778d3",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/wo-shi-shui/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 43955,
+      "afterBytes": 43955,
+      "beforeSha256": "6482c7fa7ef9b4e47a252c64750a985da922341b57e8ca976c374e243c8f7532",
+      "afterSha256": "6482c7fa7ef9b4e47a252c64750a985da922341b57e8ca976c374e243c8f7532",
+      "metaSha256": "77b014ed8fc058c3632d7d51859d8f76d82a5f9957ca3249aa8157b8d991039e",
+      "beforePixelsSha256": "687a3f6c645e527bd1eddf56ca1fcfa8adb67c64d0dc3f808a9b4010c3f64695",
+      "afterPixelsSha256": "687a3f6c645e527bd1eddf56ca1fcfa8adb67c64d0dc3f808a9b4010c3f64695",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/xue-wei-zhen-jiu/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 50820,
+      "afterBytes": 50820,
+      "beforeSha256": "f9bd0f48db4d94a0a24deddbd29cad5c88d6faeeba502f8b39bf80bc6128dd46",
+      "afterSha256": "f9bd0f48db4d94a0a24deddbd29cad5c88d6faeeba502f8b39bf80bc6128dd46",
+      "metaSha256": "e11ceb7c89b71425183fc017043c2599137028e5f0de60573b9a59199569f3db",
+      "beforePixelsSha256": "9967410fc0c83a30e890dc3d13333091fc5a545ff3c4d6beb10a243edc6a0034",
+      "afterPixelsSha256": "9967410fc0c83a30e890dc3d13333091fc5a545ff3c4d6beb10a243edc6a0034",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/yu-nv-wu-gua/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 48127,
+      "afterBytes": 48127,
+      "beforeSha256": "5247afdc4445aacc8819ca6474dfabb53f84653d1f1e57c393a3feab4ec4f20a",
+      "afterSha256": "5247afdc4445aacc8819ca6474dfabb53f84653d1f1e57c393a3feab4ec4f20a",
+      "metaSha256": "53305fbc5e9c77bedaad3de5fbb4149abd1e5644764b0a09a5c2f5b7427f3709",
+      "beforePixelsSha256": "7f4253c6ce9645a6ff0f73eb25c924a461b578e0f3ec7a12c3d56c61964a369c",
+      "afterPixelsSha256": "7f4253c6ce9645a6ff0f73eb25c924a461b578e0f3ec7a12c3d56c61964a369c",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/yuan-fang-ni-zen-me-kan/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 45125,
+      "afterBytes": 45125,
+      "beforeSha256": "a269656102408c13bad71c069161684cd9112a616ab204b3dfd62de837ab9cb2",
+      "afterSha256": "a269656102408c13bad71c069161684cd9112a616ab204b3dfd62de837ab9cb2",
+      "metaSha256": "c089105f2111d55c0acac6454dac231fdb3861573cd3fe20b19722f37c8ac860",
+      "beforePixelsSha256": "0cfd692d7feb4fc800b3783c731476a886916fa183ee144a5640ea0b14d525e2",
+      "afterPixelsSha256": "0cfd692d7feb4fc800b3783c731476a886916fa183ee144a5640ea0b14d525e2",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/yun-dong-jian-jiang/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 42405,
+      "afterBytes": 42405,
+      "beforeSha256": "743b364f0a1c162b05be962d0049a829da3802d904c4285ea83e90cfb9d50c6b",
+      "afterSha256": "743b364f0a1c162b05be962d0049a829da3802d904c4285ea83e90cfb9d50c6b",
+      "metaSha256": "f65874df52e8515c8b87039e68fc3f5ec4836266d7111599bf753005d0121714",
+      "beforePixelsSha256": "727000fd20daf735204f16237251d16ed4158d422f28a56b1bcd36b96e411920",
+      "afterPixelsSha256": "727000fd20daf735204f16237251d16ed4158d422f28a56b1bcd36b96e411920",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/zhe-gua-bao-shu-ma/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 49715,
+      "afterBytes": 49715,
+      "beforeSha256": "2a9217aec6d1a43b73d83ac580363fb6268346fec445f0ae6b80f53d85733606",
+      "afterSha256": "2a9217aec6d1a43b73d83ac580363fb6268346fec445f0ae6b80f53d85733606",
+      "metaSha256": "204d5da98a7cdb251b3698747c8def1c75af6c0502d31442f0f7179a5047b51e",
+      "beforePixelsSha256": "72448793490950ee93d72cf63faa92b2e30f166586fc40fa49012ba3575d7442",
+      "afterPixelsSha256": "72448793490950ee93d72cf63faa92b2e30f166586fc40fa49012ba3575d7442",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/wai-zui-long-wang/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 257986,
+      "afterBytes": 253463,
+      "beforeSha256": "785ae754eb9eadce1cf6affe48725420dcdde2d442ad452260678b8b1572a5bf",
+      "afterSha256": "23fb041c50a4a56372852e14980ff4c03daefb70174fc61a0336b53d7606c937",
+      "metaSha256": "26f9c530fcfa8d50fda8d09c805e770a9e6cc6adf0e19844be27e3b5c23b10e6",
+      "beforePixelsSha256": "e9b5740b27a59c770014d93db9a942ae8f8e55fb673d2d883344d32330531007",
+      "afterPixelsSha256": "e9b5740b27a59c770014d93db9a942ae8f8e55fb673d2d883344d32330531007",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/wai-zui-long-wang/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 270175,
+      "afterBytes": 265462,
+      "beforeSha256": "21ede1e2d3f50936155255dda61453cb7705ff67d483a1e1f2c5b0d7b916dd26",
+      "afterSha256": "4bc788688b928d4a4b877ab9151a1dfec81a9fc2103cf4d25e4b1ebb3b03e919",
+      "metaSha256": "d5ce68c54d0b2e8169adad0f42290548c7119988ef41323383c0f315dfccdf34",
+      "beforePixelsSha256": "725fc85840addae24cc9635ce5fb88458e88789f26919967c50a2bfb14bcac9b",
+      "afterPixelsSha256": "725fc85840addae24cc9635ce5fb88458e88789f26919967c50a2bfb14bcac9b",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/wo-shi-shui/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 277417,
+      "afterBytes": 272669,
+      "beforeSha256": "77b2fd6cc362cb7399c0afd1d6983e313337a809e9568b3cada2f935ff6ff6df",
+      "afterSha256": "950f83e7ac7a1c0fc561a5e3308db5bea466fa26d2539f4642b5347cf405449f",
+      "metaSha256": "e9fa06edcc1d87fe35edc38a0e7a5aecd8f89874affe8404c85dc0d2ecc23465",
+      "beforePixelsSha256": "78cb63d17261390be221bfd03e097417ada6bdc46b242b603d713a8626170e69",
+      "afterPixelsSha256": "78cb63d17261390be221bfd03e097417ada6bdc46b242b603d713a8626170e69",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/wo-shi-shui/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 285141,
+      "afterBytes": 280329,
+      "beforeSha256": "7d34c0973e5aaed743e0e89581633ed660b9e101abcd2ea08fafaea3296804a0",
+      "afterSha256": "c1e418c4c2f1a6776ba1729299a93c0a269fb0b607dec42c1b1805ef22f75074",
+      "metaSha256": "59d7a7cb58055a3a1656759fc2d5fa9f318af7ab0692cb64a9aa8f616b63ec13",
+      "beforePixelsSha256": "9dce5a7246677f2d72c7e5fde5ade6a7e30073bc26b2807954a53951e4b328d4",
+      "afterPixelsSha256": "9dce5a7246677f2d72c7e5fde5ade6a7e30073bc26b2807954a53951e4b328d4",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/xue-wei-zhen-jiu/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 328014,
+      "afterBytes": 319254,
+      "beforeSha256": "3af0f00e826d4d2b7ebd6f02ed1247d3e8dded852850fdd3003b229f7fa5ca92",
+      "afterSha256": "220eb0e1e0ceca1e1008ca766a496df82ff1c53e0fa239c1061b6d1472be0e79",
+      "metaSha256": "5a9e17d74922281e3e454ae65566a1c3a45f38959dc786a7a7d7c67819cb2b51",
+      "beforePixelsSha256": "e135e734d8c4736c5c28c8d7ea1067e997e9631106aa8baa6515be8447f16ffc",
+      "afterPixelsSha256": "e135e734d8c4736c5c28c8d7ea1067e997e9631106aa8baa6515be8447f16ffc",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/xue-wei-zhen-jiu/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 331557,
+      "afterBytes": 322088,
+      "beforeSha256": "a49b3e9e3bc1a710c2efa9d537c4f404135fda86950d2cfd274a64ca1bc29b3e",
+      "afterSha256": "95d60b7c36357da63058ced5faeed70d1be674bb1c2efe1ec3d792a13cc0d95e",
+      "metaSha256": "2b8a1e046dae5fffd228be30d02b139a31a9ece43895cad9f94f95aa8a01f2bb",
+      "beforePixelsSha256": "38c633423e90270b6f7434b1b8a92ae737d657eb3350e1fb1c2fe4ebac16a66d",
+      "afterPixelsSha256": "38c633423e90270b6f7434b1b8a92ae737d657eb3350e1fb1c2fe4ebac16a66d",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yu-nv-wu-gua/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 278246,
+      "afterBytes": 273241,
+      "beforeSha256": "e59bc7997f1f6c768167b5c7233ec5ced6d5699715e9f1fa1ca0d8d5d6dd1365",
+      "afterSha256": "c4a07994f123aea04f5d29131e151485dd5575fd5ac27fb4878a965f46c821fd",
+      "metaSha256": "6522078c9bbb9a5bc40f7315459f193b28af29482d10d0d11a342dfadb9422b0",
+      "beforePixelsSha256": "1eba0ac5adbc3a9bde294330531f60c07913e2a3a1b6936af46255fee5c910be",
+      "afterPixelsSha256": "1eba0ac5adbc3a9bde294330531f60c07913e2a3a1b6936af46255fee5c910be",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yu-nv-wu-gua/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 277244,
+      "afterBytes": 272300,
+      "beforeSha256": "cd51d38f3acb3979a5a76e921c543454d8070d3c50f334b62769e0408c4b1678",
+      "afterSha256": "65e9451c60cec965fe1b3c69e580e496a363d5e9cc1bd5974d31c385a950f009",
+      "metaSha256": "a3b9302b5da8ff1e6e7d8fc5f2e9fa98e07bd5a7786931451cd91c374afb4768",
+      "beforePixelsSha256": "f19d4fc0638995cd4454e388a284faf7bc9e75c57390b443f097f72f71a755d6",
+      "afterPixelsSha256": "f19d4fc0638995cd4454e388a284faf7bc9e75c57390b443f097f72f71a755d6",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yuan-fang-ni-zen-me-kan/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 294535,
+      "afterBytes": 288583,
+      "beforeSha256": "c079504289412668fed4d9a35c4de7b380c94b2ec68c4dd1ae9224f07f993035",
+      "afterSha256": "dde3a8e3652a6b5d26c98c990cc963d585f0c030891e7e89ec936ee258cd81c0",
+      "metaSha256": "8c67841517ad5dbf9c4150785ccb74e9d21fe4c3806e8114b9d7e583df7bc18c",
+      "beforePixelsSha256": "d59a029262fda3b5f3a872dfb453389feb299f2f1b5e89dc053ab6befbdbb9dc",
+      "afterPixelsSha256": "d59a029262fda3b5f3a872dfb453389feb299f2f1b5e89dc053ab6befbdbb9dc",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yuan-fang-ni-zen-me-kan/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 289531,
+      "afterBytes": 283513,
+      "beforeSha256": "3f79dc080cbf043e462f81031811be0d2d5f3d7664dcba27903ee8a72670b2d0",
+      "afterSha256": "5fbb1d89ee8567baa31b979c86f1d508c2821f5c358f8cb0e7ef016e30b03d97",
+      "metaSha256": "2a3d7ab3507de8fe847812c7c23d7f807194f25156fb8b0876c76a97faad56ec",
+      "beforePixelsSha256": "352ed487c5b6457206cb4def4da90bc92a06cbe09666927e2b6b83331e243a52",
+      "afterPixelsSha256": "352ed487c5b6457206cb4def4da90bc92a06cbe09666927e2b6b83331e243a52",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yun-dong-jian-jiang/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 270720,
+      "afterBytes": 265051,
+      "beforeSha256": "2166df1f299b35b2b6c4a24e031dcab143a88df4142b98ea82afe1125fea8866",
+      "afterSha256": "e87cdd0e2641017b4cd2f4aee9f12469188a1dc27d5f103e3b3d50c2cf07605d",
+      "metaSha256": "2af49ef2581d5872027c5dad0e60cf90ffce0047b34174c8291b2719a686ec18",
+      "beforePixelsSha256": "eb59ab455e0f260ce43c9ce8b777211dd78d14abe7625b31aab7198ef792feda",
+      "afterPixelsSha256": "eb59ab455e0f260ce43c9ce8b777211dd78d14abe7625b31aab7198ef792feda",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yun-dong-jian-jiang/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 260465,
+      "afterBytes": 254468,
+      "beforeSha256": "46157bd7291e92652b93b0d5ee91f02df580ef8079e59d8a263ee5f296bfc4df",
+      "afterSha256": "b3b5ae235054818f8a4636fd5f5a291433ddce1abadaf5d9201a331f7f5e0bc5",
+      "metaSha256": "f7c599ce36663df105e19a0f9d494255141c16cd2a3ca13480233ee09a119947",
+      "beforePixelsSha256": "0dd4883d747e209bc64db5a825917ba2bac942992bc5d33b2504fb1e5553e015",
+      "afterPixelsSha256": "0dd4883d747e209bc64db5a825917ba2bac942992bc5d33b2504fb1e5553e015",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/zhe-gua-bao-shu-ma/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 322855,
+      "afterBytes": 316870,
+      "beforeSha256": "dbb13108ab824f9507698f5898b0297d438ad655bc405f90981bad4031350604",
+      "afterSha256": "e084a20bfd9643f4dd36d64e5ab118aec0fc8a9cf9a806075c0e0ba1a225fd7b",
+      "metaSha256": "9de286ba4cb0947c24128a1a6a5009bc70d8fa9ea9086851b9fd1445b53f44c2",
+      "beforePixelsSha256": "5abeefead38ac7c2f66ce8127cd48573c18de01a742be0616ca3ad8b26f26c18",
+      "afterPixelsSha256": "5abeefead38ac7c2f66ce8127cd48573c18de01a742be0616ca3ad8b26f26c18",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/zhe-gua-bao-shu-ma/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 327795,
+      "afterBytes": 321326,
+      "beforeSha256": "c7a4ea75a3a1e3d4bb117cdc4e3a07e399a3133db0178054f25cd45faea8c355",
+      "afterSha256": "b5a9f523eb501552241fd3ade1e47d74a1e77ad7fe9bfb48ccb5195e2a354619",
+      "metaSha256": "5f3a22088b554849d04824a0095375104bdaf87f4f15cb499c996119c82dd943",
+      "beforePixelsSha256": "8616547d712bcd02285a3b3031cfe16d32ff9f4fe0c6328a6ba8ca70fa5bdaac",
+      "afterPixelsSha256": "8616547d712bcd02285a3b3031cfe16d32ff9f4fe0c6328a6ba8ca70fa5bdaac",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/bian-cheng-jing-zhong/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 380551,
+      "afterBytes": 371882,
+      "beforeSha256": "d77f02ed8c9580388459c8e2cfd4548f598fc62fed5b198a4735514052e11c9f",
+      "afterSha256": "815816374d13465bcf079d02e5c30be8ace90c64849e04b0a282f29067c39ee9",
+      "metaSha256": "02f126f32b73607a6f029452f8596193c8a65fb6bcdbe870e4342ea5b951358a",
+      "beforePixelsSha256": "70086bb94be382252495b945db560328ff8f0806c3585302b108565098e7717b",
+      "afterPixelsSha256": "70086bb94be382252495b945db560328ff8f0806c3585302b108565098e7717b",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/bian-cheng-jing-zhong/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 375909,
+      "afterBytes": 366534,
+      "beforeSha256": "64051e1115a4879dc5b7296f1b69b2a62bddedad770a8fdbd47828f8c4b0812b",
+      "afterSha256": "7b9fb05b027f02e0d89d6b931611ba7734b98e785df81b92b98c3b987bffb2d6",
+      "metaSha256": "1ed484c3ddc5f556ca6859fc8e9c95e6d80c1750a8cd089881b7497a6f868a54",
+      "beforePixelsSha256": "21cfe8a9a0b86167cbcbf30918808c1c0ab662ae313d1c6aaf5ed59b89ee48e2",
+      "afterPixelsSha256": "21cfe8a9a0b86167cbcbf30918808c1c0ab662ae313d1c6aaf5ed59b89ee48e2",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/cao-po-kui-tan-di-ying/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 396948,
+      "afterBytes": 386220,
+      "beforeSha256": "70dd1d562d2ea23485d6d6e8534dbff88dcf8254bf65833319dec798457bce6c",
+      "afterSha256": "4f38a485aa3d359b06fb5212f9b6eb0249c4bd1770d41f76e3938d0610af9279",
+      "metaSha256": "f59effbbd5a684505c3210eb4988a29a4eacad6d097e05102783c9aa372eb283",
+      "beforePixelsSha256": "1e4bb4d0b4727da7861cc5d3d5007763f805af8aa55d32980a3861f43065e0bc",
+      "afterPixelsSha256": "1e4bb4d0b4727da7861cc5d3d5007763f805af8aa55d32980a3861f43065e0bc",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/cao-po-kui-tan-di-ying/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 388045,
+      "afterBytes": 378301,
+      "beforeSha256": "ab277e4c58fbc1155cbc47798b51133f1d3d30a96c873119be682f3ed5ee8f3c",
+      "afterSha256": "5b8b31d95205fdfce5de9298ad73479acfdf9aa368854dc04bcb2bb827f78063",
+      "metaSha256": "eca732eae8f90e6a1b8853bd07924deaf555089abea9400d5429570d205dce03",
+      "beforePixelsSha256": "aa43f548345d32090d2b51bb6d75c87ac483c4e1208e8545a4f9cdfa18d07203",
+      "afterPixelsSha256": "aa43f548345d32090d2b51bb6d75c87ac483c4e1208e8545a4f9cdfa18d07203",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/chang-jie-yuan-shou/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 353772,
+      "afterBytes": 344959,
+      "beforeSha256": "3d379197034565f5553c71f9dc75b25944a252cc2559407989064f1bc3dc0142",
+      "afterSha256": "df1fcbaf3732a73f8e6d2a96fc07cca8fcc2f5eb3885ea4eb647a5c77d53e253",
+      "metaSha256": "012157d49b31862d37eb2adefd91fc5862d602051b410a1d3e7a585987e526bf",
+      "beforePixelsSha256": "8b89df362c83b95dbffad456dc9df69c1547bbfb08311098910dd702fff647a1",
+      "afterPixelsSha256": "8b89df362c83b95dbffad456dc9df69c1547bbfb08311098910dd702fff647a1",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/chang-jie-yuan-shou/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 363151,
+      "afterBytes": 353932,
+      "beforeSha256": "b7ba4bd4e10d3deedf92f16518e6160cebba6609602d82b65f2c641d8e69fe4a",
+      "afterSha256": "fcdecca524ce2ff1a8eb9e052ac1458e609d8d62a8d9ded46bba0d421a44d336",
+      "metaSha256": "c0224d201a5c9b21d6944a4238344b41c1faeed1aff1f6ae430dbaa5177d0cae",
+      "beforePixelsSha256": "f62e90daad2ae320a7af1ddfef9c77a5b08c8c5947f2f91ee1801b05e9bb338e",
+      "afterPixelsSha256": "f62e90daad2ae320a7af1ddfef9c77a5b08c8c5947f2f91ee1801b05e9bb338e",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/chi-yuan-qing-he-cun/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 360290,
+      "afterBytes": 352133,
+      "beforeSha256": "6b8b5124850bccbef991b0c42e12a20f5f417eb5594f18f3abd37fe5556a22cd",
+      "afterSha256": "cb75b57e486e2d0a31a54c0ad49ee194bf9a576821344d99f17075e027bed36e",
+      "metaSha256": "648807eb676f8ed2e8f293b03bd2189eb632ec8c3a5df27e195d7e2a3c737bf0",
+      "beforePixelsSha256": "935c6afccd2378af8e7de257f862383143e23627302165e2d9abdb7dd4402de7",
+      "afterPixelsSha256": "935c6afccd2378af8e7de257f862383143e23627302165e2d9abdb7dd4402de7",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/chi-yuan-qing-he-cun/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 353991,
+      "afterBytes": 347084,
+      "beforeSha256": "e3e2cd7839645aeb8abadea26fb1ac884f3ddb07c266859aca4285a4d429c0de",
+      "afterSha256": "fe2ce5369fa7aa271937ae56f1b1af44c750cbfa0737ffcf586cafbda0b0e12c",
+      "metaSha256": "a9de6fe45f3969f7a89975d308f233ea8b401c711bbc603b2a3f45ae05c63312",
+      "beforePixelsSha256": "f9c1a8ccb6efd61319745bde987236959f7f1e32a57fe90fc0f057b33e02d014",
+      "afterPixelsSha256": "f9c1a8ccb6efd61319745bde987236959f7f1e32a57fe90fc0f057b33e02d014",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/di-shui-shi-yi/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 378159,
+      "afterBytes": 368816,
+      "beforeSha256": "1c47e1017156ad8207120022bcdadf0e164c5a0b6e1813994786709595376689",
+      "afterSha256": "907314d1b455aad7468b387351dfd6277ddbfd6bd82c8d7f997536b0f9c421b5",
+      "metaSha256": "939467ff6c670f92d771ff493ffd6d025124ba2633adea9fed7835bef64079d2",
+      "beforePixelsSha256": "4861b314bf530efab71d1378099ccd6b5783c2296a9a8491fe84c8fde4fb59b3",
+      "afterPixelsSha256": "4861b314bf530efab71d1378099ccd6b5783c2296a9a8491fe84c8fde4fb59b3",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/di-shui-shi-yi/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 379648,
+      "afterBytes": 369734,
+      "beforeSha256": "9ae30461bbc1059d259b30855abd4480fa9a33ada7b2a1dc0e44b9e8c12a9696",
+      "afterSha256": "ca1b648c6928ff5756df37cea250d01862b96d3c7cbe7ea377b5b2d637dc66f4",
+      "metaSha256": "7bf30e6da0681cb7ba77420d05444938c27f94d0c98912399f0a223feb1b77fe",
+      "beforePixelsSha256": "7e1d033286a101a61924deb3eb9ddda8c89ae4e9755e4241d9fbc4404dca31d9",
+      "afterPixelsSha256": "7e1d033286a101a61924deb3eb9ddda8c89ae4e9755e4241d9fbc4404dca31d9",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/gong-fang-ran-lu/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 338213,
+      "afterBytes": 330249,
+      "beforeSha256": "a43a408b8a1bd1f3096ce09fa12f5b747b86e2962d91f4a18a2b67c4a7631882",
+      "afterSha256": "088104fd6fa7766049d41487a9495786fe73edb85d4f036dc6a0c97ed935fc99",
+      "metaSha256": "497bbf7d30e6ea2cb310a0269b3ef86c1225fdcc599293d11d8d317fe9ba0934",
+      "beforePixelsSha256": "c62e016700d26d7af1411b73695ff4cb3be07d9435bd1b20d58992bfb39fbebb",
+      "afterPixelsSha256": "c62e016700d26d7af1411b73695ff4cb3be07d9435bd1b20d58992bfb39fbebb",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/gong-fang-ran-lu/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 354571,
+      "afterBytes": 345602,
+      "beforeSha256": "1d06e4abe53b91d9905ea925d6bab83e36e22895364d0d013ea64ad1e6f65493",
+      "afterSha256": "c4b015a40c4655304dc8cf9efdf5d6b70d13e583e8c2cb4bc496934e3bb88ff5",
+      "metaSha256": "c3d4935760dae7d5ec0dc1a4faa62bd33aa0547c7d616638ff23bc9b1dd8d5aa",
+      "beforePixelsSha256": "d7fe26ed84668e038f86af19a20326122a97b68eb763a69a801649d74b801337",
+      "afterPixelsSha256": "d7fe26ed84668e038f86af19a20326122a97b68eb763a69a801649d74b801337",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/ji-yuan-jun-xie-che/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 318241,
+      "afterBytes": 312418,
+      "beforeSha256": "6654bd1fc8d6ba098b3574196a95120008ff50bb6520df08eafde33e8677644d",
+      "afterSha256": "199010e51735e003479e252cdba93c1c5ace4abde1593a5f891de19eb6da9eb2",
+      "metaSha256": "6e1bc20bd1c8086bc2917fa28756196a41d1d58c96040c26d77ebc4758abfdb4",
+      "beforePixelsSha256": "5c607bef87d2adb1b1fe66623aefb9a913c1fa78cb9f8599eec4e93d829748d8",
+      "afterPixelsSha256": "5c607bef87d2adb1b1fe66623aefb9a913c1fa78cb9f8599eec4e93d829748d8",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/ji-yuan-jun-xie-che/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 307944,
+      "afterBytes": 302292,
+      "beforeSha256": "d433054aba9da2f0a29b0a53da81d1df3c0d284ab663666d76ae87f5f7c05875",
+      "afterSha256": "4acded5d0a480739f6e24293236e9e45c8a3bc959407366955abd21e82a2bab8",
+      "metaSha256": "89cc17e48f28b0194949820ad624ba965b31028576a3014496e440ec86fe9ab5",
+      "beforePixelsSha256": "95754cf667f9a573c7dcd85ff804d30f3a2a908274b58aa3ab9b3bfa240e8012",
+      "afterPixelsSha256": "95754cf667f9a573c7dcd85ff804d30f3a2a908274b58aa3ab9b3bfa240e8012",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/jiu-lou-er-ceng-feng-bo/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 341059,
+      "afterBytes": 332759,
+      "beforeSha256": "f4de1a60fc31e1783a017366eefb216d57e6dad55d1e0f9e6d54ade3b8a95526",
+      "afterSha256": "8919aef1efd3b2468c0ec37b1de0b712d15cde53c1c69335a0d79e1fbbcd8ca1",
+      "metaSha256": "3ae33e4087ff4040fc032ac0c51af5156db9cb8260995e103f97d9e35daed5f5",
+      "beforePixelsSha256": "77afb6f8c66fadb7a24bced625d754658c5a86dc4fce00c3df2f357f05bcdcf2",
+      "afterPixelsSha256": "77afb6f8c66fadb7a24bced625d754658c5a86dc4fce00c3df2f357f05bcdcf2",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/jiu-lou-er-ceng-feng-bo/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 342588,
+      "afterBytes": 333903,
+      "beforeSha256": "f49e61eaa0540cba1ca1d36e2884ab8e0a1eb8b8c032238a50b449cadde9210e",
+      "afterSha256": "501fa9abf5b17cd4139c30c354c60fcedb22bec0525c01ffe848e94d8a173390",
+      "metaSha256": "c3a0cc90513a11e8da984199b885c1c5e43c49f511e9246cd8cf2837925f5ad6",
+      "beforePixelsSha256": "e3228225c69b8ad37ead0067f35ab86cc0c99653ebeae542c2a15ec4d981c0ac",
+      "afterPixelsSha256": "e3228225c69b8ad37ead0067f35ab86cc0c99653ebeae542c2a15ec4d981c0ac",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/long-cheng-jiao-chang-zheng-jun/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 389758,
+      "afterBytes": 380194,
+      "beforeSha256": "d17b0e59d4ddf707ee30e305398b618804f3c1976f6a133e1bcb2c0efd56e678",
+      "afterSha256": "d38f39c29e63df2889030e0c42ebba21459b7fc8005d2f29f406917dacfb5576",
+      "metaSha256": "9dafd0537f4c36f25f6e63bd42aace065e0c1eae3434b155bb1ca063bac8501c",
+      "beforePixelsSha256": "8cfc77ca1f15ada2cbefcef8cddf3d49d20ab3d476d63ba35d642fe35c677ae6",
+      "afterPixelsSha256": "8cfc77ca1f15ada2cbefcef8cddf3d49d20ab3d476d63ba35d642fe35c677ae6",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/long-cheng-jiao-chang-zheng-jun/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 376340,
+      "afterBytes": 367289,
+      "beforeSha256": "72eedab8342d7c1c1194e442dd23b1ca620fe3ebf51da1a85c7e09e9f71f9180",
+      "afterSha256": "78f9e133dd4f625055c904557857929ffee679fed7898f7f59cd038518377f7e",
+      "metaSha256": "3e794e57fd3a78b9398087092f6002919247b47642502f88c4865b4420f8a082",
+      "beforePixelsSha256": "ee744b572d604b0b135565b0841eb9805cf62fc44463a10b548e1bcf632867ec",
+      "afterPixelsSha256": "ee744b572d604b0b135565b0841eb9805cf62fc44463a10b548e1bcf632867ec",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/mi-lin-gong-ying-dui-zhi/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 373096,
+      "afterBytes": 364605,
+      "beforeSha256": "9d67c97e8ea9f1251d0a28a9c45a046a783e7bcc29aae15b5ba7ebd566a5b801",
+      "afterSha256": "38031affb157501b7fb3cd799d805b3863fa122fdfbdc4c492aaa9e90fea979e",
+      "metaSha256": "75f6c0adb2847401c3f715352910821f6afce6a41b9c1d77ff55dad130a6f22d",
+      "beforePixelsSha256": "681a5b381c28fc9bb7bdad13c7480c2831ff7e0541cd02000ed0964d75cd0211",
+      "afterPixelsSha256": "681a5b381c28fc9bb7bdad13c7480c2831ff7e0541cd02000ed0964d75cd0211",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/mi-lin-gong-ying-dui-zhi/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 388488,
+      "afterBytes": 377437,
+      "beforeSha256": "58db5ca4d1a78adffaf76f24b65364c800f4b765861a90e5d76da0204c3fb675",
+      "afterSha256": "2a3e63288331f90c47a6f15d4f17c80f50bcaec98f6a2ddd80784a761c5bfc67",
+      "metaSha256": "708b3b779613fd4b3bdb219125c4afe720b8fa47a69337c57c0dc4cf666a84fc",
+      "beforePixelsSha256": "7ac63db844fa60bd7a206e16fe1a49f3d47c478111394b1540ad63a67bff1b68",
+      "afterPixelsSha256": "7ac63db844fa60bd7a206e16fe1a49f3d47c478111394b1540ad63a67bff1b68",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/mu-fang-shi-zhi-shou-nu/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 337944,
+      "afterBytes": 329970,
+      "beforeSha256": "6a9c798179ea1f139c623a4e4db333d4ceadc59df235a8e1235dfd816537d2f0",
+      "afterSha256": "d16040732d95ceeeb865b56d5a8899b3eb0c008c896e241f38e6ba9f8a085609",
+      "metaSha256": "fec1876f7cd439a1fc558fed4e7a6f80613b47dc0619cd9a63fe4968b59ac201",
+      "beforePixelsSha256": "9304a7b8c4c9fe284779e73e3c426f6687d352c57751999f83e74da714eba41a",
+      "afterPixelsSha256": "9304a7b8c4c9fe284779e73e3c426f6687d352c57751999f83e74da714eba41a",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/mu-fang-shi-zhi-shou-nu/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 346918,
+      "afterBytes": 338864,
+      "beforeSha256": "fc4cac3ba46306ee647cda9b1e01958567be928cdf93262551f2e08b5a99da27",
+      "afterSha256": "baa265bd742e99f0376e4b601d0a6251de8b472237c0ef12e127e787069fbe07",
+      "metaSha256": "39f29d6eaa53758d615e6a6dd67ab7fa0130efe98d87550d2ebe4e543ea09f4a",
+      "beforePixelsSha256": "c55050eec4f7608c5c2abb339aa54f9ee033d97b2dec8bf51a63e7f228ea3c21",
+      "afterPixelsSha256": "c55050eec4f7608c5c2abb339aa54f9ee033d97b2dec8bf51a63e7f228ea3c21",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/niu-yang-chuan-yue-shan-ai/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 389753,
+      "afterBytes": 380492,
+      "beforeSha256": "6113a31f61518aef685ebdd68a7b88bf06f29ef2b0e98d6c89e2c727d9fbe36e",
+      "afterSha256": "2c15e43bed6fbc7acd02c8efe4c6b07ccc80e9c572b3b419b244f1371ce27b40",
+      "metaSha256": "b9b349e12cef9ab456883361b3b784d80ab5c32fa3245a15d2fe7decaf6ade11",
+      "beforePixelsSha256": "d6ffd9f63592b4383e4d50c0df8cfe0c56ea9e1d0df276111a0724fb65308212",
+      "afterPixelsSha256": "d6ffd9f63592b4383e4d50c0df8cfe0c56ea9e1d0df276111a0724fb65308212",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/niu-yang-chuan-yue-shan-ai/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 387734,
+      "afterBytes": 379096,
+      "beforeSha256": "75c6398a9c5a2849eceeb32d8a83cc5c69b6546d5b41e2567faf738fb609e10d",
+      "afterSha256": "07848a4fcee7759bcbb70cf61598c9072da8dbd95dbdc87ebd82f26020b5cb6d",
+      "metaSha256": "c765e52cf55ad7dd19d3e2c38216ad0ad66eba5f0c310603ec7d0efd46a787d5",
+      "beforePixelsSha256": "a812709423e6ca198d181884e8929419c88603faf94ed5a81d461fce7d675971",
+      "afterPixelsSha256": "a812709423e6ca198d181884e8929419c88603faf94ed5a81d461fce7d675971",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qian-xian-ji-bao-di-da/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 345813,
+      "afterBytes": 336981,
+      "beforeSha256": "46f40a3e8a34e122b9387ebc2db9667f89a57cc06b3b694852227882796c9fb0",
+      "afterSha256": "c2ed913933b10404a40e4863d79c3063de6e23c8092ee2b1799cf1c7d9f642e1",
+      "metaSha256": "804d9ff7613f6beed14a12a4fa38591e6b3f567329b12f20c97595ca0ba83dd4",
+      "beforePixelsSha256": "b3c360a5f599f6cbd6d735d48aac74f8e6718f5c40dd9da6e3b1bcd7584cf65f",
+      "afterPixelsSha256": "b3c360a5f599f6cbd6d735d48aac74f8e6718f5c40dd9da6e3b1bcd7584cf65f",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qian-xian-ji-bao-di-da/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 342508,
+      "afterBytes": 333999,
+      "beforeSha256": "e6a1d70bc2d7a18dbc562e5988454a2ba9af3098cf67a5fc0eda44767c3f76b3",
+      "afterSha256": "3a7a5e9705677828e83435e6c7de448e890072e3700f4dde5472bc259e35fce2",
+      "metaSha256": "d08a6132d889da22b64a4e51f0164e49c50b3bcb42cbfb6acb0d02701b0cf226",
+      "beforePixelsSha256": "197a547683fe7263c4f8e8d01c92d218d71eddae4394dd5265bd8177cc843bd4",
+      "afterPixelsSha256": "197a547683fe7263c4f8e8d01c92d218d71eddae4394dd5265bd8177cc843bd4",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qiang-liang-che-cun/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 377854,
+      "afterBytes": 368391,
+      "beforeSha256": "cd4bc5060ea4b13ad6528987df62dee6c56696676f34e2a33b72f598ad74ec78",
+      "afterSha256": "b254c88a35803b8893671b6f19413713927ce4839387ce978215bb33345ecc71",
+      "metaSha256": "5d6c90f5e502c27974592aca39a43de6b58c95254f77077608c9abe2465b4071",
+      "beforePixelsSha256": "52f50cb628fc012e9f9eaa8c996844971e25c70ace7a098bcbb4f5702cdbff19",
+      "afterPixelsSha256": "52f50cb628fc012e9f9eaa8c996844971e25c70ace7a098bcbb4f5702cdbff19",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qiang-liang-che-cun/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 367556,
+      "afterBytes": 358456,
+      "beforeSha256": "59f34a263d69a9ba2920d008ef221befebce5a5f75349a717e48ca47ce42419f",
+      "afterSha256": "d85396dd8021260485acff27637836b585f867a8dea8d73b78eeb36832b6595f",
+      "metaSha256": "53012950ad69d1d7c1e71983679a955372222646a516be68022646b64213caa6",
+      "beforePixelsSha256": "130d586accdc13adff0031278e186c7e79b7714bac8cc2c79b59ca0dccbf52ae",
+      "afterPixelsSha256": "130d586accdc13adff0031278e186c7e79b7714bac8cc2c79b59ca0dccbf52ae",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qin-niang-zi-jia-dao/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 313932,
+      "afterBytes": 307353,
+      "beforeSha256": "18cbf2f213eae02b5239ac5d8d5ba05e4f3f4e16cc75974f74f635421e1b40e3",
+      "afterSha256": "181c558d0f15223a2b1949a2384c9d224ccdfa3b7e33945d6de2ae74a4aff42a",
+      "metaSha256": "125f6f4f5b63d3ff44e1d2d62acfffb31c84f780ea280550afa67428699527c5",
+      "beforePixelsSha256": "b021d866a79a58f006379360a9bf2c6e25893084e2c009489e261d2d41e5394c",
+      "afterPixelsSha256": "b021d866a79a58f006379360a9bf2c6e25893084e2c009489e261d2d41e5394c",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qin-niang-zi-jia-dao/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 323029,
+      "afterBytes": 315699,
+      "beforeSha256": "96e624bd13ab692b3977d35b4e5669169e7be9cb690e8a0f0d44693e162dc95b",
+      "afterSha256": "d8d9b6ff87ae7e59ce636b15095a27d04b71e4954364731b9ddc6839ce4a5ffb",
+      "metaSha256": "a84b8b9b864d07bed6e4bff646cbfe45b95125da264b9d2474d79fdc16325be7",
+      "beforePixelsSha256": "575e447e036dd086e0b8c9489c2398e5b6606cffc765e9b7a25896ab55dbf1fc",
+      "afterPixelsSha256": "575e447e036dd086e0b8c9489c2398e5b6606cffc765e9b7a25896ab55dbf1fc",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qing-he-cun-kou-ju-qi/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 386694,
+      "afterBytes": 376240,
+      "beforeSha256": "7b7bd81125af86ec16162e836c4a784e75a1f7eb2efe95065ab40d6a3e738f37",
+      "afterSha256": "3019f481cf79f57cc4c9094983899274717daf46886e89764b70a332a492813c",
+      "metaSha256": "790686cd2988d079d949326fe2e93cd33825d5b40c3e5699b05918c13a7fcf2d",
+      "beforePixelsSha256": "c53c1669bca05b2966094b46cb629dbc3ee94bc0ec4845a6942da16562df16af",
+      "afterPixelsSha256": "c53c1669bca05b2966094b46cb629dbc3ee94bc0ec4845a6942da16562df16af",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qing-he-cun-kou-ju-qi/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 377546,
+      "afterBytes": 368189,
+      "beforeSha256": "4fa76d0c08bb37a66f0e5deab99efb0a8270da675f34d7b242efadad27abd8d2",
+      "afterSha256": "37c85feca8d0fe23655ba0cba32392c9a54628ad068087766ee6ae6668911e75",
+      "metaSha256": "c70f344568391d46a7a818a5eaa0df17e5acf4605efb47aa483afe70dae4ee5f",
+      "beforePixelsSha256": "e43e5ba68c644e566a499f9f8a0c249a40d750c1424528e500b38db09f04cf03",
+      "afterPixelsSha256": "e43e5ba68c644e566a499f9f8a0c249a40d750c1424528e500b38db09f04cf03",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 383448,
+      "afterBytes": 372951,
+      "beforeSha256": "0778c93089a4330f7c9767de6ad815445a2aae0f8f3460c898762f3488530c10",
+      "afterSha256": "7692591a6ccb70058236a7f37df365e77b466724f1d1730091f4f8922b598989",
+      "metaSha256": "3338a77826499834aa375a8022735328e85b9977522772380b4d5f55e258e065",
+      "beforePixelsSha256": "1492cad3420e13c42fc15fdcb03f8a7de411e0b15470c77731afb638beeef39b",
+      "afterPixelsSha256": "1492cad3420e13c42fc15fdcb03f8a7de411e0b15470c77731afb638beeef39b",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 375510,
+      "afterBytes": 365461,
+      "beforeSha256": "7ead09e73fac2f3ddce9392855b25747f9784c436ce61fffa31f374762bc51c5",
+      "afterSha256": "63b23d81dbef06b71c94f927270f893086c9eba4736e9176a4fbe5efb2e78496",
+      "metaSha256": "22bec26ceef236150455e61805238f5dd5d63c82eb4e3ce0dc39ee6c966ad9b3",
+      "beforePixelsSha256": "d4aab54459abea6d3522fc79f8e59b57cf225144fff7121c018ac6bd6721b6d5",
+      "afterPixelsSha256": "d4aab54459abea6d3522fc79f8e59b57cf225144fff7121c018ac6bd6721b6d5",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qiu-zhang-zhui-ji-ling/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 352562,
+      "afterBytes": 345223,
+      "beforeSha256": "5fd4141f48ec60c60cb47d0935bedc2b818c5106a05d79358bfac6e8f6c1d93e",
+      "afterSha256": "c5cabde3d60cb499546bf61ec3bd6715d8cbc71458b9681b60474ec621f1df4b",
+      "metaSha256": "fc8d19edbeed6488d9c340655f04c660d43eff12fb7d3ae2d630d4b017abfe47",
+      "beforePixelsSha256": "f8a507adebc123b74d4d521bbda1f81b7e462ee0df587d00e034be9cb10a3454",
+      "afterPixelsSha256": "f8a507adebc123b74d4d521bbda1f81b7e462ee0df587d00e034be9cb10a3454",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qiu-zhang-zhui-ji-ling/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 353535,
+      "afterBytes": 346537,
+      "beforeSha256": "fb7df1f51c89abeded7b475093ef6d9ccac73dc5fd73c44ca16bc27f0541abea",
+      "afterSha256": "174f7e8261abd42eccbe8fdf5328c33c6840e43f2a18e936bfa16393b03ea22d",
+      "metaSha256": "4c8428474bc54c05999877eb05c5dfbd6730f6a3d8cc6fb3225204f6395c0c78",
+      "beforePixelsSha256": "782b83e603ba2844f30eb774be4918950d13c9846d1e6b6718fa25ae0beeac99",
+      "afterPixelsSha256": "782b83e603ba2844f30eb774be4918950d13c9846d1e6b6718fa25ae0beeac99",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shan-dao-ma-dui-jing-ti/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 375893,
+      "afterBytes": 367258,
+      "beforeSha256": "c3e0e93236d7b7aa704fab629f7e24c8b92a50a766f021f985eb7a6110eb833d",
+      "afterSha256": "7f1ce1d1a16e9d824d57fc3d4ff492fbeccc9843fd8348af7ac140bdf0ca3dce",
+      "metaSha256": "26effd4f5fa1b41455f56b3d6d6cd6554629d79571983bffa3b4725d34d036ce",
+      "beforePixelsSha256": "fe23c7e62e0152d60002cdd4b1fcb3f917d9b911b8602ac7af2c7b33f71244fe",
+      "afterPixelsSha256": "fe23c7e62e0152d60002cdd4b1fcb3f917d9b911b8602ac7af2c7b33f71244fe",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shan-dao-ma-dui-jing-ti/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 367666,
+      "afterBytes": 359615,
+      "beforeSha256": "7828ca97918d933df9d1fd0f1f7de633e77e0df88243146ef48517c15509505e",
+      "afterSha256": "b0d51dfbe548ddc7fdaffa8a5e811b5b39587f2cfa75211ec7f9cc506aa3e592",
+      "metaSha256": "468940d6bd50c0cd0a80009472187009f5ba3eb5fcbd34ecaac12bf978cbedcf",
+      "beforePixelsSha256": "ea2e4b21b50e585d0dbba12aa32dce4555b3974c735c8cc1efb15c4a5c6daa71",
+      "afterPixelsSha256": "ea2e4b21b50e585d0dbba12aa32dce4555b3974c735c8cc1efb15c4a5c6daa71",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shan-kou-lan-ma-dui-zhi/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 359867,
+      "afterBytes": 350727,
+      "beforeSha256": "0c4f8a197bf3311a0b7767d320d7b8dfe655edd77cd08c22b032fff1252ad693",
+      "afterSha256": "e2bb736c95ee2655d0041cd5a3a98a9e94ae08c5755532127dcc41ac25f0f595",
+      "metaSha256": "cb92c9f09062180f325a506399f91ce6118fcd5e3c6f83ecd2586352b8b35bb6",
+      "beforePixelsSha256": "4f0bdc26ab3504bfccde99722bff87841d010f95a000c76c4892e8aee91fa789",
+      "afterPixelsSha256": "4f0bdc26ab3504bfccde99722bff87841d010f95a000c76c4892e8aee91fa789",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shan-kou-lan-ma-dui-zhi/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 356212,
+      "afterBytes": 347769,
+      "beforeSha256": "12d682aae1b1ebf6c9edf8014981ba62944b4e2296202e2e166530a95452eaa3",
+      "afterSha256": "9d256906077d024e69f70a08855e9c01a54db0fd8c73d996211b144e6f7a0a98",
+      "metaSha256": "639b7dced1a423c2f8342274fdb015cfcdadb8e1d847cb6175ae7330299df9ec",
+      "beforePixelsSha256": "3451ae9b038e7a903c1e7bb79c401cfe7ce853c8b6e4e95351c572e9d0bb7d88",
+      "afterPixelsSha256": "3451ae9b038e7a903c1e7bb79c401cfe7ce853c8b6e4e95351c572e9d0bb7d88",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-deng-zhou-fu-jing/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 351621,
+      "afterBytes": 344091,
+      "beforeSha256": "43ee7a298d8caa088ddc956b9824484c6500374dff3d8899b473050bbdbf10ce",
+      "afterSha256": "70dc52478a4e1be3347b4125cdd6817e0fa43a2b3c028045c7576ac9a9b7b3b1",
+      "metaSha256": "813a305e207002fa7525028fa4346a9a5bf35283d0dc3418d453e1b5b76f4588",
+      "beforePixelsSha256": "1fae3753473da2ca35601eb90f4bc3d7031b606eb6a2997b8ad01c80c01939d4",
+      "afterPixelsSha256": "1fae3753473da2ca35601eb90f4bc3d7031b606eb6a2997b8ad01c80c01939d4",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-deng-zhou-fu-jing/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 334544,
+      "afterBytes": 327253,
+      "beforeSha256": "10dc62bfff7c8e4742ffbd914358d87eba34f12180bce5b1a54bf7961fcba2a9",
+      "afterSha256": "fbdaf355a02ed17ee875ff6007cc68b5c7229e1b7a598244259800a8c244536a",
+      "metaSha256": "578d4f7141130be9534ef6d8baf21886b5e1df09c186e568b7b2b6e91bb7f350",
+      "beforePixelsSha256": "37d9ee8f81900baa2d92436e3e9a11eb01d1e1bd6478707e3803316b21e407b3",
+      "afterPixelsSha256": "37d9ee8f81900baa2d92436e3e9a11eb01d1e1bd6478707e3803316b21e407b3",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-ke-ju-zhong-bang/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 349123,
+      "afterBytes": 340738,
+      "beforeSha256": "d1618b3fee4119421c335163cec43b33db428b23d58cc77a0a1122e86bcc3e72",
+      "afterSha256": "c57d7343e6ebc547040ab6f6720f3199179183a2499662b46559557693402b51",
+      "metaSha256": "091896a304132be0694f13776f636504a5dd3d7d716926fc980d1517b8d3e33f",
+      "beforePixelsSha256": "6fb1de8864c11e39c5f2d82c4662971a0a013d302fdd03e9110ab793adec57da",
+      "afterPixelsSha256": "6fb1de8864c11e39c5f2d82c4662971a0a013d302fdd03e9110ab793adec57da",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-ke-ju-zhong-bang/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 342386,
+      "afterBytes": 334069,
+      "beforeSha256": "6be66247d0bdc9e122c5fdb2c40e2edc4912c4464d1fb444f255910f5b3138a9",
+      "afterSha256": "796d5b0f90ca9846e68029623be6c853e668fbd4e68bea485b05c0dd3bf10c3b",
+      "metaSha256": "0c2cddd02550c4ab330be4eeb053361ebf8406d557e4516a4a3827b277d6e13b",
+      "beforePixelsSha256": "47427fea2e977ceac6fa7d499c13aa379b0ff5fc3c429cdd6240b42d2b57362b",
+      "afterPixelsSha256": "47427fea2e977ceac6fa7d499c13aa379b0ff5fc3c429cdd6240b42d2b57362b",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/bian-cheng-jing-zhong/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 52013,
+      "afterBytes": 52013,
+      "beforeSha256": "4b5a20ac16097737939001c2aa501e10ec5eb842220374d6066d420d7891535d",
+      "afterSha256": "4b5a20ac16097737939001c2aa501e10ec5eb842220374d6066d420d7891535d",
+      "metaSha256": "d96935e38e2e3e396c620378d48a2f906a32205741ccfb17492c95ded9ed24e3",
+      "beforePixelsSha256": "551470d2a5242995ead51c3d44959a624997de219576cbde9f9b9a78ec444e4e",
+      "afterPixelsSha256": "551470d2a5242995ead51c3d44959a624997de219576cbde9f9b9a78ec444e4e",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/cao-po-kui-tan-di-ying/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 53248,
+      "afterBytes": 53248,
+      "beforeSha256": "be7c1756fd09b34685a998e83dba9776c2e88f3dac4b62f85da1f87c31123056",
+      "afterSha256": "be7c1756fd09b34685a998e83dba9776c2e88f3dac4b62f85da1f87c31123056",
+      "metaSha256": "1737a8caf075dafbf1c7f14d0dbbe6a0e09cab32183a5eaca4efca64625d0376",
+      "beforePixelsSha256": "106c44455f36fb87cba57d2c88e390974f696c27686dd55ae60965e1f7f45f2e",
+      "afterPixelsSha256": "106c44455f36fb87cba57d2c88e390974f696c27686dd55ae60965e1f7f45f2e",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/chang-jie-yuan-shou/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 54450,
+      "afterBytes": 54450,
+      "beforeSha256": "b84e229a1afeba9aa58ee363a43c4b6c353220568fecba18b96987a7ddfd7522",
+      "afterSha256": "b84e229a1afeba9aa58ee363a43c4b6c353220568fecba18b96987a7ddfd7522",
+      "metaSha256": "975f75ea59b8a0e3580a39777ed6a8f4fc94fcd981e5ae450b3ba32451533839",
+      "beforePixelsSha256": "2460eae7b33bfd0fecd309a684bc78fe9cac77bcfddbffaede1518bdaef27279",
+      "afterPixelsSha256": "2460eae7b33bfd0fecd309a684bc78fe9cac77bcfddbffaede1518bdaef27279",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/chi-yuan-qing-he-cun/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 51523,
+      "afterBytes": 51523,
+      "beforeSha256": "afc28612c89bdebaf5b0dafc60f4088d38c1109e3887ba72d29352f3d6ccb1e2",
+      "afterSha256": "afc28612c89bdebaf5b0dafc60f4088d38c1109e3887ba72d29352f3d6ccb1e2",
+      "metaSha256": "6a98c886a4a945825986a0e1669e29adbedb57e1eeaa6af84f3c50dbdce58808",
+      "beforePixelsSha256": "b4fdd427ddace205b30c6fccc113553817cc273eb54c5b4ae5d67958ba101c54",
+      "afterPixelsSha256": "b4fdd427ddace205b30c6fccc113553817cc273eb54c5b4ae5d67958ba101c54",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/di-shui-shi-yi/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 54378,
+      "afterBytes": 54378,
+      "beforeSha256": "054ef08fc9fb3bd21160d3054f73d5f36f10a4f288a64387ff5523499e898126",
+      "afterSha256": "054ef08fc9fb3bd21160d3054f73d5f36f10a4f288a64387ff5523499e898126",
+      "metaSha256": "d9178558f5b9e5da3f54a950bbcf276874d9b2cf024f8ba0bb2e15212ef50456",
+      "beforePixelsSha256": "015376d93917c9c4531834bf53636d230ab3fc97ee13964089a284a8a6e0d8fb",
+      "afterPixelsSha256": "015376d93917c9c4531834bf53636d230ab3fc97ee13964089a284a8a6e0d8fb",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/gong-fang-ran-lu/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 50626,
+      "afterBytes": 50626,
+      "beforeSha256": "724684552324b919c75ccb99b40ec9a794ce77d346a7f96f157ae943472a9490",
+      "afterSha256": "724684552324b919c75ccb99b40ec9a794ce77d346a7f96f157ae943472a9490",
+      "metaSha256": "925f7d3ea683548ff066fa61e624bb5f6fd1d6e14da476279c7fde1ea16f55c7",
+      "beforePixelsSha256": "5b2c428435756dabc232c25ea8cc9214ec198bbfa0c777a3481c511b7419976f",
+      "afterPixelsSha256": "5b2c428435756dabc232c25ea8cc9214ec198bbfa0c777a3481c511b7419976f",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/ji-yuan-jun-xie-che/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 46998,
+      "afterBytes": 46998,
+      "beforeSha256": "28d1360e4a563a1067d16a3030efb671109479e8df091869fb9dc104c2c1b7b7",
+      "afterSha256": "28d1360e4a563a1067d16a3030efb671109479e8df091869fb9dc104c2c1b7b7",
+      "metaSha256": "ee5c1fc12f4e42b44baa485f166093989ed2d4e0738fcd05f58ac21fca122a5c",
+      "beforePixelsSha256": "80bc32b6ed4bd5460965f0c62508df0f44d830086d23910d097265bb79bbcf5c",
+      "afterPixelsSha256": "80bc32b6ed4bd5460965f0c62508df0f44d830086d23910d097265bb79bbcf5c",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/jiu-lou-er-ceng-feng-bo/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 53345,
+      "afterBytes": 53345,
+      "beforeSha256": "6e8bb7da9b0b4f33b4ee143d2104a543dc25b0b2ea5e63368cf6c3557bee9814",
+      "afterSha256": "6e8bb7da9b0b4f33b4ee143d2104a543dc25b0b2ea5e63368cf6c3557bee9814",
+      "metaSha256": "5b2aa6b60e1d775db2d44a67ceaea500ecdeeb8128d699d13fec2b6513215332",
+      "beforePixelsSha256": "8bce413633388c63ccd0b04a37877955eb2024d6c9f5a1771ef6479c63ca6ef6",
+      "afterPixelsSha256": "8bce413633388c63ccd0b04a37877955eb2024d6c9f5a1771ef6479c63ca6ef6",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/long-cheng-jiao-chang-zheng-jun/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 52979,
+      "afterBytes": 52979,
+      "beforeSha256": "11647e09d85d933db44d9f344c20f70e97a2a06c5afed8d7060456f2b69b26fb",
+      "afterSha256": "11647e09d85d933db44d9f344c20f70e97a2a06c5afed8d7060456f2b69b26fb",
+      "metaSha256": "2067de51bdf966cea5151581d8af9d98a4a4dab71b903ec524ed01d19837f161",
+      "beforePixelsSha256": "3b69ec730b7106a9224a8411fe46cd0d054984eb29b194116a1b35fe8690d469",
+      "afterPixelsSha256": "3b69ec730b7106a9224a8411fe46cd0d054984eb29b194116a1b35fe8690d469",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/mi-lin-gong-ying-dui-zhi/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 55192,
+      "afterBytes": 55192,
+      "beforeSha256": "2cd2fa1a766cd4fe8188e69900279b4a41e643a3cbfb0428d636809367a726a8",
+      "afterSha256": "2cd2fa1a766cd4fe8188e69900279b4a41e643a3cbfb0428d636809367a726a8",
+      "metaSha256": "3e2846505f592c33ca1ad4254823ba8c4e3df09a4bae6d4864b667e652b65886",
+      "beforePixelsSha256": "de5ac132777f944a01398b4882d2d0534ac4e1aedc0f86976635c8ef463adfe4",
+      "afterPixelsSha256": "de5ac132777f944a01398b4882d2d0534ac4e1aedc0f86976635c8ef463adfe4",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/mu-fang-shi-zhi-shou-nu/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 51056,
+      "afterBytes": 51056,
+      "beforeSha256": "a8be64fac45bdef9232b19ae028c5613a88a7331883e4f4c2f61c93a199b9840",
+      "afterSha256": "a8be64fac45bdef9232b19ae028c5613a88a7331883e4f4c2f61c93a199b9840",
+      "metaSha256": "511f90e1a4c1ad0c929cc66fd15864fc48baec641739c7ee566ad9df7cfda44a",
+      "beforePixelsSha256": "c5fbbe14865711bffe159e57a84dc4fcfa351cbc203d8df68d312997a783531f",
+      "afterPixelsSha256": "c5fbbe14865711bffe159e57a84dc4fcfa351cbc203d8df68d312997a783531f",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/niu-yang-chuan-yue-shan-ai/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 54738,
+      "afterBytes": 54738,
+      "beforeSha256": "ce7cad7378da82c6b25ee647d0cfaebf0837c852692c0706ecf129ef2f5f9606",
+      "afterSha256": "ce7cad7378da82c6b25ee647d0cfaebf0837c852692c0706ecf129ef2f5f9606",
+      "metaSha256": "1e304be39f42df0aaefbbea6c658561eb01ca78c59b70d19e0bafe33654f0b65",
+      "beforePixelsSha256": "dbcdda57ab43186b1e3bf0671a3e7b78fc326760a3287707eba3415d7c70b0a5",
+      "afterPixelsSha256": "dbcdda57ab43186b1e3bf0671a3e7b78fc326760a3287707eba3415d7c70b0a5",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/qian-xian-ji-bao-di-da/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 51157,
+      "afterBytes": 51157,
+      "beforeSha256": "f797690603e5ccb7cbd75f35d4140efc99e2472a71423c7745bb26ea85bde540",
+      "afterSha256": "f797690603e5ccb7cbd75f35d4140efc99e2472a71423c7745bb26ea85bde540",
+      "metaSha256": "781f27fc320e4d7e9bb6afc72f7942197b5c3d80d671802f2cece4ed9e282ac1",
+      "beforePixelsSha256": "45cca0ff13b390fea84251775d8a178fd715227f6188b21f5a15bfb7c6636385",
+      "afterPixelsSha256": "45cca0ff13b390fea84251775d8a178fd715227f6188b21f5a15bfb7c6636385",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/qiang-liang-che-cun/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 53389,
+      "afterBytes": 53389,
+      "beforeSha256": "214aa2736c79f5ef7a6b683b28fbdf052988a0527d6284251efc79247998d2ff",
+      "afterSha256": "214aa2736c79f5ef7a6b683b28fbdf052988a0527d6284251efc79247998d2ff",
+      "metaSha256": "1608dc6e40d094bac006e429746a4b75e5d505325696a1473d4b388716beb37d",
+      "beforePixelsSha256": "8c51430da22dfcc89b93774ecfb70e26f666c827d9290ea8f8ebf5f62101a0de",
+      "afterPixelsSha256": "8c51430da22dfcc89b93774ecfb70e26f666c827d9290ea8f8ebf5f62101a0de",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/qin-niang-zi-jia-dao/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 50055,
+      "afterBytes": 50055,
+      "beforeSha256": "27bc2fa8dfa6128f01551b2f06c6be124bb67391d4036437834ee4fc233608f4",
+      "afterSha256": "27bc2fa8dfa6128f01551b2f06c6be124bb67391d4036437834ee4fc233608f4",
+      "metaSha256": "20e8bdf93bbd58c51482b9f7f47154883911d71ded735fd6962f37f2b76a11b5",
+      "beforePixelsSha256": "574248d3681e03a6956f23935e25872362dd894aea19754ab0157c0d87f85397",
+      "afterPixelsSha256": "574248d3681e03a6956f23935e25872362dd894aea19754ab0157c0d87f85397",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/qing-he-cun-kou-ju-qi/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 52908,
+      "afterBytes": 52908,
+      "beforeSha256": "0a3776b6ca2f0e814dea81276a2600eb6d8e0c0bb44745b4d0d2427d01f92937",
+      "afterSha256": "0a3776b6ca2f0e814dea81276a2600eb6d8e0c0bb44745b4d0d2427d01f92937",
+      "metaSha256": "5ac01892336877cb1581080b45724f7e64fab06665e636d041da3bf4dab9627d",
+      "beforePixelsSha256": "7bf17efa318d297514985fbbdc6d32fba4742031eff10f68b9d72e1b9d97d0ed",
+      "afterPixelsSha256": "7bf17efa318d297514985fbbdc6d32fba4742031eff10f68b9d72e1b9d97d0ed",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/qing-he-sha-pan-yi-shi/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 53669,
+      "afterBytes": 53669,
+      "beforeSha256": "7bd79c49bab62592fc5e63c7260d35493d62e57b0b32ae31e98c805c4b1a1ce5",
+      "afterSha256": "7bd79c49bab62592fc5e63c7260d35493d62e57b0b32ae31e98c805c4b1a1ce5",
+      "metaSha256": "b05f4ed4621105f38bbc03b31e439efeff37f5670a83adfd6d900024eb9d781d",
+      "beforePixelsSha256": "4b9e99bcd9e5d93d57c10dbe5b29a5acea6d19398644f1336504655510a4ecba",
+      "afterPixelsSha256": "4b9e99bcd9e5d93d57c10dbe5b29a5acea6d19398644f1336504655510a4ecba",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/qiu-zhang-zhui-ji-ling/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 52997,
+      "afterBytes": 52997,
+      "beforeSha256": "d76bf320bfc9143b13556e44e45ed73e356158bb87be2089f365972a25af1cf2",
+      "afterSha256": "d76bf320bfc9143b13556e44e45ed73e356158bb87be2089f365972a25af1cf2",
+      "metaSha256": "133436731e750c76fcc76b93fe2d6acbe40735638071d9c29e33fd098463a373",
+      "beforePixelsSha256": "8482944ea359256adc412f40e5e98bfffd4a5980e613881852d84b31560abf4f",
+      "afterPixelsSha256": "8482944ea359256adc412f40e5e98bfffd4a5980e613881852d84b31560abf4f",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/shan-dao-ma-dui-jing-ti/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 53814,
+      "afterBytes": 53814,
+      "beforeSha256": "c3461a7626e5c0025bade1e902272172e43a0122f3abbc5dc38f49ae3e820353",
+      "afterSha256": "c3461a7626e5c0025bade1e902272172e43a0122f3abbc5dc38f49ae3e820353",
+      "metaSha256": "d707de808879077bbb792a4d3bcc6d77a7ffa1d683f285bf1fce55c5eead3ce1",
+      "beforePixelsSha256": "d2300466863d73c56a71828d3cc2285d35bb844e637be4a6a0d5964e2a6ccb01",
+      "afterPixelsSha256": "d2300466863d73c56a71828d3cc2285d35bb844e637be4a6a0d5964e2a6ccb01",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/shan-kou-lan-ma-dui-zhi/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 53530,
+      "afterBytes": 53530,
+      "beforeSha256": "c3aafacb1da704ce3fe98d6e3f549205883288872b6c59757c48a1cae13742e3",
+      "afterSha256": "c3aafacb1da704ce3fe98d6e3f549205883288872b6c59757c48a1cae13742e3",
+      "metaSha256": "e6efbd8aee6c6322eecf956e15d177bf8d747e50718a881f791edb5e527c99bb",
+      "beforePixelsSha256": "62c65a71788d89bfd417bf7d355730c3d247120f079240f75c7f5414037dea92",
+      "afterPixelsSha256": "62c65a71788d89bfd417bf7d355730c3d247120f079240f75c7f5414037dea92",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/shu-sheng-deng-zhou-fu-jing/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 51654,
+      "afterBytes": 51654,
+      "beforeSha256": "134949f1d9107c93d0fc5f93e3510dde03daaa4158dc76842b91732f041b608d",
+      "afterSha256": "134949f1d9107c93d0fc5f93e3510dde03daaa4158dc76842b91732f041b608d",
+      "metaSha256": "9e7c404ffea7146a0feafabffe8b94f938fb6570d8510ddcf2320c1a38ea5395",
+      "beforePixelsSha256": "49c80dff7a50a2f045729e37fec383de671faa57e64fe5cc8930374824de1d5e",
+      "afterPixelsSha256": "49c80dff7a50a2f045729e37fec383de671faa57e64fe5cc8930374824de1d5e",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/shu-sheng-ke-ju-zhong-bang/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 51193,
+      "afterBytes": 51193,
+      "beforeSha256": "0686c971f29a0faca97c5ded479bca6a43867e2df85b8d484495be187261f1eb",
+      "afterSha256": "0686c971f29a0faca97c5ded479bca6a43867e2df85b8d484495be187261f1eb",
+      "metaSha256": "693563776e4bd543ac37666b983467dcdf6dc5bb21939f55263d9f5fff58b11d",
+      "beforePixelsSha256": "bde21c0cd3266bde9c051a8085696f85b565c7a72942c4bc52100c93d327f534",
+      "afterPixelsSha256": "bde21c0cd3266bde9c051a8085696f85b565c7a72942c4bc52100c93d327f534",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/tu-qiang-xiang-kou-mai-fu/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 50694,
+      "afterBytes": 50694,
+      "beforeSha256": "7ab2ac7e6208900248c4784839a59641ff412798616f7fa0f40c0992cad2a52d",
+      "afterSha256": "7ab2ac7e6208900248c4784839a59641ff412798616f7fa0f40c0992cad2a52d",
+      "metaSha256": "cfff4bc912abda0edc89311b1b8725f20cb153449e4ac6175572f3bc852209b8",
+      "beforePixelsSha256": "63b8c8c56c1f1f3a217656adde29552fae522ec345c22c6b7225e3013fa3859f",
+      "afterPixelsSha256": "63b8c8c56c1f1f3a217656adde29552fae522ec345c22c6b7225e3013fa3859f",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/wu-ding-nu-shou-jie-bei/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 53873,
+      "afterBytes": 53873,
+      "beforeSha256": "3520cdf373bdc219ab50f9e768005b94089a98115cf42e320232800135d5e81e",
+      "afterSha256": "3520cdf373bdc219ab50f9e768005b94089a98115cf42e320232800135d5e81e",
+      "metaSha256": "2a8e7707e533491aa8a318cc07b70323f89b7f2804508e6486da31a82124c54e",
+      "beforePixelsSha256": "7c21ecd4b8b08d4b876fa3e73ff0a906cdc1b3cf8e47cae9dd8552409eec4479",
+      "afterPixelsSha256": "7c21ecd4b8b08d4b876fa3e73ff0a906cdc1b3cf8e47cae9dd8552409eec4479",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/xi-gu-dian-tai-shi-lian/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 52407,
+      "afterBytes": 52407,
+      "beforeSha256": "c4669b276740a35a7e9cfd39123e5f9afa4b0e4b8c5deabaa8d903d4f0393cc1",
+      "afterSha256": "c4669b276740a35a7e9cfd39123e5f9afa4b0e4b8c5deabaa8d903d4f0393cc1",
+      "metaSha256": "619fea9f0aa796c163581ea347330a281551096ec7b19793c674148becbed326",
+      "beforePixelsSha256": "436fd27631324d5cf65496e91b1f64cc2d7a596957853536e0a101c0115ccec6",
+      "afterPixelsSha256": "436fd27631324d5cf65496e91b1f64cc2d7a596957853536e0a101c0115ccec6",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/xi-gu-hu-zhu-tuo-xian/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 52906,
+      "afterBytes": 52906,
+      "beforeSha256": "010484d9afa97d7f53ab17806cbe7ffb8f5f21fc8c183ae735960fe61a8a5460",
+      "afterSha256": "010484d9afa97d7f53ab17806cbe7ffb8f5f21fc8c183ae735960fe61a8a5460",
+      "metaSha256": "05c700638ccabab5982fa684d91704bd99932740d3530a9671f7f87c128d6c33",
+      "beforePixelsSha256": "ad5ad007e4c5c5cb5e101acd87fcee468bd59c62a56d2a7ae167114ad0d1dfa5",
+      "afterPixelsSha256": "ad5ad007e4c5c5cb5e101acd87fcee468bd59c62a56d2a7ae167114ad0d1dfa5",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/yin-lang-jian-shou-zhen-di/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 48958,
+      "afterBytes": 48958,
+      "beforeSha256": "e9824382c1f0a8eaca8c9d032653537be6746db7e03aa70aa0b4cb705cb92608",
+      "afterSha256": "e9824382c1f0a8eaca8c9d032653537be6746db7e03aa70aa0b4cb705cb92608",
+      "metaSha256": "197713fdc0a8b2ace178353f102b839d0cb5e2e60da7d6b3e8ac24323580327a",
+      "beforePixelsSha256": "823a4afa34e6ce0949c75f726040fef2daae627fb43c23c3a0979225c09e46e6",
+      "afterPixelsSha256": "823a4afa34e6ce0949c75f726040fef2daae627fb43c23c3a0979225c09e46e6",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/yin-lang-ju-ji-di-zhen/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 50183,
+      "afterBytes": 50183,
+      "beforeSha256": "97408f472cac82958a10a7ff7510bd2d2c04b91bd75c2f828d6932c85c2dea54",
+      "afterSha256": "97408f472cac82958a10a7ff7510bd2d2c04b91bd75c2f828d6932c85c2dea54",
+      "metaSha256": "340d498107f9a07e83ffd428d4156ba64c7f389b71ac44839217df8051de719d",
+      "beforePixelsSha256": "19f3fbf109c3c77a96ec7492405674b71116b4afee850cc9705be2273e600ee8",
+      "afterPixelsSha256": "19f3fbf109c3c77a96ec7492405674b71116b4afee850cc9705be2273e600ee8",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/yin-ma-ru-ying/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 51778,
+      "afterBytes": 51778,
+      "beforeSha256": "aa02f568e2ebdc81eb435eaf3ce916cf21964beb542f3b0f1cea5f561ba226f1",
+      "afterSha256": "aa02f568e2ebdc81eb435eaf3ce916cf21964beb542f3b0f1cea5f561ba226f1",
+      "metaSha256": "a17ef557b39b7b2190d02c78c7325784e11585587a88cf8d57133c3363936ac7",
+      "beforePixelsSha256": "ba7e4bd324b60c2bc4ff8039c28a1da293d831d54e6fded326a07fd8928b953a",
+      "afterPixelsSha256": "ba7e4bd324b60c2bc4ff8039c28a1da293d831d54e6fded326a07fd8928b953a",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/thumbnails/zha-men-an-tan-di-zhai/icon.jpg",
+      "kind": "unchanged",
+      "beforeBytes": 49561,
+      "afterBytes": 49561,
+      "beforeSha256": "a34a82cbc8d0081b77d391ed0a1c27684dc389f88bc0b287efd7b729af8500d8",
+      "afterSha256": "a34a82cbc8d0081b77d391ed0a1c27684dc389f88bc0b287efd7b729af8500d8",
+      "metaSha256": "6896537e8af6babebb8be5677e7bb199bbabcb636b1ffaafb057f237c9253a82",
+      "beforePixelsSha256": "d7384d05b7845eea8d6c1b9b14132197378312629e3fba1adde33c2954d8717b",
+      "afterPixelsSha256": "d7384d05b7845eea8d6c1b9b14132197378312629e3fba1adde33c2954d8717b",
+      "size": [
+        306,
+        200
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/tu-qiang-xiang-kou-mai-fu/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 350155,
+      "afterBytes": 342692,
+      "beforeSha256": "dad4386ccf83671c26ae9ca497e19e0471e3cdb191b6b2b2d37859915421e375",
+      "afterSha256": "0b4676ccf6750b9dd64a969d2dc9f6d79ab54f38c1107035942606b732fa3c52",
+      "metaSha256": "416e8b5048671e9552c47170a12369ff615202d07fb6842119d9435da4876f34",
+      "beforePixelsSha256": "352104c6c13bff71cdbb8edd5ddadfd39fd3f0b3928b9716be4aa1863927afc7",
+      "afterPixelsSha256": "352104c6c13bff71cdbb8edd5ddadfd39fd3f0b3928b9716be4aa1863927afc7",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/tu-qiang-xiang-kou-mai-fu/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 334471,
+      "afterBytes": 327392,
+      "beforeSha256": "fbbd679e3e24d9dd34f02c40fea6a838ae146869e2f0b284c5a98cf672e1c116",
+      "afterSha256": "c7541d2aacf398b0f258e5967298a228308cc7582034c64bf1ddeac05ae4d298",
+      "metaSha256": "98804e2106f453a175b93302aa3b128c576335effc7d951a2aa1ff5c600f8ce5",
+      "beforePixelsSha256": "bddb113e0dabeeaa93336f6e0c075faf5dd208f57514374c32f5f3cb360305c3",
+      "afterPixelsSha256": "bddb113e0dabeeaa93336f6e0c075faf5dd208f57514374c32f5f3cb360305c3",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/wu-ding-nu-shou-jie-bei/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 380894,
+      "afterBytes": 370680,
+      "beforeSha256": "014af8551afcdfc6f2a17da85ecf2df84aaf5bbc2b37a0c624841fcb013eeabd",
+      "afterSha256": "2367c97f13b7bf8d247e1be4f65968eeb02dea9f6435c35dd0fc852b577159be",
+      "metaSha256": "ddf5dcc72a471a6ef6bf79cae243616550d90fcf180fa12de939a0e1be75fe78",
+      "beforePixelsSha256": "dd8c0c40126296e55fed0bd0e909dad99776240b2d672e26a21077b48731eebe",
+      "afterPixelsSha256": "dd8c0c40126296e55fed0bd0e909dad99776240b2d672e26a21077b48731eebe",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/wu-ding-nu-shou-jie-bei/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 365383,
+      "afterBytes": 355297,
+      "beforeSha256": "f55321114f5702ef2f05dc6486288ee444c08d2133d3c21ff5db733b38ef96ed",
+      "afterSha256": "ff59b89309c87dc68449ea85a01d452609b1f053c4500c235003eea67ec44a10",
+      "metaSha256": "e6bef4b16e095beed574ebeed7badfe40f68db29c4fbb1d0b6496ec938073f3a",
+      "beforePixelsSha256": "0a8caaa81fe5cd9f8694505b590111c46bba47f9b6443993a0c8ad983e19dd40",
+      "afterPixelsSha256": "0a8caaa81fe5cd9f8694505b590111c46bba47f9b6443993a0c8ad983e19dd40",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/xi-gu-dian-tai-shi-lian/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 370328,
+      "afterBytes": 360641,
+      "beforeSha256": "daf5da3155a8d191636dffb3b56e8271323c4d6728ba03cf68b4a99740e51c7c",
+      "afterSha256": "82f3785b1b27a11b419205c1c95211db443c54c5fdddba506f0142563526091d",
+      "metaSha256": "4d57229e0109a73a49951ba1c27cd6909b612429cc720d9a26a74f6fcc61fbc7",
+      "beforePixelsSha256": "5a5885cb69154463685548c279141f2e46f9eed5936e87ed526c31772de81b71",
+      "afterPixelsSha256": "5a5885cb69154463685548c279141f2e46f9eed5936e87ed526c31772de81b71",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/xi-gu-dian-tai-shi-lian/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 369176,
+      "afterBytes": 360390,
+      "beforeSha256": "eb6143f0de16b136612a1fa62315e9e77711d9019fafe077dfbd2c0b9fe3837b",
+      "afterSha256": "9bc03a582f5b18bac96691af111743bb36df412b1583b73433f54e932ec3cb32",
+      "metaSha256": "45fb5dc2d85f8387a5379eedec4d38b3cc52bfc6ff2187ff02268483cb1dbbef",
+      "beforePixelsSha256": "3ad7532c9dcb155183d521d0512012ffaa75161d3b6e764ad87fa8cd17e11f76",
+      "afterPixelsSha256": "3ad7532c9dcb155183d521d0512012ffaa75161d3b6e764ad87fa8cd17e11f76",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 360366,
+      "afterBytes": 351850,
+      "beforeSha256": "7161b9c04def1f5459ceb7ba3d6e8544ab3e69594b7eb4657e5a41b3189f68e8",
+      "afterSha256": "d0af6c5a2930652fcf012d9980655bb40b44050955974c97edd32a3290f9756e",
+      "metaSha256": "fa8de7c16b0ad2384bcc8e1060f1bc3ab44d5611396aa848db00d39e45040ba3",
+      "beforePixelsSha256": "a9819105a3f16c083c5f41d96b3e4bd50386784b7554947676712972e3e964e1",
+      "afterPixelsSha256": "a9819105a3f16c083c5f41d96b3e4bd50386784b7554947676712972e3e964e1",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 372976,
+      "afterBytes": 363426,
+      "beforeSha256": "904e3b11371caae5b3934a893d0d7c76492036e9786e3ffb85506196a79987a4",
+      "afterSha256": "4597531d1400be60d899f7cb506974b754d7e2d15db9712746163752c0348362",
+      "metaSha256": "05e92503c7159b31ca2143a7d46633e7561072377f5caece75d6df14b32c391a",
+      "beforePixelsSha256": "3b30f4929e98b2b2b9d18a141426be3c685908c2863bd60e7c9b56e149ddeb08",
+      "afterPixelsSha256": "3b30f4929e98b2b2b9d18a141426be3c685908c2863bd60e7c9b56e149ddeb08",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-lang-jian-shou-zhen-di/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 320145,
+      "afterBytes": 313630,
+      "beforeSha256": "eb302b45b82fcae2e13d5fe56ae519607dbac985a9f7cc2aad00a4d3a4f1d25d",
+      "afterSha256": "d1a6bba8e61515c89ad59c11d401e23ce0e784e6f9691f88f0e42881d2e9d9f9",
+      "metaSha256": "98ac19bb5a7ec0fde8a43b602b8556f4423059d46762244d391eaef0815349b6",
+      "beforePixelsSha256": "d71431008cc12dbd27a7a7a9376a7a33ce7117911bca75076116caeb364b9a20",
+      "afterPixelsSha256": "d71431008cc12dbd27a7a7a9376a7a33ce7117911bca75076116caeb364b9a20",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-lang-jian-shou-zhen-di/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 319228,
+      "afterBytes": 312664,
+      "beforeSha256": "527924a73471c11ef4c27d2238575f3b77de79de6aba4477c6e9b2c02ae19de0",
+      "afterSha256": "fb44900a17e004c2d3122285223ee199c6b3b9eea6446777c0741aae368b5824",
+      "metaSha256": "6c94f534fc89dc78d446b1b5d7a9ee71495576eab368c80c906501919aacb1cd",
+      "beforePixelsSha256": "47a2446ada3608d54ca203d4dab423b86e759e225a8f5bf2a8c4ff3a235e91cd",
+      "afterPixelsSha256": "47a2446ada3608d54ca203d4dab423b86e759e225a8f5bf2a8c4ff3a235e91cd",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-lang-ju-ji-di-zhen/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 319352,
+      "afterBytes": 312987,
+      "beforeSha256": "3464075c69a9bc30a629d5cbc59da3170e085fce644e01ac1d8320b4a1064d8d",
+      "afterSha256": "9e1614dbfb4b80e2e447f70fd6ed267415cfcf88edf54a44a0796dd27f01b7ec",
+      "metaSha256": "6b8f60a6f08932867113275ce049ffa7086ff3b239007a4657e00bc589e138e1",
+      "beforePixelsSha256": "13d7568a18b46cae54ae67b0a493dbb37f49c491a899065717eef76d9d401717",
+      "afterPixelsSha256": "13d7568a18b46cae54ae67b0a493dbb37f49c491a899065717eef76d9d401717",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-lang-ju-ji-di-zhen/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 318459,
+      "afterBytes": 311940,
+      "beforeSha256": "6f3b431d53c7e55b2ae9651136bda0f5e47bb449d61a0ba6c131af418aa4f0cb",
+      "afterSha256": "5e17c1987634e911b79590b3aa372ef1c3c5b55d947910040e08ad3305f8ac5c",
+      "metaSha256": "547370cea31dc0a2af6fa1d75c4c6013173694299c763c8b8a0c9dcf8e303299",
+      "beforePixelsSha256": "74c6faf61433d3c92251ddbe97e2da32bbd839109d9a9cc9bf99bdb82e986493",
+      "afterPixelsSha256": "74c6faf61433d3c92251ddbe97e2da32bbd839109d9a9cc9bf99bdb82e986493",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-ma-ru-ying/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 357874,
+      "afterBytes": 349580,
+      "beforeSha256": "b9ffcf0ee07fe6882701ee2e53f67ca62ea279bbd9274f775ab1fe43b99cc8f4",
+      "afterSha256": "f7efc45bf4b57e2b2c0e669e2c743004ff24cd3b0c347a908e5b49e199a8c016",
+      "metaSha256": "fe46695afef5cdd28ee48e7903451f544e16c0bbb9479059832451b8c2b3a345",
+      "beforePixelsSha256": "d7bf2909ceb892787a12beec85ba0e3144bed922a5348034eb56a6b8fa0a3134",
+      "afterPixelsSha256": "d7bf2909ceb892787a12beec85ba0e3144bed922a5348034eb56a6b8fa0a3134",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-ma-ru-ying/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 359371,
+      "afterBytes": 351168,
+      "beforeSha256": "b7d4a1c009a4226d407d9f3908d2d2d4b51363a9642e3b8b65f6c999cc905947",
+      "afterSha256": "8f01c2a70f2ed881c48b27218bd795271cc2553ebccb143aacca178d9a51dc04",
+      "metaSha256": "aaedc2b4656f50e21f5847f00a5912b46686379446f0bc04b4272cdccada93bf",
+      "beforePixelsSha256": "1425da9573616b8a5b05bc261221094cbe834046278bf96a93a24ced43ba689c",
+      "afterPixelsSha256": "1425da9573616b8a5b05bc261221094cbe834046278bf96a93a24ced43ba689c",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/zha-men-an-tan-di-zhai/scene-a.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 329435,
+      "afterBytes": 322689,
+      "beforeSha256": "16e47194d0a27d6013ad6e27f99ba3e11fa7cd1dec7626e7e0d0e6a582f57b6b",
+      "afterSha256": "5924725fe660e4fbbc9230ee32e5fe2e778808f7921cc524a113f4c8721a7605",
+      "metaSha256": "30d7bb7d9e67e3eef2b977742b230fc654dfffb15dc1e6a333248b0ac1abaf85",
+      "beforePixelsSha256": "409129b894686441eae078585ec269e1f397db1b877f7ee74014cd58f64f2c1b",
+      "afterPixelsSha256": "409129b894686441eae078585ec269e1f397db1b877f7ee74014cd58f64f2c1b",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/zha-men-an-tan-di-zhai/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 326667,
+      "afterBytes": 319151,
+      "beforeSha256": "7ed637fc45b35410b2aa37dc1f250b264bcae6441f0e5cfa55a6644f529e54c1",
+      "afterSha256": "e4c4f81798a7d285024e68b2c5c1778f37123d156716adfd9eaa7de6690c3edf",
+      "metaSha256": "a44f4557da88b0352b6c19db5b7a4cca839b9346c50e243fdf0f18a966c1433b",
+      "beforePixelsSha256": "dc7e945a57b701b0541c5e019c027d9ef959b87f6290e878544de5e96db62e6f",
+      "afterPixelsSha256": "dc7e945a57b701b0541c5e019c027d9ef959b87f6290e878544de5e96db62e6f",
+      "size": [
+        1024,
+        672
+      ],
+      "pixelsIdentical": true
+    }
+  ],
+  "summary": {
+    "png": {
+      "inspected": 34,
+      "changed": 34,
+      "beforeBytes": 797147,
+      "afterBytes": 271425
+    },
+    "jpeg": {
+      "inspected": 197,
+      "changed": 132,
+      "beforeBytes": 44626554,
+      "afterBytes": 43731281
+    }
+  },
+  "backup": "temp/art-optimization-2026-11-19/originals.zip"
+}

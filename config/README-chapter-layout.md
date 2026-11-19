@@ -1,5 +1,7 @@
 # 章节与固定关卡 ID（2026-11-02）
 
+2026-11-17 当前：共 6 个顶层入口、13 个叶子章节、325 关。顺序为网络热点、青花瓷、萌宠故事、萌宠三国、年度热梗、恋爱美食；标签见 [章节提示标签](README-chapter-badges.md)。下文旧数量及顺序为历史记录，现行顺序以 `chapter-order.json` 为准。
+
 新增逻辑分组：[恋爱美食专题说明](README-topic-hierarchy.md)。顶层5个专题，恋爱美食下有8个城市子章节；资源目录仍为12个叶子章节包，未再搬动。
 
 目录已正式改名：全部12章和255关现使用配置名称对应的拼音/英文目录，例如 `assets/Bundle/levels/nian-du-re-geng/zhong-guo-ren-neng-fei/`。[目录迁移说明](named-layout-migration-2026-11-02.md)为当前规范，下面旧 `city-* / level-NN` 示例与“保持目录”描述是此前基础改造记录。

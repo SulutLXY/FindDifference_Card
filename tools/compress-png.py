@@ -14,8 +14,20 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--colors', type=int, choices=[256], help='Lossy 256-color palette compression, including alpha')
+    parser.add_argument('--paths', type=Path, help='JSON array of selected project-relative PNG asset paths')
+    parser.add_argument('--report', type=Path, help='Persist report to a new JSON file inside config')
     args = parser.parse_args()
     files = sorted(p for p in (ROOT/'assets').rglob('*') if p.suffix.lower() == '.png')
+    if args.paths:
+        paths = json.loads(args.paths.read_text(encoding='utf-8-sig'))
+        if not isinstance(paths, list) or not all(isinstance(p, str) for p in paths):
+            raise ValueError('Expected a JSON array of PNG asset paths')
+        files = sorted({(ROOT/p).resolve() for p in paths})
+        if any(not p.is_relative_to((ROOT/'assets').resolve()) or not p.is_file() or p.suffix.lower() != '.png' for p in files):
+            raise ValueError('Selected PNG is missing or outside assets')
+    report_path = args.report.resolve() if args.report else None
+    if report_path and (not report_path.is_relative_to((ROOT/'config').resolve()) or report_path.exists()):
+        raise ValueError('Use a new report filename inside config; existing audit reports are retained')
     backup = ROOT/'temp/png-compression'/datetime.now().strftime('%Y%m%d-%H%M%S-%f')
     backup.mkdir(parents=True)
     records = []
@@ -24,7 +36,9 @@ def main():
             original = path.read_bytes()
             meta = Path(str(path)+'.meta')
             meta_before = meta.read_bytes() if meta.exists() else None
-            record = {'path': path.relative_to(ROOT).as_posix(), 'before': len(original), 'after':len(original)}
+            record = {'path': path.relative_to(ROOT).as_posix(), 'before': len(original), 'after':len(original),
+                      'beforeSha256': hashlib.sha256(original).hexdigest(),
+                      'metaSha256': hashlib.sha256(meta_before).hexdigest() if meta_before else None}
             with Image.open(io.BytesIO(original)) as image:
                 image.load()
                 if getattr(image, 'n_frames', 1) != 1 or image.mode not in ('RGB','RGBA','P','L','LA'):
@@ -77,8 +91,10 @@ def main():
                 record['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
                 records.append(record)
     result = {'mode':'palette256' if args.colors else 'lossless', 'count':len(records), 'compressed':sum(r['status']=='compressed' for r in records),
+              'backup':str((backup/'originals.zip').relative_to(ROOT)),
               'before':sum(r['before'] for r in records),'after':sum(r['after'] for r in records),'files':records}
     (backup/'report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+    if report_path: report_path.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({k:v for k,v in result.items() if k!='files'},ensure_ascii=False))
     print('Backup:',backup)
 

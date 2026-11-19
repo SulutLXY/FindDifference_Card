@@ -1,5 +1,5 @@
 import { sys } from 'cc';
-import { ChapterRulesConfig, CityConfig, LevelProgress, SaveData } from '../core/GameTypes';
+import { ChapterRulesConfig, CityConfig, LevelProgress, SaveData, MenuTutorialKind, MenuTutorialStep } from '../core/GameTypes';
 import { DailySignInConfig, dailySignInStatus } from '../core/DailySignIn';
 
 const SAVE_KEY = 'find-difference.save.v3';
@@ -376,6 +376,18 @@ export class SaveService {
     public completeTutorial(): void {
         this._data.tutorialCompleted = true;
         this._persist();
+    }
+
+    public setMenuTutorialStep(kind: MenuTutorialKind, step: MenuTutorialStep): boolean {
+        if (!['chapters', 'collection'].includes(kind) || !['entry', 'target', 'done'].includes(step)) return false;
+        if (this._data.menuTutorials?.[kind] === step) return true;
+        const previous = this._data;
+        const stored = previous.menuTutorials;
+        const current = stored && typeof stored === 'object' && !Array.isArray(stored) ? stored : {};
+        this._data = { ...previous, menuTutorials: { ...current, [kind]: step } };
+        if (this._persist()) return true;
+        this._data = previous;
+        return false;
     }
 
     /** 分时引导只展示一次，无论玩家点击高亮还是跳过都登记。 */

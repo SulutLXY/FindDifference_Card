@@ -17,7 +17,7 @@ for (const [chapter, group] of [['qing-hua-ci', 'Combo _F_type_QHC01'], ['meng-c
         assert.equal(JSON.parse(fs.readFileSync(`${root}/${file}.meta`)).importer, 'audio-clip');
         return `Combo _F_type/${group}/${file.replace(/\.mp3$/i, '')}`;
     });
-    assert.equal(paths.length, 5);
+    assert.equal(paths.length, chapter === 'qing-hua-ci' ? 13 : 11);
     files.set(chapter, paths);
 }
 files.set('plain', []);
@@ -43,6 +43,7 @@ vm.runInNewContext(compile(fs.readFileSync('assets/scripts/services/ContentBundl
 const text = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('flow.ts', text, ts.ScriptTarget.Latest, true);
 const names = ['_comboClips', '_chapterComboClips', '_chapterComboGroup', '_comboSoundRequest', 'DEFAULT_COMBO_GROUP',
+    '_successSoundBags', '_lastSuccessClipKey', '_successClipCandidates', '_nextSuccessClipRef', '_playSuccessSound',
     'BUNDLE_COMBO_ROOT', '_activeComboGroup', '_comboGroups', '_comboGroupsScannedBundle', '_loadComboClip',
     '_comboClipRef', '_resolveChapterComboGroup', '_discoverComboGroups', '_updateComboGroup', 'playSuccessTone',
     'COMBO_WINDOW_MS', 'TOP_COMBO_WINDOW_MS', 'onDifferenceFound'];
@@ -74,6 +75,7 @@ function finish(error = null) {
         assert.equal(requests.length, 0, 'Index scans must not download all audio');
         const previous = f._chapterComboGroup;
         assert.equal((await f._resolveChapterComboGroup({ key: chapter }, 'retry')).name, previous.name);
+        assert.deepEqual(Array.from(previous.variants, ([stage, paths]) => paths.length), chapter === 'qing-hua-ci' ? [2,3,2,3,3] : [2,3,1,3,2]);
         for (let stage = 1; stage <= 5; stage++) {
             const pending = f._loadComboClip(stage); await flush();
             assert.ok(f._contentBundles.users.has(chapter), 'Hold bundle during asynchronous load');
@@ -81,6 +83,11 @@ function finish(error = null) {
             assert.ok(request.path.endsWith(`_0${stage}`));
             assert.equal(await pending, clip); assert.equal(clip.refs, 1);
             assert.equal(await f._loadComboClip(stage), clip, 'Reuse the scoped cache');
+        }
+        // Load the extra variants after the initial downloads test bundle lifetime.
+        for (const [stage, paths] of previous.variants) for (const path of paths) {
+            const pending = f._loadComboClip(stage, {path, fromBundle: true, chapterBundle: chapter}); await flush();
+            if (requests.length) finish(); await pending;
         }
         for (const stage of [-1, 0]) {
             const pending = f._loadComboClip(stage); await flush();
@@ -101,7 +108,7 @@ function finish(error = null) {
         f.playSuccessTone(99); await flush();
         assert.ok(f.played.at(-1).endsWith('_05'), 'Combo over five stays at stage five');
     }
-    assert.equal(f._chapterComboClips.size, 10);
+    assert.equal(f._chapterComboClips.size, 24);
     f._chapterComboGroup = await f._resolveChapterComboGroup({ key: 'plain' }, 'select');
     assert.equal(f._chapterComboGroup, null);
     f._updateComboGroup(f._cities[0], 0);
@@ -115,7 +122,9 @@ function finish(error = null) {
             assert.ok(f.played.at(-1).endsWith(`_0${Math.min(5, combo - 1)}`), `${group} must expose all five tiers`);
         }
     }
-    assert.equal(await f._resolveChapterComboGroup({ key: 'partial' }, 'select'), null);
+    const partial = await f._resolveChapterComboGroup({ key: 'partial' }, 'select');
+    assert.equal(partial.variants.get(1)[0], 'Combo _F_type/incomplete/clip_01');
+    assert.equal(partial.variants.has(2), false, 'Missing tiers fall back without inventing chapter clips');
     assert.equal(await f._resolveChapterComboGroup({ key: 'offline' }, 'select'), null);
     assert.equal(warnings.length, 1);
     const g = flow();

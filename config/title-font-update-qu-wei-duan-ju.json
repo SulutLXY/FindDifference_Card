@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-19",
+  "reason": "趣味短剧35关与章节名用字补齐",
+  "font": "assets/PleyGame/fonts/FDTitleBobohei-Bold.ttf",
+  "fontUuid": "ccae4537-ce93-4fb7-9e49-8ccdce75078e",
+  "previousCharacters": 930,
+  "retainedCharacters": 1000,
+  "addedCharacters": "丹么之位俺健全冷刘别剑剧勾十卫厚去吧听啊嘴夜女如姐少巡念怎想才是末栏歪毫求活灸炼烟熟爬猛王瓜看着睡短穴耗耻背艺芳莫觉解誓话说趁趣这针降难雨骚",
+  "removedCharacters": [],
+  "previousFontSha256": "faa777f502e826e5fe812a2338f5fb0089902429497c4323bd58f2a539b46caa",
+  "fontSha256": "0869ea3d2097710e2042be3a5e40970b6d3a5e4ec78b8ab1cf0853b254ee8310",
+  "fontBytes": 249860,
+  "sourceFont": "docs/art-source/fonts/KNBobohei-Bold/KNBobohei-Bold.ttf",
+  "sourceFontSha256": "4d641bd7885bed7e32eb823723c93259d9678923c4606803fa96d080af465825",
+  "verification": {
+    "outlinesAndMetricsPassed": 1000,
+    "titleWidthsPassed": 408,
+    "rasterPixelIdentical": 73,
+    "rasterAutoHintDifferences": 335,
+    "rasterNote": "FreeType auto-hinting may differ after subsetting; outlines and advances verified identical."
+  },
+  "publishedLevels": 390
+}

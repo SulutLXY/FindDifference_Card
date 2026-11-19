@@ -2,6 +2,17 @@ export interface Insets { top: number; bottom: number; left: number; right: numb
 export const DESIGN_WIDTH = 750;
 export const DESIGN_HEIGHT = 1334;
 
+/** 使用实际游戏窗口的比例；比 9:16 更短时保留完整设计画面，9:18 起选长屏。 */
+export function gameViewport(width: number, height: number) {
+    const valid = Number.isFinite(width) && Number.isFinite(height) && width > 0 && height > 0;
+    const ratio = valid ? height / width : 16 / 9;
+    return {
+        width: DESIGN_WIDTH,
+        height: Math.max(DESIGN_HEIGHT, DESIGN_WIDTH * ratio),
+        prefab: ratio >= 2 - 0.001 ? 'prefabs/GameScreen' : 'prefabs/GameScreen_9x16',
+    };
+}
+
 /** 设计参数保持原值，只计算整个设计容器在实际可见区域内的等比缩放。 */
 export function fitDesignFrame(width: number, height: number, designWidth: number, designHeight: number, insets: Partial<Insets> = {}) {
     const positive = (value: number, fallback: number) => Number.isFinite(value) && value > 0 ? value : fallback;

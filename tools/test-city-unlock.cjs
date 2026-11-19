@@ -53,7 +53,7 @@ let entered = null;
 screen.flow = { cities: flow._cities, isCityUnlocked: () => true, selectionProgress: () => ({ done: 0, total: 2 }), enterChapterSelection: city => { entered = city; },
     requestReward() { throw Error('Chapter entry must never request a video'); } };
 const nodes = new Map(['ProgressPoint', 'BtnUnlock', 'LockIcon', 'CityLockTip'].map(name => [name, { active: true, off() {}, getComponentInChildren() { return null; } }]));
-screen._setHeatBadge = () => {};
+screen._setChapterBadge = () => {};
     screen.findChildDeep = (_, name) => nodes.get(name);
 screen._setCardLabel = screen._loadBanner = () => {};
 let click;

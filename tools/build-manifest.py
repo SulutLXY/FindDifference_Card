@@ -215,6 +215,13 @@ def main():
         print(f'错误: 专题层级配置无效: {error}')
         return 1
 
+    badges = order_config.get('badges', {})
+    if (not isinstance(badges, dict)
+            or any(key not in set(city_dirs) | {topic['key'] for topic in topics}
+                   or kind not in (None, 'new', 'hot', 'hard', 'collect') for key, kind in badges.items())):
+        print('错误: 章节标签必须引用已有章节/专题，类型为 new/hot/hard/collect 或 null')
+        return 1
+
     # 已明确列入章节清单的关卡不能因缺失配置而被静默删掉、导致关卡顺序变化。
     # 在写入任何清单前统一检查，避免半成品专题覆盖已发布索引。
     missing_configs = []
@@ -334,6 +341,8 @@ def main():
     index = {'cities': city_dirs, 'chapters': chapters}
     if 'navigation' in order_config:
         index.update(navigation=navigation, topics=topics)
+    if 'badges' in order_config:
+        index['badges'] = badges
     write_json_if_changed(index_path, index, trailing_newline=True)
     print(f'已生成 {index_path}: {len(city_dirs)} 个章节，含启动所需完整清单')
     if 'navigation' in order_config:

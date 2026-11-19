@@ -65,6 +65,7 @@ export class CollectScreen extends UIScreen {
     public items: CollectItem[] = [];
 
     private _cards: Node[] = [];
+    private readonly _tutorialReadyItems = new Set<string>();
     private _builtModal: Node | null = null;
     private _page = 0;
     private _btnPrev: Node | null = null;
@@ -105,6 +106,24 @@ export class CollectScreen extends UIScreen {
             if (child.position.y < 0) this._pageLabel = label;
             else this._statsLabel = label;
         }
+    }
+
+    public tutorialFirstCollectible(): { node: Node; item: CollectItem } | null {
+        if (this._filter !== 'all' || this._page !== 0) {
+            this._filter = 'all'; this._page = 0; this._loadFoods();
+        }
+        const item = this._pages()[0]?.[0];
+        const card = this._cards[0];
+        if (!item?.obtained || !this._tutorialReadyItems.has(item.id) || !card?.isValid || !card.activeInHierarchy) return null;
+        return { node: card.getChildByName('ItemIcon') ?? this.findChildDeep(card, 'Thumbnail') ?? card, item };
+    }
+
+    public async openTutorialCollectible(id: string): Promise<boolean> {
+        const target = this.tutorialFirstCollectible();
+        if (!target || target.item.id !== id
+            || !this.flow.save.isCollectibleObtained(id, String(target.item.ext?.levelKey ?? ''))) return false;
+        await this._onItemClick(target.item);
+        return true;
     }
 
     protected onOpen(): void {
@@ -272,6 +291,7 @@ export class CollectScreen extends UIScreen {
             if (!sprite) sprite = icon.addComponent(Sprite);
             sprite.sizeMode = Sprite.SizeMode.CUSTOM;
             if (icon.isValid) sprite.spriteFrame = frame;
+            this._tutorialReadyItems.add(item.id);
             if (item.obtained && !this.flow.save.hasViewedCollectible(item.id)) this._queueSeen(item.id, card);
         } catch {
             // 图标缺失时保持模板原样
@@ -369,6 +389,7 @@ export class CollectScreen extends UIScreen {
     }
 
     private _clearCards(): void {
+        this._tutorialReadyItems.clear();
         this._renderVersion++;
         this.unschedule(this._flushSeen);
         this._seenScheduled = false;

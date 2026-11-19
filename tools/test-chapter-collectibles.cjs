@@ -31,7 +31,7 @@ const Screen = load('assets/scripts/ui/CitySelectScreen.ts', ['_fillCard'], {
     flow.isCityUnlocked = () => false;
     flow.selectionProgress = () => ({ done: 0, total: 0 });
     screen.findChildDeep = (_, name) => name === 'icon_treasure_chest' ? icon : null;
-    screen._setHeatBadge = screen._setCardLabel = screen._loadBanner = () => {};
+    screen._setChapterBadge = screen._setCardLabel = screen._loadBanner = () => {};
     const card = { off() {}, on() {} };
     for (const city of [...flow._cities, topic]) {
         screen._fillCard(card, city);

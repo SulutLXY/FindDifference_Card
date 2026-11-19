@@ -14,12 +14,12 @@ import {
     Sprite,
     SpriteFrame,
     UITransform,
+    Widget,
     instantiate,
 } from 'cc';
 import { ChapterSelection } from '../core/GameTypes';
 import { EnergyDisplay } from './EnergyDisplay';
 import { UIColors, UIScreen } from './UIScreen';
-import { formatPlayCount } from '../core/PlayStats';
 
 const { ccclass, property } = _decorator;
 
@@ -61,17 +61,28 @@ export class CitySelectScreen extends UIScreen {
 
     @property({ type: Prefab, tooltip: '城市卡片预制体（可选）。绑定后优先使用，无需在场景 List 下摆放 CityCard1' })
     public cardPrefab: Prefab | null = null;
-    @property({ type: SpriteFrame, tooltip: '最新章节的叶子图标' }) public newChapterIcon: SpriteFrame | null = null;
-    @property({ type: SpriteFrame, tooltip: '最新章节的绿色文字背景' }) public newChapterBackground: SpriteFrame | null = null;
+    @property({ type: SpriteFrame, tooltip: '新章节：icon_leaf' }) public newChapterIcon: SpriteFrame | null = null;
+    @property({ type: SpriteFrame, tooltip: '新章节：icon_Mark_green' }) public newChapterBackground: SpriteFrame | null = null;
+    @property({ type: SpriteFrame, tooltip: '热门：icon_fire' }) public hotChapterIcon: SpriteFrame | null = null;
+    @property({ type: SpriteFrame, tooltip: '困难：icon_skull' }) public hardChapterIcon: SpriteFrame | null = null;
+    @property({ type: SpriteFrame, tooltip: '热门与困难：icon_Mark_red' }) public hotChapterBackground: SpriteFrame | null = null;
+    @property({ type: SpriteFrame, tooltip: '收藏：icon_chest' }) public collectionChapterIcon: SpriteFrame | null = null;
+    @property({ type: SpriteFrame, tooltip: '收藏：icon_Mark_blue' }) public collectionChapterBackground: SpriteFrame | null = null;
 
     private _cards: Node[] = [];
     private _content: Node | null = null;
-    private _heatVersion = 0;
 
     protected onLoad(): void {
         void EnergyDisplay.attach(this.node);
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.backFromCitySelection());
         this._setupScrollContainer();
+    }
+
+    public tutorialChapter(index = 1): { node: Node; selection: ChapterSelection } | null {
+        const selection = this.flow.chapterSelections[index];
+        const card = this._cards[index];
+        if (!selection || !card?.isValid || !card.activeInHierarchy) return null;
+        return { node: this.findChildDeep(card, 'Cityaim') ?? card, selection };
     }
 
     protected onOpen(): void {
@@ -90,6 +101,9 @@ export class CitySelectScreen extends UIScreen {
         const template = this.cardTemplate
             ?? root.getChildByName('CityCard')
             ?? root.getChildByName('CityCard1');
+
+        // 无论编辑器中的模板是否默认隐藏，都不能参与运行时列表布局。
+        if (template && !this.cardPrefab) template.active = false;
 
         this.flow.chapterSelections.forEach(city => {
             let card: Node;
@@ -113,7 +127,6 @@ export class CitySelectScreen extends UIScreen {
             if (/^CityCard\d*$/.test(child.name)) child.active = false;
         }
         this._scrollToTop();
-        void this._refreshHeat();
     }
 
     private _fillCard(card: Node, city: ChapterSelection): void {
@@ -122,7 +135,7 @@ export class CitySelectScreen extends UIScreen {
         const progress = this.flow.selectionProgress(city);
         const treasure = this.findChildDeep(card, 'icon_treasure_chest');
         if (treasure) treasure.active = this.flow.selectionHasCollectibles(city);
-        this._setHeatBadge(card, city.key, this.flow.playStats?.initialCount(city.key) ?? null);
+        this._setChapterBadge(card, city.key);
         const progressPoint = this.findChildDeep(card, 'ProgressPoint');
         const unlockButton = this.findChildDeep(card, 'BtnUnlock');
         if (progressPoint) progressPoint.active = unlocked;
@@ -202,38 +215,31 @@ export class CitySelectScreen extends UIScreen {
         }
     }
 
-    private _setHeatBadge(card: Node, key: string, count: number | null): void {
+    private _setChapterBadge(card: Node, key: string): void {
         const badge = this.findChildDeep(card, 'HotNumber');
         const label = badge && this.findChildDeep(badge, 'HotNumber_laber')?.getComponent(Label);
         if (!badge || !label) return;
+        const kind = this.flow.chapterBadgeKind(key);
+        const style = kind === 'new' ? { text: '新章节', icon: this.newChapterIcon, background: this.newChapterBackground }
+            : kind === 'hot' ? { text: '热门', icon: this.hotChapterIcon, background: this.hotChapterBackground }
+            : kind === 'hard' ? { text: '困难', icon: this.hardChapterIcon, background: this.hotChapterBackground }
+            : kind === 'collect' ? { text: '收藏', icon: this.collectionChapterIcon, background: this.collectionChapterBackground }
+            : null;
+        const icon = this.findChildDeep(badge, 'icon_fire')?.getComponent(Sprite);
+        const background = badge.getComponent(Sprite);
+        if (!style?.icon || !style.background || !icon || !background) {
+            label.string = '';
+            badge.active = false;
+            return;
+        }
         label.enableWrapText = false;
         label.overflow = Label.Overflow.SHRINK;
-        if (this.flow.playStats?.isNewChapter(key)) {
-            label.string = '最新章节';
-            const icon = this.findChildDeep(badge, 'icon_fire')?.getComponent(Sprite);
-            const background = badge.getComponent(Sprite);
-            if (icon && this.newChapterIcon) { icon.sizeMode = Sprite.SizeMode.CUSTOM; icon.spriteFrame = this.newChapterIcon; }
-            if (background && this.newChapterBackground) { background.sizeMode = Sprite.SizeMode.CUSTOM; background.spriteFrame = this.newChapterBackground; }
-            badge.active = true;
-        } else {
-            label.string = count == null ? '' : formatPlayCount(count);
-            badge.active = label.string.length > 0;
-        }
-    }
-
-    private async _refreshHeat(): Promise<void> {
-        const version = ++this._heatVersion;
-        const selections = [...this.flow.chapterSelections], cards = [...this._cards];
-        const keys = selections.filter(city => !this.flow.playStats?.isNewChapter(city.key)).map(city => city.key);
-        if (!this.flow.playStats || !keys.length) return;
-        try {
-            const counts = await this.flow.playStats.getCounts(keys);
-            if (!this.isValid || !this.node.activeInHierarchy || version !== this._heatVersion) return;
-            selections.forEach((city, index) => {
-                if (cards[index]?.isValid) this._setHeatBadge(cards[index], city.key,
-                    counts[city.key] ?? this.flow.playStats?.initialCount(city.key) ?? null);
-            });
-        } catch (error) { console.warn('[CitySelect] 热度刷新失败', error); }
+        label.string = style.text;
+        icon.sizeMode = Sprite.SizeMode.CUSTOM;
+        icon.spriteFrame = style.icon;
+        background.sizeMode = Sprite.SizeMode.CUSTOM;
+        background.spriteFrame = style.background;
+        badge.active = true;
     }
 
     private _setCardLabel(card: Node, name: string, text: string): void {
@@ -272,18 +278,39 @@ export class CitySelectScreen extends UIScreen {
             layout.paddingBottom = 10;
         }
 
+        this._content.getComponent(UITransform)?.setAnchorPoint(0.5, 1);
         scrollView.content = this._content;
-        scrollView.scrollToTop(0);
     }
 
     private _scrollToTop(): void {
-        this.resolveNode(this.listRoot, 'List')?.getComponent(ScrollView)?.scrollToTop(0.1);
+        this._layoutListTop();
+        // 首次显示时父级 Widget 可能尚未更新；下帧再核对一次，禁止播放滚动动画。
+        this.unschedule(this._layoutListTop);
+        this.scheduleOnce(this._layoutListTop, 0);
+    }
+
+    private _layoutListTop(): void {
+        const root = this.resolveNode(this.listRoot, 'List');
+        const content = this._content;
+        if (!root || !content?.isValid || !this.node.activeInHierarchy) return;
+        this.node.getComponent(Widget)?.updateAlignment();
+        root.getComponent(Widget)?.updateAlignment();
+        const viewport = root.getComponent(UITransform);
+        const ui = content.getComponent(UITransform);
+        if (!viewport || !ui) return;
+        ui.width = viewport.width;
+        content.getComponent(Layout)?.updateLayout();
+        content.setPosition(viewport.width * (0.5 - viewport.anchorX),
+            viewport.height * (1 - viewport.anchorY), content.position.z);
+        const scroll = root.getComponent(ScrollView);
+        scroll?.stopAutoScroll();
+        scroll?.scrollToTop(0);
     }
 
     private _clearCards(): void {
-        this._heatVersion++;
         this.flow.releasePageSpriteFrames(this.node);
-        for (const card of this._cards) card.destroy();
+        this.unschedule(this._layoutListTop);
+        for (const card of this._cards) { card.active = false; card.destroy(); }
         this._cards = [];
     }
 

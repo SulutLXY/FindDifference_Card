@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 2,
+  "name": "趣味短剧",
+  "banner": "chapter-covers/qu-wei-duan-ju-icon/spriteFrame",
+  "levels": [
+    {
+      "id": "qu-wei-duan-ju/san-shi-nian-he-dong",
+      "name": "三十年河东",
+      "folder": "san-shi-nian-he-dong"
+    },
+    {
+      "id": "qu-wei-duan-ju/fu-huo-ba-wo-de-ai-ren",
+      "name": "复活吧我的爱人",
+      "folder": "fu-huo-ba-wo-de-ai-ren"
+    },
+    {
+      "id": "qu-wei-duan-ju/da-di-zhi-zi",
+      "name": "大帝之姿",
+      "folder": "da-di-zhi-zi"
+    },
+    {
+      "id": "qu-wei-duan-ju/jian-dao-wan-gu-ru-chang-ye",
+      "name": "剑道万古如长夜",
+      "folder": "jian-dao-wan-gu-ru-chang-ye"
+    },
+    {
+      "id": "qu-wei-duan-ju/hao-wu-bei-jing",
+      "name": "毫无背景",
+      "folder": "hao-wu-bei-jing"
+    },
+    {
+      "id": "qu-wei-duan-ju/bu-qu-gou-lan",
+      "name": "不去勾栏",
+      "folder": "bu-qu-gou-lan"
+    },
+    {
+      "id": "qu-wei-duan-ju/wo-shi-shui",
+      "name": "我是谁？",
+      "folder": "wo-shi-shui"
+    },
+    {
+      "id": "qu-wei-duan-ju/mo-shi-qiu-sheng",
+      "name": "末世求生",
+      "folder": "mo-shi-qiu-sheng"
+    },
+    {
+      "id": "qu-wei-duan-ju/shi-si-bao-wei-liu-bo",
+      "name": "誓死保卫刘波",
+      "folder": "shi-si-bao-wei-liu-bo"
+    },
+    {
+      "id": "qu-wei-duan-ju/wai-zui-long-wang",
+      "name": "歪嘴龙王",
+      "folder": "wai-zui-long-wang"
+    },
+    {
+      "id": "qu-wei-duan-ju/gao-leng-nv-zhu",
+      "name": "高冷女主",
+      "folder": "gao-leng-nv-zhu"
+    },
+    {
+      "id": "qu-wei-duan-ju/ru-yan-da-di",
+      "name": "如烟大帝",
+      "folder": "ru-yan-da-di"
+    },
+    {
+      "id": "qu-wei-duan-ju/nan-nian-de-jing",
+      "name": "难念的经",
+      "folder": "nan-nian-de-jing"
+    },
+    {
+      "id": "qu-wei-duan-ju/xue-wei-zhen-jiu",
+      "name": "穴位针灸",
+      "folder": "xue-wei-zhen-jiu"
+    },
+    {
+      "id": "qu-wei-duan-ju/ni-you-ben-shi-ni-kai-men",
+      "name": "你有本事你开门",
+      "folder": "ni-you-ben-shi-ni-kai-men"
+    },
+    {
+      "id": "qu-wei-duan-ju/hou-yan-wu-chi",
+      "name": "厚颜无耻",
+      "folder": "hou-yan-wu-chi"
+    },
+    {
+      "id": "qu-wei-duan-ju/an-ye-yi-yang",
+      "name": "俺也一样",
+      "folder": "an-ye-yi-yang"
+    },
+    {
+      "id": "qu-wei-duan-ju/da-wang-jiao-wo-lai-xun-shan",
+      "name": "大王叫我来巡山",
+      "folder": "da-wang-jiao-wo-lai-xun-shan"
+    },
+    {
+      "id": "qu-wei-duan-ju/yu-nv-wu-gua",
+      "name": "雨女无瓜",
+      "folder": "yu-nv-wu-gua"
+    },
+    {
+      "id": "qu-wei-duan-ju/mai-le",
+      "name": "埋了",
+      "folder": "mai-le"
+    },
+    {
+      "id": "qu-wei-duan-ju/bie-shuo-hua-dai-ni-fei",
+      "name": "别说话带你飞",
+      "folder": "bie-shuo-hua-dai-ni-fei"
+    },
+    {
+      "id": "qu-wei-duan-ju/chen-zhe-nian-shao-bie-shui-jiao",
+      "name": "趁着年少别睡觉",
+      "folder": "chen-zhe-nian-shao-bie-shui-jiao"
+    },
+    {
+      "id": "qu-wei-duan-ju/shi-li-tao-hua",
+      "name": "十里桃花",
+      "folder": "shi-li-tao-hua"
+    },
+    {
+      "id": "qu-wei-duan-ju/dai-ni-qu-pa-shan",
+      "name": "带你去爬山",
+      "folder": "dai-ni-qu-pa-shan"
+    },
+    {
+      "id": "qu-wei-duan-ju/yuan-fang-ni-zen-me-kan",
+      "name": "元芳你怎么看",
+      "folder": "yuan-fang-ni-zen-me-kan"
+    },
+    {
+      "id": "qu-wei-duan-ju/lao-mo-wo-xiang-chi-yu-le",
+      "name": "老莫我想吃鱼了",
+      "folder": "lao-mo-wo-xiang-chi-yu-le"
+    },
+    {
+      "id": "qu-wei-duan-ju/hao-zi-wei-zhi",
+      "name": "耗子尾汁",
+      "folder": "hao-zi-wei-zhi"
+    },
+    {
+      "id": "qu-wei-duan-ju/zhe-gua-bao-shu-ma",
+      "name": "这瓜保熟吗",
+      "folder": "zhe-gua-bao-shu-ma"
+    },
+    {
+      "id": "qu-wei-duan-ju/yun-dong-jian-jiang",
+      "name": "运动健将",
+      "folder": "yun-dong-jian-jiang"
+    },
+    {
+      "id": "qu-wei-duan-ju/cai-yi-shuang-quan",
+      "name": "才艺双全",
+      "folder": "cai-yi-shuang-quan"
+    },
+    {
+      "id": "qu-wei-duan-ju/ni-hao-sao-a",
+      "name": "你好骚啊",
+      "folder": "ni-hao-sao-a"
+    },
+    {
+      "id": "qu-wei-duan-ju/lian-dan",
+      "name": "炼丹",
+      "folder": "lian-dan"
+    },
+    {
+      "id": "qu-wei-duan-ju/jie-jie-ni-ting-wo-jie-shi",
+      "name": "姐姐你听我解释",
+      "folder": "jie-jie-ni-ting-wo-jie-shi"
+    },
+    {
+      "id": "qu-wei-duan-ju/shen-bing-tian-jiang",
+      "name": "神兵天降",
+      "folder": "shen-bing-tian-jiang"
+    },
+    {
+      "id": "qu-wei-duan-ju/meng-jiang-ge-ge",
+      "name": "猛将哥哥",
+      "folder": "meng-jiang-ge-ge"
+    }
+  ]
+}

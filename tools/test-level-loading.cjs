@@ -165,7 +165,7 @@ function methods(file,names,extra={}){
  const metaFlow=new Flow();metaFlow._cityIndex={chapters:{'city-01':{levels:['level-00','level-01','level-02']}}};
  const meta=await metaFlow._loadCityMeta({},'city-01');
  assert.deepEqual(Array.from(meta.levels),['level-01','level-02'],'Old placeholder must not be loaded or selected');
- assert.equal(recordedPlays.length,spent,'Only actual entries count: failed/cancelled loads and energy failures do not count; every replay does');
+ assert.equal(recordedPlays.length,0,'Heat algorithms remain available but gameplay no longer records or uploads play events');
  console.log('PASS: loading/fallback, daily first-round ad protection, retries, day rollover, persistence, and level-00 exclusion.');
 })().catch(e=>{console.error(e);process.exitCode=1});
 

@@ -256,6 +256,25 @@ function pressTab(f, key) {
     f.screen.close(); f.screen.open(); f.iconResults(); await tick(); f.screen.renderFrame();
     assert.equal(f.save.hasViewedCollectible('item-0'), true, 'Seen-state write retries on next visible display');
     assert.equal(f.screen._cards[0].getChildByName('TipsIcon').active, false);
+    // The home guide waits for real thumbnails and opens only the first obtained item in display order.
+    f = fixture({ count: 12, setupSave: s => s.completeLevel('city-A/id-9', 1, 10) });
+    assert.equal(f.screen.items[0].id, 'item-9', 'Acquired item sorts ahead of lower-ID locked items');
+    assert.equal(f.screen.tutorialFirstCollectible(), null, 'Do not highlight a blank loading thumbnail');
+    assert.equal(await f.screen.openTutorialCollectible('item-0'), false);
+    f.iconResults(); await tick();
+    const guided = f.screen.tutorialFirstCollectible();
+    assert.equal(guided.item.id, 'item-9');
+    assert.equal(guided.node, f.screen._cards[0].getChildByName('Thumbnail'));
+    assert.equal(await f.screen.openTutorialCollectible('item-9'), true);
+    assert.deepEqual(f.details, ['item-9']); assert.equal(f.ads.length, 0, 'Guide opens detail without requesting rewards');
+    f.screen._turnPage(1); assert.equal(f.screen.tutorialFirstCollectible(), null, 'Restore first page then wait for its new thumbnails');
+    assert.equal(f.screen._page, 0); f.iconResults(); await tick();
+    assert.equal(f.screen.tutorialFirstCollectible().item.id, 'item-9');
+    f.screen.close(); assert.equal(f.screen.tutorialFirstCollectible(), null, 'Closed/destroyed cards cannot be guided');
+    f = fixture({ count: 2 }); f.iconResults(); await tick();
+    assert.equal(f.screen.tutorialFirstCollectible(), null, 'No owned item means no collection target');
+    assert.equal(await f.screen.openTutorialCollectible('item-0'), false); assert.equal(f.ads.length, 0);
+
     const ids = [];
     for (let i = 0; i < graph.length; i++) if (graph[i].__type__ === 'cc.Node') {
         ids.push(i); for (const c of graph[i]._components) assert.equal(graph[c.__id__].node.__id__, i);

@@ -1,0 +1,6691 @@
+{
+  "date": "2026-11-19",
+  "applied": true,
+  "backup": "temp/media-optimization/20261119-193225-602315/originals.zip",
+  "selectedPaths": [
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_01.mp3",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_02.mp3",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_04.mp3",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_05.mp3",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG03_02.mp3",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG03_04.mp3",
+    "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_01.mp3",
+    "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_02.mp3",
+    "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_03.mp3",
+    "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_04.mp3",
+    "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_05.mp3",
+    "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC03_02.mp3",
+    "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC03_04.mp3",
+    "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC03_05.mp3",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/an-ye-yi-yang/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/bie-shuo-hua-dai-ni-fei/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/bu-qu-gou-lan/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/cai-yi-shuang-quan/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/chen-zhe-nian-shao-bie-shui-jiao/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/da-di-zhi-zi/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/da-wang-jiao-wo-lai-xun-shan/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/dai-ni-qu-pa-shan/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/fu-huo-ba-wo-de-ai-ren/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/gao-leng-nv-zhu/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/hao-wu-bei-jing/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/hao-zi-wei-zhi/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/hou-yan-wu-chi/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/jian-dao-wan-gu-ru-chang-ye/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/jie-jie-ni-ting-wo-jie-shi/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/lao-mo-wo-xiang-chi-yu-le/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/lian-dan/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/mai-le/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/meng-jiang-ge-ge/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/mo-shi-qiu-sheng/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/nan-nian-de-jing/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/ni-hao-sao-a/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/ni-you-ben-shi-ni-kai-men/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/ru-yan-da-di/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/san-shi-nian-he-dong/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/shen-bing-tian-jiang/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/shi-li-tao-hua/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/shi-si-bao-wei-liu-bo/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/wai-zui-long-wang/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/wo-shi-shui/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/xue-wei-zhen-jiu/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/yu-nv-wu-gua/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/yuan-fang-ni-zen-me-kan/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/yun-dong-jian-jiang/icon.jpg",
+    "assets/Bundle/levels/qu-wei-duan-ju/thumbnails/zhe-gua-bao-shu-ma/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/bian-cheng-jing-zhong/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/cao-po-kui-tan-di-ying/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/chang-jie-yuan-shou/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/chi-yuan-qing-he-cun/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/di-shui-shi-yi/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/gong-fang-ran-lu/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/ji-yuan-jun-xie-che/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/jiu-lou-er-ceng-feng-bo/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/long-cheng-jiao-chang-zheng-jun/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/mi-lin-gong-ying-dui-zhi/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/mu-fang-shi-zhi-shou-nu/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/niu-yang-chuan-yue-shan-ai/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/qian-xian-ji-bao-di-da/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/qiang-liang-che-cun/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/qin-niang-zi-jia-dao/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/qing-he-cun-kou-ju-qi/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/qing-he-sha-pan-yi-shi/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/qiu-zhang-zhui-ji-ling/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/shan-dao-ma-dui-jing-ti/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/shan-kou-lan-ma-dui-zhi/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/shu-sheng-deng-zhou-fu-jing/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/shu-sheng-ke-ju-zhong-bang/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/tu-qiang-xiang-kou-mai-fu/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/wu-ding-nu-shou-jie-bei/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/xi-gu-dian-tai-shi-lian/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/xi-gu-hu-zhu-tuo-xian/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/yin-lang-jian-shou-zhen-di/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/yin-lang-ju-ji-di-zhen/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/yin-ma-ru-ying/icon.jpg",
+    "assets/Bundle/levels/xun-song-ji/thumbnails/zha-men-an-tan-di-zhai/icon.jpg"
+  ],
+  "audioFiles": 14,
+  "skippedLowBitrateAudio": 0,
+  "retainedForQuality": [],
+  "thumbnailFiles": 0,
+  "beforeBytes": 819896,
+  "afterBytes": 255160,
+  "savedBytes": 564736,
+  "sceneJpegsInspected": 780,
+  "fullSizeSceneJpegsModified": 0,
+  "confirmedPhotoshop8": 475,
+  "photoshopQualityUnknown": 305,
+  "records": [
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_01.mp3",
+      "kind": "audio",
+      "beforeBytes": 51250,
+      "afterBytes": 16031,
+      "beforeSha256": "31b3d387d87fac1319bcfee38cd3bb8ce04fbbb44a77b99ec102a055deae1d42",
+      "afterSha256": "825d4675a915d498c8113d445a52ee1e52afaa288e560d46d4fb5d84f7b5837f",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "350dc10a-c1f9-4bfd-854b-5b5934ed1b43",
+      "metaSha256": "f5e04b4ce7a175095f8cde04cd63a2a85b4ec572b74b9147d583988fd115510f",
+      "beforeAudio": {
+        "duration": 1.28,
+        "rms": 0.14745985662664618,
+        "peak": 0.8353862762451172
+      },
+      "afterAudio": {
+        "duration": 1.28,
+        "rms": 0.14803496703956612,
+        "peak": 0.8523487448692322
+      },
+      "rmsRatio": 1.0039001150962465,
+      "gainCorrection": 1.0495822806188095
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_02.mp3",
+      "kind": "audio",
+      "beforeBytes": 58564,
+      "afterBytes": 18226,
+      "beforeSha256": "5c9a67f13453c1137c95bed1bb46bc1028a5a0fa66a76d40a26f74b9daf54309",
+      "afterSha256": "95353543f0a4450a28c34d6b60311d022a2d3d50df07d8c409e579b1814f9169",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "538a482e-e27b-4338-84d2-651374c5f898",
+      "metaSha256": "0c9d02e92afe1434c60cf52e00671598ac277d835abbf74f42c1d31e2f7d236d",
+      "beforeAudio": {
+        "duration": 1.4628571428571429,
+        "rms": 0.14254956656039336,
+        "peak": 0.7358148694038391
+      },
+      "afterAudio": {
+        "duration": 1.4628571428571429,
+        "rms": 0.1415037312133287,
+        "peak": 0.7288742661476135
+      },
+      "rmsRatio": 0.9926633565271378,
+      "gainCorrection": 1.0473274124952374
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_04.mp3",
+      "kind": "audio",
+      "beforeBytes": 61699,
+      "afterBytes": 19166,
+      "beforeSha256": "2996b6b91c7a31ec3cb5f23566e884d517ca2073d6abfeb4b6842a21df299cb6",
+      "afterSha256": "c5ae7e37af6f73d758cd787c2fed498b52feb0f155102301e17d0c431946045f",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "24adec67-6d53-4d6a-b6df-43f62139fc4c",
+      "metaSha256": "0823a133500ce7d6d5eb9af6a60ccdbb8c07928aabe04d2cd17075c04d6af40f",
+      "beforeAudio": {
+        "duration": 1.5412244897959184,
+        "rms": 0.15664941278399255,
+        "peak": 0.8279985189437866
+      },
+      "afterAudio": {
+        "duration": 1.5412244897959184,
+        "rms": 0.1569772219251049,
+        "peak": 0.831679105758667
+      },
+      "rmsRatio": 1.0020926292367554,
+      "gainCorrection": 1.0522862328788016
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_05.mp3",
+      "kind": "audio",
+      "beforeBytes": 77372,
+      "afterBytes": 23868,
+      "beforeSha256": "f119fcb2b8dc19a1cb95a73a0a5018d941afc47d232a55ef6b44ab686b7c6e64",
+      "afterSha256": "090f45255f1eaa0596780c8c0505cb5778ab6326669fd6174b1df3052e82028c",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "70b7ea2f-ddf1-481c-85c2-4813106d2014",
+      "metaSha256": "7588990f30e145eb0f03ae5b88ef1b87a63ba4c11fd12f5f6bcab11825ecfe8b",
+      "beforeAudio": {
+        "duration": 1.933061224489796,
+        "rms": 0.20327405792306608,
+        "peak": 0.8743472099304199
+      },
+      "afterAudio": {
+        "duration": 1.933061224489796,
+        "rms": 0.20369934938461984,
+        "peak": 0.8719906210899353
+      },
+      "rmsRatio": 1.0020922072688425,
+      "gainCorrection": 1.0529749114101714
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG03_02.mp3",
+      "kind": "audio",
+      "beforeBytes": 58564,
+      "afterBytes": 18226,
+      "beforeSha256": "5472afe06ac9549349f43446f43bd70ad5c0f322960c09c9bbd8dd48cd2d0bfd",
+      "afterSha256": "d29c186714b12aa9571c6322a831e903591f1bece36c535cc37369d1f7dec546",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "a0942e06-8150-4513-a45e-3ee3fb3a0abc",
+      "metaSha256": "28f85bf4c79e594b1ec955f641309924327f5d58cf59aeabd6b7cf5e02bf9fad",
+      "beforeAudio": {
+        "duration": 1.4628571428571429,
+        "rms": 0.058445884284509426,
+        "peak": 0.4888176918029785
+      },
+      "afterAudio": {
+        "duration": 1.4628571428571429,
+        "rms": 0.05850021984098976,
+        "peak": 0.4906795620918274
+      },
+      "rmsRatio": 1.000929672929848,
+      "gainCorrection": 1.0513368631799758
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG03_04.mp3",
+      "kind": "audio",
+      "beforeBytes": 55429,
+      "afterBytes": 17285,
+      "beforeSha256": "30bc745dfc005ef4588e866a8d4642b61ae9583c1aebdcef1314c8278ab4a143",
+      "afterSha256": "e3ffa0ffab9670b40b1bcd35f36f9c3691f55af666051e893187209bfb87775b",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "fbeaf2d1-3438-48f1-b1d9-77650d771a96",
+      "metaSha256": "be253871e248646f8ca77e161d52d46ef1ee4b27bf84307c0a1bfdf260a353ad",
+      "beforeAudio": {
+        "duration": 1.3844897959183673,
+        "rms": 0.13920916364773872,
+        "peak": 0.6115358471870422
+      },
+      "afterAudio": {
+        "duration": 1.3844897959183673,
+        "rms": 0.139437897043777,
+        "peak": 0.6205189824104309
+      },
+      "rmsRatio": 1.0016430915181493,
+      "gainCorrection": 1.0531358748804494
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_01.mp3",
+      "kind": "audio",
+      "beforeBytes": 49160,
+      "afterBytes": 15405,
+      "beforeSha256": "2b04796be6da16262396e2ca5a4b6c9affba5821c3e57b298ee9c6a366b9b58f",
+      "afterSha256": "790bd5e2b4e3f2d944da9d2af754376fd4f28ed50734362dd8fc3b860f9bf3b3",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "bcea6cd5-47f6-4e2c-8b5c-a75044baf33a",
+      "metaSha256": "d73696d9b64fb9e6788479d26b5e570467f53789e830e9bbcac348664e2defe1",
+      "beforeAudio": {
+        "duration": 1.2277551020408164,
+        "rms": 0.10476152639623856,
+        "peak": 0.6023740768432617
+      },
+      "afterAudio": {
+        "duration": 1.2277551020408164,
+        "rms": 0.10508076303346764,
+        "peak": 0.5983388423919678
+      },
+      "rmsRatio": 1.0030472698156538,
+      "gainCorrection": 1.0512963571687974
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_02.mp3",
+      "kind": "audio",
+      "beforeBytes": 55429,
+      "afterBytes": 17285,
+      "beforeSha256": "359b367f74e9716ac70df6dba18277104528329fbaffcfabd0b35e4b4758e7bc",
+      "afterSha256": "241017be6651cadf28b7da774308dc2cf3cfbae87af72bb9b040a4030927f20e",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "2ec7919c-0929-43f5-b296-be4d16e4ec63",
+      "metaSha256": "e26488844a275b0f504c5cd7f9e9e07d040234f98d1c8a2dd6ce6c9f5eb6498d",
+      "beforeAudio": {
+        "duration": 1.3844897959183673,
+        "rms": 0.13105374463552671,
+        "peak": 0.7188935875892639
+      },
+      "afterAudio": {
+        "duration": 1.3844897959183673,
+        "rms": 0.13087253623677958,
+        "peak": 0.7244846224784851
+      },
+      "rmsRatio": 0.9986172970543414,
+      "gainCorrection": 1.0512819325099267
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_03.mp3",
+      "kind": "audio",
+      "beforeBytes": 59609,
+      "afterBytes": 18539,
+      "beforeSha256": "7d6c079b9c689634086dcf0af0ed9cc1a2d57f5043f56bded91d800e90858838",
+      "afterSha256": "4d1b727af2d6b50236ac6e056ad2cfb9eeb287abea868b4af61c58adda5e07e2",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "6c489231-cb35-4149-91c2-102350dd5efa",
+      "metaSha256": "5e8674747f871f9b27ef08e9ed41a902c42c981f2a39e1ba350af8b1640a1365",
+      "beforeAudio": {
+        "duration": 1.4889795918367348,
+        "rms": 0.10306747433865786,
+        "peak": 0.5954267382621765
+      },
+      "afterAudio": {
+        "duration": 1.4889795918367348,
+        "rms": 0.1036900568928085,
+        "peak": 0.605819821357727
+      },
+      "rmsRatio": 1.0060405337197356,
+      "gainCorrection": 1.0558595072197994
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_04.mp3",
+      "kind": "audio",
+      "beforeBytes": 49160,
+      "afterBytes": 15405,
+      "beforeSha256": "95091771a6c874651f16dfa162ffd6aea3a68524260d79971743e5a3d222087b",
+      "afterSha256": "580649782a8a6afd3cf458ffdc073240517c0b5c57816075cf73e67473f0cb4c",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "f0254b69-3348-44e3-b9c6-8831e35079f0",
+      "metaSha256": "ddeb2a871692416d32b9be019f6ccf4193ccace4da081c8446d9a207944e3e2a",
+      "beforeAudio": {
+        "duration": 1.2277551020408164,
+        "rms": 0.10880518540343447,
+        "peak": 0.65642911195755
+      },
+      "afterAudio": {
+        "duration": 1.2277551020408164,
+        "rms": 0.10850816741470262,
+        "peak": 0.6667113304138184
+      },
+      "rmsRatio": 0.997270185353478,
+      "gainCorrection": 1.048774670121931
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_05.mp3",
+      "kind": "audio",
+      "beforeBytes": 80507,
+      "afterBytes": 24809,
+      "beforeSha256": "29050e2f7e2f1fd5ceda652aaf47a6e8079ab6dca11d4157085311ce09a42f6b",
+      "afterSha256": "2a90d91be7257e06e5b88be7dfd682ac2d57a7be0389d15233799b4462bf983f",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "3f24ff14-7060-4015-98aa-32c4d226b0c9",
+      "metaSha256": "e7307c1aded14a6cedd8b2f4bab2f1a6ed671bde81b46b3b24ee5dea08021aef",
+      "beforeAudio": {
+        "duration": 2.0114285714285716,
+        "rms": 0.20954979817595284,
+        "peak": 0.8198208808898926
+      },
+      "afterAudio": {
+        "duration": 2.0114285714285716,
+        "rms": 0.20931310752175536,
+        "peak": 0.8157175183296204
+      },
+      "rmsRatio": 0.9988704801614805,
+      "gainCorrection": 1.0525588827086276
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC03_02.mp3",
+      "kind": "audio",
+      "beforeBytes": 53339,
+      "afterBytes": 16658,
+      "beforeSha256": "cf57e2d09de6c2812aeb9fea062277af622f24817c611482170d03010eb5cc15",
+      "afterSha256": "5521b620ffa164b093061c23f071de8278106257ed03ab69fe110ec9243e1704",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "4cb41355-c2f8-4fb4-99cc-312b16cc6c0b",
+      "metaSha256": "52e3b842bdd676af7f649c4a6a27e03278c3e9a44f2f4d81ae29527555c46eb3",
+      "beforeAudio": {
+        "duration": 1.3322448979591837,
+        "rms": 0.12873462526007579,
+        "peak": 0.6986896395683289
+      },
+      "afterAudio": {
+        "duration": 1.3322448979591837,
+        "rms": 0.12918654411116814,
+        "peak": 0.702273964881897
+      },
+      "rmsRatio": 1.0035104685330725,
+      "gainCorrection": 1.0546162526153553
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC03_04.mp3",
+      "kind": "audio",
+      "beforeBytes": 59609,
+      "afterBytes": 18539,
+      "beforeSha256": "d203f1299d577cd350846479cb7c8630ccd1e69fd4fe63d35672e74b1cbb4ffd",
+      "afterSha256": "f46051d1bc69ff8a7520af3cb685d96da3464d4d7187d8cdee30b4cdab946a04",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "b17f1d65-32dc-4ee2-9eeb-957f114c21aa",
+      "metaSha256": "2d45d392120989243c387281edd2331bcd82ae073988d048a3fa20b75ab5dc31",
+      "beforeAudio": {
+        "duration": 1.4889795918367348,
+        "rms": 0.13636502499515188,
+        "peak": 0.6766157746315002
+      },
+      "afterAudio": {
+        "duration": 1.4889795918367348,
+        "rms": 0.13640207304557753,
+        "peak": 0.6745893359184265
+      },
+      "rmsRatio": 1.0002716829364933,
+      "gainCorrection": 1.049987960962913
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC03_05.mp3",
+      "kind": "audio",
+      "beforeBytes": 50205,
+      "afterBytes": 15718,
+      "beforeSha256": "c8f8777d9c6dab2b294c86f2ae4858afba8959fc14dcef478729ee63c8bea587",
+      "afterSha256": "55a0d4fb0dd5c8e272ec1cb05ed86825cfd9c6b809a2a2239801e38df6fd62ef",
+      "oldBitrate": 320000,
+      "newBitrate": 96000,
+      "channels": 2,
+      "uuid": "c3a2f3a1-32e9-4681-975c-9dd1565deac8",
+      "metaSha256": "dc0e453af921e7c3d38e8cbcd1b57d7634efc7130f16bfcdf3ba4c6cbf807dee",
+      "beforeAudio": {
+        "duration": 1.253877551020408,
+        "rms": 0.10516902553755336,
+        "peak": 0.637941300868988
+      },
+      "afterAudio": {
+        "duration": 1.253877551020408,
+        "rms": 0.10441195991768003,
+        "peak": 0.6388511657714844
+      },
+      "rmsRatio": 0.9928014392450275,
+      "gainCorrection": 1.0437791070886764
+    }
+  ],
+  "sceneJpegInspection": [
+    {
+      "path": "assets/Bundle/levels/bei-jing/ba-da-ling-chang-cheng/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/ba-da-ling-chang-cheng/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/bei-jing-kao-ya/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/bei-jing-kao-ya/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/dou-zhi-jiao-quan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/dou-zhi-jiao-quan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/jing-shan-gong-yuan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/jing-shan-gong-yuan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/lu-zhu-huo-shao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/lu-zhu-huo-shao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/niao-chao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/niao-chao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/shuan-yang-rou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/shuan-yang-rou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/yi-he-yuan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/yi-he-yuan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zha-jiang-mian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zha-jiang-mian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zhi-zuo-bei-jing-kao-ya/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zhi-zuo-bei-jing-kao-ya/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zhi-zuo-dou-zhi-jiao-quan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zhi-zuo-dou-zhi-jiao-quan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zhi-zuo-lu-zhu-huo-shao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zhi-zuo-lu-zhu-huo-shao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zhi-zuo-shuan-yang-rou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zhi-zuo-shuan-yang-rou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zhi-zuo-za-jiang-mian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zhi-zuo-za-jiang-mian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zi-jin-cheng/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/bei-jing/zi-jin-cheng/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/chang-sha-mi-fen/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/chang-sha-mi-fen/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/chang-sha-mi-fen-zhi-zuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/chang-sha-mi-fen-zhi-zuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/chou-dou-fu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/chou-dou-fu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/chou-dou-fu-zhi-zuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/chou-dou-fu-zhi-zuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/duo-jiao-yu-tou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/duo-jiao-yu-tou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/ju-zi-zhou-tou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/ju-zi-zhou-tou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/kou-wei-xia/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/kou-wei-xia/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/kou-wei-xia-zhi-zuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/kou-wei-xia-zhi-zuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/tang-you-ba-ba/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/tang-you-ba-ba/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/tang-you-ba-ba-3b688c/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/tang-you-ba-ba-3b688c/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/wen-he-you/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/wen-he-you/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/wu-yi-guang-chang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/wu-yi-guang-chang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/yue-lu-shan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/yue-lu-shan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/yue-lu-shu-yuan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/yue-lu-shu-yuan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/zhi-zuo-duo-jiao-yu-tou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chang-sha/zhi-zuo-duo-jiao-yu-tou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/cao-tang-pu-zi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/cao-tang-pu-zi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/cheng-du-da-xiong-mao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/cheng-du-da-xiong-mao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/dan-dan-mian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/dan-dan-mian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/fu-qi-fei-pian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/fu-qi-fei-pian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/hui-guo-rou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/hui-guo-rou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/kuan-zhai-xiang-zi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/kuan-zhai-xiang-zi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/long-chao-shou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/long-chao-shou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/ma-po-dou-fu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/ma-po-dou-fu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/san-xing-dui/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/san-xing-dui/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/wu-hou-ci/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/wu-hou-ci/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/zhi-zuo-dan-dan-mian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/zhi-zuo-dan-dan-mian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/zhi-zuo-fu-qi-fei-pian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/zhi-zuo-fu-qi-fei-pian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/zhi-zuo-hui-guo-rou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/zhi-zuo-hui-guo-rou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/zhi-zuo-long-chao-shou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/zhi-zuo-long-chao-shou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/zhi-zuo-ma-po-dou-fu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/cheng-du/zhi-zuo-ma-po-dou-fu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/bai-hu-yu-hei-gou-bao-mu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/bai-hu-yu-hei-gou-bao-mu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/cha-zi-yan-hong/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/cha-zi-yan-hong/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/chan-shi-guan-ri-chang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/chan-shi-guan-ri-chang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/dong-wu-hai-dao-tuan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/dong-wu-hai-dao-tuan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/gan-ma-mao-de-vlog/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/gan-ma-mao-de-vlog/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/gou-gou-hun-li/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/gou-gou-hun-li/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/ji-ge-suan-le/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/ji-ge-suan-le/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/jian-zhi-jia/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/jian-zhi-jia/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/ju-mao-bai-tan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/ju-mao-bai-tan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-he-zu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-he-zu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-shao-kao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-shao-kao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-yu-mao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-yu-mao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/meng-chong-shan-shen-bu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/meng-chong-shan-shen-bu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/ruo-xiao-wu-zhu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/ruo-xiao-wu-zhu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/shen-mi-ba-zhao-yu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/shen-mi-ba-zhao-yu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/tu-bo-shu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/tu-bo-shu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/xiao-mao-ta-bu-wu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/xiao-mao-ta-bu-wu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/ya-li-shan-da/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/ya-li-shan-da/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/zheng-dian-shu-tiao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/zheng-dian-shu-tiao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/zi-ran-miao-cui-jiao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/chong-wu-gu-shi/zi-ran-miao-cui-jiao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/bai-qie-ji/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/bai-qie-ji/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/cha-shao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/cha-shao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/cha-shao-zhi-zuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/cha-shao-zhi-zuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/chang-fen/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/chang-fen/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/chang-fen-zhi-zuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/chang-fen-zhi-zuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/chen-jia-ci/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/chen-jia-ci/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/dong-shan-kou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/dong-shan-kou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/gan-chao-niu-he/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/gan-chao-niu-he/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/sha-mian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/sha-mian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/ting-zai-zhou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/ting-zai-zhou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/ting-zai-zhou-zhi-zuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/ting-zai-zhou-zhi-zuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/xiao-man-yao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/xiao-man-yao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/yong-qing-fang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/yong-qing-fang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/zhi-zuo-bai-qie-ji/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/zhi-zuo-bai-qie-ji/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/zhi-zuo-gan-chao-niu-he/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/guang-zhou/zhi-zuo-gan-chao-niu-he/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/cao-chuan-jie-jian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/cao-chuan-jie-jian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/cao-meng-de-heng-shuo-fu-shi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/cao-meng-de-heng-shuo-fu-shi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/chang-ban-po-dan-qi-jiu-zhu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/chang-ban-po-dan-qi-jiu-zhu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/dan-qi-tui-xiong-bing/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/dan-qi-tui-xiong-bing/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/ding-jun-shan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/ding-jun-shan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/ge-xu-qi-pao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/ge-xu-qi-pao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/gua-gu-liao-du/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/gua-gu-liao-du/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/hua-rong-dao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/hua-rong-dao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/huang-jin-qi-yi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/huang-jin-qi-yi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/huo-shao-wu-chao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/huo-shao-wu-chao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/jie-dong-feng-huo-shao-chi-bi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/jie-dong-feng-huo-shao-chi-bi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/jiu-fa-zhong-yuan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/jiu-fa-zhong-yuan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/kong-cheng-ji/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/kong-cheng-ji/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/lian-huan-ji/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/lian-huan-ji/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/long-zhong-dui/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/long-zhong-dui/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/luo-feng-po/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/luo-feng-po/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/qi-qin-meng-huo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/qi-qin-meng-huo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/san-ying-zhan-lv-bu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/san-ying-zhan-lv-bu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/she-zhan-qun-ru/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/she-zhan-qun-ru/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/shen-ting-ling-da-zhan-sun-ce/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/shen-ting-ling-da-zhan-sun-ce/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/shui-yan-qi-jun/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/shui-yan-qi-jun/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/sun-jian-ni-yu-xi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/sun-jian-ni-yu-xi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/tao-yuan-jie-yi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/tao-yuan-jie-yi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/wei-zhen-xiao-yao-jin/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/wei-zhen-xiao-yao-jin/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/wen-jiu-zhan-hua-xiong/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/wen-jiu-zhan-hua-xiong/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/wu-hou-rang-xing/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/wu-hou-rang-xing/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/yuan-men-she-ji/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/yuan-men-she-ji/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/yuan-zheng-wu-huan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/yuan-zheng-wu-huan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/zhu-jiu-lun-ying-xiong/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/meng-chong-san-guo/zhu-jiu-lun-ying-xiong/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/fu-zi-miao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/fu-zi-miao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/gui-hua-tang-yu-miao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/gui-hua-tang-yu-miao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/ji-ming-si/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/ji-ming-si/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/jin-ling-kao-ya/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/jin-ling-kao-ya/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/nan-jing-bo-wu-guan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/nan-jing-bo-wu-guan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/niu-rou-guo-tie/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/niu-rou-guo-tie/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/tai-cheng-cheng-qiang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/tai-cheng-cheng-qiang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/xuan-wu-hu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/xuan-wu-hu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/ya-xue-fen-si/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/ya-xue-fen-si/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/yan-shui-ya/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/yan-shui-ya/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/zhi-zuo-gui-hua-tang-yu-miao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/zhi-zuo-gui-hua-tang-yu-miao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/zhi-zuo-jin-ling-kao-ya/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/zhi-zuo-jin-ling-kao-ya/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/zhi-zuo-niu-rou-guo-tie/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/zhi-zuo-niu-rou-guo-tie/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/zhi-zuo-ya-xue-fen-si/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/zhi-zuo-ya-xue-fen-si/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/zhi-zuo-yan-shui-ya/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nan-jing/zhi-zuo-yan-shui-ya/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/a-ma-ti-la-si/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/a-ma-ti-la-si/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/bai-wan-ying-bang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/bai-wan-ying-bang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/bei-zi-ben-zuo-ju-le/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/bei-zi-ben-zuo-ju-le/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/beng-bu-zhu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/beng-bu-zhu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/bing-you-wu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/bing-you-wu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/bu-shao-xin/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/bu-shao-xin/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/chao-chang-chang-chang-dan-ta/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/chao-chang-chang-chang-dan-ta/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/cheng-ba-lao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/cheng-ba-lao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/chuang-yi-zao-can-can-sai-tiao-zhan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/chuang-yi-zao-can-can-sai-tiao-zhan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/cong-cong-rong-rong-you-ren-you-yu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/cong-cong-rong-rong-you-ren-you-yu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/da-dong-bei/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/da-dong-bei/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/da-gou-jiao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/da-gou-jiao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/da-zhan-hong-tu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/da-zhan-hong-tu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ding-dong-ji/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ding-dong-ji/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/dou-bao-xing-ren-ge/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/dou-bao-xing-ren-ge/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/dou-yin-yin-yue-ban/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/dou-yin-yin-yue-ban/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/fa-xiu-san-da/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/fa-xiu-san-da/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/gai-jie-ju/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/gai-jie-ju/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/gan-ga-gou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/gan-ga-gou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/gu-gu-ga-ga/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/gu-gu-ga-ga/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ha-ji-mi-nan-bei-lv-dou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ha-ji-mi-nan-bei-lv-dou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/hang-bao-le/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/hang-bao-le/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/he-yi-wei/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/he-yi-wei/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/jia-hao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/jia-hao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/jia-xiao-lao-nai-nai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/jia-xiao-lao-nai-nai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/jia-yi-bing-ding/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/jia-yi-bing-ding/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/jie-zou-tiao-zhan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/jie-zou-tiao-zhan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/kai-xin-yi-xia/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/kai-xin-yi-xia/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ke-miao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ke-miao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ku-ku-ma/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ku-ku-ma/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ku-ming-yuan-yang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ku-ming-yuan-yang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/lai-cai-lai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/lai-cai-lai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/lao-wu-nei-ge/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/lao-wu-nei-ge/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ling-gan-gu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ling-gan-gu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/look-my-eyes/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/look-my-eyes/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ma-er-fu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/ma-er-fu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/mei-jian-mo-jing-ji/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/mei-jian-mo-jing-ji/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/pi-pa-qu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/pi-pa-qu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/qin-shi-huang-qi-da-bai-xiong/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/qin-shi-huang-qi-da-bai-xiong/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/que-zhen-yi-pi-ma/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/que-zhen-yi-pi-ma/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/san-ju-tou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/san-ju-tou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/sao-tui-wu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/sao-tui-wu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/shi-jie-ju-xing-deng-chang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/shi-jie-ju-xing-deng-chang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/shuang-shan-lei-ting-bu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/shuang-shan-lei-ting-bu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/su-yan-ba-li/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/su-yan-ba-li/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/tian-lei-gun-gun-hao-pa-pa/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/tian-lei-gun-gun-hao-pa-pa/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/what-a-day/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/what-a-day/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/wo-yao-yan-pai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/wo-yao-yan-pai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/wo-ye-yao-si-ma/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/wo-ye-yao-si-ma/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/wu-sa-qi-dao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/wu-sa-qi-dao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/yang-long-xia/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/yang-long-xia/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/yuan-tou-mao-die/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/yuan-tou-mao-die/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/yue-xin-miao-luo-lei-dj/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/yue-xin-miao-luo-lei-dj/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/zhong-guo-ren-neng-fei/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/zhong-guo-ren-neng-fei/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/zuo-wan-ni-de-zuo-ni-de/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/nian-du-re-geng/zuo-wan-ni-de-zuo-ni-de/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/a-la-bo-wen-zhu-tai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/a-la-bo-wen-zhu-tai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/cha-fang-bei-cha/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/cha-fang-bei-cha/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/chuang-qian-cha-hua/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/chuang-qian-cha-hua/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/da-pan-zhuang-xia/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/da-pan-zhuang-xia/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/da-shao-yu-xiao-e-zuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/da-shao-yu-xiao-e-zuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/dian-yao-qian-de-xin-zuo-pin/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/dian-yao-qian-de-xin-zuo-pin/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/feng-shou-yu-juan-wei/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/feng-shou-yu-juan-wei/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/fu-di-li-de-cang-ci/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/fu-di-li-de-cang-ci/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/gei-gu-shao-pei-yi-zhi-e/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/gei-gu-shao-pei-yi-zhi-e/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/gong-zhuo-shang-de-xiang-er-shuang-ping/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/gong-zhuo-shang-de-xiang-er-shuang-ping/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/gong-zhuo-tian-zhu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/gong-zhuo-tian-zhu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/hai-ao-shan-xing-bi-jia/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/hai-ao-shan-xing-bi-jia/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/hai-wai-fu-di-de-ci-qi-chen-she/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/hua-kou-pu-tao-pan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/hua-kou-pu-tao-pan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/jie-ri-gong-guo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/jie-ri-gong-guo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/jin-tian-de-qi-xing-she-ji-zhan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/jin-tian-de-qi-xing-she-ji-zhan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/jin-tian-ye-yong-ya-shou-bei/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/jin-tian-ye-yong-ya-shou-bei/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/jiu-qi-pei-shang-xin-tong-dan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/jiu-qi-pei-shang-xin-tong-dan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/jiu-si-kai-tan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/jiu-si-kai-tan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/lan-ting-hui-bi-tong/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/lan-ting-hui-bi-tong/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/lian-chi-yu-zao-wen-guan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/lian-chi-yu-zao-wen-guan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/long-wen-da-pan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/long-wen-da-pan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/pan-yu-gao-zu-de-cheng-xing/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/pan-yu-gao-zu-de-cheng-xing/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/ping-shang-zhui-gan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/ping-shang-zhui-gan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-dai-shu-fang-luo-bi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-dai-shu-fang-luo-bi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-dai-jin-shu-fang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-dai-jin-shu-fang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-feng-shou-hu-zhen-yin/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-feng-shou-hu-zhen-yin/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-gao-zu-pan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-gao-zu-pan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-hua-jiao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-hua-jiao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-hui-dao-can-zhuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-hui-dao-can-zhuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-san-qi-tong-gui/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qing-hua-san-qi-tong-gui/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qiu-yuan-guan-xi-shuai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qiu-yuan-guan-xi-shuai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qu-shui-liu-shang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/qu-shui-liu-shang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/seng-mao-hu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/seng-mao-hu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/shang-chuan-li-de-ci-qi-huo-cang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/shang-chuan-li-de-ci-qi-huo-cang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/shou-li-jin-cheng/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/shou-li-jin-cheng/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/shou-nie-hai-ao-shan-xing-bi-jia/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/shou-yan-kai-xi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/shou-yan-kai-xi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/si-yuan-li-de-cha-yu-gong-ju/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/tao-yuan-ming-cai-ju/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/tao-yuan-ming-cai-ju/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/ting-yuan-li-de-hai-zi-men/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/ting-yuan-li-de-hai-zi-men/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/tong-zi-zhu-shui-ao-xing-bi-jia/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/wan-shou-da-zun/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/wan-shou-da-zun/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/wen-ren-si-ai-hao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/wen-ren-si-ai-hao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/xi-shuai-guan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/xi-shuai-guan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/xiang-er-shuang-ping-qi-yun/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/xiang-er-shuang-ping-qi-yun/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/xiao-he-yue-xia-zhui-han-xin/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/xiao-he-yue-xia-zhui-han-xin/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/xiu-chu-hua-ban-pan-yan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/xiu-chu-hua-ban-pan-yan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yan-xi-jiang-kai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yan-xi-jiang-kai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yang-qi-lai-dao-zuo-fang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yang-qi-lai-dao-zuo-fang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yao-kou-jiao-huo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yao-kou-jiao-huo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yi-shao-yi-zuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yi-shao-yi-zuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/ying-xi-tu-yuan-he/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/ying-xi-tu-yuan-he/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yuan-dai-qing-hua-shuang-ping/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yuan-dai-qing-hua-shuang-ping/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yuan-fang-de-can-zhuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yuan-fang-de-can-zhuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yuan-he-li-de-dian-xin/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yuan-he-li-de-dian-xin/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yuan-xing-de-li-wu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/yuan-xing-de-li-wu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/zhang-xin-da-xiao-de-ming-pin/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/zhang-xin-da-xiao-de-ming-pin/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/zhi-zuo-feng-shou-bian-hu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/zhi-zuo-feng-shou-bian-hu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/zuo-zhi-hui-tou-qi-de-gai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qing-hua-ci/zuo-zhi-hui-tou-qi-de-gai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/an-ye-yi-yang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/an-ye-yi-yang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/bie-shuo-hua-dai-ni-fei/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/bie-shuo-hua-dai-ni-fei/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/bu-qu-gou-lan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/bu-qu-gou-lan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/cai-yi-shuang-quan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/cai-yi-shuang-quan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/chen-zhe-nian-shao-bie-shui-jiao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/chen-zhe-nian-shao-bie-shui-jiao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/da-di-zhi-zi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/da-di-zhi-zi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/da-wang-jiao-wo-lai-xun-shan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/da-wang-jiao-wo-lai-xun-shan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/dai-ni-qu-pa-shan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/dai-ni-qu-pa-shan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/fu-huo-ba-wo-de-ai-ren/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/fu-huo-ba-wo-de-ai-ren/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/gao-leng-nv-zhu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/gao-leng-nv-zhu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-wu-bei-jing/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-wu-bei-jing/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-zi-wei-zhi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-zi-wei-zhi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hou-yan-wu-chi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/hou-yan-wu-chi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/jian-dao-wan-gu-ru-chang-ye/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/jian-dao-wan-gu-ru-chang-ye/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/jie-jie-ni-ting-wo-jie-shi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/jie-jie-ni-ting-wo-jie-shi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/lao-mo-wo-xiang-chi-yu-le/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/lao-mo-wo-xiang-chi-yu-le/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/lian-dan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/lian-dan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/mai-le/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/mai-le/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/meng-jiang-ge-ge/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/meng-jiang-ge-ge/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/mo-shi-qiu-sheng/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/mo-shi-qiu-sheng/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/nan-nian-de-jing/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/nan-nian-de-jing/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-hao-sao-a/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-hao-sao-a/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-you-ben-shi-ni-kai-men/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-you-ben-shi-ni-kai-men/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ru-yan-da-di/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/ru-yan-da-di/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/san-shi-nian-he-dong/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/san-shi-nian-he-dong/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shen-bing-tian-jiang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shen-bing-tian-jiang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-li-tao-hua/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-li-tao-hua/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-si-bao-wei-liu-bo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-si-bao-wei-liu-bo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/wai-zui-long-wang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/wai-zui-long-wang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/wo-shi-shui/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/wo-shi-shui/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/xue-wei-zhen-jiu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/xue-wei-zhen-jiu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yu-nv-wu-gua/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yu-nv-wu-gua/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yuan-fang-ni-zen-me-kan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yuan-fang-ni-zen-me-kan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yun-dong-jian-jiang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/yun-dong-jian-jiang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/zhe-gua-bao-shu-ma/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/qu-wei-duan-ju/zhe-gua-bao-shu-ma/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/ba-bao-la-jiang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/ba-bao-la-jiang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/ba-bao-la-jiang-zhi-zuo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/ba-bao-la-jiang-zhi-zuo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/ben-bang-hong-shao-rou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/ben-bang-hong-shao-rou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/bu-xing-jie/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/bu-xing-jie/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/cao-tou-quan-zi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/cao-tou-quan-zi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/dong-fang-ming-zhu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/dong-fang-ming-zhu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/nan-xiang-xiao-long-bao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/nan-xiang-xiao-long-bao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/shang-hai-bo-wu-guan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/shang-hai-bo-wu-guan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/shang-hai-di-shi-ni-du-jia-qu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/shang-hai-di-shi-ni-du-jia-qu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/wai-tan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/wai-tan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/yan-du-xian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/yan-du-xian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/zhi-zuo-ben-bang-hong-shao-rou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/zhi-zuo-ben-bang-hong-shao-rou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/zhi-zuo-cao-tou-quan-zi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/zhi-zuo-cao-tou-quan-zi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/zhi-zuo-nan-xiang-xiao-long-bao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/zhi-zuo-nan-xiang-xiao-long-bao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/zhi-zuo-yan-du-xian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/shang-hai/zhi-zuo-yan-du-xian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/ai-jian-ce-lian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/ai-jian-ce-lian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/ba-lei-zhan-jiu-ping/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/ba-lei-zhan-jiu-ping/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/bing-qi-lin-bu-yu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/bing-qi-lin-bu-yu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/chou-zhi-tiao-zhan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/chou-zhi-tiao-zhan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/ci-bu-yi-yang-jiu-pao-bu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/ci-bu-yi-yang-jiu-pao-bu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/dai-fu-chu-fang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/dai-fu-chu-fang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/dong-wu-mo-fang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/dong-wu-mo-fang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/fu-ke-guang-tou-qiang-da-lan-qiu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/fu-ke-guang-tou-qiang-da-lan-qiu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/fu-shu-biao-qing-bao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/fu-shu-biao-qing-bao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/gong-fu-xiao-mi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/gong-fu-xiao-mi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/gou-xiong-duo-suo-mao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/gou-xiong-duo-suo-mao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/jiu-yi-xiao-wan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/jiu-yi-xiao-wan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/lang-zi-ti-qiu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/lang-zi-ti-qiu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/mao-mao-tou-xi-ren-lei-you-zai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/mao-mao-tou-xi-ren-lei-you-zai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/miao-cui-jiao-xiao-mao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/miao-cui-jiao-xiao-mao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/mo-fang-xiao-hou-zi-shi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/mo-fang-xiao-hou-zi-shi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/ping-guo-dun-niu-lei-tiao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/ping-guo-dun-niu-lei-tiao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/qi-shi-xiao-mao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/qi-shi-xiao-mao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/qiao-ke-li-yue-bing/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/qiao-ke-li-yue-bing/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/qiu-ri-shou-cang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/qiu-ri-shou-cang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/qu-hao-jiao-can-bei-xuan-zhong-belike/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/qu-hao-jiao-can-bei-xuan-zhong-belike/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/sha-xian-ai-qing-gu-shi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/sha-xian-ai-qing-gu-shi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/shan-shen-bu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/shan-shen-bu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/shou-su-qiang-ling-shi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/shou-su-qiang-ling-shi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/shuang-jie-gun-da-ping-pang-qiu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/shuang-jie-gun-da-ping-pang-qiu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/shui-ying-le-shui-chi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/shui-ying-le-shui-chi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/song-shu-de-zi-zhu-can/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/song-shu-de-zi-zhu-can/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/tou-chi-da-sai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/tou-chi-da-sai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/tou-chi-da-sai-2/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/tou-chi-da-sai-2/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/wang-yue-che-wei-hao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/wang-yue-che-wei-hao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/wo-de-dao-dun/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/wo-de-dao-dun/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/wu-shi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/wu-shi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/xue-shan-jiu-hu-li/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/xue-shan-jiu-hu-li/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/ye-sheng-gou-nai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/ye-sheng-gou-nai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/yu-mao-qiu-guan-deng/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/yu-mao-qiu-guan-deng/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/zhuan-zhu-da-dan-zhu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/wang-luo-re-dian/zhuan-zhu-da-dan-zhu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/ba-xian-an/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/ba-xian-an/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/biangbiang-mian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/biangbiang-mian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/bing-ma-yong/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/bing-ma-yong/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/da-yan-ta/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/da-yan-ta/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/hu-la-tang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/hu-la-tang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/hu-lu-ji/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/hu-lu-ji/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/niu-yang-rou-pao-mo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/niu-yang-rou-pao-mo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/rou-jia-mo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/rou-jia-mo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/xi-an-cheng-qiang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/xi-an-cheng-qiang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhi-zuo-biangbiang-mian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhi-zuo-biangbiang-mian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhi-zuo-hu-la-tang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhi-zuo-hu-la-tang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhi-zuo-hu-lu-ji/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhi-zuo-hu-lu-ji/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhi-zuo-niu-yang-rou-pao-mo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhi-zuo-niu-yang-rou-pao-mo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhi-zuo-rou-jia-mo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhi-zuo-rou-jia-mo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhong-lou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xi-an/zhong-lou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/bai-cheng-sha-tan/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/bai-cheng-sha-tan/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/gu-lang-yu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/gu-lang-yu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/hai-li-jian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/hai-li-jian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/hua-sheng-tang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/hua-sheng-tang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/jiang-mu-ya/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/jiang-mu-ya/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/nan-pu-tuo-si/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/nan-pu-tuo-si/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/sha-cha-mian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/sha-cha-mian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/tu-sun-dong/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/tu-sun-dong/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/xia-men-da-xue/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/xia-men-da-xue/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhi-zuo-hai-li-jian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhi-zuo-hai-li-jian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhi-zuo-hua-sheng-tang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhi-zuo-hua-sheng-tang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhi-zuo-jiang-mu-ya/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhi-zuo-jiang-mu-ya/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhi-zuo-sha-cha-mian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhi-zuo-sha-cha-mian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhi-zuo-tu-sun-dong/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhi-zuo-tu-sun-dong/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhong-shan-lu-bu-xing-jie/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xia-men/zhong-shan-lu-bu-xing-jie/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": null
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/bian-cheng-jing-zhong/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/bian-cheng-jing-zhong/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/cao-po-kui-tan-di-ying/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/cao-po-kui-tan-di-ying/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/chang-jie-yuan-shou/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/chang-jie-yuan-shou/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/chi-yuan-qing-he-cun/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/chi-yuan-qing-he-cun/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/di-shui-shi-yi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/di-shui-shi-yi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/gong-fang-ran-lu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/gong-fang-ran-lu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/ji-yuan-jun-xie-che/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/ji-yuan-jun-xie-che/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/jiu-lou-er-ceng-feng-bo/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/jiu-lou-er-ceng-feng-bo/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/long-cheng-jiao-chang-zheng-jun/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/long-cheng-jiao-chang-zheng-jun/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/mi-lin-gong-ying-dui-zhi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/mi-lin-gong-ying-dui-zhi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/mu-fang-shi-zhi-shou-nu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/mu-fang-shi-zhi-shou-nu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/niu-yang-chuan-yue-shan-ai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/niu-yang-chuan-yue-shan-ai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qian-xian-ji-bao-di-da/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qian-xian-ji-bao-di-da/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qiang-liang-che-cun/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qiang-liang-che-cun/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qin-niang-zi-jia-dao/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qin-niang-zi-jia-dao/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qing-he-cun-kou-ju-qi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qing-he-cun-kou-ju-qi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qiu-zhang-zhui-ji-ling/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qiu-zhang-zhui-ji-ling/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shan-dao-ma-dui-jing-ti/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shan-dao-ma-dui-jing-ti/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shan-kou-lan-ma-dui-zhi/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shan-kou-lan-ma-dui-zhi/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-deng-zhou-fu-jing/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-deng-zhou-fu-jing/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-ke-ju-zhong-bang/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-ke-ju-zhong-bang/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/tu-qiang-xiang-kou-mai-fu/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/tu-qiang-xiang-kou-mai-fu/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/wu-ding-nu-shou-jie-bei/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/wu-ding-nu-shou-jie-bei/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/xi-gu-dian-tai-shi-lian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/xi-gu-dian-tai-shi-lian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-lang-jian-shou-zhen-di/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-lang-jian-shou-zhen-di/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-lang-ju-ji-di-zhen/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-lang-ju-ji-di-zhen/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-ma-ru-ying/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/yin-ma-ru-ying/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/zha-men-an-tan-di-zhai/scene-a.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/zha-men-an-tan-di-zhai/scene-b.jpg",
+      "size": [
+        1024,
+        672
+      ],
+      "photoshopQuality": 8
+    }
+  ]
+}

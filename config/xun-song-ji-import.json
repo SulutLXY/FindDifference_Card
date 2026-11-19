@@ -1,0 +1,739 @@
+{
+  "chapter": "xun-song-ji",
+  "name": "寻宋记",
+  "source": "D:\\CocosCreator\\关卡\\寻宋记",
+  "sourceOrder": "01至30文件夹顺序",
+  "imageExport": {
+    "encoder": "Photoshop 13.0.0",
+    "quality": 8,
+    "qualityScale": 12,
+    "format": "JPEG",
+    "size": [
+      1024,
+      672
+    ],
+    "resize": "full-image-bicubic-no-crop"
+  },
+  "levels": [
+    {
+      "number": 1,
+      "id": "xun-song-ji/xi-gu-hu-zhu-tuo-xian",
+      "name": "溪谷互助脱险",
+      "folder": "xi-gu-hu-zhu-tuo-xian",
+      "sourceFolder": "01.溪谷互助脱险",
+      "sourceConfig": "溪谷互助脱险.json",
+      "configSha256": "00b921030265b24ebb6ea88834c2a74b67af79f35bd139b5578e39da3fb15dc6",
+      "differenceCount": 10,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-a.jpg",
+          "sha256": "d0af6c5a2930652fcf012d9980655bb40b44050955974c97edd32a3290f9756e",
+          "uuid": "1de96388-903d-5997-969a-c495240be008",
+          "sourceSha256": "fbc9838f823b540dd88195b46eb244362c02f2277d64df7cafd31edc99400019"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/xi-gu-hu-zhu-tuo-xian/scene-b.jpg",
+          "sha256": "4597531d1400be60d899f7cb506974b754d7e2d15db9712746163752c0348362",
+          "uuid": "5f77575b-80c3-5ba8-acf0-ea3b710bd605",
+          "sourceSha256": "ecce5507c3dee93e391497328c5cf5941ebe624ab4d5ae5c0198d93ddbf23438"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "xun-song-ji/xi-gu-dian-tai-shi-lian",
+      "name": "溪谷电台失联",
+      "folder": "xi-gu-dian-tai-shi-lian",
+      "sourceFolder": "02.溪谷电台失联",
+      "sourceConfig": "溪谷电台失联.json",
+      "configSha256": "50ca587be610bdc08111db3f55afa67ebed1a6747a20d2aa07518fdbea7bf2bf",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/xi-gu-dian-tai-shi-lian/scene-a.jpg",
+          "sha256": "82f3785b1b27a11b419205c1c95211db443c54c5fdddba506f0142563526091d",
+          "uuid": "945d2e61-fa50-5ffc-a74d-05b8464740ba",
+          "sourceSha256": "0423bca4ec7a0936635d49c684dce7fff102d0222175de8c728a2ab4e111c866"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/xi-gu-dian-tai-shi-lian/scene-b.jpg",
+          "sha256": "9bc03a582f5b18bac96691af111743bb36df412b1583b73433f54e932ec3cb32",
+          "uuid": "00f8b896-d74e-59aa-bea2-3a9281c9dcb1",
+          "sourceSha256": "16125099fec4cdc7c0897588a3bc0cc8f564769cab2f69a7b1561d0ae6a286ea"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "xun-song-ji/mi-lin-gong-ying-dui-zhi",
+      "name": "密林弓影对峙",
+      "folder": "mi-lin-gong-ying-dui-zhi",
+      "sourceFolder": "03.密林弓影对峙",
+      "sourceConfig": "密林弓影对峙.json",
+      "configSha256": "ec5221dd7ba5cd6e9be5559ec48382fc5b7468f1cbd46489e4ac32b5948f94b4",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/mi-lin-gong-ying-dui-zhi/scene-a.jpg",
+          "sha256": "38031affb157501b7fb3cd799d805b3863fa122fdfbdc4c492aaa9e90fea979e",
+          "uuid": "0d4a9ec5-22be-5577-9e36-1f66d1647c71",
+          "sourceSha256": "cca6038945d03766369ddd26ebd88d58c7b3ea9060ef09e1bdea745c795afafd"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/mi-lin-gong-ying-dui-zhi/scene-b.jpg",
+          "sha256": "2a3e63288331f90c47a6f15d4f17c80f50bcaec98f6a2ddd80784a761c5bfc67",
+          "uuid": "4c344e65-e975-50ed-adf7-651c467cd59b",
+          "sourceSha256": "ce091f3235543d8063af34d4f3f9ef494b4bc5766f199fc5683a951b11844215"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "xun-song-ji/di-shui-shi-yi",
+      "name": "递水释疑",
+      "folder": "di-shui-shi-yi",
+      "sourceFolder": "04.递水释疑",
+      "sourceConfig": "递水释疑.json",
+      "configSha256": "92c48732c16518815568c2fd866e45a7e1d31b68f72469a6fecaff06fcb1b7b9",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/di-shui-shi-yi/scene-a.jpg",
+          "sha256": "907314d1b455aad7468b387351dfd6277ddbfd6bd82c8d7f997536b0f9c421b5",
+          "uuid": "a0b88d6c-3591-5463-a516-280fc100e5cc",
+          "sourceSha256": "1e92421ddfa3c4e2390fc04a700cae39a41de872196bb63918c0cece67afa0b5"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/di-shui-shi-yi/scene-b.jpg",
+          "sha256": "ca1b648c6928ff5756df37cea250d01862b96d3c7cbe7ea377b5b2d637dc66f4",
+          "uuid": "3a4a525e-b75d-5617-ba45-398bb4d58724",
+          "sourceSha256": "ec10f97a81cac088c6600449f3599a4df1a3da81cd0e70946999ba42bce0026b"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "xun-song-ji/chi-yuan-qing-he-cun",
+      "name": "驰援清河村",
+      "folder": "chi-yuan-qing-he-cun",
+      "sourceFolder": "05.驰援清河村",
+      "sourceConfig": "驰援清河村.json",
+      "configSha256": "0a4e808fb71c646e840630d92bcf1c60fcf97f02727613e4bda9d79bf5d1a57e",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/chi-yuan-qing-he-cun/scene-a.jpg",
+          "sha256": "cb75b57e486e2d0a31a54c0ad49ee194bf9a576821344d99f17075e027bed36e",
+          "uuid": "378cde95-b2ca-5145-af44-876b2cde8a83",
+          "sourceSha256": "fbc22b7bca3556a788559e15cdbe4e99ca2c811c62ad1bd0a8b5b2f405067102"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/chi-yuan-qing-he-cun/scene-b.jpg",
+          "sha256": "fe2ce5369fa7aa271937ae56f1b1af44c750cbfa0737ffcf586cafbda0b0e12c",
+          "uuid": "da05c895-2da1-5b85-80fc-57706c57b518",
+          "sourceSha256": "f4c095e53d1103c2efc634c30fc98a2837587b8f9be302856c35f0b4210655c9"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "xun-song-ji/gong-fang-ran-lu",
+      "name": "工坊燃炉",
+      "folder": "gong-fang-ran-lu",
+      "sourceFolder": "06.工坊燃炉",
+      "sourceConfig": "工坊燃炉.json",
+      "configSha256": "3549ee0bec0e4d614c8e4ac0d5a444804dcc44d5c9025448a67d4d65d755e3cd",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/gong-fang-ran-lu/scene-a.jpg",
+          "sha256": "088104fd6fa7766049d41487a9495786fe73edb85d4f036dc6a0c97ed935fc99",
+          "uuid": "225606b3-2b5c-5bbf-bfeb-6c321c20d3ae",
+          "sourceSha256": "7a75826d91efa3e3bfa54bd82fdc892dd69d4a2d9e70b706077ea8eb07c7f83c"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/gong-fang-ran-lu/scene-b.jpg",
+          "sha256": "c4b015a40c4655304dc8cf9efdf5d6b70d13e583e8c2cb4bc496934e3bb88ff5",
+          "uuid": "9dbb588e-9720-5d71-8644-0730d9fceca5",
+          "sourceSha256": "42beffbda03cae5a4510243c14989b9febaa0a7bcc1d9f9f5fea296f38d4d7eb"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "xun-song-ji/mu-fang-shi-zhi-shou-nu",
+      "name": "木坊试制手弩",
+      "folder": "mu-fang-shi-zhi-shou-nu",
+      "sourceFolder": "07.木坊试制手弩",
+      "sourceConfig": "木坊试制手弩.json",
+      "configSha256": "4800ffee7fc7c8aa4115c49011e665a0fee772ad73c04945b41ae91e555fad69",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/mu-fang-shi-zhi-shou-nu/scene-a.jpg",
+          "sha256": "d16040732d95ceeeb865b56d5a8899b3eb0c008c896e241f38e6ba9f8a085609",
+          "uuid": "efa30dfc-ad15-5ee9-b5c9-001230796df1",
+          "sourceSha256": "e37b52b8bae505132197fd79fd623fefc86d17a6b770854a4b99808d942f1165"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/mu-fang-shi-zhi-shou-nu/scene-b.jpg",
+          "sha256": "baa265bd742e99f0376e4b601d0a6251de8b472237c0ef12e127e787069fbe07",
+          "uuid": "e312830a-e9c8-57a9-ac5a-339aada8fced",
+          "sourceSha256": "da8e67a716a33633b38429708a7556916409ddb519b54c0b11ea2282a4204b52"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "xun-song-ji/yin-ma-ru-ying",
+      "name": "引马入营",
+      "folder": "yin-ma-ru-ying",
+      "sourceFolder": "08.引马入营",
+      "sourceConfig": "引马入营.json",
+      "configSha256": "a6038931100f6b1de613b32b4a3d55ea4d864da948a6f626ec1ece7a200eec63",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/yin-ma-ru-ying/scene-a.jpg",
+          "sha256": "f7efc45bf4b57e2b2c0e669e2c743004ff24cd3b0c347a908e5b49e199a8c016",
+          "uuid": "cedf0ef6-158b-513a-b1a4-1eb34fdcd826",
+          "sourceSha256": "3b53ddf7700dc7e4e737d6f6be4e0c2e51cd3aa5c8b2b40dfa9e3915a8cc6456"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/yin-ma-ru-ying/scene-b.jpg",
+          "sha256": "8f01c2a70f2ed881c48b27218bd795271cc2553ebccb143aacca178d9a51dc04",
+          "uuid": "03f5fbe9-63f5-56df-ac45-95285c2e7470",
+          "sourceSha256": "e2e8c4696e20a476f4de4c35b156e4b006c89660e2793b4a676624866904bf33"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "xun-song-ji/shan-kou-lan-ma-dui-zhi",
+      "name": "山口拦马对峙",
+      "folder": "shan-kou-lan-ma-dui-zhi",
+      "sourceFolder": "09.山口拦马对峙",
+      "sourceConfig": "山口拦马对峙.json",
+      "configSha256": "e2fe34dc67bc9679a46846f49a535f8a074f2f341286585598c07ea2a4262769",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/shan-kou-lan-ma-dui-zhi/scene-a.jpg",
+          "sha256": "e2bb736c95ee2655d0041cd5a3a98a9e94ae08c5755532127dcc41ac25f0f595",
+          "uuid": "b2d27ef7-3ffa-54d5-be31-51f0b3d4bd4e",
+          "sourceSha256": "e68cef73cc3ab4133ae5fe764ba45f6ad651b9cb7cb713f1038388f2c712b82e"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/shan-kou-lan-ma-dui-zhi/scene-b.jpg",
+          "sha256": "9d256906077d024e69f70a08855e9c01a54db0fd8c73d996211b144e6f7a0a98",
+          "uuid": "6bd65791-565c-57db-b2f6-c580a39e6e85",
+          "sourceSha256": "66bac1d635aa9047b44fb2fae3f80e7fd26882c634f07a90fbde86e0b1d2c9c9"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "xun-song-ji/shan-dao-ma-dui-jing-ti",
+      "name": "山道马队惊蹄",
+      "folder": "shan-dao-ma-dui-jing-ti",
+      "sourceFolder": "10.山道马队惊蹄",
+      "sourceConfig": "山道马队惊蹄.json",
+      "configSha256": "339742e1020bd4a6860f6286536b7068467bcd38fc12b2db318a7fa0ee6fb8d3",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/shan-dao-ma-dui-jing-ti/scene-a.jpg",
+          "sha256": "7f1ce1d1a16e9d824d57fc3d4ff492fbeccc9843fd8348af7ac140bdf0ca3dce",
+          "uuid": "ef466f74-2bde-508a-8028-3e14b3e92b5d",
+          "sourceSha256": "0f2cbc4604dd1ca6334ccdcf1f932cba1a0c81a1ebfd35279433f4f2e8f33c67"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/shan-dao-ma-dui-jing-ti/scene-b.jpg",
+          "sha256": "b0d51dfbe548ddc7fdaffa8a5e811b5b39587f2cfa75211ec7f9cc506aa3e592",
+          "uuid": "2cd03717-8244-5194-9a1a-3ea7d2274f29",
+          "sourceSha256": "f1293c7181214f08a9fe091c079fd0c8d1c9f78599d6db2134d2dc8bbc93d90c"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "id": "xun-song-ji/cao-po-kui-tan-di-ying",
+      "name": "草坡窥探敌营",
+      "folder": "cao-po-kui-tan-di-ying",
+      "sourceFolder": "11.草坡窥探敌营",
+      "sourceConfig": "草坡窥探敌营.json",
+      "configSha256": "d73232c37c2ab2c1328fa3034f0866df995c00a2887fb3f7389eb7ec6c3936b2",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/cao-po-kui-tan-di-ying/scene-a.jpg",
+          "sha256": "4f38a485aa3d359b06fb5212f9b6eb0249c4bd1770d41f76e3938d0610af9279",
+          "uuid": "282c4a02-e8a8-56f4-b495-c8427990f98f",
+          "sourceSha256": "2fb1630ed9e41d3cedb361bffeabd7297cc3aeef4e8855a1d9c1ec7e85644d59"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/cao-po-kui-tan-di-ying/scene-b.jpg",
+          "sha256": "5b8b31d95205fdfce5de9298ad73479acfdf9aa368854dc04bcb2bb827f78063",
+          "uuid": "259e8390-3edf-553b-b155-5a0e99dbc71f",
+          "sourceSha256": "de5671800b97d86f05e4d4765913e4fb3be2263b8fccfb497533fe04a7e9420c"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "xun-song-ji/zha-men-an-tan-di-zhai",
+      "name": "栅门暗探敌寨",
+      "folder": "zha-men-an-tan-di-zhai",
+      "sourceFolder": "12.栅门暗探敌寨",
+      "sourceConfig": "栅门暗探敌寨.json",
+      "configSha256": "483cb9c35622e570fd9223bc354fadf481c9fa35702f3d246894eb213d2a567a",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/zha-men-an-tan-di-zhai/scene-a.jpg",
+          "sha256": "5924725fe660e4fbbc9230ee32e5fe2e778808f7921cc524a113f4c8721a7605",
+          "uuid": "f2683185-0765-59e6-a922-d5b7d3872383",
+          "sourceSha256": "b54eeea6aa5a3ee7ef08274710f5e36005c15549c1bdf0e8c9f86c642f95a66e"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/zha-men-an-tan-di-zhai/scene-b.jpg",
+          "sha256": "e4c4f81798a7d285024e68b2c5c1778f37123d156716adfd9eaa7de6690c3edf",
+          "uuid": "e9b57669-9cd9-50a1-8d85-dc401fc325de",
+          "sourceSha256": "6597fcc0616d4a6913c88022b3a4ca344e7a727c500aa3e49807b7e3ac5e44b5"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "xun-song-ji/qiu-zhang-zhui-ji-ling",
+      "name": "酋长追击令",
+      "folder": "qiu-zhang-zhui-ji-ling",
+      "sourceFolder": "13.酋长追击令",
+      "sourceConfig": "酋长追击令.json",
+      "configSha256": "d6c6f0794aa1ebd58af1a5b2a7d0c7bf06e541af8bcf47ab7b8088d348408816",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qiu-zhang-zhui-ji-ling/scene-a.jpg",
+          "sha256": "c5cabde3d60cb499546bf61ec3bd6715d8cbc71458b9681b60474ec621f1df4b",
+          "uuid": "f26640fe-0433-5679-be05-c977e9fb9b24",
+          "sourceSha256": "faff501269b55dc638eddd43ee9b391065005236937eaa832ebd85022252dabc"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qiu-zhang-zhui-ji-ling/scene-b.jpg",
+          "sha256": "174f7e8261abd42eccbe8fdf5328c33c6840e43f2a18e936bfa16393b03ea22d",
+          "uuid": "cdfd31f0-b711-522a-a22e-a1aeaf785c0f",
+          "sourceSha256": "e2042438c9c6d70ad53b09a487c89e9d47394e3a529116887cbbd86e08f75b16"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "id": "xun-song-ji/niu-yang-chuan-yue-shan-ai",
+      "name": "牛羊穿越山隘",
+      "folder": "niu-yang-chuan-yue-shan-ai",
+      "sourceFolder": "14.牛羊穿越山隘",
+      "sourceConfig": "牛羊穿越山隘.json",
+      "configSha256": "edd1523e211c1a37035ec41d535b7cd261e1a1e522752d238575c1219093d6c3",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/niu-yang-chuan-yue-shan-ai/scene-a.jpg",
+          "sha256": "2c15e43bed6fbc7acd02c8efe4c6b07ccc80e9c572b3b419b244f1371ce27b40",
+          "uuid": "263915bd-7d20-5c47-b520-adc001f6d196",
+          "sourceSha256": "262b23b5838d5f8251bfbbd168f5b34bf53a93ad6d0cc6e9a0fb9f3a3407aeb9"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/niu-yang-chuan-yue-shan-ai/scene-b.jpg",
+          "sha256": "07848a4fcee7759bcbb70cf61598c9072da8dbd95dbdc87ebd82f26020b5cb6d",
+          "uuid": "bf778db4-0972-5e99-aba5-ff0e0a704542",
+          "sourceSha256": "405ff133b38fe5f21f44c1b4472b11a7bd8227a1f905040915906464c438a30b"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "xun-song-ji/chang-jie-yuan-shou",
+      "name": "长街援手",
+      "folder": "chang-jie-yuan-shou",
+      "sourceFolder": "15.长街援手",
+      "sourceConfig": "长街援手.json",
+      "configSha256": "0e585b9110794adc57524869cc954d1f4ffa68c65e4f3761d34a17558181561d",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/chang-jie-yuan-shou/scene-a.jpg",
+          "sha256": "df1fcbaf3732a73f8e6d2a96fc07cca8fcc2f5eb3885ea4eb647a5c77d53e253",
+          "uuid": "5283edd9-d1b7-5fb8-91bb-cb3c3b2de49f",
+          "sourceSha256": "8d88ea10d8849b22e2a05cede7e186407c0df06cc2d893c5e30e0cec6ea28645"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/chang-jie-yuan-shou/scene-b.jpg",
+          "sha256": "fcdecca524ce2ff1a8eb9e052ac1458e609d8d62a8d9ded46bba0d421a44d336",
+          "uuid": "7d89dbda-eb24-5b9b-b1a5-d440e268769e",
+          "sourceSha256": "a6ff1f2cfd5aa2dca142f54f52526aaf4edcfa3358bd9a4bf04ce87a24327c58"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "xun-song-ji/jiu-lou-er-ceng-feng-bo",
+      "name": "酒楼二层风波",
+      "folder": "jiu-lou-er-ceng-feng-bo",
+      "sourceFolder": "16.酒楼二层风波",
+      "sourceConfig": "酒楼二层风波.json",
+      "configSha256": "7570cc771d3d8951e9db5e3d5618241835e7b4a78242c5c7dcec3d4d196b0775",
+      "differenceCount": 17,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/jiu-lou-er-ceng-feng-bo/scene-a.jpg",
+          "sha256": "8919aef1efd3b2468c0ec37b1de0b712d15cde53c1c69335a0d79e1fbbcd8ca1",
+          "uuid": "8efa6af0-a3b4-5c0b-be83-1345ba3450c5",
+          "sourceSha256": "8e270ee162559bb8ab34c507209280502bde911b9abbb24eb616c7fe8bb5a06c"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/jiu-lou-er-ceng-feng-bo/scene-b.jpg",
+          "sha256": "501fa9abf5b17cd4139c30c354c60fcedb22bec0525c01ffe848e94d8a173390",
+          "uuid": "96ee9b92-08f6-5b93-a2d8-c442617869e4",
+          "sourceSha256": "51db2c3bc6120c03d7febbd8cde967812eec1121753e1c77c95ea3668507d056"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "xun-song-ji/qin-niang-zi-jia-dao",
+      "name": "秦娘子驾到",
+      "folder": "qin-niang-zi-jia-dao",
+      "sourceFolder": "17.秦娘子驾到",
+      "sourceConfig": "秦娘子驾到.json",
+      "configSha256": "0f533eee0cc3c958452fcd206997ee79d8c1b45bcdbddd3e087e3537e27940d7",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qin-niang-zi-jia-dao/scene-a.jpg",
+          "sha256": "181c558d0f15223a2b1949a2384c9d224ccdfa3b7e33945d6de2ae74a4aff42a",
+          "uuid": "757bdbf2-f7a5-5538-8acd-91d185117b1f",
+          "sourceSha256": "52b15c7a9d9d90baf917d9377e5ef8e1a3505f44e9a3bc61b45690fe71222d13"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qin-niang-zi-jia-dao/scene-b.jpg",
+          "sha256": "d8d9b6ff87ae7e59ce636b15095a27d04b71e4954364731b9ddc6839ce4a5ffb",
+          "uuid": "1603356b-b8a7-5c73-94fc-b04bbd371119",
+          "sourceSha256": "a656e6362b0e74aa84b1c8543b483b73c1951aecb6f60410ecc261d43f78da3c"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "xun-song-ji/qian-xian-ji-bao-di-da",
+      "name": "前线急报抵达",
+      "folder": "qian-xian-ji-bao-di-da",
+      "sourceFolder": "18.前线急报抵达",
+      "sourceConfig": "前线急报抵达.json",
+      "configSha256": "fe420cbadbd1ffbe8621c22d3d30fd4ee02979a947d41501ef4a89d3b917bf3e",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qian-xian-ji-bao-di-da/scene-a.jpg",
+          "sha256": "c2ed913933b10404a40e4863d79c3063de6e23c8092ee2b1799cf1c7d9f642e1",
+          "uuid": "b9b0618f-c427-5c7c-a1c7-2ff813b6abd8",
+          "sourceSha256": "06140e4f132bb69f1eb538c69e226b612267a83f2626c88987886a196b90337a"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qian-xian-ji-bao-di-da/scene-b.jpg",
+          "sha256": "3a7a5e9705677828e83435e6c7de448e890072e3700f4dde5472bc259e35fce2",
+          "uuid": "850ae67d-1565-5b7c-afa6-73f7f154a51c",
+          "sourceSha256": "c15d88e0cb0439b8efd7bf1fd5c825c1a15045ac261e1dc3f2360351250bc80f"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "id": "xun-song-ji/long-cheng-jiao-chang-zheng-jun",
+      "name": "陇城校场整军",
+      "folder": "long-cheng-jiao-chang-zheng-jun",
+      "sourceFolder": "19.陇城校场整军",
+      "sourceConfig": "陇城校场整军.json",
+      "configSha256": "46b0d168447f466b0c923d5055fbff9d7682c75b47388577fe6b9875409bb9ab",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/long-cheng-jiao-chang-zheng-jun/scene-a.jpg",
+          "sha256": "d38f39c29e63df2889030e0c42ebba21459b7fc8005d2f29f406917dacfb5576",
+          "uuid": "dc3d5076-64a8-54d7-bb32-a1658276b60e",
+          "sourceSha256": "210388a2084efdb041805bae0dc34c7b1b64b9b4d12e1564fba61b91e849262b"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/long-cheng-jiao-chang-zheng-jun/scene-b.jpg",
+          "sha256": "78f9e133dd4f625055c904557857929ffee679fed7898f7f59cd038518377f7e",
+          "uuid": "69f845eb-7d6e-552d-8464-be9e3562d2d6",
+          "sourceSha256": "d935f77c79eeedaa96949d21d297c530d11b6b23a40d5749864d3581a135b5af"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "xun-song-ji/qing-he-sha-pan-yi-shi",
+      "name": "清河沙盘议事",
+      "folder": "qing-he-sha-pan-yi-shi",
+      "sourceFolder": "20.清河沙盘议事",
+      "sourceConfig": "清河沙盘议事.json",
+      "configSha256": "521d229661ecc409427a3c22cbda853e703c953b834d1e582002b06c63bd0f8a",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-a.jpg",
+          "sha256": "7692591a6ccb70058236a7f37df365e77b466724f1d1730091f4f8922b598989",
+          "uuid": "5a72e699-2729-5700-9025-151a09dbeb5b",
+          "sourceSha256": "c369d85ca9f1c97691b4e6cbbab17340580f7c3f76e25e6e954e059c597aa807"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-b.jpg",
+          "sha256": "63b23d81dbef06b71c94f927270f893086c9eba4736e9176a4fbe5efb2e78496",
+          "uuid": "c91e2c85-2203-549e-8bcb-4a1a3b5573c8",
+          "sourceSha256": "0bf355b03b913926f8eef5e3117c70a2ae9c0f8dc98dc4183ae14780efecb4dd"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "id": "xun-song-ji/bian-cheng-jing-zhong",
+      "name": "边城警钟",
+      "folder": "bian-cheng-jing-zhong",
+      "sourceFolder": "21.边城警钟",
+      "sourceConfig": "边城警钟.json",
+      "configSha256": "bbcb637512aa6cfe9270ac38be4d20dacc5218c86fb021705ab15501088b0bd3",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/bian-cheng-jing-zhong/scene-a.jpg",
+          "sha256": "815816374d13465bcf079d02e5c30be8ace90c64849e04b0a282f29067c39ee9",
+          "uuid": "cbaea7f7-132e-5783-9848-36dacb2751e9",
+          "sourceSha256": "c6acafd8f98b438738fc2d25ea936ae298d1bfe5ea40db70b659351d06be8c96"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/bian-cheng-jing-zhong/scene-b.jpg",
+          "sha256": "7b9fb05b027f02e0d89d6b931611ba7734b98e785df81b92b98c3b987bffb2d6",
+          "uuid": "b146f2b1-7a52-5efa-bfaf-f156796ebab8",
+          "sourceSha256": "17b1a61d2709a52bd14982af8a52000e3e39e8d9f7a42612f5da7c10fa2cc68f"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "xun-song-ji/ji-yuan-jun-xie-che",
+      "name": "急援军械车",
+      "folder": "ji-yuan-jun-xie-che",
+      "sourceFolder": "22.急援军械车",
+      "sourceConfig": "急援军械车.json",
+      "configSha256": "e484b33e23552b366b2b917476a04984db70f3b101815607225ef31161104e50",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/ji-yuan-jun-xie-che/scene-a.jpg",
+          "sha256": "199010e51735e003479e252cdba93c1c5ace4abde1593a5f891de19eb6da9eb2",
+          "uuid": "ca6727be-b190-56d7-982b-128ae2062241",
+          "sourceSha256": "1082d6104dbd9616d045656c9c9a89f446a1c0a7c1c2052e5f78a0e3a7c5dc43"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/ji-yuan-jun-xie-che/scene-b.jpg",
+          "sha256": "4acded5d0a480739f6e24293236e9e45c8a3bc959407366955abd21e82a2bab8",
+          "uuid": "c79492f2-f829-59d7-a558-004a859a50d1",
+          "sourceSha256": "ae705e8d0a7034d65f80cbe492a4cfc890309f293b3495780ff3bc68ef0342b4"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "xun-song-ji/qiang-liang-che-cun",
+      "name": "抢粮撤村",
+      "folder": "qiang-liang-che-cun",
+      "sourceFolder": "23.抢粮撤村",
+      "sourceConfig": "抢粮撤村.json",
+      "configSha256": "865070fa2efb1b1d216aa00a1fbdd2536480e0718ffc3e165739f0580d701b8e",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qiang-liang-che-cun/scene-a.jpg",
+          "sha256": "b254c88a35803b8893671b6f19413713927ce4839387ce978215bb33345ecc71",
+          "uuid": "e2e01512-6960-527e-8ada-17c0424d708c",
+          "sourceSha256": "ad6899e304225fa98ad96af413aba1db5567a7620bb187f73f6d0b6950b6cc6a"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qiang-liang-che-cun/scene-b.jpg",
+          "sha256": "d85396dd8021260485acff27637836b585f867a8dea8d73b78eeb36832b6595f",
+          "uuid": "7c81d361-8630-559f-91f4-396467c64f71",
+          "sourceSha256": "43cc0fe38fec395235722a99c054385cf68937ae95adafb6480b41caca9869ef"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "id": "xun-song-ji/tu-qiang-xiang-kou-mai-fu",
+      "name": "土墙巷口埋伏",
+      "folder": "tu-qiang-xiang-kou-mai-fu",
+      "sourceFolder": "24.土墙巷口埋伏",
+      "sourceConfig": "土墙巷口埋伏.json",
+      "configSha256": "a03e2a7776f60be1b74d4d29d0380888bfa20430b499506418937273058cb40e",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/tu-qiang-xiang-kou-mai-fu/scene-a.jpg",
+          "sha256": "0b4676ccf6750b9dd64a969d2dc9f6d79ab54f38c1107035942606b732fa3c52",
+          "uuid": "d5e7c59b-5914-5494-824d-50b724369b83",
+          "sourceSha256": "4ec189ad1a68bb17ea49d0c8590f64b64a2661cc38e4946cb120ace2629e04fd"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/tu-qiang-xiang-kou-mai-fu/scene-b.jpg",
+          "sha256": "c7541d2aacf398b0f258e5967298a228308cc7582034c64bf1ddeac05ae4d298",
+          "uuid": "915521c4-95d1-5153-a55b-901ac846cd03",
+          "sourceSha256": "68d827e8aea0e5c7a7c6ea00a9394317a2a245c81edf3580f213f5e176fa7c2a"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "xun-song-ji/wu-ding-nu-shou-jie-bei",
+      "name": "屋顶弩手戒备",
+      "folder": "wu-ding-nu-shou-jie-bei",
+      "sourceFolder": "25.屋顶弩手戒备",
+      "sourceConfig": "屋顶弩手戒备.json",
+      "configSha256": "bba0733284ff58357833215f3e763d91540e6b5ed4778f4995a5371ccc2a6137",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/wu-ding-nu-shou-jie-bei/scene-a.jpg",
+          "sha256": "2367c97f13b7bf8d247e1be4f65968eeb02dea9f6435c35dd0fc852b577159be",
+          "uuid": "dc2c7664-c8c3-5187-aafc-120034b24fda",
+          "sourceSha256": "da0a31a49f47a8302236bd672744bd1064d5ad1e98ea2d0603aadfed51293c4c"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/wu-ding-nu-shou-jie-bei/scene-b.jpg",
+          "sha256": "ff59b89309c87dc68449ea85a01d452609b1f053c4500c235003eea67ec44a10",
+          "uuid": "4cf8fd89-c796-5764-b3d9-aaf5144ce17f",
+          "sourceSha256": "593badbb89f1a398e1a990fea2c917722780723a9709e4ef53bbc55b20fe0cb6"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "id": "xun-song-ji/qing-he-cun-kou-ju-qi",
+      "name": "清河村口拒骑",
+      "folder": "qing-he-cun-kou-ju-qi",
+      "sourceFolder": "26.清河村口拒骑",
+      "sourceConfig": "清河村口拒骑.json",
+      "configSha256": "fcdfcfa3baf50657d23e786d023bd7db203484bf7d81eb4544a670a3de6f3d14",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qing-he-cun-kou-ju-qi/scene-a.jpg",
+          "sha256": "3019f481cf79f57cc4c9094983899274717daf46886e89764b70a332a492813c",
+          "uuid": "b0ca2fe0-1ee9-5744-8c57-ec239c89da4a",
+          "sourceSha256": "28129f50882ea15fe6d3cc5dbf9e0d49e85621b9af752928a52156e0ede08c4b"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qing-he-cun-kou-ju-qi/scene-b.jpg",
+          "sha256": "37c85feca8d0fe23655ba0cba32392c9a54628ad068087766ee6ae6668911e75",
+          "uuid": "b10fce46-c563-5138-8837-46eead4ff49a",
+          "sourceSha256": "70ce413d1cae3414e294904457e92bfa4a769d6e8ddef6d331c154cd295a1c24"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "id": "xun-song-ji/yin-lang-jian-shou-zhen-di",
+      "name": "银狼坚守阵地",
+      "folder": "yin-lang-jian-shou-zhen-di",
+      "sourceFolder": "27.银狼坚守阵地",
+      "sourceConfig": "银狼坚守阵地.json",
+      "configSha256": "7bc8029d9527ff5719e3663a1df0e66cbdf1da5fb384665142c110ca9168df2d",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/yin-lang-jian-shou-zhen-di/scene-a.jpg",
+          "sha256": "d1a6bba8e61515c89ad59c11d401e23ce0e784e6f9691f88f0e42881d2e9d9f9",
+          "uuid": "4cf0e258-3e29-5c8c-b47c-a45006dacd3b",
+          "sourceSha256": "2f7a2a7d871f2d5a1a429b2c22a7a8f90ebca93db365ebd5796faf27776c09c1"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/yin-lang-jian-shou-zhen-di/scene-b.jpg",
+          "sha256": "fb44900a17e004c2d3122285223ee199c6b3b9eea6446777c0741aae368b5824",
+          "uuid": "4c2ed200-5b55-573e-8e4f-8de3bb37208a",
+          "sourceSha256": "76cad1dfd2f981840079ff77a6074c7d4e41d3a95d6fa964a65e5b4d8cb6f5de"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "id": "xun-song-ji/yin-lang-ju-ji-di-zhen",
+      "name": "银狼狙击敌阵",
+      "folder": "yin-lang-ju-ji-di-zhen",
+      "sourceFolder": "28.银狼狙击敌阵",
+      "sourceConfig": "银狼狙击敌阵.json",
+      "configSha256": "559b3454bf66aae3f6fa43732632411187ee04c987632fe7adbf66cb3f26dc76",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/yin-lang-ju-ji-di-zhen/scene-a.jpg",
+          "sha256": "9e1614dbfb4b80e2e447f70fd6ed267415cfcf88edf54a44a0796dd27f01b7ec",
+          "uuid": "732e52d3-c205-5beb-bfec-db5d1a2fa983",
+          "sourceSha256": "cd2172db3cd56a2af35fc7defb4ecf9620977f67ca443ba3fb39eb83d1f1adf9"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/yin-lang-ju-ji-di-zhen/scene-b.jpg",
+          "sha256": "5e17c1987634e911b79590b3aa372ef1c3c5b55d947910040e08ad3305f8ac5c",
+          "uuid": "fcd7375a-d179-52d6-882a-231e35a536aa",
+          "sourceSha256": "b9405400846c808c7ba2a1c4d6dd6a555a754c65445fb7deb455be47f92c9df3"
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "id": "xun-song-ji/shu-sheng-ke-ju-zhong-bang",
+      "name": "书生科举中榜",
+      "folder": "shu-sheng-ke-ju-zhong-bang",
+      "sourceFolder": "29.书生科举中榜",
+      "sourceConfig": "书生科举中榜.json",
+      "configSha256": "a6fbb6aefa27d585f7e50ba2a288ac8d7c7ba02f571436e6cce0734441575459",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-ke-ju-zhong-bang/scene-a.jpg",
+          "sha256": "c57d7343e6ebc547040ab6f6720f3199179183a2499662b46559557693402b51",
+          "uuid": "acc7cc0c-eb29-5665-9e22-cff2703b1d0b",
+          "sourceSha256": "edd2b8fbddbf7ae9ddbc1fdc8fbb4576052b137a4e5161f5b1e56d849547cc8b"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-ke-ju-zhong-bang/scene-b.jpg",
+          "sha256": "796d5b0f90ca9846e68029623be6c853e668fbd4e68bea485b05c0dd3bf10c3b",
+          "uuid": "03d3086e-f9f0-56d3-89cd-ee539d393632",
+          "sourceSha256": "09f4c4c08b9a7581ae200713ab37741e864d08ef56e56349a1408ccfd940567a"
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "id": "xun-song-ji/shu-sheng-deng-zhou-fu-jing",
+      "name": "书生登舟赴京",
+      "folder": "shu-sheng-deng-zhou-fu-jing",
+      "sourceFolder": "30.书生登舟赴京",
+      "sourceConfig": "书生登舟赴京.json",
+      "configSha256": "b1cf385dd1d97dcb0f178e32a97291fdfc5edddc3fa7b0dae2e84f9a9bdfb530",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-deng-zhou-fu-jing/scene-a.jpg",
+          "sha256": "70dc52478a4e1be3347b4125cdd6817e0fa43a2b3c028045c7576ac9a9b7b3b1",
+          "uuid": "1e010106-418d-526c-802b-ec5fed97ed7e",
+          "sourceSha256": "988d0073c1d75a8c9bf73b93eaa42af57ca49d06889ef047f280758c2c6686e0"
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-deng-zhou-fu-jing/scene-b.jpg",
+          "sha256": "fbdaf355a02ed17ee875ff6007cc68b5c7229e1b7a598244259800a8c244536a",
+          "uuid": "1c62a142-e95e-5d66-a155-12091c08c207",
+          "sourceSha256": "75aa4dd3d528a0c652aa9e760f835218fd1072a95ab6ae0697d8e20d0f18449d"
+        }
+      ]
+    }
+  ]
+}

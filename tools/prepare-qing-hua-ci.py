@@ -16,6 +16,7 @@ from PIL import Image, ImageOps
 from pypinyin import lazy_pinyin
 from content_jpeg_cache import PhotoshopJpegs, DEFAULT_STAGE
 from png_asset_records import retain_optimized_png
+from art_asset_records import retain_optimized_art
 
 ROOT = Path(__file__).resolve().parents[1]
 CHAPTER = 'qing-hua-ci'
@@ -95,6 +96,7 @@ class Importer:
         self.meta(path, user_data=user_data)
 
     def image(self, path, data):
+        data = retain_optimized_art(path, data)
         with Image.open(io.BytesIO(data)) as im:
             width, height = im.size
             has_alpha = 'A' in im.getbands() or 'transparency' in im.info

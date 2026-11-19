@@ -444,13 +444,13 @@ export class GameScreen extends UIScreen {
                 if (!marker.isValid || marker.parent !== image) continue;
                 const scale = marker.scale.x;
                 const radius = this._markerRadii.get(marker)! * scale;
-                // 红线从7减至5；先画宽2像素的浅色底线，在内外边缘各留1像素描边。
+                // 红线宽7像素；底线宽9像素，在内外边缘各保留1像素描边。
                 graphics.strokeColor = UIColors.white;
-                graphics.lineWidth = 7 * scale;
+                graphics.lineWidth = 9 * scale;
                 graphics.circle(marker.position.x, marker.position.y, radius);
                 graphics.stroke();
                 graphics.strokeColor = UIColors.red;
-                graphics.lineWidth = 5 * scale;
+                graphics.lineWidth = 7 * scale;
                 graphics.circle(marker.position.x, marker.position.y, radius);
                 graphics.stroke();
             }

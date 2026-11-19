@@ -1,0 +1,972 @@
+{
+  "chapter": "qu-wei-duan-ju",
+  "name": "趣味短剧",
+  "source": "D:\\CocosCreator\\关卡\\趣味短剧",
+  "sourceOrder": "01至35文件夹顺序，关卡名取标注JSON的name",
+  "imageExport": {
+    "encoder": "Photoshop 13.0.0",
+    "quality": 8,
+    "qualityScale": 12,
+    "format": "JPEG",
+    "size": [
+      1024,
+      672
+    ],
+    "resize": "full-image-bicubic-no-crop"
+  },
+  "levels": [
+    {
+      "number": 1,
+      "id": "qu-wei-duan-ju/san-shi-nian-he-dong",
+      "name": "三十年河东",
+      "folder": "san-shi-nian-he-dong",
+      "sourceFolder": "01.萧炎",
+      "sourceConfig": "三十年河东.json",
+      "configSha256": "953cb3ec1808ad72fab623aa79b934f43c94204c65c8ac8779dd6ac37a014a69",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/san-shi-nian-he-dong/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "6c7246c1bc653fd2e7ec382edca62ddbf9e36bc942b32b516d2b74a845e43d16",
+          "uuid": "06847f61-d505-5d70-9175-a65a2a8c0f2a",
+          "sourceSha256": "d064fd4e8ba7bc508cc36687f1621a30b2d25171c2e89b288fa0d978a3b33056"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/san-shi-nian-he-dong/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "65d03b96284c9c7273fe98bbc43ad0a7a9478da3369f7da12e8e8dad08ef0015",
+          "uuid": "eaf68899-93ae-5545-bd27-ba51d5eed189",
+          "sourceSha256": "38010279abb6e9a19cfd4f52990852f06b285d6479447c8343c31d543e9376f2"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 2,
+      "id": "qu-wei-duan-ju/fu-huo-ba-wo-de-ai-ren",
+      "name": "复活吧我的爱人",
+      "folder": "fu-huo-ba-wo-de-ai-ren",
+      "sourceFolder": "02.唐三",
+      "sourceConfig": "复活吧我的爱人.json",
+      "configSha256": "c4fed0b72cfe0c819d8f6c01931ff26137cf5a5cd269337c0750ff8f4254a8ee",
+      "differenceCount": 11,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/fu-huo-ba-wo-de-ai-ren/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "92aad89717196bd9b8de546c64c9a723bedc54c43e34d897ae6f71cde07484a7",
+          "uuid": "5453645a-b725-5ba5-aab4-05700a45da0b",
+          "sourceSha256": "3c3b28d6d170b812a23171d7a463cb23a7adcd1f461ac69b9f1ded684372020a"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/fu-huo-ba-wo-de-ai-ren/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "a5484d6771955b77e05cfe1155b3b44912026debf1616bd7f7918c1713800b2a",
+          "uuid": "0cfafbbe-079d-51af-af7f-89da88971086",
+          "sourceSha256": "b38a7b9a3202b3e6d4b71500c5b39650570e371a632bd83f386140df2ac25e68"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 3,
+      "id": "qu-wei-duan-ju/da-di-zhi-zi",
+      "name": "大帝之姿",
+      "folder": "da-di-zhi-zi",
+      "sourceFolder": "03.王腾",
+      "sourceConfig": "大帝之姿.json",
+      "configSha256": "c07a0ccc4c4327a96626482dc2b667a46e1f4ec577db0cd506c5d60ed1d3f149",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/da-di-zhi-zi/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "75d65815d9ef6c3a1e2692909bedecbdfc51118aeaecf3f1318981f23db8132b",
+          "uuid": "20e0b7cd-340d-5aac-a381-6666edac9f03",
+          "sourceSha256": "7987e5a8f3b6d96c1a6a797edbb83c772e3b1494db85b9714ea26d9a3219531f"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/da-di-zhi-zi/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "b46a8be38156fe37fc272fbd8082562ca33923201e1d531ca28792b33dfb1cc5",
+          "uuid": "1717282a-1444-5506-9762-298cdb3850bc",
+          "sourceSha256": "ce818ad50dafa9bb7c071c79ff3fed6e51f04247296f3f85a0fa73edfe56cfca"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 4,
+      "id": "qu-wei-duan-ju/jian-dao-wan-gu-ru-chang-ye",
+      "name": "剑道万古如长夜",
+      "folder": "jian-dao-wan-gu-ru-chang-ye",
+      "sourceFolder": "04.李淳罡",
+      "sourceConfig": "剑道万古如长夜.json",
+      "configSha256": "0ae266a06c6fd0581690994e53b759980003ca617fdd9458100e43c0d1ed5957",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/jian-dao-wan-gu-ru-chang-ye/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "7a214a5fe94a3e318d052625fb792ad2093d5cef463449d00efdd88aec6816f9",
+          "uuid": "3eac0530-5fa1-5986-a48b-768eec30c604",
+          "sourceSha256": "8b29dad916258e31ab69bd7193632c7a208b9c5914081690e7e316a99c1771d8"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/jian-dao-wan-gu-ru-chang-ye/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "862f2d0ffbb7976956363f98ceddcb2d83137c9e9c3011723dc118410d2df67a",
+          "uuid": "555c5610-2407-5358-99b0-7a175dde575b",
+          "sourceSha256": "e3efb6d8458c6466603382422bf29061a70e2d4dbaa0e74fe392847b7bc8e271"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 5,
+      "id": "qu-wei-duan-ju/hao-wu-bei-jing",
+      "name": "毫无背景",
+      "folder": "hao-wu-bei-jing",
+      "sourceFolder": "05.陈平安",
+      "sourceConfig": "毫无背景.json",
+      "configSha256": "40869ecdbc2b45e26e34a90337070852e57d22eea9982cf0d21e3f2b89adcfba",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-wu-bei-jing/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "2eaf8d7939d36d45977238cd6988fcff4ccf8b7281102517f89f6fcb767c42de",
+          "uuid": "c42dfa03-0f4c-52c5-b748-5e24a68e6e71",
+          "sourceSha256": "ee14931cabab45f0760542f6a1ec5f7a930f2d8da06398a3d0f21d14100ac09d"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-wu-bei-jing/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "e826f91732cd371fe90f81b45a0b400d4649944b995d99d6228c744dee55e150",
+          "uuid": "2e2dd3f0-20f1-5683-b467-0646cf423092",
+          "sourceSha256": "9db41f5e5945fa7069fdc47ba9f336a846638cb12e321ba2c3640d74cdc4a0f1"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 6,
+      "id": "qu-wei-duan-ju/bu-qu-gou-lan",
+      "name": "不去勾栏",
+      "folder": "bu-qu-gou-lan",
+      "sourceFolder": "06.许七安",
+      "sourceConfig": "不去勾栏.json",
+      "configSha256": "a3addfe210cc54f983e32952a118360257b936a3d1266f50ad1c7500aa81618a",
+      "differenceCount": 11,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/bu-qu-gou-lan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "60c4e1f5c6f9d4301132df1e175fb02c7834846d66d8b15c1a8f9f45eb9fa0ab",
+          "uuid": "29e0899f-f29f-54e5-a697-c357364c1aff",
+          "sourceSha256": "04e497ed096d862821db222cefb934ef2fa020c6cefaaba517ad396406ec056c"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/bu-qu-gou-lan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "0092f569b2bfdff618562c969b6db7ee5f6aab6d5a1f99bf8848e8f82113ee30",
+          "uuid": "096f4e7a-3e45-5c62-9b3a-ee284883afc5",
+          "sourceSha256": "0332a40407378b9f5ea88e61725e28cca1db84dbfaf66dccc85b14b68712ae29"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 7,
+      "id": "qu-wei-duan-ju/wo-shi-shui",
+      "name": "我是谁？",
+      "folder": "wo-shi-shui",
+      "sourceFolder": "07.李火旺",
+      "sourceConfig": "我是谁？.json",
+      "configSha256": "8858c8a7605c88555046b69b2d82704a48388b5825933cc97dd5cd18e0c98aee",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/wo-shi-shui/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "950f83e7ac7a1c0fc561a5e3308db5bea466fa26d2539f4642b5347cf405449f",
+          "uuid": "25f8fbfc-25e5-5107-a541-2508ca3caef1",
+          "sourceSha256": "a2fdf02ad37f90d43a3a7f7a3828e3f3ae3c5f8fc893c6f1bad5bac43498c189"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/wo-shi-shui/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "c1e418c4c2f1a6776ba1729299a93c0a269fb0b607dec42c1b1805ef22f75074",
+          "uuid": "f169a826-bf03-5458-9145-c4f8baf7cab2",
+          "sourceSha256": "5a46c6e71abb778e7bd04e5fbf3702efea579d9c3e60bc4b0142b46532f7ad92"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 8,
+      "id": "qu-wei-duan-ju/mo-shi-qiu-sheng",
+      "name": "末世求生",
+      "folder": "mo-shi-qiu-sheng",
+      "sourceFolder": "08.任小粟",
+      "sourceConfig": "末世求生.json",
+      "configSha256": "14d6b7445c5ec143e878344ce38efb6e70d357a9c1b14f15d66b20b46e2ca6a3",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/mo-shi-qiu-sheng/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "bdf0fff8cd1f94f6103e118fde8b44b0010bc35a895c67f7ff9722a699eecca4",
+          "uuid": "3a0eca38-8fce-5942-9653-bc907fff1d92",
+          "sourceSha256": "95f2570cc9b7bf24426601e6e44103895b9dc988dd14e23620d1d62efb2adbed"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/mo-shi-qiu-sheng/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "b8616124c808d55e598d47afedb382fd3192f0296678dfe5dc0c4cc1a7ef8a14",
+          "uuid": "05a18235-3e93-5225-ba5b-7a4cdd998b99",
+          "sourceSha256": "ae723fba1720de3e8166072714df55ceaec9ffa1e7af7b66e718f51947335c5a"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 9,
+      "id": "qu-wei-duan-ju/shi-si-bao-wei-liu-bo",
+      "name": "誓死保卫刘波",
+      "folder": "shi-si-bao-wei-liu-bo",
+      "sourceFolder": "09.龙傲天",
+      "sourceConfig": "誓死保卫刘波.json",
+      "configSha256": "94f969d54048a2500288b025dd92e2815f468afd3a7958f5ea45eee7fe561f6b",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-si-bao-wei-liu-bo/scene-a.jpg",
+          "sourceFile": "scene-a.jpeg",
+          "sha256": "28bf1a168e269227966d030e47c07aad174f003ba08e903836bab880a7692746",
+          "uuid": "2fe0df42-c4ed-5850-be73-a8ee0fc04588",
+          "sourceSha256": "9b544b74005af6bcbb1a288ecf5b9b097f2d85f32079b4d61a4d0d11b048f416"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-si-bao-wei-liu-bo/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "c2600d8e3a4dc908d77f20e59cc1b34686221c1d9295fdc51dbdd4d28267a0f0",
+          "uuid": "402d0e9a-f373-580d-a679-b9a3df924372",
+          "sourceSha256": "2d42a00b205229310ab872e4a86da931b875a285d81ddc24719da2217f4d3fce"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 10,
+      "id": "qu-wei-duan-ju/wai-zui-long-wang",
+      "name": "歪嘴龙王",
+      "folder": "wai-zui-long-wang",
+      "sourceFolder": "10.歪嘴战神",
+      "sourceConfig": "歪嘴龙王.json",
+      "configSha256": "3e76f7560e7708098f38b2a17ea64608ae46809e3a1392c9181f803895461281",
+      "differenceCount": 10,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/wai-zui-long-wang/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "23fb041c50a4a56372852e14980ff4c03daefb70174fc61a0336b53d7606c937",
+          "uuid": "06ceb6f2-3e2a-52a9-8c79-22d217cbafdc",
+          "sourceSha256": "9ef273de8bc5a482811cbca7751358615826a554b12d59d07e130fbad8edd6af"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/wai-zui-long-wang/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "4bc788688b928d4a4b877ab9151a1dfec81a9fc2103cf4d25e4b1ebb3b03e919",
+          "uuid": "d53a8e44-ed53-5c46-b8c0-beb8fedf88eb",
+          "sourceSha256": "efb6990253b33315cd8a1eef180a728921801c66d2f5b349f4511fa6e10e5e17"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 11,
+      "id": "qu-wei-duan-ju/gao-leng-nv-zhu",
+      "name": "高冷女主",
+      "folder": "gao-leng-nv-zhu",
+      "sourceFolder": "11.苏清月&叶辰",
+      "sourceConfig": "高冷女主.json",
+      "configSha256": "919125c99db1ae978682a1378e515d55626c557f8e38da202de51a58977296f2",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/gao-leng-nv-zhu/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "ba192fc94cadee364119b5fc855bef76c9f39e0c1cddb10ace09242581f4e0fc",
+          "uuid": "1b726c7b-5907-567e-8e6a-2d2b9ece70c2",
+          "sourceSha256": "828ef17e0a21733c5f8c7cc7894d5e653a95b8b82ab8a7c19bf0f07d43cc2447"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/gao-leng-nv-zhu/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "7e654c3adc08376f440ff69eb5556960890880387cd6816c40545166f0902fe6",
+          "uuid": "9cf8208b-1479-52a4-a069-223cab1c13ed",
+          "sourceSha256": "b025bef477248913be90232a57c2067ce311a58d18985e61aeee5d730d28c1bd"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 12,
+      "id": "qu-wei-duan-ju/ru-yan-da-di",
+      "name": "如烟大帝",
+      "folder": "ru-yan-da-di",
+      "sourceFolder": "12.柳如烟",
+      "sourceConfig": "如烟大帝.json",
+      "configSha256": "223e8404b38f366777774fa0971ef11b28d14c8d9a706de9ebf8a7f69918daff",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/ru-yan-da-di/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "cdecfa000c87b5ec72a0d9598f56b3920f1197f2a979fca7b138343299c55d4b",
+          "uuid": "7e5f3474-542e-5efe-bc23-aab86ceb6031",
+          "sourceSha256": "cf6e9252a171998dd3298933ebe30cdac32e12cf9d5729b951a2d6ede9ced654"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/ru-yan-da-di/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "3e83af3ad18947ff768ca9ddfbd8c9749fab08656b5869b99535145312c1137d",
+          "uuid": "44516987-c182-5278-9976-8efe5cdfa635",
+          "sourceSha256": "db7782115d2792763b7c3379d03ad63330c76264510df59dad4852fc6650b314"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 13,
+      "id": "qu-wei-duan-ju/nan-nian-de-jing",
+      "name": "难念的经",
+      "folder": "nan-nian-de-jing",
+      "sourceFolder": "13.甄嬛&华妃",
+      "sourceConfig": "难念的经.json",
+      "configSha256": "223f48ff62de507693b7e9d4394020c6b7d93680dcca65fa719c514adfcb67c0",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/nan-nian-de-jing/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "4a0a972f6826245bee53e811cd6c334f62218c7d655a13fdbb15bb450dc80973",
+          "uuid": "ccf93d49-3f63-551c-8793-1c27d9771fd2",
+          "sourceSha256": "5f33c116b6ace4e8093008fa02e29704714b38bddbd39104580e521109bf57c2"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/nan-nian-de-jing/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "072b0c8080d2ce9778559929dca9b43de43c651e814d4595730a485b173e0ff5",
+          "uuid": "801dd5f2-6a2e-5dc2-b864-d44b00277be5",
+          "sourceSha256": "e5e218730f4fef0b1d2be824a877c92f9ee7c0c4b1b8b0d823d7642f9592e9c7"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 14,
+      "id": "qu-wei-duan-ju/xue-wei-zhen-jiu",
+      "name": "穴位针灸",
+      "folder": "xue-wei-zhen-jiu",
+      "sourceFolder": "14.容嬷嬷",
+      "sourceConfig": "穴位针灸.json",
+      "configSha256": "b4547a62fafc95e9f3053ed839a053033fe8ec18f2f84e88645ee7cae4033c7c",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/xue-wei-zhen-jiu/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "220eb0e1e0ceca1e1008ca766a496df82ff1c53e0fa239c1061b6d1472be0e79",
+          "uuid": "d1669e3c-715b-5a04-82b1-08320a1ba2f3",
+          "sourceSha256": "78e4e5a597b71af8ff989d47bdafef5df07f22f78628863d947bd9b303f3b131"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/xue-wei-zhen-jiu/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "95d60b7c36357da63058ced5faeed70d1be674bb1c2efe1ec3d792a13cc0d95e",
+          "uuid": "794a99fa-9de8-5239-a95a-f708422e70c1",
+          "sourceSha256": "741ca4560503c9efb4843d016bb44520c4c23f7852ae20960de5e686db75e4a7"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 15,
+      "id": "qu-wei-duan-ju/ni-you-ben-shi-ni-kai-men",
+      "name": "你有本事你开门",
+      "folder": "ni-you-ben-shi-ni-kai-men",
+      "sourceFolder": "15.雪姨",
+      "sourceConfig": "你有本事你开门.json",
+      "configSha256": "be8ff099a0c4993769ba7139f23a835ba3537148086438d9f883816655753b3e",
+      "differenceCount": 10,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-you-ben-shi-ni-kai-men/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "ac42d1d39131a41a3443d26364102abaa6fd51a17e0c2799b4447ebe4c734bf7",
+          "uuid": "7d239872-fa8c-5308-bfdb-82a91c8898d0",
+          "sourceSha256": "46e0192f291ec80e4d880984920876a2cca6770c3a192cd0609555472029d688"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-you-ben-shi-ni-kai-men/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "04a3c0647ede3913105dc2261a7363154e50d067ffc8f60af5e4a64b8cf1144e",
+          "uuid": "cc9dd9f0-73c8-507d-b97c-fbfde70064e7",
+          "sourceSha256": "b8d235200db50ded85553a54b60d1041d78bbfb58edef9aecbd6232991312534"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 16,
+      "id": "qu-wei-duan-ju/hou-yan-wu-chi",
+      "name": "厚颜无耻",
+      "folder": "hou-yan-wu-chi",
+      "sourceFolder": "16.王朗",
+      "sourceConfig": "厚颜无耻.json",
+      "configSha256": "cb439a435f3bffeced57ce509300a8aaf4230342219d0edbcac89b6fae48d448",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/hou-yan-wu-chi/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "13b1e57fc32e948d7cc38d33d979b841fa08846090820ea77f5b171b791ce15e",
+          "uuid": "a916fd24-32df-56dd-bf29-e451b60fbc1c",
+          "sourceSha256": "39d46421719a268e0d97e792f9c0a4467a9f402a557a39e14b25c931d298bbb0"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/hou-yan-wu-chi/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "12ee1331e37a7b94642c9f0370a27cc5168a393facbcd0bd44d91631a32edfaf",
+          "uuid": "9cb07d4c-5f0f-5dc1-a332-0bbae2f2c814",
+          "sourceSha256": "cfe8e47cf7942edf46d8c1e300d6ff0e1522b7cd5cfa38e69d22338c39407a3a"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 17,
+      "id": "qu-wei-duan-ju/an-ye-yi-yang",
+      "name": "俺也一样",
+      "folder": "an-ye-yi-yang",
+      "sourceFolder": "17.张飞",
+      "sourceConfig": "俺也一样.json",
+      "configSha256": "d762dc2eae37cb157872f03b567844fbbfaaa391f04cfdce6d8bbfb417dbf9ab",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/an-ye-yi-yang/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "19787004f53ba51e57c99213c49e7588d7769d4d8535a72a09b88ea9772f7606",
+          "uuid": "3a90f3ef-48ea-553d-92d5-f8acd1718731",
+          "sourceSha256": "fd496e1a7b78e9fc5a8a0099f8971c133c802c709261794d3ab519debd66c034"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/an-ye-yi-yang/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "a40294bdd414d0d51b1dbf5ecef2e2b1ee3cf5974331ddde98c88f0a2a975ff2",
+          "uuid": "44629427-50d9-58fa-b63f-8ef24bee3d21",
+          "sourceSha256": "563642cf33d00a321929d5c4f2684407dc742775ef7922fbdc1fae3c150d4470"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 18,
+      "id": "qu-wei-duan-ju/da-wang-jiao-wo-lai-xun-shan",
+      "name": "大王叫我来巡山",
+      "folder": "da-wang-jiao-wo-lai-xun-shan",
+      "sourceFolder": "18.小钻风",
+      "sourceConfig": "大王叫我来巡山.json",
+      "configSha256": "463ab75c7adfbd4e87f247f89e6aad3fc5366a0f01002fe3e253b1c185fe6dcf",
+      "differenceCount": 10,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/da-wang-jiao-wo-lai-xun-shan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "890e1091eea9f44925279d5f13c401c12d281265f986e4e08e646ba5489a0642",
+          "uuid": "b0ab8154-25a9-5552-ac80-410735f4fa3e",
+          "sourceSha256": "4b6edecac95d776d6c863ed374394b7696d597a5c0987d7f4e685553982e8c94"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/da-wang-jiao-wo-lai-xun-shan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "43d2b1126e72836ea63b3106b239f13d720a02233b51126fc8b0a8e0510f9364",
+          "uuid": "095ea91f-d77b-52bd-ad83-c3266673ef78",
+          "sourceSha256": "7c866a93a2d48390e6c47efef5d1cb81132d74043029f182acb06c79afa4e487"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 19,
+      "id": "qu-wei-duan-ju/yu-nv-wu-gua",
+      "name": "雨女无瓜",
+      "folder": "yu-nv-wu-gua",
+      "sourceFolder": "19.游乐王子",
+      "sourceConfig": "雨女无瓜.json",
+      "configSha256": "a804d2ac88886c19c34b9930c23f19710f17e81debb8a6bd65ebddeb27803f12",
+      "differenceCount": 10,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/yu-nv-wu-gua/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "c4a07994f123aea04f5d29131e151485dd5575fd5ac27fb4878a965f46c821fd",
+          "uuid": "7b0befdb-4abb-5a8c-97c8-f9286cbb0df6",
+          "sourceSha256": "d88025719c62bb9095f86abf423a787dcec668398db30a9785bf32c9c719c0ec"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/yu-nv-wu-gua/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "65e9451c60cec965fe1b3c69e580e496a363d5e9cc1bd5974d31c385a950f009",
+          "uuid": "1130000f-2676-59c8-9dab-2458d92e05ba",
+          "sourceSha256": "7dd1f807561b0c7981ef3d543cebb07e927c34e1531d04612b6327495b29cce4"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 20,
+      "id": "qu-wei-duan-ju/mai-le",
+      "name": "埋了",
+      "folder": "mai-le",
+      "sourceFolder": "20.张楚岚&宝儿姐",
+      "sourceConfig": "埋了.json",
+      "configSha256": "ebc1a6bb203790caf29b40ce5ff4bb2b042bdf74a218f474cf9fb70d1f5595db",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/mai-le/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "917b074b336f74e9e084982091a5da06e9df7308710c65a00d90642f2c851ac6",
+          "uuid": "12c0c8d8-1d4c-50e8-9080-af1d82db176b",
+          "sourceSha256": "c43fb7250f1cfa9561c968909d65060a252fdb94a8a3fe3d68a1a34d2ad9a978"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/mai-le/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "790f21d0663c012901f3a9dbe3261e7747e1ab6d5619907b1885b453cb7fec77",
+          "uuid": "de2a87ae-fec5-5c1d-a86c-191d6140f5d7",
+          "sourceSha256": "95a64d42c346f27011d6e1447ab07357151d6c786d5400e2aa01cf6d5b720d1f"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 21,
+      "id": "qu-wei-duan-ju/bie-shuo-hua-dai-ni-fei",
+      "name": "别说话带你飞",
+      "folder": "bie-shuo-hua-dai-ni-fei",
+      "sourceFolder": "21.叶修&黄少天",
+      "sourceConfig": "别说话带你飞.json",
+      "configSha256": "f67401226bd77c304b35f327a1e37ac79cc544cf95137514c2d72fd2926c7ece",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/bie-shuo-hua-dai-ni-fei/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "b3cd35876f97bfedb1b8ec3175bb7175079da8e4d1e12f3fcb6508beca3409a6",
+          "uuid": "a4888975-7f32-5060-a2d9-ca34ac7b1393",
+          "sourceSha256": "091432617cd67dc6d8b43af75a89fff9d2d711acbcb5a3ce042119dd75c2f925"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/bie-shuo-hua-dai-ni-fei/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "c81ddc5524347f9128d007aa1528e9f8b8637894bcef54f781f7e02751f69d08",
+          "uuid": "f23fdd76-e69b-57cc-823d-c41461facef9",
+          "sourceSha256": "0ecb23b40c019ecf4f6d9696382a339f9e14454df607fbfe252c6b42a695de5c"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 22,
+      "id": "qu-wei-duan-ju/chen-zhe-nian-shao-bie-shui-jiao",
+      "name": "趁着年少别睡觉",
+      "folder": "chen-zhe-nian-shao-bie-shui-jiao",
+      "sourceFolder": "22.韩立",
+      "sourceConfig": "趁着年少别睡觉.json",
+      "configSha256": "bf8570d6828736cba6eab6dddd4f9f0a9ddb9257bbf1eac99af57688061ecf31",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/chen-zhe-nian-shao-bie-shui-jiao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "402a4aa75534d91d033eb64d1b1e3ae223513a085ea8c7d8b78fb12a298b4ae7",
+          "uuid": "819e2353-0c4a-50ea-bd7e-7d648e4552f8",
+          "sourceSha256": "723d006d7cbab18b7991a9ee7b9a32669b694b000b5ed5403a4fb430342391ee"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/chen-zhe-nian-shao-bie-shui-jiao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "51e7fa63296930f3cd01397d1961f29cacefd1fa35cd07d9afbb89130071ca95",
+          "uuid": "7be36b09-9a3f-5ac0-81d5-150d82b07b2a",
+          "sourceSha256": "d6e9638525be0b7c45ed684f0e3f008c5d5c522fe57196caa7b750bb7f712da5"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 23,
+      "id": "qu-wei-duan-ju/shi-li-tao-hua",
+      "name": "十里桃花",
+      "folder": "shi-li-tao-hua",
+      "sourceFolder": "23.夜华&白浅",
+      "sourceConfig": "十里桃花.json",
+      "configSha256": "6f216d1e71996da433bf31720e8c8e661c90ce74f5741202312eacd05f54449b",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-li-tao-hua/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "ef2512f0850cb7a6622f088178ab3c1a37b65e77ae8f9987f5a99da7314d2ba5",
+          "uuid": "6f49cf5e-acab-5afb-b721-188fef1c3770",
+          "sourceSha256": "3d07136032a67666e0a68fbe543f3197f0b4ed9dc591be1ec83329c2a55f423d"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/shi-li-tao-hua/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "755ee7064a507b12219a0c0695b2e6c32d8f7930de9c86276789da9ee864d5cb",
+          "uuid": "c12ba40f-2373-516c-b0ed-0029382f545e",
+          "sourceSha256": "eb1470ce4bf653eceef459aa8618898b0a134540ef17acb3afbeb490a9ab1053"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 24,
+      "id": "qu-wei-duan-ju/dai-ni-qu-pa-shan",
+      "name": "带你去爬山",
+      "folder": "dai-ni-qu-pa-shan",
+      "sourceFolder": "24.张东升",
+      "sourceConfig": "带你去爬山.json",
+      "configSha256": "702e463fd11f0b84ef2bbef32dcc0d23388b19b4803f2d02948241c2212b2208",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/dai-ni-qu-pa-shan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "0306a0ccb18f16b67e60c5b0100598d8be9b1f308ca1dcdf34cbb3b42d16740b",
+          "uuid": "c641b7b3-bf09-54f5-bfde-8cf9657c1585",
+          "sourceSha256": "66e6b94514ad063b447f6fe1df0c7288d2f068747dbc5adfc57560dcf3663bc6"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/dai-ni-qu-pa-shan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "a4518df597db51dde88a577716b61d92ac44e0c9ff80d9798e35b1badf78a5b8",
+          "uuid": "fc2b31e2-a918-58f7-864c-9039bd6b20db",
+          "sourceSha256": "4bfbb16c720e20dbf4c7a35253513fa0a0ec77eff3f3da753d1567e53a9f9af3"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 25,
+      "id": "qu-wei-duan-ju/yuan-fang-ni-zen-me-kan",
+      "name": "元芳你怎么看",
+      "folder": "yuan-fang-ni-zen-me-kan",
+      "sourceFolder": "25.狄仁杰&李元芳",
+      "sourceConfig": "元芳你怎么看.json",
+      "configSha256": "14b90fca30dbb181addc3aaed568c51e80077eb7f4351afb460754da65f5051c",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/yuan-fang-ni-zen-me-kan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "dde3a8e3652a6b5d26c98c990cc963d585f0c030891e7e89ec936ee258cd81c0",
+          "uuid": "d9a68778-673f-5085-965d-5c7f07649df4",
+          "sourceSha256": "6af8680705dd3776a91ddc5ae650c6a22cd6eb8796c13afe9c5ec658802a1d01"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/yuan-fang-ni-zen-me-kan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "5fbb1d89ee8567baa31b979c86f1d508c2821f5c358f8cb0e7ef016e30b03d97",
+          "uuid": "7f118d14-0dd9-5610-9d86-fabe48979050",
+          "sourceSha256": "80c2b6eda838f3fc5aca71f246c0df7d78178c486aa6f9f3ef0d8bf09d4cc14f"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 26,
+      "id": "qu-wei-duan-ju/lao-mo-wo-xiang-chi-yu-le",
+      "name": "老莫我想吃鱼了",
+      "folder": "lao-mo-wo-xiang-chi-yu-le",
+      "sourceFolder": "26.高启强",
+      "sourceConfig": "老莫我想吃鱼了.json",
+      "configSha256": "7d8a0cd43fb0882bd3c4edbba211a2f774fe1a67e8d549576a90433c0b9d6149",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/lao-mo-wo-xiang-chi-yu-le/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "b05046864d1ff9116f940d538987b0c67ddf75dcc6fb5f08a6f9d4337f535b7b",
+          "uuid": "f72db351-3a53-5f1c-aed3-7ce81f101e2d",
+          "sourceSha256": "8b2e342c46b4d7b20abfd3d9584ea1f6ead315bdeacca552347f7d3bab104d4b"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/lao-mo-wo-xiang-chi-yu-le/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "7d6c91cd4ef3385609d711ec1f3d35a45bfb7f0c874c8a0f55a41ee05d110d5e",
+          "uuid": "52526c05-e259-52c1-bdce-0c0b009d6c9e",
+          "sourceSha256": "520a8d05ad61f2aec00a27344c5981ab45099872933ac4e20a60f6309509a8b2"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 27,
+      "id": "qu-wei-duan-ju/hao-zi-wei-zhi",
+      "name": "耗子尾汁",
+      "folder": "hao-zi-wei-zhi",
+      "sourceFolder": "27.马保国",
+      "sourceConfig": "耗子尾汁.json",
+      "configSha256": "0f00078f0d17d117f8aaeff22fb04e2589470c513a341f93c718eb037dfe0c19",
+      "differenceCount": 11,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-zi-wei-zhi/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "1bbc35c9e9ad0d2bc987cf1b0645addb6752c6aa40a96c72531245c771349e62",
+          "uuid": "2d28c753-239b-5663-a708-1cd8357e945b",
+          "sourceSha256": "0e77393ed0c72989b8d33c00ce4dc6e05854e25a7af69ea3153b97bcee78cf12"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/hao-zi-wei-zhi/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "a6cbbec1c6e444623997056dc7dac00256bc5a53c48012ac6da07a66c119207a",
+          "uuid": "2805a0c4-2c80-59a8-bf5d-1127959f2e49",
+          "sourceSha256": "c6e32c77a31167e42b74a67936000ea6873313267c9c23419c300a5568bb8d39"
+        }
+      ],
+      "annotationWarnings": [
+        {
+          "id": "diff-5",
+          "x": 0.514258,
+          "y": -0.125806,
+          "radius": 0.351746,
+          "reason": "标注中心越界，但边缘容错判定区域仍与画面相交，保留作者配置"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "id": "qu-wei-duan-ju/zhe-gua-bao-shu-ma",
+      "name": "这瓜保熟吗",
+      "folder": "zhe-gua-bao-shu-ma",
+      "sourceFolder": "28.刘华强",
+      "sourceConfig": "这瓜保熟吗.json",
+      "configSha256": "c5ddcbbc861666012667f5f4851ccd8a9f54ccc3c399edcd8cb0a4c4e3fe2904",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/zhe-gua-bao-shu-ma/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "e084a20bfd9643f4dd36d64e5ab118aec0fc8a9cf9a806075c0e0ba1a225fd7b",
+          "uuid": "2f515cc2-2f4c-55c2-ade6-20b061f5a952",
+          "sourceSha256": "2180eb975f0a6ae286f4320da842614a3da488785917af6c8bc77ace6077c8b5"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/zhe-gua-bao-shu-ma/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "b5a9f523eb501552241fd3ade1e47d74a1e77ad7fe9bfb48ccb5195e2a354619",
+          "uuid": "77b7816e-539e-5bad-8c72-d0bcf176f2c1",
+          "sourceSha256": "5c10ac8f8564c9ade40b8086fe14dc209620b4b95eaf147f0e63bf54b77823c9"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 29,
+      "id": "qu-wei-duan-ju/yun-dong-jian-jiang",
+      "name": "运动健将",
+      "folder": "yun-dong-jian-jiang",
+      "sourceFolder": "29.阿伟&杰哥",
+      "sourceConfig": "运动健将.json",
+      "configSha256": "19551a7cc54769a9abf3322729e629600ad9a362fe27193695e3f849ff63a0b9",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/yun-dong-jian-jiang/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "e87cdd0e2641017b4cd2f4aee9f12469188a1dc27d5f103e3b3d50c2cf07605d",
+          "uuid": "f014aedc-59c0-5722-bb5a-d57a7921a2f5",
+          "sourceSha256": "f2e51a7c5ac78712a781aadf37d9d89256f34212012a7bc2a78f964aea03ee56"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/yun-dong-jian-jiang/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "b3b5ae235054818f8a4636fd5f5a291433ddce1abadaf5d9201a331f7f5e0bc5",
+          "uuid": "009e7e71-7754-5f84-acfc-a8a1d7c58f97",
+          "sourceSha256": "1cbd47308384efcd04fce0fa178b156a24c8655867cdb092f28a69534ec274b7"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 30,
+      "id": "qu-wei-duan-ju/cai-yi-shuang-quan",
+      "name": "才艺双全",
+      "folder": "cai-yi-shuang-quan",
+      "sourceFolder": "30.姜梨",
+      "sourceConfig": "才艺双全.json",
+      "configSha256": "0e4c7cc4fe15904a3ecf47abcaaff6d1a29cf396de9cd7c1cf2ea28d19c26b1a",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/cai-yi-shuang-quan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "bd35e9030b21bc4b434b9bd9fb08a932c2a9147652eb15eda5134b0cea8bf005",
+          "uuid": "aaed21a9-16fd-516f-93f8-88b162124788",
+          "sourceSha256": "add4139a7f7b1b5bb75deca11710b4c7f98804a599fea21af8e09aedd533ca36"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/cai-yi-shuang-quan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "239cc4260c0b3c601968e5975538eedceb4751f0588f5406d5d141562be5a305",
+          "uuid": "3d86d667-20d9-51ae-bbfd-03233461f66a",
+          "sourceSha256": "04eaa63afa6aabd94d2333e110638d620dff4faff43b902797c278c7e834621e"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 31,
+      "id": "qu-wei-duan-ju/ni-hao-sao-a",
+      "name": "你好骚啊",
+      "folder": "ni-hao-sao-a",
+      "sourceFolder": "31.洪世贤&艾莉",
+      "sourceConfig": "你好骚啊.json",
+      "configSha256": "7ee578f6cf554dd5de6a5e2e3e95e56079ed591a8c343b16c021e66070d7ef2f",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-hao-sao-a/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "db7c9cc8f2c8a2ca1ca9bd55ca07280a4a1d7a7a00633c6c0c14b508bcd17ce4",
+          "uuid": "6436dd9c-5e38-53d8-b1ed-a9548549af9f",
+          "sourceSha256": "53aa2ffcdee70ad41639e2de63921451356975eb97748b8b860dca1263d739d6"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/ni-hao-sao-a/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "c8110a3d04383d3b18ba9da8ba85e5e8405f56c09e5e652c1ea9ffe469c98016",
+          "uuid": "d0f0384b-ef9a-5af1-a35f-cb353cebdbb7",
+          "sourceSha256": "4d529e5167cf625e66c531ab12e25bfd1ca30a4dc1523ebb253b6155af044f48"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 32,
+      "id": "qu-wei-duan-ju/lian-dan",
+      "name": "炼丹",
+      "folder": "lian-dan",
+      "sourceFolder": "32.白小纯",
+      "sourceConfig": "炼丹.json",
+      "configSha256": "2cfecfaafe21a68a0199b4ab8a44d02d43a3b7fab67c1b9bf4afc6ad23903610",
+      "differenceCount": 11,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/lian-dan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "23d08b99ef1f1ef3121a9f81ffcef18f33f551257496c3cb2594e6ce8a4e5bc6",
+          "uuid": "aa877c18-767b-5e36-8980-1a150d37f8a1",
+          "sourceSha256": "8ef1ab68e0ad3628d2d386e98c4a9cf0729b852804ee27a25f1ede0fba5bcc05"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/lian-dan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "7ba3b29feb79465b76197ef261d6388913c9b4ff0abd02758cb52d283f78b7fc",
+          "uuid": "0952a625-1abf-59ce-8bec-4418a7f84459",
+          "sourceSha256": "43e99f09c05bb6c80239107785580f59dd995f89f26d258c7c03deeee0e0deb0"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 33,
+      "id": "qu-wei-duan-ju/jie-jie-ni-ting-wo-jie-shi",
+      "name": "姐姐你听我解释",
+      "folder": "jie-jie-ni-ting-wo-jie-shi",
+      "sourceFolder": "33.柳月茹",
+      "sourceConfig": "姐姐你听我解释.json",
+      "configSha256": "cd7e74a3441413062a75274b790faa6e00f14ab532fabc500a469df6fe028766",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/jie-jie-ni-ting-wo-jie-shi/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "4cd78e292e03d423343286769caa6438d63fd843fbc8f219e669337e4eb6e848",
+          "uuid": "b600388e-f7f2-5fce-bcd9-c11fe6c10c44",
+          "sourceSha256": "12a481d3c1926c505702c46e0b30b9a463e6d482d4dcab0c9848e549e29b57f0"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/jie-jie-ni-ting-wo-jie-shi/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "6103c13373cc3727268c6e814df071af6cc972cada77e8bf07442d024ea29b77",
+          "uuid": "f65cf6ab-194f-5b64-b6c6-3dcda6069222",
+          "sourceSha256": "2f6739a56c86cdf35580919e2041e13fb0ce0ee3aeecc9b861c674aa8dd3fc6c"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 34,
+      "id": "qu-wei-duan-ju/shen-bing-tian-jiang",
+      "name": "神兵天降",
+      "folder": "shen-bing-tian-jiang",
+      "sourceFolder": "34.持械入宋",
+      "sourceConfig": "神兵天降.json",
+      "configSha256": "105caabb67063c4f3cfd0b04a554db18d640dce3163aa47c198d93d89db4888d",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/shen-bing-tian-jiang/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "662f56334d235b3ecce9f49ab72f6814b05b418cdef3dae4ed490a1b5f31ac03",
+          "uuid": "b804b6b5-9c27-51e8-ad92-929aee3acab8",
+          "sourceSha256": "7ada7e0de7a212e87e46148810418ad9e0885f51ee413e30ab0a486a8d2e754f"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/shen-bing-tian-jiang/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "217d669a99d10b0b862fa99d18eeea485944b38468701170a43c7cf8562e878c",
+          "uuid": "47c75fb9-dc5a-5cd8-a8fd-833f980e70ad",
+          "sourceSha256": "0dbd4e3b3dd2209241243769031483a1dbdf80e1b215ff157444aefcfd6f7827"
+        }
+      ],
+      "annotationWarnings": []
+    },
+    {
+      "number": 35,
+      "id": "qu-wei-duan-ju/meng-jiang-ge-ge",
+      "name": "猛将哥哥",
+      "folder": "meng-jiang-ge-ge",
+      "sourceFolder": "35.《逐玉》",
+      "sourceConfig": "猛将哥哥.json",
+      "configSha256": "b511e543fe6c8a0864f6e0cb5dab6f2e5eaf40d373ce2f48e55e7d4028ec9b7b",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/meng-jiang-ge-ge/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sha256": "a266cda369e1c9f4dbe0e59af0f5aafaed611c74486812cf1d4b8c5f767c494a",
+          "uuid": "8772409b-5728-57df-8ef1-3c991c4364ce",
+          "sourceSha256": "eca8b3bb63d552c54f5a047da94b6a402384a616170123b45745c4db2bd6d9f9"
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/meng-jiang-ge-ge/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sha256": "479931e944e515f26f429a5040c31851f9db164e38b77d1500a43ee90959c9d4",
+          "uuid": "e6bfc629-f9c8-5cf9-96fe-3799c33522f0",
+          "sourceSha256": "74df0bff7dd9447959258c9689df7006c25b41b2ef0dba76c25751d39994c8e5"
+        }
+      ],
+      "annotationWarnings": []
+    }
+  ]
+}

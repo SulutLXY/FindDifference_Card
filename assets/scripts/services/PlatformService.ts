@@ -50,6 +50,8 @@ export class PlatformService {
     }
     public canShowInterstitial: () => boolean = () => true;
     public get interstitialBusy(): boolean { return this._interstitialBusy; }
+    /** Includes an entry request still waiting for load/show, but excludes background preload. */
+    public get interstitialPending(): boolean { return !!this._finishInterstitial; }
     private _lastInterstitialAttempt = 0;
     private _feedLoggedIn = false;
     private _feedLoginPending = false;
@@ -274,13 +276,14 @@ export class PlatformService {
         return created;
     }
 
-    /** readyOnly 入口仅展示已就绪广告，未就绪不等加载、不延后补弹。 */
+    /** immediate 入口直接调用 SDK.show，不等待 load，也不安排加载完成后补弹。 */
     public async showInterstitial(canShow: () => boolean, bypassCooldown = false, bypassRoundProtection = false,
-        placement = 'secondary-page', readyOnly = false): Promise<void> {
+        placement = 'secondary-page', immediate = false): Promise<void> {
         if (!this.canUseInteractiveFeatures()) return;
         const tt = this._host.tt;
         const adUnitId = this._config.douyinInterstitialAdUnitId;
-        const context = { placement, platform: this.kind, adUnitId, bypassCooldown, bypassRoundProtection, readyOnly };
+        const context = { placement, platform: this.kind, adUnitId, bypassCooldown, bypassRoundProtection, immediate,
+            preloaded: !!this._interstitialState?.ready };
         console.info('[InterstitialAd] 请求插屏', context);
         // 所有未调用 SDK 的路径均留下原因，真机日志可区分入口未接线、运行环境和平台拒绝。
         const skipped = (reason: string) => { console.info('[InterstitialAd] 跳过插屏', { ...context, reason }); };
@@ -294,11 +297,6 @@ export class PlatformService {
         if (!bypassCooldown && this._lastInterstitialAttempt > 0
             && Date.now() - this._lastInterstitialAttempt < 60000) { skipped('客户端 60 秒冷却'); return; }
         if (!canShow()) { skipped('入口页面已失效'); return; }
-        if (readyOnly && (!this._interstitialState?.ready || this._interstitialState.adUnitId !== adUnitId)) {
-            this.preloadInterstitial();
-            skipped('广告未就绪，本次不延后弹出');
-            return;
-        }
         this._interstitialLoading = true;
         this._lastInterstitialAttempt = Date.now();
         let ad: any;
@@ -330,17 +328,24 @@ export class PlatformService {
                         if (state.shown) ad?.destroy?.();
                     } catch (error) { console.warn('[InterstitialAd] 清理失败', error); }
                 }
-                if (readyOnly && state.shown) this.preloadInterstitial();
+                if (immediate && state.shown) this.preloadInterstitial();
             }
         };
         const onError = (error: any) => {
             if (settled) return;
             if (state && phase === 'load') { state.loading = false; state.ready = false; }
             const errMsg = error?.errMsg ?? error?.message ?? String(error);
-            unusable = /has been destroyed|no ad object|there is no ad to show|already been shown|only be displayed once/i.test(errMsg);
+            // 无填充不是实例失效，保留对象再 load，避免遗失未展示实例后重复创建被 SDK 拒绝。
+            if (state && /no ad data|there is no ad to show/i.test(errMsg)) {
+                state.loading = false; state.ready = false;
+            }
+            if (state && /already been shown|only be displayed once/i.test(errMsg)) state.shown = true;
+            unusable = /has been destroyed|no ad object/i.test(errMsg);
             console.warn('[InterstitialAd] 插屏未展示', { ...context,
                 phase, errCode: error?.errCode ?? error?.errNo, errNo: error?.errNo, errMsg });
             cleanup();
+            // 本次请求结束后只做后台预加载，迟到的 onLoad 不可自行展示。
+            if (immediate) this.preloadInterstitial();
         };
         this._finishInterstitial = cleanup;
         try {
@@ -352,11 +357,11 @@ export class PlatformService {
             current.loaded = markLoaded;
             current.failed = onError;
             current.closed = cleanup;
-            phase = 'load';
-            timer = setTimeout(() => onError({ errMsg: '插屏加载超时' }), 15000);
-            if (current.ready) {
+            phase = immediate ? 'show' : 'load';
+            timer = setTimeout(() => onError({ errMsg: immediate ? '插屏展示请求超时' : '插屏加载超时' }), 15000);
+            if (!immediate && current.ready) {
                 markLoaded();
-            } else if (!current.loading) {
+            } else if (!immediate && !current.loading) {
                 current.loading = true;
                 current.loadingSince = Date.now();
                 // 新建实例等待原生自动加载；仅失败后的旧实例或无 onLoad 的兼容 SDK 显式 load。
@@ -370,9 +375,11 @@ export class PlatformService {
                     });
                 }
             }
-            await Promise.race([loaded, closed]);
-            if (settled) return;
-            console.info('[InterstitialAd] 插屏加载完成', context);
+            if (!immediate) {
+                await Promise.race([loaded, closed]);
+                if (settled) return;
+                console.info('[InterstitialAd] 插屏加载完成', context);
+            }
             if (!canShow() || this._rewardedBusy || (!bypassRoundProtection && !this.canShowInterstitial())) {
                 skipped('广告加载期间页面或广告状态改变'); cleanup(); return;
             }

@@ -8,7 +8,7 @@ const key = audit.target, chapter = index.chapters[key];
 assert.equal(chapter.name, '年度热梗'); assert.equal(chapter.levels.length, 55);
 assert.deepEqual(chapter.levels.slice(0, 30).map(e => e.id), legacy[audit.legacyTarget]);
 assert.deepEqual(chapter.levels.slice(30).map(e => e.id), legacy[audit.source]);
-assert.equal(index.cities.length, 13); assert.equal(index.cities.includes(audit.source), false);
+assert.equal(index.cities.length, 15); assert.equal(index.cities.includes(audit.source), false);
 assert.equal(fs.existsSync('assets/Bundle/levels/' + audit.source), false);
 for (const file of audit.preservedFiles) {
     const actual = crypto.createHash('sha256').update(fs.readFileSync(file.destination)).digest('hex');
@@ -16,7 +16,7 @@ for (const file of audit.preservedFiles) {
     assert.equal(fs.existsSync(file.source), false);
 }
 const allIds = Object.values(index.chapters).flatMap(c => c.levels.map(e => e.id));
-assert.equal(allIds.length, 325); assert.equal(new Set(allIds).size, 325);
+assert.equal(allIds.length, 390); assert.equal(new Set(allIds).size, 390);
 const compile = text => ts.transpileModule(text, { compilerOptions: { target: ts.ScriptTarget.ES2018, module: ts.ModuleKind.CommonJS } }).outputText;
 const tree = ts.createSourceFile('flow.ts', fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8'), ts.ScriptTarget.Latest, true);
 const names = ['_loadCityMeta', 'findContinueTarget', 'isCityUnlocked', 'isLevelUnlocked', 'findNextLevel', '_nextLevelTarget', 'cityProgress'];
@@ -55,5 +55,5 @@ const { SaveService } = exports_;
     f.save = new SaveService(); assert.equal(f.save.migrateContentLayout(f._cities, legacy), true);
     const chapterOnly = await f.findContinueTarget();
     assert.equal(chapterOnly.city.key, key); assert.equal(chapterOnly.levelIndex, 30, 'Chapter-only old save starts at original 2025 entry');
-    console.log('PASS: annual chapter 2026-first/2025-last, 55 ordered levels, 250 unchanged image/meta files, 325 unique IDs, boundary progression and old 2025 resume/unlocks.');
+    console.log('PASS: annual chapter 2026-first/2025-last, 55 ordered levels, 250 unchanged image/meta files, 390 unique IDs, boundary progression and old 2025 resume/unlocks.');
 })().catch(error => { console.error(error); process.exitCode = 1; });
