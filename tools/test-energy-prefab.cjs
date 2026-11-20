@@ -7,20 +7,22 @@ const body=tree.statements.find(ts.isClassDeclaration).members.filter(m=>names.i
 let loads=0,instances=0,complete,refs=0;
 class Host {
  constructor(){this.isValid=true;this.children=[];}
- getComponentInChildren(){return this.children.length?{}:null;}
+ getComponentInChildren(){return this.children[0]?.display??this.children[0]??null;}
 }
 const Display=vm.runInNewContext(ts.transpileModule(`class EnergyDisplay {${body}}; EnergyDisplay;`,{compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{
  console:{warn(){}},Prefab:class{},getGameFlow:()=>({loadCommonPrefab(name){assert.equal(name,'EnergyDisplay');loads++;return new Promise((resolve,reject)=>{complete=(error,prefab)=>error?reject(error):resolve(prefab);});}}),
- instantiate(prefab){instances++;return {position:{x:-190,y:610},set parent(host){host.children.push(this);}}},
+ instantiate(prefab){instances++;const display={};return {display,position:{x:-190,y:610},getComponent:()=>display,set parent(host){host.children.push(this);}}},
 });
 (async()=>{
  const a=new Host(),b=new Host(),gone=new Host();
- const first=Display.attach(a),duplicate=Display.attach(a),second=Display.attach(b),stale=Display.attach(gone);
+ const first=Display.attach(a,false),duplicate=Display.attach(a,false),second=Display.attach(b),stale=Display.attach(gone);
  assert.equal(loads,1);assert.equal(first,duplicate);gone.isValid=false;
  const prefab={isValid:true,addRef(){refs++;return this;}};complete(null,prefab);
  await Promise.all([first,second,stale]);assert.equal(instances,2);assert.equal(refs,1);assert.equal(a.children[0].position.y,610);assert.equal(b.children[0].position.y,610);
+ assert.equal(a.children[0].display._followHeader,false,'Fixed menu screens must opt out before activation');
+ assert.equal(b.children[0].display._followHeader,true,'Gameplay/default header behavior remains available');
  await Display.attach(a);assert.equal(instances,2);assert.equal(a.children[0].position.x,-190,'Existing placement survives repeated attach');
- const authored=new Host();authored.children.push({position:{x:12,y:34},customStyle:true});await Display.attach(authored);
+ const authored=new Host();authored.children.push({position:{x:12,y:34},customStyle:true});await Display.attach(authored,false);
  assert.equal(instances,2);assert.equal(authored.children[0].position.x,12,'Editor-authored instance is reused');
  await Display.attach(new Host());assert.equal(loads,1);assert.equal(instances,3);
  Display._prefab=null;const retry=new Host();const failed=Display.attach(retry);complete(Error('failed'));await failed;
@@ -37,6 +39,17 @@ const Display=vm.runInNewContext(ts.transpileModule(`class EnergyDisplay {${body
  for(const field of ['countdownRoot','rewardButton','videoIcon'])assert.equal(data[component[field].__id__].__type__,'cc.Node');
  assert.equal(data[component.videoIcon.__id__]._name,'icon_videoplay');
  assert.equal(data[1]._lpos.x,-190);assert.equal(data[1]._lpos.y,610);
+ const energyButton=data[component.rewardButton.__id__];
+ const energyUi=energyButton._components.map(r=>data[r.__id__]).find(c=>c.__type__==='cc.UITransform');
+ const energyLeft=data[1]._lpos.x+energyButton._lpos.x-energyUi._anchorPoint.x*energyUi._contentSize.width;
+ for(const page of ['CitySelectScreen','LevelSelectScreen']) {
+  const graph=JSON.parse(fs.readFileSync(`assets/LobbySources/prefabs/${page}.prefab`,'utf8'));
+  const back=graph.find(o=>o.__type__==='cc.Node'&&o._name==='BtnBack');
+  const backUi=back._components.map(r=>graph[r.__id__]).find(c=>c.__type__==='cc.UITransform');
+  const right=back._lpos.x+(1-backUi._anchorPoint.x)*backUi._contentSize.width;
+  assert.ok(right<energyLeft,'Energy hit rectangle must not overlap the restored back button');
+  assert.match(fs.readFileSync(`assets/scripts/ui/${page}.ts`,'utf8'),/EnergyDisplay\.attach\(this\.node, false\)/);
+ }
  assert.doesNotMatch(source,/\.fontSize\s*=|\.color\s*=|setContentSize\(|new Node\(/,'Runtime must preserve prefab styling');
  console.log('PASS: shared prefab loading, concurrent attach deduplication, destroyed hosts, editor instance preservation, retry, serialized references and editable styling.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

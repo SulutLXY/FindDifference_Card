@@ -70,7 +70,7 @@ export class LevelSelectScreen extends UIScreen {
     private _pageCount = 0;
 
     protected onLoad(): void {
-        void EnergyDisplay.attach(this.node);
+        void EnergyDisplay.attach(this.node, false);
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.returnToChapterSelection());
         this._setupPageContainer();
         this.btnPrevious = this._optionalPageNode(this.btnPrevious, 'button_page_prev');

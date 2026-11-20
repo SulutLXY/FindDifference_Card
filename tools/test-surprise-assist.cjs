@@ -1,8 +1,11 @@
 const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:assert/strict');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const compile = text => ts.transpileModule(text, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
-class UITransform { constructor(width = 120, height = 120) { Object.assign(this, { width, height, anchorX: .5, anchorY: .5 }); } }
-class Sprite { static SizeMode = { CUSTOM: 0 }; }
+class UITransform {
+    constructor(width = 120, height = 120) { Object.assign(this, { width, height, anchorX: .5, anchorY: .5 }); }
+    setContentSize(width, height) { Object.assign(this, { width, height }); }
+}
+class Sprite { static SizeMode = { CUSTOM: 0 }; static Type = { SIMPLE: 0 }; }
 class Label {}
 class Animation {}
 class Node {
@@ -22,12 +25,21 @@ class Node {
     destroy() { this.isValid = false; }
 }
 let includeClickBox = true;
+let iconBounds = { width: 69, height: 76 };
+const frames = Object.fromEntries(Object.entries({
+    hint: 'assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Idea.png.meta',
+    life: 'assets/PleyGame/Texture/icons/icon_heart_filled.png.meta',
+    time: 'assets/PleyGame/Texture/icons/icon_Time.png.meta',
+}).map(([name, path]) => {
+    const data = JSON.parse(fs.readFileSync(path, 'utf8')).subMetas.f9941.userData;
+    return [name, { originalSize: { width: data.rawWidth, height: data.rawHeight } }];
+}));
 const cc = { Node, UITransform, Sprite, Label, Animation, Input: { EventType: { TOUCH_START: 'start', TOUCH_MOVE: 'move', TOUCH_END: 'end', TOUCH_CANCEL: 'cancel' } },
     instantiate() {
         const node = new Node('Item_Tips_surprise');
         for (const name of ['icon_Time', 'Number', 'icon_videoplay']) {
-            const child = new Node(name); child.parent = node;
-            child.components.set(name === 'Number' ? Label : Sprite, name === 'Number' ? { string: 'x2' } : { spriteFrame: 'time' });
+            const child = new Node(name, iconBounds.width, iconBounds.height); child.parent = node;
+            child.components.set(name === 'Number' ? Label : Sprite, name === 'Number' ? { string: 'x2' } : { node: child, spriteFrame: frames.life });
         }
         if (includeClickBox) new Node('ClikBox',130,130).parent=node;
         return node;
@@ -42,7 +54,11 @@ async function setup(sequence = [], overrides = {}) {
         async acquireSurpriseAssistPrefab() {
             return Object.assign(await this.loadGamePrefab('Item_Tips_surprise'), { decRef() {} });
         },
-        async loadGameSpriteFrame(path) { if(path.includes('icon_Idea')) return 'hint'; assert.ok(path.includes('icon_heart_filled')); return 'life'; },
+        async loadGameSpriteFrame(path) {
+            if (path.includes('icon_Idea')) return frames.hint;
+            if (path.includes('icon_Time')) return frames.time;
+            assert.ok(path.includes('icon_heart_filled')); return frames.life;
+        },
         async claimSurpriseAssist() { return true; }, ...overrides };
     const root = new Node('Game', 750, 1334); let rolls = 0;
     const state = new SurpriseAssist(root, flow, () => { rolls++; return sequence.length ? sequence.shift() : 0; });
@@ -55,13 +71,34 @@ function method(file, name, extra = {}) {
     return vm.runInNewContext(compile(`class Test { ${member.getText(tree)} }; Test;`), extra);
 }
 (async () => {
+    // Real prefab bounds and source image proportions: replacing the reward must never stretch it.
+    for (const path of [
+        'assets/PleyGame/prefabs/Item_Tips_surprise.prefab',
+        ...['qing-hua-ci', 'meng-chong-san-guo', 'nian-du-re-geng'].map(key => `assets/Bundle/levels/${key}/prefabs/Item_Tips_surprise.prefab`),
+    ]) {
+        const prefab = JSON.parse(fs.readFileSync(path, 'utf8'));
+        const authored = prefab.find(n => n.__type__ === 'cc.Node' && n._name === 'icon_Time');
+        iconBounds = authored._components.map(ref => prefab[ref.__id__]).find(c => c.__type__ === 'cc.UITransform')._contentSize;
+        for (const [kind, frame] of [['life', frames.life], ['hint', frames.hint], ['add-time', frames.time]]) {
+            const { state } = await setup();
+            state._spawn({ kind, amount: 1 });
+            const icon = state._flight.node.getChildByName('icon_Time');
+            const sprite = icon.getComponent(Sprite), ui = icon.getComponent(UITransform);
+            assert.equal(sprite.spriteFrame, frame, `${path}: reward chooses its own icon regardless of prefab default`);
+            assert.ok(Math.abs(ui.width / ui.height - frame.originalSize.width / frame.originalSize.height) < 1e-10, `${path}: ${kind} preserves aspect ratio`);
+            assert.ok(ui.width <= iconBounds.width + 1e-8 && ui.height <= iconBounds.height + 1e-8, 'Icon fits authored bounds');
+            assert.equal(state._flight.node.getComponent(UITransform).width, 120, 'Carrier and click area keep their authored sizes');
+            state.dispose();
+        }
+    }
+    iconBounds = { width: 69, height: 76 };
     let { state, flow, root, rolls } = await setup();
     flow.remainingTime = 50; state.update(100); assert.equal(rolls(), 0, 'Exactly half time does not roll');
     flow.remainingTime = 49; state.update(4.9); assert.equal(state._flight, null);
     state.update(.1); assert.ok(state._flight); assert.equal(state._appearances, 1);
     const first = state._flight, point = first.node.position;
     assert.equal(first.gift.kind, 'hint'); assert.equal(first.gift.amount, 1);
-    assert.equal(first.node.getChildByName('icon_Time').getComponent(Sprite).spriteFrame, 'hint');
+    assert.equal(first.node.getChildByName('icon_Time').getComponent(Sprite).spriteFrame, frames.hint);
     assert.equal(first.node.getChildByName('Number').getComponent(Label).string, 'x1');
     assert.equal(first.node.getChildByName('icon_videoplay').active, false);
     assert.equal(point.x, -435); assert.ok(point.y >= 60 && point.y <= 340.2);
@@ -105,7 +142,7 @@ function method(file, name, extra = {}) {
     let flight = state._flight;
     assert.equal(flight.gift.kind, 'add-time'); assert.equal(flight.gift.amount, 3);
     assert.equal(flight.duration, 5, 'Maximum quantity has the slowest five-second flight');
-    assert.equal(flight.node.getChildByName('icon_Time').getComponent(Sprite).spriteFrame, 'time');
+    assert.equal(flight.node.getChildByName('icon_Time').getComponent(Sprite).spriteFrame, frames.time);
     assert.equal(flight.node.getChildByName('icon_videoplay').active, true);
     assert.equal(flight.node.position.x, 435);
     root.getComponent(UITransform).width = 600; state.update(2.5); assert.equal(flight.node.position.x, 0, 'Position uses actual current UI size');
@@ -153,7 +190,7 @@ function method(file, name, extra = {}) {
     }
     ({state,flow}=await setup([.99,0,0,.5,0],{lives:2}));state.update(5);
     flight=state._flight;assert.equal(flight.gift.kind,'life');assert.equal(flight.gift.amount,1);assert.equal(flight.duration,2.5);
-    assert.equal(flight.node.getChildByName('icon_Time').getComponent(Sprite).spriteFrame,'life');
+    assert.equal(flight.node.getChildByName('icon_Time').getComponent(Sprite).spriteFrame,frames.life);
     assert.equal(flight.node.getChildByName('Number').getComponent(Label).string,'x1');
     assert.equal(flight.node.getChildByName('icon_videoplay').active,false);
     flow.lives=3;state.update(.1);assert.equal(state._flight,null,'A full-health player no longer sees an unclaimed life gift');

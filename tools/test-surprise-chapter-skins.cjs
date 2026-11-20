@@ -62,7 +62,7 @@ const level = { key: 'stable-level', differences: [], maxLives: 3, timeLimit: 30
     liveFlow.currentCity = { key: 'meng-chong-san-guo' };
     service.start(level); await service._prepare();
     assert.equal(porcelain.refs, 0); assert.equal(service._prefab.name, 'meng-chong-san-guo');
-    assert.equal(spriteLoads.length, 2, 'Shared reward icons remain shared');
+    assert.equal(spriteLoads.length, 3, 'All three shared reward icons remain shared');
     const sanguo = service._prefab;
     service.clear(); service.start(level); await service._prepare();
     assert.equal(service._prefab, sanguo); assert.equal(loaded.length, 2);

@@ -1,0 +1,124 @@
+{
+  "date": "2026-11-20",
+  "chapter": "xun-song-ji",
+  "source": "D:\\CocosCreator\\关卡\\寻宋记",
+  "differenceCountBefore": 414,
+  "differenceCountAfter": 417,
+  "updatedLevels": [
+    {
+      "number": 9,
+      "id": "xun-song-ji/shan-kou-lan-ma-dui-zhi",
+      "name": "山口拦马对峙",
+      "differenceCountBefore": 12,
+      "differenceCountAfter": 13,
+      "configChanged": true,
+      "sourceConfigSha256Before": "e2fe34dc67bc9679a46846f49a535f8a074f2f341286585598c07ea2a4262769",
+      "sourceConfigSha256After": "cc9227e3442d53b09101c06809464b4cec6ef724547a58fce57d770ce0460ee4",
+      "images": []
+    },
+    {
+      "number": 17,
+      "id": "xun-song-ji/qin-niang-zi-jia-dao",
+      "name": "秦娘子驾到",
+      "differenceCountBefore": 15,
+      "differenceCountAfter": 15,
+      "configChanged": true,
+      "sourceConfigSha256Before": "0f533eee0cc3c958452fcd206997ee79d8c1b45bcdbddd3e087e3537e27940d7",
+      "sourceConfigSha256After": "baf5bf0171aaf29afdaac8b5961fd51165320042ae0aac18943a07635ebc003e",
+      "images": []
+    },
+    {
+      "number": 20,
+      "id": "xun-song-ji/qing-he-sha-pan-yi-shi",
+      "name": "清河沙盘议事",
+      "differenceCountBefore": 14,
+      "differenceCountAfter": 14,
+      "configChanged": false,
+      "sourceConfigSha256Before": "521d229661ecc409427a3c22cbda853e703c953b834d1e582002b06c63bd0f8a",
+      "sourceConfigSha256After": "521d229661ecc409427a3c22cbda853e703c953b834d1e582002b06c63bd0f8a",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-b.jpg",
+          "uuid": "c91e2c85-2203-549e-8bcb-4a1a3b5573c8",
+          "beforeSha256": "63b23d81dbef06b71c94f927270f893086c9eba4736e9176a4fbe5efb2e78496",
+          "afterSha256": "4746844206030dec231c763967d0bef2286be7105a1d255c09abcae07cec413d",
+          "beforeSourceSha256": "0bf355b03b913926f8eef5e3117c70a2ae9c0f8dc98dc4183ae14780efecb4dd",
+          "afterSourceSha256": "52348cbff83228abc439aef869d7da58d40b6068ccf9f605b0904f2ee6e11ea5"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "xun-song-ji/wu-ding-nu-shou-jie-bei",
+      "name": "屋顶弩手戒备",
+      "differenceCountBefore": 12,
+      "differenceCountAfter": 14,
+      "configChanged": true,
+      "sourceConfigSha256Before": "bba0733284ff58357833215f3e763d91540e6b5ed4778f4995a5371ccc2a6137",
+      "sourceConfigSha256After": "7d32c55ed73200409d7cce2efcf4bf203ffd327c2a83fade27704da045111ec7",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/wu-ding-nu-shou-jie-bei/scene-b.jpg",
+          "uuid": "4cf8fd89-c796-5764-b3d9-aaf5144ce17f",
+          "beforeSha256": "ff59b89309c87dc68449ea85a01d452609b1f053c4500c235003eea67ec44a10",
+          "afterSha256": "0f7c0feb355fa9cdbd76b61d34547893bf900faf64280303636eecc822cc10e5",
+          "beforeSourceSha256": "593badbb89f1a398e1a990fea2c917722780723a9709e4ef53bbc55b20fe0cb6",
+          "afterSourceSha256": "90a7b8d05c3bea0f00896b9df379a3441a5a7f16579583eb24923a881776da44"
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "id": "xun-song-ji/shu-sheng-ke-ju-zhong-bang",
+      "name": "书生科举中榜",
+      "differenceCountBefore": 15,
+      "differenceCountAfter": 15,
+      "configChanged": false,
+      "sourceConfigSha256Before": "a6fbb6aefa27d585f7e50ba2a288ac8d7c7ba02f571436e6cce0734441575459",
+      "sourceConfigSha256After": "a6fbb6aefa27d585f7e50ba2a288ac8d7c7ba02f571436e6cce0734441575459",
+      "images": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-ke-ju-zhong-bang/scene-b.jpg",
+          "uuid": "03d3086e-f9f0-56d3-89cd-ee539d393632",
+          "beforeSha256": "796d5b0f90ca9846e68029623be6c853e668fbd4e68bea485b05c0dd3bf10c3b",
+          "afterSha256": "e31bc68e8da666d7ce0d57d7eb31c6f3450b4b95e1b5f6c721d075fdce7befe7",
+          "beforeSourceSha256": "09f4c4c08b9a7581ae200713ab37741e864d08ef56e56349a1408ccfd940567a",
+          "afterSourceSha256": "df663d4c7455fef76053299da6c857aaff0f0c80adc50d2261ba3e8d7f5cb148"
+        }
+      ]
+    }
+  ],
+  "fontCheck": {
+    "date": "2026-11-20",
+    "font": "assets/PleyGame/fonts/FDTitleBobohei-Bold.ttf",
+    "fontSha256": "0869ea3d2097710e2042be3a5e40970b6d3a5e4ec78b8ab1cf0853b254ee8310",
+    "fontBytes": 249860,
+    "unicodeCount": 1000,
+    "fontUuid": "ccae4537-ce93-4fb7-9e49-8ccdce75078e",
+    "chapters": [
+      {
+        "chapter": "xun-song-ji",
+        "levelCount": 30,
+        "uniqueTitleCharacters": 128,
+        "missingCharacters": []
+      },
+      {
+        "chapter": "qu-wei-duan-ju",
+        "levelCount": 35,
+        "uniqueTitleCharacters": 135,
+        "missingCharacters": []
+      }
+    ],
+    "recutRequired": false
+  },
+  "preserved": [
+    "30 level IDs, names and order",
+    "all asset UUIDs and metadata",
+    "57 unchanged scene JPEGs",
+    "all 30 thumbnails",
+    "independent chapter cover",
+    "chapter order and runtime index",
+    "existing font file and UUID"
+  ],
+  "jpegOptimizationReport": "config/art-optimization-2026-11-20.json"
+}

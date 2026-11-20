@@ -17,19 +17,26 @@ export class EnergyDisplay extends UIScreen {
     @property({ type: Node, displayName: '视频播放图标', tooltip: '仅在体力不足 15 点时显示' })
     public videoIcon: Node | null = null;
     private _elapsed = 0;
+    private _followHeader = true;
     private static _prefab: Prefab | null = null;
     private static _loading: Promise<Prefab> | null = null;
     private static readonly _attaching = new WeakMap<Node, Promise<void>>();
 
-    public static attach(host: Node): Promise<void> {
+    public static attach(host: Node, followHeader = true): Promise<void> {
         // 已由编辑器摆放的实例直接复用，不重复创建。
-        if (!host.isValid || host.getComponentInChildren(EnergyDisplay)) return Promise.resolve();
+        if (!host.isValid) return Promise.resolve();
+        const existing = host.getComponentInChildren(EnergyDisplay);
+        if (existing) { existing._followHeader = followHeader; return Promise.resolve(); }
         const pending = this._attaching.get(host);
         if (pending) return pending;
         const task = this._loadPrefab().then(prefab => {
-            if (!host.isValid || host.getComponentInChildren(EnergyDisplay)) return;
+            if (!host.isValid) return;
+            const existing = host.getComponentInChildren(EnergyDisplay);
+            if (existing) { existing._followHeader = followHeader; return; }
             const node = instantiate(prefab);
-            // 保留预制体的横向位置和样式，纵向位置在 lateUpdate 中跟随顶部按钮。
+            const display = node.getComponent(EnergyDisplay);
+            if (display) display._followHeader = followHeader;
+            // 固定布局保留整个预设坐标，显示与点击子节点作为同一整体使用。
             node.parent = host;
         }).catch(error => {
             console.warn('[EnergyDisplay] 体力预制体加载失败', error);
@@ -69,6 +76,7 @@ export class EnergyDisplay extends UIScreen {
     protected onEnable(): void { this._refresh(); }
 
     protected lateUpdate(): void {
+        if (!this._followHeader) return;
         const host = this.node.parent;
         const ui = host?.getComponent(UITransform);
         if (!host || !ui) return;

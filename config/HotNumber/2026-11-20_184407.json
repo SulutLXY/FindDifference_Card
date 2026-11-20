@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "type": "hot-number-statistics",
+  "recordKind": "period",
+  "status": "ready",
+  "generatedAt": "2026-11-20T18:44:07+08:00",
+  "timezone": "Asia/Shanghai",
+  "source": "user-reported",
+  "statistics": {
+    "startAt": "2026-11-19T00:00:00+08:00",
+    "endAt": "2026-11-20T00:00:00+08:00",
+    "durationSeconds": 86400,
+    "playerCount": 545,
+    "averagePlayTimeSeconds": 282
+  },
+  "estimate": {
+    "secondsPerLevel": 45,
+    "levelsPerPlayer": 7,
+    "totalLevelPlays": 3815
+  }
+}

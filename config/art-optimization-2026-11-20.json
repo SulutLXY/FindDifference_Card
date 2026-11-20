@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-20",
+  "applied": true,
+  "jpegTool": "libjpeg-turbo 3.2.1 jpegtran -copy all -optimize",
+  "records": [
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 375524,
+      "afterBytes": 365500,
+      "beforeSha256": "72f1c3f72aa103e7d1c18d29737c4e38d948d1470c728cc703655d9400f4961e",
+      "afterSha256": "4746844206030dec231c763967d0bef2286be7105a1d255c09abcae07cec413d",
+      "metaSha256": "22bec26ceef236150455e61805238f5dd5d63c82eb4e3ce0dc39ee6c966ad9b3",
+      "beforePixelsSha256": "b2a460899834757e1ea0e4e42606d82731fb70381d1f6259831c0a6b938e2d14",
+      "afterPixelsSha256": "b2a460899834757e1ea0e4e42606d82731fb70381d1f6259831c0a6b938e2d14",
+      "size": [
+        1024,
+        672
+      ]
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/wu-ding-nu-shou-jie-bei/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 363149,
+      "afterBytes": 353463,
+      "beforeSha256": "ccf632eec453339635350b16cc248ed0b0c62504c5d7c66b348932a94c7d95c4",
+      "afterSha256": "0f7c0feb355fa9cdbd76b61d34547893bf900faf64280303636eecc822cc10e5",
+      "metaSha256": "e6bef4b16e095beed574ebeed7badfe40f68db29c4fbb1d0b6496ec938073f3a",
+      "beforePixelsSha256": "94326dbde09a0d5d7b78a511868fdc7187dc8899ec5e0a0eb237abdd16b45cec",
+      "afterPixelsSha256": "94326dbde09a0d5d7b78a511868fdc7187dc8899ec5e0a0eb237abdd16b45cec",
+      "size": [
+        1024,
+        672
+      ]
+    },
+    {
+      "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-ke-ju-zhong-bang/scene-b.jpg",
+      "kind": "jpeg-lossless",
+      "beforeBytes": 342254,
+      "afterBytes": 333996,
+      "beforeSha256": "8b0ae4b219de873cc8d657ec240d911670b4a9694da436e17d7b408738a7497e",
+      "afterSha256": "e31bc68e8da666d7ce0d57d7eb31c6f3450b4b95e1b5f6c721d075fdce7befe7",
+      "metaSha256": "0c2cddd02550c4ab330be4eeb053361ebf8406d557e4516a4a3827b277d6e13b",
+      "beforePixelsSha256": "cb3a3efbde00ffa4d3579f9a71a2f42b7b4a8894defbd30bde609f172d791904",
+      "afterPixelsSha256": "cb3a3efbde00ffa4d3579f9a71a2f42b7b4a8894defbd30bde609f172d791904",
+      "size": [
+        1024,
+        672
+      ]
+    }
+  ],
+  "beforeBytes": 1080927,
+  "afterBytes": 1052959
+}

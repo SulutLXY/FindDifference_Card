@@ -73,7 +73,7 @@ export class CitySelectScreen extends UIScreen {
     private _content: Node | null = null;
 
     protected onLoad(): void {
-        void EnergyDisplay.attach(this.node);
+        void EnergyDisplay.attach(this.node, false);
         this.wireButton(this.btnBack, 'BtnBack', () => this.flow.backFromCitySelection());
         this._setupScrollContainer();
     }

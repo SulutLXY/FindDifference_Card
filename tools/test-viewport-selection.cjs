@@ -39,9 +39,13 @@ const Energy=methods('assets/scripts/ui/EnergyDisplay.ts',['lateUpdate'],{UITran
 const e=new Energy();const header={activeInHierarchy:true,worldPosition:{y:810}};
 const parentUI={height:1620,anchorY:0.5,convertToNodeSpaceAR:p=>p};
 e.node={parent:{getComponent:()=>parentUI},position:{x:-190,y:610,z:0},setPosition(x,y,z){this.position={x,y,z};}};
+e._followHeader=true;
 e.findChildDeep=()=>header;e.lateUpdate();assert.deepEqual(e.node.position,{x:-190,y:810,z:0});
 header.worldPosition.y=610;e.lateUpdate();assert.equal(e.node.position.y,610);
 e.findChildDeep=()=>null;e.lateUpdate();assert.equal(e.node.position.y,753);
+e.node.position={x:-190,y:610,z:0};e._followHeader=false;
+e.findChildDeep=()=>header;
+for(const height of [1334,1500,1620,1800]) {parentUI.height=height;header.worldPosition.y=height/2-57;e.lateUpdate();assert.deepEqual(e.node.position,{x:-190,y:610,z:0});}
 
 const List=methods('assets/scripts/ui/CitySelectScreen.ts',['_layoutListTop','_scrollToTop','_clearCards'],{UITransform,Widget,Layout,ScrollView});
 const s=new List(),events=[],queue=[];
@@ -56,4 +60,4 @@ assert.equal(content.position.y,1237/2);assert.equal(contentUI.width,697);
 rootUI.height=951;queue.pop().call(s);assert.equal(content.position.y,951/2);
 let released=0;s.flow={releasePageSpriteFrames(){released++;}};
 const old={active:true,destroy(){assert.equal(this.active,false);}};s._cards=[old];s._clearCards();assert.equal(released,1);assert.equal(s._cards.length,0);
-console.log('PASS: preview-window ratios, 9:16 minimum frame, two prefab breakpoints, uniform fit, resize without progress reset, popup independence, header energy and post-layout list top');
+console.log('PASS: preview-window ratios, 9:16 minimum frame, two prefab breakpoints, uniform fit, resize without progress reset, popup independence, fixed-menu/header-gameplay energy and post-layout list top');

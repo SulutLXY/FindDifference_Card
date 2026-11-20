@@ -602,9 +602,9 @@
         {
           "path": "assets/Bundle/levels/qu-wei-duan-ju/chen-zhe-nian-shao-bie-shui-jiao/scene-b.jpg",
           "sourceFile": "scene-b.png",
-          "sha256": "51e7fa63296930f3cd01397d1961f29cacefd1fa35cd07d9afbb89130071ca95",
+          "sha256": "4d0c7734614fc6c6defa7ca1a0f532234b9013ec02b8334aca70ee1f4224a00b",
           "uuid": "7be36b09-9a3f-5ac0-81d5-150d82b07b2a",
-          "sourceSha256": "d6e9638525be0b7c45ed684f0e3f008c5d5c522fe57196caa7b750bb7f712da5"
+          "sourceSha256": "ce8537d441cbda26ccbf329821a399752296c7799a27e7f708bb0a60604037ac"
         }
       ],
       "annotationWarnings": []
@@ -656,9 +656,9 @@
         {
           "path": "assets/Bundle/levels/qu-wei-duan-ju/dai-ni-qu-pa-shan/scene-b.jpg",
           "sourceFile": "scene-b.png",
-          "sha256": "a4518df597db51dde88a577716b61d92ac44e0c9ff80d9798e35b1badf78a5b8",
+          "sha256": "e6265943bb32d7248ee20bd9601b1d130ea4ed8164275b23158a1a40a527a748",
           "uuid": "fc2b31e2-a918-58f7-864c-9039bd6b20db",
-          "sourceSha256": "4bfbb16c720e20dbf4c7a35253513fa0a0ec77eff3f3da753d1567e53a9f9af3"
+          "sourceSha256": "a4da317a7a069e84347a886f7b2a02a113720973b9734d6a6c9c2129aedbbebd"
         }
       ],
       "annotationWarnings": []

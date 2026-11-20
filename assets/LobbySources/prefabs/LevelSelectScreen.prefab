@@ -859,7 +859,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": -308,
-      "y": 752.9999999999999,
+      "y": 609.9999999999999,
       "z": 0
     },
     "_lrot": {
@@ -999,7 +999,7 @@
     "__prefab": {
       "__id__": 42
     },
-    "_alignFlags": 1,
+    "_alignFlags": 0,
     "_target": null,
     "_left": 0,
     "_right": 0,
@@ -3932,8 +3932,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 750,
-      "height": 1620
+      "width": 750.0000000000001,
+      "height": 1334
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",

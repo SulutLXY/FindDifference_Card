@@ -214,8 +214,8 @@
       "folder": "shan-kou-lan-ma-dui-zhi",
       "sourceFolder": "09.山口拦马对峙",
       "sourceConfig": "山口拦马对峙.json",
-      "configSha256": "e2fe34dc67bc9679a46846f49a535f8a074f2f341286585598c07ea2a4262769",
-      "differenceCount": 12,
+      "configSha256": "cc9227e3442d53b09101c06809464b4cec6ef724547a58fce57d770ce0460ee4",
+      "differenceCount": 13,
       "images": [
         {
           "path": "assets/Bundle/levels/xun-song-ji/shan-kou-lan-ma-dui-zhi/scene-a.jpg",
@@ -406,7 +406,7 @@
       "folder": "qin-niang-zi-jia-dao",
       "sourceFolder": "17.秦娘子驾到",
       "sourceConfig": "秦娘子驾到.json",
-      "configSha256": "0f533eee0cc3c958452fcd206997ee79d8c1b45bcdbddd3e087e3537e27940d7",
+      "configSha256": "baf5bf0171aaf29afdaac8b5961fd51165320042ae0aac18943a07635ebc003e",
       "differenceCount": 15,
       "images": [
         {
@@ -489,9 +489,9 @@
         },
         {
           "path": "assets/Bundle/levels/xun-song-ji/qing-he-sha-pan-yi-shi/scene-b.jpg",
-          "sha256": "63b23d81dbef06b71c94f927270f893086c9eba4736e9176a4fbe5efb2e78496",
+          "sha256": "4746844206030dec231c763967d0bef2286be7105a1d255c09abcae07cec413d",
           "uuid": "c91e2c85-2203-549e-8bcb-4a1a3b5573c8",
-          "sourceSha256": "0bf355b03b913926f8eef5e3117c70a2ae9c0f8dc98dc4183ae14780efecb4dd"
+          "sourceSha256": "52348cbff83228abc439aef869d7da58d40b6068ccf9f605b0904f2ee6e11ea5"
         }
       ]
     },
@@ -598,8 +598,8 @@
       "folder": "wu-ding-nu-shou-jie-bei",
       "sourceFolder": "25.屋顶弩手戒备",
       "sourceConfig": "屋顶弩手戒备.json",
-      "configSha256": "bba0733284ff58357833215f3e763d91540e6b5ed4778f4995a5371ccc2a6137",
-      "differenceCount": 12,
+      "configSha256": "7d32c55ed73200409d7cce2efcf4bf203ffd327c2a83fade27704da045111ec7",
+      "differenceCount": 14,
       "images": [
         {
           "path": "assets/Bundle/levels/xun-song-ji/wu-ding-nu-shou-jie-bei/scene-a.jpg",
@@ -609,9 +609,9 @@
         },
         {
           "path": "assets/Bundle/levels/xun-song-ji/wu-ding-nu-shou-jie-bei/scene-b.jpg",
-          "sha256": "ff59b89309c87dc68449ea85a01d452609b1f053c4500c235003eea67ec44a10",
+          "sha256": "0f7c0feb355fa9cdbd76b61d34547893bf900faf64280303636eecc822cc10e5",
           "uuid": "4cf8fd89-c796-5764-b3d9-aaf5144ce17f",
-          "sourceSha256": "593badbb89f1a398e1a990fea2c917722780723a9709e4ef53bbc55b20fe0cb6"
+          "sourceSha256": "90a7b8d05c3bea0f00896b9df379a3441a5a7f16579583eb24923a881776da44"
         }
       ]
     },
@@ -705,9 +705,9 @@
         },
         {
           "path": "assets/Bundle/levels/xun-song-ji/shu-sheng-ke-ju-zhong-bang/scene-b.jpg",
-          "sha256": "796d5b0f90ca9846e68029623be6c853e668fbd4e68bea485b05c0dd3bf10c3b",
+          "sha256": "e31bc68e8da666d7ce0d57d7eb31c6f3450b4b95e1b5f6c721d075fdce7befe7",
           "uuid": "03d3086e-f9f0-56d3-89cd-ee539d393632",
-          "sourceSha256": "09f4c4c08b9a7581ae200713ab37741e864d08ef56e56349a1408ccfd940567a"
+          "sourceSha256": "df663d4c7455fef76053299da6c857aaff0f0c80adc50d2261ba3e8d7f5cb148"
         }
       ]
     },

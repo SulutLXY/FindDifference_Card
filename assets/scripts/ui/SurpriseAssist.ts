@@ -12,6 +12,7 @@ export class SurpriseAssist {
     private _chapterKey: string | null = null;
     private _skinVersion = 0;
     private _hintFrame: SpriteFrame | null = null;
+    private _timeFrame: SpriteFrame | null = null;
     private _lifeFrame: SpriteFrame | null = null;
     private _loading: Promise<void> | null = null;
     private _flight: Flight | null = null;
@@ -43,20 +44,23 @@ export class SurpriseAssist {
 
     private _prepare(): Promise<void> {
         if (this._loading) return this._loading;
-        if (this._prefab && this._hintFrame && this._lifeFrame) return Promise.resolve();
+        if (this._prefab && this._hintFrame && this._timeFrame && this._lifeFrame) return Promise.resolve();
         const chapterKey = this._chapterKey ?? '', version = this._skinVersion;
         const loading = Promise.all([
             this._hintFrame ? Promise.resolve(this._hintFrame)
                 : this.flow.loadGameSpriteFrame('Common/textures/UI_Sprite/V3/icons/icon_Idea/spriteFrame'),
             this._lifeFrame ? Promise.resolve(this._lifeFrame)
                 : this.flow.loadGameSpriteFrame('Texture/icons/icon_heart_filled/spriteFrame'),
-        ]).then(async ([frame, lifeFrame]) => {
+            this._timeFrame ? Promise.resolve(this._timeFrame)
+                : this.flow.loadGameSpriteFrame('Texture/icons/icon_Time/spriteFrame'),
+        ]).then(async ([frame, lifeFrame, timeFrame]) => {
             if (this._disposed || version !== this._skinVersion) return;
             const prefab = await this.flow.acquireSurpriseAssistPrefab(chapterKey);
             if (this._disposed || version !== this._skinVersion) { prefab.decRef(); return; }
             this._prefab = prefab;
             this._hintFrame = frame;
             this._lifeFrame = lifeFrame;
+            this._timeFrame = timeFrame;
         }).catch(error => console.warn('[SurpriseAssist] 惊喜道具素材暂未就绪', error))
             .finally(() => { if (this._loading === loading) this._loading = null; });
         this._loading = loading;
@@ -85,7 +89,7 @@ export class SurpriseAssist {
         if (this._rollElapsed < 5) return;
         this._rollElapsed %= 5; // 卡顿恢复只抽一次，不补刷多次。
         if (this._flight || this._appearances >= 3 || this._clock - this._lastAppearance < 10) return;
-        if (!this._prefab || !this._hintFrame || !this._lifeFrame) { void this._prepare(); return; }
+        if (!this._prefab || !this._hintFrame || !this._timeFrame || !this._lifeFrame) { void this._prepare(); return; }
         // 先抽取候选奖励，再按免费/视频两类分别判断出现；显示后不再改奖励。
         const kinds: SurpriseAssistKind[] = this._canDropLife() ? ['hint', 'add-time', 'life'] : ['hint', 'add-time'];
         const kind = kinds[Math.floor(this.random() * kinds.length)];
@@ -114,8 +118,21 @@ export class SurpriseAssist {
         };
         setLayer(node);
         const icon = node.getChildByName('icon_Time')?.getComponent(Sprite);
-        if (icon && gift.kind === 'hint') { icon.sizeMode = Sprite.SizeMode.CUSTOM; icon.spriteFrame = this._hintFrame; }
-        if (icon && gift.kind === 'life') { icon.sizeMode = Sprite.SizeMode.CUSTOM; icon.spriteFrame = this._lifeFrame; }
+        const frame = gift.kind === 'hint' ? this._hintFrame : gift.kind === 'life' ? this._lifeFrame : this._timeFrame;
+        if (icon && frame) {
+            const ui = icon.node.getComponent(UITransform);
+            const width = ui?.width ?? 0, height = ui?.height ?? 0;
+            icon.sizeMode = Sprite.SizeMode.CUSTOM;
+            icon.type = Sprite.Type.SIMPLE;
+            icon.trim = false;
+            icon.spriteFrame = frame;
+            // 保留预设的图标区域，换图时按原始宽高比等比容纳，避免把爱心拉成秒表比例。
+            const size = frame.originalSize;
+            if (ui && width > 0 && height > 0 && size.width > 0 && size.height > 0) {
+                const scale = Math.min(width / size.width, height / size.height);
+                ui.setContentSize(size.width * scale, size.height * scale);
+            }
+        }
         const number = node.getChildByName('Number')?.getComponent(Label);
         if (number) number.string = `x${gift.amount}`;
         const video = node.getChildByName('icon_videoplay');
@@ -215,6 +232,7 @@ export class SurpriseAssist {
         this._prefab?.decRef();
         this._prefab = null;
         this._hintFrame = null;
+        this._timeFrame = null;
         this._lifeFrame = null;
         this._loading = null;
     }
