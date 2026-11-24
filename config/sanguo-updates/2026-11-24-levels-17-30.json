@@ -1,0 +1,2257 @@
+{
+  "date": "2026-11-24",
+  "chapter": "meng-chong-san-guo",
+  "source": "D:\\CocosCreator\\关卡\\三国",
+  "sourceMap": "config/pet-three-kingdoms-source-map.json",
+  "sourceMapBefore": {
+    "chapter": "city-PetThreeKingdoms",
+    "source": "D:\\CocosCreator\\关卡\\三国",
+    "coverSource": "D:\\CocosCreator\\关卡\\三国\\01-黄巾起义-风格重绘\\scene-a.jpg",
+    "missingConfigurations": [],
+    "annotationProblems": [],
+    "levels": [
+      {
+        "number": 1,
+        "sourceFolder": "01-黄巾起义-风格重绘",
+        "level": "level-01",
+        "name": "黄巾起义",
+        "differenceCount": 8,
+        "configSha256": "b0f1619bbe242ea15f22f21882d5d7f20edfa838acc07bfef30c20a6ae17677c",
+        "images": {
+          "scene-a.jpg": "8935d2ea9c250ad3765426cc8009c835ee11824fd18a2ed203476cac1b79c6c8",
+          "scene-b.jpg": "4da95c2e432caee9c841bd8d003c1cae655a3f448be7b3b0488e11b48a476a0e"
+        }
+      },
+      {
+        "number": 2,
+        "sourceFolder": "02-桃园结义-风格重绘",
+        "level": "level-02",
+        "name": "桃园结义",
+        "differenceCount": 11,
+        "configSha256": "bfffae0b1bdff24ad7ae82b9ca8eca455005c913b08230d479a928e81563a13b",
+        "images": {
+          "scene-a.jpg": "a41b2e7d5f39d2f7b03dff1093223b601f91ac72c7c6a7bf2a763f3d63b7d19e",
+          "scene-b.jpg": "8fab927c235540f7dff33bbfe79ae65b025c5fdc5696286e76a0ad0c5c589743"
+        }
+      },
+      {
+        "number": 3,
+        "sourceFolder": "03-温酒斩华雄-风格重绘",
+        "level": "level-03",
+        "name": "温酒斩华雄",
+        "differenceCount": 12,
+        "configSha256": "4e9ceef2d196e1eb5eddb8b792cd61ccb331007b057e16cc002f7c5ab317dacf",
+        "images": {
+          "scene-a.jpg": "9ff8bd622efedb8c56509dcd8a772d007d8a00e7eabdaa25e45ecac0329d9c33",
+          "scene-b.jpg": "ee58e88e48d048d1bb4977bf9350dce6a06e6d072f23a9a1f7f886713b8a8da7"
+        }
+      },
+      {
+        "number": 4,
+        "sourceFolder": "04-三英战吕布-风格重绘",
+        "level": "level-04",
+        "name": "三英战吕布",
+        "differenceCount": 16,
+        "configSha256": "cf9632e5a6f1da5cdc8a9ff1fb972525baf2ac52bd6b865b2d3ead149a70eb4d",
+        "images": {
+          "scene-a.jpg": "b05d2bc679f6557591c6ab4074640f14b9ff41b75333922886b3aa018024b960",
+          "scene-b.jpg": "1d84f40e344ecd2c53fdaf29ef3c8293d233ec47d5ceccf92b67951702922f65"
+        }
+      },
+      {
+        "number": 5,
+        "sourceFolder": "05-孙坚匿玉玺-风格重绘",
+        "level": "level-05",
+        "name": "孙坚匿玉玺",
+        "differenceCount": 10,
+        "configSha256": "7c702d03eab038c5a18769a7194d0ebe3feaa21331d41cb3ad35be578dc955f3",
+        "images": {
+          "scene-a.jpg": "5bd3b3977700dc804a66d8645e7016888cd683de8f3be56abd7bc09b510a998a",
+          "scene-b.jpg": "21b3c31de19bb769b0c7253cac535edef054d3652054cdbcc9402b41b63dbd47"
+        }
+      },
+      {
+        "number": 6,
+        "sourceFolder": "06-辕门射戟-风格重绘",
+        "level": "level-06",
+        "name": "辕门射戟",
+        "differenceCount": 12,
+        "configSha256": "b1573cb2d495364a64e0d397a56b4ee0515936823eadadf1a65ea836f4fa94aa",
+        "images": {
+          "scene-a.jpg": "945da609f6b04f3fb5559580f2c3dcc05047d1e6241f191b5115e371799c9db2",
+          "scene-b.jpg": "fd7c38739ce2fb85d281bbc644cc3d528de765f3247df2a0cf5dc41543fc6a8a"
+        }
+      },
+      {
+        "number": 7,
+        "sourceFolder": "07-煮酒论英雄-风格重绘",
+        "level": "level-07",
+        "name": "煮酒论英雄",
+        "differenceCount": 16,
+        "configSha256": "46e451c97c09670b14325e5d811701398009e572f77dbdb935f2384b768e101f",
+        "images": {
+          "scene-a.jpg": "0bef383eda9e6444f93b9ccaf0f6cdec4f1989428af265fa4a44df384fa4b548",
+          "scene-b.jpg": "5432f93857bbe772c8bb3ac52ad7b3307e795976dcdbb5063f9c63865d1e43ce"
+        }
+      },
+      {
+        "number": 8,
+        "sourceFolder": "08-神亭岭大战孙策-风格重绘",
+        "level": "level-08",
+        "name": "神亭岭大战孙策",
+        "differenceCount": 9,
+        "configSha256": "90fbcf8e96263f72c77b5e4b13030b0a1f69c23d3d6f5022d18dd041f5ef231a",
+        "images": {
+          "scene-a.jpg": "93410ab449cebf18a4cf9844a12f176e6a87ad1a6cde2ed5c4354b05772a94f7",
+          "scene-b.jpg": "4390d8fbe191c7757888b5e9b7f655d50098199eea9b3a6f4c971c46f473ce24"
+        }
+      },
+      {
+        "number": 9,
+        "sourceFolder": "09-火烧乌巢-风格重绘",
+        "level": "level-09",
+        "name": "火烧乌巢",
+        "differenceCount": 15,
+        "configSha256": "8a2dbfcaaaf220854ef8b08054d9781bda80b6fe2a4a723994e5e9f846d12103",
+        "images": {
+          "scene-a.jpg": "a92c11cc798c3bab44acdc8ea061155bab64a77f28a811507ec03d30ecf2b575",
+          "scene-b.jpg": "7f7594628ed536878bba5fdd1ea05cf01c9f6f4a330b68b787e2f278e80c65a4"
+        }
+      },
+      {
+        "number": 10,
+        "sourceFolder": "10-远征乌桓-风格重绘",
+        "level": "level-10",
+        "name": "远征乌桓",
+        "differenceCount": 15,
+        "configSha256": "c9f865d8b196547c192f68c35bf7148bc8d9acdf324131f127712bada893cea0",
+        "images": {
+          "scene-a.jpg": "1e0a57da62c9cf47ca1db267fc8b7ccd0466a678f9912be65aeba7f40693f9f3",
+          "scene-b.jpg": "e7af270510cba1f7bb88fca1691583312ffa17dc0e247aaae86af36f37b51411"
+        }
+      },
+      {
+        "number": 11,
+        "sourceFolder": "11-割须弃袍-风格重绘",
+        "level": "level-11",
+        "name": "割须弃袍",
+        "differenceCount": 15,
+        "configSha256": "85728b965a07f96ef0a2568d66a53b7e149de1f20085ec9ca5d1e0467c637307",
+        "images": {
+          "scene-a.jpg": "e8c5c3d2766cbdb0b9b37cbda238da7ea798de234e9669420aed8ec120897764",
+          "scene-b.jpg": "c9b716b70736b4815816f007ba4c4baf5d1c778c745943c117e62a1263affc76"
+        }
+      },
+      {
+        "number": 12,
+        "sourceFolder": "12-隆中对-风格重绘",
+        "level": "level-12",
+        "name": "隆中对",
+        "differenceCount": 12,
+        "configSha256": "9973aff12512c0619c2b44762bd56c5eee27637a4e2904174a7a14d2d22c2976",
+        "images": {
+          "scene-a.jpg": "d4d5aaf6c6198b92d8b9a51534ff16d52e60122c234fe538df7a6650a1f4b4db",
+          "scene-b.jpg": "63746f866e1f13abaac87cb07f20e94bb7d86577b0eae5e8cf6d89a4ec894001"
+        }
+      },
+      {
+        "number": 13,
+        "sourceFolder": "13-长坂坡单骑救主-风格重绘",
+        "level": "level-13",
+        "name": "长坂坡单骑救主",
+        "differenceCount": 12,
+        "configSha256": "511db55b481cfc01f4cd20e45a7aa71be864ef67729cb318a36ffb94d95dd885",
+        "images": {
+          "scene-a.jpg": "1f88ba2b8947c18b75f2d882e48c718e0264ebbee8e83b90ae81832875a0ed54",
+          "scene-b.jpg": "a04e4b8aefb90d0c95b45571a9a6a0f600599ecfa7863dc04fc92690220a9986"
+        }
+      },
+      {
+        "number": 14,
+        "sourceFolder": "14-舌战群儒-风格重绘",
+        "level": "level-14",
+        "name": "舌战群儒",
+        "differenceCount": 16,
+        "configSha256": "b700da2fad6336747df13cdf3e57814f7a997eb88a8609fbf202c2805e99ad30",
+        "images": {
+          "scene-a.jpg": "a5476ab0c04f771118fa903cf5886092a578fc4b26f97f6e0bcfe40b9927ddcf",
+          "scene-b.jpg": "be698ecc56e852fbd798808a7b26eec85d201eaa18f2e81b114a4b7696c15f6b"
+        }
+      },
+      {
+        "number": 15,
+        "sourceFolder": "15-草船借箭-风格重绘",
+        "level": "level-15",
+        "name": "草船借箭",
+        "differenceCount": 12,
+        "configSha256": "8f0305baf621f21175611ebb2c25bf506471c21638f011ba88a5fe1eec53ba35",
+        "images": {
+          "scene-a.jpg": "382b56c07e328d2effdf2dbca945c278056aa6e24bfb0fb20c087796fd40c9bc",
+          "scene-b.jpg": "ce3f929904d75d86eb7c5f8cded4ed048b953b1f9bfaa7658cfade464fa9c483"
+        }
+      },
+      {
+        "number": 16,
+        "sourceFolder": "16-曹孟德横槊赋诗-风格重绘与内容补充",
+        "level": "level-16",
+        "name": "曹孟德横槊赋诗",
+        "differenceCount": 17,
+        "configSha256": "1bc66502445e221afedeceb414666ff7619cf8a4b5590d8331ca22be82f17a36",
+        "images": {
+          "scene-a.jpg": "f9292f80ba8ed9e3f60a126c97007d6aa841eee86b1b5c0cefd2041722fb3f38",
+          "scene-b.jpg": "c55b5781f4bebb853e3b33736232a6d8560d20236722df4d2a578565359ac4c1"
+        }
+      },
+      {
+        "number": 17,
+        "sourceFolder": "17-凤雏巧献连环计-风格重绘与内容补充",
+        "level": "level-17",
+        "name": "连环计",
+        "differenceCount": 15,
+        "configSha256": "9ff5e4d17bcf500e6263ad4abb9eea318850cc59e08e91479a3f9e024d5b9ac1",
+        "images": {
+          "scene-a.jpg": "1b47329571065d4bf39dd7d3382d41f0efe4941f2f1b2749c13ba2fe023781fe",
+          "scene-b.jpg": "87229bac781d0b7441ee0211d4890f1d779a3d2a8d632a1e15f5ec1f6d30b652"
+        }
+      },
+      {
+        "number": 18,
+        "sourceFolder": "18-孔明借东风火烧赤壁-风格重绘与内容补充",
+        "level": "level-18",
+        "name": "借东风火烧赤壁",
+        "differenceCount": 15,
+        "configSha256": "0cfeeb2c488554f38fb01a651520322483f4facc9bd1e575209e75a2b6e37e0f",
+        "images": {
+          "scene-a.jpg": "f12631d93d0b83541f0dc03aa57067071cadd82e9a1bf4f623dc275997cd092c",
+          "scene-b.jpg": "da72ccf9c51c8349f42b7380184fb1ee58d150c9ecc3dcf2ee8e8f37a23f0f45"
+        }
+      },
+      {
+        "number": 19,
+        "sourceFolder": "19-关羽华容道义释曹操-风格重绘与内容补充",
+        "level": "level-19",
+        "name": "华容道",
+        "differenceCount": 10,
+        "configSha256": "3febf8a74463daa16198af7c9f92a216908ec98abbc5963f9e58702fabb81a8a",
+        "images": {
+          "scene-a.jpg": "f68102f79cca5f66f759c6c25144402db95c9fddf234f7fb17221579d7a17870",
+          "scene-b.jpg": "12d4ce089c467149917ba9be133e555d05fe73324dca5484206127293fdde661"
+        }
+      },
+      {
+        "number": 20,
+        "sourceFolder": "20-张辽威震逍遥津-风格重绘与内容补充",
+        "level": "level-20",
+        "name": "威震逍遥津",
+        "differenceCount": 12,
+        "configSha256": "197f6945f49a8b68d16a88871f2697291da6a2b1baabb2f27ca2267eeab32d3a",
+        "images": {
+          "scene-a.jpg": "0ede5755fa1af0793e7c00bcaa40093824feadddf1cdfb8600ae8b86abb1176b",
+          "scene-b.jpg": "bca33c4cce659614f731ea588f5e57a6f2be55c28859f85f07d4b2b929d446cd"
+        }
+      },
+      {
+        "number": 21,
+        "sourceFolder": "21-落凤坡-风格重绘与内容补充",
+        "level": "level-21",
+        "name": "落凤坡",
+        "differenceCount": 6,
+        "configSha256": "eaf1ef91c49718b832f0f38e6dc131c9f987b37cf4bc2f3bc178d71c3d1a0250",
+        "images": {
+          "scene-a.jpg": "af5a11205a70c6d44f38b52ba9ccc5a458fd1aacbf32f3a7272842a3005b38ee",
+          "scene-b.jpg": "af5a11205a70c6d44f38b52ba9ccc5a458fd1aacbf32f3a7272842a3005b38ee"
+        }
+      },
+      {
+        "number": 22,
+        "sourceFolder": "22-定军山斩夏侯渊-风格重绘与内容补充",
+        "level": "level-22",
+        "name": "定军山",
+        "differenceCount": 6,
+        "configSha256": "9a2ff710cbe5180ebbc2f0d6c8fdc67fa65cd5faab5fb6add264b85e5368f494",
+        "images": {
+          "scene-a.jpg": "25a4862bebdf12d5e59bbea25b3e467ef9debf553005253db6af24a202718216",
+          "scene-b.jpg": "25a4862bebdf12d5e59bbea25b3e467ef9debf553005253db6af24a202718216"
+        }
+      },
+      {
+        "number": 23,
+        "sourceFolder": "23-水淹七军-风格重绘与内容补充",
+        "level": "level-23",
+        "name": "水淹七军",
+        "differenceCount": 5,
+        "configSha256": "5acbfe322c9a898951464ae8b21b7581325a38fbeff5d4b71d9630c569bbbf41",
+        "images": {
+          "scene-a.jpg": "64b317efabc36d79b2557b0cd9671e0cb28705f278018d48402bdc8fb051798f",
+          "scene-b.jpg": "64b317efabc36d79b2557b0cd9671e0cb28705f278018d48402bdc8fb051798f"
+        }
+      },
+      {
+        "number": 24,
+        "sourceFolder": "24-刮骨疗毒-风格重绘与内容补充",
+        "level": "level-24",
+        "name": "刮骨疗毒",
+        "differenceCount": 12,
+        "configSha256": "3847d8b2413d63c31db9b1c63fd5bc5bdd20b071d6248f4c25701d3dbeae17a4",
+        "images": {
+          "scene-a.jpg": "35c18e1c0304c36b29341382b3739222145b318bee4cb250e32c1befeff34295",
+          "scene-b.jpg": "b0a2af0a97987d10ec9fe4c2b4ba565a903cdc0f98bb6b17fc5f65e222ce40c9"
+        }
+      },
+      {
+        "number": 25,
+        "sourceFolder": "25-火烧连营白帝城托孤-风格重绘与内容补充",
+        "level": "level-25",
+        "name": "白帝城托孤",
+        "differenceCount": 14,
+        "configSha256": "f7af61d5aef1772218d489415f6bf3386a4c1b72980408a824f0b7db2babe0b7",
+        "images": {
+          "scene-a.jpg": "d4947c7e7dc34140d3126622bf754ed23df7540e26035271d8bea25511a4bf7a",
+          "scene-b.jpg": "740314f6f614ca40320dfbe17003d21c3fec30fe7bc33e48b62ff67fbd0b22e1"
+        }
+      },
+      {
+        "number": 26,
+        "sourceFolder": "26-七擒孟获-风格重绘与内容补充",
+        "level": "level-26",
+        "name": "七擒孟获",
+        "differenceCount": 16,
+        "configSha256": "bd642977d08be83591058d553b65a201404f3962cc1ff0c40e7cde3c10154f4b",
+        "images": {
+          "scene-a.jpg": "4c624b26c741c0276330587d0ebf2d5dda8d78fb34ed578fc25b2cd14cc07b2e",
+          "scene-b.jpg": "54d343d457ac47b2b324a79822e966a1ff9da1e780f84cf53847078dcccc43d8"
+        }
+      },
+      {
+        "number": 27,
+        "sourceFolder": "27-空城计-风格重绘与内容补充",
+        "level": "level-27",
+        "name": "空城计",
+        "differenceCount": 12,
+        "configSha256": "205c6d603f80298bd4188837f942b11903e55e45c0b2a74b9140e59a3702c938",
+        "images": {
+          "scene-a.jpg": "a51e07b67612931b25d4efcf5f7791a7e277bc31dd7a1dd125f32987dea02484",
+          "scene-b.jpg": "f7d01edb91f7f4930b996dade5465694d184a9f3c61fd6a9d0df0c572d17d832"
+        }
+      },
+      {
+        "number": 28,
+        "sourceFolder": "28-武侯禳星-风格重绘与内容补充",
+        "level": "level-28",
+        "name": "武侯禳星",
+        "differenceCount": 16,
+        "configSha256": "28c068c20bd945fd7d336d7c40250a761db27d5dbe74f88fe02f3e7e70cabad4",
+        "images": {
+          "scene-a.jpg": "3751c95105b6cbd834c8164d1ae0f8cd3d8a1da9a25d32ea700b7f9041c1588b",
+          "scene-b.jpg": "bc369b0be52b653959edc20334e24d661f769f99585b6e87bbf537ee6b8e87e7"
+        }
+      },
+      {
+        "number": 29,
+        "sourceFolder": "29-单骑退雄兵-风格重绘与内容补充",
+        "level": "level-29",
+        "name": "单骑退雄兵",
+        "differenceCount": 12,
+        "configSha256": "5e4c797d1e9b0d1937c16ebdbbd17f7b6711d514c4bd69139774bb41b2e19b64",
+        "images": {
+          "scene-a.jpg": "2c522f91c5c69c1942b0a46b2c03b95eb33a4a19654a7f51e61682866d3b1f58",
+          "scene-b.jpg": "df86ff65202f700b7f9dbcee8a067c3745a4c1119ee99adbb312cd33508175ba"
+        }
+      },
+      {
+        "number": 30,
+        "sourceFolder": "30-姜维九伐中原-风格重绘与内容补充",
+        "level": "level-30",
+        "name": "九伐中原",
+        "differenceCount": 15,
+        "configSha256": "3c6bcb18bf19a17cfdd482ae35f4528a784b113bf9bf428b98f10d01fb321304",
+        "images": {
+          "scene-a.jpg": "8c15a4c3d1c3e6be28e75de1c066ee4e6ac9292f7f3f4f4ccf680c36fea34156",
+          "scene-b.jpg": "c4ce7fb825837c2a2675ef7f51cc48461943aa2b0e6c2c4860a476824b47e1b2"
+        }
+      }
+    ]
+  },
+  "sourceMapBeforeSha256": "acc23671d46eee1782987373c02b55fc79f4767d08518ed1a2fb164700c564ac",
+  "chapterFilesBefore": {
+    "assets/Bundle/levels/meng-chong-san-guo/Animation.meta": "55ff08bb74dafd62b06647f7c052196f2fef41de0b9eeee06c826b9ebd4f72f8",
+    "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu.meta": "4f7fe0fce7dc2e646aa1ca9fa2e10b8440682cfb7edd05e55d85b75b3a4f0969",
+    "assets/Bundle/levels/meng-chong-san-guo/BGmusic.meta": "3daf35ebe0bbf7033dceb8f27b2a27242b3b06f95fc7e52b06e2b44dd20f4229",
+    "assets/Bundle/levels/meng-chong-san-guo/cao-chuan-jie-jian.meta": "ed4224ba102ca40d696827b3442acfaea4b51d476bf6e4107b0848f24031c519",
+    "assets/Bundle/levels/meng-chong-san-guo/cao-meng-de-heng-shuo-fu-shi.meta": "16b71cc8566f2962abf5f64fb97f0554d59b71f5d8b97def02c408db1f579d01",
+    "assets/Bundle/levels/meng-chong-san-guo/chang-ban-po-dan-qi-jiu-zhu.meta": "34365f48a6c74cf41f7cbad09f583d783f95c92c324b5f5e08166ab10e23a912",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type.meta": "ea248a03b3e6e4f38789f0f2365d1f2e06a1509fcda5cde653b62430869f7632",
+    "assets/Bundle/levels/meng-chong-san-guo/configs.meta": "af0d4b1e0c59dbcff96a6d4b4235c74a8b918b0d054c764be85ba0bf6b12399e",
+    "assets/Bundle/levels/meng-chong-san-guo/dan-qi-tui-xiong-bing.meta": "b23375e36e539e858279183416c411ca43f6655c87c2e04e18987e9813978db5",
+    "assets/Bundle/levels/meng-chong-san-guo/ding-jun-shan.meta": "5e04723a8e0c16d546f05399a77c8e077e21d9e64cf1ef61a3e93cfc2be0a5aa",
+    "assets/Bundle/levels/meng-chong-san-guo/ge-xu-qi-pao.meta": "0750f8abc7e9bc2301394cd7de2f76ea6e351177dbce71b86d3a09184e40dea8",
+    "assets/Bundle/levels/meng-chong-san-guo/gua-gu-liao-du.meta": "386873d150822f8f6fce00c89ca0cce3314a9cb73e42ffbc0afc8dfc787fde07",
+    "assets/Bundle/levels/meng-chong-san-guo/hua-rong-dao.meta": "ad0eeaf6994ecf3bbf71b1563ebd4171dd5d6d7610053ceef774f48f5c04fbab",
+    "assets/Bundle/levels/meng-chong-san-guo/huang-jin-qi-yi.meta": "ef0d0f57108473deedb5069797572f90aa518884434f06ffc432f590fe8a2df3",
+    "assets/Bundle/levels/meng-chong-san-guo/huo-shao-wu-chao.meta": "d3a282f7cf1fdadb069f2676304ccc1eb897adda45aa342f00bc055a8cc6ea9a",
+    "assets/Bundle/levels/meng-chong-san-guo/jie-dong-feng-huo-shao-chi-bi.meta": "4d0d6ae2ccccc59dd470f4d8460b328e357956bd41ff24d0e0874e76a984e421",
+    "assets/Bundle/levels/meng-chong-san-guo/jiu-fa-zhong-yuan.meta": "76825c79ae072baffc963ab2967bf718481e20c230458e6f90272e51b067aebe",
+    "assets/Bundle/levels/meng-chong-san-guo/kong-cheng-ji.meta": "68df7b84533bf8ea9e9e55028864d4f6fb1fec0fc10d9168a28f602eac0cef5e",
+    "assets/Bundle/levels/meng-chong-san-guo/lian-huan-ji.meta": "1c6db0a0f2d149741271465ce170ebd6609ae76ea905358ca9d6aa3e01cb3cb9",
+    "assets/Bundle/levels/meng-chong-san-guo/long-zhong-dui.meta": "028a33fe91c48ee10f3a775f81ff0c627151c2c2f7e19fce5549d381b2ac9629",
+    "assets/Bundle/levels/meng-chong-san-guo/luo-feng-po.meta": "753d538b5d4d276146813623d3f9329679a5dd4579d43b1c0c8862bebc2aea0e",
+    "assets/Bundle/levels/meng-chong-san-guo/prefabs.meta": "a5380cdff07e87041898ce821bb27ca12c0e0df85ccf99a34977e47182d29b44",
+    "assets/Bundle/levels/meng-chong-san-guo/qi-qin-meng-huo.meta": "d2a3f20240fc7d87283df8656c67a62a9f2f142d88605b8ac5c4ccc222427eff",
+    "assets/Bundle/levels/meng-chong-san-guo/san-ying-zhan-lv-bu.meta": "f3bcc6787bdb65576122ae9600fae94f442d16fcb93ce988d0fdfbb7d84a458d",
+    "assets/Bundle/levels/meng-chong-san-guo/she-zhan-qun-ru.meta": "a94d66b51b7c9cdf4fece995371ea09c049fd4066cd1264a368c44cea1afe58c",
+    "assets/Bundle/levels/meng-chong-san-guo/shen-ting-ling-da-zhan-sun-ce.meta": "a4593f8e3420ef716a7495d8dd5215c1043f446158c55b637ff61eb40aefb4d0",
+    "assets/Bundle/levels/meng-chong-san-guo/shui-yan-qi-jun.meta": "dbf9b39c729308f53ac3924e4c164bc30bbcffd0e21ee298f1c30785a3efdba3",
+    "assets/Bundle/levels/meng-chong-san-guo/sun-jian-ni-yu-xi.meta": "143cf1041f221039dd7eb880c8f5b767f136494411ba0bad10bae71d04a8d637",
+    "assets/Bundle/levels/meng-chong-san-guo/tao-yuan-jie-yi.meta": "a61fecfc8814e117e9c53b9b7cb4879ecbf4963bd24cf47ed008d61e337e3a25",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails.meta": "4ff7938bbe2b1359d448b9b8e236c085f1eca637f4e1a1db2a8f8c741d2c6d09",
+    "assets/Bundle/levels/meng-chong-san-guo/wei-zhen-xiao-yao-jin.meta": "d781bbe1a52d35d46d5c817b979a5c8b7230d54b404e536bd1be450e7c213126",
+    "assets/Bundle/levels/meng-chong-san-guo/wen-jiu-zhan-hua-xiong.meta": "47e2f41fe4671c1ae38d34d4b7cd2c05994e91bdbb287e07435689b52e7371ed",
+    "assets/Bundle/levels/meng-chong-san-guo/wu-hou-rang-xing.meta": "416eebf0124f2b0deb5489729abc8301886dda039675859cb0c7867c032d1af0",
+    "assets/Bundle/levels/meng-chong-san-guo/yuan-men-she-ji.meta": "8f3813a86b22fc94359a7baba39653537a97c35b8929d969bb69e7daeca618f7",
+    "assets/Bundle/levels/meng-chong-san-guo/yuan-zheng-wu-huan.meta": "6f2944e9247bb53fda3ed959ddb343d52fc342a22702a4ec31692b39e9bf4b21",
+    "assets/Bundle/levels/meng-chong-san-guo/zhu-jiu-lun-ying-xiong.meta": "6ced6de2c0f9c9b709a7030f3c5b967efbf5173a5779f504b829332ab0ef6a61",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG.anim": "7b066e894b3b7250836e1ee02d0fefb431c7f915222ff8d592358fb0ef178960",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG.anim.meta": "c88a45dc09c80cd6ee64fed683b99e3c5fe80315c4382a91bce39cc1c221258e",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG.meta": "8753387ef8927e5f7bf870cc15febb3d4c0848385871c8b43d963822146b9cde",
+    "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu/scene-a.jpg": "d4947c7e7dc34140d3126622bf754ed23df7540e26035271d8bea25511a4bf7a",
+    "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu/scene-a.jpg.meta": "867d1bad601b7a5b8700b28e6771f2ffe289eaf26b27ef1b2edb4ecf4eec1c52",
+    "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu/scene-b.jpg": "4bbe2bff502f89db34c44505aa22c9cc7b024132768d58023502dbd6c79d6969",
+    "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu/scene-b.jpg.meta": "d5806f3eae788c20b95943da2ef6eca93b1e4f25d24d01e464af67ab43b00549",
+    "assets/Bundle/levels/meng-chong-san-guo/BGmusic/Game_music_sanguo.mp3": "49cb2a544aeca2ee67c0c7afd5041f2d429c4b19e721fc7c915067c4f373873f",
+    "assets/Bundle/levels/meng-chong-san-guo/BGmusic/Game_music_sanguo.mp3.meta": "539f835e6577f5e78631024e14bc4f79e11a6c549712833f2edd5a13d802ca45",
+    "assets/Bundle/levels/meng-chong-san-guo/cao-chuan-jie-jian/scene-a.jpg": "382b56c07e328d2effdf2dbca945c278056aa6e24bfb0fb20c087796fd40c9bc",
+    "assets/Bundle/levels/meng-chong-san-guo/cao-chuan-jie-jian/scene-a.jpg.meta": "d339c5329401094003a3d3962d6429211410c524f8c9a5984e19c7869f546408",
+    "assets/Bundle/levels/meng-chong-san-guo/cao-chuan-jie-jian/scene-b.jpg": "ce3f929904d75d86eb7c5f8cded4ed048b953b1f9bfaa7658cfade464fa9c483",
+    "assets/Bundle/levels/meng-chong-san-guo/cao-chuan-jie-jian/scene-b.jpg.meta": "9bc2c206247060e7d8aa8d5b9dfa2842b22037ed307de30cb5c7770a7a29d7aa",
+    "assets/Bundle/levels/meng-chong-san-guo/cao-meng-de-heng-shuo-fu-shi/scene-a.jpg": "f9292f80ba8ed9e3f60a126c97007d6aa841eee86b1b5c0cefd2041722fb3f38",
+    "assets/Bundle/levels/meng-chong-san-guo/cao-meng-de-heng-shuo-fu-shi/scene-a.jpg.meta": "228f964e088bb5ed6057b9dcb03885acad19484b365f7df08c0eabc59b034251",
+    "assets/Bundle/levels/meng-chong-san-guo/cao-meng-de-heng-shuo-fu-shi/scene-b.jpg": "c55b5781f4bebb853e3b33736232a6d8560d20236722df4d2a578565359ac4c1",
+    "assets/Bundle/levels/meng-chong-san-guo/cao-meng-de-heng-shuo-fu-shi/scene-b.jpg.meta": "0407c09fe04f7746f7ac7da067806975b61ca6c5d2e7b9b1a1af2dbed6be5f73",
+    "assets/Bundle/levels/meng-chong-san-guo/chang-ban-po-dan-qi-jiu-zhu/scene-a.jpg": "1f88ba2b8947c18b75f2d882e48c718e0264ebbee8e83b90ae81832875a0ed54",
+    "assets/Bundle/levels/meng-chong-san-guo/chang-ban-po-dan-qi-jiu-zhu/scene-a.jpg.meta": "c3e4a3b99697b7f67035e3c2c77535c9cd6eb9c1f300f41668bbf64bc30fd86d",
+    "assets/Bundle/levels/meng-chong-san-guo/chang-ban-po-dan-qi-jiu-zhu/scene-b.jpg": "a04e4b8aefb90d0c95b45571a9a6a0f600599ecfa7863dc04fc92690220a9986",
+    "assets/Bundle/levels/meng-chong-san-guo/chang-ban-po-dan-qi-jiu-zhu/scene-b.jpg.meta": "89f89d0935d782b825d9caf5d9d2eb9e418400ab1fbeec4f1597f97e16dbb4f4",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01.meta": "2fb46428df453e630f56e1d80ffe27d46c587ae1dfbbb233d74fbfba29799efe",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/bai-di-cheng-tuo-gu.meta": "8169dae4bf1bc129a5f333248361993ec3671b65e83085a28921e92573587686",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/cao-chuan-jie-jian.meta": "41792e6ee0b6b32ffb7d76c73e0b8718ddeabe6c494fdcd8c6e93fd945ec6afa",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/cao-meng-de-heng-shuo-fu-shi.meta": "a698dd9e17586491e54c22dfbdb2c980bed2b71a4dfd06e0ea4d7d3210ea8ff7",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/chang-ban-po-dan-qi-jiu-zhu.meta": "42d0716ffa5efd0e3b6ba541f6b33edca008f52f10c038f18234ed5b0254bdc2",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/city.json": "30f176c53ece329da0f9b480ed65a207a88dadbb9f5967a0ac9f141cf5cd1e32",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/city.json.meta": "e03f3d8bc45ac9955ed27d722901fd19e1c187aec82ac55d1180686735c5fa2c",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/dan-qi-tui-xiong-bing.meta": "13fbdf5bce1f64baa53ba9328ac7c33121924fec642dd220eba9709bcd2253fb",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/ding-jun-shan.meta": "1e7a06f79e95922b962e2afb4d74f461e7701fe9e420274f15925e6ac5ad5452",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/ge-xu-qi-pao.meta": "0338d126d74556b262ed9224b6ae92d1e05cbf4352b70fbf8eb23474a9d8cd5f",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/gua-gu-liao-du.meta": "16a7a0eb2cd7d1328078419afa955b52fbd7da11ea4dbfbd96a0a0083d937305",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/hua-rong-dao.meta": "d76097fe32444fb449a6db6270924bb3ef175536ec7e4216d1ec861da5fdff7f",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/huang-jin-qi-yi.meta": "2144bcbe7b75d5a9a5d9b1331bddad52b7f5550b8ba0b438eca1c2726410a89d",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/huo-shao-wu-chao.meta": "d0d78f2ee4ee904e7663f6787eba529b498a208eb46de96c2f55a6eb456b1ed4",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/jie-dong-feng-huo-shao-chi-bi.meta": "25f8e314e79e0470e0874714be5739bdc3cb2860af361c28fe6838f9492cde3b",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/jiu-fa-zhong-yuan.meta": "7aa70fcf7b11d41fe656cfa79cfd525bb8d27ad5d0a20f188afcda51acb2e76e",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/kong-cheng-ji.meta": "5cc38477a91a7b29649810aa9608ff82c044266066645ac49e69bd64b246639a",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/lian-huan-ji.meta": "104d952affeec2eb3088cab064a054405d142077e4887295dda5f11d12607c3a",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/long-zhong-dui.meta": "37a243d65144976a35e2cea1ec4f9940c7c9a1a14f0ba4843170cdec3dabe0ef",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/luo-feng-po.meta": "87b03479fcab4d64afe6a0f8426c2b2ba8a4cbbd17c2d306c22cdb73057257eb",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/qi-qin-meng-huo.meta": "54fc9855e33a6ec6dbf79786b91b9638a330bcd5c3de3d102fcd480b1790c44c",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/san-ying-zhan-lv-bu.meta": "f60578fefc576281a830aefd00c1a5f94580e9d8bdcdeeb296bf89c763f8f40d",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/she-zhan-qun-ru.meta": "62c7e5b7fee959b5811fdf3ad4ca3133e42cc95abafb0b0cf281758c25310130",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/shen-ting-ling-da-zhan-sun-ce.meta": "bdac6550957c1baf51bfea60093ecd8f3943c5870a63e6341cb2b4711a21e62d",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/shui-yan-qi-jun.meta": "48ab257e7d528feb4a344239363c9109a7a94a4647f2daa27949f64949a04e9e",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/sun-jian-ni-yu-xi.meta": "d86a3f5a19333ea140c15dbdf603f7952cdf0512fa3af2e6346f3d9f4fd1fe13",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/tao-yuan-jie-yi.meta": "0b9ec4c842b0ccb2c0fb7595ee85486f708ba8affd45e6a88c2df1df5e60cffa",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wei-zhen-xiao-yao-jin.meta": "6edef73d8b8e14e38c66181aecf592490de64eeccfb4001e77c41f2e997599c2",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wen-jiu-zhan-hua-xiong.meta": "26f86a8e3ff91c373ce280e74a6349ab67a65b919d097803bd2aa6ddae846646",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wu-hou-rang-xing.meta": "9a4d6cb8bf2499811e79994f442fe1ce7e35002481274cc6a3fcfac9ea22e005",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/yuan-men-she-ji.meta": "614baa3e9744c93b8ca38e4350cdbe56510400bbf11be4df03240df9ac39c442",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/yuan-zheng-wu-huan.meta": "3c57169d12accd5d0f95be654bb86cb7d9b43aeab47cfe0aa2e511164f6bf077",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/zhu-jiu-lun-ying-xiong.meta": "b52a51b2999e7c097065c56219841aee9e34c0ab8de46e5b05dbe4621478f0db",
+    "assets/Bundle/levels/meng-chong-san-guo/dan-qi-tui-xiong-bing/scene-a.jpg": "2c522f91c5c69c1942b0a46b2c03b95eb33a4a19654a7f51e61682866d3b1f58",
+    "assets/Bundle/levels/meng-chong-san-guo/dan-qi-tui-xiong-bing/scene-a.jpg.meta": "8ac473177d83bce6177cf0cd254557c4350e8b06db7cc6521b217d1f096535d6",
+    "assets/Bundle/levels/meng-chong-san-guo/dan-qi-tui-xiong-bing/scene-b.jpg": "df86ff65202f700b7f9dbcee8a067c3745a4c1119ee99adbb312cd33508175ba",
+    "assets/Bundle/levels/meng-chong-san-guo/dan-qi-tui-xiong-bing/scene-b.jpg.meta": "4a2fc98759c31bc7b35befe4ffe51efccaa7df1c794e16852f467f0d2f198cd5",
+    "assets/Bundle/levels/meng-chong-san-guo/ding-jun-shan/scene-a.jpg": "25a4862bebdf12d5e59bbea25b3e467ef9debf553005253db6af24a202718216",
+    "assets/Bundle/levels/meng-chong-san-guo/ding-jun-shan/scene-a.jpg.meta": "59dd19614ac727fb753b50503555ec17b33f2bee7270b6dc4687540f5aeeacc8",
+    "assets/Bundle/levels/meng-chong-san-guo/ding-jun-shan/scene-b.jpg": "535e1ae9e6007b1675ab70be0247e48f7888c5e06b6e5c8db2778da11aaa3fe7",
+    "assets/Bundle/levels/meng-chong-san-guo/ding-jun-shan/scene-b.jpg.meta": "2221df0f8cbe8230c67292b74df48181a95d3f5b781f912a90f2ebef29982cd0",
+    "assets/Bundle/levels/meng-chong-san-guo/ge-xu-qi-pao/scene-a.jpg": "e8c5c3d2766cbdb0b9b37cbda238da7ea798de234e9669420aed8ec120897764",
+    "assets/Bundle/levels/meng-chong-san-guo/ge-xu-qi-pao/scene-a.jpg.meta": "b39a86833d0d72b0ed7cf4d2c10e6c6ea5a89821e61be35dad3268a8d5c05bab",
+    "assets/Bundle/levels/meng-chong-san-guo/ge-xu-qi-pao/scene-b.jpg": "c9b716b70736b4815816f007ba4c4baf5d1c778c745943c117e62a1263affc76",
+    "assets/Bundle/levels/meng-chong-san-guo/ge-xu-qi-pao/scene-b.jpg.meta": "7fc5c9433cb42862439e5bc59a72ce47bbc25523c4d8fbc8eec44bc26720094a",
+    "assets/Bundle/levels/meng-chong-san-guo/gua-gu-liao-du/scene-a.jpg": "35c18e1c0304c36b29341382b3739222145b318bee4cb250e32c1befeff34295",
+    "assets/Bundle/levels/meng-chong-san-guo/gua-gu-liao-du/scene-a.jpg.meta": "6458a4826014b6d8b6990f8c1de791933c6762c5cbbe1e4898f468502d5b82c6",
+    "assets/Bundle/levels/meng-chong-san-guo/gua-gu-liao-du/scene-b.jpg": "b0a2af0a97987d10ec9fe4c2b4ba565a903cdc0f98bb6b17fc5f65e222ce40c9",
+    "assets/Bundle/levels/meng-chong-san-guo/gua-gu-liao-du/scene-b.jpg.meta": "98dd3fb82b967f6ae8a7e39ec904d89235e1f439d50a9fe2965479425a823411",
+    "assets/Bundle/levels/meng-chong-san-guo/hua-rong-dao/scene-a.jpg": "f68102f79cca5f66f759c6c25144402db95c9fddf234f7fb17221579d7a17870",
+    "assets/Bundle/levels/meng-chong-san-guo/hua-rong-dao/scene-a.jpg.meta": "2db94cd05580823c19473d90006d8e47563874a2ae590656eba8dfc2d5cebb14",
+    "assets/Bundle/levels/meng-chong-san-guo/hua-rong-dao/scene-b.jpg": "12d4ce089c467149917ba9be133e555d05fe73324dca5484206127293fdde661",
+    "assets/Bundle/levels/meng-chong-san-guo/hua-rong-dao/scene-b.jpg.meta": "a5b7ad1dec417f186063eef001a55fdcad6326b8d8c75f20ed388abf7e1a5dad",
+    "assets/Bundle/levels/meng-chong-san-guo/huang-jin-qi-yi/scene-a.jpg": "8935d2ea9c250ad3765426cc8009c835ee11824fd18a2ed203476cac1b79c6c8",
+    "assets/Bundle/levels/meng-chong-san-guo/huang-jin-qi-yi/scene-a.jpg.meta": "52f05696007645f2fcac05aaef311699ee3f1d62c9e13cc9ab07ae67e28b7901",
+    "assets/Bundle/levels/meng-chong-san-guo/huang-jin-qi-yi/scene-b.jpg": "4da95c2e432caee9c841bd8d003c1cae655a3f448be7b3b0488e11b48a476a0e",
+    "assets/Bundle/levels/meng-chong-san-guo/huang-jin-qi-yi/scene-b.jpg.meta": "52dc096bdd9687498e9b87707631b5dceaad5ac3b472741eb6452c0f01918922",
+    "assets/Bundle/levels/meng-chong-san-guo/huo-shao-wu-chao/scene-a.jpg": "a92c11cc798c3bab44acdc8ea061155bab64a77f28a811507ec03d30ecf2b575",
+    "assets/Bundle/levels/meng-chong-san-guo/huo-shao-wu-chao/scene-a.jpg.meta": "60e86ead8a11504dcc0884d268a76955ee920af6f12d1df63604bd1f06fd973c",
+    "assets/Bundle/levels/meng-chong-san-guo/huo-shao-wu-chao/scene-b.jpg": "7f7594628ed536878bba5fdd1ea05cf01c9f6f4a330b68b787e2f278e80c65a4",
+    "assets/Bundle/levels/meng-chong-san-guo/huo-shao-wu-chao/scene-b.jpg.meta": "f15d1f297593ba05033cf43648d52981e63c487377f10ae6a57cee93408cd24a",
+    "assets/Bundle/levels/meng-chong-san-guo/jie-dong-feng-huo-shao-chi-bi/scene-a.jpg": "f12631d93d0b83541f0dc03aa57067071cadd82e9a1bf4f623dc275997cd092c",
+    "assets/Bundle/levels/meng-chong-san-guo/jie-dong-feng-huo-shao-chi-bi/scene-a.jpg.meta": "f3ce6ed97cf14d43ff80b63054e6b75168b1355f6aac922d673d952b6821341c",
+    "assets/Bundle/levels/meng-chong-san-guo/jie-dong-feng-huo-shao-chi-bi/scene-b.jpg": "da72ccf9c51c8349f42b7380184fb1ee58d150c9ecc3dcf2ee8e8f37a23f0f45",
+    "assets/Bundle/levels/meng-chong-san-guo/jie-dong-feng-huo-shao-chi-bi/scene-b.jpg.meta": "37983f16324a007ba46cbe93e74b35824d059f98d3205a1988c23cb4518903d3",
+    "assets/Bundle/levels/meng-chong-san-guo/jiu-fa-zhong-yuan/scene-a.jpg": "8c15a4c3d1c3e6be28e75de1c066ee4e6ac9292f7f3f4f4ccf680c36fea34156",
+    "assets/Bundle/levels/meng-chong-san-guo/jiu-fa-zhong-yuan/scene-a.jpg.meta": "4ae0999195a0403dac5713ce0146bd642ad445e9a9fd95a72c459c68b5d2dfc5",
+    "assets/Bundle/levels/meng-chong-san-guo/jiu-fa-zhong-yuan/scene-b.jpg": "c4ce7fb825837c2a2675ef7f51cc48461943aa2b0e6c2c4860a476824b47e1b2",
+    "assets/Bundle/levels/meng-chong-san-guo/jiu-fa-zhong-yuan/scene-b.jpg.meta": "cbf6fe8e4cf70b273a53eeec3f4fcbda70f19b51f3526741bb1ca44f531f2dd5",
+    "assets/Bundle/levels/meng-chong-san-guo/kong-cheng-ji/scene-a.jpg": "a51e07b67612931b25d4efcf5f7791a7e277bc31dd7a1dd125f32987dea02484",
+    "assets/Bundle/levels/meng-chong-san-guo/kong-cheng-ji/scene-a.jpg.meta": "43064e9a003a9dae1527f26092bc177b72b24a521b31c11789070a8b02c95a73",
+    "assets/Bundle/levels/meng-chong-san-guo/kong-cheng-ji/scene-b.jpg": "f7d01edb91f7f4930b996dade5465694d184a9f3c61fd6a9d0df0c572d17d832",
+    "assets/Bundle/levels/meng-chong-san-guo/kong-cheng-ji/scene-b.jpg.meta": "39a8a8e86ad15a9476e94e35a4fc28a1bb8618ba79254f2927a93079f965f7e7",
+    "assets/Bundle/levels/meng-chong-san-guo/lian-huan-ji/scene-a.jpg": "1b47329571065d4bf39dd7d3382d41f0efe4941f2f1b2749c13ba2fe023781fe",
+    "assets/Bundle/levels/meng-chong-san-guo/lian-huan-ji/scene-a.jpg.meta": "4cedeb35e610ebdc6dd77f6bd9cb09633f9adaa0efca04b08c69cc70664dc7bb",
+    "assets/Bundle/levels/meng-chong-san-guo/lian-huan-ji/scene-b.jpg": "87229bac781d0b7441ee0211d4890f1d779a3d2a8d632a1e15f5ec1f6d30b652",
+    "assets/Bundle/levels/meng-chong-san-guo/lian-huan-ji/scene-b.jpg.meta": "37e162842b6c533b7bfb35e217d6614ca0c669da3ead5511c61cffe04dac35c9",
+    "assets/Bundle/levels/meng-chong-san-guo/long-zhong-dui/scene-a.jpg": "d4d5aaf6c6198b92d8b9a51534ff16d52e60122c234fe538df7a6650a1f4b4db",
+    "assets/Bundle/levels/meng-chong-san-guo/long-zhong-dui/scene-a.jpg.meta": "7d391f171925a73b75becdcbc34aeb2f3ce8cce4c12aea64945bb7f7c5a8f681",
+    "assets/Bundle/levels/meng-chong-san-guo/long-zhong-dui/scene-b.jpg": "63746f866e1f13abaac87cb07f20e94bb7d86577b0eae5e8cf6d89a4ec894001",
+    "assets/Bundle/levels/meng-chong-san-guo/long-zhong-dui/scene-b.jpg.meta": "e904ff7685d78b45b789134e3ae04ba5a09fa8ca8acb78f25f906d421a8a2d98",
+    "assets/Bundle/levels/meng-chong-san-guo/luo-feng-po/scene-a.jpg": "af5a11205a70c6d44f38b52ba9ccc5a458fd1aacbf32f3a7272842a3005b38ee",
+    "assets/Bundle/levels/meng-chong-san-guo/luo-feng-po/scene-a.jpg.meta": "c31a090890795fba3ad22030a06303fcd2dc89108be9501709508487e072dbec",
+    "assets/Bundle/levels/meng-chong-san-guo/luo-feng-po/scene-b.jpg": "225b5a0a1130345d68a9f7a34a982026b80c858c3e756adefa2ff01a9d586cd6",
+    "assets/Bundle/levels/meng-chong-san-guo/luo-feng-po/scene-b.jpg.meta": "151bed15ce8bac2e63ed566eacacbcc86de72f3ab5b2fa0fdae0ebf5b72909cd",
+    "assets/Bundle/levels/meng-chong-san-guo/prefabs/Item_Tips_surprise.prefab": "a3a78705fb6fe66758862bf429a1b5a6a8adcd7e70dff667f400699a480c90c7",
+    "assets/Bundle/levels/meng-chong-san-guo/prefabs/Item_Tips_surprise.prefab.meta": "ed876c46b1f4a7ec970420ec9b223e3d4c622a31806981a74563a29db09deddf",
+    "assets/Bundle/levels/meng-chong-san-guo/qi-qin-meng-huo/scene-a.jpg": "4c624b26c741c0276330587d0ebf2d5dda8d78fb34ed578fc25b2cd14cc07b2e",
+    "assets/Bundle/levels/meng-chong-san-guo/qi-qin-meng-huo/scene-a.jpg.meta": "68e28f4d34f860b2afa4c54e2cc22383d23665d73c37fff9556fce9685d340ee",
+    "assets/Bundle/levels/meng-chong-san-guo/qi-qin-meng-huo/scene-b.jpg": "54d343d457ac47b2b324a79822e966a1ff9da1e780f84cf53847078dcccc43d8",
+    "assets/Bundle/levels/meng-chong-san-guo/qi-qin-meng-huo/scene-b.jpg.meta": "82b190d164d7ecdfb249b3e48066a1c6303cbe3b4a5b49cc3bf85a784dee9cee",
+    "assets/Bundle/levels/meng-chong-san-guo/san-ying-zhan-lv-bu/scene-a.jpg": "b05d2bc679f6557591c6ab4074640f14b9ff41b75333922886b3aa018024b960",
+    "assets/Bundle/levels/meng-chong-san-guo/san-ying-zhan-lv-bu/scene-a.jpg.meta": "97a43e743bd68b6f08ff64482cc3c48375a38813761da4a134e43332ad32caee",
+    "assets/Bundle/levels/meng-chong-san-guo/san-ying-zhan-lv-bu/scene-b.jpg": "1d84f40e344ecd2c53fdaf29ef3c8293d233ec47d5ceccf92b67951702922f65",
+    "assets/Bundle/levels/meng-chong-san-guo/san-ying-zhan-lv-bu/scene-b.jpg.meta": "bcf1c1f5fc9ed4fb96bc05ac689f498c3f6437047808ad9f45f8b8ac55ae7463",
+    "assets/Bundle/levels/meng-chong-san-guo/she-zhan-qun-ru/scene-a.jpg": "a5476ab0c04f771118fa903cf5886092a578fc4b26f97f6e0bcfe40b9927ddcf",
+    "assets/Bundle/levels/meng-chong-san-guo/she-zhan-qun-ru/scene-a.jpg.meta": "4d25120a1792410adbd59ece275c13fcc6b5871a404afee22ab5a72ae5c69d2a",
+    "assets/Bundle/levels/meng-chong-san-guo/she-zhan-qun-ru/scene-b.jpg": "be698ecc56e852fbd798808a7b26eec85d201eaa18f2e81b114a4b7696c15f6b",
+    "assets/Bundle/levels/meng-chong-san-guo/she-zhan-qun-ru/scene-b.jpg.meta": "9b0b9d52f7f2f4bdcbec9608e616e9cd6c0b0fedd85af272ce7945132cfb9aa6",
+    "assets/Bundle/levels/meng-chong-san-guo/shen-ting-ling-da-zhan-sun-ce/scene-a.jpg": "93410ab449cebf18a4cf9844a12f176e6a87ad1a6cde2ed5c4354b05772a94f7",
+    "assets/Bundle/levels/meng-chong-san-guo/shen-ting-ling-da-zhan-sun-ce/scene-a.jpg.meta": "2f3674f2949f7aa9982daa44797d61fac3a8355c82abbd12d7f5bf6a84aaadb4",
+    "assets/Bundle/levels/meng-chong-san-guo/shen-ting-ling-da-zhan-sun-ce/scene-b.jpg": "4390d8fbe191c7757888b5e9b7f655d50098199eea9b3a6f4c971c46f473ce24",
+    "assets/Bundle/levels/meng-chong-san-guo/shen-ting-ling-da-zhan-sun-ce/scene-b.jpg.meta": "28796b7fa54afe94942c165e2251b19a85d7d708f7a7c6a295daf8de0c14afb9",
+    "assets/Bundle/levels/meng-chong-san-guo/shui-yan-qi-jun/scene-a.jpg": "64b317efabc36d79b2557b0cd9671e0cb28705f278018d48402bdc8fb051798f",
+    "assets/Bundle/levels/meng-chong-san-guo/shui-yan-qi-jun/scene-a.jpg.meta": "073bf60a3cc1e4965e40253b31301aa7ea002f81c1190093d52495f6f510c7cd",
+    "assets/Bundle/levels/meng-chong-san-guo/shui-yan-qi-jun/scene-b.jpg": "10013a5d011235ab7a8e62045d55d8915a2bf3911a153974db67c65d7240dc59",
+    "assets/Bundle/levels/meng-chong-san-guo/shui-yan-qi-jun/scene-b.jpg.meta": "91fa24ca9b58730db59bcaaeed08440985cca68f662262ce1ac0605cefd6b7ee",
+    "assets/Bundle/levels/meng-chong-san-guo/sun-jian-ni-yu-xi/scene-a.jpg": "5bd3b3977700dc804a66d8645e7016888cd683de8f3be56abd7bc09b510a998a",
+    "assets/Bundle/levels/meng-chong-san-guo/sun-jian-ni-yu-xi/scene-a.jpg.meta": "63ac6aa6184646b61d7f122a73258e1d4e625c0de92c52040b77b3338b87cc0c",
+    "assets/Bundle/levels/meng-chong-san-guo/sun-jian-ni-yu-xi/scene-b.jpg": "21b3c31de19bb769b0c7253cac535edef054d3652054cdbcc9402b41b63dbd47",
+    "assets/Bundle/levels/meng-chong-san-guo/sun-jian-ni-yu-xi/scene-b.jpg.meta": "4b4f74d7d1bca0e0ce9e87528fa456470b95d0cb812206a8409f3ad71e8a6717",
+    "assets/Bundle/levels/meng-chong-san-guo/tao-yuan-jie-yi/scene-a.jpg": "a41b2e7d5f39d2f7b03dff1093223b601f91ac72c7c6a7bf2a763f3d63b7d19e",
+    "assets/Bundle/levels/meng-chong-san-guo/tao-yuan-jie-yi/scene-a.jpg.meta": "7c4beaec4b6d8454f7db66cbeb3b4c03dc0672aef4fbf574a754933b5504beb9",
+    "assets/Bundle/levels/meng-chong-san-guo/tao-yuan-jie-yi/scene-b.jpg": "8fab927c235540f7dff33bbfe79ae65b025c5fdc5696286e76a0ad0c5c589743",
+    "assets/Bundle/levels/meng-chong-san-guo/tao-yuan-jie-yi/scene-b.jpg.meta": "fdc13ea9dfb02632f67690e5cfcd70b68c3fc13701a5da44216a9ce0c54da20c",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/bai-di-cheng-tuo-gu.meta": "7e137cb691018a1a0390e0f9bd9e5205de008f859705d76615eedb67b372ded1",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/cao-chuan-jie-jian.meta": "7f3a3d27b8a27b7eaddab3bdeeed7647b98b927e1c3bd9b760e0bffd79d75819",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/cao-meng-de-heng-shuo-fu-shi.meta": "077f30b49d5df81205a842af078219f95dda7865d3d3e549be0ab86cf83da123",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/chang-ban-po-dan-qi-jiu-zhu.meta": "5c18eb884d4d9b7a207e339434bc5a1ff2a70799bfc01596051cfa0b95c12085",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/dan-qi-tui-xiong-bing.meta": "b354a706c6077d1ad951b7316c5111beccea3ec27fe5b2a6f08ff4b0a4eec6f7",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/ding-jun-shan.meta": "53c20844b0eb41c68819e20af32d44261a7ca3cf0ecb959d7dfdb514a81ce734",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/ge-xu-qi-pao.meta": "812f725d9cc787468184055ba6b166283057b3d8d42b9b9b0a804d3836ac332e",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/gua-gu-liao-du.meta": "12cb9e1b559e5b52f8151ac76f45d0587356de9cb3223ece5e9589b1af441ba4",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/hua-rong-dao.meta": "0707344a0ed9bb2909780546ab186686c76245a3e08882681b1be6ab21beed02",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/huang-jin-qi-yi.meta": "8d9995aecf181ec5acd4ffb3294cd3eaf8a3ba474cd02760fd9ab4c52899d180",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/huo-shao-wu-chao.meta": "0eab84b520c0cfa26386af88a314717423166d6e9255f114c9c607add231184c",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/jie-dong-feng-huo-shao-chi-bi.meta": "d202dc9e582b77ec178afdce7ed722ef221b805299852eae5cfb2d69e0096d72",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/jiu-fa-zhong-yuan.meta": "1b5f96b2757900514504579b8db4da6ff6677884946225941129b60845727217",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/kong-cheng-ji.meta": "4bd882ec34e84b320386856dbf36ba2a35d12f476792c8afc84c3dec533e34f2",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/lian-huan-ji.meta": "29c5af5efd34c2865945a0c16f73ff48fa7513969ad544f2e0b4da195e5f4360",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/long-zhong-dui.meta": "d27b3432c4d3dda889cf289543b1bddfc987b566de964b3891645201d305bd14",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/luo-feng-po.meta": "d5e2676ac46528e3e8a326064e2a1dcaebc9d9cfb8c7948e0ef9a0fbd9b89ffa",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/qi-qin-meng-huo.meta": "cb2d1bbf792e9d121fa571927ad0279b6136eb521e612e42c79d8973248e90ef",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/san-ying-zhan-lv-bu.meta": "8818da9f5f9ffc92b3481c7c40b748400c6c76761c3c0747fedb08fb820fea01",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/she-zhan-qun-ru.meta": "171ed240809e83f1e3a12a872e16356dadb6d7379bbea07fb42f784a4c661519",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/shen-ting-ling-da-zhan-sun-ce.meta": "c8645f2c9e38278d968943545baade2a0b968485a1baf49b6cdcd0a78c059c81",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/shui-yan-qi-jun.meta": "713b51e8f8a5348010803e9a2c322f4ee2499a655e4e6d846f1ff7b1ee537f44",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/sun-jian-ni-yu-xi.meta": "eed5b8a084949472e957de698ea9a67385c2f129b34fb8feeab9d088112886b8",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/tao-yuan-jie-yi.meta": "53ac8b83cb1e7db5cde7400345f2d1018795c564045b28db834da91037608e27",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/wei-zhen-xiao-yao-jin.meta": "2f5b4e7fbcb6a3dc0d0aab8c7196b78f5e96dfd0f328aa3ba16724b12cb997a2",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/wen-jiu-zhan-hua-xiong.meta": "ef0b406361a287fd282bed05787d283f68c394764bb3531b9379137257472d70",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/wu-hou-rang-xing.meta": "b77d93c41a0f714156a66ea0ca7732ff2c686cb4005b3b7196f6380036836f9d",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/yuan-men-she-ji.meta": "c1b7a56a531547035a16a4fc64f781e2e9db8f52c33d9214a55f7a9a4e81e8fe",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/yuan-zheng-wu-huan.meta": "07a431c9dc499f68ba0958415f9342916a4e72f5450feee95f4c222de8eb8204",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/zhu-jiu-lun-ying-xiong.meta": "83e47d361bf1b24dbe8f46477f29a6bbb0b2520d22d38784aede06005244255f",
+    "assets/Bundle/levels/meng-chong-san-guo/wei-zhen-xiao-yao-jin/scene-a.jpg": "0ede5755fa1af0793e7c00bcaa40093824feadddf1cdfb8600ae8b86abb1176b",
+    "assets/Bundle/levels/meng-chong-san-guo/wei-zhen-xiao-yao-jin/scene-a.jpg.meta": "43ac4ef92de03b70381e64429c35c8a66c161ed79de326cda1e70047505bf909",
+    "assets/Bundle/levels/meng-chong-san-guo/wei-zhen-xiao-yao-jin/scene-b.jpg": "bca33c4cce659614f731ea588f5e57a6f2be55c28859f85f07d4b2b929d446cd",
+    "assets/Bundle/levels/meng-chong-san-guo/wei-zhen-xiao-yao-jin/scene-b.jpg.meta": "c874e919bc2059330b5ff1700bf8fa23b5d0a5a9ecdbcd5383c95b8b8b97634e",
+    "assets/Bundle/levels/meng-chong-san-guo/wen-jiu-zhan-hua-xiong/scene-a.jpg": "9ff8bd622efedb8c56509dcd8a772d007d8a00e7eabdaa25e45ecac0329d9c33",
+    "assets/Bundle/levels/meng-chong-san-guo/wen-jiu-zhan-hua-xiong/scene-a.jpg.meta": "fe26a33fde16e4e280c2ac03591a181e635ea53679bbb0070d1c0f628c45126f",
+    "assets/Bundle/levels/meng-chong-san-guo/wen-jiu-zhan-hua-xiong/scene-b.jpg": "ee58e88e48d048d1bb4977bf9350dce6a06e6d072f23a9a1f7f886713b8a8da7",
+    "assets/Bundle/levels/meng-chong-san-guo/wen-jiu-zhan-hua-xiong/scene-b.jpg.meta": "c165cbf31c86d26b2ee5529a654ea4e5ac315feada0250b9966a505abfcbf433",
+    "assets/Bundle/levels/meng-chong-san-guo/wu-hou-rang-xing/scene-a.jpg": "3751c95105b6cbd834c8164d1ae0f8cd3d8a1da9a25d32ea700b7f9041c1588b",
+    "assets/Bundle/levels/meng-chong-san-guo/wu-hou-rang-xing/scene-a.jpg.meta": "34fcd67205a9ab95549054a127b718b95e227cbe42af5cbbfb71013c9b1808d3",
+    "assets/Bundle/levels/meng-chong-san-guo/wu-hou-rang-xing/scene-b.jpg": "bc369b0be52b653959edc20334e24d661f769f99585b6e87bbf537ee6b8e87e7",
+    "assets/Bundle/levels/meng-chong-san-guo/wu-hou-rang-xing/scene-b.jpg.meta": "f7c1e706bc582d17c670ebc95133c494d2179c56efaeed55ceb923bea116c366",
+    "assets/Bundle/levels/meng-chong-san-guo/yuan-men-she-ji/scene-a.jpg": "945da609f6b04f3fb5559580f2c3dcc05047d1e6241f191b5115e371799c9db2",
+    "assets/Bundle/levels/meng-chong-san-guo/yuan-men-she-ji/scene-a.jpg.meta": "bce87fd86a12dfff5d068f7c564b02c1f0149669d9fce84b0f75fa93c741fba4",
+    "assets/Bundle/levels/meng-chong-san-guo/yuan-men-she-ji/scene-b.jpg": "fd7c38739ce2fb85d281bbc644cc3d528de765f3247df2a0cf5dc41543fc6a8a",
+    "assets/Bundle/levels/meng-chong-san-guo/yuan-men-she-ji/scene-b.jpg.meta": "aa76c0081548cf8ab036ff115ad14c7176f97d05a5eeb757d46895469f068ff6",
+    "assets/Bundle/levels/meng-chong-san-guo/yuan-zheng-wu-huan/scene-a.jpg": "1e0a57da62c9cf47ca1db267fc8b7ccd0466a678f9912be65aeba7f40693f9f3",
+    "assets/Bundle/levels/meng-chong-san-guo/yuan-zheng-wu-huan/scene-a.jpg.meta": "ef9dd9d36cc6f1087e1a7ad3f29f3d9e777debbce04d6a9531b6fabb7329670e",
+    "assets/Bundle/levels/meng-chong-san-guo/yuan-zheng-wu-huan/scene-b.jpg": "e7af270510cba1f7bb88fca1691583312ffa17dc0e247aaae86af36f37b51411",
+    "assets/Bundle/levels/meng-chong-san-guo/yuan-zheng-wu-huan/scene-b.jpg.meta": "33a29fa2d079c6599f17f36df44f820d2a3937cfbc93113363820a41b43991f7",
+    "assets/Bundle/levels/meng-chong-san-guo/zhu-jiu-lun-ying-xiong/scene-a.jpg": "0bef383eda9e6444f93b9ccaf0f6cdec4f1989428af265fa4a44df384fa4b548",
+    "assets/Bundle/levels/meng-chong-san-guo/zhu-jiu-lun-ying-xiong/scene-a.jpg.meta": "fce4e176ea28634bfcbcc029a64b6f3fc2633d4e99eb61cbbcfe29c57063c079",
+    "assets/Bundle/levels/meng-chong-san-guo/zhu-jiu-lun-ying-xiong/scene-b.jpg": "5432f93857bbe772c8bb3ac52ad7b3307e795976dcdbb5063f9c63865d1e43ce",
+    "assets/Bundle/levels/meng-chong-san-guo/zhu-jiu-lun-ying-xiong/scene-b.jpg.meta": "92d44a4e42eec6e1ed6c34e3081ebdef9eba518075fcc2a6ddfd1ebb50279447",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/bai-di-cheng-tuo-gu/icon.jpg": "f063b4b5e5f8855a60a6055bb95e79185e449cf4a602e477ca5ed6eb921bcb09",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/bai-di-cheng-tuo-gu/icon.jpg.meta": "39995ad37011a41d736d68a463b14f7901f244592f08a81fa0848e34bf34cc5d",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/cao-chuan-jie-jian/icon.jpg": "7735727c696667c1605081b339727ae52158949deed24290e10a2853176bc79e",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/cao-chuan-jie-jian/icon.jpg.meta": "86370e5247c6d36d53e0e92cddb55de01b0c0ad22badc16d45410cf28d2d58ea",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/cao-meng-de-heng-shuo-fu-shi/icon.jpg": "d1e9753c54d9797db3f6bb6d1f645681f4c7ff89468c3edb9c7a61d1d1dc6d91",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/cao-meng-de-heng-shuo-fu-shi/icon.jpg.meta": "86a152a11deea7154cce403e27432f5c0be95d8cc95ced52909ed2acc03ad71b",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/chang-ban-po-dan-qi-jiu-zhu/icon.jpg": "62eb180367cf6bcdfe855bcba67e1cac65607d6bf42238705f8ee30b4ecdf8ae",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/chang-ban-po-dan-qi-jiu-zhu/icon.jpg.meta": "dc52cad893d69ac01cc43e4d025aed4767da026319443b01e16a7e4d2a3d8ecb",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/dan-qi-tui-xiong-bing/icon.jpg": "0bb1ef3cb05f11ff0c85e42f4f0ea7386a6c3bd78594dbd3385bc917df17a309",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/dan-qi-tui-xiong-bing/icon.jpg.meta": "d4766e65bd31ed9f61601c6217cc32732a9dabb7da8a62569e64ebde7913acb2",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/ding-jun-shan/icon.jpg": "8bcef414072b47272aa4304ef499d9c45feb3cb0dfb0b2037c397bab97084bf9",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/ding-jun-shan/icon.jpg.meta": "7d50df2d3b07fb35255495cd5ef7f127e280ac6decdcb0ebb60a9e00f1257544",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/ge-xu-qi-pao/icon.jpg": "25878a83bb4389d6fddeaa324e3c9b048bab6f12eda8cf108f16cc40fe81cc42",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/ge-xu-qi-pao/icon.jpg.meta": "c1618513589c4d52c204e84d4bd36e74f7812e8488d3814cf1e0cb7be8755017",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/gua-gu-liao-du/icon.jpg": "ab901239c50d8468c2ffad2f04a4efc0b0c3b07173b2534136d31f9cbf0e4912",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/gua-gu-liao-du/icon.jpg.meta": "86ac127fa1c7c66668775dc712523c88728621feff331bfa0c58a9181162822d",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/hua-rong-dao/icon.jpg": "67d81d91dd00fe961527056de7fb59a73d006c3326d10bce8999370facfd7fa4",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/hua-rong-dao/icon.jpg.meta": "f6fa6d12c8316ba1247bf5d34ee02cbe81990fb9a9f12d392f9fa92e978c19a4",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/huang-jin-qi-yi/icon.jpg": "e187c0fd2b9fd297598fdde6bed0bc05c60eb73467be0f0b0fdfbd5645561804",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/huang-jin-qi-yi/icon.jpg.meta": "0774c6d61ef22bd7687db6a8eb9501451a6c80c53557807c9436267689d716df",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/huo-shao-wu-chao/icon.jpg": "efdb0153ad93c86acf96a2caf951d99643d378c43a31dd9ffe3dbbd4a11d7ec7",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/huo-shao-wu-chao/icon.jpg.meta": "a3e97cefac7b8675d104c6b4bdb76321653d3b665a98368d9576560f38a104cc",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/jie-dong-feng-huo-shao-chi-bi/icon.jpg": "49b76154eadd85e39a879b1871670ed9b9e031653c26cb162d4df16b1c999703",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/jie-dong-feng-huo-shao-chi-bi/icon.jpg.meta": "3cb11ac9168a2dda6e74088088ffe1d6d14e58737594e68a0823efbd5de0373f",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/jiu-fa-zhong-yuan/icon.jpg": "813244deaef2740674e2080d922bc4da76f84165bf3fde416ad54f4f17684b96",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/jiu-fa-zhong-yuan/icon.jpg.meta": "97c130df38a8292ac14ce03f212b2f20b8a148ca141ff76103b1314bf07cba4d",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/kong-cheng-ji/icon.jpg": "2676ecb88f2688add12fc8aa77eca5993ea47fdcce5e3bd6de031cddcefd9c08",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/kong-cheng-ji/icon.jpg.meta": "1e8cb2070f81fd0002720290d8ae5bd117790714d4e619e121a2f26d1926f960",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/lian-huan-ji/icon.jpg": "6ba0ec89e4c166c688d63cb49b24bbdf5bdc738271ffbda4d8aa0fe99a20a2bf",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/lian-huan-ji/icon.jpg.meta": "b41e13f754a2db10bf16e3d126e110f9e4d04ecd180332c1765458579a173297",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/long-zhong-dui/icon.jpg": "9420ee9feb53ed63e669f0ad19bcb22c4d3fb30bd9370cd9067f999b740b47e6",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/long-zhong-dui/icon.jpg.meta": "d7a30ee05501364b9d94a54fa95877466c56ee8d0c408e6fc26401cdfe744264",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/luo-feng-po/icon.jpg": "51f44706b45173fa9ff01e28f5f6d7ce0a8fd33b2108ecc4a754e0a067cd79ac",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/luo-feng-po/icon.jpg.meta": "26846b71100133412f36bb523dd11d47a8e9c87d5120499c74021b5222ca28fb",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/qi-qin-meng-huo/icon.jpg": "77f91e977544724d47f234e539fed454c44108951ec4e6b58ae6f8e0ee735b9e",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/qi-qin-meng-huo/icon.jpg.meta": "d4f45ce9ac7913165bbe35750480a59ef621ef4f7a4405244e4ea6e76a963918",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/san-ying-zhan-lv-bu/icon.jpg": "b33e88c0b792e2682ca9c7bc1bb9e7b57f9b9d5316868b524d743605bac56706",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/san-ying-zhan-lv-bu/icon.jpg.meta": "81c9a2aa07f1de4a6bbea1d3ef0431988cfa981e3cc471d3a703d518ef5b9791",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/she-zhan-qun-ru/icon.jpg": "dc1a1217f4d95a78f79c197cf7a20047ac2a5e0401f73f45d743750d458a6f41",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/she-zhan-qun-ru/icon.jpg.meta": "d2bbb7201a45e8c9b2258ad5c2faf84ed231072198e701234e7970fb5fd0433e",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/shen-ting-ling-da-zhan-sun-ce/icon.jpg": "7ba7e6318265bacf294f2906b90381f539e9647a12d153a083b44bd9b6d1fa07",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/shen-ting-ling-da-zhan-sun-ce/icon.jpg.meta": "9abed99f60d29e094582d89dc01b0177af704be60a294d23e8d38dcc17b26a90",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/shui-yan-qi-jun/icon.jpg": "68d0b3e2d321c37c077993f634d634b66a9fd23ad702ecd996fe568e1cc1ae01",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/shui-yan-qi-jun/icon.jpg.meta": "c93af819f3a8058bbbad08a1410e911485e3ccaaaaea5c70507f442dedd8229c",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/sun-jian-ni-yu-xi/icon.jpg": "a3b126941f3b30379e5010d3dc6f536a3fc630f0ba26d442f34789b48fdcac7b",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/sun-jian-ni-yu-xi/icon.jpg.meta": "d15dc871977644c1a5721a1c084eb6788139e453fb62e65b788655f792660448",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/tao-yuan-jie-yi/icon.jpg": "2f64685d6c233c46e0d955e1fdf3f913030121db7fc9a2cce12e2e4ee8dd61fa",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/tao-yuan-jie-yi/icon.jpg.meta": "7a498cf5d8bf9b87a1f223a394ffa1ebea9701b0f695c5b55d01c40edc50e3c5",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/wei-zhen-xiao-yao-jin/icon.jpg": "cf9fde23be7dcc8c9da66800819879d7e290bf4e764472239910eff3f2f1a031",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/wei-zhen-xiao-yao-jin/icon.jpg.meta": "5fa5e1b05e71031ca7be2eb95bf833eb77132677310c1f140803cd291a4b7fb3",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/wen-jiu-zhan-hua-xiong/icon.jpg": "9e2219554f53cb485b2a9cd9b110b0298fa149f67b80d69ae7449a80ee174563",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/wen-jiu-zhan-hua-xiong/icon.jpg.meta": "4b7ebb47bb8a92ebbfea422e4d50566ddf30270dda7399980cc65b26ef46fd9c",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/wu-hou-rang-xing/icon.jpg": "70081a8549ef721b8269f6dec4ec5061abd2acc6ca79dba90802082f667f257a",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/wu-hou-rang-xing/icon.jpg.meta": "8df1c1dd441d02eff350aa001b49cc038339b4edae53adfdfa7db25607bbe3c0",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/yuan-men-she-ji/icon.jpg": "d664d13c392ef96c70dc5f52ce5caa09ca2145434af1efac6e588ab2e5cf2219",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/yuan-men-she-ji/icon.jpg.meta": "ee5e7d767ad5e738427c506cdef74bedf3a7853df302549293eddf78eed190c0",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/yuan-zheng-wu-huan/icon.jpg": "d009491076de4b06d6d96cb7a0a96da1115ba6d625b8bdbb944c1c9d1ffc0cab",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/yuan-zheng-wu-huan/icon.jpg.meta": "e89558d797874204b1ef6f62ecf7da5d6cc374e1bad7eede357e28eeaf3c1345",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/zhu-jiu-lun-ying-xiong/icon.jpg": "7e3b41ad310f36fe3a51034f9bef9d22702af8bfacce6ff275d74069ba248b84",
+    "assets/Bundle/levels/meng-chong-san-guo/thumbnails/zhu-jiu-lun-ying-xiong/icon.jpg.meta": "9b4cf0dd398116a93ed715aa312486323d7a72af367789ec1a534b3a0b72dbe9",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/bai-di-cheng-tuo-gu/differences.json": "ae2ffb0c660d6690e5e0c1d68cfabdd5c7bc81157015951dc72f5066f93b61a2",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/bai-di-cheng-tuo-gu/differences.json.meta": "07f0fdc409bb2f30275a27ce14e08160bf743942639a59f5c43a4be2e877569d",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/cao-chuan-jie-jian/differences.json": "cc2279e4b17a4e9c8a01093a3977ad6fedd1380c397b960209358b0288f8b727",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/cao-chuan-jie-jian/differences.json.meta": "db3dbc058febd7deb2f012c1b7595fa42c268e401429be33658fa023a1b3cf3a",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/cao-meng-de-heng-shuo-fu-shi/differences.json": "3ecbaa848f8f685ea08b798fbb5c974cc79b5d0416d02c43294eef8491af595f",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/cao-meng-de-heng-shuo-fu-shi/differences.json.meta": "de2cdaae6f761d22cb9a0abb86087404276206faf1ab16943af8a93e343a136c",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/chang-ban-po-dan-qi-jiu-zhu/differences.json": "2d90e3f4f364cd233d7b685e56c0ccf7a2e58c493395b356464ff435908088d2",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/chang-ban-po-dan-qi-jiu-zhu/differences.json.meta": "833aa6200a0aaccff87ce3fdd126f0bbd2b3632ccab2d217855c9c6ea7b47bb6",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/dan-qi-tui-xiong-bing/differences.json": "b457818bef86193b2da7949993e8241f91546b00dcab6c434dfd272fa51bf2df",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/dan-qi-tui-xiong-bing/differences.json.meta": "a5315ffe210d358b38c6c434cbfdf9fc8588536275063d81c452dc8a796ccc67",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/ding-jun-shan/differences.json": "bd4097da9248c39a0bcc4487be0883361309bcaaf6a2f3a789fbcc22f17e55e1",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/ding-jun-shan/differences.json.meta": "9672cefebc7edfa3dfde293d1e8b95a96f6a87e18f63b335be0e8713af89aa4f",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/ge-xu-qi-pao/differences.json": "ac23880403649c9b79c98f5a63d194d9eb1f9b529043b3a790709fd295451aa4",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/ge-xu-qi-pao/differences.json.meta": "daded164bca56b06224d70643489be32c515f8ad155811fabb8fbd3f06f3250d",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/gua-gu-liao-du/differences.json": "3177f1e68a78dcaf7f6775d955dd2e276f60df61bfb806746ef3b4683c9934f5",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/gua-gu-liao-du/differences.json.meta": "fb3a1e5b40d46469e502fc39dad418868f609f0ebb9dab3cee98c05b4a8b9c38",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/hua-rong-dao/differences.json": "60bcc44d76e7e82559a9ed98255215fa74006ddfb88b612f36666727d658407f",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/hua-rong-dao/differences.json.meta": "51256262439451bbf54c6910c1623eaf4a55e32f0524070f8c1f37a84a92ac4a",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/huang-jin-qi-yi/differences.json": "f2e582bf663eeed3d7909390119b1ad9a1f5b4718a8cd9fc5001434aa0b43ecc",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/huang-jin-qi-yi/differences.json.meta": "7b9686736a3f2baa60174a1a0993a4c0c64273903502c911f182f093e589b2aa",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/huo-shao-wu-chao/differences.json": "f1a6ee2e0ba72d44165e3d91c946d472c2ef658e9dedbb159c69657de170e815",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/huo-shao-wu-chao/differences.json.meta": "c401161a474f78861fa17c8fbe4007d94896c0f3f001b593fe96f1e83538b106",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/jie-dong-feng-huo-shao-chi-bi/differences.json": "83ca08ad18bf20a13235463b37494a9c7ae30552a63a6a367f384333a7b07237",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/jie-dong-feng-huo-shao-chi-bi/differences.json.meta": "0c7f9fba2fc77b1df98b6b2aa5daf693c122497892acb6e6a59fdd74fac47cf0",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/jiu-fa-zhong-yuan/differences.json": "f21466b501e5da2a6af4debf73506a9bd1bb34c721575a4b08394a0f4528518c",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/jiu-fa-zhong-yuan/differences.json.meta": "f12f3d5c9001d6da82601955b115e8551c0e68cb2e5493d69a77c45232199d9d",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/kong-cheng-ji/differences.json": "cc6ffb2e29577304c466e9b5163e285f20eacd0624806f858f446eaa853f4f81",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/kong-cheng-ji/differences.json.meta": "7c617a21e1f1ff0086d4ff1ab77866a76b7732ee7587b297b9f38bbdff6a84fa",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/lian-huan-ji/differences.json": "8793812e0f7057d967d118dc5aaa55879a3982f9d76cb32050b4d99d304f6c97",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/lian-huan-ji/differences.json.meta": "75eed988570b8048dd740d4149a04b8d58e05c5f5d25028e73c5e778ddaad549",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/long-zhong-dui/differences.json": "7c4e08c523dad57bae0e6434cee75a94a00cac86376f93cf99de50a7f3bf9d94",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/long-zhong-dui/differences.json.meta": "0adc39cfe31b779b0c5b61984296507498699deca246140e4032c762cdaebc59",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/luo-feng-po/differences.json": "79cdce9f16115290b2664841a15453776e88f821a67514f610e9e3b96e6ba0a0",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/luo-feng-po/differences.json.meta": "890f1094ec5fe6052902df715e9b839057e1c34f41fef17f47fb1e1281da790a",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/qi-qin-meng-huo/differences.json": "3eae28b24c082fa05e78153c68c01827689d919a7f90261006f30d69c92c0353",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/qi-qin-meng-huo/differences.json.meta": "4e78fa82c6bd0e698f387a3e8f661d9b70bfbfbbbe8f902b4135c7b6f6e73c45",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/san-ying-zhan-lv-bu/differences.json": "e05f92b58b0fe98885d5b0bc77840265b25ce0e0823b28dd29b29305f6167d60",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/san-ying-zhan-lv-bu/differences.json.meta": "e12d80edeceb5f2d2a83c8959eef187c3cce734e0b171e5df2ac601273c79059",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/she-zhan-qun-ru/differences.json": "b185b5d8c9003abc4cdd1191d53dce3bf79005cfd954dd7097b9bf6fd8ba7d63",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/she-zhan-qun-ru/differences.json.meta": "cbfd4b3951b784aa80fe0d464e620a0eeb4e32aa1e6e2dfdb46479867e435fa6",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/shen-ting-ling-da-zhan-sun-ce/differences.json": "21e5f9f5ab97d8d126f000a6e53f37c3d0728b3597950bb31865593dae64ceb0",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/shen-ting-ling-da-zhan-sun-ce/differences.json.meta": "033a22490bda53116ee1fe2281c4f16f508c9c2cc894b8561334c9ed21b2bf56",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/shui-yan-qi-jun/differences.json": "d611a8d5ad95712247d1426e7dfe06223d85c325a4af5a4c7256c531e05d6396",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/shui-yan-qi-jun/differences.json.meta": "d0c5df2c7abe5fc695c9a75fbc955133dad4df689c33cc60915f27c39ced2a73",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/sun-jian-ni-yu-xi/differences.json": "96cea28b414a8f411687833d96150b0eba020b3969a12785583d66533ddc8888",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/sun-jian-ni-yu-xi/differences.json.meta": "2d893c42566c5c6e88569e84d834829718be3a4c854195d3e2ed48253b7ff50d",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/tao-yuan-jie-yi/differences.json": "c0439a36172b0ba745ca967432ec34ce42a8be0db5e3332fd0aff49b80231bf2",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/tao-yuan-jie-yi/differences.json.meta": "96f792e47f4e6d24b9d8fa77cecd928d1017251d30e333bc0d810a8d65bcc914",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wei-zhen-xiao-yao-jin/differences.json": "68e3178c8393ec6b06c18064873670d90077e71029a2ff9f92d80ada589cd9f6",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wei-zhen-xiao-yao-jin/differences.json.meta": "2a7b9d2e9315570fb830054ee5c812c035f226ed4f746a4fdf07913103520378",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wen-jiu-zhan-hua-xiong/differences.json": "bb12e67aedc65494bd97b659f496584e5266d9bd769da0ae6f1e2f7d1c047e5c",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wen-jiu-zhan-hua-xiong/differences.json.meta": "e16cc0e47dba2ccbf1856b6c75f9a186fc1fa9a77034b23ea9c8ed02fd8b826c",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wu-hou-rang-xing/differences.json": "2a43c80ff5de0de2299d1d4234e41fb8331764cda7840c1737cac413e8c10bf6",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wu-hou-rang-xing/differences.json.meta": "3946fa19b1807555f32321186df95c9f030f1712bb73dec6ff184ec4a6a59ba0",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/yuan-men-she-ji/differences.json": "90cabe1b8d72a6a645f4a2d0c3c281bd9a43fb5c29f6a1644dad0aa08a72744c",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/yuan-men-she-ji/differences.json.meta": "98932366bd2a89a2d4caffe3232994d3476088d0036e8e553b0ccc14c8478dc5",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/yuan-zheng-wu-huan/differences.json": "482f273a1d9e5f8d590eb3f7bc02c7366ffc418093b1bd7f295bfde15e896953",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/yuan-zheng-wu-huan/differences.json.meta": "a5b12bbacc86c415091af6919004b3760b818e24050a5cc5f9d4916820a42e8c",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/zhu-jiu-lun-ying-xiong/differences.json": "ab1fa07c33a28a812fbdc245f1dd3818098392b6407fa2d7fead159353aa6f71",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/zhu-jiu-lun-ying-xiong/differences.json.meta": "b2b629b8b338db8a9f87a000095f9a886d3ae7356305f6330d52a4a9221420e0",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_01.mp3": "31595c998f6963e51f17887215be877f38d4e900137489ee469b3dd110c08758",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_01.mp3.meta": "bcd2ace9610ef3eeeeb076d9574831fbfefa204849e57676771739f2bcf8360d",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_02.mp3": "cb02823e624932366cc92da083118c332410e7a2349c16b11563b5fd1dd1275e",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_02.mp3.meta": "939b609d31178196c016104ac2ed4985aecc5e5c264edb7ed7f56b59bd4cd0ea",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_03.mp3": "04564222e26b6923850ba3ed3b0093cbacba83ef5e95e3608685649aa39455aa",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_03.mp3.meta": "34a2255b848d7c4545af5b74d0a17033baf0d9d38864f45ec2a31e74ed928380",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_04.mp3": "b040f11bd64bde35a647e00bb10758da344099c1280a027e8d25c24fb153374d",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_04.mp3.meta": "73646e5d3ccbc485cac3d3158499787cdd62dc6fa0e010e7be2a6b9c51f546d5",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_05.mp3": "b579f5d8a0ee7de80a245fbbd902db506f1a9d623914f82d1e01ac57b638dd6f",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_05.mp3.meta": "4ba3e495b6ed6d22e704aea6f3b800b11ad1088d3298313846251cfa26d8e736",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_01.mp3": "825d4675a915d498c8113d445a52ee1e52afaa288e560d46d4fb5d84f7b5837f",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_01.mp3.meta": "f5e04b4ce7a175095f8cde04cd63a2a85b4ec572b74b9147d583988fd115510f",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_02.mp3": "95353543f0a4450a28c34d6b60311d022a2d3d50df07d8c409e579b1814f9169",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_02.mp3.meta": "0c9d02e92afe1434c60cf52e00671598ac277d835abbf74f42c1d31e2f7d236d",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_04.mp3": "c5ae7e37af6f73d758cd787c2fed498b52feb0f155102301e17d0c431946045f",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_04.mp3.meta": "0823a133500ce7d6d5eb9af6a60ccdbb8c07928aabe04d2cd17075c04d6af40f",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_05.mp3": "090f45255f1eaa0596780c8c0505cb5778ab6326669fd6174b1df3052e82028c",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_05.mp3.meta": "7588990f30e145eb0f03ae5b88ef1b87a63ba4c11fd12f5f6bcab11825ecfe8b",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG03_02.mp3": "d29c186714b12aa9571c6322a831e903591f1bece36c535cc37369d1f7dec546",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG03_02.mp3.meta": "28f85bf4c79e594b1ec955f641309924327f5d58cf59aeabd6b7cf5e02bf9fad",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG03_04.mp3": "e3ffa0ffab9670b40b1bcd35f36f9c3691f55af666051e893187209bfb87775b",
+    "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG03_04.mp3.meta": "be253871e248646f8ca77e161d52d46ef1ee4b27bf84307c0a1bfdf260a353ad",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (1).png": "fe3fa4b7bcf552c5b47e6cff0469e561a50d8591169649672b7d7381489ed290",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (1).png.meta": "ba63e2bca5ec4aa64b2f907bbe0fe040d5da6e5eb0dc8f12c00a157ebea7c6da",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (2).png": "0366571f03be5df53dfb4a0e9b4512ab2b91ac326a9986de7fc71197c4193dd3",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (2).png.meta": "b3cfde6ac5ff8e7be99e09c6a4bc85a14cc5b04cd35be53773692dcba4e221a3",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (3).png": "affc847f5310427ceb8e1b8357618947cca601cb961d118f5081e9f73721c0bb",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (3).png.meta": "1669473154a3c2bea64016851663fec39502a653f0eaba2f2878b9b3f07cef72",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (4).png": "7bcddbc00b322c394c488351d3dcb110f06b6e2a56890fc2a134e656c83c1395",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_ (4).png.meta": "72568c0b5afde851ca6fb512d3a128ffbfa00c9ad760b5f9fbd5c45fd08ce600",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_BG.png": "07f69c24b4070dc4278b6fd58e5832202b4051017b312b57a66cd1344d165964",
+    "assets/Bundle/levels/meng-chong-san-guo/Animation/Item_Tips_surprise_SG/Item_Tips_surprise_SG_BG.png.meta": "cc1c40a88c99074abdc2d495902d39157b3027f5e9603359a7dd0d4857f12844"
+  },
+  "indexSha256": "5ccb7046b3de0cfb6fee4aa28889476c4db454c83821fce959b462b7412212e2",
+  "chapterConfigSha256": "30f176c53ece329da0f9b480ed65a207a88dadbb9f5967a0ac9f141cf5cd1e32",
+  "backup": "temp/sanguo-update-2026-11-24-levels-17-30/before",
+  "updatedLevels": [
+    {
+      "number": 17,
+      "id": "city-PetThreeKingdoms/level-17",
+      "name": "连环计",
+      "folder": "lian-huan-ji",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\17-凤雏巧献连环计-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "526ee4c485d615bb16ab2a62b709c52270f0a2c978356b14c03574361ec1ef5b",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/lian-huan-ji/differences.json",
+        "beforeSha256": "8793812e0f7057d967d118dc5aaa55879a3982f9d76cb32050b4d99d304f6c97",
+        "before": {
+          "name": "连环计",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.465726,
+              "y": 0.233871,
+              "radius": 0.090164
+            },
+            {
+              "id": "diff-2",
+              "x": 0.4562,
+              "y": 0.4,
+              "radius": 0.036245
+            },
+            {
+              "id": "diff-3",
+              "x": 0.535585,
+              "y": 0.075806,
+              "radius": 0.033251
+            },
+            {
+              "id": "diff-4",
+              "x": 0.196875,
+              "y": 0.101613,
+              "radius": 0.050389
+            },
+            {
+              "id": "diff-5",
+              "x": 0.081502,
+              "y": 0.38871,
+              "radius": 0.038978
+            },
+            {
+              "id": "diff-6",
+              "x": 0.208518,
+              "y": 0.7,
+              "radius": 0.065018
+            },
+            {
+              "id": "diff-7",
+              "x": 0.468901,
+              "y": 0.553226,
+              "radius": 0.043399
+            },
+            {
+              "id": "diff-8",
+              "x": 0.319657,
+              "y": 0.658065,
+              "radius": 0.04519
+            },
+            {
+              "id": "diff-9",
+              "x": 0.652016,
+              "y": 0.509677,
+              "radius": 0.05062
+            },
+            {
+              "id": "diff-10",
+              "x": 0.805494,
+              "y": 0.722581,
+              "radius": 0.046215
+            },
+            {
+              "id": "diff-11",
+              "x": 0.603327,
+              "y": 0.879032,
+              "radius": 0.058711
+            },
+            {
+              "id": "diff-12",
+              "x": 0.945212,
+              "y": 0.490323,
+              "radius": 0.03115
+            },
+            {
+              "id": "diff-13",
+              "x": 0.895464,
+              "y": 0.375806,
+              "radius": 0.038777
+            },
+            {
+              "id": "diff-14",
+              "x": 0.719758,
+              "y": 0.316129,
+              "radius": 0.042337
+            },
+            {
+              "id": "diff-15",
+              "x": 0.397984,
+              "y": 0.824194,
+              "radius": 0.068468
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/lian-huan-ji/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 15,
+        "differenceCount": 15,
+        "afterSha256": "0efa2860d74c92b58bec1678413ae2c090d9fd04fc20d4ee701af5429784e8b8"
+      }
+    },
+    {
+      "number": 18,
+      "id": "city-PetThreeKingdoms/level-18",
+      "name": "借东风火烧赤壁",
+      "folder": "jie-dong-feng-huo-shao-chi-bi",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\18-孔明借东风火烧赤壁-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "6b492b220357f739be74cc0040513ff7f8e6b7ebe5057919e9adfff0633d8483",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/jie-dong-feng-huo-shao-chi-bi/differences.json",
+        "beforeSha256": "83ca08ad18bf20a13235463b37494a9c7ae30552a63a6a367f384333a7b07237",
+        "before": {
+          "name": "借东风火烧赤壁",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.283669,
+              "y": 0.195161,
+              "radius": 0.074264
+            },
+            {
+              "id": "diff-2",
+              "x": 0.05504,
+              "y": 0.206452,
+              "radius": 0.065833
+            },
+            {
+              "id": "diff-3",
+              "x": 0.111139,
+              "y": 0.375806,
+              "radius": 0.054577
+            },
+            {
+              "id": "diff-4",
+              "x": 0.140776,
+              "y": 0.477419,
+              "radius": 0.047628
+            },
+            {
+              "id": "diff-5",
+              "x": 0.247681,
+              "y": 0.406452,
+              "radius": 0.053397
+            },
+            {
+              "id": "diff-6",
+              "x": 0.472077,
+              "y": 0.290323,
+              "radius": 0.047024
+            },
+            {
+              "id": "diff-7",
+              "x": 0.646724,
+              "y": 0.406452,
+              "radius": 0.047955
+            },
+            {
+              "id": "diff-8",
+              "x": 0.691179,
+              "y": 0.195161,
+              "radius": 0.030132
+            },
+            {
+              "id": "diff-9",
+              "x": 0.202167,
+              "y": 0.079032,
+              "radius": 0.043339
+            },
+            {
+              "id": "diff-10",
+              "x": 0.955796,
+              "y": 0.341935,
+              "radius": 0.044377
+            },
+            {
+              "id": "diff-11",
+              "x": 0.690121,
+              "y": 0.733871,
+              "radius": 0.115635
+            },
+            {
+              "id": "diff-12",
+              "x": 0.858417,
+              "y": 0.85,
+              "radius": 0.078305
+            },
+            {
+              "id": "diff-13",
+              "x": 0.223337,
+              "y": 0.91129,
+              "radius": 0.060715
+            },
+            {
+              "id": "diff-14",
+              "x": 0.133367,
+              "y": 0.690323,
+              "radius": 0.043578
+            },
+            {
+              "id": "diff-15",
+              "x": 0.360937,
+              "y": 0.545161,
+              "radius": 0.059938
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/jie-dong-feng-huo-shao-chi-bi/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 15,
+        "differenceCount": 15,
+        "afterSha256": "9542c99ad549cba758d4e480d2818a73b28b6646a76afadc0379d2a54850e9fe"
+      }
+    },
+    {
+      "number": 19,
+      "id": "city-PetThreeKingdoms/level-19",
+      "name": "华容道",
+      "folder": "hua-rong-dao",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\19-关羽华容道义释曹操-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "e6ce1a5f89583bb65f2cb7859172a7ed3b85414d78d3a725e1b490cbfa84da4b",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/hua-rong-dao/differences.json",
+        "beforeSha256": "60bcc44d76e7e82559a9ed98255215fa74006ddfb88b612f36666727d658407f",
+        "before": {
+          "name": "华容道",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.385282,
+              "y": 0.122581,
+              "radius": 0.038474
+            },
+            {
+              "id": "diff-2",
+              "x": 0.715524,
+              "y": 0.185484,
+              "radius": 0.048521
+            },
+            {
+              "id": "diff-3",
+              "x": 0.831956,
+              "y": 0.527419,
+              "radius": 0.049791
+            },
+            {
+              "id": "diff-4",
+              "x": 0.922984,
+              "y": 0.448387,
+              "radius": 0.041842
+            },
+            {
+              "id": "diff-5",
+              "x": 0.595917,
+              "y": 0.46129,
+              "radius": 0.061312
+            },
+            {
+              "id": "diff-6",
+              "x": 0.081502,
+              "y": 0.380645,
+              "radius": 0.041121
+            },
+            {
+              "id": "diff-7",
+              "x": 0.175706,
+              "y": 0.112903,
+              "radius": 0.059306
+            },
+            {
+              "id": "diff-8",
+              "x": 0.782208,
+              "y": 0.809677,
+              "radius": 0.078785
+            },
+            {
+              "id": "diff-9",
+              "x": 0.045514,
+              "y": 0.667742,
+              "radius": 0.081047
+            },
+            {
+              "id": "diff-10",
+              "x": 0.465726,
+              "y": 0.590323,
+              "radius": 0.080983
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/hua-rong-dao/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 10,
+        "differenceCount": 10,
+        "afterSha256": "4c629be176c2ac42e2a0c3b569b84192d6b7e43ee8d64d901638e812ef5dccab"
+      }
+    },
+    {
+      "number": 20,
+      "id": "city-PetThreeKingdoms/level-20",
+      "name": "威震逍遥津",
+      "folder": "wei-zhen-xiao-yao-jin",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\20-张辽威震逍遥津-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "b2cf7d07196afe454de84d5e1726cb6212d80443c92cfc38d43083aaed21661f",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/wei-zhen-xiao-yao-jin/differences.json",
+        "beforeSha256": "68e3178c8393ec6b06c18064873670d90077e71029a2ff9f92d80ada589cd9f6",
+        "before": {
+          "name": "威震逍遥津",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.418095,
+              "y": 0.28871,
+              "radius": 0.068525
+            },
+            {
+              "id": "diff-2",
+              "x": 0.830897,
+              "y": 0.127419,
+              "radius": 0.103791
+            },
+            {
+              "id": "diff-3",
+              "x": 0.774798,
+              "y": 0.441935,
+              "radius": 0.069486
+            },
+            {
+              "id": "diff-4",
+              "x": 0.87747,
+              "y": 0.525806,
+              "radius": 0.043399
+            },
+            {
+              "id": "diff-5",
+              "x": 0.958972,
+              "y": 0.512903,
+              "radius": 0.052339
+            },
+            {
+              "id": "diff-6",
+              "x": 0.665776,
+              "y": 0.816129,
+              "radius": 0.068468
+            },
+            {
+              "id": "diff-7",
+              "x": 0.319657,
+              "y": 0.743548,
+              "radius": 0.104839
+            },
+            {
+              "id": "diff-8",
+              "x": 0.459375,
+              "y": 0.509677,
+              "radius": 0.031317
+            },
+            {
+              "id": "diff-9",
+              "x": 0.151361,
+              "y": 0.416129,
+              "radius": 0.043578
+            },
+            {
+              "id": "diff-10",
+              "x": 0.630847,
+              "y": 0.416129,
+              "radius": 0.041468
+            },
+            {
+              "id": "diff-11",
+              "x": 0.961089,
+              "y": 0.804839,
+              "radius": 0.047024
+            },
+            {
+              "id": "diff-12",
+              "x": 0.120665,
+              "y": 0.569355,
+              "radius": 0.052512
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/wei-zhen-xiao-yao-jin/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 12,
+        "differenceCount": 12,
+        "afterSha256": "78d767053a22a7de3945485950b9e4b118e95767d5945bce65d318cc1ddd42db"
+      }
+    },
+    {
+      "number": 21,
+      "id": "city-PetThreeKingdoms/level-21",
+      "name": "落凤坡",
+      "folder": "luo-feng-po",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\21-落凤坡-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "a582e7e87dcb0a6582390ec0ff6faf289232f1498c2da896a43063226ff45440",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/luo-feng-po/differences.json",
+        "beforeSha256": "79cdce9f16115290b2664841a15453776e88f821a67514f610e9e3b96e6ba0a0",
+        "before": {
+          "name": "落凤坡",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.408569,
+              "y": 0.185484,
+              "radius": 0.073027
+            },
+            {
+              "id": "diff-2",
+              "x": 0.564163,
+              "y": 0.469355,
+              "radius": 0.110634
+            },
+            {
+              "id": "diff-3",
+              "x": 0.93251,
+              "y": 0.595161,
+              "radius": 0.045677
+            },
+            {
+              "id": "diff-4",
+              "x": 0.840423,
+              "y": 0.908065,
+              "radius": 0.060715
+            },
+            {
+              "id": "diff-5",
+              "x": 0.130192,
+              "y": 0.832258,
+              "radius": 0.090452
+            },
+            {
+              "id": "diff-6",
+              "x": 0.378931,
+              "y": 0.801613,
+              "radius": 0.078305
+            },
+            {
+              "id": "diff-7",
+              "x": 0.681653,
+              "y": 0.241935,
+              "radius": 0.041935
+            },
+            {
+              "id": "diff-8",
+              "x": 0.975907,
+              "y": 0.087097,
+              "radius": 0.04493
+            },
+            {
+              "id": "diff-9",
+              "x": 0.042339,
+              "y": 0.31129,
+              "radius": 0.079426
+            },
+            {
+              "id": "diff-10",
+              "x": 0.312248,
+              "y": 0.514516,
+              "radius": 0.027749
+            },
+            {
+              "id": "diff-11",
+              "x": 0.385282,
+              "y": 0.464516,
+              "radius": 0.026454
+            }
+          ]
+        },
+        "oldDifferenceCount": 11,
+        "differenceCount": 11,
+        "afterSha256": "66395585c5cb08d4f9df9e6c28e0750e2e87f4e31ea3f3dabba9887779ea11bf"
+      }
+    },
+    {
+      "number": 22,
+      "id": "city-PetThreeKingdoms/level-22",
+      "name": "定军山",
+      "folder": "ding-jun-shan",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\22-定军山斩夏侯渊-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "a53edd5298290a6401d7d478b375f1bc3e54a06498e7d5f55490f3a24048d52f",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/ding-jun-shan/differences.json",
+        "beforeSha256": "bd4097da9248c39a0bcc4487be0883361309bcaaf6a2f3a789fbcc22f17e55e1",
+        "before": {
+          "name": "定军山",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.139718,
+              "y": 0.262903,
+              "radius": 0.042582
+            },
+            {
+              "id": "diff-2",
+              "x": 0.471018,
+              "y": 0.1,
+              "radius": 0.049477
+            },
+            {
+              "id": "diff-3",
+              "x": 0.698589,
+              "y": 0.220968,
+              "radius": 0.050078
+            },
+            {
+              "id": "diff-4",
+              "x": 0.96003,
+              "y": 0.319355,
+              "radius": 0.058711
+            },
+            {
+              "id": "diff-5",
+              "x": 0.94627,
+              "y": 0.601613,
+              "radius": 0.050078
+            },
+            {
+              "id": "diff-6",
+              "x": 0.919808,
+              "y": 0.695161,
+              "radius": 0.042059
+            },
+            {
+              "id": "diff-7",
+              "x": 0.952621,
+              "y": 0.916129,
+              "radius": 0.066775
+            },
+            {
+              "id": "diff-8",
+              "x": 0.822429,
+              "y": 0.893548,
+              "radius": 0.084996
+            },
+            {
+              "id": "diff-9",
+              "x": 0.648841,
+              "y": 0.898387,
+              "radius": 0.111768
+            },
+            {
+              "id": "diff-10",
+              "x": 0.701764,
+              "y": 0.690323,
+              "radius": 0.043429
+            },
+            {
+              "id": "diff-11",
+              "x": 0.744103,
+              "y": 0.532258,
+              "radius": 0.052015
+            },
+            {
+              "id": "diff-12",
+              "x": 0.180998,
+              "y": 0.456452,
+              "radius": 0.084427
+            },
+            {
+              "id": "diff-13",
+              "x": 0.016935,
+              "y": 0.220968,
+              "radius": 0.050234
+            },
+            {
+              "id": "diff-14",
+              "x": 0.081502,
+              "y": 0.708065,
+              "radius": 0.11273
+            },
+            {
+              "id": "diff-15",
+              "x": 0.565222,
+              "y": 0.420968,
+              "radius": 0.059306
+            },
+            {
+              "id": "diff-16",
+              "x": 0.410685,
+              "y": 0.703226,
+              "radius": 0.070858
+            }
+          ]
+        },
+        "oldDifferenceCount": 16,
+        "differenceCount": 15,
+        "afterSha256": "3a951422496fa797ca63f6c16a326c152c71631cf556d95709222f0c9484b7ac"
+      }
+    },
+    {
+      "number": 23,
+      "id": "city-PetThreeKingdoms/level-23",
+      "name": "水淹七军",
+      "folder": "shui-yan-qi-jun",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\23-水淹七军-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "6e5bc45f58fcc89e56d00bc1d4f1252390a10e63c015be0e30c93243010d0cea",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/shui-yan-qi-jun/differences.json",
+        "beforeSha256": "d611a8d5ad95712247d1426e7dfe06223d85c325a4af5a4c7256c531e05d6396",
+        "before": {
+          "name": "水淹七军",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.37999,
+              "y": 0.625806,
+              "radius": 0.067222
+            },
+            {
+              "id": "diff-2",
+              "x": 0.0688,
+              "y": 0.462903,
+              "radius": 0.066502
+            },
+            {
+              "id": "diff-3",
+              "x": 0.138659,
+              "y": 0.395161,
+              "radius": 0.052463
+            },
+            {
+              "id": "diff-4",
+              "x": 0.577923,
+              "y": 0.585484,
+              "radius": 0.053712
+            },
+            {
+              "id": "diff-5",
+              "x": 0.965323,
+              "y": 0.504839,
+              "radius": 0.046774
+            },
+            {
+              "id": "diff-6",
+              "x": 0.861593,
+              "y": 0.262903,
+              "radius": 0.074351
+            },
+            {
+              "id": "diff-7",
+              "x": 0.648841,
+              "y": 0.217742,
+              "radius": 0.04131
+            },
+            {
+              "id": "diff-8",
+              "x": 0.590625,
+              "y": 0.090323,
+              "radius": 0.118128
+            },
+            {
+              "id": "diff-9",
+              "x": 0.457258,
+              "y": 0.901613,
+              "radius": 0.100325
+            },
+            {
+              "id": "diff-10",
+              "x": 0.292137,
+              "y": 0.870968,
+              "radius": 0.063969
+            },
+            {
+              "id": "diff-11",
+              "x": 0.744103,
+              "y": 0.56129,
+              "radius": 0.037792
+            },
+            {
+              "id": "diff-12",
+              "x": 0.843599,
+              "y": 0.533871,
+              "radius": 0.06348
+            },
+            {
+              "id": "diff-13",
+              "x": 0.812903,
+              "y": 0.903226,
+              "radius": 0.060971
+            }
+          ]
+        },
+        "oldDifferenceCount": 13,
+        "differenceCount": 13,
+        "afterSha256": "94d2d968453281dd6325f6f615729a04949b7fb9866fe1e400da9ab60e7ad145"
+      }
+    },
+    {
+      "number": 24,
+      "id": "city-PetThreeKingdoms/level-24",
+      "name": "刮骨疗毒",
+      "folder": "gua-gu-liao-du",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\24-刮骨疗毒-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "111298df39873ee62efa09e9a64e833cb01e543287f519dc81ad4957e86346dc",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/gua-gu-liao-du/differences.json",
+        "beforeSha256": "3177f1e68a78dcaf7f6775d955dd2e276f60df61bfb806746ef3b4683c9934f5",
+        "before": {
+          "name": "刮骨疗毒",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.070917,
+              "y": 0.085484,
+              "radius": 0.072131
+            },
+            {
+              "id": "diff-2",
+              "x": 0.438206,
+              "y": 0.919355,
+              "radius": 0.070027
+            },
+            {
+              "id": "diff-3",
+              "x": 0.822429,
+              "y": 0.796774,
+              "radius": 0.06958
+            },
+            {
+              "id": "diff-4",
+              "x": 0.957913,
+              "y": 0.81129,
+              "radius": 0.087781
+            },
+            {
+              "id": "diff-5",
+              "x": 0.898639,
+              "y": 0.329032,
+              "radius": 0.061418
+            },
+            {
+              "id": "diff-6",
+              "x": 0.907107,
+              "y": 0.464516,
+              "radius": 0.057275
+            },
+            {
+              "id": "diff-7",
+              "x": 0.648841,
+              "y": 0.322581,
+              "radius": 0.112673
+            },
+            {
+              "id": "diff-8",
+              "x": 0.776915,
+              "y": 0.493548,
+              "radius": 0.055052
+            },
+            {
+              "id": "diff-9",
+              "x": 0.675302,
+              "y": 0.701613,
+              "radius": 0.087291
+            },
+            {
+              "id": "diff-10",
+              "x": 0.884879,
+              "y": 0.654839,
+              "radius": 0.051004
+            },
+            {
+              "id": "diff-11",
+              "x": 0.370464,
+              "y": 0.217742,
+              "radius": 0.058444
+            },
+            {
+              "id": "diff-12",
+              "x": 0.125958,
+              "y": 0.640323,
+              "radius": 0.147208
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/gua-gu-liao-du/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 12,
+        "differenceCount": 12,
+        "afterSha256": "45f54d898e2b57ad24f996591a6a2a86198bba6464a63f3011a6531e407bd2b0"
+      }
+    },
+    {
+      "number": 25,
+      "id": "city-PetThreeKingdoms/level-25",
+      "name": "白帝城托孤",
+      "folder": "bai-di-cheng-tuo-gu",
+      "images": [
+        {
+          "source": "D:\\CocosCreator\\关卡\\三国\\25-火烧连营白帝城托孤-风格重绘与内容补充\\scene-b.jpg",
+          "target": "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu/scene-b.jpg",
+          "beforeSha256": "4bbe2bff502f89db34c44505aa22c9cc7b024132768d58023502dbd6c79d6969",
+          "afterSha256": "a6967de8be62787336dd14fd4d4d5ea42e9e6b635182a65c222ff78f77e93c91",
+          "metaSha256": "d5806f3eae788c20b95943da2ef6eca93b1e4f25d24d01e464af67ab43b00549",
+          "uuid": "8f5812c8-d7b1-4692-b379-8618deb401d3"
+        }
+      ],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\25-火烧连营白帝城托孤-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "36b75b7dcdc31390fb96f942856e2318175749a5fd052c18e5b825a7cf8aa37c",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/bai-di-cheng-tuo-gu/differences.json",
+        "beforeSha256": "ae2ffb0c660d6690e5e0c1d68cfabdd5c7bc81157015951dc72f5066f93b61a2",
+        "before": {
+          "name": "白帝城托孤",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.61497,
+              "y": 0.191935,
+              "radius": 0.088003
+            },
+            {
+              "id": "diff-2",
+              "x": 0.439264,
+              "y": 0.183871,
+              "radius": 0.066775
+            },
+            {
+              "id": "diff-3",
+              "x": 0.884879,
+              "y": 0.396774,
+              "radius": 0.062259
+            },
+            {
+              "id": "diff-4",
+              "x": 0.991784,
+              "y": 0.503226,
+              "radius": 0.044289
+            },
+            {
+              "id": "diff-5",
+              "x": 0.630847,
+              "y": 0.919355,
+              "radius": 0.072221
+            },
+            {
+              "id": "diff-6",
+              "x": 0.047631,
+              "y": 0.443548,
+              "radius": 0.037132
+            },
+            {
+              "id": "diff-7",
+              "x": 0.238155,
+              "y": 0.103226,
+              "radius": 0.082825
+            },
+            {
+              "id": "diff-8",
+              "x": 0.75998,
+              "y": 0.166129,
+              "radius": 0.047628
+            },
+            {
+              "id": "diff-9",
+              "x": 0.752571,
+              "y": 0.314516,
+              "radius": 0.05325
+            },
+            {
+              "id": "diff-10",
+              "x": 0.021169,
+              "y": 0.156452,
+              "radius": 0.062903
+            },
+            {
+              "id": "diff-11",
+              "x": 0.318599,
+              "y": 0.424194,
+              "radius": 0.051461
+            },
+            {
+              "id": "diff-12",
+              "x": 0.882762,
+              "y": 0.280645,
+              "radius": 0.043429
+            },
+            {
+              "id": "diff-13",
+              "x": 0.639315,
+              "y": 0.559677,
+              "radius": 0.088724
+            },
+            {
+              "id": "diff-14",
+              "x": 0.7187,
+              "y": 0.051613,
+              "radius": 0.059938
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/bai-di-cheng-tuo-gu/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 14,
+        "differenceCount": 15,
+        "afterSha256": "5f113f5c2365788d136a9b91b3e1aebbfb371785b1fdb8e07a9f7e8067130f86"
+      }
+    },
+    {
+      "number": 26,
+      "id": "city-PetThreeKingdoms/level-26",
+      "name": "七擒孟获",
+      "folder": "qi-qin-meng-huo",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\26-七擒孟获-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "8e475671d269a8af8afc65480980142e3c42958021f28f96675ae2897e613d94",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/qi-qin-meng-huo/differences.json",
+        "beforeSha256": "3eae28b24c082fa05e78153c68c01827689d919a7f90261006f30d69c92c0353",
+        "before": {
+          "name": "七擒孟获",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.554637,
+              "y": 0.283871,
+              "radius": 0.06958
+            },
+            {
+              "id": "diff-2",
+              "x": 0.459375,
+              "y": 0.537097,
+              "radius": 0.081941
+            },
+            {
+              "id": "diff-3",
+              "x": 0.411744,
+              "y": 0.877419,
+              "radius": 0.079688
+            },
+            {
+              "id": "diff-4",
+              "x": 0.664718,
+              "y": 0.809677,
+              "radius": 0.048762
+            },
+            {
+              "id": "diff-5",
+              "x": 0.845716,
+              "y": 0.495161,
+              "radius": 0.111103
+            },
+            {
+              "id": "diff-6",
+              "x": 0.744103,
+              "y": 0.487097,
+              "radius": 0.070027
+            },
+            {
+              "id": "diff-7",
+              "x": 0.368347,
+              "y": 0.098387,
+              "radius": 0.040323
+            },
+            {
+              "id": "diff-8",
+              "x": 0.182056,
+              "y": 0.387097,
+              "radius": 0.04562
+            },
+            {
+              "id": "diff-9",
+              "x": 0.305897,
+              "y": 0.216129,
+              "radius": 0.04924
+            },
+            {
+              "id": "diff-10",
+              "x": 0.359879,
+              "y": 0.383871,
+              "radius": 0.085894
+            },
+            {
+              "id": "diff-11",
+              "x": 0.148185,
+              "y": 0.551613,
+              "radius": 0.059481
+            },
+            {
+              "id": "diff-12",
+              "x": 0.872177,
+              "y": 0.659677,
+              "radius": 0.058444
+            },
+            {
+              "id": "diff-13",
+              "x": 0.02752,
+              "y": 0.179032,
+              "radius": 0.06862
+            },
+            {
+              "id": "diff-14",
+              "x": 0.244506,
+              "y": 0.796774,
+              "radius": 0.052114
+            },
+            {
+              "id": "diff-15",
+              "x": 0.922984,
+              "y": 0.293548,
+              "radius": 0.082131
+            },
+            {
+              "id": "diff-16",
+              "x": 0.65625,
+              "y": 0.596774,
+              "radius": 0.043429
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/qi-qin-meng-huo/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 16,
+        "differenceCount": 16,
+        "afterSha256": "7fc59b862dda374cd8b357091e24cf1ea30436e7599002cfcff4e8e650a1ff60"
+      }
+    },
+    {
+      "number": 27,
+      "id": "city-PetThreeKingdoms/level-27",
+      "name": "空城计",
+      "folder": "kong-cheng-ji",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\27-空城计-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "5863c981bc0c9b4dc6fb93a54b3e645b19c1b332960aaed396f618b73755abd8",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/kong-cheng-ji/differences.json",
+        "beforeSha256": "cc6ffb2e29577304c466e9b5163e285f20eacd0624806f858f446eaa853f4f81",
+        "before": {
+          "name": "空城计",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.242389,
+              "y": 0.145161,
+              "radius": 0.044494
+            },
+            {
+              "id": "diff-2",
+              "x": 0.312248,
+              "y": 0.196774,
+              "radius": 0.061418
+            },
+            {
+              "id": "diff-3",
+              "x": 0.123841,
+              "y": 0.203226,
+              "radius": 0.067299
+            },
+            {
+              "id": "diff-4",
+              "x": 0.399042,
+              "y": 0.737097,
+              "radius": 0.065258
+            },
+            {
+              "id": "diff-5",
+              "x": 0.507006,
+              "y": 0.758065,
+              "radius": 0.062634
+            },
+            {
+              "id": "diff-6",
+              "x": 0.2625,
+              "y": 0.78871,
+              "radius": 0.095747
+            },
+            {
+              "id": "diff-7",
+              "x": 0.069859,
+              "y": 0.769355,
+              "radius": 0.057275
+            },
+            {
+              "id": "diff-8",
+              "x": 0.667893,
+              "y": 0.525806,
+              "radius": 0.099033
+            },
+            {
+              "id": "diff-9",
+              "x": 0.889113,
+              "y": 0.833871,
+              "radius": 0.030814
+            },
+            {
+              "id": "diff-10",
+              "x": 0.957913,
+              "y": 0.351613,
+              "radius": 0.106805
+            },
+            {
+              "id": "diff-11",
+              "x": 0.671069,
+              "y": 0.266129,
+              "radius": 0.04924
+            },
+            {
+              "id": "diff-12",
+              "x": 0.124899,
+              "y": 0.609677,
+              "radius": 0.036066
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/kong-cheng-ji/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 12,
+        "differenceCount": 12,
+        "afterSha256": "b2b38e5a81bc2ad6dafc783b9193c22b660e758d1bf5894cd1540d8697bdc6bc"
+      }
+    },
+    {
+      "number": 28,
+      "id": "city-PetThreeKingdoms/level-28",
+      "name": "武侯禳星",
+      "folder": "wu-hou-rang-xing",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\28-武侯禳星-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "4f243f030b6d877d28046089908e9150a8955ed61232f9c7c7c96ee415cad8c9",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/wu-hou-rang-xing/differences.json",
+        "beforeSha256": "2a43c80ff5de0de2299d1d4234e41fb8331764cda7840c1737cac413e8c10bf6",
+        "before": {
+          "name": "武侯禳星",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.431855,
+              "y": 0.067742,
+              "radius": 0.034631
+            },
+            {
+              "id": "diff-2",
+              "x": 0.781149,
+              "y": 0.253226,
+              "radius": 0.039836
+            },
+            {
+              "id": "diff-3",
+              "x": 0.949446,
+              "y": 0.432258,
+              "radius": 0.100156
+            },
+            {
+              "id": "diff-4",
+              "x": 0.822429,
+              "y": 0.55,
+              "radius": 0.052463
+            },
+            {
+              "id": "diff-5",
+              "x": 0.24874,
+              "y": 0.669355,
+              "radius": 0.043876
+            },
+            {
+              "id": "diff-6",
+              "x": 0.808669,
+              "y": 0.856452,
+              "radius": 0.076677
+            },
+            {
+              "id": "diff-7",
+              "x": 0.067742,
+              "y": 0.803226,
+              "radius": 0.058711
+            },
+            {
+              "id": "diff-8",
+              "x": 0.028579,
+              "y": 0.209677,
+              "radius": 0.054839
+            },
+            {
+              "id": "diff-9",
+              "x": 0.232863,
+              "y": 0.3,
+              "radius": 0.030603
+            },
+            {
+              "id": "diff-10",
+              "x": 0.169355,
+              "y": 0.351613,
+              "radius": 0.05062
+            },
+            {
+              "id": "diff-11",
+              "x": 0.963206,
+              "y": 0.058065,
+              "radius": 0.039277
+            },
+            {
+              "id": "diff-12",
+              "x": 0.544052,
+              "y": 0.364516,
+              "radius": 0.049134
+            },
+            {
+              "id": "diff-13",
+              "x": 0.04869,
+              "y": 0.562903,
+              "radius": 0.063233
+            },
+            {
+              "id": "diff-14",
+              "x": 0.363054,
+              "y": 0.36129,
+              "radius": 0.019489
+            },
+            {
+              "id": "diff-15",
+              "x": 0.701764,
+              "y": 0.41129,
+              "radius": 0.032459
+            },
+            {
+              "id": "diff-16",
+              "x": 0.578982,
+              "y": 0.540323,
+              "radius": 0.06282
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/wu-hou-rang-xing/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 16,
+        "differenceCount": 16,
+        "afterSha256": "82b075c86c3a172c4e82a83eb706027792d9a53600943aed424be9428a25ee6d"
+      }
+    },
+    {
+      "number": 29,
+      "id": "city-PetThreeKingdoms/level-29",
+      "name": "单骑退雄兵",
+      "folder": "dan-qi-tui-xiong-bing",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\29-单骑退雄兵-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "88516e1c486b2ff1b9c3bdb386813d3ac107e2330db00333fd64cbc0f02083bb",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/dan-qi-tui-xiong-bing/differences.json",
+        "beforeSha256": "b457818bef86193b2da7949993e8241f91546b00dcab6c434dfd272fa51bf2df",
+        "before": {
+          "name": "单骑退雄兵",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.038105,
+              "y": 0.174194,
+              "radius": 0.044053
+            },
+            {
+              "id": "diff-2",
+              "x": 0.063508,
+              "y": 0.459677,
+              "radius": 0.062634
+            },
+            {
+              "id": "diff-3",
+              "x": 0.65625,
+              "y": 0.356452,
+              "radius": 0.047024
+            },
+            {
+              "id": "diff-4",
+              "x": 0.940978,
+              "y": 0.2,
+              "radius": 0.033212
+            },
+            {
+              "id": "diff-5",
+              "x": 0.950504,
+              "y": 0.420968,
+              "radius": 0.053615
+            },
+            {
+              "id": "diff-6",
+              "x": 0.969556,
+              "y": 0.579032,
+              "radius": 0.052114
+            },
+            {
+              "id": "diff-7",
+              "x": 0.723992,
+              "y": 0.491935,
+              "radius": 0.053688
+            },
+            {
+              "id": "diff-8",
+              "x": 0.554637,
+              "y": 0.929032,
+              "radius": 0.152545
+            },
+            {
+              "id": "diff-9",
+              "x": 0.187349,
+              "y": 0.570968,
+              "radius": 0.051004
+            },
+            {
+              "id": "diff-10",
+              "x": 0.300605,
+              "y": 0.227419,
+              "radius": 0.058154
+            },
+            {
+              "id": "diff-11",
+              "x": 0.323891,
+              "y": 0.727419,
+              "radius": 0.105433
+            },
+            {
+              "id": "diff-12",
+              "x": 0.914516,
+              "y": 0.858065,
+              "radius": 0.090897
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/dan-qi-tui-xiong-bing/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 12,
+        "differenceCount": 12,
+        "afterSha256": "a08d2a41f77cfd4fc960ff9192b44663823190256dcae4336f2c4f88c9dd11f8"
+      }
+    },
+    {
+      "number": 30,
+      "id": "city-PetThreeKingdoms/level-30",
+      "name": "九伐中原",
+      "folder": "jiu-fa-zhong-yuan",
+      "images": [],
+      "config": {
+        "source": "D:\\CocosCreator\\关卡\\三国\\30-姜维九伐中原-风格重绘与内容补充\\differences.json",
+        "sourceSha256": "9db2ebe81d3fd1a0a553856ee7733f6eabc91eea09a69c49cd9d55e90d352355",
+        "target": "assets/Bundle/levels/meng-chong-san-guo/configs/jiu-fa-zhong-yuan/differences.json",
+        "beforeSha256": "f21466b501e5da2a6af4debf73506a9bd1bb34c721575a4b08394a0f4528518c",
+        "before": {
+          "name": "九伐中原",
+          "type": "normal",
+          "food": "",
+          "differences": [
+            {
+              "id": "diff-1",
+              "x": 0.844657,
+              "y": 0.204839,
+              "radius": 0.07363
+            },
+            {
+              "id": "diff-2",
+              "x": 0.58004,
+              "y": 0.117742,
+              "radius": 0.042704
+            },
+            {
+              "id": "diff-3",
+              "x": 0.649899,
+              "y": 0.245161,
+              "radius": 0.065675
+            },
+            {
+              "id": "diff-4",
+              "x": 0.734577,
+              "y": 0.483871,
+              "radius": 0.042214
+            },
+            {
+              "id": "diff-5",
+              "x": 0.790675,
+              "y": 0.579032,
+              "radius": 0.064233
+            },
+            {
+              "id": "diff-6",
+              "x": 0.944153,
+              "y": 0.640323,
+              "radius": 0.081112
+            },
+            {
+              "id": "diff-7",
+              "x": 0.802319,
+              "y": 0.940323,
+              "radius": 0.057818
+            },
+            {
+              "id": "diff-8",
+              "x": 0.355645,
+              "y": 0.780645,
+              "radius": 0.027419
+            },
+            {
+              "id": "diff-9",
+              "x": 0.613911,
+              "y": 0.854839,
+              "radius": 0.100208
+            },
+            {
+              "id": "diff-10",
+              "x": 0.510181,
+              "y": 0.627419,
+              "radius": 0.046885
+            },
+            {
+              "id": "diff-11",
+              "x": 0.264617,
+              "y": 0.624194,
+              "radius": 0.066678
+            },
+            {
+              "id": "diff-12",
+              "x": 0.071976,
+              "y": 0.687097,
+              "radius": 0.066775
+            },
+            {
+              "id": "diff-13",
+              "x": 0.270968,
+              "y": 0.341935,
+              "radius": 0.061205
+            },
+            {
+              "id": "diff-14",
+              "x": 0.184173,
+              "y": 0.162903,
+              "radius": 0.061966
+            },
+            {
+              "id": "diff-15",
+              "x": 0.499597,
+              "y": 0.28871,
+              "radius": 0.041842
+            }
+          ],
+          "icon": "thumbnails/meng-chong-san-guo/jiu-fa-zhong-yuan/icon/spriteFrame"
+        },
+        "oldDifferenceCount": 15,
+        "differenceCount": 15,
+        "afterSha256": "5066a1fffb66f742ca98441494b534dd0fb8b70b7cc088e4124ea3d0b70f0248"
+      }
+    }
+  ],
+  "differenceCountBefore": 397,
+  "sourceMapSha256": "3d04f2b41f973d659bb3d1983a00f79a62bfdb48974a6136c7f99d67a8e7d8e0",
+  "changedAssets": [
+    "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu/scene-b.jpg",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/bai-di-cheng-tuo-gu/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/dan-qi-tui-xiong-bing/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/ding-jun-shan/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/gua-gu-liao-du/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/hua-rong-dao/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/jie-dong-feng-huo-shao-chi-bi/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/jiu-fa-zhong-yuan/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/kong-cheng-ji/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/lian-huan-ji/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/luo-feng-po/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/qi-qin-meng-huo/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/shui-yan-qi-jun/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wei-zhen-xiao-yao-jin/differences.json",
+    "assets/Bundle/levels/meng-chong-san-guo/configs/wu-hou-rang-xing/differences.json"
+  ],
+  "differenceCount": 397
+}

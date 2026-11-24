@@ -80,23 +80,26 @@ export class SurpriseAssist {
         }
         const total = this._level.differences.length;
         const remaining = Math.max(0, total - this.flow.foundIds.size);
-        // 加时回到半程以上时暂停抽取，已经出现的道具仍按原轨迹走完。
-        if (this.flow.remainingTime >= this._level.timeLimit * 0.5 || remaining === 0 || total === 0) {
+        // 初始时限已消耗三分之一后可抽取；加时回到阈值以上时暂停新的抽取。
+        const startRemaining = this._level.timeLimit * 2 / 3;
+        if (this.flow.remainingTime > startRemaining || remaining === 0 || total === 0) {
             this._rollElapsed = 0;
             return;
         }
         this._rollElapsed += dt;
         if (this._rollElapsed < 5) return;
         this._rollElapsed %= 5; // 卡顿恢复只抽一次，不补刷多次。
-        if (this._flight || this._appearances >= 3 || this._clock - this._lastAppearance < 10) return;
+        if (this._flight || this._appearances >= 5 || this._clock - this._lastAppearance < 20 - 1e-6) return;
         if (!this._prefab || !this._hintFrame || !this._timeFrame || !this._lifeFrame) { void this._prepare(); return; }
         // 先抽取候选奖励，再按免费/视频两类分别判断出现；显示后不再改奖励。
         const kinds: SurpriseAssistKind[] = this._canDropLife() ? ['hint', 'add-time', 'life'] : ['hint', 'add-time'];
         const kind = kinds[Math.floor(this.random() * kinds.length)];
-        const gift: Gift = { kind, amount: kind === 'life' ? 1 : 1 + Math.floor(this.random() * 3) };
+        const maxAmount = kind === 'life' ? Math.min(3, this._level.maxLives - this.flow.lives) : 3;
+        const amount = kind === 'hint' ? 2 + Math.floor(this.random() * 2) : 1 + Math.floor(this.random() * maxAmount);
+        const gift: Gift = { kind, amount };
         const remainingRatio = Math.min(1, remaining / total);
-        const urgency = Math.min(1, Math.max(0, 1 - this.flow.remainingTime / (this._level.timeLimit * 0.5)));
-        const probability = gift.amount === 1 ? 0.2 + 0.6 * (1 - remainingRatio)
+        const urgency = Math.min(1, Math.max(0, 1 - this.flow.remainingTime / startRemaining));
+        const probability = gift.kind === 'life' || gift.amount === 1 ? 0.2 + 0.6 * (1 - remainingRatio)
             : 0.2 + 0.6 * remainingRatio * urgency;
         if (this.random() >= probability) return;
         this._spawn(gift);
@@ -136,7 +139,7 @@ export class SurpriseAssist {
         const number = node.getChildByName('Number')?.getComponent(Label);
         if (number) number.string = `x${gift.amount}`;
         const video = node.getChildByName('icon_videoplay');
-        if (video) video.active = gift.amount >= 2;
+        if (video) video.active = gift.kind !== 'life' && gift.amount >= 2;
         const flight: Flight = { node, gift, elapsed: 0, duration: gift.amount === 1 ? 2.5 : gift.amount === 2 ? 3.5 : 5,
             leftToRight: this.random() < 0.5, height: this.random(), phase: this.random() * Math.PI * 2 };
         this._flight = flight;

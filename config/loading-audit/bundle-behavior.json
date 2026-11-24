@@ -1,0 +1,43 @@
+{
+  "note": "Executed the bundle handler extracted from the actual built adapter in a VM, with IO recorded by mocks; not phone network capture.",
+  "adapter": "build/douying/engine-adapter.1fde9.js",
+  "config": "build/remote/wang-luo-re-dian/config.7ed7b.json",
+  "subpackages": [],
+  "configIsZip": false,
+  "currentBuildTrace": [
+    {
+      "action": "require-local-script",
+      "file": "./src/bundle-scripts/wang-luo-re-dian/index.7ed7b.js"
+    },
+    {
+      "action": "request-json",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/wang-luo-re-dian/config.7ed7b.json"
+    },
+    {
+      "action": "loadBundle-callback",
+      "base": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/wang-luo-re-dian/"
+    }
+  ],
+  "zipModeComparisonTrace": [
+    {
+      "action": "require-local-script",
+      "file": "./src/bundle-scripts/wang-luo-re-dian/index.7ed7b.js"
+    },
+    {
+      "action": "request-json",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/wang-luo-re-dian/config.7ed7b.json"
+    },
+    {
+      "action": "download-file",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/wang-luo-re-dian/res.zip"
+    },
+    {
+      "action": "unzip",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/wang-luo-re-dian/res.zip"
+    },
+    {
+      "action": "loadBundle-callback",
+      "base": "/userdata/unpacked/res/"
+    }
+  ]
+}

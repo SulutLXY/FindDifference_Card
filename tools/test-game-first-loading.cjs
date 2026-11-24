@@ -23,11 +23,11 @@ for(const name of ['LobbyScreen','CitySelectScreen','LevelSelectScreen']){
  for(const [i,node]of graph.entries())if(node.__type__==='cc.Node')for(const ref of node._components)assert.equal(graph[ref.__id__].node.__id__,i);
 }
 const text=fs.readFileSync('assets/scripts/GameFlow.ts','utf8'),tree=ts.createSourceFile('Flow.ts',text,ts.ScriptTarget.Latest,true);
-const names=['_navigationPagesPending','_loadLobbyBundle','loadLobbyPrefab','_ensureLobby','_preloadLobby','_openLobby','showLobby','_cancelSecondaryNavigation','openDailySignIn','_ensureNavigationPage','_openNavigationPage','_tickLobbyWarmup'];
+const names=['_prioritizeAssetDownloads','_navigationPagesPending','_loadLobbyBundle','loadLobbyPrefab','_ensureLobby','_preloadLobby','_openLobby','showLobby','_cancelSecondaryNavigation','openDailySignIn','_ensureNavigationPage','_openNavigationPage','_tickLobbyWarmup','_cacheMusicClip'];
 const body=tree.statements.find(ts.isClassDeclaration).members.filter(m=>names.includes(m.name?.getText(tree))).map(m=>m.getText(tree)).join('\n');
 class Prefab{} class AudioClip{} class LobbyScreen{} class CitySelectScreen{} class LevelSelectScreen{} class SpriteFrame{}
 let requests=0,finish,created=0;
-const loaded=[];const bundle={load(request,type,done){loaded.push(request);done(null,{request});}};
+const loaded=[];const bundle={load(request,type,done){loaded.push(request);done(null,{request,addRef(){},decRef(){}});}};
 const Flow=vm.runInNewContext(ts.transpileModule('class Flow{'+body+'};Flow;', {compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{
     Prefab,AudioClip,LobbyScreen,CitySelectScreen,LevelSelectScreen,SpriteFrame,console:{warn(){}},sidebarDay:()=> '2026-11-03',
     assetManager:{loadBundle(name,done){assert.equal(name,'LobbySources');requests++;finish=done;}},
@@ -52,21 +52,21 @@ const tick=()=>new Promise(setImmediate);
  const firstReturn=twice._openLobby(),secondReturn=twice._openLobby();rejects.forEach(reject=>reject(Error('offline')));await Promise.all([firstReturn,secondReturn]);assert.equal(twice._isPaused,false,'Repeated returns must not leave gameplay paused after network failure');
  // Even automatic sign-in on the gameplay page cannot download or prompt.
  const daily=new Flow();daily._dailyConfig={};daily.game={node:{activeInHierarchy:true}};daily._ensureDailySignIn=()=>assert.fail('Sign-in requested outside lobby');assert.equal(await daily.openDailySignIn(true),false);
- // Eight active gameplay seconds before shell warmup; loading/tutorial/Feed pauses do not count.
- function cold(){const m=new Flow();m.isValid=true;m._lobbyWarmupRemaining=8;m._lobbyWarmupStarted=false;
+ // Three active gameplay seconds before shell warmup; loading/tutorial/Feed pauses do not count.
+ function cold(){const m=new Flow();m.isValid=true;m._lobbyWarmupRemaining=3;m._lobbyWarmupStarted=false;
    m.game={node:{activeInHierarchy:true}};m.platform={interstitialBusy:false};m.feed={isPreview:false};
    m._ensureNavigationPage=()=>assert.fail('Background created a navigation page');
    m._ensureSecondaryPage=()=>assert.fail('Background created collection/rank');
    m._contentBundles={use:()=>assert.fail('Background downloaded covers or food icons')};
    m._preloadLobby=async()=>{m.warmCalls=(m.warmCalls||0)+1;};return m;}
- const menu=cold();for(let i=0;i<7;i++)menu._tickLobbyWarmup(1);assert.equal(menu.warmCalls,undefined);
+ const menu=cold();for(let i=0;i<2;i++)menu._tickLobbyWarmup(1);assert.equal(menu.warmCalls,undefined);
  menu._tickLobbyWarmup(1);assert.equal(menu.warmCalls,1);menu._tickLobbyWarmup(100);assert.equal(menu.warmCalls,1);
- for(const flag of ['_levelLoading','_isPaused','_isGameOver']){const blocked=cold();blocked[flag]=true;blocked._tickLobbyWarmup(20);assert.equal(blocked._lobbyWarmupRemaining,8);}
- const feed=cold();feed.feed.isPreview=true;feed._tickLobbyWarmup(20);assert.equal(feed._lobbyWarmupRemaining,8);
- const ad=cold();ad.platform.interstitialBusy=true;ad._tickLobbyWarmup(20);assert.equal(ad._lobbyWarmupRemaining,8);
+ for(const flag of ['_levelLoading','_isPaused','_isGameOver']){const blocked=cold();blocked[flag]=true;blocked._tickLobbyWarmup(20);assert.equal(blocked._lobbyWarmupRemaining,3);}
+ const feed=cold();feed.feed.isPreview=true;feed._tickLobbyWarmup(20);assert.equal(feed._lobbyWarmupRemaining,3);
+ const ad=cold();ad.platform.interstitialBusy=true;ad._tickLobbyWarmup(20);assert.equal(ad._lobbyWarmupRemaining,3);
  const disposed=cold();disposed.isValid=false;disposed._tickLobbyWarmup(20);assert.equal(disposed.warmCalls,undefined);
- const resumed=cold();resumed._tickLobbyWarmup(999);assert.equal(resumed._lobbyWarmupRemaining,7,'Resume delta cannot trigger immediate downloads');
- const warm=cold();warm.lobby={isValid:true};for(let i=0;i<8;i++)warm._tickLobbyWarmup(1);assert.equal(warm.warmCalls,undefined,'Foreground-loaded home needs no duplicate warmup');
+ const resumed=cold();resumed._tickLobbyWarmup(999);assert.equal(resumed._lobbyWarmupRemaining,2,'Resume delta cannot trigger immediate downloads');
+ const warm=cold();warm.lobby={isValid:true};for(let i=0;i<3;i++)warm._tickLobbyWarmup(1);assert.equal(warm.warmCalls,undefined,'Foreground-loaded home needs no duplicate warmup');
  const nav=new Flow();nav.isValid=true;nav.node={parent:{getChildByName:()=>({})}};let finishNav,navLoads=0;
  nav.loadLobbyPrefab=()=>{navLoads++;return new Promise(r=>finishNav=r);};
  const navA=nav._ensureNavigationPage('citySelect'),navB=nav._ensureNavigationPage('citySelect');assert.equal(navLoads,1);

@@ -44,6 +44,18 @@ const Flow=createFlow({JsonAsset,SpriteFrame,Sprite:class{},resources:{},assetMa
         assert.equal(fs.existsSync(root(key)+'/configs/'+key+'-icon.jpg'),false);
     }
     assert.equal(loads.length,0,'Boot metadata and save migration must not request ANY chapter bundle');
+    for(const city of cities) {
+        await flow.ensureCity(city);await flow.ensureCity(city);
+        assert.equal(city.levelCards.length,city.levels.length);
+        assert.equal(city.levelConfigs.length,0,'Selection metadata must not masquerade as loaded gameplay config');
+        for(const [i,card]of city.levelCards.entries()) {
+            assert.equal(card.key,city.levelIds[city.levels[i]]);
+            assert.equal(card.name,city.levelNames[city.levels[i]]);
+            const target=flow._chapterSpriteTarget(card.icon);
+            assert.ok(imageFile(root(city.key)+'/'+target.request),'Card thumbnail must exist without a config download');
+        }
+    }
+    assert.equal(loads.length,0,'Opening selection must not fetch whole-chapter gameplay configs');
     const page=()=>({isValid:true,activeInHierarchy:true,getComponentsInChildren:()=>[]});
     const covers=page();await Promise.all(cities.map(c=>flow.loadPageSpriteFrame(c.banner,covers)));
     assert.deepEqual(loads,['chapter-covers'],'Chapter selection only loads covers');

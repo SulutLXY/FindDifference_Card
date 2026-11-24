@@ -23,7 +23,7 @@ vm.runInNewContext(compile(fs.readFileSync('assets/scripts/services/PlatformServ
 });
 const flowText = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const ast = ts.createSourceFile('GameFlow.ts', flowText, ts.ScriptTarget.Latest, true);
-const names = ['showSettings', '_showNativeRank', 'finishLevel', '_openingNativeRank', 'openDailySignIn', '_openSecondaryPage', 'showCollect'];
+const names = ['_prioritizeAssetDownloads','showSettings', '_showNativeRank', 'finishLevel', '_openingNativeRank', 'openDailySignIn', '_openSecondaryPage', 'showCollect'];
 const body = ast.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(ast))).map(m => m.getText(ast)).join('\n');
 const Flow = vm.runInNewContext(compile(`class Flow {${body}}; Flow;`), { console, sidebarDay:()=> '2026-11-19' });
 (async () => {

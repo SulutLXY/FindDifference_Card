@@ -53,15 +53,18 @@ function audit() {
     const startupDependencies = seen.size;
     assert.deepEqual(references, [], 'Loading must not reference any remote bundle');
     for (const file of all.filter(file => file.startsWith('assets/PleyGame/') && /\.(prefab|anim)$/.test(file))) visitAsset(file, 'gameplay');
-    const result = { date: '2026-11-10', sourceOnly: true, rebuilt: false, deviceVerified: false,
+    const result = { date: new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Shanghai' }), sourceOnly: true, rebuilt: false, deviceVerified: false,
         rootCount: roots.length, dependencyCount: seen.size,
         loadingDependencyCount: startupDependencies,
         localBundles: [...new Set([...seen].filter(file => !owner(file).remote).map(file => owner(file).name))].sort(),
         remoteDependencies: references, unresolvedReferences: unresolved,
         startup: { local: ['main', 'resources (Loading + small startup configs)'], remote: ['MainGameSources', 'current chapter only'] },
-        deferred: { lobbyShell: 'after 8 active gameplay seconds',
-            chapterCovers: 'chapter selection page', collectibles: 'collection/detail/acquisition popup',
-            heroAnimation: 'home page opened', signIn: 'home page sign-in opened', crossChapterPrefetch: false } };
+        deferred: { lobbyShell: 'after 3 active gameplay seconds',
+            chapterCovers: 'background before chapters, or foreground selection',
+            collectibles: 'last background stage, or foreground collection/detail request',
+            heroAnimation: 'files in background; instantiate when home page opens',
+            signIn: 'files in background; prompt only on home page', crossChapterPrefetch: true,
+            backgroundOrder: 'shared UI, chapters in index order, collection; explicit selection jumps ahead' } };
     assert.ok(references.every(reference => reference.bundle === 'MainGameSources'), 'Gameplay must not require remote menu/catalog bundles');
     assert.deepEqual(unresolved, [], 'Startup asset references must resolve');
     assert.ok(!bundles.some(bundle => bundle.name === 'SupportTexture'), 'Shared guides should belong to local resources');

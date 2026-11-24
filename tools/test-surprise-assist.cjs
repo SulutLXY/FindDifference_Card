@@ -61,7 +61,7 @@ async function setup(sequence = [], overrides = {}) {
         },
         async claimSurpriseAssist() { return true; }, ...overrides };
     const root = new Node('Game', 750, 1334); let rolls = 0;
-    const state = new SurpriseAssist(root, flow, () => { rolls++; return sequence.length ? sequence.shift() : 0; });
+    const state = new SurpriseAssist(root, flow, () => { rolls++; return sequence.length ? sequence.shift() : (rolls % 6 === 1 ? .6 : 0); });
     state.start(level); await state._prepare();
     return { state, flow, root, rolls: () => rolls };
 }
@@ -93,12 +93,12 @@ function method(file, name, extra = {}) {
     }
     iconBounds = { width: 69, height: 76 };
     let { state, flow, root, rolls } = await setup();
-    flow.remainingTime = 50; state.update(100); assert.equal(rolls(), 0, 'Exactly half time does not roll');
-    flow.remainingTime = 49; state.update(4.9); assert.equal(state._flight, null);
+    flow.remainingTime = level.timeLimit * 2 / 3 + .001; state.update(100); assert.equal(rolls(), 0, 'No roll before one third of initial time is spent');
+    flow.remainingTime = level.timeLimit * 2 / 3; state.update(4.9); assert.equal(state._flight, null);
     state.update(.1); assert.ok(state._flight); assert.equal(state._appearances, 1);
     const first = state._flight, point = first.node.position;
-    assert.equal(first.gift.kind, 'hint'); assert.equal(first.gift.amount, 1);
-    assert.equal(first.node.getChildByName('icon_Time').getComponent(Sprite).spriteFrame, frames.hint);
+    assert.equal(first.gift.kind, 'add-time'); assert.equal(first.gift.amount, 1);
+    assert.equal(first.node.getChildByName('icon_Time').getComponent(Sprite).spriteFrame, frames.time);
     assert.equal(first.node.getChildByName('Number').getComponent(Label).string, 'x1');
     assert.equal(first.node.getChildByName('icon_videoplay').active, false);
     assert.equal(point.x, -435); assert.ok(point.y >= 60 && point.y <= 340.2);
@@ -111,10 +111,10 @@ function method(file, name, extra = {}) {
     flow.platform.interstitialBusy = false;
     state.update(1.25); assert.equal(state._flight, null); assert.equal(first.node.isValid, false, 'One unclicked gift expires at 2.5 seconds');
     assert.equal(state._appearances, 1, 'Ignoring a gift still consumes its appearance');
-    state.update(7.4); assert.equal(state._flight, null);
-    state.update(.1); assert.equal(state._appearances, 2, 'Next gift starts at least ten active seconds after previous spawn');
-    state.update(5); state.update(5); assert.equal(state._appearances, 3);
-    state.update(5); state.update(100); assert.equal(state._flight, null); assert.equal(state._appearances, 3);
+    state.update(17.4); assert.equal(state._flight, null);
+    state.update(.11); assert.equal(state._appearances, 2, 'Next gift starts at least twenty active seconds after previous spawn');
+    for(let i=3;i<=5;i++){state.update(5);state.update(15);assert.equal(state._appearances,i);}
+    state.update(5); state.update(100); assert.equal(state._flight, null); assert.equal(state._appearances, 5);
     state.start(level); await state._prepare(); state.update(5); assert.equal(state._appearances, 1, 'New round resets quota');
     flow.isGameOver = true; state.update(1); assert.equal(state._flight, null);
     flow.isGameOver = false; state.update(5); assert.equal(state._appearances, 1, 'Revival does not reset quota or cooldown');
@@ -127,7 +127,7 @@ function method(file, name, extra = {}) {
         [.5, 10, 49, false], // Video: the same difference count becomes less likely with more time.
         [.99, 10, 10, true], // Three-item video gifts use the same urgency rule.
     ]) {
-        ({ state, flow } = await setup([0, amountRandom, .5]));
+        ({ state, flow } = await setup([.6, amountRandom, .5]));
         flow.remainingTime = seconds;
         flow.foundIds = new Set(Array.from({ length: 10 - pointsLeft }, (_, i) => String(i)));
         state.update(4.9); assert.equal(state._flight, null);
@@ -151,7 +151,7 @@ function method(file, name, extra = {}) {
 
     // All quantities float within the 50%-80% band for different root sizes/anchors.
     for (const amount of [1, 2, 3]) {
-        ({ state, root } = await setup([0, (amount - 1) / 3, 0, 0, .5, .3])); state.update(5);
+        ({ state, root } = await setup([.6, (amount - 1) / 3, 0, 0, .5, .3])); state.update(5);
         flight = state._flight; assert.equal(flight.duration, [2.5,3.5,5][amount-1]);
         const ui = root.getComponent(UITransform); ui.height = 1000; ui.anchorY = .3;
         const heights = new Set();
@@ -168,7 +168,7 @@ function method(file, name, extra = {}) {
 
     const verticalSamples=[];
     for(const amount of [1,2,3]) {
-        ({state}=await setup([0,(amount-1)/3,0,0,.5,0]));state.update(5);
+        ({state}=await setup([.6,(amount-1)/3,0,0,.5,0]));state.update(5);
         flight=state._flight;
         const center=flight.node.position.y;
         state.update(.3);const peak=flight.node.position.y;
@@ -181,7 +181,26 @@ function method(file, name, extra = {}) {
     }
     assert.deepEqual(verticalSamples[0],verticalSamples[1]);assert.deepEqual(verticalSamples[0],verticalSamples[2],'Quantity changes only horizontal speed');
 
-    // Life is a one-point free reward only while injured; it never becomes a different gift mid-flight.
+    // Hint quantities are always 2/3; life quantities 1/2/3 all remain free.
+    for (const draw of [0, .25, .5, .99]) {
+        ({state}=await setup([0,draw,0])); state.update(5);
+        assert.equal(state._flight.gift.kind,'hint');
+        assert.ok([2,3].includes(state._flight.gift.amount));
+        assert.equal(state._flight.node.getChildByName('icon_videoplay').active,true);
+        state.dispose();
+    }
+    for (const amount of [1,2,3]) {
+        ({state,flow}=await setup([.99,(amount-1)/3,.5],{lives:2}));
+        state.start({...level,maxLives:5}); await state._prepare();
+        flow.remainingTime=10; flow.foundIds=new Set(level.differences.slice(0,9).map(d=>d.id));
+        state.update(5); flight=state._flight;
+        assert.ok(flight,'Multiple life gifts use free reward probability, not video probability');
+        assert.equal(flight.gift.kind,'life'); assert.equal(flight.gift.amount,amount);
+        assert.equal(flight.node.getChildByName('Number').getComponent(Label).string,`x${amount}`);
+        assert.equal(flight.node.getChildByName('icon_videoplay').active,false);
+        state.dispose();
+    }
+    // Life appears only while injured; its amount is bounded by missing health.
     for(const lives of [0,3]) {
         for(const draw of [0,.34,.67,.99]) {
             ({state}=await setup([draw,0,0],{lives}));state.update(5);
@@ -195,6 +214,8 @@ function method(file, name, extra = {}) {
     assert.equal(flight.node.getChildByName('icon_videoplay').active,false);
     flow.lives=3;state.update(.1);assert.equal(state._flight,null,'A full-health player no longer sees an unclaimed life gift');
     assert.equal(state._appearances,1);state.dispose();
+    ({state}=await setup([.99,.99,0],{lives:2}));state.update(5);
+    assert.equal(state._flight.gift.amount,1,'Only one missing life never advertises two or three');state.dispose();
     ({state,flow}=await setup([.99,0],{lives:4}));state.start({...level,maxLives:5});await state._prepare();state.update(5);
     assert.equal(state._flight.gift.kind,'life','Eligibility uses this level\'s actual maxLives');state.dispose();
 
@@ -209,7 +230,7 @@ function method(file, name, extra = {}) {
     finish(false); await pending; assert.equal(state._flight, flight); assert.equal(state._appearances, 1);
     pending = state._claim(flight); finish(true); await pending; assert.equal(state._flight, null);
     assert.equal(state._appearances, 1);
-    state.update(5); state.update(5); flight = state._flight;
+    state.update(5); state.update(15); flight = state._flight;
     pending = state._claim(flight); state.clear(); state.start(level); await state._prepare(); state.update(5);
     const next = state._flight; finish(true); await pending; assert.equal(state._flight, next, 'Stale ad callback cannot remove a new-round gift'); state.dispose();
 
@@ -239,7 +260,7 @@ function method(file, name, extra = {}) {
     resolveTouch(false);await new Promise(setImmediate);
     flight.node.handlers.start(event(3));flight.node.handlers.end(event(3));assert.equal(touchClaims,2,'Root fallback also claims');
     resolveTouch(true);await new Promise(setImmediate);assert.equal(state._flight,null);
-    state.update(5);state.update(5);flight=state._flight;clickBox=flight.node.getChildByName('ClikBox');
+    state.update(5);state.update(15);flight=state._flight;clickBox=flight.node.getChildByName('ClikBox');
     clickBox.handlers.start(event(4));state.clear();clickBox.handlers.end(event(4));assert.equal(touchClaims,2,'Late release after clear cannot grant');
     state.start(level);await state._prepare();state.update(5);clickBox=state._flight.node.getChildByName('ClikBox');
     flow.isPaused=true;clickBox.handlers.start(event());clickBox.handlers.end(event());assert.equal(touchClaims,2);
@@ -267,28 +288,30 @@ function method(file, name, extra = {}) {
     f.useHint = () => hintsUsed++;
     f.addTime = seconds => timeAdded += seconds;
     f.requestReward = async (placement, callback) => { assert.equal(placement, 'surprise'); videos++; if (completed) callback(); };
-    assert.equal(await f.claimSurpriseAssist('hint', 1), true); assert.equal(videos, 0); assert.equal(inventory.hint, 4); assert.equal(hintsUsed, 1);
+    assert.equal(await f.claimSurpriseAssist('hint', 1), false); assert.equal(videos, 0); assert.equal(inventory.hint, 4); assert.equal(hintsUsed, 0);
     assert.equal(await f.claimSurpriseAssist('add-time', 1), true); assert.equal(videos, 0); assert.equal(inventory['add-time'], 5); assert.equal(timeAdded, 60);
     assert.equal(await f.claimSurpriseAssist('add-time', 2), false); assert.equal(inventory['add-time'], 5, 'Incomplete video awards nothing'); assert.equal(timeAdded, 60);
     completed = true; assert.equal(await f.claimSurpriseAssist('add-time', 3), true); assert.equal(inventory['add-time'], 7); assert.equal(timeAdded, 120);
-    assert.equal(await f.claimSurpriseAssist('hint', 2), true); assert.equal(inventory.hint, 5); assert.equal(hintsUsed, 2);
-    disk = false; assert.equal(await f.claimSurpriseAssist('hint', 2), false); assert.equal(inventory.hint, 5); assert.equal(hintsUsed, 2); disk = true;
+    assert.equal(await f.claimSurpriseAssist('hint', 2), true); assert.equal(inventory.hint, 5); assert.equal(hintsUsed, 1);
+    disk = false; assert.equal(await f.claimSurpriseAssist('hint', 2), false); assert.equal(inventory.hint, 5); assert.equal(hintsUsed, 1); disk = true;
     const beforeLifeVideos=videos, beforeLifeInventory=JSON.stringify(inventory);
     f._currentLevel={maxLives:3};f._lives=2;
     assert.equal(await f.claimSurpriseAssist('life',1),true);assert.equal(f._lives,3);
     assert.equal(await f.claimSurpriseAssist('life',1),false,'Cannot exceed this level\'s maximum health');
-    f._lives=1;assert.equal(await f.claimSurpriseAssist('life',2),false);assert.equal(f._lives,1,'Life quantity is always exactly one');
+    f._lives=1;assert.equal(await f.claimSurpriseAssist('life',2),true);assert.equal(f._lives,3,'Multiple life reward is free');
+    f._lives=2;assert.equal(await f.claimSurpriseAssist('life',3),true);assert.equal(f._lives,3,'Life rewards cannot exceed maximum health');
     f._lives=0;assert.equal(await f.claimSurpriseAssist('life',1),false,'Life gift cannot revive a failed round');
     f._lives=2;f._isGameOver=true;assert.equal(await f.claimSurpriseAssist('life',1),false);assert.equal(f._lives,2);f._isGameOver=false;
     f.isPaused=true;assert.equal(await f.claimSurpriseAssist('life',1),false);f.isPaused=false;
     f.game.node.activeInHierarchy=false;assert.equal(await f.claimSurpriseAssist('life',1),false);f.game.node.activeInHierarchy=true;
     f._currentLevel={maxLives:5};f._lives=4;assert.equal(await f.claimSurpriseAssist('life',1),true);assert.equal(f._lives,5);
-    assert.equal(videos,beforeLifeVideos,'One-point life gifts never request rewarded ads');
+    f._lives=1;assert.equal(await f.claimSurpriseAssist('life',3),true);assert.equal(f._lives,4);
+    assert.equal(videos,beforeLifeVideos,'All life quantities are free and never request rewarded ads');
     assert.equal(JSON.stringify(inventory),beforeLifeInventory,'Life recovery never changes hint/time inventory');
     for (const [kind, amount] of [['unknown', 1], ['hint', 0], ['hint', 4], ['hint', 1.5], ['hint', NaN]]) assert.equal(await f.claimSurpriseAssist(kind, amount), false);
-    for (const flag of ['isPaused', '_isGameOver', '_rewardPending']) { f[flag] = true; assert.equal(await f.claimSurpriseAssist('hint', 1), false); f[flag] = false; }
+    for (const flag of ['isPaused', '_isGameOver', '_rewardPending']) { f[flag] = true; assert.equal(await f.claimSurpriseAssist('hint', 2), false); f[flag] = false; }
     f.requestReward = async (_, callback) => { f._assistRoundVersion++; callback(); };
-    assert.equal(await f.claimSurpriseAssist('hint', 2), true); assert.equal(inventory.hint, 7, 'Completed old-round video stores the full reward'); assert.equal(hintsUsed, 2, 'Do not automatically use the old reward in a new round');
+    assert.equal(await f.claimSurpriseAssist('hint', 2), true); assert.equal(inventory.hint, 7, 'Completed old-round video stores the full reward'); assert.equal(hintsUsed, 1, 'Do not automatically use the old reward in a new round');
     inventory.hint=99;const beforeFullVideos=videos;
     assert.equal(await f.claimSurpriseAssist('hint',2),false);assert.equal(videos,beforeFullVideos,'Full stock must not start another ad');
 

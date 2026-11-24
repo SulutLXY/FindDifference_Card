@@ -42,11 +42,6 @@
           "folder": "chou-zhi-tiao-zhan"
         },
         {
-          "id": "wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren",
-          "name": "异世界来了个年轻人",
-          "folder": "yi-shi-jie-lai-le-ge-nian-qing-ren"
-        },
-        {
           "id": "wang-luo-re-dian/sha-xian-ai-qing-gu-shi",
           "name": "沙县爱情故事",
           "folder": "sha-xian-ai-qing-gu-shi"
@@ -75,6 +70,11 @@
           "id": "wang-luo-re-dian/qiu-ri-shou-cang",
           "name": "秋日收藏",
           "folder": "qiu-ri-shou-cang"
+        },
+        {
+          "id": "wang-luo-re-dian/yi-shi-jie-lai-le-ge-nian-qing-ren",
+          "name": "异世界来了个年轻人",
+          "folder": "yi-shi-jie-lai-le-ge-nian-qing-ren"
         },
         {
           "id": "wang-luo-re-dian/ci-bu-yi-yang-jiu-pao-bu",

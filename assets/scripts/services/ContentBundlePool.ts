@@ -28,8 +28,19 @@ export class ContentBundlePool {
         if (cached) return Promise.resolve(cached);
         const pending = this.pending.get(name);
         if (pending) return pending;
+        const diagnostics = globalThis as any;
+        const measured = diagnostics.__findDifferenceLoadingDebug === true;
+        const startedAt = Date.now();
         const request = new Promise<AssetManager.Bundle>((resolve, reject) => {
             assetManager.loadBundle(name, (error, bundle) => {
+                if (measured) {
+                    const event = { name, startedAt, durationMs: Date.now() - startedAt,
+                        status: error || !bundle ? 'failed' : 'ready', scope: 'manifest-and-local-script' };
+                    const events = diagnostics.__findDifferenceBundleLoads ?? (diagnostics.__findDifferenceBundleLoads = []);
+                    events.push(event);
+                    if (events.length > 64) events.splice(0, events.length - 64);
+                    console.info('[BundleLoad]', JSON.stringify(event));
+                }
                 if (error || !bundle) reject(error ?? new Error(`${name} 加载失败`));
                 else { this.bundles.set(name, bundle); resolve(bundle); }
             });

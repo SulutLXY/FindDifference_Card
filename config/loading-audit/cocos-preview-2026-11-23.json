@@ -1,0 +1,61 @@
+{
+  "environment": "Cocos Creator 3.8.8 browser preview, http://localhost:7456/",
+  "source": "Latest working-tree source refreshed by Creator on 2026-11-23; isolated in-app browser tab, original Edge tab not reset",
+  "cache": "Browser cache was not cleared; these are not controlled cache-empty benchmarks",
+  "observations": [
+    {
+      "timestamp": "2026-11-23T09:35:09.807Z",
+      "event": "LevelLoad",
+      "chapterKey": "wang-luo-re-dian",
+      "levelIndex": 1,
+      "status": "ready",
+      "totalMs": 531,
+      "loadingFrameMs": 16,
+      "configMs": 0,
+      "musicIndexMs": 17,
+      "comboIndexMs": 17,
+      "uiMs": 423,
+      "imagesAndSetupMs": 40,
+      "firstGameFrameMs": 44
+    },
+    {
+      "timestamp": "2026-11-23T09:35:44.505Z",
+      "event": "LevelLoad",
+      "chapterKey": "wang-luo-re-dian",
+      "levelIndex": 1,
+      "status": "ready",
+      "totalMs": 549,
+      "loadingFrameMs": 17,
+      "configMs": 1,
+      "musicIndexMs": 20,
+      "comboIndexMs": 20,
+      "uiMs": 453,
+      "imagesAndSetupMs": 45,
+      "firstGameFrameMs": 29
+    },
+    {
+      "timestamp": "2026-11-23T09:38:23.849Z",
+      "event": "SelectionLoad",
+      "chapterKey": "qing-hua-ci",
+      "totalMs": 73,
+      "indexMs": 0,
+      "pageMs": 66
+    },
+    {
+      "timestamp": "2026-11-23T09:38:40.580Z",
+      "event": "LevelLoad",
+      "chapterKey": "xun-song-ji",
+      "levelIndex": 0,
+      "status": "ready",
+      "totalMs": 83,
+      "loadingFrameMs": 13,
+      "uiMs": 0,
+      "musicIndexMs": 0,
+      "comboIndexMs": 0,
+      "configMs": 15,
+      "imagesAndSetupMs": 33,
+      "firstGameFrameMs": 20
+    }
+  ],
+  "conclusion": "The reported 2-5 second delay was not reproduced in these latest-source samples. The removed serial whole-chapter config loop is a verified extra wait on the chapter-selection route. There is no matched old-source benchmark, so these samples do not prove it was the sole cause of the reported delay. Selection timings exclude asynchronous thumbnails; level timings exclude engine startup and menu navigation."
+}

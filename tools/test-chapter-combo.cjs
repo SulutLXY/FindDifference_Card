@@ -2,9 +2,10 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
-const compile = source => ts.transpileModule(source, { compilerOptions: {
+const releaseTransform = require('./cocos-release-transform.cjs');
+const compile = source => releaseTransform(ts.transpileModule(source, { compilerOptions: {
     target: ts.ScriptTarget.ES2018, module: ts.ModuleKind.CommonJS,
-} }).outputText;
+} }).outputText);
 class AudioClip {
     constructor(name) { this.name = name; this.refs = 0; }
     addRef() { this.refs++; }
@@ -22,6 +23,7 @@ for (const [chapter, group] of [['qing-hua-ci', 'Combo _F_type_QHC01'], ['meng-c
 }
 files.set('plain', []);
 files.set('partial', ['Combo _F_type/incomplete/clip_01']);
+files.set('sparse', ['Combo _F_type/sparse/clip_01','Combo _F_type/sparse/clip_04']);
 const makeBundle = name => ({
     getDirWithPath(dir, Type) {
         assert.equal(Type, AudioClip); scans.push(name);
@@ -45,7 +47,7 @@ const tree = ts.createSourceFile('flow.ts', text, ts.ScriptTarget.Latest, true);
 const names = ['_comboClips', '_chapterComboClips', '_chapterComboGroup', '_comboSoundRequest', 'DEFAULT_COMBO_GROUP',
     '_successSoundBags', '_lastSuccessClipKey', '_successClipCandidates', '_nextSuccessClipRef', '_playSuccessSound',
     'BUNDLE_COMBO_ROOT', '_activeComboGroup', '_comboGroups', '_comboGroupsScannedBundle', '_loadComboClip',
-    '_comboClipRef', '_resolveChapterComboGroup', '_discoverComboGroups', '_updateComboGroup', 'playSuccessTone',
+    '_chapterSuccessClipRefs', '_comboClipRef', '_resolveChapterComboGroup', '_discoverComboGroups', '_updateComboGroup', 'playSuccessTone',
     'COMBO_WINDOW_MS', 'TOP_COMBO_WINDOW_MS', 'onDifferenceFound'];
 const cls = tree.statements.find(ts.isClassDeclaration);
 const body = cls.members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
@@ -124,9 +126,27 @@ function finish(error = null) {
     }
     const partial = await f._resolveChapterComboGroup({ key: 'partial' }, 'select');
     assert.equal(partial.variants.get(1)[0], 'Combo _F_type/incomplete/clip_01');
-    assert.equal(partial.variants.has(2), false, 'Missing tiers fall back without inventing chapter clips');
-    assert.equal(await f._resolveChapterComboGroup({ key: 'offline' }, 'select'), null);
-    assert.equal(warnings.length, 1);
+    assert.equal(partial.variants.has(2), false);
+    f._chapterComboGroup=partial;
+    for(let stage=0;stage<=5;stage++) {
+        const refs=f._successClipCandidates(stage);
+        assert.ok(refs.length>0&&refs.every(ref=>ref.chapterBundle==='partial'&&ref.path.endsWith('_01')),
+            'Missing dedicated tiers reuse available audio from the same chapter');
+    }
+    assert.equal(f._comboClipRef(5).chapterBundle,'partial');
+    f._chapterComboGroup=await f._resolveChapterComboGroup({key:'sparse'},'select');
+    assert.ok(f._comboClipRef(3).path.endsWith('_01'),'Use nearest lower dedicated tier');
+    assert.ok(f._comboClipRef(5).path.endsWith('_04'));
+    const known=f._chapterComboGroup;const use=f._contentBundles.use;
+    f._contentBundles.use=async()=>{throw Error('temporary index failure');};
+    assert.equal(await f._resolveChapterComboGroup({key:'sparse'},'retry'),known,'Reuse only the same chapter known index after an error');
+    f._contentBundles.use=use;
+    f._chapterComboGroup=await f._resolveChapterComboGroup({ key: 'offline' }, 'select');
+    assert.equal(f._chapterComboGroup.chapterBundle,'offline');
+    assert.equal(f._successClipCandidates(1).length,0,'Unknown chapter index failure must not silently select generic audio');
+    assert.equal(f._comboClipRef(2),null);f.playSuccessTone(2);await flush();assert.equal(requests.length,0);
+    await assert.rejects(f._loadComboClip(2));
+    assert.equal(warnings.length, 2);
     const g = flow();
     g._chapterComboGroup = await g._resolveChapterComboGroup({ key: 'qing-hua-ci' }, 'select');
     g.playSuccessTone(2); await flush();
@@ -143,6 +163,6 @@ function finish(error = null) {
     const destroy = cls.members.find(m => m.name?.getText(tree) === 'onDestroy').getText(tree);
     assert.ok(destroy.includes('for (const clip of this._chapterComboClips) clip.decRef()'));
     for (const owner of [f, g]) { for (const clip of owner._chapterComboClips) clip.decRef(); owner._chapterComboClips.clear(); }
-    assert.deepEqual([...new Set(scans)].sort(), ['meng-chong-san-guo', 'partial', 'plain', 'qing-hua-ci']);
+    assert.deepEqual([...new Set(scans)].sort(), ['meng-chong-san-guo', 'partial', 'plain', 'qing-hua-ci', 'sparse']);
     console.log('PASS: actual QHC/SG five-stage assets, chapter-only discovery/loading, scoped cache/ref lifetime, retry, fallback, mute and stale-playback guards.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

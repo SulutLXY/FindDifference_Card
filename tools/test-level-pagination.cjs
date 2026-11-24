@@ -205,6 +205,15 @@ const tick = async () => { for (let i = 0; i < 10; i++) await Promise.resolve();
     f = fixture(0); assert.equal(f.screen.pageLabel.string, '0/0');
     assert.equal(f.requests.length, 0); assert.equal(f.screen.btnPrevious.active, false); assert.equal(f.screen.btnNext.active, false);
 
+    // The complete selection works with index cards and no downloaded gameplay configs.
+    f = fixture(30);const metadataCity=f.flow.currentCity;
+    metadataCity.levelCards=metadataCity.levelConfigs;metadataCity.levelConfigs=[];
+    f.screen.close();f.screen.open();
+    assert.equal(f.screen.pageLabel.string,'1/4');assert.equal(f.screen._runtimeCards.length,8);
+    assert.equal(f.screen._runtimeCards[0].getChildByName('CardName').getComponent(Label).string,'名称0');
+    press(f,'next');assert.equal(f.screen.pageLabel.string,'2/4');
+    await f.screen._enterLevel(8);assert.deepEqual(f.entered,[['A',8]]);
+
     // Authored two-column/four-row geometry fits inside List without runtime resizing.
     const list = prefab[127]._contentSize, card = prefab[120]._contentSize, layout = prefab[129];
     assert.ok(card.width * 2 + layout._spacingX + layout._paddingLeft + layout._paddingRight <= list.width);

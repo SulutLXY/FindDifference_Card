@@ -62,7 +62,7 @@ class CollectScreen {}
 class Prefab {}
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
-const names = ['_secondaryPagesPending', '_secondaryPrefabs', '_secondaryNavigationVersion', '_secondaryPageLoading', '_secondaryDisposed',
+const names = ['_prioritizeAssetDownloads','_secondaryPagesPending', '_secondaryPrefabs', '_secondaryNavigationVersion', '_secondaryPageLoading', '_secondaryDisposed',
     '_loadLobbyBundle', '_lobbyBundle', '_lobbyBundlePending', '_loadSecondaryBundle', '_ensureSecondaryPage', '_openSecondaryPage', '_cancelSecondaryNavigation', '_disposeSecondaryPages', 'showRank', 'showCollect'];
 const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
 let bundleRequests = [], prefabRequests = [], instances = [];
@@ -100,6 +100,7 @@ const tick = () => new Promise(setImmediate);
     assert.equal(instances.length, 1); assert.equal(flow.opened.length, 1); assert.equal(flow.ads, 1);
     assert.equal(prefab.refs, 1); assert.equal(flow._loadingNode.active, false);
     await flow._openSecondaryPage('collect'); assert.equal(instances.length, 1); assert.equal(flow.opened.length, 2);
+    assert.deepEqual(Array.from(flow._pendingAssetPriority),['LobbySources','food-icons'],'Collection selection promotes its UI and image bundles');
 
     const cancelled = flow._openSecondaryPage('rank'); await tick();
     flow._cancelSecondaryNavigation(); task = prefabRequests.shift(); task.done(null, makePrefab(task.request));

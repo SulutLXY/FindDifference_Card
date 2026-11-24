@@ -129,12 +129,17 @@ export interface ChapterLevelEntry {
     folder: string;
 }
 
-/** 运行时城市数据：levels 按需懒加载填充 levelConfigs。 */
+/** 选关卡片只需要主包索引，不需要差异点等完整玩法配置。 */
+export type LevelCardConfig = Pick<LevelConfig, 'key' | 'name' | 'icon' | 'topImage'>;
+
+/** 运行时城市数据：选关卡片与按需加载的完整玩法配置分开缓存。 */
 export interface CityConfig extends Omit<CityMeta, 'levels'> {
     levels: string[];
     levelIds?: Record<string, string>;
     levelNames?: Record<string, string>;
+    /** 选关卡片元数据已就绪，不代表全章玩法配置已下载。 */
     levelsLoaded: boolean;
+    levelCards?: LevelCardConfig[];
     levelConfigs: LevelConfig[];
 }
 

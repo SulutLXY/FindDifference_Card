@@ -41,7 +41,7 @@ tips.presentHint({}, {}, 30); tips.onDisable(); assert.equal(handlers.size, 0); 
 tips.present({}, {}, 30, () => {}); assert.equal(blocking.size, 3, 'Tutorials still block input');
 tips.presentHint({}, {}, 30); assert.equal(blocking.size, 0, 'Switching from tutorial removes blockers');
 
-const Flow = methods('assets/scripts/GameFlow.ts', ['useHint', 'update', '_tickLobbyWarmup', '_tryFeedOffer'], { GameTips: class {} });
+const Flow = methods('assets/scripts/GameFlow.ts', ['useHint', 'update', '_tickLobbyWarmup', '_tickBackgroundAssets', '_tryFeedOffer'], { GameTips: class {} });
 const flow = new Flow();
 const difference = { id: 'a', x: 0.25, y: 0.25, radius: 0.1 };
 flow._currentLevel = { differences: [difference] }; flow._foundIds = new Set(); flow.foundIds = flow._foundIds; flow._isPaused = false; flow._isGameOver = false;

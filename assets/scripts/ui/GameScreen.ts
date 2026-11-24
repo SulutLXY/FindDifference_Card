@@ -283,11 +283,18 @@ export class GameScreen extends UIScreen {
 
         const frames: SpriteFrame[] = [];
         try {
-            for (const path of [level.topImage, level.bottomImage]) {
-                frames.push(await this.flow.acquireLevelFrame(path));
-                if (!this.isValid || token !== this._setupToken) throw new Error('关卡加载已取消');
-                progress(frames.length / 2 * 0.9);
-            }
+            let completed = 0;
+            // 两图同时请求，但必须等两条请求均结束后再处理失败，避免迟到的成功资源泄漏。
+            const results = await Promise.all([level.topImage, level.bottomImage].map(async (path, index) => {
+                try {
+                    frames[index] = await this.flow.acquireLevelFrame(path);
+                    if (!this.isValid || token !== this._setupToken) throw new Error('关卡加载已取消');
+                    progress(++completed / 2 * 0.9);
+                    return null;
+                } catch (error) { return { error }; }
+            }));
+            const failed = results.find(result => result !== null);
+            if (failed) throw failed.error;
             const [topFrame, bottomFrame] = frames;
             const top = this.resolveNode(this.topImage, 'TopImage');
             const bottom = this.resolveNode(this.bottomImage, 'BottomImage');
@@ -295,7 +302,7 @@ export class GameScreen extends UIScreen {
             this._applySpriteFrame(bottom, bottomFrame);
             this._levelFrames = frames;
         } catch (error) {
-            for (const frame of frames) this.flow.releaseLevelFrame(frame);
+            for (const frame of frames) if (frame) this.flow.releaseLevelFrame(frame);
             console.error(`[GameScreen] 关卡图片加载失败: ${level.topImage} / ${level.bottomImage}`, error);
             throw error;
         }

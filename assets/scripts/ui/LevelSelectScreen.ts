@@ -1,5 +1,5 @@
 import { _decorator, Color, Graphics, Input, Label, Layout, Node, ScrollView, Sprite, UITransform, instantiate } from 'cc';
-import { CityConfig, LevelConfig } from '../core/GameTypes';
+import { CityConfig, LevelCardConfig } from '../core/GameTypes';
 import { EnergyDisplay } from './EnergyDisplay';
 import { UIColors, UIScreen } from './UIScreen';
 
@@ -95,11 +95,12 @@ export class LevelSelectScreen extends UIScreen {
         const city = this.flow.currentCity;
         if (!city?.levelsLoaded) return;
         const cityIndex = this.flow.cities.indexOf(city);
-        let target = city.levelConfigs.findIndex((_, index) => !this.flow.isLevelUnlocked(cityIndex, index));
+        const levels = city.levelCards ?? city.levelConfigs;
+        let target = levels.findIndex((_, index) => !this.flow.isLevelUnlocked(cityIndex, index));
         if (target < 0) {
             target = 0;
             let lowestStars = Infinity;
-            city.levelConfigs.forEach((level, index) => {
+            levels.forEach((level, index) => {
                 const stars = this.flow.save.progressOf(level.key)?.stars ?? 0;
                 // 同星级保留章节配置中更靠前的一关；未游玩按 0 星处理。
                 if (stars < lowestStars) {
@@ -127,7 +128,8 @@ export class LevelSelectScreen extends UIScreen {
             this._selectInitialPage();
         }
         const pageSize = this._effectivePageSize();
-        this._pageCount = Math.ceil(city.levelConfigs.length / pageSize);
+        const levels = city.levelCards ?? city.levelConfigs;
+        this._pageCount = Math.ceil(levels.length / pageSize);
         this._pageIndex = Math.max(0, Math.min(this._pageIndex, this._pageCount - 1));
 
         this.setLabel(this.pageTitle, 'PageTitle', city.name);
@@ -142,7 +144,7 @@ export class LevelSelectScreen extends UIScreen {
         const start = this._pageIndex * pageSize;
         this._hideManualCards(root);
 
-        city.levelConfigs.slice(start, start + pageSize).forEach((level, index) => {
+        levels.slice(start, start + pageSize).forEach((level, index) => {
             let card: Node;
             if (template) {
                 card = instantiate(template);
@@ -216,7 +218,7 @@ export class LevelSelectScreen extends UIScreen {
         }
     }
 
-    private _fillCard(card: Node, level: LevelConfig, levelIndex: number, cityIndex: number): void {
+    private _fillCard(card: Node, level: LevelCardConfig, levelIndex: number, cityIndex: number): void {
         const unlocked = this.flow.isLevelUnlocked(cityIndex, levelIndex);
         const progress = this.flow.save.progressOf(level.key);
 
@@ -287,7 +289,7 @@ export class LevelSelectScreen extends UIScreen {
     }
 
     /** 封面：优先 icon 文件，缺省回退上图。 */
-    private async _loadThumbnail(card: Node, level: LevelConfig): Promise<void> {
+    private async _loadThumbnail(card: Node, level: LevelCardConfig): Promise<void> {
         await this._loadThumbnailByPath(card, level.icon || level.topImage);
     }
 

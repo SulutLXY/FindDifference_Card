@@ -18,21 +18,29 @@ function methods(file,names,extra={}){
  s.clearLevel();assert.equal(refs,0);assert.equal(sprites.TopImage.spriteFrame,null);
  let calls=0;s.flow.acquireLevelFrame=async()=>{if(++calls===2)throw Error('offline');refs++;return {decRef(){refs--}}};
  await assert.rejects(s.setupLevel({name:'test',topImage:'a',bottomImage:'b'}));assert.equal(refs,0);
- let finish;s.flow.acquireLevelFrame=()=>new Promise(r=>{finish=()=>{refs++;r({decRef(){refs--}})}});
- const pending=s.setupLevel({name:'test',topImage:'a',bottomImage:'b'});s.clearLevel();finish();await assert.rejects(pending);assert.equal(refs,0);
+ const finishes=[];s.flow.acquireLevelFrame=()=>new Promise(r=>{finishes.push(()=>{refs++;r({decRef(){refs--}})});});
+ const pending=s.setupLevel({name:'test',topImage:'a',bottomImage:'b'});const pendingRejected=assert.rejects(pending);
+ assert.equal(finishes.length,2,'Both requests start before either finishes');
+ s.clearLevel();finishes.forEach(finish=>finish());await pendingRejected;assert.equal(refs,0);
  // Slow top/bottom downloads cannot finish setup or expose one partially bound image.
  const imageLoads=[],imageProgress=[];
  s.flow.acquireLevelFrame=path=>new Promise(resolve=>imageLoads.push({path,resolve:()=>{refs++;resolve({decRef(){refs--;}});}}));
  let imagesReady=false;
  const slowImages=s.setupLevel({name:'slow',topImage:'top',bottomImage:'bottom'},v=>imageProgress.push(v)).then(()=>imagesReady=true);
- assert.equal(imageLoads[0].path,'top');assert.equal(imagesReady,false);
- imageLoads[0].resolve();await new Promise(setImmediate);
- assert.equal(imageLoads[1].path,'bottom');assert.equal(imagesReady,false);
+ assert.equal(imageLoads[0].path,'top');assert.equal(imageLoads[1].path,'bottom');assert.equal(imagesReady,false);
+ imageLoads[1].resolve();await new Promise(setImmediate);
+ assert.equal(imagesReady,false);
  assert.equal(sprites.TopImage.spriteFrame,null);assert.equal(sprites.BottomImage.spriteFrame,null);
  assert.ok(imageProgress.every(v=>v<1));
- imageLoads[1].resolve();await slowImages;
+ imageLoads[0].resolve();await slowImages;
  assert.ok(sprites.TopImage.spriteFrame);assert.ok(sprites.BottomImage.spriteFrame);
  assert.equal(imageProgress.at(-1),1);s.clearLevel();assert.equal(refs,0);
+ // A failure followed by a late success must release that late frame too.
+ let late;s.flow.acquireLevelFrame=path=>path==='top'?Promise.reject(Error('offline')):new Promise(resolve=>late=()=>{
+   const frame={decRef(){refs--;}};refs++;resolve(frame);
+ });
+ const failedPair=s.setupLevel({name:'failed',topImage:'top',bottomImage:'bottom'});const rejectedPair=assert.rejects(failedPair,/offline/);
+ await new Promise(setImmediate);late();await rejectedPair;assert.equal(refs,0,'No leaked reference after the other image fails');
  const SpriteType=class{};SpriteType.SizeMode={CUSTOM:'custom'};
  const Binding=methods('assets/scripts/ui/GameScreen.ts',['_applySpriteFrame'],{Sprite:SpriteType});
  const binding=new Binding(),sprite={enabled:false},target={isValid:true,getComponent:()=>sprite};
@@ -85,7 +93,7 @@ function methods(file,names,extra={}){
  assert.equal(gameOpens,1);assert.equal(children.at(-1),f._loadingNode,'Loading must cover newly instantiated gameplay');
  assert.equal(f._loadingNode.active,true);assert.equal(f._isPaused,true);assert.equal(mark,0,'Do not start the round before the first rendered frame');
  finishDraw();await loading;assert.equal(f._levelLoading,false);assert.equal(f._isPaused,false);assert.equal(mark,1);assert.equal(f._loadingNode.active,false);
- assert.equal(homeWarmups,0,'First playable frame must not immediately download the menu');assert.equal(f._lobbyWarmupRemaining,8);
+ assert.equal(homeWarmups,0,'First playable frame must not immediately download the menu');assert.equal(f._lobbyWarmupRemaining,3);
  assert.equal(spent,1,'Exactly one energy for the ready round');assert.equal(f.save.energy,99);
  f._drawLoadingFrame=async()=>{};
  assert.equal(f._roundInterstitialProtected,true);assert.equal(f.platform.canShowInterstitial(),false,'Daily first round is protected');
@@ -143,6 +151,15 @@ function methods(file,names,extra={}){
  const partial={key:'a',levels:['01','02','03'],levelConfigs:[]};
  assert.equal((await lazy._ensureLevel(partial,2)).key,'a/03');assert.deepEqual(read,['03']);
  await lazy._ensureLevel(partial,2);assert.equal(read.length,1,'Target config is cached');
+ // Prefetch and foreground entry share one config request; errors are evicted for retry.
+ const dedup=new Flow();let configCalls=0,finishConfig;
+ dedup._loadLevel=()=>{configCalls++;return new Promise((resolve,reject)=>finishConfig={resolve,reject});};
+ const uncached={key:'dedup',levels:['one'],levelConfigs:[]};
+ const ca=dedup._ensureLevel(uncached,0),cb=dedup._ensureLevel(uncached,0);
+ assert.equal(configCalls,1);finishConfig.resolve({key:'dedup/one'});assert.equal(await ca,await cb);
+ uncached.levelConfigs=[];const failedConfig=dedup._ensureLevel(uncached,0);const configRejected=assert.rejects(failedConfig,/offline/);
+ finishConfig.reject(Error('offline'));await configRejected;
+ const retryConfig=dedup._ensureLevel(uncached,0);assert.equal(configCalls,3);finishConfig.resolve({key:'dedup/one'});await retryConfig;
  const button=new Flow(),requested=[];button._currentCity=city;button._cities=[city,nextCity];
  button._currentLevel={key:'a/01',differences:[{}]};button._foundIds=new Set(['hit']);button.resultModal={close(){}};
  button.startLevel=async(...args)=>requested.push(args);
@@ -166,6 +183,20 @@ function methods(file,names,extra={}){
  const meta=await metaFlow._loadCityMeta({},'city-01');
  assert.deepEqual(Array.from(meta.levels),['level-01','level-02'],'Old placeholder must not be loaded or selected');
  assert.equal(recordedPlays.length,0,'Heat algorithms remain available but gameplay no longer records or uploads play events');
+ // A slow gameplay bundle must not postpone the independent chapter requests.
+ const promoted=[];f._backgroundAssets={prioritize:names=>promoted.push(Array.from(names))};
+ f._pendingAssetPriority=['LobbySources'];
+ let finishUI;const stages=[];f.save.energy=10;f.save.consumeEnergy=()=>true;
+ f._ensureGameScreens=()=>new Promise(resolve=>finishUI=resolve);
+ f._ensureLevel=async(city,index)=>{stages.push('config');return city.levelConfigs[index];};
+ f._resolveChapterMusic=async()=>{stages.push('music');return null;};
+ f._resolveChapterComboGroup=async()=>{stages.push('combo');return null;};
+ let bound=false;f.game.setupLevel=async()=>{bound=true;};
+ const overlapping=f.startLevel(city,0);await new Promise(setImmediate);
+ assert.deepEqual(stages,['config','music','combo']);assert.equal(bound,false,'Images cannot bind before UI exists');
+ finishUI();await overlapping;assert.equal(bound,true);
+ assert.deepEqual(promoted,[[city.key]],'Explicit gameplay entry promotes its bundle without waiting for background order');
+ assert.deepEqual(Array.from(f._pendingAssetPriority),[city.key],'Continue overrides an older menu priority before background startup');
  console.log('PASS: loading/fallback, daily first-round ad protection, retries, day rollover, persistence, and level-00 exclusion.');
 })().catch(e=>{console.error(e);process.exitCode=1});
 

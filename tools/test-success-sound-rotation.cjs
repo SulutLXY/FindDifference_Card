@@ -1,6 +1,7 @@
 const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:assert/strict');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
-const compile = source => ts.transpileModule(source, {compilerOptions: {target: ts.ScriptTarget.ES2018}}).outputText;
+const releaseTransform = require('./cocos-release-transform.cjs');
+const compile = source => releaseTransform(ts.transpileModule(source, {compilerOptions: {target: ts.ScriptTarget.ES2018}}).outputText);
 const tick = () => new Promise(setImmediate);
 class AudioClip {
     constructor(name) { this.name = name; this.refs = 0; }
@@ -23,7 +24,7 @@ const text = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('flow.ts', text, ts.ScriptTarget.Latest, true);
 const names = ['_comboClips', '_chapterComboClips', '_chapterComboGroup', '_comboSoundRequest', '_successSoundBags',
     '_lastSuccessClipKey', 'DEFAULT_COMBO_GROUP', 'BUNDLE_COMBO_ROOT', '_activeComboGroup', '_comboGroups',
-    '_comboGroupsScannedBundle', '_loadComboClip', '_comboClipRef', '_resolveChapterComboGroup', '_discoverComboGroups',
+    '_comboGroupsScannedBundle', '_loadComboClip', '_chapterSuccessClipRefs', '_comboClipRef', '_resolveChapterComboGroup', '_discoverComboGroups',
     '_successClipCandidates', '_nextSuccessClipRef', '_playSuccessSound', 'playSuccessTone', 'playRightSound',
     'COMBO_WINDOW_MS', 'TOP_COMBO_WINDOW_MS', 'onDifferenceFound'];
 const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree)))
@@ -75,7 +76,7 @@ function noAdjacent(values) {
         assert.equal(b.queue.length, 0, 'Discover metadata without preloading every sound');
         for (let stage = 1; stage <= 5; stage++) {
             const chapterPaths = files.get(chapter).filter(path => path.startsWith('Combo _F_type/') && path.endsWith(`_0${stage}`));
-            const count = 3 + chapterPaths.length;
+            const count = chapterPaths.length;
             const start = b.played.length;
             for (let i = 0; i < count * 2; i++) { b.f.playSuccessTone(stage + 1); await b.settle(); }
             const values = b.played.slice(start);
@@ -83,13 +84,19 @@ function noAdjacent(values) {
             assert.equal(new Set(values.slice(count)).size, count);
             for (const path of chapterPaths) assert.ok(values.includes(`${chapter}:${path}`), `New clip must actually play: ${path}`);
             assert.ok(values.some(path => path.startsWith(chapter + ':')));
-            assert.ok(values.every(path => path.startsWith(chapter + ':') || path.startsWith('MainGameSources:')));
+            assert.ok(values.every(path => path.startsWith(chapter + ':')), 'Special chapters never mix in generic voices');
             assert.ok(values.every(path => path.endsWith(`_0${stage}`)));
-            noAdjacent(values);
+            if (count > 1) noAdjacent(values);
         }
         assert.equal(b.f._chapterComboClips.size, files.get(chapter).filter(path => path.startsWith('Combo _F_type/')).length,
             'Every chapter variant is played and cached within its own chapter');
-        assert.deepEqual(Array.from(new Set(b.scans)).sort(), ['MainGameSources', chapter].sort());
+        assert.deepEqual(Array.from(new Set(b.scans)), [chapter], 'A dedicated chapter must not discover or choose generic groups');
+        b.f._discoverComboGroups = () => assert.fail('Dedicated correct answers must not query generic sounds');
+        const normalStart=b.played.length;
+        for(let i=0;i<12;i++){b.f.playRightSound();await b.settle();b.f.playSuccessTone(2);await b.settle();}
+        assert.ok(b.played.slice(normalStart).every(path=>path.startsWith(chapter+':')&&path.endsWith('_01')),
+            'Ordinary correct answers are dedicated too, with no voice_Right base cue');
+        noAdjacent(b.played.slice(normalStart));
         for (const clip of b.f._chapterComboClips) clip.decRef();
     }
     const c = setup();
@@ -115,5 +122,16 @@ function noAdjacent(values) {
     assert.equal(e.played.length, 1);
     assert.equal(e.queue.length, 0);
     assert.equal(JSON.stringify(Array.from(e.f._successSoundBags)), bag, 'Muted answers neither download nor consume sound choices');
+    const switched=setup();
+    for(const chapter of ['qing-hua-ci','meng-chong-san-guo']) {
+        switched.f._chapterComboGroup=await switched.f._resolveChapterComboGroup({key:chapter},'select');
+        switched.f.playRightSound();await switched.settle();assert.ok(switched.played.at(-1).startsWith(chapter+':'));
+    }
+    switched.f._chapterComboGroup=null;switched.f.playRightSound();await switched.settle();
+    assert.ok(switched.played.at(-1).startsWith('MainGameSources:'),'Ordinary chapters restore their generic pool after a special chapter');
+    const broken=setup();broken.f._chapterComboGroup=await broken.f._resolveChapterComboGroup({key:'qing-hua-ci'},'select');
+    broken.f.playSuccessTone(2);await tick();const failed=broken.queue.shift();assert.equal(failed.name,'qing-hua-ci');
+    failed.done(Error('download failed'));await tick();assert.equal(broken.played.length,0);assert.equal(broken.queue.length,0,
+        'A failed dedicated clip never triggers a generic replacement');
     console.log('PASS: actual generic/chapter assets, tier-preserving shuffle bags, full-cycle uniqueness, boundary and cross-tier non-repetition, ordinary/highest-tier variation, chapter isolation, mute and stale-request cancellation.');
 })().catch(error => {console.error(error); process.exitCode = 1;});

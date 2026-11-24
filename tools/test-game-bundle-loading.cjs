@@ -143,6 +143,14 @@ function flow() {
     assert.equal(longGame.destroyed, true, 'Replace the old layout on the next level entry');
     assert.equal(created.length, 4);
     await f._ensureGameScreens(); assert.equal(created.length, 4);
+    let finishSupport;f._sharedUIReady=false;
+    f._ensureSharedUI=()=>new Promise(resolve=>finishSupport=resolve);
+    screen.windowSize={width:750,height:1620};
+    const beforeParallel=loads.length,parallel=f._ensureGameScreens();await new Promise(setImmediate);
+    assert.deepEqual(loads.slice(beforeParallel),['prefabs/GameScreen','prefabs/ResultModal'],
+        'Prefab requests must start while shared support is still loading');
+    assert.equal(created.length,4,'Wait for shared support before instantiating dependent UI');
+    finishSupport();await parallel;assert.equal(created.length,6);f._sharedUIReady=true;
     screen.windowSize = { width: 750, height: 1620 };
     await f._loadComboClip(0);
     for (const group of ['Combo _F_type01', 'Combo _F_type02']) {

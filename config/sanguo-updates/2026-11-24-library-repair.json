@@ -1,0 +1,127 @@
+{
+  "date": "2026-11-24",
+  "scope": "Restore only scene-a.jpg and scene-b.jpg for source folders 21,22,23 from existing project assets. Do not modify project assets, JSON configs or metadata.",
+  "items": [
+    {
+      "number": 21,
+      "name": "落凤坡",
+      "source": "D:\\CocosCreator\\Projects\\FindDifference\\assets\\Bundle\\levels\\meng-chong-san-guo\\luo-feng-po\\scene-a.jpg",
+      "destination": "D:\\CocosCreator\\关卡\\三国\\21-落凤坡-风格重绘与内容补充\\scene-a.jpg",
+      "backup": "D:\\CocosCreator\\Projects\\FindDifference\\temp\\sanguo-source-repair-2026-11-24\\before\\21-落凤坡-风格重绘与内容补充\\scene-a.jpg",
+      "beforeSha256": "af5a11205a70c6d44f38b52ba9ccc5a458fd1aacbf32f3a7272842a3005b38ee",
+      "expectedSha256": "af5a11205a70c6d44f38b52ba9ccc5a458fd1aacbf32f3a7272842a3005b38ee",
+      "bytes": 323801
+    },
+    {
+      "number": 21,
+      "name": "落凤坡",
+      "source": "D:\\CocosCreator\\Projects\\FindDifference\\assets\\Bundle\\levels\\meng-chong-san-guo\\luo-feng-po\\scene-b.jpg",
+      "destination": "D:\\CocosCreator\\关卡\\三国\\21-落凤坡-风格重绘与内容补充\\scene-b.jpg",
+      "backup": "D:\\CocosCreator\\Projects\\FindDifference\\temp\\sanguo-source-repair-2026-11-24\\before\\21-落凤坡-风格重绘与内容补充\\scene-b.jpg",
+      "beforeSha256": "af5a11205a70c6d44f38b52ba9ccc5a458fd1aacbf32f3a7272842a3005b38ee",
+      "expectedSha256": "225b5a0a1130345d68a9f7a34a982026b80c858c3e756adefa2ff01a9d586cd6",
+      "bytes": 335617
+    },
+    {
+      "number": 22,
+      "name": "定军山",
+      "source": "D:\\CocosCreator\\Projects\\FindDifference\\assets\\Bundle\\levels\\meng-chong-san-guo\\ding-jun-shan\\scene-a.jpg",
+      "destination": "D:\\CocosCreator\\关卡\\三国\\22-定军山斩夏侯渊-风格重绘与内容补充\\scene-a.jpg",
+      "backup": "D:\\CocosCreator\\Projects\\FindDifference\\temp\\sanguo-source-repair-2026-11-24\\before\\22-定军山斩夏侯渊-风格重绘与内容补充\\scene-a.jpg",
+      "beforeSha256": "25a4862bebdf12d5e59bbea25b3e467ef9debf553005253db6af24a202718216",
+      "expectedSha256": "25a4862bebdf12d5e59bbea25b3e467ef9debf553005253db6af24a202718216",
+      "bytes": 317649
+    },
+    {
+      "number": 22,
+      "name": "定军山",
+      "source": "D:\\CocosCreator\\Projects\\FindDifference\\assets\\Bundle\\levels\\meng-chong-san-guo\\ding-jun-shan\\scene-b.jpg",
+      "destination": "D:\\CocosCreator\\关卡\\三国\\22-定军山斩夏侯渊-风格重绘与内容补充\\scene-b.jpg",
+      "backup": "D:\\CocosCreator\\Projects\\FindDifference\\temp\\sanguo-source-repair-2026-11-24\\before\\22-定军山斩夏侯渊-风格重绘与内容补充\\scene-b.jpg",
+      "beforeSha256": "25a4862bebdf12d5e59bbea25b3e467ef9debf553005253db6af24a202718216",
+      "expectedSha256": "535e1ae9e6007b1675ab70be0247e48f7888c5e06b6e5c8db2778da11aaa3fe7",
+      "bytes": 345259
+    },
+    {
+      "number": 23,
+      "name": "水淹七军",
+      "source": "D:\\CocosCreator\\Projects\\FindDifference\\assets\\Bundle\\levels\\meng-chong-san-guo\\shui-yan-qi-jun\\scene-a.jpg",
+      "destination": "D:\\CocosCreator\\关卡\\三国\\23-水淹七军-风格重绘与内容补充\\scene-a.jpg",
+      "backup": "D:\\CocosCreator\\Projects\\FindDifference\\temp\\sanguo-source-repair-2026-11-24\\before\\23-水淹七军-风格重绘与内容补充\\scene-a.jpg",
+      "beforeSha256": "64b317efabc36d79b2557b0cd9671e0cb28705f278018d48402bdc8fb051798f",
+      "expectedSha256": "64b317efabc36d79b2557b0cd9671e0cb28705f278018d48402bdc8fb051798f",
+      "bytes": 317205
+    },
+    {
+      "number": 23,
+      "name": "水淹七军",
+      "source": "D:\\CocosCreator\\Projects\\FindDifference\\assets\\Bundle\\levels\\meng-chong-san-guo\\shui-yan-qi-jun\\scene-b.jpg",
+      "destination": "D:\\CocosCreator\\关卡\\三国\\23-水淹七军-风格重绘与内容补充\\scene-b.jpg",
+      "backup": "D:\\CocosCreator\\Projects\\FindDifference\\temp\\sanguo-source-repair-2026-11-24\\before\\23-水淹七军-风格重绘与内容补充\\scene-b.jpg",
+      "beforeSha256": "64b317efabc36d79b2557b0cd9671e0cb28705f278018d48402bdc8fb051798f",
+      "expectedSha256": "10013a5d011235ab7a8e62045d55d8915a2bf3911a153974db67c65d7240dc59",
+      "bytes": 334967
+    }
+  ],
+  "unchangedConfigs": [
+    {
+      "number": 21,
+      "source": "D:\\CocosCreator\\关卡\\三国\\21-落凤坡-风格重绘与内容补充\\differences.json",
+      "sourceSha256": "a582e7e87dcb0a6582390ec0ff6faf289232f1498c2da896a43063226ff45440",
+      "sourceDifferenceCount": 11,
+      "projectDifferenceCount": 11
+    },
+    {
+      "number": 22,
+      "source": "D:\\CocosCreator\\关卡\\三国\\22-定军山斩夏侯渊-风格重绘与内容补充\\differences.json",
+      "sourceSha256": "9a2ff710cbe5180ebbc2f0d6c8fdc67fa65cd5faab5fb6add264b85e5368f494",
+      "sourceDifferenceCount": 6,
+      "projectDifferenceCount": 16
+    },
+    {
+      "number": 23,
+      "source": "D:\\CocosCreator\\关卡\\三国\\23-水淹七军-风格重绘与内容补充\\differences.json",
+      "sourceSha256": "5acbfe322c9a898951464ae8b21b7581325a38fbeff5d4b71d9630c569bbbf41",
+      "sourceDifferenceCount": 5,
+      "projectDifferenceCount": 13
+    }
+  ],
+  "result": [
+    {
+      "number": 21,
+      "name": "落凤坡",
+      "sameBytes": false,
+      "matchesProject": true
+    },
+    {
+      "number": 22,
+      "name": "定军山",
+      "sameBytes": false,
+      "matchesProject": true
+    },
+    {
+      "number": 23,
+      "name": "水淹七军",
+      "sameBytes": false,
+      "matchesProject": true
+    }
+  ],
+  "configVerification": [
+    {
+      "number": 21,
+      "source": "D:\\CocosCreator\\关卡\\三国\\21-落凤坡-风格重绘与内容补充\\differences.json",
+      "unchanged": true
+    },
+    {
+      "number": 22,
+      "source": "D:\\CocosCreator\\关卡\\三国\\22-定军山斩夏侯渊-风格重绘与内容补充\\differences.json",
+      "unchanged": true
+    },
+    {
+      "number": 23,
+      "source": "D:\\CocosCreator\\关卡\\三国\\23-水淹七军-风格重绘与内容补充\\differences.json",
+      "unchanged": true
+    }
+  ],
+  "status": "images-restored-and-verified"
+}

@@ -11,7 +11,7 @@ function methods(file,names,extra={}){
  assert.equal(save.beginDailyFirstRound('2026-10-09'),true);assert.equal(save.beginDailyFirstRound('2026-10-09'),false);
  const reload=new Save();reload._data=JSON.parse(JSON.stringify(save._data));reload._persist=()=>true;
  assert.equal(reload.beginDailyFirstRound('2026-10-09'),false);assert.equal(reload.beginDailyFirstRound('2026-10-10'),true);
- const Flow=methods('assets/scripts/GameFlow.ts',['finishLevel','update','_tickLobbyWarmup','_tryFeedOffer']);
+ const Flow=methods('assets/scripts/GameFlow.ts',['finishLevel','update','_tickLobbyWarmup','_tickBackgroundAssets','_tryFeedOffer']);
  for(const win of [true,false]) for(const collected of [true,false]){
   const f=new Flow();f.isValid=true;f._foods=[];f._foundIds=new Set();let popups=0;f._currentLevel={key:'food',type:'food',timeLimit:100};f._remainingTime=90;f._elapsedTime=10;
   f._playResultTone=()=>{};f.save={isCompleted:()=>collected,completeLevel(){return true;},totalScore:2};f.rankProvider={submitScore(){}};
@@ -25,9 +25,9 @@ function methods(file,names,extra={}){
  const Pre=methods('assets/scripts/GameFlow.ts',['preloadNextLevel','_nextLevelTarget'],{SpriteFrame:class{},assetManager:{preloadAny(req,opts,cb){assert.equal(opts.priority,-1);assert.equal(opts.maxConcurrency,1);calls.push(req.uuid);max=Math.max(max,++inflight);setTimeout(()=>{inflight--;cb(null)},1)}}});
  const p=new Pre();p.isValid=true;p._levelLoadVersion=1;p.game={node:{activeInHierarchy:true}};p._currentLevel={key:'city/01'};p._currentCity={key:'city',levels:['01','02']};p._cities=[p._currentCity];
  p._contentBundles={retain:()=>()=>{}};p._levelImageTarget=image=>({cityKey:'city',request:image.includes('scene-a')?'top':'bottom'});
- p._loadCityBundle=async()=>({name:'city',getInfoWithPath:path=>({uuid:path})});p._loadLevel=async()=>({topImage:'levels/city/02/scene-a/spriteFrame',bottomImage:'levels/city/02/scene-b/spriteFrame'});
+ p._loadCityBundle=async()=>({name:'city',getInfoWithPath:path=>({uuid:path})});p._ensureLevel=async()=>({topImage:'levels/city/02/scene-a/spriteFrame',bottomImage:'levels/city/02/scene-b/spriteFrame'});
  await p.preloadNextLevel(p._currentLevel);assert.deepEqual(calls,['top','bottom']);assert.equal(max,1);
- calls.length=0;p._loadLevel=async()=>{p._levelLoadVersion++;return {topImage:'levels/city/02/scene-a/spriteFrame',bottomImage:'levels/city/02/scene-b/spriteFrame'}};
+ calls.length=0;p._ensureLevel=async()=>{p._levelLoadVersion++;return {topImage:'levels/city/02/scene-a/spriteFrame',bottomImage:'levels/city/02/scene-b/spriteFrame'}};
  await p.preloadNextLevel(p._currentLevel);assert.equal(calls.length,0);
  console.log('PASS daily first round persistence/day rollover, food first-win only, interstitial timer pause/resume, serial low-priority prefetch and stale cancellation');
 })().catch(e=>{console.error(e);process.exitCode=1});

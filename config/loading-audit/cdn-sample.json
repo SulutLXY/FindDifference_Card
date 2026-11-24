@@ -1,0 +1,138 @@
+{
+  "testedAt": "2026-11-23T08:54:56.929Z",
+  "note": "Development machine HTTPS GET sample; no phone engine timing or cold platform startup measured; sequential requests; remote content SHA checked against matching local build.",
+  "results": [
+    {
+      "label": "网络热点章节清单",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/wang-luo-re-dian/config.7ed7b.json",
+      "file": "build/remote/wang-luo-re-dian/config.7ed7b.json",
+      "status": 200,
+      "bytes": 38988,
+      "ttfbMs": 83,
+      "totalMs": 85,
+      "effectiveMbps": 3.69,
+      "matchesLocal": true,
+      "sha256": "6a55176290a3132494afbec69669490c1bdad0a2e8b66bce572620b63eb81e89"
+    },
+    {
+      "label": "年度热梗 / 我也要死吗",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/nian-du-re-geng/native/9b/9be76409-5424-43c5-93b7-099eb7898358.50d03.jpg",
+      "file": "D:\\CocosCreator\\Projects\\FindDifference\\build\\remote\\nian-du-re-geng\\native\\9b\\9be76409-5424-43c5-93b7-099eb7898358.50d03.jpg",
+      "status": 200,
+      "bytes": 124310,
+      "ttfbMs": 33,
+      "totalMs": 36,
+      "effectiveMbps": 27.69,
+      "matchesLocal": true,
+      "sha256": "00f496ae4e66cead13381b9070030fac6cefa8601dd91663d677d4a2e1d262ba"
+    },
+    {
+      "label": "年度热梗 / 我也要死吗",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/nian-du-re-geng/native/08/0872e300-904a-4e7e-bac0-2ac16445b091.4de44.jpg",
+      "file": "D:\\CocosCreator\\Projects\\FindDifference\\build\\remote\\nian-du-re-geng\\native\\08\\0872e300-904a-4e7e-bac0-2ac16445b091.4de44.jpg",
+      "status": 200,
+      "bytes": 136550,
+      "ttfbMs": 39,
+      "totalMs": 42,
+      "effectiveMbps": 26.19,
+      "matchesLocal": true,
+      "sha256": "aebcd5580fafd0737b28ef9e4137a7f1e05843ae2afa53c7105be406ec79d0fc"
+    },
+    {
+      "label": "萌宠故事 / 动物海盗团",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/chong-wu-gu-shi/native/29/29400673-f026-4c6e-a9bc-e560d35b76dc.179e2.jpg",
+      "file": "D:\\CocosCreator\\Projects\\FindDifference\\build\\remote\\chong-wu-gu-shi\\native\\29\\29400673-f026-4c6e-a9bc-e560d35b76dc.179e2.jpg",
+      "status": 200,
+      "bytes": 230877,
+      "ttfbMs": 36,
+      "totalMs": 42,
+      "effectiveMbps": 43.56,
+      "matchesLocal": true,
+      "sha256": "50515980d12f38689b0ad1532073b430a99a34207365d1d9f55e3a117358e82a"
+    },
+    {
+      "label": "萌宠故事 / 动物海盗团",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/chong-wu-gu-shi/native/6f/6f51b6d1-9c2a-494d-985d-772dd7e6432d.67087.jpg",
+      "file": "D:\\CocosCreator\\Projects\\FindDifference\\build\\remote\\chong-wu-gu-shi\\native\\6f\\6f51b6d1-9c2a-494d-985d-772dd7e6432d.67087.jpg",
+      "status": 200,
+      "bytes": 276400,
+      "ttfbMs": 28,
+      "totalMs": 38,
+      "effectiveMbps": 58.76,
+      "matchesLocal": true,
+      "sha256": "3ca09659c0ea4b088a89d23c087bba9d1611344fb4e74fe256b0386865de0e89"
+    },
+    {
+      "label": "长沙 / 臭豆腐",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/chang-sha/native/d1/d141ab0a-6200-4ea1-a33e-c0dde90b5e8e.ed791.jpg",
+      "file": "D:\\CocosCreator\\Projects\\FindDifference\\build\\remote\\chang-sha\\native\\d1\\d141ab0a-6200-4ea1-a33e-c0dde90b5e8e.ed791.jpg",
+      "status": 200,
+      "bytes": 682662,
+      "ttfbMs": 31,
+      "totalMs": 45,
+      "effectiveMbps": 121.1,
+      "matchesLocal": true,
+      "sha256": "774f71028fd0748f1f44b5fd0532640f4a83bb4ee7ccd0b8db1e466ba5ee2264"
+    },
+    {
+      "label": "长沙 / 臭豆腐",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/chang-sha/native/6c/6c62c742-341c-4514-91e4-2341178a7f14.34fa9.jpg",
+      "file": "D:\\CocosCreator\\Projects\\FindDifference\\build\\remote\\chang-sha\\native\\6c\\6c62c742-341c-4514-91e4-2341178a7f14.34fa9.jpg",
+      "status": 200,
+      "bytes": 681968,
+      "ttfbMs": 31,
+      "totalMs": 40,
+      "effectiveMbps": 134.81,
+      "matchesLocal": true,
+      "sha256": "7dbae8856e69eec382c63bcfb468d69185da3db8822cb44ecb3d0c1365064149"
+    },
+    {
+      "label": "网络热点 / 异世界来了个年轻人",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/wang-luo-re-dian/native/4f/4f2ed803-5fa4-5ea3-b068-55c502742afb.b69b7.jpg",
+      "file": "D:\\CocosCreator\\Projects\\FindDifference\\build\\remote\\wang-luo-re-dian\\native\\4f\\4f2ed803-5fa4-5ea3-b068-55c502742afb.b69b7.jpg",
+      "status": 200,
+      "bytes": 283673,
+      "ttfbMs": 14,
+      "totalMs": 18,
+      "effectiveMbps": 128.9,
+      "matchesLocal": true,
+      "sha256": "8b195ee0f6169e139ebfdfe30a1dcd69bfb6b0a28dfddb9a10b9990e4e2dc661"
+    },
+    {
+      "label": "网络热点 / 异世界来了个年轻人",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/wang-luo-re-dian/native/8a/8a1d9037-303b-56bf-8507-fcb68be0f4d7.f4f4d.jpg",
+      "file": "D:\\CocosCreator\\Projects\\FindDifference\\build\\remote\\wang-luo-re-dian\\native\\8a\\8a1d9037-303b-56bf-8507-fcb68be0f4d7.f4f4d.jpg",
+      "status": 200,
+      "bytes": 235775,
+      "ttfbMs": 19,
+      "totalMs": 24,
+      "effectiveMbps": 77.87,
+      "matchesLocal": true,
+      "sha256": "1292e662b0dc796007426da60be10b3f6fbaaa8524a9ef6c96785a28b57b806e"
+    },
+    {
+      "label": "共用界面",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/MainGameSources/native/cc/ccae4537-ce93-4fb7-9e49-8ccdce75078e.501c8/FDTitleBobohei-Bold.ttf",
+      "file": "build/remote/MainGameSources/native/cc/ccae4537-ce93-4fb7-9e49-8ccdce75078e.501c8/FDTitleBobohei-Bold.ttf",
+      "status": 200,
+      "bytes": 249860,
+      "ttfbMs": 13,
+      "totalMs": 16,
+      "effectiveMbps": 126.94,
+      "matchesLocal": true,
+      "sha256": "0869ea3d2097710e2042be3a5e40970b6d3a5e4ec78b8ab1cf0853b254ee8310"
+    },
+    {
+      "label": "共用界面",
+      "url": "https://rewan-file.oss-cn-shenzhen.aliyuncs.com/games/mishi/ndzdk02/tt/0.1.6/remote/MainGameSources/native/15/151e6d0cc.d32cc.png",
+      "file": "build/remote/MainGameSources/native/15/151e6d0cc.d32cc.png",
+      "status": 200,
+      "bytes": 214808,
+      "ttfbMs": 17,
+      "totalMs": 23,
+      "effectiveMbps": 74.32,
+      "matchesLocal": true,
+      "sha256": "ded88605f15d7999e898e3f188e1e66b0563807cec8a3971478569f839257e80"
+    }
+  ]
+}

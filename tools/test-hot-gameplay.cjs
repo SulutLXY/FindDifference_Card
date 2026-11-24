@@ -14,7 +14,10 @@ const chapter = index.chapters[map.chapter], root = `assets/Bundle/levels/${map.
 assert.equal(chapter.levels.length, 40);
 assert.deepEqual(chapter.levels.slice(0, 2), map.preservedLevels.slice(0, 2));
 assert.deepEqual(chapter.levels.slice(12), map.preservedLevels.slice(2));
-assert.deepEqual(chapter.levels.slice(2, 12).map(entry => entry.id), map.levels.map(entry => entry.id));
+const currentOrder = ['模仿小猴姿勢', '抽纸挑战', '沙县爱情故事', '功夫小咪', '选到一样就买',
+    '上课偷吃挑战', '挑战切超长蛋挞', '秋日收藏', '异世界来了个年轻人', '词不一样就跑步'];
+assert.deepEqual(chapter.levels.slice(2, 12).map(entry => entry.id), currentOrder.map(name => map.levels.find(entry => entry.name === name).id));
+assert.deepEqual(read(`${root}/configs/city.json`).levels, chapter.levels, 'chapter bundle and startup index use the same order');
 assert.deepEqual(map.levels.map(entry => entry.name), ['模仿小猴姿勢', '抽纸挑战', '异世界来了个年轻人', '沙县爱情故事', '功夫小咪',
     '选到一样就买', '上课偷吃挑战', '挑战切超长蛋挞', '秋日收藏', '词不一样就跑步']);
 assert.equal(map.imageExport.quality, 8); assert.equal(map.imageExport.qualityScale, 12);

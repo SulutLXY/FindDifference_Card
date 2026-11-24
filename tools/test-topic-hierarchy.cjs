@@ -14,7 +14,7 @@ function methods(file, names, globals = {}) {
     const body = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree))).map(m => m.getText(tree)).join('\n');
     return vm.runInNewContext(compile(`class Test {${body}};Test;`), { console: { warn() {} }, ...globals });
 }
-const Flow = methods('assets/scripts/GameFlow.ts', ['_loadCityMeta', 'chapterSelections', 'chapterSelectionTitle',
+const Flow = methods('assets/scripts/GameFlow.ts', ['_prioritizeAssetDownloads','_loadCityMeta', 'chapterSelections', 'chapterSelectionTitle',
     'selectionProgress', 'cityProgress', 'enterChapterSelection', 'backFromCitySelection', 'returnToChapterSelection',
     'showCitySelect', 'showLevelSelect', 'requestCityUnlock', 'enterCity', 'isCityUnlocked', 'isLevelUnlocked', 'requestReward']);
 (async () => {

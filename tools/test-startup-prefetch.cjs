@@ -2,7 +2,7 @@ const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:a
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const text = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('flow.ts', text, ts.ScriptTarget.Latest, true);
-const names = ['preloadNextLevel', '_nextLevelTarget'];
+const names = ['preloadNextLevel', '_nextLevelTarget', '_ensureLevel'];
 const body = tree.statements.find(ts.isClassDeclaration).members.filter(member => names.includes(member.name?.getText(tree))).map(member => member.getText(tree)).join('\n');
 let images = [];
 const Flow = vm.runInNewContext(ts.transpileModule(`class Flow {${body}} Flow;`, {
@@ -12,7 +12,7 @@ const Flow = vm.runInNewContext(ts.transpileModule(`class Flow {${body}} Flow;`,
 } });
 function setup(last = false) {
     const f = new Flow(), chapters = [], metadata = [], retained = [];
-    const current = { key: 'current', levels: ['first', 'last'], nextChapter: 'other' };
+    const current = { key: 'current', levels: ['first', 'last'], levelConfigs: [], nextChapter: 'other' };
     f.isValid = true; f._currentCity = current; f._currentLevel = { key: last ? 'current/last' : 'current/first' };
     f._cities = [current, { key: 'other', levels: ['first'] }]; f._levelLoadVersion = 1;
     f.isCityUnlocked = () => true;
@@ -30,6 +30,8 @@ function setup(last = false) {
     await sample.f.preloadNextLevel(sample.f._currentLevel);
     assert.deepEqual(sample.metadata, ['current']); assert.deepEqual(sample.chapters, ['current', 'current']);
     assert.equal(images.length, 2); assert.deepEqual(sample.retained, ['current']);
+    await sample.f._ensureLevel(sample.f._currentCity,1);
+    assert.deepEqual(sample.metadata,['current'],'Foreground entry reuses prefetched config');
     sample = setup(true); images = [];
     await sample.f.preloadNextLevel(sample.f._currentLevel);
     assert.deepEqual(sample.metadata, []); assert.deepEqual(sample.chapters, []); assert.equal(images.length, 0);
