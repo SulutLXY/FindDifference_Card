@@ -52,7 +52,7 @@ const Flow = vm.runInNewContext(compile(`class Flow { ${method} }; Flow;`), { co
     flow._remainingTime = 100; let hints = 0;
     flow.useHint = () => hints++;
     flow.playHintSound = flow.playAddTimeSound = () => {};
-    flow.game = { node: { activeInHierarchy: true }, refreshHud() {} };
+    flow.game = { node: { activeInHierarchy: true }, refreshHud() {}, playAddTimeFeedback() {} };
     flow.save = { freeHints: 0, freeAddTimes: 0, consumeFreeHint() { throw Error('Must not consume H5 stock'); },
         consumeAddTime() { throw Error('Must not consume H5 stock'); }, grantAssist() { throw Error('Must not grant H5 stock'); } };
     for (let i = 0; i < 20; i++) { await flow.requestHint(); await flow.requestAddTime(); }

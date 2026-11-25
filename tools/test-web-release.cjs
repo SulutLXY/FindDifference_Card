@@ -47,6 +47,12 @@ async function run(html, response, href = 'https://example.com/game/?from=share#
 }
 (async () => {
     const current = await run(latest, latest);
+    const localFile = await run(latest, latest, 'file:///D:/CocosCreator/Projects/FindDifference/build/web-mobile/index.html');
+    assert.equal(localFile.requests.length, 0, 'Do not fetch resources through a file:// origin');
+    assert.equal(localFile.imports.length, 0, 'The local-file entry must not start an unusable game');
+    localFile.events.DOMContentLoaded();
+    assert.equal(localFile.errorPanel.hidden, false);
+    assert.ok(localFile.errorPanel.textContent.includes('HTTP/HTTPS'));
     assert.equal(current.imports.length, 1);
     assert.equal(current.requests[0].options.cache, 'no-store');
     assert.equal(new URL(current.requests[0].url).pathname, '/game/index.html');

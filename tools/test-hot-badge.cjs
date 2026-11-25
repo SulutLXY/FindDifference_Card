@@ -42,7 +42,7 @@ Object.assign(screen, {newChapterIcon: 'leaf', newChapterBackground: 'green', ho
     hardChapterIcon: 'skull', hotChapterBackground: 'red', collectionChapterIcon: 'chest', collectionChapterBackground: 'blue'});
 const shared = card();
 for (const [key, text, icon, background] of [
-    ['qing-hua-ci', '新章节', 'leaf', 'green'], ['wang-luo-re-dian', '热门', 'fire', 'red'],
+    ['qing-hua-ci', '收藏', 'chest', 'blue'], ['xun-song-ji', '新章节', 'leaf', 'green'], ['wang-luo-re-dian', '热门', 'fire', 'red'],
     ['meng-chong-san-guo', '困难', 'skull', 'red'], ['testHard', '困难', 'skull', 'red'],
     ['lian-ai-mei-shi', '收藏', 'chest', 'blue'],
 ]) {

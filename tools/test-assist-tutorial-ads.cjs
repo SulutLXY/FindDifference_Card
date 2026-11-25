@@ -39,7 +39,7 @@ function setup(kind, stock = 0) {
     } };
     flow.node = { parent: { getChildByPath: () => ({ getComponent: () => tutorial }) } };
     flow.game = { node: { activeInHierarchy: true }, tutorialControl: () => ({ node: {}, local: {}, radius: 50 }),
-        tutorialZoom() { zooms++; }, refreshHud() {} };
+        tutorialZoom() { zooms++; }, refreshHud() {}, playAddTimeFeedback() {} };
     flow.useHint = () => hints++; flow.playHintSound = flow.playAddTimeSound = () => {};
     const messages = []; flow.toast = message => messages.push(message);
     flow._maybeShowAssistTutorial();

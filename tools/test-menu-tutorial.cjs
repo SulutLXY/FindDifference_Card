@@ -11,7 +11,8 @@ function load(file, require = () => ({})) {
     vm.runInNewContext(compile(fs.readFileSync(file, 'utf8')), {exports, require, console: silent});
     return exports;
 }
-const {SaveService} = load('assets/scripts/services/SaveService.ts', () => ({sys: {localStorage: {
+const dailySignIn = load('assets/scripts/core/DailySignIn.ts');
+const {SaveService} = load('assets/scripts/services/SaveService.ts', name => name.endsWith('/DailySignIn') ? dailySignIn : ({sys: {localStorage: {
     getItem: () => raw, setItem(_, text) {if (failWrite) throw Error('full'); raw = text;},
 }}}));
 const {MenuTutorialService} = load('assets/scripts/services/MenuTutorialService.ts');
@@ -102,6 +103,24 @@ function fixture(existing = false) {
     assert.equal(f.save.setMenuTutorialStep('unknown', 'done'), false);
     assert.equal(f.save.setMenuTutorialStep('collection', 'bogus'), false);
 
+    for (const savedStep of ['entry', 'target']) {
+        f = fixture();
+        f.save.setMenuTutorialStep('chapters', 'done');
+        f.save.setMenuTutorialStep('collection', savedStep);
+        f.state.page = savedStep === 'entry' ? 'lobby' : 'collection';
+        f.update();assert.equal(f.state.overlay, null, 'Old collection checkpoints cannot bypass collectible eligibility');
+        assert.equal(f.service.hasPending, false, 'An ineligible old checkpoint must not suppress automatic sign-in');
+        f.home();f.update();assert.equal(f.state.overlay, null);
+        f.state.obtained = true;f.update();
+        assert.equal(f.state.overlay, null, 'Receiving the first collectible still waits for a subsequent home return');
+        assert.equal(f.service.hasPending, false);
+        f.home();f.update();assert.match(f.state.overlay.message, /收藏册/);
+        const callback = f.state.overlay.done;
+        f.state.obtained = false;f.update();
+        assert.equal(f.state.overlay, null, 'A highlighted collection guide must retain a real collectible');
+        callback(true);await tick();assert.deepEqual(f.calls, []);
+    }
+
     // Exercise production home/overlay/navigation wiring instead of copying event order into the test.
     const Flow = extract('assets/scripts/GameFlow.ts', ['_menuTutorialPage', '_initMenuTutorial', '_menuTutorialTarget',
         'returnToLobby', 'enterLevelSelection', 'showCollect', 'openDailySignIn'], {
@@ -123,7 +142,8 @@ function fixture(existing = false) {
         }},
         levelSelect: {node: {activeInHierarchy: false}},
         platform: {showInterstitial: () => new Promise(resolve => {adDone = resolve;})},
-        _dailyConfig: {}, _ensureDailySignIn: async () => ({present() {dailyShown++;}}),
+        _dailyConfig: JSON.parse(fs.readFileSync('assets/resources/configs/daily-sign-in.json', 'utf8')),
+        _ensureDailySignIn: async () => ({present() {dailyShown++;}}),
         toast() {}, showLobby() {
             this._menuTutorial.onPageChanged(); this.lobby.node.activeInHierarchy = true;
             void this.openDailySignIn(true);
@@ -143,6 +163,18 @@ function fixture(existing = false) {
     adDone(); await tick(); flow._menuTutorial.update(.2); assert.equal(overlay.node, second);
     overlay.done(true); await tick(); assert.equal(selected, 'second');
     assert.equal(flow.save.data.menuTutorials.chapters, 'done');
+
+    // Real save rules: opening a collectible's level is not the same as owning the collectible.
+    flow._foods = [{id: 'cup', levelKey: 'test/one'}];
+    flow.save.unlockLevel('test/one');flow.returnToLobby();await tick();adDone();await tick();
+    flow._menuTutorial.update(.2);assert.equal(overlay.active, false);
+    assert.equal(dailyShown, 1, 'An unavailable collectible guide must not suppress automatic sign-in');
+    assert.equal(flow.save.data.menuTutorials.collection, undefined);
+    flow.save.unlockCollectible('cup', 'test/one', 'test');flow._menuTutorial.update(.2);
+    assert.equal(overlay.active, false, 'Production wiring also waits for home return after acquiring a collectible');
+    flow.lobby.node.activeInHierarchy = false;flow.returnToLobby();await tick();adDone();await tick();
+    flow._menuTutorial.update(.2);assert.equal(overlay.node, collect);
+    assert.match(overlay.message, /收藏册/);
 
     const City = extract('assets/scripts/ui/CitySelectScreen.ts', ['tutorialChapter']);
     const city = new City(); city.flow = {chapterSelections: [{key: 'first'}, {key: 'second'}]};

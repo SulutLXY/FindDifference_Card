@@ -22,7 +22,7 @@ assert.deepEqual(map.levels.map(entry => entry.name), ['模仿小猴姿勢', '�
     '选到一样就买', '上课偷吃挑战', '挑战切超长蛋挞', '秋日收藏', '词不一样就跑步']);
 assert.equal(map.imageExport.quality, 8); assert.equal(map.imageExport.qualityScale, 12);
 assert.ok(map.imageExport.encoder.startsWith('Photoshop '));
-assert.equal(new Set(Object.values(index.chapters).flatMap(chapter => chapter.levels.map(entry => entry.id))).size, 390);
+assert.equal(new Set(Object.values(index.chapters).flatMap(chapter => chapter.levels.map(entry => entry.id))).size, 441);
 let differences = 0;
 for (const row of map.levels) {
     const source = path.join(map.source, row.sourceFolder, row.sourceConfig);

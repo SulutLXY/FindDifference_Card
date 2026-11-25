@@ -28,7 +28,8 @@ const Flow = methods('assets/scripts/GameFlow.ts', ['_prioritizeAssetDownloads',
     f._switchTo = () => { f._secondaryNavigationVersion++; }; f.returnToLobby = () => home++;
     f.showLevelSelect = async city => entered.push(city.key); f.toast = () => {};
     assert.equal(f.chapterSelections.length, 8);
-    assert.deepEqual(Array.from(f.chapterSelections, item => item.name), ['网络热点', '青花瓷', '寻宋记', '萌宠故事', '趣味短剧', '萌宠三国', '年度热梗', '恋爱美食']);
+    assert.deepEqual(Array.from(f.chapterSelections, item => item.name), ['网络热点', '青花瓷', '萌宠故事', '寻宋记', '趣味短剧', '萌宠三国', '年度热梗', '恋爱美食']);
+    assert.equal(f._cityIndex.badges['qing-hua-ci'], 'collect');
     const porcelain = f._cities.find(city => city.key === 'qing-hua-ci');
     assert.equal(f.isCityUnlocked(f._cities.indexOf(porcelain)), true);
     assert.equal(f.isLevelUnlocked(f._cities.indexOf(porcelain), 0), true);

@@ -21,6 +21,7 @@ interface MenuTutorialHost {
 /** Two independent, resumable menu guides. No automatic navigation or rewards. */
 export class MenuTutorialService {
     private _armed = false;
+    private _collectionReady = false;
     private _disposed = false;
     private _acting = false;
     private _elapsed = 0;
@@ -34,13 +35,17 @@ export class MenuTutorialService {
         return value === 'entry' || value === 'target' || value === 'done' ? value : undefined;
     }
 
+    private _eligible(kind: MenuTutorialKind): boolean {
+        return kind !== 'collection' || (this._collectionReady && this.host.hasCollectible());
+    }
+
     public get hasPending(): boolean {
         return !this._disposed && (this._acting || !!this._active
             || (this._armed && (this._state('chapters') !== 'done'
                 || (this._state('collection') !== 'done' && this.host.hasCollectible())))
             || ['chapters', 'collection'].some(kind => {
                 const step = this._state(kind as MenuTutorialKind);
-                return step === 'entry' || step === 'target';
+                return this._eligible(kind as MenuTutorialKind) && (step === 'entry' || step === 'target');
             }));
     }
 
@@ -50,8 +55,10 @@ export class MenuTutorialService {
     public onReturnedHome(): void {
         if (this._disposed || this.host.page() !== 'lobby') return;
         this._armed = false;
+        // 获得收藏后仍需真实回到主页；旧的 entry/target 不能在启动或领取当帧自动触发。
+        this._collectionReady = this.host.hasCollectible();
         for (const kind of ['chapters', 'collection'] as const) {
-            if (this._state(kind) === 'done' || (kind === 'collection' && !this.host.hasCollectible())) continue;
+            if (this._state(kind) === 'done' || !this._eligible(kind)) continue;
             if (!this.host.save(kind, 'entry')) this.host.notify('引导进度保存失败，请稍后重试');
         }
     }
@@ -69,12 +76,13 @@ export class MenuTutorialService {
         const page = this.host.page();
         if (this._active) {
             const active = this._active;
-            if (this.host.blocked() || page !== active.page || !active.target.node.isValid
+            if (!this._eligible(active.kind) || this.host.blocked() || page !== active.page || !active.target.node.isValid
                 || !active.target.node.activeInHierarchy || this._state(active.kind) !== active.step) this.onPageChanged();
             return;
         }
         if (this._acting || this.host.blocked()) return;
         for (const kind of ['chapters', 'collection'] as const) {
+            if (!this._eligible(kind)) continue;
             let step = this._state(kind);
             // Back/relaunch or a failed lazy page load resumes from the home button.
             if (step === 'target' && page === 'lobby') {
@@ -99,13 +107,13 @@ export class MenuTutorialService {
                     if (!this.host.save(kind, 'done')) this.host.notify('引导进度保存失败，请重试');
                     return;
                 }
-                if (this.host.blocked() || this.host.page() !== page || !target.node.isValid || !target.node.activeInHierarchy) return;
+                if (!this._eligible(kind) || this.host.blocked() || this.host.page() !== page || !target.node.isValid || !target.node.activeInHierarchy) return;
                 if (step === 'entry' && !this.host.save(kind, 'target')) {
                     this.host.notify('引导进度保存失败，请重试'); return;
                 }
                 this._acting = true;
                 void Promise.resolve().then(() => {
-                    if (this._disposed || this.host.blocked() || this.host.page() !== page
+                    if (this._disposed || !this._eligible(kind) || this.host.blocked() || this.host.page() !== page
                         || !target.node.isValid || !target.node.activeInHierarchy) return false;
                     return target.activate();
                 }).then(opened => {
@@ -123,5 +131,6 @@ export class MenuTutorialService {
         this.onPageChanged();
         this._disposed = true;
         this._armed = false;
+        this._collectionReady = false;
     }
 }

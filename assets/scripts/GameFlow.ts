@@ -1,7 +1,7 @@
 import { FoodTips } from './ui/FoodTips';
 import { EventTips } from './ui/EventTips';
 import { GameTips } from './ui/GameTips';
-import { PREVIEW } from 'cc/env';
+import { HTML5, PREVIEW } from 'cc/env';
 import { AssetWarmupStage, OrderedAssetPreloader } from './services/OrderedAssetPreloader';
 import {
     _decorator,
@@ -17,6 +17,7 @@ import {
     Graphics,
     game,
     Game,
+    ImageAsset,
     JsonAsset,
     instantiate,
     Label,
@@ -69,6 +70,7 @@ import { ResultModal } from './ui/ResultModal';
 import { SettingsModal } from './ui/SettingsModal';
 import { UIAnimationBinding } from './ui/UIAnimationBinding';
 import { TouchPointEffect } from './ui/TouchPointEffect';
+import { installPreviewMouseCursor } from './ui/PreviewMouseCursor';
 import { DailySignInModal } from './ui/DailySignInModal';
 import { DailySignInConfig } from './core/DailySignIn';
 import { FavoriteGift } from './ui/FavoriteGift';
@@ -102,6 +104,7 @@ interface ComboClipRef {
 @ccclass('GameFlow')
 export class GameFlow extends Component {
     private static _instance: GameFlow | null = null;
+    private _disposePreviewCursor: (() => void) | null = null;
 
     public static get instance(): GameFlow {
         if (!GameFlow._instance) {
@@ -310,6 +313,12 @@ export class GameFlow extends Component {
     }
 
     protected onLoad(): void {
+        if (PREVIEW || HTML5) this._disposePreviewCursor = installPreviewMouseCursor(async () => {
+            const bundle = await this._loadGameBundle();
+            return new Promise<ImageAsset>((resolve, reject) => bundle.load(
+                'Texture/UI_Sprite/Game/icon_Mouse_01', ImageAsset,
+                (error, image) => error ? reject(error) : resolve(image)));
+        });
         this._refreshViewport();
         view.on('canvas-resize', this._refreshViewport, this);
         game.on(Game.EVENT_SHOW, this.promptDailySignIn, this);
@@ -584,8 +593,8 @@ export class GameFlow extends Component {
             const stages: AssetWarmupStage[] = [
                 { name: 'MainGameSources' },
                 { name: 'LobbySources', exclude: ['SecondaryUI/'] },
-                { name: 'MainGameAimation' },
                 { name: 'chapter-covers' },
+                { name: 'MainGameAimation' },
                 ...this._cities.map(city => ({ name: city.key, include: [
                     'configs/', 'thumbnails/', ...city.levels.map(folder => `${folder}/scene-`),
                     'prefabs/', 'Animation/', 'BGmusic/', 'Combo _F_type/',
@@ -1548,6 +1557,8 @@ export class GameFlow extends Component {
     }
 
     protected onDestroy(): void {
+        this._disposePreviewCursor?.();
+        this._disposePreviewCursor = null;
         view.off('canvas-resize', this._refreshViewport, this);
         this._menuTutorial?.dispose();
         this._lobbyWarmupRemaining = null;
@@ -2080,6 +2091,7 @@ export class GameFlow extends Component {
     public addTime(seconds: number): void {
         if (this._isGameOver || !Number.isFinite(seconds) || seconds <= 0) return;
         this._remainingTime += seconds;
+        this.game?.playAddTimeFeedback(seconds);
         this.game?.refreshHud();
     }
 

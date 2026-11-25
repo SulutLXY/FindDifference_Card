@@ -99,6 +99,7 @@ export class GameScreen extends UIScreen {
     private _hudHints = -1;
     private _hudAddTimes = -1;
     private readonly _timerColor = new Color(65, 72, 95, 255);
+    private _timeFeedback: { offset: number; node: Node; baseScale: Vec3 } | null = null;
     private _surprise: SurpriseAssist | null = null;
 
     protected update(dt: number): void {
@@ -202,6 +203,7 @@ export class GameScreen extends UIScreen {
     private _levelFrames: SpriteFrame[] = [];
 
     public clearLevel(): void {
+        this._resetTimeFeedback();
         this._surprise?.clear();
         this._hudSeconds = this._hudLives = this._hudFound = this._hudTotal = -1;
         this._hudUnlimited = null;
@@ -320,7 +322,7 @@ export class GameScreen extends UIScreen {
             this._hudUnlimited = unlimited;
             this._hudHints = hints; this._hudAddTimes = addTimes;
         }
-        const seconds = Math.max(0, Math.ceil(flow.remainingTime));
+        const seconds = Math.max(0, Math.ceil(flow.remainingTime - (this._timeFeedback?.offset ?? 0)));
         if (seconds !== this._hudSeconds) {
             this._refreshTimerHud(seconds);
             this._hudSeconds = seconds;
@@ -365,6 +367,38 @@ export class GameScreen extends UIScreen {
             timer.string = `${minutes}:${remainder}`;
             timer.color = seconds <= 10 ? UIColors.red : this._timerColor;
         }
+    }
+
+    /** 时间已到账后才播放；偏移量只作用于显示，真实倒计时始终继续运行。 */
+    public playAddTimeFeedback(addedSeconds: number): void {
+        if (!Number.isFinite(addedSeconds) || addedSeconds <= 0 || !this._level || !this.node.activeInHierarchy) return;
+        const timer = this.resolveLabel(this.timerLabel, 'Timer');
+        if (!timer) return;
+        // 连续加时时从当前显示值接着递增，不提前跳到上一轮目标，也不累积节点缩放。
+        const offset = addedSeconds + (this._timeFeedback?.offset ?? 0);
+        this._resetTimeFeedback();
+        const state = this._timeFeedback = { offset, node: timer.node, baseScale: timer.node.scale.clone() };
+        const base = state.baseScale;
+        tween(timer.node)
+            .to(0.25, { scale: new Vec3(base.x * 1.2, base.y * 1.2, base.z) }, { easing: 'quadOut' })
+            .to(0.25, { scale: base.clone() }, { easing: 'quadInOut' })
+            .start();
+        tween(state).to(0.5, { offset: 0 }, {
+            easing: 'quadOut', onUpdate: () => this.refreshHud(),
+        }).call(() => {
+            if (this._timeFeedback !== state) return;
+            this._timeFeedback = null;
+            this.refreshHud();
+        }).start();
+    }
+
+    private _resetTimeFeedback(): void {
+        const state = this._timeFeedback;
+        if (!state) return;
+        Tween.stopAllByTarget(state);
+        Tween.stopAllByTarget(state.node);
+        if (state.node.isValid) state.node.setScale(state.baseScale);
+        this._timeFeedback = null;
     }
 
     private _refreshLivesHud(count: number): void {
@@ -438,6 +472,14 @@ export class GameScreen extends UIScreen {
                 graphics.strokeColor = UIColors.red;
                 this._markerGraphics.set(image, graphics);
             }
+            tween(marker)
+                .to(0.25, { scale: new Vec3(1.2, 1.2, 1) }, {
+                    easing: 'quadOut', onUpdate: () => { this._markersDirty = true; },
+                })
+                .to(0.25, { scale: Vec3.ONE }, {
+                    easing: 'quadInOut', onUpdate: () => { this._markersDirty = true; },
+                })
+                .start();
         }
         this._redrawFoundMarkers();
     }
@@ -466,7 +508,7 @@ export class GameScreen extends UIScreen {
 
     /**
      * 胜利定格表现：命中标记按差异 x 坐标从左到右，依次放大 1.25 倍再缩回（单个脉冲 0.5 秒）。
-     * 多个标记波浪式错开启动，相邻间隔随差异数量自适应，保证整体不超过 2 秒；完成后回调。
+     * 先等最后一次命中脉冲完成，再从左到右错开启动，保证整体不超过 2 秒；完成后回调。
      */
     public playVictoryWave(onComplete: () => void): void {
         const level = this._level;
@@ -481,7 +523,8 @@ export class GameScreen extends UIScreen {
         };
         if (count === 0) { finish(); return; }
         const pulse = 0.5;
-        const interval = count > 1 ? Math.min(pulse, (2 - pulse) / (count - 1)) : 0;
+        const hitFeedback = 0.5;
+        const interval = count > 1 ? Math.min(pulse, (2 - hitFeedback - pulse) / (count - 1)) : 0;
         const half = pulse / 2;
         for (let i = 0; i < count; i++) {
             const last = i === count - 1;
@@ -491,7 +534,7 @@ export class GameScreen extends UIScreen {
                 if (!marker) continue;
                 started = true;
                 tween(marker)
-                    .delay(i * interval)
+                    .delay(hitFeedback + i * interval)
                     .to(half, { scale: new Vec3(1.25, 1.25, 1) }, {
                         easing: 'quadOut', onUpdate: () => { this._markersDirty = true; },
                     })

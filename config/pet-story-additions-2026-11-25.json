@@ -1,0 +1,1782 @@
+{
+  "date": "2026-11-25",
+  "chapter": "chong-wu-gu-shi",
+  "source": "D:\\CocosCreator\\关卡\\萌宠关卡",
+  "previousLevels": [
+    {
+      "id": "city-PetStory/level-01",
+      "name": "白虎与黑狗保姆",
+      "folder": "bai-hu-yu-hei-gou-bao-mu"
+    },
+    {
+      "id": "city-PetStory/level-02",
+      "name": "狗狗婚礼",
+      "folder": "gou-gou-hun-li"
+    },
+    {
+      "id": "city-PetStory/level-03",
+      "name": "橘猫摆摊",
+      "folder": "ju-mao-bai-tan"
+    },
+    {
+      "id": "city-PetStory/level-04",
+      "name": "动物海盗团",
+      "folder": "dong-wu-hai-dao-tuan"
+    },
+    {
+      "id": "city-PetStory/level-05",
+      "name": "萌宠闪身步",
+      "folder": "meng-chong-shan-shen-bu"
+    },
+    {
+      "id": "city-PetStory/level-06",
+      "name": "猫咪烧烤",
+      "folder": "mao-mi-shao-kao"
+    },
+    {
+      "id": "city-PetStory/level-07",
+      "name": "干嘛猫的vlog",
+      "folder": "gan-ma-mao-de-vlog"
+    },
+    {
+      "id": "city-PetStory/level-08",
+      "name": "神秘八爪鱼",
+      "folder": "shen-mi-ba-zhao-yu"
+    },
+    {
+      "id": "city-PetStory/level-09",
+      "name": "姹紫嫣红",
+      "folder": "cha-zi-yan-hong"
+    },
+    {
+      "id": "city-PetStory/level-10",
+      "name": "鸡哥算了",
+      "folder": "ji-ge-suan-le"
+    },
+    {
+      "id": "city-PetStory/level-11",
+      "name": "土拨鼠",
+      "folder": "tu-bo-shu"
+    },
+    {
+      "id": "city-PetStory/level-12",
+      "name": "弱小无助",
+      "folder": "ruo-xiao-wu-zhu"
+    },
+    {
+      "id": "city-PetStory/level-13",
+      "name": "整点薯条",
+      "folder": "zheng-dian-shu-tiao"
+    },
+    {
+      "id": "city-PetStory/level-14",
+      "name": "压力山大",
+      "folder": "ya-li-shan-da"
+    },
+    {
+      "id": "city-PetStory/level-15",
+      "name": "铲屎官日常",
+      "folder": "chan-shi-guan-ri-chang"
+    },
+    {
+      "id": "city-PetStory/level-16",
+      "name": "孜然妙脆角",
+      "folder": "zi-ran-miao-cui-jiao"
+    },
+    {
+      "id": "city-PetStory/level-17",
+      "name": "小猫踏步舞",
+      "folder": "xiao-mao-ta-bu-wu"
+    },
+    {
+      "id": "city-PetStory/level-18",
+      "name": "剪指甲",
+      "folder": "jian-zhi-jia"
+    },
+    {
+      "id": "city-PetStory/level-19",
+      "name": "猫咪浴帽",
+      "folder": "mao-mi-yu-mao"
+    },
+    {
+      "id": "city-PetStory/level-20",
+      "name": "猫咪合租",
+      "folder": "mao-mi-he-zu"
+    }
+  ],
+  "chapterFilesBefore": {
+    "assets/Bundle/levels/chong-wu-gu-shi/bai-hu-yu-hei-gou-bao-mu.meta": "2fe02007d713a3ffe7af4f03ca321f0b739a5bd0141fc15aad83125e6b68c15b",
+    "assets/Bundle/levels/chong-wu-gu-shi/BGmusic.meta": "1d516492c72be156c694dab59176abe3a0be2aade9e47c83dfea5958c19c2d45",
+    "assets/Bundle/levels/chong-wu-gu-shi/cha-zi-yan-hong.meta": "06bf11171016a10b604041157533afc77cc774572c5afe55f9b546d75c08aee8",
+    "assets/Bundle/levels/chong-wu-gu-shi/chan-shi-guan-ri-chang.meta": "1a1f10ca0979d4d8e023b90c6757090472225c442c05d7344f8a341c1d8ed293",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs.meta": "014c788d42ccc0b9f2d1ff3e3590e02564efd3b0a58438d14658ecaf77b7a2ce",
+    "assets/Bundle/levels/chong-wu-gu-shi/dong-wu-hai-dao-tuan.meta": "ca966940010592e936c05c1244a6ff0cf74de2d7214f6fd6e506c16ffb28fcab",
+    "assets/Bundle/levels/chong-wu-gu-shi/gan-ma-mao-de-vlog.meta": "526552c4c5b5301fea51f4abc8f23499e8cce23c8b825e6722b3e4d057a1b9eb",
+    "assets/Bundle/levels/chong-wu-gu-shi/gou-gou-hun-li.meta": "41b0aff14530e95d643d8b1845ea01bfe1107b43ece74d06d092661b6d9702fc",
+    "assets/Bundle/levels/chong-wu-gu-shi/ji-ge-suan-le.meta": "15199c04d70feafc37c5d444518f22ffe7ea17d94ebc3efc42a15f251c12e5f0",
+    "assets/Bundle/levels/chong-wu-gu-shi/jian-zhi-jia.meta": "b1776651a5e3c8116bf5677098ccbb3d2c8c73a2546dde60636e5455e61178de",
+    "assets/Bundle/levels/chong-wu-gu-shi/ju-mao-bai-tan.meta": "1df8a01d370820178d73c65c0dd2d7edc6bcc278e748057f41d996fd99436384",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-he-zu.meta": "4d7b513ea55b5602b34c532e3cad5871e57dde1abe88a7e690feea1a83885c69",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-shao-kao.meta": "d61be71e8cc79776ab2b7de83ee74d4ffbcc3ddb39c2b6092cd38bf1aada1de2",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-yu-mao.meta": "c197a90750e4012a9dcebacb5889f527c5a0f32250505797575aea02b07c5d51",
+    "assets/Bundle/levels/chong-wu-gu-shi/meng-chong-shan-shen-bu.meta": "ee10d3a7f8b2a6f0101b6a9c78a54f7b75de9b50f7f26f3a97a63df559246566",
+    "assets/Bundle/levels/chong-wu-gu-shi/ruo-xiao-wu-zhu.meta": "f86e92aaa851d73c20f1fe3d821d2907ae0df2abc6f603ec4be6f4091991f74c",
+    "assets/Bundle/levels/chong-wu-gu-shi/shen-mi-ba-zhao-yu.meta": "5b19d3ede18faa771b168313bdb549b9e1b66e7973cee47c0cd782f64207a8b6",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails.meta": "dbe1c2e5a9658d183d9d5ddf9fc91293de205e7b6f7044f87f9426aa82c1af66",
+    "assets/Bundle/levels/chong-wu-gu-shi/tu-bo-shu.meta": "0d1c1907c57d0d0cde5575b7eb54c680287b5c10d33b6a0382cffb2992a15e66",
+    "assets/Bundle/levels/chong-wu-gu-shi/xiao-mao-ta-bu-wu.meta": "9165f6264540e60d7cc444e4dd2368b069b4f67eefcdfe90e213f98e965ede6e",
+    "assets/Bundle/levels/chong-wu-gu-shi/ya-li-shan-da.meta": "4b11a76a39dba79139e1d83dce780887178e945493ce2aac1e2b9f2ea4179526",
+    "assets/Bundle/levels/chong-wu-gu-shi/zheng-dian-shu-tiao.meta": "19610d5bd44451bdab3978c881cc666012a996c88733eedd151487ba22209140",
+    "assets/Bundle/levels/chong-wu-gu-shi/zi-ran-miao-cui-jiao.meta": "1e4a6782e75b42151c688f0066db9a4bc0a7051cefa14cf96468ebbe97910d52",
+    "assets/Bundle/levels/chong-wu-gu-shi/bai-hu-yu-hei-gou-bao-mu/scene-a.jpg": "a79f0fd0ca05f0d0d001bf27ece0b1114d7f28222b7273cc2151a21a4c0e9d07",
+    "assets/Bundle/levels/chong-wu-gu-shi/bai-hu-yu-hei-gou-bao-mu/scene-a.jpg.meta": "a013be42a15e882d25e49e038cacfca36e20925364f79f2bb040fc632b6e7083",
+    "assets/Bundle/levels/chong-wu-gu-shi/bai-hu-yu-hei-gou-bao-mu/scene-b.jpg": "cb69a09be66f4022eb7909a19d1cc73ce0d5c94ce972847447a667ff178a2438",
+    "assets/Bundle/levels/chong-wu-gu-shi/bai-hu-yu-hei-gou-bao-mu/scene-b.jpg.meta": "6a62ee199a725a13541593a454cc1dd5e67aad699eb9b9d08b618e1657c8e91b",
+    "assets/Bundle/levels/chong-wu-gu-shi/BGmusic/Game_music_PetStory.mp3": "984ee985f4fc120f7b9ec42582e71bfb15f8cec678b1347f393655749bbdefe2",
+    "assets/Bundle/levels/chong-wu-gu-shi/BGmusic/Game_music_PetStory.mp3.meta": "e23386c92b1aaeb39af17a2263513a8de2115fae89a4df927e77286cf77ad0ab",
+    "assets/Bundle/levels/chong-wu-gu-shi/cha-zi-yan-hong/scene-a.jpg": "432317f7504e799b02583b0e5b23f0d95b49ea094bae1d13acde76637f603f10",
+    "assets/Bundle/levels/chong-wu-gu-shi/cha-zi-yan-hong/scene-a.jpg.meta": "465468012994782b5cf4c958ccb2c33922dcc57954e5fcf44a1c2d236205fa75",
+    "assets/Bundle/levels/chong-wu-gu-shi/cha-zi-yan-hong/scene-b.jpg": "5f4cad2cbd31b09fe956b198500b7905af984116b3666ded25be7422d89dc87f",
+    "assets/Bundle/levels/chong-wu-gu-shi/cha-zi-yan-hong/scene-b.jpg.meta": "d53a11dd92e36cb3ef5b874ebc2a9d7bd038878cf0b1a1ba75717177769f6737",
+    "assets/Bundle/levels/chong-wu-gu-shi/chan-shi-guan-ri-chang/scene-a.jpg": "87734de3734e1826398d897bfc85d91218123425ed48aee4b5717f7a51bf715b",
+    "assets/Bundle/levels/chong-wu-gu-shi/chan-shi-guan-ri-chang/scene-a.jpg.meta": "fa5236215d36c8af42b6c6889736c902140c688a41742c0265b6e637fc4cfd89",
+    "assets/Bundle/levels/chong-wu-gu-shi/chan-shi-guan-ri-chang/scene-b.jpg": "caa10e95578e6b5278c3dd27c0d26d601fc55db64397778f38c862e3c8d29a83",
+    "assets/Bundle/levels/chong-wu-gu-shi/chan-shi-guan-ri-chang/scene-b.jpg.meta": "14626ec465811e6bfc8f83ccc7e86cc03cea2c8fddabcb3ba62da3ef12174bc6",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/bai-hu-yu-hei-gou-bao-mu.meta": "7886cbe400396d4e7bc4adcb426891c10b31dbe92ee13341f47905626e154a2a",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/cha-zi-yan-hong.meta": "15a4943c4ce2bcd6f55ed229dc761ab4b09a415269fffe9ba713813cd2e0def3",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/chan-shi-guan-ri-chang.meta": "4751870a818b02bf1b3bfc04e59bdf2d72e1182b46f7d0d432da564e3a1da9d8",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/city.json": "35e198b04f9dc07c1ed0cf5df9fabab5b5d7af5b88166b93dd5e32b3a9afd40f",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/city.json.meta": "78472ef4f1b7a10b735ab8c061b3a706d452586ebaf04ebaeb793a4a4d8c0932",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/dong-wu-hai-dao-tuan.meta": "d96e4d0d4bf8e1bbe650e27bdba942abc277b483d9f93c44e8e729c0a3bf2f63",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/gan-ma-mao-de-vlog.meta": "801cd7f56338ddb047b52dda4af4180459db7b4d7d97e86c3c2d810b0e8011e1",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/gou-gou-hun-li.meta": "8d71eda1eae5c7da1aa16966356f6deb694abf7b9f2c75dd6da9961edf843c9c",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ji-ge-suan-le.meta": "068e24695d48ece8d13b62b324389649cd79e96089b28636057e54a86427c44d",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/jian-zhi-jia.meta": "3d6607d2e0bddbe8cf5763cd9ddd3bf604f50fea934b91fcff1c389404a7e5f9",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ju-mao-bai-tan.meta": "f5647c4cd7c4dd58bc0155be4d825cf288f751a8711e5812c9eba63366871b64",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/mao-mi-he-zu.meta": "96e36fcea5d26da4f3df2d4782213d11f939a38dd5a2348e981f13bc45f315cd",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/mao-mi-shao-kao.meta": "5d23fcb51f71a084460772b556e29fb770ccdf7d4f8a0b5afca58d6df1d83de2",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/mao-mi-yu-mao.meta": "6c4d12071ba8b18e75e8fd3e7c76732ea061623f37cdffc5b3dfc57884367260",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/meng-chong-shan-shen-bu.meta": "7ddadd4a335270a898835009d4e826edd3a664f1a4aa7cbb50b09d08b6f8e5e8",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ruo-xiao-wu-zhu.meta": "2371e3793098fd8e39b182ff1dd43b2aa2f5b523f01958aa13d16436a4ee3b6d",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/shen-mi-ba-zhao-yu.meta": "19bc268ceda8ab11ccb410f1531ca561212ba38bf03db74d09be5891688dc384",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/tu-bo-shu.meta": "97463bb199cbea4ee585fbb5f3079679c297828ca017e897ac2a07f596d46b36",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/xiao-mao-ta-bu-wu.meta": "744a6a578aba378f1983f0f6e1a91443e14d9049f7ee76f13c78eceebbbb8c4f",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ya-li-shan-da.meta": "7bb045a6d4fb31c95c904771db422672fe76296dd88f79c87c98709f0f0b834d",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/zheng-dian-shu-tiao.meta": "7ac51075e411bd4404c1e23cc7243b483d086f69795f7a2b0ecab7e2c17f3bc1",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/zi-ran-miao-cui-jiao.meta": "45381995ad8b32cd96d34818d27f31ef4d808f2e974161b4c869da1f737015b0",
+    "assets/Bundle/levels/chong-wu-gu-shi/dong-wu-hai-dao-tuan/scene-a.jpg": "50515980d12f38689b0ad1532073b430a99a34207365d1d9f55e3a117358e82a",
+    "assets/Bundle/levels/chong-wu-gu-shi/dong-wu-hai-dao-tuan/scene-a.jpg.meta": "c77535a4cd4283190600a272d1ab904dc667e410ea6c36e74a2703b800898018",
+    "assets/Bundle/levels/chong-wu-gu-shi/dong-wu-hai-dao-tuan/scene-b.jpg": "3ca09659c0ea4b088a89d23c087bba9d1611344fb4e74fe256b0386865de0e89",
+    "assets/Bundle/levels/chong-wu-gu-shi/dong-wu-hai-dao-tuan/scene-b.jpg.meta": "3127ad6832619d83e0fd12e57250f8553b42a632af40ffb7df47d5f02387cb30",
+    "assets/Bundle/levels/chong-wu-gu-shi/gan-ma-mao-de-vlog/scene-a.jpg": "0f2c3c45809c10c4d52231e5138ae017499cf6d1698fc0f0023b24ca77fd0ce3",
+    "assets/Bundle/levels/chong-wu-gu-shi/gan-ma-mao-de-vlog/scene-a.jpg.meta": "cc35be4c8451ba289a655f29e4c9724482733ce988d0b471c33e0d79b2a2f6fc",
+    "assets/Bundle/levels/chong-wu-gu-shi/gan-ma-mao-de-vlog/scene-b.jpg": "22d7ffb256a41f7c3de6c412670ad2a9c66eb173ee1dd566315217cf50dc126a",
+    "assets/Bundle/levels/chong-wu-gu-shi/gan-ma-mao-de-vlog/scene-b.jpg.meta": "bfcfe28d1ec2b83deb8ee003a45fb784c5b138150830279e7db6a0cdd7780e81",
+    "assets/Bundle/levels/chong-wu-gu-shi/gou-gou-hun-li/scene-a.jpg": "bdccc7c79d6f4fbde0732b86701031ac15d8c103987dd5555193984fce07e4e5",
+    "assets/Bundle/levels/chong-wu-gu-shi/gou-gou-hun-li/scene-a.jpg.meta": "2eedb8011b96d3eb0a975e1f294256f6bf6c98a3769605eab58ac424b1555be0",
+    "assets/Bundle/levels/chong-wu-gu-shi/gou-gou-hun-li/scene-b.jpg": "a7ad6f114300b9057d923c7f5a4720cf34f1e7c13bcd12619f71164bbf5a4b13",
+    "assets/Bundle/levels/chong-wu-gu-shi/gou-gou-hun-li/scene-b.jpg.meta": "6e7da2d5dee439a06c9b1967facaf341babeb7822ba1e108212ced84d71e023d",
+    "assets/Bundle/levels/chong-wu-gu-shi/ji-ge-suan-le/scene-a.jpg": "22c5ed2d306db906a4e9c99b9fa553343221675f370285f09b39103626506d73",
+    "assets/Bundle/levels/chong-wu-gu-shi/ji-ge-suan-le/scene-a.jpg.meta": "6bb35c3a5a7315dd7c80d0c1585aa460eea8f89119803666f0d8d9a10d456549",
+    "assets/Bundle/levels/chong-wu-gu-shi/ji-ge-suan-le/scene-b.jpg": "f5f8828bc1467c53ee821a1ffe1339185372a831c45ab750bb59bde47b75d480",
+    "assets/Bundle/levels/chong-wu-gu-shi/ji-ge-suan-le/scene-b.jpg.meta": "e38567529cdd2267c5e49c6fc5d60bc14ea9324e1d6259d7c0fed0d583f7e61e",
+    "assets/Bundle/levels/chong-wu-gu-shi/jian-zhi-jia/scene-a.jpg": "f7ac4e7507886cd23946ddaa3fefa39252cd8af16bca000545ee3ebafb29c99e",
+    "assets/Bundle/levels/chong-wu-gu-shi/jian-zhi-jia/scene-a.jpg.meta": "112045467683f9573e6805d729bc22a89d702d8ebecc38cf6ef0b508a1ef06e3",
+    "assets/Bundle/levels/chong-wu-gu-shi/jian-zhi-jia/scene-b.jpg": "01a4d64fa7309c86a435fa73ce586ace52df0c7b577162506cbad9a3b7aede79",
+    "assets/Bundle/levels/chong-wu-gu-shi/jian-zhi-jia/scene-b.jpg.meta": "c6367d17e64db9bb98b57b89c45f4164fbfd4cc569996a965f6d330f2d7cb883",
+    "assets/Bundle/levels/chong-wu-gu-shi/ju-mao-bai-tan/scene-a.jpg": "02d898712bf38f6198c1d70fe2eac56fb8c4cf934896178de92e738367cba90f",
+    "assets/Bundle/levels/chong-wu-gu-shi/ju-mao-bai-tan/scene-a.jpg.meta": "cce70c5901f591890bcb7794074b5eb2d806ffa2c83746c9488f77ea6c95ca4b",
+    "assets/Bundle/levels/chong-wu-gu-shi/ju-mao-bai-tan/scene-b.jpg": "2dbb2b6479f9b31620e0a0b36baafcccbe032a5a72f902d6afdb4798f906c57d",
+    "assets/Bundle/levels/chong-wu-gu-shi/ju-mao-bai-tan/scene-b.jpg.meta": "b9efa5b2bf52967fcf6938e1de3a38782f6bcd276be4b75c7f0619f6cebf2979",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-he-zu/scene-a.jpg": "d566c5dd5d3f3f130c414ca9ac6a849015bbce7f81718b18aae17ce5089ce843",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-he-zu/scene-a.jpg.meta": "f13e80557697b035eb4d8c715b217ddb75e87342dad025fc8bbcb40d24a9a3ef",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-he-zu/scene-b.jpg": "d6c3edca3faa48dae88cdde046fbb31d7cbd58fbc334f6afcae9ee940691d7f0",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-he-zu/scene-b.jpg.meta": "535518670ea9da9222c560091af8d3a1eb93796b6f65d7398ebce7952386ab21",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-shao-kao/scene-a.jpg": "d73c99a293fa9fd2ee0146cc1477b4f7c44fe8836e7050da9be8e34f2b8a0b6a",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-shao-kao/scene-a.jpg.meta": "ea6cfcd47a3302144b97ee90151b456b5d5665774ff2887b8a9641e9e49985ab",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-shao-kao/scene-b.jpg": "0b623b3563e5f8c3166064825d5959d1280a694d5b02527aa9c2b83f89a016df",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-shao-kao/scene-b.jpg.meta": "33937296baf5036b66e4e56c75100e19c4b30e62c06c8df3f5f3091e3b5ae54b",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-yu-mao/scene-a.jpg": "bb847b70b67ec025f0f7767ccb742ba4441f12c074a9dd89f78f230284b9d595",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-yu-mao/scene-a.jpg.meta": "6c449ab635168cee526d78faa9f9339f4cc997fe09890276a9a12f72dc3592fe",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-yu-mao/scene-b.jpg": "c587345fffe6aeda3cdaf5489e038b5d674f9514632fd3d9b4f626ee4c261268",
+    "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-yu-mao/scene-b.jpg.meta": "2f440af27d57dd277715f777611f57d5d726061c3c1796b1b5fc14f503b4cea0",
+    "assets/Bundle/levels/chong-wu-gu-shi/meng-chong-shan-shen-bu/scene-a.jpg": "80f969f86554ea9b3b35a5f5118052c86fcdb93a2788b443b089c37e35437e02",
+    "assets/Bundle/levels/chong-wu-gu-shi/meng-chong-shan-shen-bu/scene-a.jpg.meta": "a3b66ad3eaef8b71cf9c355e214cf7f27c9256794564618693c41ef6205851bd",
+    "assets/Bundle/levels/chong-wu-gu-shi/meng-chong-shan-shen-bu/scene-b.jpg": "a159f71050db2fe841d6c897a5253eb9ffa3e0e37d2efa4eb1420ad800a1fb04",
+    "assets/Bundle/levels/chong-wu-gu-shi/meng-chong-shan-shen-bu/scene-b.jpg.meta": "d0aaf8c562ff0d26236435e86d7711b938efa4c9ed516fe63d8fd8ed4ab07201",
+    "assets/Bundle/levels/chong-wu-gu-shi/ruo-xiao-wu-zhu/scene-a.jpg": "47b99262154395a54070a85d84a1e9bdb435cfcaf174a5d14c5d753d93ce408f",
+    "assets/Bundle/levels/chong-wu-gu-shi/ruo-xiao-wu-zhu/scene-a.jpg.meta": "cc1e71fbd2da11c1e5092833302869e9326b86eb46af9357c1a35c83d319cabb",
+    "assets/Bundle/levels/chong-wu-gu-shi/ruo-xiao-wu-zhu/scene-b.jpg": "574ba0f3769eb5a3d1248f77a5f6cdcccfd7d1ad4c6c84dda901b6dda391bfd3",
+    "assets/Bundle/levels/chong-wu-gu-shi/ruo-xiao-wu-zhu/scene-b.jpg.meta": "24b6a3de01d0ae7d505680ba4e0b2bf1b34611007b32ee5047e1338860340557",
+    "assets/Bundle/levels/chong-wu-gu-shi/shen-mi-ba-zhao-yu/scene-a.jpg": "02555c854a67b962d8a9a39c6e12fb9dfec561b10015fa65e2d823ddd2aee937",
+    "assets/Bundle/levels/chong-wu-gu-shi/shen-mi-ba-zhao-yu/scene-a.jpg.meta": "4e2c84f9739b98c0e49c19284a968ac9b5d019a0e4cd0300a461ddf97708b31d",
+    "assets/Bundle/levels/chong-wu-gu-shi/shen-mi-ba-zhao-yu/scene-b.jpg": "254a74c8ff33399904ccd294d10127a66e4ab20f4d65d9403bf911ce7aa035c2",
+    "assets/Bundle/levels/chong-wu-gu-shi/shen-mi-ba-zhao-yu/scene-b.jpg.meta": "1a362434f985ad7e54bbd301439ba45e17878476daa29f48af9f97bb31d8baa2",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/bai-hu-yu-hei-gou-bao-mu.meta": "5db31fc8b84451b0675c58cff195531a96ad8f04fde8871c2fc0e2a843dc9bc3",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/cha-zi-yan-hong.meta": "2df3cf91e251e19d47a1c69b48f15818b970dd014bf05a2100ab69e858f1190e",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/chan-shi-guan-ri-chang.meta": "68cb65af3b7db456fc0c2f8e3b8438dfb22e4f0cdfae1e1e7300d2ac7a5aa3b2",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/dong-wu-hai-dao-tuan.meta": "bf5fd55cd7a9280bc82cb730a112fd569b6a1729643188017e2d792508eab74e",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/gan-ma-mao-de-vlog.meta": "7de33dad68c822794f7a34c189e60ac6e19f30d1aacc4f05a1e3ed791efb00d3",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/gou-gou-hun-li.meta": "5a7ca2989446a219312fc4b55095501f7f2798421d5850c4509577aeae51ff1e",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ji-ge-suan-le.meta": "c92fe0c21e738c3ff92d8af6f0812fe8398b06a44bf135d0f8bf4eb024628efd",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/jian-zhi-jia.meta": "d179cd4a649d0ea17e8becb1a3d5b40ee164146e9917f58c2fee5677ce88c128",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ju-mao-bai-tan.meta": "bda83527173a45b3a7014f15d25618b5ec0d676ce3799f66d51e12a8b7550082",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/mao-mi-he-zu.meta": "da89968e775d9d4df14b5b7ee3d94532f6a4c5ec1f78e238cda6f5e6f008c4ce",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/mao-mi-shao-kao.meta": "017e13f2b4ad94360c84daa89eed5bb9a36ad196ab998421e0e227673aef7dfd",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/mao-mi-yu-mao.meta": "5fb7bf9e1ed6c07523d546f08d50287710b2732ce2b180ec87400ef0e5221924",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/meng-chong-shan-shen-bu.meta": "dfae570d7fdc2b640cd5925f49a898254322dbe2be5722b3ba4e7b1db88526a5",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ruo-xiao-wu-zhu.meta": "97c485e323d1af26b69fafa071717e61932adb182fb94b3bb0d09c0c52956e7e",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/shen-mi-ba-zhao-yu.meta": "26d47898107c8540e4d675ee19bffb525b5830caa17b57fa501dc58cd491b371",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/tu-bo-shu.meta": "9975549851c054efedeb9653d51dbb0c76432aa7d808e742364dd3037986fff6",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/xiao-mao-ta-bu-wu.meta": "8a2ba1d949dda70bf665fa4c25aace9e342de41520be4417fbe6b72f5826d60e",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ya-li-shan-da.meta": "762f574fcb33c0ad35471d81e2a2034ee42f09bd4e8cb98ad0e9e0945b9cd400",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/zheng-dian-shu-tiao.meta": "28b05d419e48afd3c30cc3bb70bfb066231e76eeec4b66ca0ef59cc8ce25768d",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/zi-ran-miao-cui-jiao.meta": "d862d4215c9af1e903a3d5374502e327abf7fcb1b2aea97b8d02a3de4fd3426b",
+    "assets/Bundle/levels/chong-wu-gu-shi/tu-bo-shu/scene-a.jpg": "7dc792e3198055bc4adebdb47f8eeb0d6117704c6347df4380d05d5dbdb9db2e",
+    "assets/Bundle/levels/chong-wu-gu-shi/tu-bo-shu/scene-a.jpg.meta": "011b797baede548235717b84a0aebae6d52ef1198c49ef0b40e2606dd5bfbc0c",
+    "assets/Bundle/levels/chong-wu-gu-shi/tu-bo-shu/scene-b.jpg": "f1b8033f6af1048402628ac23f7fd0c98246eeb92896cfca0773794232628414",
+    "assets/Bundle/levels/chong-wu-gu-shi/tu-bo-shu/scene-b.jpg.meta": "ad02ddb9f30d2321eb53e83316f1572944c97d0d98b8302ce4e5609e35c27b37",
+    "assets/Bundle/levels/chong-wu-gu-shi/xiao-mao-ta-bu-wu/scene-a.jpg": "13fd6647368f4b5b9655aea56d12a00a63a3b5fa79709224efd972af817b906a",
+    "assets/Bundle/levels/chong-wu-gu-shi/xiao-mao-ta-bu-wu/scene-a.jpg.meta": "82957355cabe4d67a90c630175e8562504efdfbde3fee0d248a8ba1ef3e2332f",
+    "assets/Bundle/levels/chong-wu-gu-shi/xiao-mao-ta-bu-wu/scene-b.jpg": "78fc0da027b2485be615c68b44d22c44975c7ac786fa209b42423d9fc3c07a85",
+    "assets/Bundle/levels/chong-wu-gu-shi/xiao-mao-ta-bu-wu/scene-b.jpg.meta": "324e6e5a817e21e0a719bb4cbe606c87c924a2d610c9fb6ada4423d0937eba05",
+    "assets/Bundle/levels/chong-wu-gu-shi/ya-li-shan-da/scene-a.jpg": "87de88ee09df17d68ef1d86c37a406fd167f3ac233214b8da51fd083bf0f222e",
+    "assets/Bundle/levels/chong-wu-gu-shi/ya-li-shan-da/scene-a.jpg.meta": "cc12918dbe677ca726a69b6d3ae57d55d63e7b14c4b631bf5cfb2bae1d39f349",
+    "assets/Bundle/levels/chong-wu-gu-shi/ya-li-shan-da/scene-b.jpg": "39bdb2608afe9c5c07d0d81f5ed212557154511e4aa2e0e76ca44e336f5ea1ee",
+    "assets/Bundle/levels/chong-wu-gu-shi/ya-li-shan-da/scene-b.jpg.meta": "73bfe947529eb7527070d6f51c2bd33c2be12f71ee85fd7ce30a06451532f571",
+    "assets/Bundle/levels/chong-wu-gu-shi/zheng-dian-shu-tiao/scene-a.jpg": "2751c0f75cc47a820648bd3da7840ea43078acf7f5e5fa95ad5d0f5605e0eaf6",
+    "assets/Bundle/levels/chong-wu-gu-shi/zheng-dian-shu-tiao/scene-a.jpg.meta": "f3809abf3568046406f0908b104d4545e4f49a7d46fde941766f84d569f25110",
+    "assets/Bundle/levels/chong-wu-gu-shi/zheng-dian-shu-tiao/scene-b.jpg": "9e20ae6dda28cbdee07eb9a7ebde673c60bdd3516685096404ef2d4b3e17bdc7",
+    "assets/Bundle/levels/chong-wu-gu-shi/zheng-dian-shu-tiao/scene-b.jpg.meta": "b67b33643228e62b3c3cf8e676c414f21e427bfa9fb55f0d23aa55362b5ca964",
+    "assets/Bundle/levels/chong-wu-gu-shi/zi-ran-miao-cui-jiao/scene-a.jpg": "764e5aa83cd0c8b406ade913a7e4919fa12ffc11f79d2d67ca6e2b007241b694",
+    "assets/Bundle/levels/chong-wu-gu-shi/zi-ran-miao-cui-jiao/scene-a.jpg.meta": "554254d1dba6294922acb22e0ad41d91e9ba4a425fc88670d343478ef617fe83",
+    "assets/Bundle/levels/chong-wu-gu-shi/zi-ran-miao-cui-jiao/scene-b.jpg": "63df3ccf3e346b87cbe06844bf81de61e891dee16ef24c5428fda7512c8c6220",
+    "assets/Bundle/levels/chong-wu-gu-shi/zi-ran-miao-cui-jiao/scene-b.jpg.meta": "03fdf06faff842b6d464b4144ae5d19b33be31f08d4ab22d36c473ad553147d1",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/bai-hu-yu-hei-gou-bao-mu/icon.jpg": "704c689bad0a3829c8d933d0b246cbccc1473fe001741e6218a76d1d1dd0e4e0",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/bai-hu-yu-hei-gou-bao-mu/icon.jpg.meta": "fec95be86c9c595426ca161719b2e6bab76c9a948549c4179df93aa3dd08f8c8",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/cha-zi-yan-hong/icon.jpg": "c7c642da20d37da91f6363b0c86125c6d33aa6737eebccf4756535783bd1aab1",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/cha-zi-yan-hong/icon.jpg.meta": "0746bf7da2701878c879867656f85bea8310a13e0dcee3fcd30c6180e866518f",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/chan-shi-guan-ri-chang/icon.jpg": "b14bf95f659ea804ad2feee4b513a15896efd910dbee5a12c4e787de1985a7ce",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/chan-shi-guan-ri-chang/icon.jpg.meta": "ee22cbaf0a0496880952d5d5bb1fcf4017b18a5608a70b855700c7ad50b54384",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/dong-wu-hai-dao-tuan/icon.jpg": "5d5aa8e8ccc09c55b806450a84f3489f289af3eab718fab7bef609e760848451",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/dong-wu-hai-dao-tuan/icon.jpg.meta": "ab752f8ad1edef4c396ebc3b87f3ef213d6cb130e6215d827a10547a86991e76",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/gan-ma-mao-de-vlog/icon.jpg": "697a29936675feb92fa7609d6258ac56d93047560688bf6d3f7445063d773683",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/gan-ma-mao-de-vlog/icon.jpg.meta": "fc19fb3cb8e34fac9c93938350af2dd0b270f93a53cd9674f277c2a55fa46f4a",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/gou-gou-hun-li/icon.jpg": "1f71a5ed97c3f91565c3572f98a9a14e827ed66505f29552f385094d3a78e15e",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/gou-gou-hun-li/icon.jpg.meta": "312db3b92a89db59e19deb96366cf88679a0c948b7f1374e1551cd68014e42de",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ji-ge-suan-le/icon.jpg": "592bb76e2848d515f25099685ab84d67adcfc98a6a53c13392e9dc887c3434b9",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ji-ge-suan-le/icon.jpg.meta": "0ea50e8a17aeaa12a4e36565b3f9e164b4c61fc16956d7f2af35712ecc042ec4",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/jian-zhi-jia/icon.jpg": "b500c9dd164ad48a58ef84d9247eee7dd251c6690825886d461102eba73b1f10",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/jian-zhi-jia/icon.jpg.meta": "169b83f96720831a31e841673546fa587a37de1357a29fbc7f8e7bd7292e7ffe",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ju-mao-bai-tan/icon.jpg": "ac333a7e5e97725f2f144a4ef1bf2e9a3f31589734663a8a06136f42bc8b8d4e",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ju-mao-bai-tan/icon.jpg.meta": "81bf9132eab680951e86cee9ce31a720891ca5c03db81c43c6a95b18aae4074c",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/mao-mi-he-zu/icon.jpg": "50e44fcd6238e45a38db2b982dd3a86b44de72011d77d417129648e1cc3a6f0f",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/mao-mi-he-zu/icon.jpg.meta": "35eca1cff395c0597aa12b1c20dbd74a956bcc6d7716d32fa6d3ee270d7ac388",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/mao-mi-shao-kao/icon.jpg": "3eae2f4d06fb9dbdf3a165dcedbd46895dc906185bd01eb3561a1828702995fe",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/mao-mi-shao-kao/icon.jpg.meta": "4d6d85f5dad8f002de8406ab0ce37a82e1c22fe3e035d12be51c2a7a3c3a1f90",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/mao-mi-yu-mao/icon.jpg": "df29df8049ccf53edec8e75380f747cb2d993159a30ac68bb736ce0a5e251aeb",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/mao-mi-yu-mao/icon.jpg.meta": "f178383946e11a8ae9d627e41364cb168a3056657f821546263077dfb58817cd",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/meng-chong-shan-shen-bu/icon.jpg": "8ba0e8258432b962ddb75a7134652b27ac6bb13d5b67077c36a45efd623ff587",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/meng-chong-shan-shen-bu/icon.jpg.meta": "984a61bf4599c70fe40317762ccfcd130febab78559516e4b34cf4bc570c0351",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ruo-xiao-wu-zhu/icon.jpg": "8feb7acda91425d99dfd84cffc8333df161735261ac298f794ae9705305e2828",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ruo-xiao-wu-zhu/icon.jpg.meta": "1146c593bc3c78a7f6105a8f531feebb2a36fc1641349fbfa529eea49de2d1e8",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/shen-mi-ba-zhao-yu/icon.jpg": "94c1edf5e0079e67207bd98954c12cec63507705ac31ae98fb29c70703ab6ba0",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/shen-mi-ba-zhao-yu/icon.jpg.meta": "0cac073bc77fe660a840e6ccd87a20d5a10bbe06bbb461453b7d6c2380acb409",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/tu-bo-shu/icon.jpg": "584e51bdd294c3d9731e0a33eb36f7bbb2d3fcb0c4b3b72844b49e14b0468ec5",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/tu-bo-shu/icon.jpg.meta": "ac511ef257deb7087ab4d4bfd6e9c9e27d4504e906e9f50dcb5b7e9031a6d534",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/xiao-mao-ta-bu-wu/icon.jpg": "55a0dbb3166b91204c7b4107f34f3979ec6cf80577e472a45c81e16071b686ca",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/xiao-mao-ta-bu-wu/icon.jpg.meta": "f2cdf4aca76cce47a86b93aa095ae2fdd6f693aec7dfa62be22f92b364c77ccc",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ya-li-shan-da/icon.jpg": "82da707cde4bcf93d6f8d91452bc94fe3531e81365b5de5010d46547925f88a8",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/ya-li-shan-da/icon.jpg.meta": "396ddedb6c9558ef143d4b86a0e6974892c5f8b529c3836307f42b16be34299e",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/zheng-dian-shu-tiao/icon.jpg": "22bf0445470770d2b0f56aad3afb385ad1df8fe1db2ff10044ef6ecaadb81122",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/zheng-dian-shu-tiao/icon.jpg.meta": "8c39e13678ff149ffb841c40d33b7d1a931023210bf6a5c7bc2e40bb6c2d5908",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/zi-ran-miao-cui-jiao/icon.jpg": "18222d4e8a84e50c23ce26e8ca19af59ff56381719c325c0e99d5eeb7241946b",
+    "assets/Bundle/levels/chong-wu-gu-shi/thumbnails/zi-ran-miao-cui-jiao/icon.jpg.meta": "d4ba9c42f926dd1d3e79343e8c2cbc3b831b8aa9e5bc3ac9867c9f48d2cb7a54",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/bai-hu-yu-hei-gou-bao-mu/differences.json": "5d5240285211706923215655157772fd64d64b32d6a360386354814c4d6a0b0d",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/bai-hu-yu-hei-gou-bao-mu/differences.json.meta": "5560b2273c41aa50de48f2aa2c17dbc2df53ca9b9ad7d7534f049dbed3229a41",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/cha-zi-yan-hong/differences.json": "a8a9a3110e9ddc1953ac3e64f4dbd81cf2f1cd71b7f660b3159e938d3d76fde4",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/cha-zi-yan-hong/differences.json.meta": "f843022a5574aa2cd90e2e51434f15bab3e3f35289e5be10758bf2f88ce40955",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/chan-shi-guan-ri-chang/differences.json": "a685cd56d75f5e44e847dd4ef04ec39f1af7028b058a7d2475e442c1bee87449",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/chan-shi-guan-ri-chang/differences.json.meta": "a84cf3e0e2a88db0e714aa796769515c5312e53609b85a7874a380258c27330c",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/dong-wu-hai-dao-tuan/differences.json": "6d401df69c8dbf8d476c30b14563a3db6b5ac5ad00fcb85d5a85ada36c394794",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/dong-wu-hai-dao-tuan/differences.json.meta": "09f1737a9fca33b8ebfb7bc80261909913279bda593b4975404b0e0fb4020233",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/gan-ma-mao-de-vlog/differences.json": "691410f7173260e58f873f96cd975504a4aa670e839c54a0abc336320e72e3b1",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/gan-ma-mao-de-vlog/differences.json.meta": "b5e10a66ee954cc1b877b8f3967d06cd96a015d818d244a066d18a8ce43ee801",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/gou-gou-hun-li/differences.json": "91c9e81d571a91ee53046d6bd4b09cd7fdce322412e4ccdce8560d405983658e",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/gou-gou-hun-li/differences.json.meta": "98b6455d998da15b000b3172e9a8c5028e3c22d3cddc0fbfef9c2247366af74a",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ji-ge-suan-le/differences.json": "1a8430b91d3bb1ec8b0adbcf8f3b1a31d60f9b9493d0c46ed91edd604e30e719",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ji-ge-suan-le/differences.json.meta": "08c5f27662b11ddd3edc7bda5a5d3e610497399fc4d5f42766a88feff3b304c8",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/jian-zhi-jia/differences.json": "f915fededa2cc5ac26761ad636265f7352a5dad26598a93b25f28bc6838b8047",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/jian-zhi-jia/differences.json.meta": "6381e310482adde8239c99147abb308e5138cfc88cda3464ca7504aa0521ec9e",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ju-mao-bai-tan/differences.json": "b8b56dbe989be301085f16a0861e46503a258a6800f16caa0820e716bad36233",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ju-mao-bai-tan/differences.json.meta": "96f56e39245723b0aa73c59921e8c9ee42bbe255dc9afe8e74b646d56dc377e3",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/mao-mi-he-zu/differences.json": "caef1e74f0bd357332444aa2d53835fd78924c4c6841c583059452e90c0bb83c",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/mao-mi-he-zu/differences.json.meta": "2b056efb7fe0ebfe951372442e5661ff00eed43b1facc9886ae4c2badd353b5f",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/mao-mi-shao-kao/differences.json": "f50445d5b3476eb1c0248ebcee098ce5cc5dc8413c42faf1aa7a71e801dcef82",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/mao-mi-shao-kao/differences.json.meta": "64e2f66201ab45f9ab4a6fd182876a8bcf8f3f967e16e48f5af697a030fec549",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/mao-mi-yu-mao/differences.json": "d449b005b39299d0b5fa3602804f399ffcc823d849586ac87974ec120c0c9418",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/mao-mi-yu-mao/differences.json.meta": "91796dac30653ea3cba46c368f517671b900d5e87f93f47d31926ea9d0ad6818",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/meng-chong-shan-shen-bu/differences.json": "39d9f5193c457464dfd2f6b19a45be1aaa31c7e0b551e3f586dbe2c8cca3286b",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/meng-chong-shan-shen-bu/differences.json.meta": "4e4b9f462559e8351990ebdaaa0b091c21dba0e85cb6ab2879e91b8b59caaaeb",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ruo-xiao-wu-zhu/differences.json": "976bddf23e78d75f12c4e76cd2ddc20554f6be7bd1c7ac4b1883366edc072b64",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ruo-xiao-wu-zhu/differences.json.meta": "e2753e17c908f41f87f77a620799ee7f4ffbb81ed07c336c25197b2ca59a17a5",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/shen-mi-ba-zhao-yu/differences.json": "96b96df937c34d0ebe2e845ce1d2b18e806575cdf4fd7342107c7392563434d9",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/shen-mi-ba-zhao-yu/differences.json.meta": "ccd7dcd8470b2e05bb895fa8d1a909581363a1510c1a3d8173cc33a8c9204321",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/tu-bo-shu/differences.json": "55c1f79d0f702124c4d74189fa234fa35cd8aa25647876b5e4b969691ebda5e0",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/tu-bo-shu/differences.json.meta": "3aad18f896f3d388abf65d9b3a8c8de2d77917808a48d9cc784a1a3eeb4601c8",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/xiao-mao-ta-bu-wu/differences.json": "21a797b1588028b5e758ed29168dfd7c33381aafc3ba6365ca788846e0b2c601",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/xiao-mao-ta-bu-wu/differences.json.meta": "6b675039bf7e98948a9ceae59a88c460a3598f69da8c78816892f98819bcf5c7",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ya-li-shan-da/differences.json": "7e10c1d7de2ffdb78d77ad28e6026a668d5d7870a0fdf75a1deded29e5ffc7c3",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/ya-li-shan-da/differences.json.meta": "b20071db62f2b8fa9a60763f2fc0269d38900103786bf912614b6e1fb952ac0e",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/zheng-dian-shu-tiao/differences.json": "1019481f98ab3feb42b3c4997d3b33b6ab25595b613438a49ba5399deb6243ef",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/zheng-dian-shu-tiao/differences.json.meta": "4dce90dce753ea010d252f3bcae39a9d77f22008cff6a468ffd45e125654b484",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/zi-ran-miao-cui-jiao/differences.json": "41d4e924d966cdeb4338e7d76251175e968b43ad568279d7e44d7e03c8a0a620",
+    "assets/Bundle/levels/chong-wu-gu-shi/configs/zi-ran-miao-cui-jiao/differences.json.meta": "567666bc95d3577aff501cbfc9ff9c43f44ddbfd35ac2a4ef7ea17b5bec2e8b3"
+  },
+  "imageExport": {
+    "encoder": "Photoshop 13.0.0",
+    "quality": 8,
+    "qualityScale": 12,
+    "format": "JPEG",
+    "size": [
+      1024,
+      672
+    ],
+    "resize": "full-image-bicubic-no-crop"
+  },
+  "levels": [
+    {
+      "id": "chong-wu-gu-shi/mao-hao-ren-huai",
+      "name": "猫好人坏",
+      "folder": "mao-hao-ren-huai",
+      "sourceNumber": 1,
+      "chapterNumber": 21,
+      "sourceFolder": "01.猫好人坏",
+      "sourceConfig": "猫好人坏.json",
+      "sourceConfigName": "猫好人坏",
+      "configSha256": "07bd8ba36e68de1b2a5d3865cb3ddceac3f62cf862eb715875f0b2de37f4ecfe",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-hao-ren-huai/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "f2ecf9b993ba474218e501ad9de6c68d8f8b2baac1bf80971f7d89925d6478e6",
+          "sha256": "d4e5fa5dd329c12adc092a929a985a1366b03fe0a2bd9399cb63ac48b987f815",
+          "uuid": "e778856e-9474-5db0-b681-765399221f49"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-hao-ren-huai/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "3c2b5c945a693e78de078cf75d160827a1bbbd349cd3417cb754d9bcfd1ef3f4",
+          "sha256": "9da069c8b12ebc042914a0bf811b589c07d26566ba8cb8d77f1d5f0ffe5f9312",
+          "uuid": "8448578e-a5a2-501e-ab72-f3ec80ed3ee4"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/ha-ji-mi-lai-dian",
+      "name": "哈基米来电",
+      "folder": "ha-ji-mi-lai-dian",
+      "sourceNumber": 2,
+      "chapterNumber": 22,
+      "sourceFolder": "02.哈基米来电",
+      "sourceConfig": "哈基米来电.json",
+      "sourceConfigName": "哈基米来电",
+      "configSha256": "9ac7fc18756b4100d1136addaf255b5ac56e5d4c80770bb51e9ce71e8ccd0a9b",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ha-ji-mi-lai-dian/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "f9fe0a531abd15484d49c4b1e0a2372febb369f3ce86e5498677e549a83890f0",
+          "sha256": "9c880fd7f350297f7737b31e4314f8dd3515fdff52422ff8be0f799fab30757e",
+          "uuid": "b89d419c-e64c-528d-9cb8-b0b0a2c20ab9"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ha-ji-mi-lai-dian/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "54f5d3663859377e1a43f0a5862f51352f1b1ff1ce213f295933023981e3aab5",
+          "sha256": "c271c57e263e3563f78433da6ab409823934d2879ee86a81275d10c471e56aa8",
+          "uuid": "1bbd050b-1430-533a-919a-e5817cdf875b"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/shu-shu-wo-ya",
+      "name": "鼠鼠我呀",
+      "folder": "shu-shu-wo-ya",
+      "sourceNumber": 3,
+      "chapterNumber": 23,
+      "sourceFolder": "03.鼠鼠我呀",
+      "sourceConfig": "鼠鼠我呀.json",
+      "sourceConfigName": "鼠鼠我呀",
+      "configSha256": "1593940228ffcfa9499718ffb8ee5921a8dc5864758c681f6508f3a25c300148",
+      "differenceCount": 11,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/shu-shu-wo-ya/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "51767e70c393941246f5f1db05b538eab9136c2a16d826e520db600dd20ed67c",
+          "sha256": "9afb889188e61d28ee22f17fe487a12dc4869066a3ce25b1c95704b6ffcfb6d8",
+          "uuid": "2c023c9a-8a61-554b-b531-fb2528295c44"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/shu-shu-wo-ya/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "97c810262d432cc157fcefc61f587d0a4c13289f0645bf863698fda0179da6c2",
+          "sha256": "40a3f9bf4b5b5cce620e34f75e263c965298257afaf945d58ec4677630182e10",
+          "uuid": "6dc95e93-c238-5936-a942-e6fb08d43c8b"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/xuan-zhuan-mao",
+      "name": "旋转猫",
+      "folder": "xuan-zhuan-mao",
+      "sourceNumber": 4,
+      "chapterNumber": 24,
+      "sourceFolder": "04.旋转猫",
+      "sourceConfig": "旋转猫.json",
+      "sourceConfigName": "旋转猫",
+      "configSha256": "91e12c685fd03d2f221be264c3d3f3db9cc6f209aa2d83fe0c1b1cb971ccec86",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/xuan-zhuan-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "ed02b91795e67ed0e9d3611dbd6ad8aa412574c742f96b0768037371a4041ed1",
+          "sha256": "4b03ec9a7624b9842fdfb62f8d67cf66375ee094c7c42c8e0d4063699782eebe",
+          "uuid": "5fbe7200-6ec7-5e06-81da-3094c64cdfd2"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/xuan-zhuan-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "523cb3bedbe69927db7a8cc169230eac0f6b5abdbd6ced8e42c97f31c62c9072",
+          "sha256": "b6c6627a258c23d8ae5fcc7ef9705382c5639e9866e10715fa68d4fb177f5220",
+          "uuid": "086f2d0d-b140-5646-a200-c2198efa4e66"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/miao-cui-jiao-mao",
+      "name": "妙脆角猫",
+      "folder": "miao-cui-jiao-mao",
+      "sourceNumber": 5,
+      "chapterNumber": 25,
+      "sourceFolder": "05.妙脆角猫",
+      "sourceConfig": "妙脆角猫.json",
+      "sourceConfigName": "妙脆角猫",
+      "configSha256": "ae0d8c731e8a09dd8b40c4a966c2cd06e38bab4c5568c622d9d9798e444fb297",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/miao-cui-jiao-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "c1384b29bb6b54b1d9934853e5bf6d62bf8dee43d15500195fbfef1bde934e8a",
+          "sha256": "6bc3b55f3ed9de7dc008e047ce21c986095274c9525fefceb92f6e40cbbb9d42",
+          "uuid": "73719953-16ae-5c3e-ae8a-af6d0a61558c"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/miao-cui-jiao-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "b0e852ff60e9d9b7cbbfbdadf61f0d910ce6e25c6f3d307795a78d1dd1248c23",
+          "sha256": "f3cbb2811d47bc92e5e42f350946fe382625f5b0a20dc34ee41933ee0d8647a2",
+          "uuid": "0f24132e-0029-59b3-bd06-cbc57a11a24b"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/cang-shu-chi-bo",
+      "name": "仓鼠吃播",
+      "folder": "cang-shu-chi-bo",
+      "sourceNumber": 6,
+      "chapterNumber": 26,
+      "sourceFolder": "06.仓鼠吃播",
+      "sourceConfig": "仓鼠吃播.json",
+      "sourceConfigName": "仓鼠吃播",
+      "configSha256": "37151b526c283d288221beff8fafbf923c0e688b95ba81fda1039b10c6b68231",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/cang-shu-chi-bo/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "e66ae961dffa1b4b51dcc3ae61f0fa95e35badec8b283035d9cafc34a82f007b",
+          "sha256": "e3677405bd8a64335dd4a66808301ceed57d628f7c9befcf358c04a1a1155c79",
+          "uuid": "6b6fc2c2-fb5b-5c58-a392-7239482855df"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/cang-shu-chi-bo/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "ba2e8eb76bfd364af5df172973a3c92382624a226f713b8b6e7a3edab8c50a03",
+          "sha256": "02e8a6df62118323502a1787385bdc84bf5688a39fd47a043adb523ccca111bf",
+          "uuid": "4f1621be-9afa-5249-a667-19d9af6192d2"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/zheng-bang-xiao-mao",
+      "name": "蒸蚌小猫",
+      "folder": "zheng-bang-xiao-mao",
+      "sourceNumber": 7,
+      "chapterNumber": 27,
+      "sourceFolder": "07.蒸蚌小猫",
+      "sourceConfig": "蒸蚌小猫.json",
+      "sourceConfigName": "蒸蚌小猫",
+      "configSha256": "1d567b02ca656fb826fb25bb216e3d0e8975cc433d675f75785897070e53808f",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/zheng-bang-xiao-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "7302857047dbb5c486220f079207d4445b2e1aadbc12ebc20c1a5144e9ec4d13",
+          "sha256": "2d6ae893e78463bb76db8a51d233b8a04f234d363946e3eb1333894e1d16dcd2",
+          "uuid": "4cabbb64-931e-578a-bd05-92d58387fa9b"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/zheng-bang-xiao-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "3604d0fbc34d67f1b97b6b7e894ca6d29db2d16e1b418ce58781586a08b26616",
+          "sha256": "66a69a282048435db26c4b9deeec6763ba18249752e2d54617678745209aae0f",
+          "uuid": "3be3118d-fc83-5d24-8964-2af6eeb0e0c5"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/da-kai-men-shao-xi",
+      "name": "大开门稍息",
+      "folder": "da-kai-men-shao-xi",
+      "sourceNumber": 8,
+      "chapterNumber": 28,
+      "sourceFolder": "08.大开门稍息",
+      "sourceConfig": "大开门稍息.json",
+      "sourceConfigName": "大开门稍息",
+      "configSha256": "3c31ff37e5352dedc15b5f6f8d92f7e3265819e6cedab84c09be817bc1917e9d",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/da-kai-men-shao-xi/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "9f5a304d15952b212339d09ee2d235df67ba188616843f246414742057ed38d9",
+          "sha256": "de48e8fa8118933fa40ce229f7179da04e509a8fae659d3ff7ce44138483254f",
+          "uuid": "bd5da3dd-0050-5e95-8e5a-b0a4c5d4afe0"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/da-kai-men-shao-xi/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "233bbb1d5eb5b69ee335c11357f1c32e22f6cc5e36f76169b577fcb384a5422b",
+          "sha256": "9db79731f0cf1cf24f3bd8f6c2e50789927b1309cb6e6257651b12a9ab7d820e",
+          "uuid": "a787395f-d514-516b-8b2a-ce9c94ea3669"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/he-ban-zhu-ren-tong-zuo-da-ba",
+      "name": "和班主任同坐大巴",
+      "folder": "he-ban-zhu-ren-tong-zuo-da-ba",
+      "sourceNumber": 9,
+      "chapterNumber": 29,
+      "sourceFolder": "09.和班主任同坐大巴",
+      "sourceConfig": "和班主任同坐大巴.json",
+      "sourceConfigName": "和班主任同坐大巴",
+      "configSha256": "f4b33458c8ac795420349c7551419e72a280f7ac4a292784a653ec316e206822",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/he-ban-zhu-ren-tong-zuo-da-ba/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "d465993eeaed449a087b3aafbbaa8191bac0966ed9b5a06696ad3c185f820f84",
+          "sha256": "4c4b28cdb88df5691fe0ad69143267e1ca113ea8a168ca715704a5d848382be1",
+          "uuid": "5ce015b1-063f-5dff-9213-8b60ac4a34d6"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/he-ban-zhu-ren-tong-zuo-da-ba/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "02972e18b07d548e3bfa08fc33d359a863cddc1060fe61ff363aec97c8761809",
+          "sha256": "ae5be87d4ad57045c349e6f2d700e66b1ae80b43508258bf0045e80fd0432d4f",
+          "uuid": "43d2459b-fdbf-5afe-8781-ea3a0e6f0771"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/happy-mao",
+      "name": "Happy 猫",
+      "folder": "happy-mao",
+      "sourceNumber": 10,
+      "chapterNumber": 30,
+      "sourceFolder": "10.Happy 猫",
+      "sourceConfig": "Happy 猫.json",
+      "sourceConfigName": "Happy 猫",
+      "configSha256": "d1441892124fde54579b620f7c65899006db1826a358390649cf61f648a811dd",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/happy-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "0708a6fcd8c292457e7523f346f7262c205916fcbcc2e6ca8fdfa483df05d210",
+          "sha256": "ee19569bd72c454578f328beb4fb7936853fae3f44a043c49a822c51ecd3eb50",
+          "uuid": "172038a6-91fe-5339-b972-814ba59f173c"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/happy-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "ac8ff8b7899091a4f45531b5e0d827d4da7216710054eef42afd7ca9d6e2f732",
+          "sha256": "9c683c1ddbbd046728eed17fc35b3a0bcd685b46a2daa1726bb7ea322373dfb5",
+          "uuid": "4342d174-520b-5464-8e58-f3a2ee44555c"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/xiang-jiao-mao",
+      "name": "香蕉猫",
+      "folder": "xiang-jiao-mao",
+      "sourceNumber": 11,
+      "chapterNumber": 31,
+      "sourceFolder": "11.香蕉猫",
+      "sourceConfig": "香蕉猫.json",
+      "sourceConfigName": "香蕉猫",
+      "configSha256": "82d933b2da13fdd6d9d5e20cfc46a44adefd3f60428d9de462e8ef6e5a5aab14",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/xiang-jiao-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "5b52301257e8d2eeb344aaf6d9a6b21d1e5e10eb71d933f03364595491e65ccb",
+          "sha256": "07d5ff473ca4f26527d5a46b75bf7e05d4e7b02601892c7557518d4d0e34b173",
+          "uuid": "6d5cbcfa-ae54-5a8b-a0d8-d99905ece303"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/xiang-jiao-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "c383d7c339aa8415e27362dbf84c0e7c67269c1ac18a3408547475d1aff80d02",
+          "sha256": "7e8438572a70617c1de25dd87b09a99e620065f1c33d823e6a90a5a1d922295b",
+          "uuid": "3fb42cf4-e866-5870-a671-f6862f1dc83e"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/ka-pi-ba-la-pao-wen-quan",
+      "name": "卡皮巴拉泡温泉",
+      "folder": "ka-pi-ba-la-pao-wen-quan",
+      "sourceNumber": 12,
+      "chapterNumber": 32,
+      "sourceFolder": "12.卡皮巴拉泡温泉",
+      "sourceConfig": "卡皮巴拉泡温泉.json",
+      "sourceConfigName": "卡皮巴拉泡温泉",
+      "configSha256": "9700f53283eed06b4becadf7d7fc08e84b8948707cc313cad154b32c3fce95f6",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ka-pi-ba-la-pao-wen-quan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "4789b77f525400bb1bd2bbabbbfedde3b9483154364f8d1a12c14de1a0ac7028",
+          "sha256": "82844aab9c3dec9f80b3d47dee4ec1fcf2c8e5042f133d0ff03820970d7d594a",
+          "uuid": "12dada80-0b20-5659-b3f9-edfccabc4630"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ka-pi-ba-la-pao-wen-quan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "18a7d6deeac7e17aefc4448da1c730da1c2a62a9df49c5fc5462b3b2572ca8b2",
+          "sha256": "3b7858b9816ac7690f06a83308585e3e56da0f6e63da818ac0daf5e125652277",
+          "uuid": "315c1789-030f-5756-80d7-d87a92559078"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/zhang-zui-mao",
+      "name": "张嘴猫",
+      "folder": "zhang-zui-mao",
+      "sourceNumber": 13,
+      "chapterNumber": 33,
+      "sourceFolder": "13.张嘴猫",
+      "sourceConfig": "张嘴猫.json",
+      "sourceConfigName": "张嘴猫",
+      "configSha256": "2403444d24273f02c1a279c33dcb230bba2782b8651e7a68b93e3f105f1c058d",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/zhang-zui-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "ca1a804dffb8be9c3ec6ec53019b0919ca863eff4037fd006b3880cced23c9aa",
+          "sha256": "352a3276a0c296903d8d6b6bd964607cd35e5bc1b9f862df959e616dacf3f02d",
+          "uuid": "7cc37d36-f204-501c-9a9f-460068a2c20d"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/zhang-zui-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "9373d30ae1f50d9ae813478a17cdbf70cf91b321a2c87375357e53be2f5703c9",
+          "sha256": "64233976b2b3f92e74d8ef441f653c8617e20bef218f2e4909c594554aa5c44c",
+          "uuid": "5ad6f999-9779-5c01-9f7a-bb905bb13470"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/bo-zui-mao",
+      "name": "啵嘴猫",
+      "folder": "bo-zui-mao",
+      "sourceNumber": 14,
+      "chapterNumber": 34,
+      "sourceFolder": "14.啵嘴猫",
+      "sourceConfig": "啵嘴猫.json",
+      "sourceConfigName": "啵嘴猫",
+      "configSha256": "d621ff58bd481e436bdbb0b9270503460c6e0b6977a0399289491a09f2094f12",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/bo-zui-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "f7a51140191f64a7a293fd68b01f89ed79555454d326452811257a4ebc87a6ee",
+          "sha256": "0d14d1807110e1c749fb494ac79c276921e7ebc3da45530d859d900d12fe7860",
+          "uuid": "06fb63a5-bd1b-55f1-9c4e-fa9212d63d4a"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/bo-zui-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "f227cf86c18074495649f76f3e7f6e759fc6149e1d7766301c923382dad2f763",
+          "sha256": "66fd043cd000c21e7c785937abb36b7bbdf796fc75146828253fcad08d4ffb5e",
+          "uuid": "ed3e8f2a-8205-582b-b234-8ddcad61f42e"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/qiao-wan-mao",
+      "name": "敲碗猫",
+      "folder": "qiao-wan-mao",
+      "sourceNumber": 15,
+      "chapterNumber": 35,
+      "sourceFolder": "15.敲碗猫",
+      "sourceConfig": "敲碗猫.json",
+      "sourceConfigName": "敲碗猫",
+      "configSha256": "48a9e28e8d8cadee2d17ba7f157708f09ff5ff8fa91c938c70c7b34da750ff01",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/qiao-wan-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "733d11c371852a1ec8bff6692df9050f3533106b6464c967c38c7f93d4f7ded4",
+          "sha256": "7e4d5f331e09ef5a914c915a3a478167e96023ca089cbe2502d9a45f6bb3b5be",
+          "uuid": "7fad2168-086c-5767-9192-c7e462c59d69"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/qiao-wan-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "4639a61ffb19d3c211fa566eadd59823ac6c108ea1a75d4baa1d3f87adfb3dc0",
+          "sha256": "4377a06553566b264f376e880469bc5caf8f91cddbf7413fee8f5d7f939962c4",
+          "uuid": "9b252f76-b963-5f3b-94b4-b081d7ae874b"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/ka-pi-ba-la",
+      "name": "卡皮巴拉",
+      "folder": "ka-pi-ba-la",
+      "sourceNumber": 16,
+      "chapterNumber": 36,
+      "sourceFolder": "16.卡皮巴拉",
+      "sourceConfig": "卡皮巴拉.json",
+      "sourceConfigName": "卡皮巴拉",
+      "configSha256": "fddb881ba06af841cae098ffb8d3ec6256037699aa1a948188ef7b8364eb8f92",
+      "differenceCount": 10,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ka-pi-ba-la/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "cf7df85eddadfcba69125a3d1a306418271c71e7780816c8b3a642b913f6392f",
+          "sha256": "3432ace0a9abc45e543441c22dd169ecff5119b4e9cb6ab82fe75ce94328b8e4",
+          "uuid": "243c4914-f361-5f08-a1f4-fdfb2506a46a"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ka-pi-ba-la/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "57e358a176d3c51b5be4c07e447a17de380f7c79897e206b8044f21acd64d012",
+          "sha256": "123d1e40db270fe0c21d87eaa83c0baba108bc56e03704aef7927fd10678629c",
+          "uuid": "b6aea3d1-288a-5c41-949f-deefd170f663"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/mao-meme-lv-xing",
+      "name": "猫 Meme 旅行",
+      "folder": "mao-meme-lv-xing",
+      "sourceNumber": 17,
+      "chapterNumber": 37,
+      "sourceFolder": "17.猫 Meme 旅行",
+      "sourceConfig": "猫 Meme 旅行.json",
+      "sourceConfigName": "猫 Meme 旅行",
+      "configSha256": "f2655892841c562025c9dd037bd3f50c7afacc208960b58a1d760efd6b5e52cb",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-meme-lv-xing/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "277c1f88117fbd59ce6db4b0fdd25b0ffd545952aba15c9873c12b274c3b79f1",
+          "sha256": "13041b27c512474228f7e3b923572e62558f352968c7557d2d3c4944e9fea766",
+          "uuid": "f48111b9-0bb3-525f-a965-d11185bc56c7"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-meme-lv-xing/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "9be0b7cc75ee24d3647132d485e22f0824d4c6780b428fa3bcd7ba065da93ccd",
+          "sha256": "331ebe757a5ba4078d59f52a6f489ead1a3acd99216784d996b7139ac82bb0a6",
+          "uuid": "3d910da3-6e79-50f4-be46-7c1f23be4d77"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/mao-mi-cai-fang",
+      "name": "猫咪采访",
+      "folder": "mao-mi-cai-fang",
+      "sourceNumber": 18,
+      "chapterNumber": 38,
+      "sourceFolder": "18.猫咪采访",
+      "sourceConfig": "猫咪采访.json",
+      "sourceConfigName": "猫咪采访",
+      "configSha256": "d0f7298f0223ebefdd9879fc572b1ff7210fd9e9ff1a742fbc2c633c1cf67d8c",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-cai-fang/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "38149155d99a6c08ee9c7af1cd0466ae012b3ebed1f4ecabc3295f1ebe2e959f",
+          "sha256": "91c8ac203d3c87ce6f3bd5709ed133430a81f0ea25f874df80736bd9ecbed63b",
+          "uuid": "0360f08a-bc8d-5d31-a011-5e4b09072d1e"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-mi-cai-fang/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "2e16a50d7a6b515e05454312c849dbd8a88ae5150674071fe119473d4adf92c5",
+          "sha256": "b4d7d8874130dec7d950168a48473abe15fe098ef20b645251bc62717bf94d5b",
+          "uuid": "5b11c16c-8d91-5ed4-a0a1-576cc38c423c"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/jin-mao-you-yong-jian-jiang",
+      "name": "金毛游泳健将",
+      "folder": "jin-mao-you-yong-jian-jiang",
+      "sourceNumber": 19,
+      "chapterNumber": 39,
+      "sourceFolder": "19.金毛游泳健将",
+      "sourceConfig": "金毛游泳健将.json",
+      "sourceConfigName": "金毛游泳健将",
+      "configSha256": "78dcab2a9b10b0d6cfdc1df48e345b5f5331031c36a43ab51747220ab522d4d0",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/jin-mao-you-yong-jian-jiang/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "4a2c277c92834fc040aecf64649829df283417a77052ac92f1a9ea2314e10449",
+          "sha256": "4d6ddca0a4f4adaa707b31829e2143fc8c59c67d027ee4b57a4e9f3979231439",
+          "uuid": "a39c69a7-807f-5baa-89a2-f9975a718f1f"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/jin-mao-you-yong-jian-jiang/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "00d51eddbd04ebfe686b2252b2d18282a88928ca815c2bf583c7a420b36bc5f7",
+          "sha256": "5d48d99ba442d417ea3e451897be4d2fa1d3c7522ba848b6fa6220001a7f17cd",
+          "uuid": "a3096a3c-592d-562d-bc78-f44eba482a8d"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/shu-shu-dun-liang",
+      "name": "鼠鼠囤粮",
+      "folder": "shu-shu-dun-liang",
+      "sourceNumber": 20,
+      "chapterNumber": 40,
+      "sourceFolder": "20.鼠鼠囤粮",
+      "sourceConfig": "鼠鼠囤粮.json",
+      "sourceConfigName": "鼠鼠囤粮",
+      "configSha256": "736b02b84caa5045da592cd7e75f332df81e5fa4c783e1e814ec1644e04d6dcb",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/shu-shu-dun-liang/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "18faf92e373b416335d4543b4a19e24631bcdb3a7f3c809b2e6006d382696d76",
+          "sha256": "f3e30e157497957f54ab138902047bd6aad3d2867695592946cb97401b71147c",
+          "uuid": "b764c293-448b-5b9d-8e4d-42b60aa2a05c"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/shu-shu-dun-liang/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "bef64db091be586f61105964ebce670172711c713a2cb891f44672140a2857ff",
+          "sha256": "78959ce53de03714139e67cdec247a5ee2162826ec09ec4199e29efeabbc18c6",
+          "uuid": "54588752-9424-59e9-a8ce-d6bbcd53677c"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/hei-mao-yi-huo-kan-hua-mao",
+      "name": "黑猫疑惑看花猫",
+      "folder": "hei-mao-yi-huo-kan-hua-mao",
+      "sourceNumber": 21,
+      "chapterNumber": 41,
+      "sourceFolder": "21.黑猫疑惑看花猫",
+      "sourceConfig": "黑猫疑惑看花猫.json",
+      "sourceConfigName": "黑猫疑惑看花猫",
+      "configSha256": "f0da2b3e022bbfeecc5d2557dc9722b876d082bb6f3ca4a32cd5315e3b333f7d",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/hei-mao-yi-huo-kan-hua-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "28c8bdc66200a1c29cf68140ffbb1e3e2c8e4d7e7e9027c349bc14025805b307",
+          "sha256": "e4392990cc9b839b280969f2861180d7d969608b6546118b8f59d4a8506546e4",
+          "uuid": "fe87da8d-6097-5f1b-be7e-d6f1abd25a52"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/hei-mao-yi-huo-kan-hua-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "24c0ad89a077db21788bf128e614abcd2a4c6618fc9292a07604e1a6d75ac87f",
+          "sha256": "2c0d0b0f3d5d1b373c3448b40409f4a414ab4ccc2a259f5d89f8fc7911dce6d3",
+          "uuid": "f2493e34-e09f-5b8c-be4e-331e5623d54a"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/bian-mu-zhi-shang-ya-zhi",
+      "name": "边牧智商压制",
+      "folder": "bian-mu-zhi-shang-ya-zhi",
+      "sourceNumber": 22,
+      "chapterNumber": 42,
+      "sourceFolder": "22.边牧智商压制",
+      "sourceConfig": "边牧智商压制.json",
+      "sourceConfigName": "边牧智商压制",
+      "configSha256": "ea4dc65ca2126f05a86edf28fcef8b51134b5959fb863aa5b5d412fc2be1039d",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/bian-mu-zhi-shang-ya-zhi/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "cc078145400f18cc0e7e6973c381b393615d40cdb765c40acb831096e928a8b6",
+          "sha256": "6912674309d2f0166e8237a24f7188c795a22cafae8c76438c7637cbb39f0078",
+          "uuid": "dba9eb56-5229-5de2-8f0a-c0a97badc862"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/bian-mu-zhi-shang-ya-zhi/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "b15a428d2fbf9a3157fb16384a6ff918c1aa77e8cf46508695d05e2fb445ae72",
+          "sha256": "131292483c691833f87cfd9e3b97d9740a96c55faf443632089e6f244333ef2b",
+          "uuid": "ba188c75-d6a0-5963-ade9-cb3560ea96dc"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/xue-diao-duo-mao-mao",
+      "name": "雪貂躲猫猫",
+      "folder": "xue-diao-duo-mao-mao",
+      "sourceNumber": 23,
+      "chapterNumber": 43,
+      "sourceFolder": "23.雪貂躲猫猫",
+      "sourceConfig": "雪貂躲猫猫.json",
+      "sourceConfigName": "雪貂躲猫猫",
+      "configSha256": "8bcc31a907ad0a8b9a58113ed4765dd8d62faa92c65be3e93ad7106fa765fa69",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/xue-diao-duo-mao-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "0bf8e163b5cf6588e253d1ed17f5c8f7cd837cbe8b22dbe820751bb489dbc90c",
+          "sha256": "3ca65cb0d2a52110497e1b6b551f3ba41d47db54c1d3a4ed8d19cbcc2b3c1054",
+          "uuid": "c18f608a-2680-58b7-9e10-048ad9f4bc2f"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/xue-diao-duo-mao-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "f117eec5b87beb42352772f69313c3df969de1308aca2432fe4509abc79c6407",
+          "sha256": "72b0a2fa177ee7e1fdc3667c159822bd0648da0aec1454b0911aadcd35774025",
+          "uuid": "f9fa7e61-e59a-570f-b928-d2c437071999"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/shui-jiao-liu-kou-shui-mao",
+      "name": "睡觉流口水猫",
+      "folder": "shui-jiao-liu-kou-shui-mao",
+      "sourceNumber": 24,
+      "chapterNumber": 44,
+      "sourceFolder": "24.睡觉流口水猫",
+      "sourceConfig": "睡觉流口水猫.json",
+      "sourceConfigName": "睡觉流口水猫",
+      "configSha256": "7f2a3485d6fd837ea22c40d0a9d1379a2044f17606d2ddb0b6333eb05c506fa8",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/shui-jiao-liu-kou-shui-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "b643f80ea919e22825fd07e94ff2fee472903ce20ec652183a962ef82abab8ae",
+          "sha256": "b5710d647e3cf1d3f53b83887dbd25c05d19578875d0a909c3e449e24a1e11b6",
+          "uuid": "e3d4bce1-a6aa-5c37-a8b7-7c2042db9bc2"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/shui-jiao-liu-kou-shui-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "a1d15220e290932044e15cc2168c6f725a9eb2ef11eaed2e5210c19b7e8ced3f",
+          "sha256": "6c2e10fb57f1b6d4350774407b4f08b7cef482b8303085944fde3ca539b10eff",
+          "uuid": "6566f311-20f2-53ab-baca-d1d818507d4b"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/gou-gou-luo-bo-zhi-jin-tiao-zhan",
+      "name": "狗狗萝卜纸巾挑战",
+      "folder": "gou-gou-luo-bo-zhi-jin-tiao-zhan",
+      "sourceNumber": 25,
+      "chapterNumber": 45,
+      "sourceFolder": "25.狗狗萝卜纸巾挑战",
+      "sourceConfig": "狗狗萝卜纸巾挑战.json",
+      "sourceConfigName": "狗狗萝卜纸巾挑战",
+      "configSha256": "2a016710daf4c197d2ddd20ec1db15a402afc6676f155a9e0b2cb3b7878095a9",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/gou-gou-luo-bo-zhi-jin-tiao-zhan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "8ac8e59e18ebc9c0d9d85c1a335dce48a4269ac9b930b429d5d4806e672a8cba",
+          "sha256": "d027fae185a390f5fcee0192e4cdfb992887cf745588690741082e15463a5e61",
+          "uuid": "ab293938-6883-5569-84cf-ad9dbaa980e6"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/gou-gou-luo-bo-zhi-jin-tiao-zhan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "07d589f4a0924707ef2a24d596b6b5792bd7bd4e835d3585d15aff9b556a4ab1",
+          "sha256": "b02577b8f73a86d4df29b2683a03487c4c01ea46396281d96fc47bc1e3affefe",
+          "uuid": "d894864e-6a6d-551b-8982-e321fb3983da"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/mo-tuo-xuan-zhuan-xiao-mao",
+      "name": "摩托旋转小猫",
+      "folder": "mo-tuo-xuan-zhuan-xiao-mao",
+      "sourceNumber": 26,
+      "chapterNumber": 46,
+      "sourceFolder": "26.摩托旋转小猫",
+      "sourceConfig": "摩托旋转小猫.json",
+      "sourceConfigName": "摩托旋转小猫",
+      "configSha256": "214d3deaa367a954babe76c8b6656d30d884dee210c0ec0a7ab21b5ebc83c1fc",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/mo-tuo-xuan-zhuan-xiao-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "f75b2b94eea16af7d0be7224fddee26608d6ef03f39fc889f89cf652f970e2a1",
+          "sha256": "306cffe02c56a53e7ea404fd92084e82de484cdd1e5aecfcf2d7ab0942f38d22",
+          "uuid": "9dada0d7-e8ca-5cb1-ae87-c0dab011475b"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/mo-tuo-xuan-zhuan-xiao-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "c5b0254257169f95aef17203486b47d7b73b93848fc35c218a63417735e84d4c",
+          "sha256": "820285828a5434aa6c15447032a065965a7a03f75cebed2c400915207a135903",
+          "uuid": "b9f3e9ba-8f9c-5d10-92e8-33051ba43104"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/mao-mao-yao-tou-huang-nao",
+      "name": "猫猫摇头晃脑",
+      "folder": "mao-mao-yao-tou-huang-nao",
+      "sourceNumber": 27,
+      "chapterNumber": 47,
+      "sourceFolder": "27.猫猫摇头晃脑",
+      "sourceConfig": "摩托旋转小猫.json",
+      "sourceConfigName": "摩托旋转小猫",
+      "configSha256": "82bf5010cfacc5aa4f0442537eefc06b805fa77373ace63ba2554de416eef93a",
+      "differenceCount": 11,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-mao-yao-tou-huang-nao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "121513a8a24ae44dbef82fc472f95dc9469f199db49c18a1b2b397f00730da36",
+          "sha256": "9652df8ea649efcecbb3d5c3aa3ec1f3ab3887309bbf40a32d520d63002c3f26",
+          "uuid": "1f9325b6-b49e-5fa9-b60d-3b7f0f399d8d"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/mao-mao-yao-tou-huang-nao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "42318fb4e1b74fcf3be1a7be2289365e91fc7b72db35f6f6433756f295638b64",
+          "sha256": "5b77a80af31d340a85f8493ff33c5fbe7035122ec1850741c9023a9c253956b7",
+          "uuid": "2dcb502c-aad4-5295-9d36-28c90c365fcf"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/tu-dou-tang-ping-le",
+      "name": "土豆躺平了",
+      "folder": "tu-dou-tang-ping-le",
+      "sourceNumber": 28,
+      "chapterNumber": 48,
+      "sourceFolder": "28.土豆躺平了",
+      "sourceConfig": "土豆躺平了.json",
+      "sourceConfigName": "土豆躺平了",
+      "configSha256": "8ba35a01076e7c1a60cec03a97a1ade0e80542abb2f58ae1a40a027de74d99ab",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/tu-dou-tang-ping-le/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "3a59624eb6bfb3ac28b671669327ddf9bd20d9c70f3e26b90a03f08c08a4a671",
+          "sha256": "73e524d2df69f5c2a2420f98f154f76b931f66307724b7f7ba0ea59b30b35d35",
+          "uuid": "55de762a-9a52-53a4-9433-70e46112335a"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/tu-dou-tang-ping-le/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "46dfdd18f1379bdd0fa04e9388e312d2627335f4e0ca243c6f67e6880abdb800",
+          "sha256": "6b3c8461d757b459deaa129a73511f3f38d34c07180a1d725309fe5f84957103",
+          "uuid": "ee29ba89-bc58-5854-b6d4-a7c73d69c17a"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/you-ren-guan-guan-ma",
+      "name": "有人管管吗",
+      "folder": "you-ren-guan-guan-ma",
+      "sourceNumber": 29,
+      "chapterNumber": 49,
+      "sourceFolder": "29.有人管管吗",
+      "sourceConfig": "有人管管吗.json",
+      "sourceConfigName": "有人管管吗",
+      "configSha256": "5fb03ea858a830cd87df87e3a81c05ef3a6593fad192df4a6cd653fb4d5c6654",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/you-ren-guan-guan-ma/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "608428761b9ee34136a1141eb0c23b54ed3f046acdde12d809cb98626c56e744",
+          "sha256": "3e6a560431a06dd450210f3d8c77d7d0f320068fe5730625ae321a86d27b3ef6",
+          "uuid": "45eb8ac1-2447-5d03-8704-14b6f939cffa"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/you-ren-guan-guan-ma/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "066921af1f447d78fffbd9ee2cdc2affc36cc00dd20f81a11e048c751b6f2dae",
+          "sha256": "1339a30d80d6e41dcc8b46af6ee605c18c828c2d895f60e23e129d59e7a22cb8",
+          "uuid": "8d0ae992-21c7-5bec-851c-8ae1dd855422"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/xiao-yang-xuan-mi-xue",
+      "name": "小羊炫蜜雪",
+      "folder": "xiao-yang-xuan-mi-xue",
+      "sourceNumber": 30,
+      "chapterNumber": 50,
+      "sourceFolder": "30.小羊炫蜜雪",
+      "sourceConfig": "小羊炫蜜雪.json",
+      "sourceConfigName": "小羊炫蜜雪",
+      "configSha256": "a1bd58a81f9d4574d2b3a0281713421547fc36d7ec422b015daea266d65fc542",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/xiao-yang-xuan-mi-xue/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "f14518c52d5100a8f6a034f0622fe3f928a5e6dacb8d5babec7cbf2539652764",
+          "sha256": "68d99e40a598bf354da8eb1c53d399aeabc0d8cb97bb7b2328e2ab50383f84ad",
+          "uuid": "aa043903-6562-5521-a910-d2fd1725246a"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/xiao-yang-xuan-mi-xue/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "ff56d0bbf82758d2b5efaa77aaac8b19871106f3e9f8cceef3b98e668444627f",
+          "sha256": "be11ae07fff66e528352c81b421f7e631898acc6575585278979c0309c827985",
+          "uuid": "bb85f2d8-36c1-501d-a3fa-eb3543fc81e0"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/shui-lai-wo-jia-ceng-fan",
+      "name": "谁来我家蹭饭",
+      "folder": "shui-lai-wo-jia-ceng-fan",
+      "sourceNumber": 31,
+      "chapterNumber": 51,
+      "sourceFolder": "31.谁来我家蹭饭",
+      "sourceConfig": "谁来我家蹭饭.json",
+      "sourceConfigName": "谁来我家蹭饭",
+      "configSha256": "ca38876e14e207c621339a82764315751663942ed2f83f2105d9fe9de94ad430",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/shui-lai-wo-jia-ceng-fan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "7bd3953fafd9568c5f01fa43f101b3fc3e9678a28069369e7028c61554832c5c",
+          "sha256": "3cd9e66348d34168cd61dc219926e91c8f531fdb055367e72024915d95738096",
+          "uuid": "5722dcfb-24ab-52d4-a299-eda92626ce3d"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/shui-lai-wo-jia-ceng-fan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "bdbe123f63ff16ba0599efaf09cc2538a851c294512ae2c75e3e9ab1197f7ca8",
+          "sha256": "6883c149260e5bde8304acd304cedbb17427d9cbfb278b189ccca57b2673c83f",
+          "uuid": "fd8fae7b-c5da-5ffa-afcc-55ad722ffc4d"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/ni-de-hu-xi-luan-le",
+      "name": "你的呼吸乱了",
+      "folder": "ni-de-hu-xi-luan-le",
+      "sourceNumber": 32,
+      "chapterNumber": 52,
+      "sourceFolder": "32.你的呼吸乱了",
+      "sourceConfig": "你的呼吸乱了.json",
+      "sourceConfigName": "你的呼吸乱了",
+      "configSha256": "5e44b037b2b582d81a074ca2258fc1f885ee2a0bd56a58a2b97fec461074bd72",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ni-de-hu-xi-luan-le/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "0428429d335f08d4e96ee114991820bfb560756395dbb126ef213ef6ccd334fd",
+          "sha256": "effbabf742cb8dfb30cfa949ba3e97b7ca81e4d81787e1959926acb5338f0afd",
+          "uuid": "00b58643-ac4a-5366-a94d-bcca90d14933"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ni-de-hu-xi-luan-le/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "dc9fac8877f1c9b58136dc4aba33c710a9256d838cf3ab954d477f0752d8beda",
+          "sha256": "748234921c9c58bfb620ef102bca187bd04edeb95620618b16842bf79546fd18",
+          "uuid": "781ea1e4-d832-507f-b1fb-36cf78ce96d5"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/tu-tu-xian-fan-wan",
+      "name": "兔兔掀饭碗",
+      "folder": "tu-tu-xian-fan-wan",
+      "sourceNumber": 33,
+      "chapterNumber": 53,
+      "sourceFolder": "33.兔兔掀饭碗",
+      "sourceConfig": "兔兔掀饭碗.json",
+      "sourceConfigName": "兔兔掀饭碗",
+      "configSha256": "9e8257efadc0ec8b7c47b16fb8fcae8cde59f63742fcc2eb1816dce137031321",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/tu-tu-xian-fan-wan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "a724aaad564b9978ea203b0737c67b615d8e4171f7d7cf5e1f29b8867d9bc8f2",
+          "sha256": "c9030e56f73d9e93b7b83c1708275e8e74e83640a38f7d6ae634738ecbb75d92",
+          "uuid": "3730c085-a397-5cc6-ad85-8989c9b11362"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/tu-tu-xian-fan-wan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "0abbfc1949d7efcddc7f3a112976883d970f80360e851d6eff218308cb6ab57e",
+          "sha256": "bd5f26e74d0b82c90da5fe7890d3ae39af033cd761507f5660548cfd9de9d890",
+          "uuid": "d5713435-a328-58b7-a6c0-3e2275a59f07"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/li-hua-ba-wang-bu",
+      "name": "狸花霸王步",
+      "folder": "li-hua-ba-wang-bu",
+      "sourceNumber": 34,
+      "chapterNumber": 54,
+      "sourceFolder": "34.狸花霸王步",
+      "sourceConfig": "狸花霸王步.json",
+      "sourceConfigName": "狸花霸王步",
+      "configSha256": "0f44039db023463a49787a8f91fdf3c642ff25bdeed405622429f9ddc6edb8fb",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/li-hua-ba-wang-bu/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "153b32b8137cf74dab124ecd8c4639f660640541ffcec18ba7849ee0b78dfe59",
+          "sha256": "d72a3a0f0d2e0ecbf4bb34bc7b9fa6275cfd41fc1478621be4adadfc42140b81",
+          "uuid": "d015f7ba-2440-574d-9024-6010e89e0ba6"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/li-hua-ba-wang-bu/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "535f4fb3118a03bd5f6df95a230819f7b04af5101654f8ef6ed980537e33f8bb",
+          "sha256": "9e2de92b676fdf998be50c53e77032afee37ac59c23e0a82b1892b71b2ac3dd6",
+          "uuid": "40891067-ef98-5105-b229-ab9a3664ad04"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/hao-qi-mao-shi-huo",
+      "name": "好奇猫试火",
+      "folder": "hao-qi-mao-shi-huo",
+      "sourceNumber": 35,
+      "chapterNumber": 55,
+      "sourceFolder": "35.好奇猫试火",
+      "sourceConfig": "好奇猫试火.json",
+      "sourceConfigName": "好奇猫试火",
+      "configSha256": "9d9951c08b0dddf6a855e7b91bb5ec158718d2155a3aa3d12f609e93d0004d55",
+      "differenceCount": 13,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/hao-qi-mao-shi-huo/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "a460db5b373c1e18b4c6cb84fef501d80ed46e1704bea070c26b22df36a6d4aa",
+          "sha256": "c24fe316c7f062095364d1baf0aede65b7fd29ba254c2ed60534b2646bbc3afc",
+          "uuid": "a406ee61-0a05-5c04-affb-7f9fc31f42a8"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/hao-qi-mao-shi-huo/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "aa601b0370d748a1de5600100f9dcf7c8af02b51212f4e9d9a03dd25abd03211",
+          "sha256": "225c98861dfd9ab37603fb3d0b377e34e0062e3e2f2dc0d1d1f08c3ddbf7f1ed",
+          "uuid": "22aeb7ae-41e2-56ae-93b5-05fab14f905a"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/hu-meng-qu-nuan-yi-shi",
+      "name": "狐獴取暖仪式",
+      "folder": "hu-meng-qu-nuan-yi-shi",
+      "sourceNumber": 36,
+      "chapterNumber": 56,
+      "sourceFolder": "36.狐獴取暖仪式",
+      "sourceConfig": "狐獴取暖仪式.json",
+      "sourceConfigName": "狐獴取暖仪式",
+      "configSha256": "34d2e15374b74777bd51bbe1341b9048d09242c29b4b885bb5b10ff7f5c596a7",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/hu-meng-qu-nuan-yi-shi/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "d892a777f9b1b2584d2e0a789f6794ce071d2f8d807420d6807a973f6da9f9e1",
+          "sha256": "e686a902d0c7e6d440410f1ee0230e02182155415a43adabebe3cb4a9903d4c2",
+          "uuid": "55a3bc91-190a-518a-b5bf-c7439ed84684"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/hu-meng-qu-nuan-yi-shi/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "fba93ddbe4a58a35b47f12cafc81abb849108232140668c7ca1bb7773ae54aaf",
+          "sha256": "a42afacb0801c1cca3452238f9b2ff47b34563210aed4a3bf777712692197e1d",
+          "uuid": "56eb1264-8563-5572-affa-7583cf155342"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/ge-lia-cheng-che-le",
+      "name": "哥俩乘车乐",
+      "folder": "ge-lia-cheng-che-le",
+      "sourceNumber": 37,
+      "chapterNumber": 57,
+      "sourceFolder": "37.哥俩乘车乐",
+      "sourceConfig": "哥俩乘车乐.json",
+      "sourceConfigName": "哥俩乘车乐",
+      "configSha256": "0780f212aff1f2d456ad6ec7f362e4fab15ce802639dd041f8efd3a98904d06e",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ge-lia-cheng-che-le/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "184dfd7c4fb4a6b64fb41115cf41a3002f6698fe54b0a18b2e4ae53225787f36",
+          "sha256": "71b1af45bb3412524af8c7ca93876fbd5e4a0693b4749adb1420d15be3ab130e",
+          "uuid": "4b33994a-74e4-5966-a218-553144282bad"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ge-lia-cheng-che-le/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "26a4cfb24a763b898c1a33f069b4a2080f802f656431f8a8643dd087fef57912",
+          "sha256": "2cfd0d856a8ac7981632c4f2255eea414a7fba39342ae851312c4fca5189a9fe",
+          "uuid": "44ed4167-5078-5b0d-bf60-84205ffc7216"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/sheng-ri-nao-bie-niu",
+      "name": "生日闹别扭",
+      "folder": "sheng-ri-nao-bie-niu",
+      "sourceNumber": 38,
+      "chapterNumber": 58,
+      "sourceFolder": "38.生日闹别扭",
+      "sourceConfig": "生日闹别扭.json",
+      "sourceConfigName": "生日闹别扭",
+      "configSha256": "f263652223eae7cd0d1c8b30f617a70294ff86da83d0ac2537064aef8d59803b",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/sheng-ri-nao-bie-niu/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "4ed177561dc06817a27317c32db4a48d929228e69e2d7221a6fede4a86ad84aa",
+          "sha256": "02a32e528e6641a150b5fa84139488f0efa75a07937b34249fd9717d909961ce",
+          "uuid": "300df104-f7a2-5ad4-8332-186c3986fb30"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/sheng-ri-nao-bie-niu/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "9eec09094e9c22a2efeb8d8851deaa37aa6602a238fe5e005ab1795a2e8012fb",
+          "sha256": "2db215abea724f35ddf202be6213d18b7db238ffd46076292defee0c66d8572e",
+          "uuid": "1febe0e5-ff2d-5b7d-ae89-714397e0b649"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/lai-pi-bu-hui-jia",
+      "name": "赖皮不回家",
+      "folder": "lai-pi-bu-hui-jia",
+      "sourceNumber": 39,
+      "chapterNumber": 59,
+      "sourceFolder": "39.赖皮不回家",
+      "sourceConfig": "赖皮不回家.json",
+      "sourceConfigName": "赖皮不回家",
+      "configSha256": "d0feabcbbbd37dc20f140032cfbbd6e300f5f1f2e9d260461663106b63fa9eee",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/lai-pi-bu-hui-jia/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "22f4d684be4ef91dc985d5a64fe69d1c9548a6163230df24fdbe753a2690fb7c",
+          "sha256": "514e7fb66f7727191f9eb024f8f16802026840b54000f7f0e39ebc4568fc770c",
+          "uuid": "e246ecb0-6617-5cad-a8fa-51813f62d96e"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/lai-pi-bu-hui-jia/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "86e90bef3e105792bf3eacdcc6d04b208f5f14c0c3a676a127cf8f89135b00a8",
+          "sha256": "de8ada3e951926fbcbeb62d25431b33ce1976bd9289ecffa4253d67a45237f32",
+          "uuid": "4ba71b6a-e439-569f-bdc3-84edd318cc2d"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/chi-wo-yi-mi-quan",
+      "name": "吃我一咪拳",
+      "folder": "chi-wo-yi-mi-quan",
+      "sourceNumber": 40,
+      "chapterNumber": 60,
+      "sourceFolder": "40.吃我一咪拳",
+      "sourceConfig": "吃我一咪拳.json",
+      "sourceConfigName": "吃我一咪拳",
+      "configSha256": "b287b5519533d5717014bf9108d6df7be14879bc7cf47944f558ee98e8da7ddd",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/chi-wo-yi-mi-quan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "111f509b52278dd06ba75773cfefdaa31e4cd3bf6d4dfd2026fd96832dab39f4",
+          "sha256": "56ee93dded66f64cd58109b3cb036f342ef42a14aec6f73a3882b414d586eb21",
+          "uuid": "c1f5fc8e-6751-5e3f-b60a-8deea193dd37"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/chi-wo-yi-mi-quan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "a9d24b03caf8b1e57fa2290da1f331d41e88bed159abc49fe5c7defdb4325aea",
+          "sha256": "238320cd89c89917574eeefc3e8108668dd08ff6044b18915d4ff86466dfa555",
+          "uuid": "cb01ef13-c361-59a4-8a6b-1a1c4678d9d9"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/ge-lia-kuai-le-shi-guang",
+      "name": "哥俩快乐时光",
+      "folder": "ge-lia-kuai-le-shi-guang",
+      "sourceNumber": 41,
+      "chapterNumber": 61,
+      "sourceFolder": "41.哥俩快乐时光",
+      "sourceConfig": "哥俩快乐时光.json",
+      "sourceConfigName": "哥俩快乐时光",
+      "configSha256": "d7c98d5be3bec7965aa2e333ac9021c4ac59f9474fb756bc6c1064b943c01a6c",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ge-lia-kuai-le-shi-guang/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "e6908f7a1ae62fe40ccdfba26f1bb4c32f4bbaf06f27fe799049f4affc6ad4df",
+          "sha256": "b64bc84296bbf2cd5131132d9ba41ad89518f4d75e716ff14b64fe61dd38ebf1",
+          "uuid": "76517492-7a2f-56ed-8b62-caa7f0684174"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ge-lia-kuai-le-shi-guang/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "ea43e6f299de93c80c6957568cae4a00097e7c970e7b03e2c433bbec7e16b315",
+          "sha256": "ef9a6839bd667e396ceb85a0fe4b5b85f3e0f91a618f26c944cb47056cbf3831",
+          "uuid": "ea07e869-c50d-580f-879d-974a973acb54"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/cheng-ke-qing-zuo-wen",
+      "name": "乘客请坐稳",
+      "folder": "cheng-ke-qing-zuo-wen",
+      "sourceNumber": 42,
+      "chapterNumber": 62,
+      "sourceFolder": "42.乘客请坐稳",
+      "sourceConfig": "乘客请坐稳.json",
+      "sourceConfigName": "乘客请坐稳",
+      "configSha256": "5fad8666970c5b1a3fe0f433683db263b9c651c7c2dc87ef85f3fb691c4f2f2c",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/cheng-ke-qing-zuo-wen/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "4174c3447224f00c9a0267b9b38d87a64ef25d833f5f1340d99ea0334a9a99f3",
+          "sha256": "3697402e7cd7c5c4bec548df09347e064a3837f743f0b2415cdaf249dff5941d",
+          "uuid": "4c36cea9-8928-53e8-b0cd-5470a3c59b8b"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/cheng-ke-qing-zuo-wen/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "c9d187f9fb65ac91168c8ce64fbbd80a2c3bbbec73565c5add65a869cb8b3ef0",
+          "sha256": "c6e738e1d27ed67194eaba2f719492240726bc0aca7365c374fa57bd6f78e7f7",
+          "uuid": "48c9678f-0ee5-595d-a71f-aa81e010f759"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/song-song-xiao-mao",
+      "name": "怂怂小猫",
+      "folder": "song-song-xiao-mao",
+      "sourceNumber": 43,
+      "chapterNumber": 63,
+      "sourceFolder": "43.怂怂小猫",
+      "sourceConfig": "怂怂小猫.json",
+      "sourceConfigName": "怂怂小猫",
+      "configSha256": "4d71523e6beb9ad948ef2b41715bc784b3e6953447084df70df2e34351f7f021",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/song-song-xiao-mao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "e152a799e92ee2d4b50079798cbfb3768daeac811776d6a69a5c92a3205e5d16",
+          "sha256": "9fbde50bb1e9458fd89a8293d3268772596580e987ee172aa76a114dc0c79896",
+          "uuid": "d4c335d4-85c8-527f-ac3e-b94eb1e21687"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/song-song-xiao-mao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "35354b78f63172a16c2ea71dcb6da99341cf2d53d4da994a67d9d33094d3c80e",
+          "sha256": "204ee85c356b9e0ede2766dde3bdeaa0451085be72978a2ce45afea878a598c7",
+          "uuid": "f3d0fddf-a8c0-5a69-8cd7-0db2533e46ef"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/kao-man-tou-zhen-xiang",
+      "name": "烤馒头真香",
+      "folder": "kao-man-tou-zhen-xiang",
+      "sourceNumber": 44,
+      "chapterNumber": 64,
+      "sourceFolder": "44.烤馒头真香",
+      "sourceConfig": "烤馒头真香.json",
+      "sourceConfigName": "烤馒头真香",
+      "configSha256": "f3839b53891f73e29cefccdcd769680d2eac9ca9739d9ddfeb120fb276d87b50",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/kao-man-tou-zhen-xiang/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "620298f11425749cdfac9383bdf145ed955d40d12fb0384d1bf93b4bf1fa4559",
+          "sha256": "1bca313c246aaa6e1996c15dc91f71feb189b14f877968e200099416ceaf92ef",
+          "uuid": "a64024c3-3189-5273-82be-9c9df1383d9b"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/kao-man-tou-zhen-xiang/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "b81578414ba3131f7a3101816158cb13087e2f0f88008db4adee47935c76a46f",
+          "sha256": "0f526315489933dcf3e217f3715ace26c3b876f8261cdb9446d1a86768aa5551",
+          "uuid": "1b50ef38-ab8b-5003-8601-a2d450f9976e"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/sha-yu-ye-pa-yang",
+      "name": "鲨鱼也怕痒",
+      "folder": "sha-yu-ye-pa-yang",
+      "sourceNumber": 45,
+      "chapterNumber": 65,
+      "sourceFolder": "45.鲨鱼也怕痒",
+      "sourceConfig": "鲨鱼也怕痒.json",
+      "sourceConfigName": "鲨鱼也怕痒",
+      "configSha256": "3e2b20ef73d8498cdb0ca534a8ac8e5451a58bc0fad19b021b6a57db480dae7f",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/sha-yu-ye-pa-yang/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "a9204a4004c2fa1930859d34aa4e32ccc777d14a244274d716f6072cc42edbab",
+          "sha256": "52df019d49896e077b3bf1af45365c0e3d52cff7830d0dafe6f7bbd69103baa5",
+          "uuid": "a64d2489-4e6d-5ea5-8e23-4ebec012045e"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/sha-yu-ye-pa-yang/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "1e65146ddfb9e3323389edcc2448ccd5d4f2ba4926fa5ca6b2672e6525b4d3a5",
+          "sha256": "2aeae9dcf9a97db984b36348cc5fa0a7bc49590dec9733e412a588a0633e2b56",
+          "uuid": "2745a0e9-83c7-52a6-a4f1-18c37d031a50"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/qin-shi-zhang-xi-zao",
+      "name": "寝室长洗澡",
+      "folder": "qin-shi-zhang-xi-zao",
+      "sourceNumber": 46,
+      "chapterNumber": 66,
+      "sourceFolder": "46.寝室长洗澡",
+      "sourceConfig": "寝室长洗澡.json",
+      "sourceConfigName": "寝室长洗澡",
+      "configSha256": "7a3a211844a92a51fc10b6affbfa7a159229234e4b81e347db9564dc63359f19",
+      "differenceCount": 12,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/qin-shi-zhang-xi-zao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "f58e2877d32bf593a0d9d18b9b9cf661f9e1c5dd011d45eff5ade7e18d4189ff",
+          "sha256": "93e651322b8f65be9f85573619baffce03ef4d417150798f8149d070b626310d",
+          "uuid": "e2d0d318-8039-5854-8df3-67d6e1f26f32"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/qin-shi-zhang-xi-zao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "6b73772eea946af416ea1eeee30f552696b814e19d657b39bf75905c0d22c171",
+          "sha256": "d6720efa05889a9323724ebe61360fd970c827deb7bf6301366fe4f6490a63b8",
+          "uuid": "aeb71792-4320-507d-8f9a-9c652fcf92d9"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/tu-tu-shi-mao-yi",
+      "name": "图图试毛衣",
+      "folder": "tu-tu-shi-mao-yi",
+      "sourceNumber": 47,
+      "chapterNumber": 67,
+      "sourceFolder": "47.图图试毛衣",
+      "sourceConfig": "图图试毛衣.json",
+      "sourceConfigName": "图图试毛衣",
+      "configSha256": "206ea29c04a8e5a813be4f2d3c9bc944bafc3d5127365f2f0e5c3c0ddfd4b4a2",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/tu-tu-shi-mao-yi/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "04bc9f9a05f6764f78b370c411c0078c06e52053c32d3acdf4260ca6cf95d6bb",
+          "sha256": "eb288f861c8709e6744b35fc1809f12df7f2a3f60f606d5cce299f5dbe502d41",
+          "uuid": "3b1dfcb8-5c83-5c03-b8f0-637efd2bca24"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/tu-tu-shi-mao-yi/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "ff239985630744a10a1d4538f37bc4b3403994904165dc71616d641c6561fc55",
+          "sha256": "a4bc26b932309f8c7794c3889299ea18f0e3f07efb7b2f91ce198a1678883c13",
+          "uuid": "ca59e1bc-4d4e-5d5d-93f5-dc466230db3d"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/hai-ou-de-chao-xiao",
+      "name": "海鸥的嘲笑",
+      "folder": "hai-ou-de-chao-xiao",
+      "sourceNumber": 48,
+      "chapterNumber": 68,
+      "sourceFolder": "48.海鸥的嘲笑",
+      "sourceConfig": "海鸥的嘲笑.json",
+      "sourceConfigName": "海鸥的嘲笑",
+      "configSha256": "798ead54b9fba15b2a725be889f31b12835de0b4681a55d3fa429cd6e7f4b0b0",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/hai-ou-de-chao-xiao/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "95d175f28145f7f1477235188e4dfe1e7dca8635e0c4a0740f7574623de7f58f",
+          "sha256": "6ac763b5a8390dfd2e5a4bfcc22667453d92f48efca28471830908a8b2cdfc76",
+          "uuid": "c7c808e9-b85e-5015-98db-4c55f5373c6e"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/hai-ou-de-chao-xiao/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "9727a2ce8475ee38b9ae75bb659948afa45b60df04998b2f58a328844679c5e3",
+          "sha256": "25d6cbfa900ee65aab1568d3568e7ed0c25a969141707d3377a100168802df3a",
+          "uuid": "a39d1841-8c0b-5093-baa8-60b2e7bc63e0"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/chui-feng-ji-da-zhan",
+      "name": "吹风机大战",
+      "folder": "chui-feng-ji-da-zhan",
+      "sourceNumber": 49,
+      "chapterNumber": 69,
+      "sourceFolder": "49.吹风机大战",
+      "sourceConfig": "吹风机大战.json",
+      "sourceConfigName": "吹风机大战",
+      "configSha256": "61e559829b9984c294d91341ed8132c6b0e19007d07ab21b7209f4d0e6a3bdd9",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/chui-feng-ji-da-zhan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "000887244fbd0b02c733069026ad79049706252ce0aeb12208f5a27fcc174eb6",
+          "sha256": "d376bd642f8cca6bdca0eeb3457b9d5227a0962bd1fc060c8f04026d81e5d1eb",
+          "uuid": "4e3cbdc4-58a2-53b7-ac18-95facbd1a380"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/chui-feng-ji-da-zhan/scene-b.jpg",
+          "sourceFile": "scene-v.png",
+          "sourceSha256": "d1f1745c8c3705506ebd83f9b8d5bb3ab39b35c4d19ecf37cf0cd1042011e093",
+          "sha256": "440b063b7af008c3a9af0dcb40a193335051f26906c1107ccadfd2d12db609e6",
+          "uuid": "831205f6-dd06-5eb0-ab4c-18e4a4044a76"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/duan-tui-chuang-guan-nan",
+      "name": "短腿闯关难",
+      "folder": "duan-tui-chuang-guan-nan",
+      "sourceNumber": 50,
+      "chapterNumber": 70,
+      "sourceFolder": "50.短腿闯关难",
+      "sourceConfig": "短腿闯关难.json",
+      "sourceConfigName": "短腿闯关难",
+      "configSha256": "c0c0538ba6581ce97cbfdbc369440be5fc9f0c0f824a53c77153f119fa66636e",
+      "differenceCount": 14,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/duan-tui-chuang-guan-nan/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "be2b6e66c8267c55e00d12fa483ca395b2a69c0e1c9e509000d117a6a3eae853",
+          "sha256": "775fa5794822db7f40ab035cbfc57efc3579222032c71afcb0b0487ea161ffe1",
+          "uuid": "236ba96b-a646-57ea-9449-9170366c8199"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/duan-tui-chuang-guan-nan/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "a8937c18d70f6e8e802a03db60120b2d03c98b21e59ab5a9333d540039be10ba",
+          "sha256": "812083bce0e92ef04ce9ac9ddb6c8837071ccabd7667389cd710e73937b1a4e6",
+          "uuid": "8f15c1e0-9f0b-57cd-8e6c-78c8687f060e"
+        }
+      ]
+    },
+    {
+      "id": "chong-wu-gu-shi/ding-ji-chi-huo-jian-ding",
+      "name": "顶级吃货鉴定",
+      "folder": "ding-ji-chi-huo-jian-ding",
+      "sourceNumber": 51,
+      "chapterNumber": 71,
+      "sourceFolder": "51.顶级吃货鉴定",
+      "sourceConfig": "顶级吃货鉴定.json",
+      "sourceConfigName": "顶级吃货鉴定",
+      "configSha256": "8db218149a8700031e2f7517ff81d6b929107ae6a1ff5b19c50002729c091502",
+      "differenceCount": 15,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ding-ji-chi-huo-jian-ding/scene-a.jpg",
+          "sourceFile": "scene-a.png",
+          "sourceSha256": "3f778f534e3ea98ffedd5cfdb6efae5d1ebf7e4f2c5964379041d85e17119d28",
+          "sha256": "803e3facac891be25ec1a250ba4e2ac36204b45024bc0a18f5f9d4d30823c978",
+          "uuid": "640c5808-4f5b-5222-b0b3-7b2ad49e82f2"
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/ding-ji-chi-huo-jian-ding/scene-b.jpg",
+          "sourceFile": "scene-b.png",
+          "sourceSha256": "b9eccc2ee6f3889aaddbde5d0606b9fa6d98a779aa419824b95a2336794b749f",
+          "sha256": "010b8ef073660267bde5e51a80fd73fd237d15dc263061137a35920ec3745920",
+          "uuid": "f5fbda02-2180-54f5-8e0b-8d4e69d302e6"
+        }
+      ]
+    }
+  ],
+  "oldLevelCount": 20,
+  "addedLevelCount": 51,
+  "levelCount": 71,
+  "addedDifferences": 657,
+  "differenceCount": 899
+}

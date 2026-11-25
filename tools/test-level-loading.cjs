@@ -7,7 +7,7 @@ function methods(file,names,extra={}){
  return vm.runInNewContext(ts.transpileModule('class Test {'+body+'}\nTest;',{compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{console:{error(){}},...extra});
 }
 (async()=>{
- const Screen=methods('assets/scripts/ui/GameScreen.ts',['clearLevel','setupLevel'],{Sprite:class{}});
+ const Screen=methods('assets/scripts/ui/GameScreen.ts',['clearLevel','setupLevel','_resetTimeFeedback'],{Sprite:class{}});
  const s=new Screen();s.isValid=true;s._setupToken=0;s._levelFrames=[];
  s._hideComboTips=()=>{};s._clearSuccessText=()=>{};
  const sprites={TopImage:{spriteFrame:null},BottomImage:{spriteFrame:null}};

@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-25",
+  "reason": "萌宠故事追加51关标题用字补齐",
+  "font": "assets/PleyGame/fonts/FDTitleBobohei-Bold.ttf",
+  "fontUuid": "ccae4537-ce93-4fb7-9e49-8ccdce75078e",
+  "fontMetaSha256": "88a9d5909ece567c3c963935f87e9218227476df74c4f286c05047b886e95b3c",
+  "previousCharacters": 1000,
+  "retainedCharacters": 1081,
+  "addedCharacters": "乘乱仓仪任俩兔卜卡吸吹呀呼啵嘲囤坏坐客室寝平式张快怂息惑扭拳掀摇摩播敲旅旋时晃智暖机泉泳洗澡炫牧獴痒皮真稍稳笑管级脑萝蒸蕉蚌蜜衣访请貂赖蹭躲躺转鉴闯闹霸饭馒香鲨鸥",
+  "removedCharacters": [],
+  "previousFontSha256": "0869ea3d2097710e2042be3a5e40970b6d3a5e4ec78b8ab1cf0853b254ee8310",
+  "fontSha256": "2f88322f1e5ee239cb3afc826390af1553970a38069a493a624acb9209edcfc7",
+  "ttfBytes": 273524,
+  "verification": {
+    "outlinesAndMetricsPassed": 1081,
+    "titleWidthsPassed": 459,
+    "rasterPixelIdentical": 86,
+    "rasterAutoHintDifferences": 373,
+    "rasterNote": "FreeType auto-hinting may differ after subsetting; outlines and advances verified identical."
+  }
+}

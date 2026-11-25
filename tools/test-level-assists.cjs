@@ -15,12 +15,13 @@ vm.runInNewContext(ts.transpileModule(fs.readFileSync('assets/scripts/services/S
  const a=new output.Assist();let ads=0,hints=0,completed=false;
  a.save=save;a._isGameOver=false;a._isPaused=false;a._remainingTime=60;
  a._foundIds=new Set();a._currentLevel={differences:[{id:'one'},{id:'two'},{id:'three'},{id:'four'}]};
- a.game={node:{activeInHierarchy:true},refreshHud(){}};a.toast=()=>{};
+ const feedback=[];a.game={node:{activeInHierarchy:true},refreshHud(){},playAddTimeFeedback:n=>feedback.push(n)};a.toast=()=>{};
  a.useHint=()=>hints++;a.playHintSound=a.playAddTimeSound=()=>{};
  a.requestReward=async(_,reward)=>{ads++;if(completed)reward();};
  await a.requestHint();await a.requestHint();assert.equal(ads,0);assert.equal(save.freeHints,0);assert.equal(hints,2);
  await a.requestAddTime();await a.requestAddTime();assert.equal(ads,0);assert.equal(save.freeAddTimes,0);assert.equal(a._remainingTime,180);
  await a.requestHint();await a.requestAddTime();assert.equal(save.freeHints,0);assert.equal(save.freeAddTimes,0);assert.equal(a._remainingTime,180);
+ assert.deepEqual(feedback,[60,60],'Only awarded time plays feedback; cancelled ads do not');
  completed=true;await a.requestHint();await a.requestHint();await a.requestAddTime();await a.requestAddTime();assert.equal(hints,4);assert.equal(a._remainingTime,300);assert.equal(save.freeAddTimes,0);
  assert.equal(save.grantAssist('add-time',3),true);assert.equal(new saveExports.SaveService().freeAddTimes,3);
  writeFails=true;assert.equal(save.consumeAddTime(),false);assert.equal(save.freeAddTimes,3);assert.equal(save.grantAssist('hint'),false);assert.equal(save.freeHints,0);writeFails=false;

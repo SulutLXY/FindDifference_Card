@@ -2,8 +2,8 @@
   "cities": [
     "wang-luo-re-dian",
     "qing-hua-ci",
-    "xun-song-ji",
     "chong-wu-gu-shi",
+    "xun-song-ji",
     "qu-wei-duan-ju",
     "meng-chong-san-guo",
     "nian-du-re-geng",
@@ -537,6 +537,372 @@
         }
       ]
     },
+    "chong-wu-gu-shi": {
+      "key": "chong-wu-gu-shi",
+      "name": "萌宠故事",
+      "levels": [
+        {
+          "id": "city-PetStory/level-01",
+          "name": "白虎与黑狗保姆",
+          "folder": "bai-hu-yu-hei-gou-bao-mu"
+        },
+        {
+          "id": "city-PetStory/level-02",
+          "name": "狗狗婚礼",
+          "folder": "gou-gou-hun-li"
+        },
+        {
+          "id": "city-PetStory/level-03",
+          "name": "橘猫摆摊",
+          "folder": "ju-mao-bai-tan"
+        },
+        {
+          "id": "city-PetStory/level-04",
+          "name": "动物海盗团",
+          "folder": "dong-wu-hai-dao-tuan"
+        },
+        {
+          "id": "city-PetStory/level-05",
+          "name": "萌宠闪身步",
+          "folder": "meng-chong-shan-shen-bu"
+        },
+        {
+          "id": "city-PetStory/level-06",
+          "name": "猫咪烧烤",
+          "folder": "mao-mi-shao-kao"
+        },
+        {
+          "id": "city-PetStory/level-07",
+          "name": "干嘛猫的vlog",
+          "folder": "gan-ma-mao-de-vlog"
+        },
+        {
+          "id": "city-PetStory/level-08",
+          "name": "神秘八爪鱼",
+          "folder": "shen-mi-ba-zhao-yu"
+        },
+        {
+          "id": "city-PetStory/level-09",
+          "name": "姹紫嫣红",
+          "folder": "cha-zi-yan-hong"
+        },
+        {
+          "id": "city-PetStory/level-10",
+          "name": "鸡哥算了",
+          "folder": "ji-ge-suan-le"
+        },
+        {
+          "id": "city-PetStory/level-11",
+          "name": "土拨鼠",
+          "folder": "tu-bo-shu"
+        },
+        {
+          "id": "city-PetStory/level-12",
+          "name": "弱小无助",
+          "folder": "ruo-xiao-wu-zhu"
+        },
+        {
+          "id": "city-PetStory/level-13",
+          "name": "整点薯条",
+          "folder": "zheng-dian-shu-tiao"
+        },
+        {
+          "id": "city-PetStory/level-14",
+          "name": "压力山大",
+          "folder": "ya-li-shan-da"
+        },
+        {
+          "id": "city-PetStory/level-15",
+          "name": "铲屎官日常",
+          "folder": "chan-shi-guan-ri-chang"
+        },
+        {
+          "id": "city-PetStory/level-16",
+          "name": "孜然妙脆角",
+          "folder": "zi-ran-miao-cui-jiao"
+        },
+        {
+          "id": "city-PetStory/level-17",
+          "name": "小猫踏步舞",
+          "folder": "xiao-mao-ta-bu-wu"
+        },
+        {
+          "id": "city-PetStory/level-18",
+          "name": "剪指甲",
+          "folder": "jian-zhi-jia"
+        },
+        {
+          "id": "city-PetStory/level-19",
+          "name": "猫咪浴帽",
+          "folder": "mao-mi-yu-mao"
+        },
+        {
+          "id": "city-PetStory/level-20",
+          "name": "猫咪合租",
+          "folder": "mao-mi-he-zu"
+        },
+        {
+          "id": "chong-wu-gu-shi/mao-hao-ren-huai",
+          "name": "猫好人坏",
+          "folder": "mao-hao-ren-huai"
+        },
+        {
+          "id": "chong-wu-gu-shi/ha-ji-mi-lai-dian",
+          "name": "哈基米来电",
+          "folder": "ha-ji-mi-lai-dian"
+        },
+        {
+          "id": "chong-wu-gu-shi/shu-shu-wo-ya",
+          "name": "鼠鼠我呀",
+          "folder": "shu-shu-wo-ya"
+        },
+        {
+          "id": "chong-wu-gu-shi/xuan-zhuan-mao",
+          "name": "旋转猫",
+          "folder": "xuan-zhuan-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/miao-cui-jiao-mao",
+          "name": "妙脆角猫",
+          "folder": "miao-cui-jiao-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/cang-shu-chi-bo",
+          "name": "仓鼠吃播",
+          "folder": "cang-shu-chi-bo"
+        },
+        {
+          "id": "chong-wu-gu-shi/zheng-bang-xiao-mao",
+          "name": "蒸蚌小猫",
+          "folder": "zheng-bang-xiao-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/da-kai-men-shao-xi",
+          "name": "大开门稍息",
+          "folder": "da-kai-men-shao-xi"
+        },
+        {
+          "id": "chong-wu-gu-shi/he-ban-zhu-ren-tong-zuo-da-ba",
+          "name": "和班主任同坐大巴",
+          "folder": "he-ban-zhu-ren-tong-zuo-da-ba"
+        },
+        {
+          "id": "chong-wu-gu-shi/happy-mao",
+          "name": "Happy 猫",
+          "folder": "happy-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/xiang-jiao-mao",
+          "name": "香蕉猫",
+          "folder": "xiang-jiao-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/ka-pi-ba-la-pao-wen-quan",
+          "name": "卡皮巴拉泡温泉",
+          "folder": "ka-pi-ba-la-pao-wen-quan"
+        },
+        {
+          "id": "chong-wu-gu-shi/zhang-zui-mao",
+          "name": "张嘴猫",
+          "folder": "zhang-zui-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/bo-zui-mao",
+          "name": "啵嘴猫",
+          "folder": "bo-zui-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/qiao-wan-mao",
+          "name": "敲碗猫",
+          "folder": "qiao-wan-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/ka-pi-ba-la",
+          "name": "卡皮巴拉",
+          "folder": "ka-pi-ba-la"
+        },
+        {
+          "id": "chong-wu-gu-shi/mao-meme-lv-xing",
+          "name": "猫 Meme 旅行",
+          "folder": "mao-meme-lv-xing"
+        },
+        {
+          "id": "chong-wu-gu-shi/mao-mi-cai-fang",
+          "name": "猫咪采访",
+          "folder": "mao-mi-cai-fang"
+        },
+        {
+          "id": "chong-wu-gu-shi/jin-mao-you-yong-jian-jiang",
+          "name": "金毛游泳健将",
+          "folder": "jin-mao-you-yong-jian-jiang"
+        },
+        {
+          "id": "chong-wu-gu-shi/shu-shu-dun-liang",
+          "name": "鼠鼠囤粮",
+          "folder": "shu-shu-dun-liang"
+        },
+        {
+          "id": "chong-wu-gu-shi/hei-mao-yi-huo-kan-hua-mao",
+          "name": "黑猫疑惑看花猫",
+          "folder": "hei-mao-yi-huo-kan-hua-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/bian-mu-zhi-shang-ya-zhi",
+          "name": "边牧智商压制",
+          "folder": "bian-mu-zhi-shang-ya-zhi"
+        },
+        {
+          "id": "chong-wu-gu-shi/xue-diao-duo-mao-mao",
+          "name": "雪貂躲猫猫",
+          "folder": "xue-diao-duo-mao-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/shui-jiao-liu-kou-shui-mao",
+          "name": "睡觉流口水猫",
+          "folder": "shui-jiao-liu-kou-shui-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/gou-gou-luo-bo-zhi-jin-tiao-zhan",
+          "name": "狗狗萝卜纸巾挑战",
+          "folder": "gou-gou-luo-bo-zhi-jin-tiao-zhan"
+        },
+        {
+          "id": "chong-wu-gu-shi/mo-tuo-xuan-zhuan-xiao-mao",
+          "name": "摩托旋转小猫",
+          "folder": "mo-tuo-xuan-zhuan-xiao-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/mao-mao-yao-tou-huang-nao",
+          "name": "猫猫摇头晃脑",
+          "folder": "mao-mao-yao-tou-huang-nao"
+        },
+        {
+          "id": "chong-wu-gu-shi/tu-dou-tang-ping-le",
+          "name": "土豆躺平了",
+          "folder": "tu-dou-tang-ping-le"
+        },
+        {
+          "id": "chong-wu-gu-shi/you-ren-guan-guan-ma",
+          "name": "有人管管吗",
+          "folder": "you-ren-guan-guan-ma"
+        },
+        {
+          "id": "chong-wu-gu-shi/xiao-yang-xuan-mi-xue",
+          "name": "小羊炫蜜雪",
+          "folder": "xiao-yang-xuan-mi-xue"
+        },
+        {
+          "id": "chong-wu-gu-shi/shui-lai-wo-jia-ceng-fan",
+          "name": "谁来我家蹭饭",
+          "folder": "shui-lai-wo-jia-ceng-fan"
+        },
+        {
+          "id": "chong-wu-gu-shi/ni-de-hu-xi-luan-le",
+          "name": "你的呼吸乱了",
+          "folder": "ni-de-hu-xi-luan-le"
+        },
+        {
+          "id": "chong-wu-gu-shi/tu-tu-xian-fan-wan",
+          "name": "兔兔掀饭碗",
+          "folder": "tu-tu-xian-fan-wan"
+        },
+        {
+          "id": "chong-wu-gu-shi/li-hua-ba-wang-bu",
+          "name": "狸花霸王步",
+          "folder": "li-hua-ba-wang-bu"
+        },
+        {
+          "id": "chong-wu-gu-shi/hao-qi-mao-shi-huo",
+          "name": "好奇猫试火",
+          "folder": "hao-qi-mao-shi-huo"
+        },
+        {
+          "id": "chong-wu-gu-shi/hu-meng-qu-nuan-yi-shi",
+          "name": "狐獴取暖仪式",
+          "folder": "hu-meng-qu-nuan-yi-shi"
+        },
+        {
+          "id": "chong-wu-gu-shi/ge-lia-cheng-che-le",
+          "name": "哥俩乘车乐",
+          "folder": "ge-lia-cheng-che-le"
+        },
+        {
+          "id": "chong-wu-gu-shi/sheng-ri-nao-bie-niu",
+          "name": "生日闹别扭",
+          "folder": "sheng-ri-nao-bie-niu"
+        },
+        {
+          "id": "chong-wu-gu-shi/lai-pi-bu-hui-jia",
+          "name": "赖皮不回家",
+          "folder": "lai-pi-bu-hui-jia"
+        },
+        {
+          "id": "chong-wu-gu-shi/chi-wo-yi-mi-quan",
+          "name": "吃我一咪拳",
+          "folder": "chi-wo-yi-mi-quan"
+        },
+        {
+          "id": "chong-wu-gu-shi/ge-lia-kuai-le-shi-guang",
+          "name": "哥俩快乐时光",
+          "folder": "ge-lia-kuai-le-shi-guang"
+        },
+        {
+          "id": "chong-wu-gu-shi/cheng-ke-qing-zuo-wen",
+          "name": "乘客请坐稳",
+          "folder": "cheng-ke-qing-zuo-wen"
+        },
+        {
+          "id": "chong-wu-gu-shi/song-song-xiao-mao",
+          "name": "怂怂小猫",
+          "folder": "song-song-xiao-mao"
+        },
+        {
+          "id": "chong-wu-gu-shi/kao-man-tou-zhen-xiang",
+          "name": "烤馒头真香",
+          "folder": "kao-man-tou-zhen-xiang"
+        },
+        {
+          "id": "chong-wu-gu-shi/sha-yu-ye-pa-yang",
+          "name": "鲨鱼也怕痒",
+          "folder": "sha-yu-ye-pa-yang"
+        },
+        {
+          "id": "chong-wu-gu-shi/qin-shi-zhang-xi-zao",
+          "name": "寝室长洗澡",
+          "folder": "qin-shi-zhang-xi-zao"
+        },
+        {
+          "id": "chong-wu-gu-shi/tu-tu-shi-mao-yi",
+          "name": "图图试毛衣",
+          "folder": "tu-tu-shi-mao-yi"
+        },
+        {
+          "id": "chong-wu-gu-shi/hai-ou-de-chao-xiao",
+          "name": "海鸥的嘲笑",
+          "folder": "hai-ou-de-chao-xiao"
+        },
+        {
+          "id": "chong-wu-gu-shi/chui-feng-ji-da-zhan",
+          "name": "吹风机大战",
+          "folder": "chui-feng-ji-da-zhan"
+        },
+        {
+          "id": "chong-wu-gu-shi/duan-tui-chuang-guan-nan",
+          "name": "短腿闯关难",
+          "folder": "duan-tui-chuang-guan-nan"
+        },
+        {
+          "id": "chong-wu-gu-shi/ding-ji-chi-huo-jian-ding",
+          "name": "顶级吃货鉴定",
+          "folder": "ding-ji-chi-huo-jian-ding"
+        }
+      ],
+      "banner": "chapter-covers/city-PetStory-icon/spriteFrame",
+      "schemaVersion": 2,
+      "legacyKeys": [
+        "city-PetStory"
+      ]
+    },
     "xun-song-ji": {
       "key": "xun-song-ji",
       "schemaVersion": 2,
@@ -693,117 +1059,6 @@
           "name": "书生登舟赴京",
           "folder": "shu-sheng-deng-zhou-fu-jing"
         }
-      ]
-    },
-    "chong-wu-gu-shi": {
-      "key": "chong-wu-gu-shi",
-      "name": "萌宠故事",
-      "levels": [
-        {
-          "id": "city-PetStory/level-01",
-          "name": "白虎与黑狗保姆",
-          "folder": "bai-hu-yu-hei-gou-bao-mu"
-        },
-        {
-          "id": "city-PetStory/level-02",
-          "name": "狗狗婚礼",
-          "folder": "gou-gou-hun-li"
-        },
-        {
-          "id": "city-PetStory/level-03",
-          "name": "橘猫摆摊",
-          "folder": "ju-mao-bai-tan"
-        },
-        {
-          "id": "city-PetStory/level-04",
-          "name": "动物海盗团",
-          "folder": "dong-wu-hai-dao-tuan"
-        },
-        {
-          "id": "city-PetStory/level-05",
-          "name": "萌宠闪身步",
-          "folder": "meng-chong-shan-shen-bu"
-        },
-        {
-          "id": "city-PetStory/level-06",
-          "name": "猫咪烧烤",
-          "folder": "mao-mi-shao-kao"
-        },
-        {
-          "id": "city-PetStory/level-07",
-          "name": "干嘛猫的vlog",
-          "folder": "gan-ma-mao-de-vlog"
-        },
-        {
-          "id": "city-PetStory/level-08",
-          "name": "神秘八爪鱼",
-          "folder": "shen-mi-ba-zhao-yu"
-        },
-        {
-          "id": "city-PetStory/level-09",
-          "name": "姹紫嫣红",
-          "folder": "cha-zi-yan-hong"
-        },
-        {
-          "id": "city-PetStory/level-10",
-          "name": "鸡哥算了",
-          "folder": "ji-ge-suan-le"
-        },
-        {
-          "id": "city-PetStory/level-11",
-          "name": "土拨鼠",
-          "folder": "tu-bo-shu"
-        },
-        {
-          "id": "city-PetStory/level-12",
-          "name": "弱小无助",
-          "folder": "ruo-xiao-wu-zhu"
-        },
-        {
-          "id": "city-PetStory/level-13",
-          "name": "整点薯条",
-          "folder": "zheng-dian-shu-tiao"
-        },
-        {
-          "id": "city-PetStory/level-14",
-          "name": "压力山大",
-          "folder": "ya-li-shan-da"
-        },
-        {
-          "id": "city-PetStory/level-15",
-          "name": "铲屎官日常",
-          "folder": "chan-shi-guan-ri-chang"
-        },
-        {
-          "id": "city-PetStory/level-16",
-          "name": "孜然妙脆角",
-          "folder": "zi-ran-miao-cui-jiao"
-        },
-        {
-          "id": "city-PetStory/level-17",
-          "name": "小猫踏步舞",
-          "folder": "xiao-mao-ta-bu-wu"
-        },
-        {
-          "id": "city-PetStory/level-18",
-          "name": "剪指甲",
-          "folder": "jian-zhi-jia"
-        },
-        {
-          "id": "city-PetStory/level-19",
-          "name": "猫咪浴帽",
-          "folder": "mao-mi-yu-mao"
-        },
-        {
-          "id": "city-PetStory/level-20",
-          "name": "猫咪合租",
-          "folder": "mao-mi-he-zu"
-        }
-      ],
-      "banner": "chapter-covers/city-PetStory-icon/spriteFrame",
-      "schemaVersion": 2,
-      "legacyKeys": [
-        "city-PetStory"
       ]
     },
     "qu-wei-duan-ju": {
@@ -2129,8 +2384,8 @@
   "navigation": [
     "wang-luo-re-dian",
     "qing-hua-ci",
-    "xun-song-ji",
     "chong-wu-gu-shi",
+    "xun-song-ji",
     "qu-wei-duan-ju",
     "meng-chong-san-guo",
     "nian-du-re-geng",
@@ -2156,7 +2411,7 @@
   ],
   "badges": {
     "wang-luo-re-dian": "hot",
-    "qing-hua-ci": "new",
+    "qing-hua-ci": "collect",
     "meng-chong-san-guo": "hard",
     "lian-ai-mei-shi": "collect",
     "xun-song-ji": "new",

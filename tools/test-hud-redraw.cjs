@@ -20,7 +20,7 @@ class Color {}
 class UITransform {}
 const Screen = load('assets/scripts/ui/GameScreen.ts', [
     'refreshHud', '_refreshTimerHud', 'clearLevel', '_hudSeconds', '_hudLives', '_hudFound', '_hudTotal',
-    '_hudUnlimited', '_hudHints', '_hudAddTimes', '_timerColor',
+    '_hudUnlimited', '_hudHints', '_hudAddTimes', '_timerColor', '_resetTimeFeedback',
 ], { Color, UIColors: { red: 'red' } });
 const screen = new Screen();
 const flow = screen.flow = { unlimitedAssists: false, save: { freeHints: 1, freeAddTimes: 2 },

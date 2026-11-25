@@ -2,11 +2,18 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
 const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const cities = read('assets/resources/configs/cities.json').cities;
 assert.equal(cities.indexOf('chong-wu-gu-shi'), cities.indexOf('qing-hua-ci') + 1);
-assert.equal(cities[cities.indexOf('chong-wu-gu-shi') + 1], 'meng-chong-san-guo');
+assert.equal(cities[cities.indexOf('chong-wu-gu-shi') + 1], 'xun-song-ji');
+const audit = read('config/pet-story-additions-2026-11-25.json');
+const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+assert.equal(audit.levels.length, 51);
+for (const [file, before] of Object.entries(audit.chapterFilesBefore)) {
+    if (!file.endsWith('/configs/city.json')) assert.equal(hash(file), before, 'Preserve original pet assets, metadata and music');
+}
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
 const names = ['_levelImageTarget', '_loadLevel', '_loadCityMeta', '_timeFor', '_nextLevelTarget'];
@@ -26,8 +33,10 @@ const imageFile = request => {
     const city = await flow._loadCityMeta({}, 'chong-wu-gu-shi');
     assert.equal(city.name, '萌宠故事');
     assert.equal(city.banner, 'chapter-covers/city-PetStory-icon/spriteFrame');
-    assert.equal(city.levels.length,20); assert.ok(city.levels.every(dir=>!/^level-/.test(dir)));
-assert.deepEqual(Object.values(city.levelIds),Array.from({length:20},(_,i)=>`city-PetStory/level-${String(i+1).padStart(2,'0')}`));
+    assert.equal(city.levels.length,71); assert.ok(city.levels.every(dir=>!/^level-/.test(dir)));
+    assert.deepEqual(Object.values(city.levelIds).slice(0,20),Array.from({length:20},(_,i)=>`city-PetStory/level-${String(i+1).padStart(2,'0')}`));
+    assert.deepEqual(read('assets/Bundle/levels/chong-wu-gu-shi/configs/city.json').levels.slice(0,20), audit.previousLevels);
+    assert.deepEqual(Object.values(city.levelIds).slice(20), audit.levels.map(row=>row.id));
     assert.ok(imageFile(city.banner));
     const bundleMeta = read('assets/Bundle/levels/chong-wu-gu-shi.meta').userData;
     assert.equal(bundleMeta.isBundle, true); assert.equal(bundleMeta.bundleName, 'chong-wu-gu-shi');
@@ -51,6 +60,18 @@ assert.deepEqual(Object.values(city.levelIds),Array.from({length:20},(_,i)=>`cit
             }
         }
     }
-    assert.equal(total, 242);
-    console.log('PASS: PetStory chapter after porcelain, 20 stable IDs/configs, 40 image paths, 20 dedicated thumbnails and remote Bundle routing.');
+    assert.equal(total, 899);
+    for (const row of audit.levels) {
+        const config = read(`assets/Bundle/levels/chong-wu-gu-shi/configs/${row.folder}/differences.json`);
+        assert.equal(config.name, row.name);assert.equal(config.differences.length, row.differenceCount);
+        const source = path.join(audit.source, row.sourceFolder, row.sourceConfig);
+        if (fs.existsSync(source)) {
+            assert.equal(hash(source), row.configSha256);
+            assert.deepEqual(config.differences, read(source).differences);
+        }
+        for (const image of row.images) assert.equal(hash(image.path), image.sha256);
+    }
+    const next = flow._nextLevelTarget(city, 19);assert.equal(next.city, city);assert.equal(next.levelIndex, 20);
+    assert.equal(city.levelNames[city.levels[20]], '猫好人坏');
+    console.log('PASS: PetStory before Song, 20 preserved levels + 51 appended levels, 899 points, 142 images, 71 thumbnails and stable Bundle routing.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

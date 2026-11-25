@@ -2,8 +2,8 @@
   "navigation": [
     "wang-luo-re-dian",
     "qing-hua-ci",
-    "xun-song-ji",
     "chong-wu-gu-shi",
+    "xun-song-ji",
     "qu-wei-duan-ju",
     "meng-chong-san-guo",
     "nian-du-re-geng",
@@ -11,7 +11,7 @@
   ],
   "badges": {
     "wang-luo-re-dian": "hot",
-    "qing-hua-ci": "new",
+    "qing-hua-ci": "collect",
     "meng-chong-san-guo": "hard",
     "lian-ai-mei-shi": "collect",
     "xun-song-ji": "new",
@@ -20,8 +20,8 @@
   "chapters": [
     "wang-luo-re-dian",
     "qing-hua-ci",
-    "xun-song-ji",
     "chong-wu-gu-shi",
+    "xun-song-ji",
     "qu-wei-duan-ju",
     "meng-chong-san-guo",
     "nian-du-re-geng",

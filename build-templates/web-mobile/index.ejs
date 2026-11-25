@@ -10,6 +10,16 @@
   (function () {
     var build = '<%= webBuildId %>';
     var redirecting = false;
+    // Cocos 的场景和资源需要 fetch；直接双击 file:// 入口会被浏览器跨域规则阻止。
+    if (new URL(window.location.href).protocol === 'file:') {
+      window.__webReleaseReady = new Promise(function () {});
+      window.addEventListener('DOMContentLoaded', function () {
+        var panel = document.getElementById('WebReleaseError');
+        panel.textContent = '请通过网页服务器打开游戏。在 Cocos 构建面板点击“运行”，或上传到 HTTP/HTTPS 网站后访问；不要直接双击 index.html。';
+        panel.hidden = false;
+      });
+      return;
+    }
     function checkRelease() {
       // 只检查当前游戏目录，不读取或删除玩家存档。
       var entry = new URL('index.html', window.location.href);

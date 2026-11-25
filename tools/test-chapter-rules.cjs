@@ -67,7 +67,7 @@ const completedChapter = city => Object.fromEntries(city.levels.map(dir => [(cit
     assert.equal(f.isLevelUnlocked(index(pet.key), 1), true);
     assert.equal(f.isLevelUnlocked(index(pet.key), 2), false);
     assert.equal(f.isLevelUnlocked(index(pet.key), 20), false);
-    assert.equal(f._nextLevelTarget(pet, 19, true), null, 'No skip fallback into another independent chapter');
+    assert.equal(f._nextLevelTarget(pet, pet.levels.length - 1, true), null, 'No skip fallback into another independent chapter');
     assert.equal(f._nextLevelTarget(meme, meme.levels.length - 1), null);
     assert.equal(f._nextLevelTarget(hot, hot.levels.length - 1).city.key, meme.key);
     fresh.setLastPlayedCity(pet.key);

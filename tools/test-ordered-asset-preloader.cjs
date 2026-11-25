@@ -140,7 +140,7 @@ async function drain(s, fail = () => false, limit = 500) {
     f._prioritizeAssetDownloads(['chapter-a']);f._lobbyWarmupStarted=true;f._tickBackgroundAssets(1);
     assert.deepEqual(Array.from(f._backgroundAssets.priorities[0]),['chapter-a'],'Remember selection made before the three-second background start');
     f._prioritizeAssetDownloads(['chapter-z']);assert.deepEqual(Array.from(f._backgroundAssets.priorities[1]),['chapter-z']);
-    assert.deepEqual(Array.from(created[0],s=>s.name),['MainGameSources','LobbySources','MainGameAimation','chapter-covers',
+    assert.deepEqual(Array.from(created[0],s=>s.name),['MainGameSources','LobbySources','chapter-covers','MainGameAimation',
         'chapter-z','chapter-a','LobbySources','food-icons']);
     const globalGame={name:'MainGameSources'},globalLobby={name:'LobbySources'},held=[];
     f._loadGameBundle=async()=>globalGame;f._loadLobbyBundle=async()=>globalLobby;

@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
-const ts = require(process.env.TYPESCRIPT_PATH || 'D:/Cocos/cocoseditors/Creator/3.8.8/resources/resources/3d/engine/node_modules/typescript');
+const ts = require(process.env.TYPESCRIPT_PATH || 'D:/CocosCreator/v3.8.8/resources/resources/3d/engine/node_modules/typescript');
 
 function load(file, names, globals) {
     const source = fs.readFileSync(file, 'utf8');
@@ -30,6 +30,7 @@ class Node {
     set parent(value) { this._parent = value; value.children.push(this); }
     get parent() { return this._parent; }
     setPosition(x, y) { this.position = new Vec3(x, y); }
+    setScale(value) { this.scale = value; }
     addComponent(Type) { const c = new Type(); c.node = this; return c; }
     getChildByName(name) { return this.children.find(n => n.name === name && n.isValid); }
     destroy() { this.isValid = false; }
@@ -72,8 +73,18 @@ for (const graphics of game._markerGraphics.values()) {
     assert.equal(graphics.clears, clears, 'idle frames do not rebuild geometry');
 }
 let completed = 0;
+assert.equal(tweens.length, 20, 'Every newly found difference pulses on both images');
+assert.equal(tweens[0].steps.reduce((sum, step) => sum + step.time, 0), 0.5);
+const hit = tweens[0], topHit = game._markerGraphics.get(images.TopImage);
+hit.target.scale = hit.steps[0].values.scale;hit.steps[0].options.onUpdate();game.lateUpdate();
+assert.equal(topHit.circles[0].radius, 24, 'Hit feedback expands the circle to 1.2 times its original radius');
+hit.target.scale = hit.steps[1].values.scale;hit.steps[1].options.onUpdate();game.lateUpdate();
+assert.equal(topHit.circles[0].radius, 20);
+tweens.length = 0;
 game.playVictoryWave(() => completed++);
+assert.equal(stopped.length, 0, 'The final hit pulse completes before the victory wave starts');
 assert.equal(tweens.length, 20);
+assert.equal(tweens[0].delayValue, 0.5);
 assert.equal(tweens.at(-1).delayValue + 0.5, 2);
 const animated = tweens[0];
 animated.target.scale = animated.steps[0].values.scale;

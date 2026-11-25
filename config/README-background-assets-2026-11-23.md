@@ -6,9 +6,12 @@
 
 1. MainGameSources 中尚未获取的玩法共用资源。
 2. LobbySources 的主页、常用页面和声音资源，排除 SecondaryUI。
-3. MainGameAimation 主页动画文件、chapter-covers 章节封面。
-4. 按当前 `_cities`（来自主包章节清单）顺序预下载所有章节，包括当前章节剩余内容。每章先配置、缩略图，再按本章关卡顺序获取大图，之后获取惊喜道具预设/动画及章节音乐、连击音效。原始出图标注 JSON 不参与运行预下载。
-5. LobbySources/SecondaryUI 的收藏等次级页面，最后 food-icons 中的美食和青花瓷收藏图片。
+3. chapter-covers 章节封面，紧接首页资源包，优先于第二章节以及其余章节的后台阶段。
+4. MainGameAimation 主页动画文件。
+5. 按当前 `_cities`（来自主包章节清单）顺序预下载所有章节，包括当前章节剩余内容。每章先配置、缩略图，再按本章关卡顺序获取大图，之后获取惊喜道具预设/动画及章节音乐、连击音效。原始出图标注 JSON 不参与运行预下载。
+6. LobbySources/SecondaryUI 的收藏等次级页面，最后 food-icons 中的美食和青花瓷收藏图片。
+
+2026-11-25 将 chapter-covers 移到 LobbySources 之后、MainGameAimation 之前。以下历史预览记录保留原观测顺序；默认队列以此处的新顺序为准，玩家主动选择仍可插队。
 
 网络失败的阶段在队尾最多再尝试两轮，已经成功的 UUID 不重复预取。因失败重试而补发的阶段可能出现在收藏资源之后；正常流程严格按以上顺序。
 

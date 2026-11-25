@@ -5,7 +5,8 @@ const audit = read('config/sanguo-updates/2026-11-24.json'), root = 'assets/Bund
 const index = read('assets/resources/configs/cities.json'), sourceMap = read(audit.sourceMap);
 const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory()
     ? walk(path.posix.join(dir, e.name)) : [path.posix.join(dir, e.name)]);
-assert.equal(hash('assets/resources/configs/cities.json'), audit.indexSha256);
+// Other chapters may legitimately grow after this historical import; the Sanguo index must still match its unchanged bundle list.
+assert.deepEqual(index.chapters[audit.chapter].levels, read(`${root}/configs/city.json`).levels);
 assert.equal(hash(`${root}/configs/city.json`), audit.chapterConfigSha256);
 assert.equal(hash(audit.sourceMap), audit.sourceMapSha256);
 const before = audit.chapterFilesBefore, current = walk(root);
