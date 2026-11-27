@@ -12,7 +12,7 @@ function fixture(stages, definitions, browser = false) {
     const cc = { sys: { isBrowser: browser }, assetManager: {
         _files: { get: key => files.get(key), remove: key => files.delete(key) },
         preloadAny(request, options, callback) {
-            assert.equal(options.priority, -10);assert.equal(options.maxConcurrency, 1);
+            assert.equal(options.priority, -10);assert.equal(options.maxConcurrency, 2);assert.equal(options.maxRequestsPerFrame, 2);
             assert.equal(options.cacheEnabled, true);assert.equal(options.maxRetryCount, 0);
             requests.push({ ...request, callback });
         },
@@ -20,6 +20,8 @@ function fixture(stages, definitions, browser = false) {
     const exports = {};
     vm.runInNewContext(compile(source), { exports, require: name => name === 'cc' ? cc : {},
         console: { warn: (...args) => warnings.push(args) } });
+    if(process.env.FD_BUILT_PREFETCH_JS) require('./built-method-helper.cjs')(process.env.FD_BUILT_PREFETCH_JS,'OrderedAssetPreloader',cc)(exports.OrderedAssetPreloader,
+        ['tick','fetch','prioritize','applyPriority','snapshot','dispose','close','retry','stageKey','releaseActive','trimBrowserImages']);
     const pool = {
         retain(name) { holds++;maxHolds=Math.max(maxHolds,holds);let released=false;return () => {
             assert.equal(released,false,'Each stage lease released once');released=true;holds--;closed.push(name);
@@ -52,7 +54,7 @@ async function drain(s, fail = () => false, limit = 500) {
     });
     s.allow(false);s.preloader.tick(1);assert.equal(s.opened.length,0,'No speculative work before first gameplay readiness');
     s.allow(true);s.preloader.tick(1);await flush();s.preloader.tick(1);
-    assert.equal(s.requests.length,1);s.preloader.tick(1);s.preloader.tick(1);assert.equal(s.requests.length,1,'Only one background asset in flight');
+    assert.equal(s.requests.length,1);s.preloader.tick(1);s.preloader.tick(1);assert.equal(s.requests.length,1,'Do not request the only available asset twice');
     s.allow(false);s.requests.shift().callback(null,[]);await flush();
     s.preloader.tick(1);assert.deepEqual(s.opened,['common'],'Completion never auto-chains while foreground is busy');
     s.allow(true);const rest=await drain(s);
@@ -60,16 +62,37 @@ async function drain(s, fail = () => false, limit = 500) {
     assert.deepEqual(rest,['chapter-a:one','chapter-b:two','collect:icon']);
     assert.equal(s.maxHolds(),1);assert.equal(s.holds(),0);assert.equal(s.preloader.snapshot().completedAssets,4);
 
-    // A selected chapter interrupts at the current asset boundary, then resumes unfinished work.
-    s=fixture([{name:'a'},{name:'b'},{name:'c'}],{a:['one','two'],b:['one'],c:['one']});
+    // Two in-flight assets finish before changing chapters; no refill after a priority request.
+    s=fixture([{name:'a'},{name:'b'},{name:'c'}],{a:['one','two','z-last'],b:['one'],c:['one']});
     s.preloader.tick(1);await flush();s.preloader.tick(1);
-    assert.equal(s.requests[0].uuid,'a:one');s.preloader.prioritize(['c']);s.allow(false);
+    assert.deepEqual(s.requests.map(r=>r.uuid),['a:one','a:two']);
+    assert.equal(s.preloader.snapshot().inFlight,2);s.preloader.tick(1);assert.equal(s.requests.length,2,'Never exceed two in flight');
+    s.preloader.prioritize(['c']);
+    s.requests.shift().callback(null,[]);await flush();
+    s.preloader.tick(1);assert.equal(s.requests.length,1,'Do not refill the old chapter after a selection');
+    assert.equal(s.holds(),1,'Keep the old bundle until both in-flight requests finish');s.allow(false);
     s.requests.shift().callback(null,[]);await flush();
     assert.deepEqual(s.opened,['a']);assert.equal(s.holds(),0,'Release only the old background lease, without starting IO during foreground work');
-    s.allow(true);assert.deepEqual(await drain(s),['c:one','a:two','b:one']);
+    s.allow(true);assert.deepEqual(await drain(s),['c:one','a:z-last','b:one']);
     assert.deepEqual(s.opened,['a','c','a','b']);assert.equal(s.maxHolds(),1);
-    assert.equal(s.preloader.snapshot().completedAssets,4,'Successful interrupted assets are not fetched twice');
+    assert.equal(s.preloader.snapshot().completedAssets,5,'Successful interrupted assets are not fetched twice');
     s.preloader.prioritize(['c']);s.preloader.tick(1);assert.equal(s.requests.length,0,'A completed chapter is not restarted');
+
+    s=fixture([{name:'a'},{name:'b'},{name:'c'}],{a:['one','two','z-last'],b:['one'],c:['one']});
+    s.preloader.tick(1);await flush();s.preloader.tick(1);
+    s.preloader.prioritize(['b']);s.preloader.prioritize(['c']);
+    s.requests.pop().callback(null,[]);await flush(); // Reverse completion order.
+    s.preloader.tick(1);assert.equal(s.requests.length,1);assert.equal(s.holds(),1);
+    s.requests.pop().callback(null,[]);await flush();
+    assert.deepEqual(await drain(s),['c:one','a:z-last','b:one'],'Most recent selection wins with two out-of-order completions');
+
+    // Prioritize only the selected resources, then restore the unchanged default chapter order.
+    s=fixture([{name:'a'},{name:'b'},{name:'c'}],{a:['one','two','z-last'],b:['one'],c:['now/top','now/bottom','later/image']});
+    s.preloader.tick(1);await flush();s.preloader.tick(1);
+    s.preloader.prioritize(['c'],['now/']);
+    s.requests.shift().callback(null,[]);s.requests.shift().callback(null,[]);await flush();
+    assert.deepEqual(await drain(s),['c:now/bottom','c:now/top','a:z-last','b:one','c:later/image'],
+        'A chapter selection must not move all its unrelated resources ahead of other chapters');
 
     let priorityManifest;s=fixture([{name:'a'},{name:'b'},{name:'c'}],{
         a:()=>new Promise(resolve=>priorityManifest=resolve),b:['one'],c:['one'],
@@ -117,8 +140,9 @@ async function drain(s, fail = () => false, limit = 500) {
     let finishManifest;s=fixture([{name:'a'}],{a:()=>new Promise(resolve=>finishManifest=resolve)});
     s.preloader.tick(1);await flush();s.preloader.dispose();assert.equal(s.holds(),1);
     finishManifest({name:'a',getDirWithPath:()=>[]});await flush();assert.equal(s.holds(),0);assert.equal(s.requests.length,0);
-    s=fixture([{name:'a'}],{a:['one']});s.preloader.tick(1);await flush();s.preloader.tick(1);
-    s.preloader.dispose();assert.equal(s.holds(),1);s.requests.shift().callback(null,[]);await flush();assert.equal(s.holds(),0);
+    s=fixture([{name:'a'}],{a:['one','two']});s.preloader.tick(1);await flush();s.preloader.tick(1);
+    s.preloader.dispose();assert.equal(s.holds(),1);s.requests.shift().callback(null,[]);await flush();assert.equal(s.holds(),1);
+    s.requests.shift().callback(null,[]);await flush();assert.equal(s.holds(),0);
     s.preloader.tick(1);assert.equal(s.requests.length,0);
 
     s=fixture([{name:'web'}],{web:['picture']},true);s.preloader.tick(1);await flush();s.preloader.tick(1);
@@ -129,19 +153,34 @@ async function drain(s, fail = () => false, limit = 500) {
 
     // Exercise the real GameFlow plan and foreground/ad/loading gates.
     const text=fs.readFileSync('assets/scripts/GameFlow.ts','utf8'),tree=ts.createSourceFile('flow.ts',text,ts.ScriptTarget.Latest,true);
-    const names=['_tickBackgroundAssets','_canDownloadInBackground','_prioritizeAssetDownloads'];
+    const names=['_tickBackgroundAssets','_canDownloadInBackground','_prioritizeAssetDownloads','update'];
     const body=tree.statements.find(ts.isClassDeclaration).members.filter(m=>names.includes(m.name?.getText(tree))).map(m=>m.getText(tree)).join('\n');
     const created=[];const Flow=vm.runInNewContext(compile(`class Flow {${body}} Flow;`),{
         OrderedAssetPreloader:class{constructor(pool,stages,canRun){this.pool=pool;this.canRun=canRun;this.priorities=[];created.push(stages);}tick(){assert.ok(this.canRun());}prioritize(names){this.priorities.push(names);}},
     });
-    const f=new Flow();Object.assign(f,{isValid:true,_cities:[{key:'chapter-z',levels:['first','second']},{key:'chapter-a',levels:['third']}],
+    const firstLevels=Array.from({length:10},(_,i)=>`level-${i+1}`);
+    const f=new Flow();Object.assign(f,{isValid:true,_cities:[{key:'chapter-z',levels:firstLevels},{key:'chapter-a',levels:['third']}],
         platform:{interstitialBusy:false},game:{node:{activeInHierarchy:true}},_currentLevel:{}});
     f._tickBackgroundAssets(1);assert.equal(created.length,0);
     f._prioritizeAssetDownloads(['chapter-a']);f._lobbyWarmupStarted=true;f._tickBackgroundAssets(1);
     assert.deepEqual(Array.from(f._backgroundAssets.priorities[0]),['chapter-a'],'Remember selection made before the three-second background start');
     f._prioritizeAssetDownloads(['chapter-z']);assert.deepEqual(Array.from(f._backgroundAssets.priorities[1]),['chapter-z']);
-    assert.deepEqual(Array.from(created[0],s=>s.name),['MainGameSources','LobbySources','chapter-covers','MainGameAimation',
-        'chapter-z','chapter-a','LobbySources','food-icons']);
+    assert.deepEqual(Array.from(created[0],s=>s.name),['MainGameSources','LobbySources','chapter-covers',
+        'chapter-z','chapter-a','MainGameAimation','chapter-z','chapter-a','LobbySources','food-icons']);
+    const entry=created[0][3], remainder=created[0][6];
+    const covers=entry.include.filter(p=>p.startsWith('thumbnails/'));
+    assert.deepEqual(Array.from(covers),firstLevels.slice(0,8).map(p=>`thumbnails/${p}/`));
+    assert.deepEqual(Array.from(entry.include.filter(p=>p.startsWith('configs/'))),firstLevels.slice(0,6).map(p=>`configs/${p}/`));
+    assert.deepEqual(Array.from(entry.include.filter(p=>p.includes('/scene-'))),firstLevels.slice(0,6).map(p=>`${p}/scene-`));
+    assert.ok(entry.include.includes('BGmusic/'));assert.ok(entry.include.includes('prefabs/'));
+    assert.ok(remainder.include.includes('level-10/scene-'),'All later levels remain in the second pass');
+    // First-pass resources must be skipped when the whole chapter is revisited.
+    const twoPass=fixture([entry,remainder],{'chapter-z':firstLevels.flatMap(folder=>[
+        `thumbnails/${folder}/icon/spriteFrame`,`configs/${folder}/differences`,`${folder}/scene-a/spriteFrame`,`${folder}/scene-b/spriteFrame`,
+    ])});
+    const fetched=await drain(twoPass);
+    assert.equal(fetched.length,40);assert.equal(new Set(fetched).size,40,'No duplicate first-pass requests in the second pass');
+    assert.ok(fetched.indexOf('chapter-z:level-7/scene-a/spriteFrame')>fetched.indexOf('chapter-z:level-6/scene-b/spriteFrame'));
     const globalGame={name:'MainGameSources'},globalLobby={name:'LobbySources'},held=[];
     f._loadGameBundle=async()=>globalGame;f._loadLobbyBundle=async()=>globalLobby;
     f._contentBundles={retain:name=>{held.push(name);return()=>{};},load:async name=>({name})};
@@ -150,10 +189,22 @@ async function drain(s, fail = () => false, limit = 500) {
     assert.deepEqual(held,[],'Never let the chapter pool unload a shared registered bundle');
     assert.equal(await adapter.load('MainGameSources'),globalGame);assert.equal(await adapter.load('LobbySources'),globalLobby);
     adapter.retain('chapter-z')();assert.deepEqual(held,['chapter-z']);
-    for(const field of ['_levelLoading','_secondaryPageLoading','_levelSelectEntryPending','_rewardPending','_isPaused','_isGameOver','_prefetchRunning']) {
+    for(const field of ['_levelLoading','_secondaryPageLoading','_levelSelectEntryPending','_rewardPending','_prefetchRunning']) {
         f[field]=true;assert.equal(f._canDownloadInBackground(),false,field);f[field]=false;
+    }
+    for(const field of ['_isPaused','_isGameOver']) {f[field]=true;assert.equal(f._canDownloadInBackground(),true,field);f[field]=false;}
+    f.game.node.activeInHierarchy=false;assert.equal(f._canDownloadInBackground(),true,'Home and selection pages continue downloading');
+    f._currentLevel=null;assert.equal(f._canDownloadInBackground(),true,'Returning home after a failed chapter load must not stop the existing queue');
+    const component=JSON.parse(fs.readFileSync('assets/LobbySources/prefabs/LevelSelectScreen.prefab','utf8')).find(x=>'pageSize' in x);
+    assert.equal(component.pageSize,8,'Warmup covers must match the actual first page');
+    // update() must tick downloads before any gameplay pause/end/inactive-screen return.
+    for (const mode of ['home','selection','pause','result']) {
+        const g=new Flow();let lobbyTicks=0,downloadTicks=0;
+        Object.assign(g,{platform:{interstitialBusy:false},_currentLevel:{},_isPaused:mode!=='result',_isGameOver:mode==='result',
+            game:{node:{active:false}},_tryFeedOffer(){},_tickResourceCleanup(){},_tickLobbyWarmup(){lobbyTicks++;},_tickBackgroundAssets(){downloadTicks++;}});
+        g.update(0.1);assert.equal(lobbyTicks,1,mode);assert.equal(downloadTicks,1,mode);
     }
     f.feed={isPreview:true};assert.equal(f._canDownloadInBackground(),false);f.feed=null;
     f.platform.interstitialBusy=true;assert.equal(f._canDownloadInBackground(),false);
-    console.log('PASS ordered asset warmup: delayed start, foreground priority, one request, chapter/level order, collection last, retries, resume, disposal and web-image memory cleanup');
+    console.log('PASS ordered asset warmup: two in flight, priority drain/resume, eight covers/six levels per chapter before remainder, cache dedup, menus/pause/results continue, retries, disposal and web-image cleanup');
 })().catch(error=>{console.error(error);process.exitCode=1;});

@@ -77,6 +77,7 @@ mixer.update(1.5); assert.equal(b.refs, 0); close(channel(c).volume, 1);
 
 // The fade advances outside the gameplay timer, including Loading, paused and result pages.
 flow.feed = { isPreview: false }; flow._tryFeedOffer = () => {};
+flow._tickLobbyWarmup = flow._tickBackgroundAssets = flow._tickResourceCleanup = () => {};
 flow.platform = { interstitialBusy: true };
 mixer.play('home', a);
 flow.update(.75); close(channel(a).volume, .5); close(channel(c).volume, .5);

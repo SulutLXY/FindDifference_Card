@@ -31,17 +31,28 @@ function round(save) {
     f._foundIds = new Set(['a', 'b']); f._remainingTime = 100; f._elapsedTime = 50;
     f._playResultTone = f._stopResultTone = () => {}; f.findNextLevel = () => null;
     f.rankCalls = 0; f.rankProvider = { submitScore() { f.rankCalls++; } };
-    f.platform = { onRoundFinished() {} }; f.resultModal = { present() {}, close() {} };
+    f._levelLoadVersion = 1;
+    f.platform = { onRoundFinished() {} }; f.resultModal = { node: { activeInHierarchy: false }, presentations: 0,
+        present() { this.energyBeforeOpen = save.energy; this.presentations++; this.node.activeInHierarchy = true; },
+        close() { this.node.activeInHierarchy = false; } };
     f.messages = []; f.toast = text => f.messages.push(text);
     return f;
 }
 let save = saveAt(1), f = round(save);
 assert.equal(save.consumeEnergy(), true); assert.equal(save.energy, 0);
 const beforeWrite = writes;
+let showSuccess;
+f.game = { node: { activeInHierarchy: true }, playVictoryWave(callback) { showSuccess = callback; } };
 f.finishLevel(true);
+assert.equal(save.energy, 0, 'Do not award energy while the victory animation is playing');
+assert.equal(writes, beforeWrite);assert.equal(f.rankCalls, 0);assert.equal(f.resultModal.presentations, 0);
+showSuccess();
+assert.equal(f.resultModal.energyBeforeOpen, 0, 'The success dialog opens before energy is granted');
 assert.equal(save.energy, 1, 'Winning returns one energy so a player with zero left can continue');
 assert.equal(writes, beforeWrite + 1, 'Progress and energy use one persistence write');
 assert.equal(save.totalScore, 1); assert.equal(f.rankCalls, 1);
+showSuccess();assert.equal(save.energy, 1);assert.equal(writes, beforeWrite + 1);
+assert.equal(f.resultModal.presentations, 1, 'A repeated victory callback must not reopen or award twice');
 f.finishLevel(true); f.finishLevel(false);
 assert.equal(save.energy, 1, 'Duplicate result callbacks never grant twice');
 save = new exports_.SaveService(); assert.equal(save.energy, 1, 'Reward survives reload');
@@ -81,6 +92,15 @@ assert.equal(f.rankCalls, 0, 'Do not submit a score that was not saved');
 assert.ok(f.messages.some(text => text.includes('保存失败')));
 failWrite = false;
 assert.equal(save.completeLevel('stable/challenge', 2, 50, true), true); assert.equal(save.energy, 1);
+
+save = saveAt(4); f = round(save);
+f.game = { node: { activeInHierarchy: true }, playVictoryWave(callback) { showSuccess = callback; } };
+f.finishLevel(true);f._levelLoadVersion++;showSuccess();
+assert.equal(save.energy, 4);assert.equal(f.resultModal.presentations, 0, 'Leaving or reloading the same cached level invalidates old callbacks');
+save = saveAt(4);f = round(save);f.resultModal = null;f.finishLevel(true);
+assert.equal(save.energy, 4);assert.equal(save.totalScore, 0, 'No dialog means no early settlement');
+save = saveAt(4);f = round(save);f.resultModal.present = function () { this.presentations++; };
+f.finishLevel(true);assert.equal(save.energy, 4);assert.equal(f.rankCalls, 0, 'An invisible dialog cannot award energy');
 save = saveAt(1); f = round(save); f.feed = { isPreview: true }; f.finishLevel(true);
 assert.equal(save.energy, 1); assert.equal(save.totalScore, 0, 'Feed preview cannot settle a real reward');
-console.log('PASS level-clear energy: start -1 / win +1, zero-energy continuation, replays, duplicate result guard, loss/revive/preview, caps/recovery, atomic persistence and score rollback.');
+console.log('PASS level-clear energy: success dialog before award, animation delay, duplicate/stale/invisible guard, zero-energy continuation, replays, revive/preview, caps and atomic rollback.');

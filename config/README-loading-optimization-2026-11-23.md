@@ -1,6 +1,8 @@
 # 加载链路优化（2026-11-23）
 
-源码已修改，尚未重新生成抖音包。当前 build/douying 仍是 11 月 20 日构建；loading-audit 中的文件大小来自该构建，耗时表为估算。
+2026-11-27：配置就绪后立即并行准备当前关卡两张大图，与界面和章节音频索引加载重叠；图片引用直接交给 GameScreen 绑定，避免再次请求。失败、导航取消和迟到图片均归还引用；仍在两图绑定、首帧就绪后才扣体力和开始计时。只提前准备当前关卡，不将前6关或全章节解码纹理常驻内存。后台两路及资源插队规则见 `README-background-assets-2026-11-23.md`。本次源码尚未重新构建或进行真机冷缓存测速，下文11月23日观测不作为本次改动性能结论。
+
+同日补充内存边界：首页动画离开10秒、收藏/排行隐藏30秒后释放，快速返回仍复用；通用长音乐额外缓存1首，章节专属答对音效在换章/离开时清理。常用导航和玩法UI保留，文件下载缓存继续复用。详细基准与生命周期见 `README-memory-budget-2026-11-27.md`。
 
 ## 实际发现
 
@@ -34,7 +36,7 @@ globalThis.__findDifferenceLoadingDebug = true;
 globalThis.__findDifferenceLastLevelLoad
 ```
 
-字段为 `chapterKey`、从 0 开始的 `levelIndex`、`status`、`totalMs`、`uiMs`、`configMs`、`musicIndexMs`、`comboIndexMs`、`imagesAndSetupMs`、`loadingFrameMs`、`firstGameFrameMs`。各阶段包含引擎缓存查找和相关等待，是墙钟耗时；并行阶段不能直接相加，也不是纯网络下载时间。总耗时从关卡加载遮罩启动后到本次加载结束，不包含引擎启动、主包下载或前面的选关页加载。`prepared` 可表示 Feed 预览就绪但尚未正式开始，`ready` 表示已开始。
+字段为 `chapterKey`、从 0 开始的 `levelIndex`、`status`、`totalMs`、`uiMs`、`configMs`、`musicIndexMs`、`comboIndexMs`、`imagesReadyMs`、`imagesAndSetupMs`、`loadingFrameMs`、`firstGameFrameMs`。自2026-11-27起，`imagesReadyMs` 单独计量配置就绪后两图准备的耗时；`imagesAndSetupMs` 主要是已有两图的绑定与界面设置，不宜直接与旧版含下载阶段的同名字段比较。各阶段是墙钟耗时，可能包含引擎缓存查找和相关等待；并行阶段不能相加，也不是纯网络下载时间。总耗时从加载遮罩启动到本次加载结束，不包含引擎启动、主包下载或之前的选关页加载。`prepared` 可表示 Feed 预览就绪，`ready` 表示已正式开始。
 
 开启诊断模式时，记录还包含 `bundles`（实际调用 loadBundle 的清单加载记录）和 `images`（每张关卡图的细分记录）。清单记录不等同于下载整章资源。历史记录分别存放在 `__findDifferenceBundleLoads` 和 `__findDifferenceImageLoads`，每组最多 64 条；没有新增清单记录可能只是复用已加载/在途的清单，不代表全部图片已有缓存。
 

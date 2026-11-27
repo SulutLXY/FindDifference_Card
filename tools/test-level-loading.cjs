@@ -41,6 +41,17 @@ function methods(file,names,extra={}){
  });
  const failedPair=s.setupLevel({name:'failed',topImage:'top',bottomImage:'bottom'});const rejectedPair=assert.rejects(failedPair,/offline/);
  await new Promise(setImmediate);late();await rejectedPair;assert.equal(refs,0,'No leaked reference after the other image fails');
+ // Already prepared frames transfer to the screen once, without a second image load.
+ const makeFrame=()=>{refs++;return {decRef(){refs--;}};};
+ const prepared=[makeFrame(),makeFrame()];s.flow.acquireLevelFrame=()=>assert.fail('Prepared images must not be loaded again');
+ await s.setupLevel({name:'prepared',topImage:'top',bottomImage:'bottom'},()=>{},prepared);
+ assert.equal(sprites.TopImage.spriteFrame,prepared[0]);assert.equal(sprites.BottomImage.spriteFrame,prepared[1]);
+ assert.equal(refs,2);s.clearLevel();assert.equal(refs,0);
+ const oldSetLabel=s.setLabel;s.setLabel=()=>{throw Error('initialization failed');};
+ await assert.rejects(s.setupLevel({name:'failed',topImage:'top',bottomImage:'bottom'},()=>{},[makeFrame(),makeFrame()]),/initialization failed/);
+ assert.equal(refs,0,'Even initialization before image binding must release transferred frames');s.setLabel=oldSetLabel;
+ s.isValid=false;await assert.rejects(s.setupLevel({name:'stale'},()=>{},[makeFrame(),makeFrame()]),/已取消/);
+ assert.equal(refs,0);s.isValid=true;
  const SpriteType=class{};SpriteType.SizeMode={CUSTOM:'custom'};
  const Binding=methods('assets/scripts/ui/GameScreen.ts',['_applySpriteFrame'],{Sprite:SpriteType});
  const binding=new Binding(),sprite={enabled:false},target={isValid:true,getComponent:()=>sprite};
@@ -49,7 +60,7 @@ function methods(file,names,extra={}){
  const readyFrame={isValid:true,texture:{isValid:true}};binding._applySpriteFrame(target,readyFrame);
  assert.equal(sprite.spriteFrame,readyFrame);assert.equal(sprite.enabled,true);
  let day='2026-10-09';
- const Flow=methods('assets/scripts/GameFlow.ts',['startLevel','_cancelSecondaryNavigation','_returnToLobbyOnLoadError','_nextLevelTarget','_ensureLevel','findNextLevel','resultPrimary','_loadCityMeta'],{sidebarDay:()=>day});
+ const Flow=methods('assets/scripts/GameFlow.ts',['startLevel','_prepareLevelFrames','_cancelSecondaryNavigation','_returnToLobbyOnLoadError','_nextLevelTarget','_ensureLevel','findNextLevel','resultPrimary','_loadCityMeta'],{sidebarDay:()=>day});
  // Use the production global ad guard without running unrelated onLoad UI initialization.
  const source=fs.readFileSync('assets/scripts/GameFlow.ts','utf8');
  const tree=ts.createSourceFile('GameFlow.ts',source,ts.ScriptTarget.Latest,true);
@@ -58,6 +69,8 @@ function methods(file,names,extra={}){
  const installGuard=vm.runInNewContext(ts.transpileModule('(function(){'+guard.getText(tree)+'})', {compilerOptions:{target:ts.ScriptTarget.ES2018}}).outputText,{sidebarDay:()=>day});
  const recordedPlays=[];let homeWarmups=0;const f=new Flow();f.playStats={recordEntry:key=>recordedPlays.push(key)};f._preloadLobby=async()=>{homeWarmups++;};f._contentBundles={retain:()=>()=>{}};f.isValid=true;f._levelLoadVersion=0;f._assistRoundVersion=0;f._foundIds=new Set();
  f._ensureLevel=async(city,index)=>city.levelConfigs[index];
+ f._prepareLevelFrames=async()=>[];f.releaseLevelFrame=()=>{};
+ f._releaseChapterComboClips=()=>{};
  f._resolveChapterMusic=async()=>null;
  f._resolveChapterComboGroup=async()=>null;
  f._updateGameMusic=()=>{};f._updateComboGroup=()=>{};f._ensureGameScreens=async()=>{};
@@ -185,18 +198,43 @@ function methods(file,names,extra={}){
  assert.equal(recordedPlays.length,0,'Heat algorithms remain available but gameplay no longer records or uploads play events');
  // A slow gameplay bundle must not postpone the independent chapter requests.
  const promoted=[];f._backgroundAssets={prioritize:names=>promoted.push(Array.from(names))};
- f._pendingAssetPriority=['LobbySources'];
+ f._pendingAssetPriority={names:['LobbySources']};
  let finishUI;const stages=[];f.save.energy=10;f.save.consumeEnergy=()=>true;
  f._ensureGameScreens=()=>new Promise(resolve=>finishUI=resolve);
  f._ensureLevel=async(city,index)=>{stages.push('config');return city.levelConfigs[index];};
  f._resolveChapterMusic=async()=>{stages.push('music');return null;};
  f._resolveChapterComboGroup=async()=>{stages.push('combo');return null;};
- let bound=false;f.game.setupLevel=async()=>{bound=true;};
+ let bound=false;const readyPair=[{},{}];f._prepareLevelFrames=async()=>{stages.push('images');return readyPair;};
+ f.game.setupLevel=async(_,__,prepared)=>{assert.equal(prepared,readyPair);bound=true;};
  const overlapping=f.startLevel(city,0);await new Promise(setImmediate);
- assert.deepEqual(stages,['config','music','combo']);assert.equal(bound,false,'Images cannot bind before UI exists');
+ assert.deepEqual(stages,['config','music','combo','images']);assert.equal(bound,false,'Images prepare while UI is pending, but cannot bind before it exists');
  finishUI();await overlapping;assert.equal(bound,true);
  assert.deepEqual(promoted,[[city.key]],'Explicit gameplay entry promotes its bundle without waiting for background order');
- assert.deepEqual(Array.from(f._pendingAssetPriority),[city.key],'Continue overrides an older menu priority before background startup');
+ assert.deepEqual(Array.from(f._pendingAssetPriority.names),[city.key],'Continue overrides an older menu priority before background startup');
+ assert.ok(f._pendingAssetPriority.include.includes(`configs/${city.levels[0]}/`));
+ // Early images held while UI is pending must be released if navigation cancels entry.
+ const released=[];f.releaseLevelFrame=frame=>released.push(frame);f._ensureGameScreens=()=>new Promise(resolve=>finishUI=resolve);
+ bound=false;const beforeCancelEnergy=spent;const cancelledImages=f.startLevel(city,0);await new Promise(setImmediate);
+ f.showLobby();finishUI();await cancelledImages;assert.equal(bound,false);assert.equal(spent,beforeCancelEnergy);
+ assert.deepEqual(released,readyPair);
+ // If UI fails first, images arriving after the entry promise fails still release themselves.
+ let finishImages;released.length=0;f._prepareLevelFrames=()=>new Promise(resolve=>finishImages=resolve);
+ f._ensureGameScreens=async()=>{throw Error('UI unavailable');};
+ await f.startLevel(city,0);finishImages(readyPair);await new Promise(setImmediate);
+ assert.deepEqual(released,readyPair);assert.equal(spent,beforeCancelEnergy);
+ // The real preparation helper starts exactly two ordered requests and cleans up a late success after failure.
+ const pairFlow=new Flow(),pendingFrames=[],pairReleases=[];
+ pairFlow.acquireLevelFrame=path=>new Promise((resolve,reject)=>pendingFrames.push({path,resolve,reject}));
+ pairFlow.releaseLevelFrame=frame=>pairReleases.push(frame);
+ const pairLoad=pairFlow._prepareLevelFrames({topImage:'top',bottomImage:'bottom'});
+ assert.deepEqual(pendingFrames.map(p=>p.path),['top','bottom']);
+ pendingFrames[1].resolve(readyPair[1]);pendingFrames[0].resolve(readyPair[0]);
+ assert.deepEqual(Array.from(await pairLoad),readyPair);
+ pendingFrames.length=0;const badPair=pairFlow._prepareLevelFrames({topImage:'top',bottomImage:'bottom'});
+ const badPairRejected=assert.rejects(badPair,/image failed/);
+ pendingFrames[0].reject(Error('image failed'));await new Promise(setImmediate);
+ assert.equal(pairReleases.length,0);pendingFrames[1].resolve(readyPair[1]);await badPairRejected;
+ assert.deepEqual(pairReleases,[readyPair[1]]);
  console.log('PASS: loading/fallback, daily first-round ad protection, retries, day rollover, persistence, and level-00 exclusion.');
 })().catch(e=>{console.error(e);process.exitCode=1});
 

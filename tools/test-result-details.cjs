@@ -80,7 +80,7 @@ const flow = new Flow(); let payload;
 Object.assign(flow, { isValid: true, _currentLevel: level, _foundIds: new Set(Array.from({ length: 10 }, (_, i) => i)),
     _elapsedTime: 78, _remainingTime: 0, _reviveUsed: false, _foods: [],
     save: { isCompleted: () => false, completeLevel() {} }, rankProvider: { submitScore() {} },
-    platform: { onRoundFinished() {} }, resultModal: { present(value) { payload = value; } },
+    platform: { onRoundFinished() {} }, resultModal: { node: {activeInHierarchy: false}, present(value) { payload = value;this.node.activeInHierarchy = true; } },
     _playResultTone() {}, findNextLevel: () => null });
 for (const reason of ['time', 'lives']) {
     flow._isGameOver = false; flow.finishLevel(false, reason);

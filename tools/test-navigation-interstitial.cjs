@@ -28,12 +28,13 @@ vm.runInNewContext(compile(fs.readFileSync('assets/scripts/services/PlatformServ
 const source = fs.readFileSync('assets/scripts/GameFlow.ts', 'utf8');
 const tree = ts.createSourceFile('GameFlow.ts', source, ts.ScriptTarget.Latest, true);
 const names = ['backFromCitySelection', 'showLobby', 'returnToLobby', 'showCitySelect', 'enterLevelSelection',
-    'requestReward', '_switchTo', '_cancelSecondaryNavigation'];
+    '_prioritizeAssetDownloads', 'requestReward', '_switchTo', '_cancelSecondaryNavigation'];
 const methods = tree.statements.find(ts.isClassDeclaration).members.filter(m => names.includes(m.name?.getText(tree)))
     .map(m => m.getText(tree)).join('\n');
 const Flow = vm.runInNewContext(compile(`class Flow { ${methods} }; Flow;`), { console });
 function setup(access = true) {
     const flow = new Flow();
+    flow._releaseChapterComboClips = () => {};
     flow.isValid = true;
     flow._secondaryNavigationVersion = flow._levelLoadVersion = flow._comboSoundRequest = 0;
     flow.platform = new platformExports.PlatformService();

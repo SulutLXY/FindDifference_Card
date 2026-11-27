@@ -266,50 +266,54 @@ export class GameScreen extends UIScreen {
         this._bindImageInput(bottom);
     }
 
-    /** 进入关卡：设置图片与文字，清理旧标记。由 GameFlow.startLevel 调用。 */
-    public async setupLevel(level: LevelConfig, progress: (value: number) => void = () => {}): Promise<void> {
-        this.clearLevel();
-        this._resetLivesAnimation();
-        this._lastLives = null;
-        this._level = level;
-        this._surprise?.start(level);
-        const token = ++this._setupToken;
-        this._clearMarkers();
-        this._clearWrongMarkers();
-        this._setZoom(1);
-        this._progressConfigured = false;
-        this._progressTotal = 0;
-
-        this.setLabel(this.levelTitle, 'LevelTitle', level.name);
-        this.refreshHud();
-
-        const frames: SpriteFrame[] = [];
+    /** 从调用起接管预备图片引用；成功、失败、取消均由本组件归还。 */
+    public async setupLevel(level: LevelConfig, progress: (value: number) => void = () => {}, preparedFrames?: SpriteFrame[]): Promise<void> {
+        const frames: SpriteFrame[] = preparedFrames ?? [];
         try {
-            let completed = 0;
-            // 两图同时请求，但必须等两条请求均结束后再处理失败，避免迟到的成功资源泄漏。
-            const results = await Promise.all([level.topImage, level.bottomImage].map(async (path, index) => {
-                try {
-                    frames[index] = await this.flow.acquireLevelFrame(path);
-                    if (!this.isValid || token !== this._setupToken) throw new Error('关卡加载已取消');
-                    progress(++completed / 2 * 0.9);
-                    return null;
-                } catch (error) { return { error }; }
-            }));
-            const failed = results.find(result => result !== null);
-            if (failed) throw failed.error;
+            this.clearLevel();
+            this._resetLivesAnimation();
+            this._lastLives = null;
+            this._level = level;
+            this._surprise?.start(level);
+            const token = ++this._setupToken;
+            this._clearMarkers();
+            this._clearWrongMarkers();
+            this._setZoom(1);
+            this._progressConfigured = false;
+            this._progressTotal = 0;
+            this.setLabel(this.levelTitle, 'LevelTitle', level.name);
+            this.refreshHud();
+            if (preparedFrames) {
+                if (frames.length !== 2 || !frames[0] || !frames[1]) throw new Error('关卡预备图片不完整');
+                if (!this.isValid || token !== this._setupToken) throw new Error('关卡加载已取消');
+                progress(0.9);
+            } else {
+                let completed = 0;
+                const results = await Promise.all([level.topImage, level.bottomImage].map(async (path, index) => {
+                    try {
+                        frames[index] = await this.flow.acquireLevelFrame(path);
+                        if (!this.isValid || token !== this._setupToken) throw new Error('关卡加载已取消');
+                        progress(++completed / 2 * 0.9);
+                        return null;
+                    } catch (error) { return { error }; }
+                }));
+                const failed = results.find(result => result !== null);
+                if (failed) throw failed.error;
+            }
             const [topFrame, bottomFrame] = frames;
             const top = this.resolveNode(this.topImage, 'TopImage');
             const bottom = this.resolveNode(this.bottomImage, 'BottomImage');
             this._applySpriteFrame(top, topFrame);
             this._applySpriteFrame(bottom, bottomFrame);
             this._levelFrames = frames;
+            this.refreshHud();
+            progress(1);
         } catch (error) {
+            if (this._levelFrames === frames) this._levelFrames = [];
             for (const frame of frames) if (frame) this.flow.releaseLevelFrame(frame);
             console.error(`[GameScreen] 关卡图片加载失败: ${level.topImage} / ${level.bottomImage}`, error);
             throw error;
         }
-        this.refreshHud();
-        progress(1);
     }
 
     /** 每帧只比较基本数值；各组 UI 仅在显示数据变化时刷新。 */

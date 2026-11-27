@@ -54,12 +54,23 @@ export class LobbyScreen extends UIScreen {
     private _heroAssets: { clip: AnimationClip; frame: SpriteFrame } | null = null;
     private _heroPending: Promise<void> | null = null;
     private _heroRequest = 0;
+    private _heroAssetVersion = 0;
+    private _heroPlaceholder: SpriteFrame | null = null;
+    private _heroPlaceholders: Array<{ sprite: Sprite; frame: SpriteFrame | null; enabled: boolean }> = [];
+    private _heroReleaseTimer: ReturnType<typeof setTimeout> | null = null;
 
     protected onLoad(): void {
         void EnergyDisplay.attach(this.node);
         const hero = this.node.getChildByName('bg_showIcon');
         this._heroAnimation = hero?.getComponent(Animation) ?? null;
         this._heroSprite = hero?.getComponent(Sprite) ?? null;
+        this._heroPlaceholder = this._heroSprite?.spriteFrame ?? null;
+        // 动画也会改写子节点Sprite；全部保存静态帧，不能只处理主图。
+        this._heroPlaceholders = (hero?.getComponentsInChildren(Sprite) ?? []).map(sprite => {
+            const frame = sprite.spriteFrame;
+            frame?.addRef();
+            return { sprite, frame, enabled: sprite.enabled };
+        });
         if (this._heroAnimation) this._heroAnimation.playOnLoad = false;
         // 编辑器绑定的静态首帧在动画下载期间保持可见。
         if (this._heroSprite) this._heroSprite.enabled = !!this._heroSprite.spriteFrame;
@@ -81,6 +92,7 @@ export class LobbyScreen extends UIScreen {
     }
 
     protected onOpen(): void {
+        this._cancelHeroRelease();
         const host = this.flow.node.parent;
         host?.getComponent(LobbyEntries)?.bindLobby();
         host?.getComponent(FavoriteGift)?.bindLobby();
@@ -139,16 +151,49 @@ export class LobbyScreen extends UIScreen {
     protected onDisable(): void {
         ++this._heroRequest;
         if (this._heroAnimation?.isValid) this._heroAnimation.stop();
+        this._scheduleHeroRelease();
+    }
+
+    private _scheduleHeroRelease(): void {
+        this._cancelHeroRelease();
+        this._heroReleaseTimer = setTimeout(() => {
+            this._heroReleaseTimer = null;
+            if (!this.enabledInHierarchy) this._releaseHeroAssets();
+        }, 10000);
     }
 
     protected onDestroy(): void {
+        this._cancelHeroRelease();
+        this._releaseHeroAssets();
+        for (const entry of this._heroPlaceholders) {
+            if (entry.sprite.isValid) entry.sprite.spriteFrame = null;
+            entry.frame?.decRef();
+        }
+        this._heroPlaceholders = [];
+        this._heroPlaceholder = null;
+    }
+
+    private _cancelHeroRelease(): void {
+        if (this._heroReleaseTimer !== null) clearTimeout(this._heroReleaseTimer);
+        this._heroReleaseTimer = null;
+    }
+
+    private _releaseHeroAssets(): void {
         ++this._heroRequest;
+        ++this._heroAssetVersion;
+        this._heroPending = null;
         if (this._heroAnimation?.isValid) {
             this._heroAnimation.stop();
             this._heroAnimation.defaultClip = null;
             this._heroAnimation.clips = [];
         }
-        if (this._heroSprite?.isValid) this._heroSprite.spriteFrame = null;
+        // 先断开所有动画帧引用，再decRef动画（其依赖会被引擎销毁并清空UV）。
+        for (const entry of this._heroPlaceholders) {
+            if (!entry.sprite.isValid) continue;
+            const frame = entry.frame?.isValid ? entry.frame : null;
+            entry.sprite.spriteFrame = frame;
+            entry.sprite.enabled = entry.enabled && !!frame;
+        }
         this._heroAssets?.clip.decRef();
         this._heroAssets?.frame.decRef();
         this._heroAssets = null;
@@ -189,10 +234,11 @@ export class LobbyScreen extends UIScreen {
         }
     }
 
-    /** 合并并发请求，持有资源引用直到界面销毁，返回首页时复用。 */
+    /** 合并并发请求；离开10秒释放，旧请求迟到不得重新占用内存。 */
     private _loadHeroAssets(): Promise<void> {
         if (this._heroAssets) return Promise.resolve();
         if (this._heroPending) return this._heroPending;
+        const version = this._heroAssetVersion;
         const pending = (async () => {
             const bundle = assetManager.getBundle(HERO_BUNDLE) ?? await new Promise<AssetManager.Bundle>((resolve, reject) => {
                 assetManager.loadBundle(HERO_BUNDLE, (error, loaded) => {
@@ -200,26 +246,31 @@ export class LobbyScreen extends UIScreen {
                     else resolve(loaded);
                 });
             });
-            if (!this.isValid) return;
-            const [clip, frame] = await Promise.all([
+            if (!this.isValid || version !== this._heroAssetVersion) return;
+            const held: Array<AnimationClip | SpriteFrame> = [];
+            const results = await Promise.all([
                 new Promise<AnimationClip>((resolve, reject) => {
                     bundle.load(HERO_CLIP, AnimationClip, (error, loaded) => {
                         if (error || !loaded) reject(error ?? new Error('首页动画加载失败'));
-                        else resolve(loaded);
+                        else { loaded.addRef(); held.push(loaded); resolve(loaded); }
                     });
                 }),
                 new Promise<SpriteFrame>((resolve, reject) => {
                     bundle.load(HERO_FRAME, SpriteFrame, (error, loaded) => {
                         if (error || !loaded) reject(error ?? new Error('首页动画首帧加载失败'));
-                        else resolve(loaded);
+                        else { loaded.addRef(); held.push(loaded); resolve(loaded); }
                     });
                 }),
-            ]);
-            if (!this.isValid) return;
-            clip.addRef();
-            frame.addRef();
-            this._heroAssets = { clip, frame };
-        })().finally(() => { this._heroPending = null; });
+            ].map(task => task.then(value => ({ value, error: null as unknown }), error => ({ value: null, error }))));
+            const failed = results.find(result => result.error);
+            if (failed || !this.isValid || version !== this._heroAssetVersion) {
+                for (const asset of held) asset.decRef();
+                if (failed) throw failed.error;
+                return;
+            }
+            this._heroAssets = { clip: results[0].value as AnimationClip, frame: results[1].value as SpriteFrame };
+            if (!this.enabledInHierarchy && this._heroReleaseTimer === null) this._scheduleHeroRelease();
+        })().finally(() => { if (this._heroPending === pending) this._heroPending = null; });
         this._heroPending = pending;
         return pending;
     }

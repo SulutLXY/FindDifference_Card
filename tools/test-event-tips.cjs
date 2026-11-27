@@ -19,6 +19,7 @@ vm.runInNewContext(compile(fs.readFileSync('assets/scripts/services/SaveService.
 const { SaveService } = exportsSave;
 const Flow = methods('assets/scripts/GameFlow.ts', ['isCityUnlocked', 'isLevelUnlocked', 'requestLevelUnlock',
     'watchLevelUnlockVideo', 'watchChapterUnlockVideo', 'requestReward', '_switchTo']);
+Flow.prototype._releaseChapterComboClips = () => {};
 const Selection = methods('assets/scripts/ui/LevelSelectScreen.ts', ['_enterLevel']);
 class Label { static Overflow = { SHRINK: 1 }; }
 class Button {}
@@ -34,7 +35,9 @@ class UIScreen {
     onDisable() {}
     onDestroy() {}
     resolveNode(_, name) {
-        const node = name.split('/').reduce((n, key) => n?.children.find(child => child.name === key), this.node);
+        const deep=(node,key)=>node?.children.find(child=>child.name===key)
+            ?? node?.children.map(child=>deep(child,key)).find(Boolean);
+        const node = name.split('/').reduce((n, key) => deep(n,key), this.node);
         assert.ok(node, 'Missing authored EventTips node: ' + name);
         return node;
     }
@@ -52,10 +55,10 @@ vm.runInNewContext(compile(fs.readFileSync('assets/scripts/ui/EventTips.ts', 'ut
         : { UIScreen },
 });
 const { EventTips } = exportsModal;
-const scene = JSON.parse(fs.readFileSync('assets/scene/game.scene', 'utf8'));
+const scene = JSON.parse(fs.readFileSync('assets/PleyGame/prefabs/GameplaySupport.prefab', 'utf8'));
 const eventIndex = scene.findIndex(n => n.__type__ === 'cc.Node' && n._name === 'EventTips');
-assert.ok(eventIndex > 0, 'Use the scene-authored EventTips');
-assert.equal(scene[scene[eventIndex]._parent.__id__]._name, 'Canvas');
+assert.ok(eventIndex > 0, 'Use the authored EventTips from the remote gameplay support prefab');
+assert.equal(scene[scene[eventIndex]._parent.__id__]._name, 'GameplaySupport');
 function sceneNode(index) {
     const src = scene[index], components = new Map();
     for (const ref of src._components || []) {

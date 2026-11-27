@@ -206,13 +206,14 @@ function flow() {
     const cancelled = finish(); await flush();
     assert.equal(cancelled.refs, 0); assert.equal(back._contentBundles.users.size, 0);
     playCurrent(back); await flush(); finish(); await flush();
-    assert.equal(homeClip.refs, 1, 'Fading out home keeps its cache reference for the return journey');
+    assert.equal(homeClip.refs, 0, 'Entering a chapter releases the old general-music cache after fade-out');
     back._playPageMusic('voice/BGmusic/Main_music00');
-    assert.equal(loads.length, 0, 'Returning home reuses the valid cached clip');
+    await flush();assert.equal(loads.length, 1, 'An evicted home track loads again through the normal engine/file cache');
+    const reloadedHome=finish();await flush();
     back._musicMixer.update(1.5);
-    assert.equal(homeClip.refs, 2);
+    assert.equal(reloadedHome.refs, 2);
     back.setMusicEnabled(false);
-    assert.equal(homeClip.refs, 1, 'Disabling music releases voices but keeps reusable generic cache');
+    assert.equal(reloadedHome.refs, 0, 'Disabling music releases both voices and the long-music cache');
 
     const a = { key: 'plain' }, b = { key: sanguo }; f._cities = [a, b];
     f._updateGameMusic(a, 0, 'select'); assert.equal(f._gameMusicPath, '');

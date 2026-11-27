@@ -677,19 +677,9 @@
           "folder": "zheng-bang-xiao-mao"
         },
         {
-          "id": "chong-wu-gu-shi/da-kai-men-shao-xi",
-          "name": "大开门稍息",
-          "folder": "da-kai-men-shao-xi"
-        },
-        {
           "id": "chong-wu-gu-shi/he-ban-zhu-ren-tong-zuo-da-ba",
           "name": "和班主任同坐大巴",
           "folder": "he-ban-zhu-ren-tong-zuo-da-ba"
-        },
-        {
-          "id": "chong-wu-gu-shi/happy-mao",
-          "name": "Happy 猫",
-          "folder": "happy-mao"
         },
         {
           "id": "chong-wu-gu-shi/xiang-jiao-mao",
@@ -727,11 +717,6 @@
           "folder": "mao-meme-lv-xing"
         },
         {
-          "id": "chong-wu-gu-shi/mao-mi-cai-fang",
-          "name": "猫咪采访",
-          "folder": "mao-mi-cai-fang"
-        },
-        {
           "id": "chong-wu-gu-shi/jin-mao-you-yong-jian-jiang",
           "name": "金毛游泳健将",
           "folder": "jin-mao-you-yong-jian-jiang"
@@ -747,11 +732,6 @@
           "folder": "hei-mao-yi-huo-kan-hua-mao"
         },
         {
-          "id": "chong-wu-gu-shi/bian-mu-zhi-shang-ya-zhi",
-          "name": "边牧智商压制",
-          "folder": "bian-mu-zhi-shang-ya-zhi"
-        },
-        {
           "id": "chong-wu-gu-shi/xue-diao-duo-mao-mao",
           "name": "雪貂躲猫猫",
           "folder": "xue-diao-duo-mao-mao"
@@ -760,11 +740,6 @@
           "id": "chong-wu-gu-shi/shui-jiao-liu-kou-shui-mao",
           "name": "睡觉流口水猫",
           "folder": "shui-jiao-liu-kou-shui-mao"
-        },
-        {
-          "id": "chong-wu-gu-shi/gou-gou-luo-bo-zhi-jin-tiao-zhan",
-          "name": "狗狗萝卜纸巾挑战",
-          "folder": "gou-gou-luo-bo-zhi-jin-tiao-zhan"
         },
         {
           "id": "chong-wu-gu-shi/mo-tuo-xuan-zhuan-xiao-mao",

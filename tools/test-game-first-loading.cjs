@@ -52,16 +52,17 @@ const tick=()=>new Promise(setImmediate);
  const firstReturn=twice._openLobby(),secondReturn=twice._openLobby();rejects.forEach(reject=>reject(Error('offline')));await Promise.all([firstReturn,secondReturn]);assert.equal(twice._isPaused,false,'Repeated returns must not leave gameplay paused after network failure');
  // Even automatic sign-in on the gameplay page cannot download or prompt.
  const daily=new Flow();daily._dailyConfig={};daily.game={node:{activeInHierarchy:true}};daily._ensureDailySignIn=()=>assert.fail('Sign-in requested outside lobby');assert.equal(await daily.openDailySignIn(true),false);
- // Three active gameplay seconds before shell warmup; loading/tutorial/Feed pauses do not count.
+ // Three seconds after first playable readiness; home/pause/result screens keep counting.
  function cold(){const m=new Flow();m.isValid=true;m._lobbyWarmupRemaining=3;m._lobbyWarmupStarted=false;
-   m.game={node:{activeInHierarchy:true}};m.platform={interstitialBusy:false};m.feed={isPreview:false};
+   m.game={node:{activeInHierarchy:true}};m._currentLevel={};m.platform={interstitialBusy:false};m.feed={isPreview:false};
    m._ensureNavigationPage=()=>assert.fail('Background created a navigation page');
    m._ensureSecondaryPage=()=>assert.fail('Background created collection/rank');
    m._contentBundles={use:()=>assert.fail('Background downloaded covers or food icons')};
    m._preloadLobby=async()=>{m.warmCalls=(m.warmCalls||0)+1;};return m;}
  const menu=cold();for(let i=0;i<2;i++)menu._tickLobbyWarmup(1);assert.equal(menu.warmCalls,undefined);
  menu._tickLobbyWarmup(1);assert.equal(menu.warmCalls,1);menu._tickLobbyWarmup(100);assert.equal(menu.warmCalls,1);
- for(const flag of ['_levelLoading','_isPaused','_isGameOver']){const blocked=cold();blocked[flag]=true;blocked._tickLobbyWarmup(20);assert.equal(blocked._lobbyWarmupRemaining,3);}
+ for(const flag of ['_levelLoading']){const blocked=cold();blocked[flag]=true;blocked._tickLobbyWarmup(20);assert.equal(blocked._lobbyWarmupRemaining,3);}
+ for(const flag of ['_isPaused','_isGameOver']){const running=cold();running[flag]=true;running.game.node.activeInHierarchy=false;for(let i=0;i<3;i++)running._tickLobbyWarmup(1);assert.equal(running.warmCalls,1,flag);}
  const feed=cold();feed.feed.isPreview=true;feed._tickLobbyWarmup(20);assert.equal(feed._lobbyWarmupRemaining,3);
  const ad=cold();ad.platform.interstitialBusy=true;ad._tickLobbyWarmup(20);assert.equal(ad._lobbyWarmupRemaining,3);
  const disposed=cold();disposed.isValid=false;disposed._tickLobbyWarmup(20);assert.equal(disposed.warmCalls,undefined);

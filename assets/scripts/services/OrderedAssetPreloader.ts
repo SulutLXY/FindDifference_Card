@@ -13,14 +13,17 @@ export interface AssetWarmupStage {
 
 /** 分帧推进的低优先级文件预取队列；不反序列化预设，不创建游戏纹理。 */
 export class OrderedAssetPreloader {
-    private readonly queue: Array<{ stage: AssetWarmupStage; attempt: number }>;
+    private readonly queue: Array<{ stage: AssetWarmupStage; attempt: number; urgent?: boolean }>;
     private cursor = 0;
     private busy = false;
+    private inFlight = 0;
+    private readonly concurrency = 2;
     private disposed = false;
     private completed = new Set<string>();
+    private completedStages = new Set<string>();
     private failed = new Set<string>();
     private backoff = 0;
-    private priorityNames: string[] | null = null;
+    private priorityStages: AssetWarmupStage[] | null = null;
     private active: {
         stage: AssetWarmupStage; attempt: number; bundle: AssetManager.Bundle; release: () => void;
         assets: Array<{ uuid: string; path: string }>; index: number; failed: boolean;
@@ -35,12 +38,18 @@ export class OrderedAssetPreloader {
         this.queue = stages.map(stage => ({ stage, attempt: 0 }));
     }
 
-    /** 每帧最多启动一个预取；不从异步回调自动续发，前台切页/后台挂起时会停在请求边界。 */
+    /** 最多两个文件预取任务；仅由帧更新续发，前台加载时可在请求边界让出。 */
     public tick(dt: number): void {
         if (this.disposed || this.busy || !this.canRun()) return;
+        // 显式选择到来后不再给旧阶段补任务，等已发出的两个任务全部收尾再换包。
+        if (this.priorityStages) {
+            if (this.inFlight) return;
+            this.applyPriority();
+        }
         this.backoff = Math.max(0, this.backoff - Math.min(1, Math.max(0, Number.isFinite(dt) ? dt : 0)));
         if (this.backoff > 0) return;
         if (!this.active) {
+            while (this.queue[this.cursor] && this.completedStages.has(this.stageKey(this.queue[this.cursor].stage))) this.cursor++;
             const entry = this.queue[this.cursor];
             if (!entry) return;
             this.busy = true;
@@ -51,15 +60,25 @@ export class OrderedAssetPreloader {
             return;
         }
         const active = this.active;
-        while (active.index < active.assets.length && this.completed.has(`${active.stage.name}:${active.assets[active.index].uuid}`)) {
+        while (this.inFlight < this.concurrency) {
+            while (active.index < active.assets.length && this.completed.has(`${active.stage.name}:${active.assets[active.index].uuid}`)) {
+                active.index++;
+            }
+            const info = active.assets[active.index];
+            if (!info) {
+                if (!this.inFlight) this.close();
+                return;
+            }
             active.index++;
+            this.fetch(active, info);
         }
-        const info = active.assets[active.index];
-        if (!info) { this.close(); return; }
-        this.busy = true;
+    }
+
+    private fetch(active: NonNullable<OrderedAssetPreloader['active']>, info: { uuid: string }): void {
+        this.inFlight++;
         void new Promise<void>((resolve, reject) => {
             assetManager.preloadAny({ uuid: info.uuid, bundle: active.bundle.name }, {
-                priority: -10, maxConcurrency: 1, maxRequestsPerFrame: 1, maxRetryCount: 0, cacheEnabled: true,
+                priority: -10, maxConcurrency: 2, maxRequestsPerFrame: 2, maxRetryCount: 0, cacheEnabled: true,
             }, (error, items) => {
                 // Web 的图片下载器会创建 HTMLImageElement。预取完移除原始文件内存缓存，
                 // 保留浏览器 HTTP 缓存；小游戏保留磁盘路径，不会积累全项目解码后的图片。
@@ -69,54 +88,56 @@ export class OrderedAssetPreloader {
         }).then(() => {
             this.completed.add(`${active.stage.name}:${info.uuid}`);
         }).catch(() => { active.failed = true; }).finally(() => {
-            active.index++;
-            this.busy = false;
-            if (this.disposed) this.releaseActive();
-            else this.applyPriority();
+            this.inFlight--;
+            if (!this.inFlight) {
+                if (this.disposed) this.releaseActive();
+                else this.applyPriority();
+            }
             this.report(this.snapshot());
         });
     }
 
-    /** 最近的显式选择优先；当前单个请求收尾后让出队列，不中断引擎共享请求。 */
-    public prioritize(names: readonly string[]): void {
+    /** 最近的显式选择优先；在途请求收尾后换包，不中断引擎共享请求。 */
+    public prioritize(names: readonly string[], include?: readonly string[]): void {
         if (this.disposed || !names.length) return;
-        this.priorityNames = Array.from(new Set(names));
+        this.priorityStages = Array.from(new Set(names)).map(name => ({ name, ...(include ? { include: Array.from(include) } : {}) }));
         this.backoff = 0;
-        if (!this.busy) this.applyPriority();
+        if (!this.busy && !this.inFlight) this.applyPriority();
     }
 
     private applyPriority(): void {
-        const names = this.priorityNames;
-        this.priorityNames = null;
-        if (this.disposed || !names || this.busy) return;
+        if (this.disposed || !this.priorityStages || this.busy || this.inFlight) return;
+        const requested = this.priorityStages.filter(stage => !this.completedStages.has(this.stageKey(stage))
+            && this.queue.some(entry => entry.stage.name === stage.name));
+        this.priorityStages = null;
         if (this.active && this.active.index >= this.active.assets.length) this.close();
-        const remaining = this.queue.slice(this.cursor);
-        const promoted = names.flatMap(name => remaining.filter(entry => entry.stage.name === name));
-        if (!promoted.length) return;
-        const selected = new Set(promoted);
-        const reordered = [...promoted, ...remaining.filter(entry => !selected.has(entry))];
-        if (reordered[0] !== this.queue[this.cursor]) this.releaseActive();
-        // 中断阶段仍在队列中；再次轮到它时，成功的 UUID 会被跳过。
-        this.queue.splice(this.cursor, remaining.length, ...reordered);
+        if (!requested.length) return;
+        if (requested.length === 1 && this.active && this.stageKey(requested[0]) === this.stageKey(this.active.stage)) return;
+        // 插入一次性紧急阶段，普通章节队列的相对顺序保持不变。
+        const remaining = this.queue.slice(this.cursor).filter(entry => !entry.urgent);
+        this.releaseActive();
+        this.queue.splice(this.cursor, this.queue.length - this.cursor,
+            ...requested.map(stage => ({ stage, attempt: 0, urgent: true })), ...remaining);
         this.backoff = 0;
         this.report(this.snapshot());
     }
 
     public snapshot(): { state: string; bundle: string | null; completedAssets: number; failedStages: number;
-        finishedStages: number; queuedStages: number; currentAsset: number; currentTotal: number } {
+        finishedStages: number; queuedStages: number; currentAsset: number; currentTotal: number; inFlight: number; maxConcurrency: number } {
         return {
             state: this.disposed ? 'disposed' : this.cursor >= this.queue.length && !this.active
                 ? (this.failed.size ? 'partial' : 'complete') : 'running',
             bundle: this.active?.stage.name ?? this.queue[this.cursor]?.stage.name ?? null,
             completedAssets: this.completed.size, failedStages: this.failed.size,
             finishedStages: this.cursor, queuedStages: this.queue.length,
-            currentAsset: this.active?.index ?? 0, currentTotal: this.active?.assets.length ?? 0,
+            currentAsset: Math.max(0, (this.active?.index ?? 0) - this.inFlight), currentTotal: this.active?.assets.length ?? 0,
+            inFlight: this.inFlight, maxConcurrency: this.concurrency,
         };
     }
 
     public dispose(): void {
         this.disposed = true;
-        if (!this.busy) this.releaseActive();
+        if (!this.busy && !this.inFlight) this.releaseActive();
     }
 
     private async open(stage: AssetWarmupStage, attempt: number): Promise<void> {
@@ -156,7 +177,10 @@ export class OrderedAssetPreloader {
     private close(): void {
         const active = this.active!;
         if (active.failed) this.retry(active.stage, active.attempt);
-        else this.failed.delete(this.stageKey(active.stage));
+        else {
+            this.failed.delete(this.stageKey(active.stage));
+            this.completedStages.add(this.stageKey(active.stage));
+        }
         this.releaseActive();
         this.cursor++;
         this.report(this.snapshot());

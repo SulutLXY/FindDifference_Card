@@ -1,0 +1,1906 @@
+{
+  "date": "2026-11-27",
+  "kind": "static-baseline-not-runtime-measurement",
+  "assumptions": [
+    "Texture estimate = source width * height * 4 (RGBA8), without mipmaps.",
+    "Build atlas padding/duplication, texture compression, CPU image copies, font atlases and render targets are not included.",
+    "Audio estimate assumes all source clips decoded to float32 PCM. Platform streaming/native playback may differ.",
+    "Disk/HTTP cache bytes are not resident texture bytes. Bundle presence does not mean all textures are loaded.",
+    "Figures exclude engine, JS heap, native objects, drivers and host app. They are not a total memory or peak measurement."
+  ],
+  "levelCount": 436,
+  "levelImages": {
+    "totalRgba8Bytes": 2400190464,
+    "minPairBytes": 5505024,
+    "medianPairBytes": 5505024,
+    "maxPairBytes": 5505024,
+    "maxAdjacentTransitionBytes": 11010048
+  },
+  "bundles": {
+    "resources": {
+      "imageCount": 4,
+      "encodedImageBytes": 64736,
+      "rgba8SourceImageBytes": 4930232,
+      "largestImages": [
+        {
+          "path": "assets/resources/textures/UI_Sprite/V3/backgrounds/bg_loading.jpg",
+          "width": 750,
+          "height": 1625,
+          "encodedBytes": 58180,
+          "rgba8Bytes": 4875000
+        },
+        {
+          "path": "assets/resources/textures/UI_Sprite/V3/panels/Londing_ICON.png",
+          "width": 94,
+          "height": 100,
+          "encodedBytes": 3885,
+          "rgba8Bytes": 37600
+        },
+        {
+          "path": "assets/resources/textures/UI_Sprite/V3/panels/panel_slider02.png",
+          "width": 58,
+          "height": 38,
+          "encodedBytes": 1295,
+          "rgba8Bytes": 8816
+        },
+        {
+          "path": "assets/resources/textures/UI_Sprite/V3/panels/panel_slider02BG.png",
+          "width": 58,
+          "height": 38,
+          "encodedBytes": 1376,
+          "rgba8Bytes": 8816
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "MainGameSources": {
+      "imageCount": 73,
+      "encodedImageBytes": 581536,
+      "rgba8SourceImageBytes": 4790096,
+      "largestImages": [
+        {
+          "path": "assets/PleyGame/Common/textures/SupportTexture/guanggao_Tex.jpg",
+          "width": 400,
+          "height": 400,
+          "encodedBytes": 42102,
+          "rgba8Bytes": 640000
+        },
+        {
+          "path": "assets/PleyGame/Common/textures/UI_Sprite/V3/backgrounds/BG_Fly01.png",
+          "width": 300,
+          "height": 300,
+          "encodedBytes": 4509,
+          "rgba8Bytes": 360000
+        },
+        {
+          "path": "assets/PleyGame/Texture/UI_Sprite/Game/icon_ComboTips01.png",
+          "width": 360,
+          "height": 200,
+          "encodedBytes": 18199,
+          "rgba8Bytes": 288000
+        },
+        {
+          "path": "assets/PleyGame/Texture/UI_Sprite/Game/icon_ComboTips02.png",
+          "width": 360,
+          "height": 200,
+          "encodedBytes": 25358,
+          "rgba8Bytes": 288000
+        },
+        {
+          "path": "assets/PleyGame/Texture/UI_Sprite/Game/icon_ComboTips03.png",
+          "width": 360,
+          "height": 200,
+          "encodedBytes": 23458,
+          "rgba8Bytes": 288000
+        }
+      ],
+      "audioCount": 29,
+      "encodedAudioBytes": 1610681,
+      "pcmFloat32IfAllDecodedBytes": 64882512,
+      "audio": [
+        {
+          "path": "assets/PleyGame/voice/BGmusic/Game_music01.mp3",
+          "encodedBytes": 288852,
+          "durationSeconds": 36.049,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 12718080
+        },
+        {
+          "path": "assets/PleyGame/voice/BGmusic/Game_music02.mp3",
+          "encodedBytes": 335246,
+          "durationSeconds": 41.848,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 14764032
+        },
+        {
+          "path": "assets/PleyGame/voice/BGmusic/Game_music03.mp3",
+          "encodedBytes": 275896,
+          "durationSeconds": 34.429,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 12146688
+        },
+        {
+          "path": "assets/PleyGame/voice/BGmusic/Game_music04.mp3",
+          "encodedBytes": 343396,
+          "durationSeconds": 42.867,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 15123456
+        },
+        {
+          "path": "assets/PleyGame/voice/GamePlay/voice_AddTime.MP3",
+          "encodedBytes": 21674,
+          "durationSeconds": 1.75,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 617472
+        },
+        {
+          "path": "assets/PleyGame/voice/GamePlay/voice_Back.MP3",
+          "encodedBytes": 4433,
+          "durationSeconds": 0.313,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 110592
+        },
+        {
+          "path": "assets/PleyGame/voice/GamePlay/voice_MakeCkear.MP3",
+          "encodedBytes": 4120,
+          "durationSeconds": 0.287,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 101376
+        },
+        {
+          "path": "assets/PleyGame/voice/GamePlay/voice_Right.MP3",
+          "encodedBytes": 10703,
+          "durationSeconds": 0.836,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 294912
+        },
+        {
+          "path": "assets/PleyGame/voice/GamePlay/voice_TimeOver.MP3",
+          "encodedBytes": 11643,
+          "durationSeconds": 0.914,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 322560
+        },
+        {
+          "path": "assets/PleyGame/voice/GamePlay/voice_TipsTik.MP3",
+          "encodedBytes": 21674,
+          "durationSeconds": 1.75,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 617472
+        },
+        {
+          "path": "assets/PleyGame/voice/GamePlay/voice_wrong.mp3",
+          "encodedBytes": 10703,
+          "durationSeconds": 0.836,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 294912
+        },
+        {
+          "path": "assets/PleyGame/voice/ResultSound/level-failure.mp3",
+          "encodedBytes": 12452,
+          "durationSeconds": 2.0,
+          "sampleRate": 44100,
+          "channels": 1,
+          "pcmFloat32Bytes": 352800
+        },
+        {
+          "path": "assets/PleyGame/voice/ResultSound/level-victory.mp3",
+          "encodedBytes": 18408,
+          "durationSeconds": 3.0,
+          "sampleRate": 44100,
+          "channels": 1,
+          "pcmFloat32Bytes": 529200
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type01/voice_Combo _F_type01_01.mp3",
+          "encodedBytes": 6966,
+          "durationSeconds": 1.097,
+          "sampleRate": 44100,
+          "channels": 1,
+          "pcmFloat32Bytes": 193536
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type01/voice_Combo _F_type01_02.mp3",
+          "encodedBytes": 7907,
+          "durationSeconds": 1.254,
+          "sampleRate": 44100,
+          "channels": 1,
+          "pcmFloat32Bytes": 221184
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type01/voice_Combo _F_type01_03.mp3",
+          "encodedBytes": 6966,
+          "durationSeconds": 1.097,
+          "sampleRate": 44100,
+          "channels": 1,
+          "pcmFloat32Bytes": 193536
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type01/voice_Combo _F_type01_04.mp3",
+          "encodedBytes": 8847,
+          "durationSeconds": 1.411,
+          "sampleRate": 44100,
+          "channels": 1,
+          "pcmFloat32Bytes": 248832
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type01/voice_Combo _F_type01_05.mp3",
+          "encodedBytes": 19348,
+          "durationSeconds": 3.161,
+          "sampleRate": 44100,
+          "channels": 1,
+          "pcmFloat32Bytes": 557568
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type02/voice_Combo _F_type02_01.MP3",
+          "encodedBytes": 12583,
+          "durationSeconds": 0.993,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 350208
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type02/voice_Combo _F_type02_02.MP3",
+          "encodedBytes": 16031,
+          "durationSeconds": 1.28,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 451584
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type02/voice_Combo _F_type02_03.MP3",
+          "encodedBytes": 17285,
+          "durationSeconds": 1.384,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 488448
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type02/voice_Combo _F_type02_04.MP3",
+          "encodedBytes": 21047,
+          "durationSeconds": 1.698,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 599040
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type02/voice_Combo _F_type02_05.MP3",
+          "encodedBytes": 19793,
+          "durationSeconds": 1.593,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 562176
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type03/voice_Combo _F_type03_01.MP3",
+          "encodedBytes": 14464,
+          "durationSeconds": 1.149,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 405504
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type03/voice_Combo _F_type03_02.MP3",
+          "encodedBytes": 16345,
+          "durationSeconds": 1.306,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 460800
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type03/voice_Combo _F_type03_03.MP3",
+          "encodedBytes": 21674,
+          "durationSeconds": 1.75,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 617472
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type03/voice_Combo _F_type03_04.MP3",
+          "encodedBytes": 23555,
+          "durationSeconds": 1.907,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 672768
+        },
+        {
+          "path": "assets/PleyGame/voice/Combo _F_type/Combo _F_type03/voice_Combo _F_type03_05.MP3",
+          "encodedBytes": 32644,
+          "durationSeconds": 1.985,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 700416
+        },
+        {
+          "path": "assets/PleyGame/Common/voice/ComboSound/Combo _F_type01_01/voice_Combo _F_type01_00.MP3",
+          "encodedBytes": 6026,
+          "durationSeconds": 0.94,
+          "sampleRate": 44100,
+          "channels": 1,
+          "pcmFloat32Bytes": 165888
+        }
+      ]
+    },
+    "LobbySources": {
+      "imageCount": 50,
+      "encodedImageBytes": 1251436,
+      "rgba8SourceImageBytes": 22579276,
+      "largestImages": [
+        {
+          "path": "assets/LobbySources/textures/UI_Sprite/backgrounds/bg_content-001.jpg",
+          "width": 750,
+          "height": 1625,
+          "encodedBytes": 73382,
+          "rgba8Bytes": 4875000
+        },
+        {
+          "path": "assets/LobbySources/textures/UI_Sprite/backgrounds/bg_content-002.jpg",
+          "width": 750,
+          "height": 1625,
+          "encodedBytes": 91959,
+          "rgba8Bytes": 4875000
+        },
+        {
+          "path": "assets/LobbySources/textures/UI_Sprite/backgrounds/bg_content.jpg",
+          "width": 750,
+          "height": 1625,
+          "encodedBytes": 133802,
+          "rgba8Bytes": 4875000
+        },
+        {
+          "path": "assets/LobbySources/textures/UI_Sprite/backgrounds/bg_home.JPG",
+          "width": 750,
+          "height": 1625,
+          "encodedBytes": 190342,
+          "rgba8Bytes": 4875000
+        },
+        {
+          "path": "assets/LobbySources/textures/UI_Sprite/V3/lobby-hero-still.png",
+          "width": 704,
+          "height": 420,
+          "encodedBytes": 231003,
+          "rgba8Bytes": 1182720
+        }
+      ],
+      "audioCount": 1,
+      "encodedAudioBytes": 242877,
+      "pcmFloat32IfAllDecodedBytes": 10690560,
+      "audio": [
+        {
+          "path": "assets/LobbySources/voice/BGmusic/Main_music00.mp3",
+          "encodedBytes": 242877,
+          "durationSeconds": 30.302,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 10690560
+        }
+      ]
+    },
+    "MainGameAimation": {
+      "imageCount": 26,
+      "encodedImageBytes": 5026424,
+      "rgba8SourceImageBytes": 25079120,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (1).png",
+          "width": 704,
+          "height": 420,
+          "encodedBytes": 231003,
+          "rgba8Bytes": 1182720
+        },
+        {
+          "path": "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (10).png",
+          "width": 704,
+          "height": 420,
+          "encodedBytes": 231912,
+          "rgba8Bytes": 1182720
+        },
+        {
+          "path": "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (11).png",
+          "width": 704,
+          "height": 420,
+          "encodedBytes": 234078,
+          "rgba8Bytes": 1182720
+        },
+        {
+          "path": "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (12).png",
+          "width": 704,
+          "height": 420,
+          "encodedBytes": 234696,
+          "rgba8Bytes": 1182720
+        },
+        {
+          "path": "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (13).png",
+          "width": 704,
+          "height": 420,
+          "encodedBytes": 235730,
+          "rgba8Bytes": 1182720
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "chapter-covers": {
+      "imageCount": 17,
+      "encodedImageBytes": 818901,
+      "rgba8SourceImageBytes": 4602240,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/chapter-covers/city-00-HotTips-icon.jpg",
+          "width": 360,
+          "height": 188,
+          "encodedBytes": 65548,
+          "rgba8Bytes": 270720
+        },
+        {
+          "path": "assets/Bundle/chapter-covers/city-01-2026Hotmeme-icon.jpg",
+          "width": 360,
+          "height": 188,
+          "encodedBytes": 57774,
+          "rgba8Bytes": 270720
+        },
+        {
+          "path": "assets/Bundle/chapter-covers/city-02-beijing-icon.jpg",
+          "width": 360,
+          "height": 188,
+          "encodedBytes": 30865,
+          "rgba8Bytes": 270720
+        },
+        {
+          "path": "assets/Bundle/chapter-covers/city-03-shanghai-icon.jpg",
+          "width": 360,
+          "height": 188,
+          "encodedBytes": 35949,
+          "rgba8Bytes": 270720
+        },
+        {
+          "path": "assets/Bundle/chapter-covers/city-04-nanjing-icon.jpg",
+          "width": 360,
+          "height": 188,
+          "encodedBytes": 27863,
+          "rgba8Bytes": 270720
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "food-icons": {
+      "imageCount": 60,
+      "encodedImageBytes": 9141408,
+      "rgba8SourceImageBytes": 62443520,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/food-icons/city-02-beijing/city-02-beijing-BeiJingKaoYa.png",
+          "width": 512,
+          "height": 512,
+          "encodedBytes": 340549,
+          "rgba8Bytes": 1048576
+        },
+        {
+          "path": "assets/Bundle/food-icons/city-02-beijing/city-02-beijing-DouZhiJiaoQuan.png",
+          "width": 512,
+          "height": 512,
+          "encodedBytes": 57402,
+          "rgba8Bytes": 1048576
+        },
+        {
+          "path": "assets/Bundle/food-icons/city-02-beijing/city-02-beijing-LuZhuHuoShao.png",
+          "width": 512,
+          "height": 512,
+          "encodedBytes": 377497,
+          "rgba8Bytes": 1048576
+        },
+        {
+          "path": "assets/Bundle/food-icons/city-02-beijing/city-02-beijing-ShuanYangRou.png",
+          "width": 512,
+          "height": 512,
+          "encodedBytes": 417663,
+          "rgba8Bytes": 1048576
+        },
+        {
+          "path": "assets/Bundle/food-icons/city-02-beijing/city-02-beijing-ZhaJiangMian.png",
+          "width": 512,
+          "height": 512,
+          "encodedBytes": 352185,
+          "rgba8Bytes": 1048576
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "wang-luo-re-dian": {
+      "imageCount": 120,
+      "encodedImageBytes": 23535054,
+      "rgba8SourceImageBytes": 229992960,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/ai-jian-ce-lian/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 308231,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/ai-jian-ce-lian/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 324033,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/ba-lei-zhan-jiu-ping/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 220170,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/ba-lei-zhan-jiu-ping/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 246053,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/bing-qi-lin-bu-yu/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 296241,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "qing-hua-ci": {
+      "imageCount": 184,
+      "encodedImageBytes": 29652449,
+      "rgba8SourceImageBytes": 345349440,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/a-la-bo-wen-zhu-tai/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 161018,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/a-la-bo-wen-zhu-tai/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 171784,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/cha-fang-bei-cha/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 238413,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/cha-fang-bei-cha/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 221934,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/chuang-qian-cha-hua/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 242922,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 14,
+      "encodedAudioBytes": 722361,
+      "pcmFloat32IfAllDecodedBytes": 15869940,
+      "audio": [
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/BGmusic/Game_music_Qihuaci.mp3",
+          "encodedBytes": 327934,
+          "durationSeconds": 27.272,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 9621504
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC01_01.mp3",
+          "encodedBytes": 42890,
+          "durationSeconds": 1.071,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 377849
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC01_02.mp3",
+          "encodedBytes": 51250,
+          "durationSeconds": 1.28,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 451584
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC01_03.mp3",
+          "encodedBytes": 39756,
+          "durationSeconds": 0.993,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 350207
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC01_04.mp3",
+          "encodedBytes": 61699,
+          "durationSeconds": 1.541,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 543744
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC01_05.mp3",
+          "encodedBytes": 56474,
+          "durationSeconds": 1.411,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 497660
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_01.mp3",
+          "encodedBytes": 15405,
+          "durationSeconds": 1.228,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 433152
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_02.mp3",
+          "encodedBytes": 17285,
+          "durationSeconds": 1.384,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 488448
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_03.mp3",
+          "encodedBytes": 18539,
+          "durationSeconds": 1.489,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 525312
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_04.mp3",
+          "encodedBytes": 15405,
+          "durationSeconds": 1.228,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 433152
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC02_05.mp3",
+          "encodedBytes": 24809,
+          "durationSeconds": 2.011,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 709632
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC03_02.mp3",
+          "encodedBytes": 16658,
+          "durationSeconds": 1.332,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 470016
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC03_04.mp3",
+          "encodedBytes": 18539,
+          "durationSeconds": 1.489,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 525312
+        },
+        {
+          "path": "assets/Bundle/levels/qing-hua-ci/Combo _F_type/Combo _F_type_QHC01/voice_Combo_type_QHC03_05.mp3",
+          "encodedBytes": 15718,
+          "durationSeconds": 1.254,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 442368
+        }
+      ]
+    },
+    "chong-wu-gu-shi": {
+      "imageCount": 198,
+      "encodedImageBytes": 32311353,
+      "rgba8SourceImageBytes": 379488384,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/bai-hu-yu-hei-gou-bao-mu/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 176790,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/bai-hu-yu-hei-gou-bao-mu/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 203765,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/bo-zui-mao/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 210824,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/bo-zui-mao/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 232884,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/cang-shu-chi-bo/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 246717,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 1,
+      "encodedAudioBytes": 210383,
+      "pcmFloat32IfAllDecodedBytes": 6165504,
+      "audio": [
+        {
+          "path": "assets/Bundle/levels/chong-wu-gu-shi/BGmusic/Game_music_PetStory.mp3",
+          "encodedBytes": 210383,
+          "durationSeconds": 17.476,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 6165504
+        }
+      ]
+    },
+    "xun-song-ji": {
+      "imageCount": 90,
+      "encodedImageBytes": 22471346,
+      "rgba8SourceImageBytes": 172494720,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/bian-cheng-jing-zhong/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 371882,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/bian-cheng-jing-zhong/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 366534,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/cao-po-kui-tan-di-ying/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 386220,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/cao-po-kui-tan-di-ying/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 378301,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xun-song-ji/chang-jie-yuan-shou/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 344959,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "qu-wei-duan-ju": {
+      "imageCount": 105,
+      "encodedImageBytes": 21147244,
+      "rgba8SourceImageBytes": 201243840,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/an-ye-yi-yang/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 265517,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/an-ye-yi-yang/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 272902,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/bie-shuo-hua-dai-ni-fei/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 247514,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/bie-shuo-hua-dai-ni-fei/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 252051,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/qu-wei-duan-ju/bu-qu-gou-lan/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 280217,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "meng-chong-san-guo": {
+      "imageCount": 95,
+      "encodedImageBytes": 18048640,
+      "rgba8SourceImageBytes": 172670520,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 250931,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/bai-di-cheng-tuo-gu/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 266236,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/cao-chuan-jie-jian/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 236091,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/cao-chuan-jie-jian/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 259295,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/cao-meng-de-heng-shuo-fu-shi/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 264694,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 12,
+      "encodedAudioBytes": 697505,
+      "pcmFloat32IfAllDecodedBytes": 13823973,
+      "audio": [
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/BGmusic/Game_music_sanguo.mp3",
+          "encodedBytes": 266807,
+          "durationSeconds": 22.178,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 7824384
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_01.mp3",
+          "encodedBytes": 73192,
+          "durationSeconds": 1.829,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 645112
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_02.mp3",
+          "encodedBytes": 71103,
+          "durationSeconds": 1.776,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 626687
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_03.mp3",
+          "encodedBytes": 53339,
+          "durationSeconds": 1.332,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 470009
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_04.mp3",
+          "encodedBytes": 74237,
+          "durationSeconds": 1.855,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 654329
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG01_05.mp3",
+          "encodedBytes": 46025,
+          "durationSeconds": 1.149,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 405500
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_01.mp3",
+          "encodedBytes": 16031,
+          "durationSeconds": 1.28,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 451584
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_02.mp3",
+          "encodedBytes": 18226,
+          "durationSeconds": 1.463,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 516096
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_04.mp3",
+          "encodedBytes": 19166,
+          "durationSeconds": 1.541,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 543744
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG02_05.mp3",
+          "encodedBytes": 23868,
+          "durationSeconds": 1.933,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 681984
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG03_02.mp3",
+          "encodedBytes": 18226,
+          "durationSeconds": 1.463,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 516096
+        },
+        {
+          "path": "assets/Bundle/levels/meng-chong-san-guo/Combo _F_type/Combo _F_type_SG01/voice_Combo_type_SG03_04.mp3",
+          "encodedBytes": 17285,
+          "durationSeconds": 1.384,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 488448
+        }
+      ]
+    },
+    "nian-du-re-geng": {
+      "imageCount": 170,
+      "encodedImageBytes": 30761134,
+      "rgba8SourceImageBytes": 316888320,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/nian-du-re-geng/a-ma-ti-la-si/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 177639,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/nian-du-re-geng/a-ma-ti-la-si/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 190354,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/nian-du-re-geng/bai-wan-ying-bang/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 255166,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/nian-du-re-geng/bai-wan-ying-bang/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 315830,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/nian-du-re-geng/bei-zi-ben-zuo-ju-le/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 208317,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 1,
+      "encodedAudioBytes": 368058,
+      "pcmFloat32IfAllDecodedBytes": 10801152,
+      "audio": [
+        {
+          "path": "assets/Bundle/levels/nian-du-re-geng/BGmusic/Game_music_ReGeng.mp3",
+          "encodedBytes": 368058,
+          "durationSeconds": 30.616,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 10801152
+        }
+      ]
+    },
+    "bei-jing": {
+      "imageCount": 45,
+      "encodedImageBytes": 6744969,
+      "rgba8SourceImageBytes": 86247360,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/bei-jing/ba-da-ling-chang-cheng/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 365869,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/bei-jing/ba-da-ling-chang-cheng/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 368691,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/bei-jing/bei-jing-kao-ya/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 201160,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/bei-jing/bei-jing-kao-ya/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 321765,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/bei-jing/dou-zhi-jiao-quan/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 151833,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "shang-hai": {
+      "imageCount": 45,
+      "encodedImageBytes": 6625515,
+      "rgba8SourceImageBytes": 86247360,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/shang-hai/ba-bao-la-jiang/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 187688,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/shang-hai/ba-bao-la-jiang/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 320096,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/shang-hai/ba-bao-la-jiang-zhi-zuo/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 199830,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/shang-hai/ba-bao-la-jiang-zhi-zuo/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 354166,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/shang-hai/ben-bang-hong-shao-rou/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 185500,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "nan-jing": {
+      "imageCount": 45,
+      "encodedImageBytes": 7365789,
+      "rgba8SourceImageBytes": 86247360,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/nan-jing/fu-zi-miao/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 153449,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/nan-jing/fu-zi-miao/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 259650,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/nan-jing/gui-hua-tang-yu-miao/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 174081,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/nan-jing/gui-hua-tang-yu-miao/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 169444,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/nan-jing/ji-ming-si/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 164221,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 1,
+      "encodedAudioBytes": 162735,
+      "pcmFloat32IfAllDecodedBytes": 4764672,
+      "audio": [
+        {
+          "path": "assets/Bundle/levels/nan-jing/BGmusic/Game_music_Nanjing.mp3",
+          "encodedBytes": 162735,
+          "durationSeconds": 13.505,
+          "sampleRate": 44100,
+          "channels": 2,
+          "pcmFloat32Bytes": 4764672
+        }
+      ]
+    },
+    "xia-men": {
+      "imageCount": 45,
+      "encodedImageBytes": 6970804,
+      "rgba8SourceImageBytes": 86247360,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/xia-men/bai-cheng-sha-tan/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 156657,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xia-men/bai-cheng-sha-tan/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 181304,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xia-men/gu-lang-yu/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 166599,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xia-men/gu-lang-yu/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 277053,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xia-men/hai-li-jian/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 381889,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "chang-sha": {
+      "imageCount": 46,
+      "encodedImageBytes": 8293279,
+      "rgba8SourceImageBytes": 86607360,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/chang-sha/chang-sha-mi-fen/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 168894,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/chang-sha/chang-sha-mi-fen/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 287355,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/chang-sha/chang-sha-mi-fen-zhi-zuo/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 180943,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/chang-sha/chang-sha-mi-fen-zhi-zuo/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 181225,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/chang-sha/chou-dou-fu/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 682662,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "guang-zhou": {
+      "imageCount": 46,
+      "encodedImageBytes": 9477953,
+      "rgba8SourceImageBytes": 88999872,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/guang-zhou/bai-qie-ji/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 182556,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/guang-zhou/bai-qie-ji/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 175531,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/guang-zhou/cha-shao/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 377976,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/guang-zhou/cha-shao/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 311964,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/guang-zhou/cha-shao-zhi-zuo/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 225004,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "cheng-du": {
+      "imageCount": 45,
+      "encodedImageBytes": 5933976,
+      "rgba8SourceImageBytes": 86247360,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/cheng-du/cao-tang-pu-zi/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 193181,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/cheng-du/cao-tang-pu-zi/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 191252,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/cheng-du/cheng-du-da-xiong-mao/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 182682,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/cheng-du/cheng-du-da-xiong-mao/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 169857,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/cheng-du/dan-dan-mian/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 172463,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    },
+    "xi-an": {
+      "imageCount": 45,
+      "encodedImageBytes": 8853356,
+      "rgba8SourceImageBytes": 86247360,
+      "largestImages": [
+        {
+          "path": "assets/Bundle/levels/xi-an/ba-xian-an/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 260793,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xi-an/ba-xian-an/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 296277,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xi-an/biangbiang-mian/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 203522,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xi-an/biangbiang-mian/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 302703,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/xi-an/bing-ma-yong/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 230037,
+          "rgba8Bytes": 2752512
+        }
+      ],
+      "audioCount": 0,
+      "encodedAudioBytes": 0,
+      "pcmFloat32IfAllDecodedBytes": 0,
+      "audio": []
+    }
+  },
+  "sourceDependencyScopes": {
+    "startupScene": {
+      "roots": [
+        "assets/scene/game.scene"
+      ],
+      "imageCount": 4,
+      "rgba8SourceImageBytes": 4930232,
+      "images": [
+        "assets/resources/textures/UI_Sprite/V3/backgrounds/bg_loading.jpg",
+        "assets/resources/textures/UI_Sprite/V3/panels/Londing_ICON.png",
+        "assets/resources/textures/UI_Sprite/V3/panels/panel_slider02.png",
+        "assets/resources/textures/UI_Sprite/V3/panels/panel_slider02BG.png"
+      ]
+    },
+    "gameplayUI": {
+      "roots": [
+        "assets/PleyGame/prefabs/GameScreen.prefab",
+        "assets/PleyGame/prefabs/ResultModal.prefab",
+        "assets/PleyGame/prefabs/GameplaySupport.prefab"
+      ],
+      "imageCount": 51,
+      "rgba8SourceImageBytes": 3202552,
+      "images": [
+        "assets/PleyGame/Common/textures/SupportTexture/ADDCollectGame01.png",
+        "assets/PleyGame/Common/textures/SupportTexture/ADDCollectGame02.png",
+        "assets/PleyGame/Common/textures/SupportTexture/ADDCollectGame03.png",
+        "assets/PleyGame/Common/textures/SupportTexture/ADDSubscription_01.png",
+        "assets/PleyGame/Common/textures/SupportTexture/ADDSubscription_02.png",
+        "assets/PleyGame/Common/textures/SupportTexture/guanggao_Tex.jpg",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_01.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_02.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_03.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/AnimaTex/AnimaTex_mao_04.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/backgrounds/BG_Fly01.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_primary_normal.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_secondary_pressed.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_secondary_warring.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_third.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/button_close.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_AddDesktop.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Gameflow.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Idea.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Mark01.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Subscription.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Time02.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_TipsAim_01.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_back.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_cat_02.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_fangda.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_home.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_music.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_play.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_settings.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_sound.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starL.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starW.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_videoplay.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/switch_off.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/switch_on.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/BG_White.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/TipsBG_02.jpg",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/level_card.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/level_card_selected.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/panel_cardmask.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/panel_light.png",
+        "assets/PleyGame/Texture/UI_Sprite/Game/icon_ComboTips03.png",
+        "assets/PleyGame/Texture/UI_Sprite/Game/icon_Win_01.png",
+        "assets/PleyGame/Texture/icons/icon_Time.png",
+        "assets/PleyGame/Texture/icons/icon_Tips01.png",
+        "assets/PleyGame/Texture/icons/icon_heart_filled.png",
+        "assets/PleyGame/Texture/icons/icon_progress_empty.png",
+        "assets/PleyGame/Texture/icons/icon_progress_filled.png",
+        "assets/PleyGame/Texture/icons/icon_shar02.png",
+        "assets/PleyGame/Texture/icons/line01.png"
+      ]
+    },
+    "homeUI": {
+      "roots": [
+        "assets/LobbySources/prefabs/LobbyScreen.prefab"
+      ],
+      "imageCount": 24,
+      "rgba8SourceImageBytes": 7239416,
+      "images": [
+        "assets/LobbySources/textures/UI_Sprite/V3/lobby-hero-detail-still.png",
+        "assets/LobbySources/textures/UI_Sprite/V3/lobby-hero-still.png",
+        "assets/LobbySources/textures/UI_Sprite/V3/panels/panel_energy.png",
+        "assets/LobbySources/textures/UI_Sprite/backgrounds/bg_home.JPG",
+        "assets/LobbySources/textures/UI_Sprite/backgrounds/bg_homeIcon.png",
+        "assets/LobbySources/textures/UI_Sprite/buttons/button_primary.png",
+        "assets/LobbySources/textures/UI_Sprite/buttons/button_secondary.png",
+        "assets/LobbySources/textures/UI_Sprite/buttons/button_secondary_white.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_Collect.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_Shar.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_aim.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_album (2).png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_album.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_rank.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_select_C.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_AddDesktop.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Gameflow.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_Subscription.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_mao.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_play.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_settings.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_signin.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_videoplay.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/BG_White.png"
+      ]
+    },
+    "homeHeroAnimation": {
+      "roots": [
+        "assets/Bundle/MainGameAimation/N_Cat_01/An_MainGame_N_Cat_01.anim"
+      ],
+      "imageCount": 26,
+      "rgba8SourceImageBytes": 25079120,
+      "images": [
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (1).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (10).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (11).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (12).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (13).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (14).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (15).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (16).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (17).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (18).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (19).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (2).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (20).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (21).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (3).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (4).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (5).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (6).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (7).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (8).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_01_ (9).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_02_ (0).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_02_ (1).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_02_ (2).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_02_ (3).png",
+        "assets/Bundle/MainGameAimation/N_Cat_01/N_Cat_02_ (4).png"
+      ]
+    },
+    "chapterSelectUI": {
+      "roots": [
+        "assets/LobbySources/prefabs/CitySelectScreen.prefab"
+      ],
+      "imageCount": 18,
+      "rgba8SourceImageBytes": 5248396,
+      "images": [
+        "assets/LobbySources/textures/UI_Sprite/V3/panels/panel_CityCard_BG.png",
+        "assets/LobbySources/textures/UI_Sprite/V3/panels/panel_slider01.png",
+        "assets/LobbySources/textures/UI_Sprite/V3/panels/panel_slider01BG.png",
+        "assets/LobbySources/textures/UI_Sprite/backgrounds/bg_content.jpg",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_Mark_blue.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_Mark_green.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_Mark_red.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_aim.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_chest.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_fire.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_leaf.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_select_levels.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_skull.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/title_select_levels.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_back.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_lock.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_videoplay.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/panel_cardmask.png"
+      ]
+    },
+    "levelSelectUI": {
+      "roots": [
+        "assets/LobbySources/prefabs/LevelSelectScreen.prefab"
+      ],
+      "imageCount": 10,
+      "rgba8SourceImageBytes": 5031716,
+      "images": [
+        "assets/LobbySources/textures/UI_Sprite/backgrounds/bg_content-001.jpg",
+        "assets/LobbySources/textures/UI_Sprite/icons/button_page_next.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/button_page_prev.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_back.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_lock.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_star.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_starL.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/BG_White.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/level_card.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/panel_cardmask.png"
+      ]
+    },
+    "collectionUI": {
+      "roots": [
+        "assets/LobbySources/SecondaryUI/prefabs/CollectScreen.prefab"
+      ],
+      "imageCount": 15,
+      "rgba8SourceImageBytes": 5221916,
+      "images": [
+        "assets/LobbySources/SecondaryUI/textures/icon_page.png",
+        "assets/LobbySources/textures/UI_Sprite/V3/panels/panel_slider01.png",
+        "assets/LobbySources/textures/UI_Sprite/V3/panels/panel_slider01BG.png",
+        "assets/LobbySources/textures/UI_Sprite/backgrounds/bg_content-002.jpg",
+        "assets/LobbySources/textures/UI_Sprite/icons/button_page_next.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/button_page_prev.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_album (2).png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_signin_hint.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/icon_tips03.png",
+        "assets/LobbySources/textures/UI_Sprite/icons/title_collection.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_primary_normal.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/buttons/button_secondary_pressed.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_back.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/icons/icon_videoplay.png",
+        "assets/PleyGame/Common/textures/UI_Sprite/V3/panels/level_card_selected.png"
+      ]
+    }
+  },
+  "largestLevels": [
+    {
+      "id": "city-00-HotTips/level-01",
+      "name": "骑士小猫",
+      "chapter": "wang-luo-re-dian",
+      "rgba8PairBytes": 5505024,
+      "encodedPairBytes": 498899,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/qi-shi-xiao-mao/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 243075,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/qi-shi-xiao-mao/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 255824,
+          "rgba8Bytes": 2752512
+        }
+      ]
+    },
+    {
+      "id": "city-00-HotTips/level-02",
+      "name": "闪身步",
+      "chapter": "wang-luo-re-dian",
+      "rgba8PairBytes": 5505024,
+      "encodedPairBytes": 440432,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/shan-shen-bu/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 245451,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/shan-shen-bu/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 194981,
+          "rgba8Bytes": 2752512
+        }
+      ]
+    },
+    {
+      "id": "wang-luo-re-dian/mo-fang-xiao-hou-zi-shi",
+      "name": "模仿小猴姿勢",
+      "chapter": "wang-luo-re-dian",
+      "rgba8PairBytes": 5505024,
+      "encodedPairBytes": 397766,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/mo-fang-xiao-hou-zi-shi/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 202563,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/mo-fang-xiao-hou-zi-shi/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 195203,
+          "rgba8Bytes": 2752512
+        }
+      ]
+    },
+    {
+      "id": "wang-luo-re-dian/chou-zhi-tiao-zhan",
+      "name": "抽纸挑战",
+      "chapter": "wang-luo-re-dian",
+      "rgba8PairBytes": 5505024,
+      "encodedPairBytes": 405609,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/chou-zhi-tiao-zhan/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 199210,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/chou-zhi-tiao-zhan/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 206399,
+          "rgba8Bytes": 2752512
+        }
+      ]
+    },
+    {
+      "id": "wang-luo-re-dian/sha-xian-ai-qing-gu-shi",
+      "name": "沙县爱情故事",
+      "chapter": "wang-luo-re-dian",
+      "rgba8PairBytes": 5505024,
+      "encodedPairBytes": 477743,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/sha-xian-ai-qing-gu-shi/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 235898,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/sha-xian-ai-qing-gu-shi/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 241845,
+          "rgba8Bytes": 2752512
+        }
+      ]
+    },
+    {
+      "id": "wang-luo-re-dian/gong-fu-xiao-mi",
+      "name": "功夫小咪",
+      "chapter": "wang-luo-re-dian",
+      "rgba8PairBytes": 5505024,
+      "encodedPairBytes": 451729,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/gong-fu-xiao-mi/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 223642,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/gong-fu-xiao-mi/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 228087,
+          "rgba8Bytes": 2752512
+        }
+      ]
+    },
+    {
+      "id": "wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai",
+      "name": "选到一样就买",
+      "chapter": "wang-luo-re-dian",
+      "rgba8PairBytes": 5505024,
+      "encodedPairBytes": 583243,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 296143,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/xuan-dao-yi-yang-jiu-mai/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 287100,
+          "rgba8Bytes": 2752512
+        }
+      ]
+    },
+    {
+      "id": "wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan",
+      "name": "上课偷吃挑战",
+      "chapter": "wang-luo-re-dian",
+      "rgba8PairBytes": 5505024,
+      "encodedPairBytes": 367119,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 172383,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/shang-ke-tou-chi-tiao-zhan/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 194736,
+          "rgba8Bytes": 2752512
+        }
+      ]
+    },
+    {
+      "id": "wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta",
+      "name": "挑战切超长蛋挞",
+      "chapter": "wang-luo-re-dian",
+      "rgba8PairBytes": 5505024,
+      "encodedPairBytes": 414169,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 205077,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/tiao-zhan-qie-chao-chang-dan-ta/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 209092,
+          "rgba8Bytes": 2752512
+        }
+      ]
+    },
+    {
+      "id": "wang-luo-re-dian/qiu-ri-shou-cang",
+      "name": "秋日收藏",
+      "chapter": "wang-luo-re-dian",
+      "rgba8PairBytes": 5505024,
+      "encodedPairBytes": 507296,
+      "images": [
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/qiu-ri-shou-cang/scene-a.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 250995,
+          "rgba8Bytes": 2752512
+        },
+        {
+          "path": "assets/Bundle/levels/wang-luo-re-dian/qiu-ri-shou-cang/scene-b.jpg",
+          "width": 1024,
+          "height": 672,
+          "encodedBytes": 256301,
+          "rgba8Bytes": 2752512
+        }
+      ]
+    }
+  ]
+}

@@ -270,6 +270,8 @@ function methods(file, names, globals = {}) {
         _contentBundles: { retain: () => () => {} }, isLevelUnlocked: () => true,
         _cancelSecondaryNavigation() {}, _updateGameMusic() {}, _updateComboGroup() {}, _setLoadingProgress() {},
         async _drawLoadingFrame() {}, async _ensureGameScreens() {}, async _ensureLevel() { return level; },
+        async _prepareLevelFrames() { return []; }, releaseLevelFrame() {},
+        _releaseChapterComboClips() {},
         async _resolveChapterMusic() { return null; },
         async _resolveChapterComboGroup() { return null; },
         _switchTo() { flow._isPaused = false; }, _preloadLobby() { steps.push('lobby'); },

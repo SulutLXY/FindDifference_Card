@@ -72,6 +72,8 @@ def main():
     parser.add_argument('--apply', action='store_true')
     parser.add_argument('--check', action='store_true')
     args = parser.parse_args()
+    if (args.apply or args.check) and list((ROOT/'config/pet-story-updates').glob('*.json')):
+        parser.error('Later pet-story corrections exist. Do not reapply the original import; verify with tools/update-pet-story-2026-11-26.py --check and tools/test-pet-story.cjs.')
     rows = scan()
     if not args.apply and not args.check:
         jobs = []

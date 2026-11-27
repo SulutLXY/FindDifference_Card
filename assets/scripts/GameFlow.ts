@@ -182,6 +182,7 @@ export class GameFlow extends Component {
     private _resultSoundRequest = 0;
     private readonly _comboClips = new Map<string, Promise<AudioClip>>();
     private readonly _chapterComboClips = new Set<AudioClip>();
+    private _chapterComboCacheVersion = 0;
     private _chapterComboGroup: { name: string; chapterBundle: string; stages: Map<number, string>;
         variants: Map<number, string[]> } | null = null;
     private readonly _successSoundBags = new Map<number, { signature: string; remaining: ComboClipRef[] }>();
@@ -203,7 +204,7 @@ export class GameFlow extends Component {
     private _pageSpritesDisposed = false;
     private readonly _contentBundles = new ContentBundlePool();
     private _backgroundAssets: OrderedAssetPreloader | null = null;
-    private _pendingAssetPriority: string[] | null = null;
+    private _pendingAssetPriority: { names: string[]; include?: string[] } | null = null;
     private readonly _levelFrameBundles = new Map<SpriteFrame, Array<() => void>>();
     private _cityIndex: CityIndex | null = null;
     private _levelConfigPending?: WeakMap<CityConfig, Map<string, Promise<LevelConfig>>>;
@@ -214,6 +215,8 @@ export class GameFlow extends Component {
     private _secondaryBundlePending: Promise<AssetManager.Bundle> | null = null;
     private readonly _secondaryPagesPending = new Map<'rank' | 'collect', Promise<RankScreen | CollectScreen>>();
     private readonly _secondaryPrefabs = new Map<'rank' | 'collect', Prefab>();
+    private readonly _secondaryIdleSeconds = new Map<'rank' | 'collect', number>();
+    private _retiredPagePrefabs: Prefab[] = [];
     private _secondaryNavigationVersion = 0;
     private _secondaryPageLoading = false;
     private _secondaryDisposed = false;
@@ -394,11 +397,13 @@ export class GameFlow extends Component {
         this._musicMixer?.update(dt);
         this._menuTutorial?.update(dt);
         this._tryFeedOffer();
+        // 下载不受首页、选关、暂停、结算的玩法计时开关影响。
+        this._tickLobbyWarmup(dt);
+        this._tickBackgroundAssets(dt);
+        this._tickResourceCleanup(dt);
         if (this.platform.interstitialBusy || this._levelLoading) return;
         if (this._isGameOver || this._isPaused || !this._currentLevel) return;
         if (!this.game || !this.game.node.active) return;
-        this._tickLobbyWarmup(dt);
-        this._tickBackgroundAssets(dt);
         this._remainingTime = Math.max(0, this._remainingTime - dt);
         this._elapsedTime += dt;
         this.game.refreshHud();
@@ -570,15 +575,14 @@ export class GameFlow extends Component {
             const bundle = await this._loadLobbyBundle();
             await new Promise<void>((resolve, reject) => bundle.load('voice/BGmusic/Main_music00', AudioClip, (error, clip) => {
                 if (error) reject(error);
-                else { if (this.isValid) this._cacheMusicClip('voice/BGmusic/Main_music00', clip); resolve(); }
+                else { this._cacheMusicClip('voice/BGmusic/Main_music00', clip); resolve(); }
             }));
         } catch (error) { if (this.isValid) console.warn('[GameFlow] 主页后台预加载失败，返回时可重试', error); }
     }
 
     private _tickLobbyWarmup(dt: number): void {
         if (!this.isValid || this._lobbyWarmupStarted || this._lobbyWarmupRemaining == null) return;
-        if (this.feed?.isPreview || this._levelLoading || this._isPaused || this._isGameOver
-            || !this.game?.node.activeInHierarchy || this.platform.interstitialBusy) return;
+        if (this.feed?.isPreview || this._levelLoading || this.platform.interstitialBusy) return;
         this._lobbyWarmupRemaining -= Number.isFinite(dt) ? Math.min(Math.max(dt, 0), 1) : 0;
         if (this._lobbyWarmupRemaining > 0) return;
         this._lobbyWarmupRemaining = null;
@@ -590,10 +594,17 @@ export class GameFlow extends Component {
     private _tickBackgroundAssets(dt: number): void {
         if (!this._lobbyWarmupStarted || this._lobbyPending || !this._canDownloadInBackground()) return;
         if (!this._backgroundAssets) {
+            // LevelSelectScreen 现行一屏8关；只预取前6关完整内容，先覆盖所有章节入口。
+            const entryStages: AssetWarmupStage[] = this._cities.map(city => ({ name: city.key, include: [
+                ...city.levels.slice(0, 8).map(folder => `thumbnails/${folder}/`),
+                ...city.levels.slice(0, 6).flatMap(folder => [`configs/${folder}/`, `${folder}/scene-`]),
+                'prefabs/', 'Animation/', 'BGmusic/', 'Combo _F_type/',
+            ] }));
             const stages: AssetWarmupStage[] = [
                 { name: 'MainGameSources' },
                 { name: 'LobbySources', exclude: ['SecondaryUI/'] },
                 { name: 'chapter-covers' },
+                ...entryStages,
                 { name: 'MainGameAimation' },
                 ...this._cities.map(city => ({ name: city.key, include: [
                     'configs/', 'thumbnails/', ...city.levels.map(folder => `${folder}/scene-`),
@@ -628,23 +639,22 @@ export class GameFlow extends Component {
                     lastBundle = progress.bundle;
                 });
             if (this._pendingAssetPriority) {
-                this._backgroundAssets.prioritize(this._pendingAssetPriority);
+                this._backgroundAssets.prioritize(this._pendingAssetPriority.names, this._pendingAssetPriority.include);
                 this._pendingAssetPriority = null;
             }
         }
         this._backgroundAssets.tick(dt);
     }
 
-    private _prioritizeAssetDownloads(names: string[]): void {
-        if (this._backgroundAssets) this._backgroundAssets.prioritize(names);
-        else this._pendingAssetPriority = names;
+    private _prioritizeAssetDownloads(names: string[], include?: string[]): void {
+        if (this._backgroundAssets) this._backgroundAssets.prioritize(names, include);
+        else this._pendingAssetPriority = { names, include };
     }
 
     private _canDownloadInBackground(): boolean {
         return this.isValid && !this.feed?.isPreview && !this.platform.interstitialBusy
             && !this._levelLoading && !this._secondaryPageLoading && !this._levelSelectEntryPending
-            && !this._rewardPending && !this._isPaused && !this._isGameOver
-            && !this._prefetchRunning && !!this._currentLevel && !!this.game?.node.activeInHierarchy;
+            && !this._rewardPending && !this._prefetchRunning && this._lobbyWarmupStarted;
     }
 
     private _ensureNavigationPage(kind: 'citySelect' | 'levelSelect'): Promise<CitySelectScreen | LevelSelectScreen> {
@@ -892,7 +902,7 @@ export class GameFlow extends Component {
         const target = city ?? this._currentCity ?? this._cities[0] ?? null;
         if (!target) return;
         if (!this.isCityUnlocked(this._cities.indexOf(target))) { this.toast('请先观看视频解锁该城市'); return; }
-        this._prioritizeAssetDownloads([target.key]);
+        this._prioritizeAssetDownloads([target.key], target.levels.slice(0, 8).map(folder => `thumbnails/${folder}/`));
         const navigationVersion = this._secondaryNavigationVersion;
         this._currentCity = target;
         const selectionStartedAt = Date.now();
@@ -1174,8 +1184,11 @@ export class GameFlow extends Component {
             this.toast('体力不足，无法开始挑战');
             return;
         }
-        this._backgroundAssets?.prioritize([city.key]);
-        if (this._pendingAssetPriority) this._pendingAssetPriority = [city.key];
+        const priorityPaths = [`configs/${city.levels[levelIndex]}/`, `${city.levels[levelIndex]}/scene-`,
+            'prefabs/', 'Animation/', 'BGmusic/', 'Combo _F_type/'];
+        this._backgroundAssets?.prioritize([city.key], priorityPaths);
+        if (this._pendingAssetPriority) this._pendingAssetPriority = { names: [city.key], include: priorityPaths };
+        if (this._chapterComboGroup?.chapterBundle !== city.key) this._releaseChapterComboClips();
         this._cancelSecondaryNavigation();
         this._updateGameMusic(city, levelIndex, musicSource);
         const version = ++this._levelLoadVersion;
@@ -1198,6 +1211,7 @@ export class GameFlow extends Component {
         const loadStartedAt = Date.now();
         const loadTimings: Record<string, number> = {};
         let loadStatus = 'cancelled';
+        const prepared: { frames: SpriteFrame[] | null; accept: boolean } = { frames: null, accept: true };
         const timed = async <T>(stage: string, task: Promise<T>): Promise<T> => {
             const startedAt = Date.now();
             try { return await task; }
@@ -1207,12 +1221,21 @@ export class GameFlow extends Component {
         try {
             await timed('loadingFrameMs', this._drawLoadingFrame());
             if (!active()) return;
-            // 共用界面与章节内容互不依赖，避免先等全部预设再请求本关配置。
+            // 配置就绪即准备两张大图，不再等待界面/章节音频索引这一并行屏障。
+            const levelRequest = timed('configMs', this._ensureLevel(city, levelIndex));
+            const imagesRequest = levelRequest.then(async level => {
+                if (!active()) return;
+                const frames = await timed('imagesReadyMs', this._prepareLevelFrames(level));
+                if (!prepared.accept || !active()) {
+                    for (const frame of frames) this.releaseLevelFrame(frame);
+                } else prepared.frames = frames;
+            });
             const [, level, chapterMusic, chapterCombo] = await Promise.all([
                 timed('uiMs', this._ensureGameScreens()),
-                timed('configMs', this._ensureLevel(city, levelIndex)),
+                levelRequest,
                 timed('musicIndexMs', this._resolveChapterMusic(city, musicSource)),
                 timed('comboIndexMs', this._resolveChapterComboGroup(city, musicSource)),
+                imagesRequest,
             ]);
             if (!active()) return;
             if (musicSource !== 'retry') this._updateComboGroup(city, levelIndex);
@@ -1235,9 +1258,11 @@ export class GameFlow extends Component {
             this._reviveUsed = false;
             this._assistRoundVersion++;
             this._setLoadingProgress(0.2);
+            const framesForScreen = prepared.frames;
+            prepared.frames = null; // setupLevel 从调用起接管这两份引用，包括失败和取消路径。
             await timed('imagesAndSetupMs', this.game.setupLevel(level, value => {
                 if (active()) this._setLoadingProgress(0.2 + value * 0.8);
-            }));
+            }, framesForScreen ?? undefined));
             if (!active()) return;
             // 两张关卡图绑定完成后才启用玩法页；动态创建的节点不能盖过 Loading。
             this._switchTo(this.game);
@@ -1291,6 +1316,8 @@ export class GameFlow extends Component {
                 this._returnToLobbyOnLoadError('关卡加载失败，已返回主界面');
             }
         } finally {
+            prepared.accept = false;
+            if (prepared.frames) for (const frame of prepared.frames) this.releaseLevelFrame(frame);
             releaseBundle();
             if (active()) {
                 this._levelLoading = false;
@@ -1420,6 +1447,7 @@ export class GameFlow extends Component {
         this._settingsInGame = false;
         this._comboSoundRequest++;
         this._comboSource?.stop();
+        if (screen !== this.game) this._releaseChapterComboClips();
         // 任何界面切换都先关闭结算弹窗，避免弹窗残留在新界面上层
         this.resultModal?.close();
         for (const item of [this.lobby, this.citySelect, this.levelSelect, this.game, this.rank, this.collect]) {
@@ -1447,6 +1475,8 @@ export class GameFlow extends Component {
             this._musicRequest++;
             this._musicPath = '';
             mixer.stop();
+            for (const clip of Array.from(this._musicClips.values())) clip.decRef();
+            this._musicClips.clear();
             return;
         }
         const musicKey = chapterBundle ? `${chapterBundle}:${path}` : path;
@@ -1460,18 +1490,25 @@ export class GameFlow extends Component {
             return;
         }
         const onLoaded = (error: Error | null, clip?: AudioClip) => {
-            if (!this.isValid || request !== this._musicRequest) return;
-            if (error || !clip) {
-                this._musicPath = '';
-                console.warn(`[GameFlow] 背景音乐加载失败: ${path}`, error);
-                if (chapterBundle) {
-                    this._chapterMusic = null;
-                    this._playPageMusic(this._gameMusicPath || 'voice/BGmusic/Game_music01', true);
+            clip?.addRef();
+            try {
+                if (!this.isValid || request !== this._musicRequest) return;
+                if (error || !clip) {
+                    this._musicPath = '';
+                    console.warn(`[GameFlow] 背景音乐加载失败: ${path}`, error);
+                    if (chapterBundle) {
+                        this._chapterMusic = null;
+                        this._playPageMusic(this._gameMusicPath || 'voice/BGmusic/Game_music01', true);
+                    }
+                    return;
                 }
-                return;
-            }
-            if (!chapterBundle) this._cacheMusicClip(path, clip);
-            mixer.play(musicKey, clip, chapterBundle ? this._contentBundles.retain(chapterBundle) : undefined);
+                if (!chapterBundle) this._cacheMusicClip(path, clip);
+                else {
+                    for (const cached of Array.from(this._musicClips.values())) cached.decRef();
+                    this._musicClips.clear();
+                }
+                mixer.play(musicKey, clip, chapterBundle ? this._contentBundles.retain(chapterBundle) : undefined);
+            } finally { clip?.decRef(); }
         };
         if (chapterBundle) {
             // 异步加载持有包；播放成功后转交给音乐持有者，切歌/离开时归还。
@@ -1493,11 +1530,19 @@ export class GameFlow extends Component {
     }
 
     private _cacheMusicClip(path: string, clip: AudioClip): void {
+        if (!this.isValid || this.save?.data?.musicEnabled === false) {
+            clip.addRef(); clip.decRef();
+            return;
+        }
         const previous = this._musicClips.get(path);
         if (previous === clip) return;
         clip.addRef();
         this._musicClips.set(path, clip);
         previous?.decRef();
+        // 只额外缓存最近一首通用长音乐；当前/淡出曲目由混音器独立持有。
+        for (const [key, cached] of Array.from(this._musicClips.entries())) {
+            if (key !== path) { this._musicClips.delete(key); cached.decRef(); }
+        }
     }
 
     /** 只查包内音频索引，不预下载整个目录；空目录或无音频时沿用通用曲目。 */
@@ -1586,9 +1631,11 @@ export class GameFlow extends Component {
         this._musicRequest++;
         this._comboSoundRequest++;
         this._comboSource?.stop();
+        if (this._comboSource) this._comboSource.clip = null;
         this._comboClips.clear();
         for (const clip of this._chapterComboClips) clip.decRef();
         this._chapterComboClips.clear();
+        this._chapterComboCacheVersion++;
         this._clickSource?.stop();
         this._musicMixer = null;
         for (const clip of this._musicClips.values()) clip.decRef();
@@ -1606,6 +1653,32 @@ export class GameFlow extends Component {
         }
         for (const prefab of this._secondaryPrefabs.values()) prefab.decRef();
         this._secondaryPrefabs.clear();
+        this._secondaryIdleSeconds.clear();
+        for (const prefab of this._retiredPagePrefabs) prefab.decRef();
+        this._retiredPagePrefabs = [];
+    }
+
+    /** 隐藏的低频页面保留30秒；延迟到下一帧归还预设，先让旧节点完成销毁。 */
+    private _tickResourceCleanup(dt: number): void {
+        for (const prefab of this._retiredPagePrefabs) prefab.decRef();
+        this._retiredPagePrefabs = [];
+        if (!Number.isFinite(dt) || dt <= 0 || this._secondaryDisposed) return;
+        for (const kind of ['rank', 'collect'] as const) {
+            const page = this[kind];
+            if (!page?.isValid || page.node.activeInHierarchy || this._secondaryPagesPending.has(kind)) {
+                this._secondaryIdleSeconds.delete(kind);
+                continue;
+            }
+            const idle = (this._secondaryIdleSeconds.get(kind) ?? 0) + Math.min(dt, 1);
+            if (idle < 30) { this._secondaryIdleSeconds.set(kind, idle); continue; }
+            this._secondaryIdleSeconds.delete(kind);
+            this.releasePageSpriteFrames(page.node);
+            page.close();
+            page.node.destroy();
+            this[kind] = null;
+            const prefab = this._secondaryPrefabs.get(kind);
+            if (prefab) { this._secondaryPrefabs.delete(kind); this._retiredPagePrefabs.push(prefab); }
+        }
     }
 
     // ------------------------------------------------------------------
@@ -1709,16 +1782,19 @@ export class GameFlow extends Component {
         const key = `${ref.chapterBundle ?? 'MainGameSources'}:${ref.path}`;
         const cached = this._comboClips.get(key);
         if (cached) return cached;
-        const pending = new Promise<AudioClip>((resolve, reject) => {
+        const cacheVersion = this._chapterComboCacheVersion;
+        let pending: Promise<AudioClip>;
+        pending = new Promise<AudioClip>((resolve, reject) => {
             const done = (error: Error | null, clip?: AudioClip) => {
                 if (error || !clip) {
-                    this._comboClips.delete(key);
+                    if (this._comboClips.get(key) === pending) this._comboClips.delete(key);
                     reject(error ?? new Error(`[GameFlow] 连击音效加载失败: ${ref.path}`));
                 } else {
-                    // 章节页面退出后也可能仍在播尾音；缓存显式持有引用，销毁时归还。
-                    if (ref.chapterBundle && this.isValid && !this._chapterComboClips.has(clip)) {
+                    if (ref.chapterBundle) {
                         clip.addRef();
-                        this._chapterComboClips.add(clip);
+                        if (this.isValid && cacheVersion === this._chapterComboCacheVersion && !this._chapterComboClips.has(clip)) {
+                            this._chapterComboClips.add(clip);
+                        } else clip.decRef();
                     }
                     resolve(clip);
                 }
@@ -1736,6 +1812,21 @@ export class GameFlow extends Component {
         });
         this._comboClips.set(key, pending);
         return pending;
+    }
+
+    /** 切章或离开玩法时停止尾音，再清理专属缓存；迟到请求用版本隔离。 */
+    private _releaseChapterComboClips(): void {
+        this._chapterComboCacheVersion = (this._chapterComboCacheVersion ?? 0) + 1;
+        ++this._comboSoundRequest;
+        this._comboSource?.stop();
+        if (this._comboSource) this._comboSource.clip = null;
+        for (const clip of this._chapterComboClips) clip.decRef();
+        this._chapterComboClips.clear();
+        for (const key of Array.from(this._comboClips.keys())) {
+            if (!key.startsWith('MainGameSources:')) this._comboClips.delete(key);
+        }
+        this._successSoundBags.clear();
+        this._lastSuccessClipKey = null;
     }
 
     /** 专属档位缺失时只在同章回退：优先最近的较低档，否则选本章最低可用档。 */
@@ -2174,21 +2265,21 @@ export class GameFlow extends Component {
         this._playResultTone(win, !win && failReason === 'time');
 
         const level = this._currentLevel;
+        const levelVersion = this._levelLoadVersion;
         const alreadyCollected = this.save.isCompleted(level.key);
         let stars = 0;
         if (win) {
             const ratio = this._remainingTime / level.timeLimit;
             stars = ratio >= 0.6 ? 3 : ratio >= 0.3 ? 2 : 1;
-            // 每个真实成功对局返还1点体力；由_isGameOver防止重复结算，重玩成功也可获得。
-            if (this.save.completeLevel(level.key, stars, Math.max(1, Math.round(this._elapsedTime)), true)) {
-                // 上报平台排行榜（抖音 setImRankData 等；非平台环境为空实现）
-                this.rankProvider.submitScore(this.save.totalScore, stars, Math.max(1, Math.round(this._elapsedTime)));
-            } else this.toast('通关记录与体力奖励保存失败，请检查存储空间');
         }
 
+        let presented = false;
         const presentResult = () => {
-            if (!this.isValid || !this._isGameOver || this._currentLevel !== level) return;
-            this.resultModal?.present({
+            if (presented || !this.isValid || !this._isGameOver || this._currentLevel !== level
+                || levelVersion !== this._levelLoadVersion) return;
+            const modal = this.resultModal;
+            if (!modal) return;
+            modal.present({
                 win,
                 stars,
                 elapsedSeconds: Math.max(1, Math.round(this._elapsedTime)),
@@ -2198,6 +2289,14 @@ export class GameFlow extends Component {
                 canRevive: !win && !this._reviveUsed,
                 hasNext: win && this.findNextLevel(level) !== null,
             });
+            if (!modal.node.activeInHierarchy) return;
+            presented = true;
+            // 胜利波浪结束、成功面板打开后才返还体力；成绩与奖励仍原子保存。
+            if (win) {
+                if (this.save.completeLevel(level.key, stars, Math.max(1, Math.round(this._elapsedTime)), true)) {
+                    this.rankProvider.submitScore(this.save.totalScore, stars, Math.max(1, Math.round(this._elapsedTime)));
+                } else this.toast('通关记录与体力奖励保存失败，请检查存储空间');
+            }
             if (win && !alreadyCollected && (level.type === 'food' || this._foods.some(food => food.levelKey === level.key))) this.showFoodTips(level, true);
             void this.platform.onRoundFinished(() => this.isValid && this._isGameOver && !this._isPaused
                 && this._currentLevel === level && !!this.resultModal?.node.activeInHierarchy,
@@ -2364,6 +2463,21 @@ export class GameFlow extends Component {
                 void this.preloadNextLevel(pending);
             }
         }
+    }
+
+    /** 同时准备当前关卡两图，失败时也等另一个请求收尾并归还全部引用。 */
+    private async _prepareLevelFrames(level: LevelConfig): Promise<SpriteFrame[]> {
+        const frames: SpriteFrame[] = [];
+        const results = await Promise.all([level.topImage, level.bottomImage].map(async (path, index) => {
+            try { frames[index] = await this.acquireLevelFrame(path); return null; }
+            catch (error) { return { error }; }
+        }));
+        const failed = results.find(result => result !== null);
+        if (failed) {
+            for (const frame of frames) if (frame) this.releaseLevelFrame(frame);
+            throw failed.error;
+        }
+        return frames;
     }
 
     /** 页面持有独立引用，离开关卡时 decRef；不写入永久图片缓存。 */
